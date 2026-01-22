@@ -13,6 +13,19 @@ const EPS = CesiumMath.EPSILON8;
 describe("Point3DCollection", () => {
   const position = new Cartesian3();
 
+  it("Point3D#batchId", () => {
+    const collection = new Point3DCollection();
+
+    const point = new Point3D();
+    collection.add({}, point);
+    collection.add({}, point);
+    collection.add({}, point);
+
+    expect(Point3D.fromCollection(collection, 0, point).batchId).toBe(0);
+    expect(Point3D.fromCollection(collection, 1, point).batchId).toBe(1);
+    expect(Point3D.fromCollection(collection, 2, point).batchId).toBe(2);
+  });
+
   it("Point3D#geometry", () => {
     const collection = new Point3DCollection();
 

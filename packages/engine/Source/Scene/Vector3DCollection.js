@@ -29,7 +29,7 @@ const ERR_INSTANTIATION =
 // VECTOR3D
 
 const Vector3DLayout = {
-  ID_U32: 0,
+  BATCH_ID_U32: 0,
   SHOW_U8: 4,
   DESTROYED_U8: 5,
   DIRTY_U8: 6,
@@ -89,6 +89,11 @@ class Vector3D {
 
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
+
+  get batchId() {
+    const byteOffset = this._byteOffset + Vector3DLayout.BATCH_ID_U32;
+    return this._collection._batchView.getUint32(byteOffset, true);
+  }
 
   /** @returns {boolean} */
   get show() {
@@ -176,6 +181,9 @@ class Vector3DCollection {
 
     /** @type {BoundingSphere} */
     this._boundingVolume = new BoundingSphere();
+
+    /** @type {number} */
+    this._nextBatchId = 0;
 
     /** @type {number} */
     this._batchCount = 0;
@@ -281,6 +289,11 @@ class Vector3DCollection {
       this._getVector3DClass()
     );
     result = Vector3DClass.fromCollection(this, this._batchCount++, result);
+    this._batchView.setUint32(
+      result._byteOffset + Vector3DLayout.BATCH_ID_U32,
+      this._nextBatchId++,
+      true,
+    );
     result._destroyed = false;
     result.dirty = true;
     result.show = options.show ?? true;
