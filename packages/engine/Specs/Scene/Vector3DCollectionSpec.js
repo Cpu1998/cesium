@@ -16,7 +16,8 @@ describe("Point3DCollection", () => {
   it("Point3D#geometry", () => {
     const collection = new Point3DCollection();
 
-    const point = collection.add({ position: Cartesian3.UNIT_X });
+    const point = new Point3D();
+    collection.add({ position: Cartesian3.UNIT_X }, point);
     collection.add({ position: Cartesian3.UNIT_Y }, point);
     collection.add({ position: Cartesian3.UNIT_Z }, point);
 
@@ -33,7 +34,8 @@ describe("Point3DCollection", () => {
   it("Point3D#show", () => {
     const collection = new Point3DCollection();
 
-    const point = collection.add({ show: true });
+    const point = new Point3D();
+    collection.add({ show: true }, point);
     collection.add({ show: false }, point);
 
     expect(Point3D.fromCollection(collection, 0, point).show).toBe(true);
@@ -43,7 +45,8 @@ describe("Point3DCollection", () => {
   it("Point3D#color", () => {
     const collection = new Point3DCollection();
 
-    const point = collection.add({ color: Color.RED });
+    const point = new Point3D();
+    collection.add({ color: Color.RED }, point);
     collection.add({ color: Color.GREEN }, point);
     collection.add({ color: Color.BLUE }, point);
 
