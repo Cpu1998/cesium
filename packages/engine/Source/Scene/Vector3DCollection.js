@@ -449,6 +449,7 @@ class Point3DCollection extends Vector3DCollection {
 
 const Point3DAttributeLocations = {
   position: 0,
+  color: 1,
 };
 
 /**
@@ -478,7 +479,24 @@ function renderPoints(collection, frameState, renderContext = {}) {
     const positionBuffer = Buffer.createVertexBuffer({
       typedArray: positionTypedArray,
       context,
-      // @ts-expect-error TODO(donmccurdy): Types appear to be incorrect.
+      // @ts-expect-error TODO(donmccurdy): BufferUsage types incorrect.
+      usage: BufferUsage.STATIC_DRAW,
+    });
+
+    const colorTypedArray = new Uint8Array(collection._vertexCount * 4);
+    const point = new Point3D();
+    for (let i = 0, il = collection._vertexCount; i < il; i++) {
+      const color = Point3D.fromCollection(collection, i, point).color;
+      colorTypedArray[i * 4] = color.red;
+      colorTypedArray[i * 4 + 1] = color.green;
+      colorTypedArray[i * 4 + 2] = color.blue;
+      colorTypedArray[i * 4 + 3] = color.alpha;
+    }
+
+    const colorBuffer = Buffer.createVertexBuffer({
+      typedArray: colorTypedArray,
+      context,
+      // @ts-expect-error TODO(donmccurdy): BufferUsage types incorrect.
       usage: BufferUsage.STATIC_DRAW,
     });
 
@@ -490,6 +508,12 @@ function renderPoints(collection, frameState, renderContext = {}) {
           vertexBuffer: positionBuffer,
           componentDatatype: ComponentDatatype.FLOAT,
           componentsPerAttribute: 3,
+        },
+        {
+          index: Point3DAttributeLocations.color,
+          vertexBuffer: colorBuffer,
+          componentDatatype: ComponentDatatype.UNSIGNED_BYTE,
+          componentsPerAttribute: 4,
         },
       ],
     });
