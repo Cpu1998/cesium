@@ -90,62 +90,52 @@ class Vector3D {
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
 
+  /** @type {number} */
   get batchId() {
     const byteOffset = this._byteOffset + Vector3DLayout.BATCH_ID_U32;
     return this._collection._batchView.getUint32(byteOffset, true);
   }
 
-  /** @returns {boolean} */
+  /** @type {boolean} */
   get show() {
     const byteOffset = this._byteOffset + Vector3DLayout.SHOW_U8;
     return this._collection._batchView.getUint8(byteOffset) === 1;
   }
 
-  /**
-   * @param {boolean} show
-   */
   set show(show) {
     const byteOffset = this._byteOffset + Vector3DLayout.SHOW_U8;
     this._collection._batchView.setUint8(byteOffset, show ? 1 : 0);
   }
 
-  /** @returns {boolean} */
+  /** @type {boolean} */
   get _dirty() {
     const byteOffset = this._byteOffset + Vector3DLayout.DIRTY_U8;
     return this._collection._batchView.getUint8(byteOffset) === 1;
   }
 
-  /**
-   * @param {boolean} dirty
-   */
   set _dirty(dirty) {
     const byteOffset = this._byteOffset + Vector3DLayout.DIRTY_U8;
     this._collection._batchView.setUint8(byteOffset, dirty ? 1 : 0);
   }
 
-  /** @returns {boolean} */
+  /** @type {boolean} */
   get _destroyed() {
     const byteOffset = this._byteOffset + Vector3DLayout.DESTROYED_U8;
     return this._collection._batchView.getUint8(byteOffset) === 1;
   }
 
-  /**
-   * @param {boolean} destroyed
-   */
   set _destroyed(destroyed) {
     const byteOffset = this._byteOffset + Vector3DLayout.DESTROYED_U8;
     this._collection._batchView.setUint8(byteOffset, destroyed ? 1 : 0);
   }
 
+  /** @type {Color} */
   get color() {
     const byteOffset = this._byteOffset + Vector3DLayout.COLOR_U32;
     const rgba = this._collection._batchView.getUint32(byteOffset, true);
     return Color.fromRgba(rgba, this._color);
   }
 
-  /**
-   * @param {Color} color
-   */
   set color(color) {
     const byteOffset = this._byteOffset + Vector3DLayout.COLOR_U32;
     this._collection._batchView.setUint32(byteOffset, color.toRgba(), true);
@@ -330,6 +320,7 @@ class Vector3DCollection {
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
 
+  /** @type {number} */
   get length() {
     return this._batchCount;
   }
@@ -356,7 +347,7 @@ const Point3DLayout = {
  */
 
 /**
- *
+ * TODO(donmccurdy)
  */
 class Point3D extends Vector3D {
   /**
@@ -626,15 +617,12 @@ class Polyline3D extends Vector3D {
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
 
-  /** @returns {number} */
+  /** @type {number} */
   get width() {
     const byteOffset = this._byteOffset + Polyline3DLayout.WIDTH_U8;
     return this._collection._batchView.getUint8(byteOffset);
   }
 
-  /**
-   * @param {number} width
-   */
   set width(width) {
     const byteOffset = this._byteOffset + Polyline3DLayout.WIDTH_U8;
     this._collection._batchView.setUint8(byteOffset, width);
@@ -759,4 +747,5 @@ const TODO = {
   Polyline3DCollection,
   Polygon3DCollection,
 };
+
 export default TODO;
