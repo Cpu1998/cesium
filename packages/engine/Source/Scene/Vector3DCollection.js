@@ -6,6 +6,19 @@ import Color from "../Core/Color.js";
 import DeveloperError from "../Core/DeveloperError.js";
 import Frozen from "../Core/Frozen.js";
 import Matrix4 from "../Core/Matrix4.js";
+import Buffer from "../Renderer/Buffer.js";
+import BufferUsage from "../Renderer/BufferUsage.js";
+import VertexArray from "../Renderer/VertexArray";
+import ComponentDatatype from "../Core/ComponentDatatype";
+import RenderState from "../Renderer/RenderState";
+import BlendingState from "./BlendingState.js";
+import ShaderSource from "../Renderer/ShaderSource";
+import ShaderProgram from "../Renderer/ShaderProgram";
+import DrawCommand from "../Renderer/DrawCommand";
+import Pass from "../Renderer/Pass";
+import defined from "../Core/defined";
+
+/** @import FrameState from "./FrameState"; */
 
 const ERR_NOT_IMPLEMENTED = "Not implemented";
 const ERR_INSTANTIATION =
@@ -33,19 +46,19 @@ const Vector3DLayout = {
 
 /** @abstract */
 class Vector3D {
-  constructor() {
-    /** @type {Vector3DCollection<Vector3D>} */
-    this._collection = null;
+  /** @type {Vector3DCollection<Vector3D>} */
+  _collection = null;
 
-    /** @type {number} */
-    this._index = -1;
+  /** @type {number} */
+  _index = -1;
 
-    /** @type {number} */
-    this._byteOffset = -1;
+  /** @type {number} */
+  _byteOffset = -1;
 
-    /** @type {Color} */
-    this._color = new Color();
-  }
+  /** @type {Color} */
+  _color = new Color();
+
+  constructor() {}
 
   /////////////////////////////////////////////////////////////////////////////
   // LIFECYCLE
@@ -382,6 +395,9 @@ class Point3D extends Vector3D {
  * @extends Vector3DCollection<Point3D>
  */
 class Point3DCollection extends Vector3DCollection {
+  /** @type {Record<string, unknown>} */
+  _renderContext = null;
+
   _getVector3DClass() {
     return /** @type {unknown} */ (Point3D);
   }
@@ -408,6 +424,111 @@ class Point3DCollection extends Vector3DCollection {
 
     return result;
   }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // RENDER
+
+  /** @param {FrameState} frameState */
+  update(frameState) {
+    this._renderContext = renderPoints(this, frameState, this._renderContext);
+  }
+}
+
+const Point3DAttributeLocations = {
+  position: 0,
+};
+
+/**
+ * @typedef {object} Point3DRenderContext
+ * @property {VertexArray} [vertexArray]
+ * @property {RenderState} [renderState]
+ * @property {ShaderProgram} [shaderProgram]
+ * @property {object} [uniformMap]
+ */
+
+/**
+ * @param {Point3DCollection} collection
+ * @param {FrameState} frameState
+ * @param {Point3DRenderContext} renderContext
+ * @returns {Point3DRenderContext}
+ */
+function renderPoints(collection, frameState, renderContext = {}) {
+  const context = frameState.context;
+
+  if (!defined(renderContext.vertexArray)) {
+    const positionTypedArray = new Float32Array(
+      collection._vertexBuffer,
+      0,
+      collection._vertexCount * 3,
+    );
+
+    const positionBuffer = Buffer.createVertexBuffer({
+      typedArray: positionTypedArray,
+      context,
+      // @ts-expect-error TODO(donmccurdy): Types appear to be incorrect.
+      usage: BufferUsage.STATIC_DRAW,
+    });
+
+    renderContext.vertexArray = new VertexArray({
+      context,
+      attributes: [
+        {
+          index: Point3DAttributeLocations.position,
+          vertexBuffer: positionBuffer,
+          componentDatatype: ComponentDatatype.FLOAT,
+          componentsPerAttribute: 3,
+        },
+      ],
+    });
+  }
+
+  if (!defined(renderContext.renderState)) {
+    // @ts-expect-error TODO(donmccurdy): Will need to expose fromCache.
+    renderContext.renderState = RenderState.fromCache({
+      blending: BlendingState.DISABLED,
+      depthMask: false,
+      depthTest: { enabled: false }, // TODO(donmccurdy)
+      polygonOffset: { enabled: false },
+    });
+  }
+
+  if (!defined(renderContext.uniformMap)) {
+    renderContext.uniformMap = {};
+  }
+
+  if (!defined(renderContext.shaderProgram)) {
+    const vertexShaderSource = new ShaderSource({
+      defines: [],
+      sources: [], // TODO(donmccurdy): vs
+    });
+
+    const fragmentShaderSource = new ShaderSource({
+      defines: [],
+      sources: [], // TODO(donmccurdy): fs
+    });
+
+    renderContext.shaderProgram = ShaderProgram.fromCache({
+      context,
+      vertexShaderSource,
+      fragmentShaderSource,
+      attributeLocations: Point3DAttributeLocations.position,
+    });
+  }
+
+  const command = new DrawCommand({
+    owner: collection,
+    boundingVolume: collection._boundingVolume,
+    vertexArray: renderContext.vertexArray,
+    renderState: renderContext.renderState,
+    shaderProgram: renderContext.shaderProgram,
+    uniformMap: renderContext.uniformMap,
+    pass: Pass.OPAQUE,
+    // TODO(donmccurdy): pickId
+  });
+
+  frameState.commandList.push(command);
+
+  return renderContext;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -446,12 +567,8 @@ const Polyline3DLayout = {
  * TODO
  */
 class Polyline3D extends Vector3D {
-  constructor() {
-    super();
-
-    /** @type {BoundingSphere} */
-    this._boundingSphere = new BoundingSphere();
-  }
+  /** @type {BoundingSphere} */
+  _boundingSphere = new BoundingSphere();
 
   /////////////////////////////////////////////////////////////////////////////
   // LIFECYCLE
@@ -548,12 +665,8 @@ const Polygon3DLayout = {
  * TODO
  */
 class Polygon3D extends Vector3D {
-  constructor() {
-    super();
-
-    /** @type {BoundingSphere} */
-    this._boundingSphere = new BoundingSphere();
-  }
+  /** @type {BoundingSphere} */
+  _boundingSphere = new BoundingSphere();
 
   /////////////////////////////////////////////////////////////////////////////
   // LIFECYCLE
