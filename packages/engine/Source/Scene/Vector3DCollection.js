@@ -159,11 +159,11 @@ class Vector3D {
 class Vector3DCollection {
   /**
    * @param {object} options
-   * @param {number} [options.maxPrimitiveCount=1024]
+   * @param {number} [options.maxInstanceCount=1024]
    * @param {number} [options.maxVertexCount=4096]
    * @param {number} [options.maxIndexCount=4096]
    * @param {boolean} [options.show=true] Determines if the collection will be shown.
-   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each vector primitive from model to world coordinates.
+   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each instance from model to world coordinates.
    */
   constructor(options = Frozen.EMPTY_OBJECT) {
     // Public.
@@ -188,7 +188,7 @@ class Vector3DCollection {
     /** @type {number} */
     this._batchCount = 0;
     /** @type {number} */
-    this._batchCapacity = options.maxPrimitiveCount ?? 1024;
+    this._batchCapacity = options.maxInstanceCount ?? 1024;
     /** @type {ArrayBuffer} */
     this._batchBuffer = null;
     /** @type {DataView<ArrayBuffer>} */
@@ -277,7 +277,7 @@ class Vector3DCollection {
   }
 
   /////////////////////////////////////////////////////////////////////////////
-  // PRIMITIVE LIFECYCLE
+  // INSTANCE LIFECYCLE
 
   /**
    * @param {Vector3DOptions} options
