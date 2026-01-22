@@ -22,19 +22,16 @@ const Vector3DLayout = {
   DIRTY_U8: 6,
   COLOR_U32: 8,
 
-  /** Offset in elements, not bytes. */
-  VERTEX_OFFSET_U32: 12,
-  VERTEX_COUNT_U32: 16, // TODO(donmccurdy): Doesn't apply to Point3D.
-
-  /** Offset in elements, not bytes. */
-  INDEX_OFFSET_U32: 20, // TODO(donmccurdy): Doesn't apply to Point3D.
-  INDEX_COUNT_U32: 24, // TODO(donmccurdy): Doesn't apply to Point3D.
-
-  __BYTE_LENGTH: 32, // TODO(donmccurdy): Limit to space required.
+  __BYTE_LENGTH: 12,
 };
 
+/**
+ * @typedef {new(collection: unknown, index: number) => V} Vector3DConstructor
+ * @template V extends Vector3D
+ */
+
 /** @abstract */
-export class Vector3D {
+class Vector3D {
   /**
    * @param {Vector3DCollection<Vector3D>} collection
    * @param {number} index
@@ -75,42 +72,6 @@ export class Vector3D {
   /** @returns {boolean} */
   isDestroyed() {
     return this._destroyed;
-  }
-
-  /////////////////////////////////////////////////////////////////////////////
-  // GEOMETRY
-
-  /**
-   * @param {Cartesian3} result
-   * @returns {Cartesian3}
-   */
-  getPosition(result) {
-    const vertexOffset = this._collection._batchView.getUint32(
-      this._byteOffset + Vector3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
-    return Cartesian3.fromArray(
-      // @ts-expect-error TODO(donmccurdy): Will need to support this.
-      this._collection._vertexF64,
-      vertexOffset,
-      result,
-    );
-  }
-
-  /** @param {Cartesian3} position */
-  setPosition(position) {
-    const vertexOffset = this._collection._batchView.getUint32(
-      this._byteOffset + Vector3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
-    this._collection._vertexF64[vertexOffset] = position.x;
-    this._collection._vertexF64[vertexOffset + 1] = position.y;
-    this._collection._vertexF64[vertexOffset + 2] = position.z;
-    this._collection._batchView.setUint32(
-      this._byteOffset + Vector3DLayout.VERTEX_COUNT_U32,
-      1,
-      true,
-    );
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -174,22 +135,17 @@ export class Vector3D {
 }
 
 /**
- * @typedef {new(id: number, collection: unknown) => V} Vector3DConstructor
- * @template V extends Vector3D
- */
-
-/**
  * @abstract
  * @template V extends Vector3D
  */
-export class Vector3DCollection {
+class Vector3DCollection {
   /**
    * @param {object} options
    * @param {number} [options.maxPrimitiveCount=1024]
    * @param {number} [options.maxVertexCount=4096]
    * @param {number} [options.maxIndexCount=4096]
-   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each polyline from model to world coordinates.
-   * @param {boolean} [options.show=true] Determines if the polylines in the collection will be shown.
+   * @param {boolean} [options.show=true] Determines if the collection will be shown.
+   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each vector primitive from model to world coordinates.
    */
   constructor(options = Frozen.EMPTY_OBJECT) {
     // Public.
@@ -318,14 +274,14 @@ export class Vector3DCollection {
     const PrimitiveType = /** @type {Vector3DConstructor<V>} */ (
       this._getPrimitiveType()
     );
-    return new PrimitiveType(index, this);
+    return new PrimitiveType(this, index);
   }
 
   /**
    * @param {V} primitive
    */
   release(primitive) {
-    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+    // TODO(donmccurdy)
   }
 
   /**
@@ -368,10 +324,14 @@ export class Vector3DCollection {
 
 const Point3DLayout = {
   ...Vector3DLayout,
-  __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH,
+
+  /** Offset in elements, not bytes. */
+  VERTEX_OFFSET_U32: Vector3DLayout.__BYTE_LENGTH,
+
+  __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH + 4,
 };
 
-export class Point3D extends Vector3D {
+class Point3D extends Vector3D {
   /**
    * @param {Point3DCollection} collection
    * @param {number} index
@@ -385,14 +345,51 @@ export class Point3D extends Vector3D {
    * @override
    */
   static fromDefaults(result) {
+    result._collection._batchView.setUint32(
+      result._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
+      result._collection._vertexCount * 3,
+      true,
+    );
+    result._collection._vertexCount++;
     return super.fromDefaults(result);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // GEOMETRY
+
+  /**
+   * @param {Cartesian3} result
+   * @returns {Cartesian3}
+   */
+  getPosition(result) {
+    const vertexOffset = this._collection._batchView.getUint32(
+      this._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
+      true,
+    );
+    return Cartesian3.fromArray(
+      // @ts-expect-error TODO(donmccurdy): Will need to support this.
+      this._collection._vertexF64,
+      vertexOffset,
+      result,
+    );
+  }
+
+  /** @param {Cartesian3} position */
+  setPosition(position) {
+    const vertexOffset = this._collection._batchView.getUint32(
+      this._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
+      true,
+    );
+    this._collection._vertexF64[vertexOffset] = position.x;
+    this._collection._vertexF64[vertexOffset + 1] = position.y;
+    this._collection._vertexF64[vertexOffset + 2] = position.z;
   }
 }
 
 /**
  * @extends Vector3DCollection<Point3D>
  */
-export class Point3DCollection extends Vector3DCollection {
+class Point3DCollection extends Vector3DCollection {
   _getPrimitiveType() {
     return /** @type {unknown} */ (Point3D);
   }
@@ -408,12 +405,27 @@ export class Point3DCollection extends Vector3DCollection {
 
 const Polyline3DLayout = {
   ...Vector3DLayout,
+
   BOUNDING_SPHERE: Vector3DLayout.__BYTE_LENGTH,
   WIDTH_U8: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
-  __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+
+  /** Offset in elements, not bytes. */
+  VERTEX_OFFSET_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+  VERTEX_COUNT_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
+
+  /** Offset in elements, not bytes. */
+  INDEX_OFFSET_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
+  INDEX_COUNT_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
+
+  __BYTE_LENGTH:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
 };
 
-export class Polyline3D extends Vector3D {
+class Polyline3D extends Vector3D {
   /**
    * @param {Polyline3DCollection} collection
    * @param {number} index
@@ -457,7 +469,7 @@ export class Polyline3D extends Vector3D {
 /**
  * @extends Vector3DCollection<Polyline3D>
  */
-export class Polyline3DCollection extends Vector3DCollection {
+class Polyline3DCollection extends Vector3DCollection {
   _getPrimitiveType() {
     return Polyline3D;
   }
@@ -473,11 +485,25 @@ export class Polyline3DCollection extends Vector3DCollection {
 
 const Polygon3DLayout = {
   ...Vector3DLayout,
+
   BOUNDING_SPHERE: Vector3DLayout.__BYTE_LENGTH,
-  __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
+
+  /** Offset in elements, not bytes. */
+  VERTEX_OFFSET_U32: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
+  VERTEX_COUNT_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+
+  /** Offset in elements, not bytes. */
+  INDEX_OFFSET_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
+  INDEX_COUNT_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
+
+  __BYTE_LENGTH:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
 };
 
-export class Polygon3D extends Vector3D {
+class Polygon3D extends Vector3D {
   /**
    * @param {number} index
    * @param {Polygon3DCollection} collection
@@ -504,7 +530,7 @@ export class Polygon3D extends Vector3D {
 /**
  * @extends Vector3DCollection<Polygon3D>
  */
-export class Polygon3DCollection extends Vector3DCollection {
+class Polygon3DCollection extends Vector3DCollection {
   _getPrimitiveType() {
     return Polygon3D;
   }
@@ -513,3 +539,15 @@ export class Polygon3DCollection extends Vector3DCollection {
     return Polygon3DLayout;
   }
 }
+
+// TODO(donmccurdy): Split into separate files when further along.
+const TODO = {
+  Vector3D,
+  Vector3DCollection,
+  Point3D,
+  Point3DCollection,
+  Polyline3D,
+  Polyline3DCollection,
+  Polygon3DCollection,
+};
+export default TODO;
