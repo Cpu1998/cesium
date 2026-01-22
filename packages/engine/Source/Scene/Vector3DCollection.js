@@ -1,22 +1,24 @@
 // @ts-check
 
 import BoundingSphere from "../Core/BoundingSphere.js";
-import Cartesian3 from "../Core/Cartesian3";
+import Cartesian3 from "../Core/Cartesian3.js";
 import Color from "../Core/Color.js";
 import DeveloperError from "../Core/DeveloperError.js";
+import Ellipsoid from "../Core/Ellipsoid.js";
 import Frozen from "../Core/Frozen.js";
 import Matrix4 from "../Core/Matrix4.js";
 import Buffer from "../Renderer/Buffer.js";
 import BufferUsage from "../Renderer/BufferUsage.js";
-import VertexArray from "../Renderer/VertexArray";
-import ComponentDatatype from "../Core/ComponentDatatype";
-import RenderState from "../Renderer/RenderState";
+import VertexArray from "../Renderer/VertexArray.js";
+import Transforms from "../Core/Transforms.js";
+import ComponentDatatype from "../Core/ComponentDatatype.js";
+import RenderState from "../Renderer/RenderState.js";
 import BlendingState from "./BlendingState.js";
-import ShaderSource from "../Renderer/ShaderSource";
-import ShaderProgram from "../Renderer/ShaderProgram";
-import DrawCommand from "../Renderer/DrawCommand";
-import Pass from "../Renderer/Pass";
-import defined from "../Core/defined";
+import ShaderSource from "../Renderer/ShaderSource.js";
+import ShaderProgram from "../Renderer/ShaderProgram.js";
+import DrawCommand from "../Renderer/DrawCommand.js";
+import Pass from "../Renderer/Pass.js";
+import defined from "../Core/defined.js";
 
 /** @import FrameState from "./FrameState"; */
 
@@ -129,6 +131,7 @@ class Vector3D {
     this._collection._batchView.setUint8(byteOffset, destroyed ? 1 : 0);
   }
 
+  // TODO(donmccurdy): Consider `point.getColor(color)` API instead.
   /** @type {Color} */
   get color() {
     const byteOffset = this._byteOffset + Vector3DLayout.COLOR_U32;
@@ -246,20 +249,25 @@ class Vector3DCollection {
 
   /** @param {number} capacity */
   _allocateVertexBuffer(capacity) {
-    const vertexBufferByteLength = (capacity || 4096) * 3;
-
+    const vertexBufferByteLength =
+      capacity * 3 * Float64Array.BYTES_PER_ELEMENT;
     this._vertexBuffer = new ArrayBuffer(vertexBufferByteLength);
     this._vertexF64 = new Float64Array(this._vertexBuffer);
     this._vertexF32 = new Float32Array(this._vertexBuffer);
     this._vertexU32 = new Uint32Array(this._vertexBuffer);
     this._vertexU8 = new Uint8Array(this._vertexBuffer);
-    this._indexCapacity = capacity;
+    this._vertexCapacity = capacity;
   }
 
   /** @param {number} capacity */
   _allocateIndexBuffer(capacity) {
-    this._index = new Uint32Array(capacity || 4096);
+    const indexBufferByteLength = capacity * Uint32Array.BYTES_PER_ELEMENT;
+    this._index = new Uint32Array(indexBufferByteLength);
     this._indexCapacity = capacity;
+  }
+
+  isDestroyed() {
+    return false;
   }
 
   destroy() {
@@ -449,23 +457,96 @@ const Point3DAttributeLocations = {
  * @property {RenderState} [renderState]
  * @property {ShaderProgram} [shaderProgram]
  * @property {object} [uniformMap]
+ * @property {Matrix4} [transform]
  */
 
 /**
  * @param {Point3DCollection} collection
  * @param {FrameState} frameState
- * @param {Point3DRenderContext} renderContext
+ * @param {Point3DRenderContext} [renderContext]
  * @returns {Point3DRenderContext}
  */
-function renderPoints(collection, frameState, renderContext = {}) {
+function renderPoints(collection, frameState, renderContext) {
   const context = frameState.context;
+  renderContext = renderContext || {};
+
+  if (!defined(renderContext.transform)) {
+    const globalMin = new Cartesian3(
+      Number.POSITIVE_INFINITY,
+      Number.POSITIVE_INFINITY,
+      Number.POSITIVE_INFINITY,
+    );
+
+    const globalMax = new Cartesian3(
+      Number.NEGATIVE_INFINITY,
+      Number.NEGATIVE_INFINITY,
+      Number.NEGATIVE_INFINITY,
+    );
+
+    const point = new Point3D();
+    const globalCartesian = new Cartesian3();
+
+    for (let i = 0, il = collection.length; i < il; i++) {
+      Point3D.fromCollection(collection, i, point).getPosition(globalCartesian);
+      Cartesian3.minimumByComponent(globalMin, globalCartesian, globalMin);
+      Cartesian3.maximumByComponent(globalMax, globalCartesian, globalMax);
+    }
+
+    // Compute the ENU matrix
+    const ecefCenter = Cartesian3.midpoint(
+      globalMin,
+      globalMax,
+      new Cartesian3(),
+    );
+    const toGlobal = Transforms.eastNorthUpToFixedFrame(
+      ecefCenter,
+      Ellipsoid.WGS84,
+      new Matrix4(),
+    );
+
+    renderContext.transform = toGlobal;
+  }
 
   if (!defined(renderContext.vertexArray)) {
-    const positionTypedArray = new Float32Array(
-      collection._vertexBuffer,
-      0,
-      collection._vertexCount * 3,
+    const point = new Point3D();
+    const globalCartesian = new Cartesian3();
+    const localCartesian = new Cartesian3();
+
+    const localMin = new Cartesian3(
+      Number.POSITIVE_INFINITY,
+      Number.POSITIVE_INFINITY,
+      Number.POSITIVE_INFINITY,
     );
+
+    const localMax = new Cartesian3(
+      Number.NEGATIVE_INFINITY,
+      Number.NEGATIVE_INFINITY,
+      Number.NEGATIVE_INFINITY,
+    );
+
+    const toLocal = Matrix4.inverseTransformation(
+      renderContext.transform,
+      new Matrix4(),
+    );
+
+    const positionTypedArray = new Float32Array(collection._vertexCount * 3);
+    const colorTypedArray = new Uint8Array(collection._vertexCount * 4);
+
+    for (let i = 0, il = collection._vertexCount; i < il; i++) {
+      Point3D.fromCollection(collection, i, point);
+
+      // Position.
+      point.getPosition(globalCartesian);
+      Matrix4.multiplyByPoint(toLocal, globalCartesian, localCartesian);
+      Cartesian3.minimumByComponent(localMin, localCartesian, localMin);
+      Cartesian3.maximumByComponent(localMax, localCartesian, localMax);
+      // @ts-expect-error TODO(donmccurdy): Incorrect types.
+      Cartesian3.pack(localCartesian, positionTypedArray, i * 3);
+
+      // Color.
+      // @ts-expect-error TODO(donmccurdy): Incorrect types.
+      Color.pack(point.color, colorTypedArray, i * 4);
+    }
 
     const positionBuffer = Buffer.createVertexBuffer({
       typedArray: positionTypedArray,
@@ -473,16 +554,6 @@ function renderPoints(collection, frameState, renderContext = {}) {
       // @ts-expect-error TODO(donmccurdy): BufferUsage types incorrect.
       usage: BufferUsage.STATIC_DRAW,
     });
-
-    const colorTypedArray = new Uint8Array(collection._vertexCount * 4);
-    const point = new Point3D();
-    for (let i = 0, il = collection._vertexCount; i < il; i++) {
-      const color = Point3D.fromCollection(collection, i, point).color;
-      colorTypedArray[i * 4] = color.red;
-      colorTypedArray[i * 4 + 1] = color.green;
-      colorTypedArray[i * 4 + 2] = color.blue;
-      colorTypedArray[i * 4 + 3] = color.alpha;
-    }
 
     const colorBuffer = Buffer.createVertexBuffer({
       typedArray: colorTypedArray,
