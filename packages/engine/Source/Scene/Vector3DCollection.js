@@ -19,6 +19,7 @@ import ShaderProgram from "../Renderer/ShaderProgram.js";
 import DrawCommand from "../Renderer/DrawCommand.js";
 import Pass from "../Renderer/Pass.js";
 import defined from "../Core/defined.js";
+import PrimitiveType from "../Core/PrimitiveType";
 
 /** @import FrameState from "./FrameState"; */
 
@@ -157,6 +158,7 @@ class Vector3DCollection {
    * @param {number} [options.maxIndexCount=4096]
    * @param {boolean} [options.show=true] Determines if the collection will be shown.
    * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each instance from model to world coordinates.
+   * @param {boolean} [options.debugShowBoundingVolume=false]
    */
   constructor(options = Frozen.EMPTY_OBJECT) {
     // Public.
@@ -166,6 +168,9 @@ class Vector3DCollection {
 
     /** @type {Matrix4} */
     this.modelMatrix = Matrix4.clone(options.modelMatrix ?? Matrix4.IDENTITY);
+
+    /** @type {boolean} */
+    this.debugShowBoundingVolume = options.debugShowBoundingVolume ?? false;
 
     // Protected.
 
@@ -498,6 +503,7 @@ function renderPoints(collection, frameState, renderContext) {
       globalMax,
       new Cartesian3(),
     );
+
     const toGlobal = Transforms.eastNorthUpToFixedFrame(
       ecefCenter,
       Ellipsoid.WGS84,
@@ -505,6 +511,13 @@ function renderPoints(collection, frameState, renderContext) {
     );
 
     renderContext.transform = toGlobal;
+
+    // TODO(donmccurdy): Renderer shouldn't be responsible for updating collection.
+    BoundingSphere.fromCornerPoints(
+      globalMin,
+      globalMax,
+      collection._boundingVolume,
+    );
   }
 
   if (!defined(renderContext.vertexArray)) {
@@ -598,30 +611,52 @@ function renderPoints(collection, frameState, renderContext) {
   if (!defined(renderContext.shaderProgram)) {
     const vertexShaderSource = new ShaderSource({
       defines: [],
-      sources: [], // TODO(donmccurdy): vs
+      sources: [
+        `
+in vec3 position;
+in vec4 color;
+void main()
+{
+  // TODO(donmccurdy): u_modelViewMatrix * position, possibly?
+  vec4 positionEC = vec4(position, 1.0);
+  gl_Position = czm_projection * positionEC;
+}`.trim(),
+      ],
     });
 
     const fragmentShaderSource = new ShaderSource({
       defines: [],
-      sources: [], // TODO(donmccurdy): fs
+      sources: [
+        `
+void main()
+{
+  out_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+  czm_writeLogDepth();
+}`.trim(),
+      ],
     });
 
     renderContext.shaderProgram = ShaderProgram.fromCache({
       context,
       vertexShaderSource,
       fragmentShaderSource,
-      attributeLocations: Point3DAttributeLocations.position,
+      attributeLocations: Point3DAttributeLocations,
     });
   }
 
   const command = new DrawCommand({
-    owner: collection,
-    boundingVolume: collection._boundingVolume,
+    primitiveType: PrimitiveType.POINTS,
+    pass: Pass.OPAQUE,
+
     vertexArray: renderContext.vertexArray,
     renderState: renderContext.renderState,
     shaderProgram: renderContext.shaderProgram,
     uniformMap: renderContext.uniformMap,
-    pass: Pass.OPAQUE,
+
+    owner: collection,
+    boundingVolume: collection._boundingVolume,
+    debugShowBoundingVolume: collection.debugShowBoundingVolume,
+
     // TODO(donmccurdy): pickId
   });
 
