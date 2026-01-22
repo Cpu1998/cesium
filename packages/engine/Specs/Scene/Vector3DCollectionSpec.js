@@ -5,8 +5,10 @@ import {
 } from "../../index.js";
 import Cartesian3 from "../../Source/Core/Cartesian3.js";
 
-// TODO(donmccurdy): Split into separate files when further along.
-const { Point3DCollection } = TODO;
+// TODO(donmccurdy): Split into separate files before merging.
+const { Point3D, Point3DCollection } = TODO;
+
+const EPS = CesiumMath.EPSILON8;
 
 describe("Point3DCollection", () => {
   const position = new Cartesian3();
@@ -14,79 +16,42 @@ describe("Point3DCollection", () => {
   it("Point3D#geometry", () => {
     const collection = new Point3DCollection();
 
-    let point = collection.add();
-    point.setPosition(Cartesian3.UNIT_X);
-    collection.release(point);
+    const point = collection.add({ position: Cartesian3.UNIT_X });
+    collection.add({ position: Cartesian3.UNIT_Y }, point);
+    collection.add({ position: Cartesian3.UNIT_Z }, point);
 
-    point = collection.add();
-    point.setPosition(Cartesian3.UNIT_Y);
-    collection.release(point);
+    Point3D.fromCollection(collection, 0, point);
+    expect(point.getPosition(position)).toEqualEpsilon(Cartesian3.UNIT_X, EPS);
 
-    point = collection.add();
-    point.setPosition(Cartesian3.UNIT_Z);
-    collection.release(point);
+    Point3D.fromCollection(collection, 1, point);
+    expect(point.getPosition(position)).toEqualEpsilon(Cartesian3.UNIT_Y, EPS);
 
-    point = collection.get(0);
-    point.getPosition(position);
-    expect(position).toEqualEpsilon(Cartesian3.UNIT_X, CesiumMath.EPSILON8);
-    collection.release(point);
-
-    point = collection.get(1);
-    point.getPosition(position);
-    expect(position).toEqualEpsilon(Cartesian3.UNIT_Y, CesiumMath.EPSILON8);
-    collection.release(point);
-
-    point = collection.get(2);
-    point.getPosition(position);
-    expect(position).toEqualEpsilon(Cartesian3.UNIT_Z, CesiumMath.EPSILON8);
-    collection.release(point);
+    Point3D.fromCollection(collection, 2, point);
+    expect(point.getPosition(position)).toEqualEpsilon(Cartesian3.UNIT_Z, EPS);
   });
 
   it("Point3D#show", () => {
     const collection = new Point3DCollection();
 
-    let point = collection.add();
-    point.show = true;
-    collection.release(point);
+    const point = collection.add({ show: true });
+    collection.add({ show: false }, point);
 
-    point = collection.add();
-    point.show = false;
-    collection.release(point);
-
-    point = collection.get(0);
-    expect(point.show).toBe(true);
-    collection.release(point);
-
-    point = collection.get(1);
-    expect(point.show).toBe(false);
-    collection.release(point);
+    expect(Point3D.fromCollection(collection, 0, point).show).toBe(true);
+    expect(Point3D.fromCollection(collection, 1, point).show).toBe(false);
   });
 
   it("Point3D#color", () => {
     const collection = new Point3DCollection();
 
-    let point = collection.add();
-    point.color = Color.RED;
-    collection.release(point);
+    const point = collection.add({ color: Color.RED });
+    collection.add({ color: Color.GREEN }, point);
+    collection.add({ color: Color.BLUE }, point);
 
-    point = collection.add();
-    point.color = Color.GREEN;
-    collection.release(point);
-
-    point = collection.add();
-    point.color = Color.BLUE;
-    collection.release(point);
-
-    point = collection.get(0);
-    expect(point.color).toEqualEpsilon(Color.RED, CesiumMath.EPSILON8);
-    collection.release(point);
-
-    point = collection.get(1);
-    expect(point.color).toEqualEpsilon(Color.GREEN, CesiumMath.EPSILON8);
-    collection.release(point);
-
-    point = collection.get(2);
-    expect(point.color).toEqualEpsilon(Color.BLUE, CesiumMath.EPSILON8);
-    collection.release(point);
+    Point3D.fromCollection(collection, 0, point);
+    expect(point.color).toEqualEpsilon(Color.RED, EPS);
+    Point3D.fromCollection(collection, 1, point);
+    expect(point.color).toEqualEpsilon(Color.GREEN, EPS);
+    Point3D.fromCollection(collection, 2, point);
+    expect(point.color).toEqualEpsilon(Color.BLUE, EPS);
   });
 });

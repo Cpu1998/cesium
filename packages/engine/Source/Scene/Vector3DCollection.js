@@ -26,25 +26,22 @@ const Vector3DLayout = {
 };
 
 /**
- * @typedef {new(collection: unknown, index: number) => V} Vector3DConstructor
- * @template V extends Vector3D
+ * @typedef {object} Vector3DOptions
+ * @property {boolean} [show=true]
+ * @property {Color} [color=Color.WHITE]
  */
 
 /** @abstract */
 class Vector3D {
-  /**
-   * @param {Vector3DCollection<Vector3D>} collection
-   * @param {number} index
-   */
-  constructor(collection, index) {
+  constructor() {
     /** @type {Vector3DCollection<Vector3D>} */
-    this._collection = collection;
+    this._collection = null;
 
     /** @type {number} */
-    this._index = index;
+    this._index = -1;
 
     /** @type {number} */
-    this._byteOffset = index * Vector3DLayout.__BYTE_LENGTH;
+    this._byteOffset = -1;
 
     /** @type {Color} */
     this._color = new Color();
@@ -54,14 +51,17 @@ class Vector3D {
   // LIFECYCLE
 
   /**
+   * @param {unknown} collection
+   * @param {number} index
    * @param {Vector3D} result
    * @returns {Vector3D}
    */
-  static fromDefaults(result) {
-    result.show = true;
-    result._destroyed = false;
-    result.dirty = true;
-    result.color = Color.fromRgba(0xffffff, result._color);
+  static fromCollection(collection, index, result) {
+    result._collection = /** @type {Vector3DCollection<Vector3D>} */ (
+      collection
+    );
+    result._index = index;
+    result._byteOffset = index * Vector3DLayout.__BYTE_LENGTH;
     return result;
   }
 
@@ -199,14 +199,14 @@ class Vector3DCollection {
     /** @type {Uint32Array<ArrayBuffer> | Uint16Array<ArrayBuffer>} */
     this._index = null;
 
-    this._allocateBatchBuffer(this._indexCapacity);
+    this._allocateIndexBuffer(this._indexCapacity);
   }
 
   /**
    * @protected
    * @return {unknown}
    */
-  _getPrimitiveType() {
+  _getVector3DClass() {
     throw new DeveloperError(ERR_INSTANTIATION);
   }
 
@@ -259,29 +259,20 @@ class Vector3DCollection {
   // PRIMITIVE LIFECYCLE
 
   /**
-   * @returns {V}
+   * @param {Vector3DOptions} options
+   * @param {Vector3D} result
+   * @returns {Vector3D}
    */
-  add() {
-    // @ts-expect-error TODO(donmccurdy)
-    return this._getPrimitiveType().fromDefaults(this.get(this._batchCount++));
-  }
-
-  /**
-   * @param {number} index
-   * @returns {V}
-   */
-  get(index) {
-    const PrimitiveType = /** @type {Vector3DConstructor<V>} */ (
-      this._getPrimitiveType()
+  add(options = Frozen.EMPTY_OBJECT, result) {
+    const Vector3DClass = /** @type {typeof Vector3D} */ (
+      this._getVector3DClass()
     );
-    return new PrimitiveType(this, index);
-  }
-
-  /**
-   * @param {V} primitive
-   */
-  release(primitive) {
-    // TODO(donmccurdy)
+    result = Vector3DClass.fromCollection(this, this._batchCount++, result);
+    result._destroyed = false;
+    result.dirty = true;
+    result.show = options.show ?? true;
+    result.color = options.color ?? Color.WHITE;
+    return result;
   }
 
   /**
@@ -331,27 +322,28 @@ const Point3DLayout = {
   __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH + 4,
 };
 
+/**
+ * @typedef {object} Point3DOptions
+ * @property {boolean} [show=true]
+ * @property {Color} [color=Color.WHITE]
+ * @property {Cartesian3} [position=Cartesian3.ZERO]
+ */
+
+/**
+ *
+ */
 class Point3D extends Vector3D {
   /**
    * @param {Point3DCollection} collection
    * @param {number} index
-   */
-  constructor(collection, index) {
-    super(collection, index);
-  }
-
-  /**
    * @param {Point3D} result
+   * @returns {Point3D}
    * @override
    */
-  static fromDefaults(result) {
-    result._collection._batchView.setUint32(
-      result._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
-      result._collection._vertexCount * 3,
-      true,
-    );
-    result._collection._vertexCount++;
-    return super.fromDefaults(result);
+  static fromCollection(collection, index, result = new Point3D()) {
+    super.fromCollection(collection, index, result);
+    result._byteOffset = index * Point3DLayout.__BYTE_LENGTH;
+    return result;
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -390,12 +382,31 @@ class Point3D extends Vector3D {
  * @extends Vector3DCollection<Point3D>
  */
 class Point3DCollection extends Vector3DCollection {
-  _getPrimitiveType() {
+  _getVector3DClass() {
     return /** @type {unknown} */ (Point3D);
   }
 
   _getBatchLayout() {
     return Point3DLayout;
+  }
+
+  /**
+   * @param {Point3DOptions} options
+   * @param {Point3D} result
+   * @override
+   */
+  add(options, result = new Point3D()) {
+    super.add(options, result);
+
+    this._batchView.setUint32(
+      result._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
+      this._vertexCount * 3,
+      true,
+    );
+    this._vertexCount++;
+    result.setPosition(options.position ?? Cartesian3.ZERO);
+
+    return result;
   }
 }
 
@@ -425,13 +436,18 @@ const Polyline3DLayout = {
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
 };
 
+/**
+ * @typedef {object} Polyline3DOptions
+ * @property {boolean} [show=true]
+ * @property {Color} [color=Color.WHITE]
+ */
+
+/**
+ * TODO
+ */
 class Polyline3D extends Vector3D {
-  /**
-   * @param {Polyline3DCollection} collection
-   * @param {number} index
-   */
-  constructor(collection, index) {
-    super(collection, index);
+  constructor() {
+    super();
 
     /** @type {BoundingSphere} */
     this._boundingSphere = new BoundingSphere();
@@ -441,11 +457,16 @@ class Polyline3D extends Vector3D {
   // LIFECYCLE
 
   /**
+   * @param {Polyline3DCollection} collection
+   * @param {number} index
    * @param {Polyline3D} result
+   * @returns {Polyline3D}
    * @override
    */
-  static fromDefaults(result) {
-    return super.fromDefaults(result);
+  static fromCollection(collection, index, result = new Polyline3D()) {
+    super.fromCollection(collection, index, result);
+    result._byteOffset = index * Polyline3DLayout.__BYTE_LENGTH;
+    return result;
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -470,12 +491,26 @@ class Polyline3D extends Vector3D {
  * @extends Vector3DCollection<Polyline3D>
  */
 class Polyline3DCollection extends Vector3DCollection {
-  _getPrimitiveType() {
+  _getVector3DClass() {
     return Polyline3D;
   }
 
   _getBatchLayout() {
     return Polyline3DLayout;
+  }
+
+  /**
+   * @param {Polyline3DOptions} options
+   * @param {Polyline3D} result
+   * @override
+   */
+  add(options, result = new Polyline3D()) {
+    super.add(options, result);
+
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+
+    // eslint-disable-next-line no-unreachable
+    return result;
   }
 }
 
@@ -503,13 +538,18 @@ const Polygon3DLayout = {
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
 };
 
+/**
+ * @typedef {object} Polygon3DOptions
+ * @property {boolean} [show=true]
+ * @property {Color} [color=Color.WHITE]
+ */
+
+/**
+ * TODO
+ */
 class Polygon3D extends Vector3D {
-  /**
-   * @param {number} index
-   * @param {Polygon3DCollection} collection
-   */
-  constructor(collection, index) {
-    super(collection, index);
+  constructor() {
+    super();
 
     /** @type {BoundingSphere} */
     this._boundingSphere = new BoundingSphere();
@@ -519,11 +559,16 @@ class Polygon3D extends Vector3D {
   // LIFECYCLE
 
   /**
+   * @param {Polygon3DCollection} collection
+   * @param {number} index
    * @param {Polygon3D} result
+   * @returns {Polygon3D}
    * @override
    */
-  static fromDefaults(result) {
-    return super.fromDefaults(result);
+  static fromCollection(collection, index, result = new Polygon3D()) {
+    super.fromCollection(collection, index, result);
+    result._byteOffset = index * Polygon3DLayout.__BYTE_LENGTH;
+    return result;
   }
 }
 
@@ -531,16 +576,30 @@ class Polygon3D extends Vector3D {
  * @extends Vector3DCollection<Polygon3D>
  */
 class Polygon3DCollection extends Vector3DCollection {
-  _getPrimitiveType() {
+  _getVector3DClass() {
     return Polygon3D;
   }
 
   _getBatchLayout() {
     return Polygon3DLayout;
   }
+
+  /**
+   * @param {Polygon3DOptions} options
+   * @param {Polygon3D} result
+   * @override
+   */
+  add(options, result = new Polygon3D()) {
+    super.add(options, result);
+
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+
+    // eslint-disable-next-line no-unreachable
+    return result;
+  }
 }
 
-// TODO(donmccurdy): Split into separate files when further along.
+// TODO(donmccurdy): Split into separate files before merging.
 const TODO = {
   Vector3D,
   Vector3DCollection,
