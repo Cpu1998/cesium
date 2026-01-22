@@ -110,7 +110,7 @@ class Vector3D {
   }
 
   /** @returns {boolean} */
-  get dirty() {
+  get _dirty() {
     const byteOffset = this._byteOffset + Vector3DLayout.DIRTY_U8;
     return this._collection._batchView.getUint8(byteOffset) === 1;
   }
@@ -118,7 +118,7 @@ class Vector3D {
   /**
    * @param {boolean} dirty
    */
-  set dirty(dirty) {
+  set _dirty(dirty) {
     const byteOffset = this._byteOffset + Vector3DLayout.DIRTY_U8;
     this._collection._batchView.setUint8(byteOffset, dirty ? 1 : 0);
   }
@@ -295,7 +295,7 @@ class Vector3DCollection {
       true,
     );
     result._destroyed = false;
-    result.dirty = true;
+    result._dirty = true;
     result.show = options.show ?? true;
     result.color = options.color ?? Color.WHITE;
     return result;
