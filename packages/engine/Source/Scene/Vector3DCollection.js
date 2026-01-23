@@ -416,7 +416,7 @@ class Point3DCollection extends Vector3DCollection {
   _renderContext = null;
 
   _getVector3DClass() {
-    return /** @type {unknown} */ (Point3D);
+    return Point3D;
   }
 
   _getBatchLayout() {
@@ -695,6 +695,8 @@ const Polyline3DLayout = {
  * @typedef {object} Polyline3DOptions
  * @property {boolean} [show=true]
  * @property {Color} [color=Color.WHITE]
+ * @property {Float64Array} [positions]
+ * @property {number} [width=1]
  */
 
 /**
@@ -718,6 +720,68 @@ class Polyline3D extends Vector3D {
     super.fromCollection(collection, index, result);
     result._byteOffset = index * Polyline3DLayout.__BYTE_LENGTH;
     return result;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // GEOMETRY
+
+  /**
+   * @param {Float64Array} result
+   * return {Float64Array}
+   */
+  getPositions(result) {
+    const collection = this._collection;
+    const vertexOffset = collection._batchView.getUint32(
+      this._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
+      true,
+    );
+    const vertexCount = collection._batchView.getUint32(
+      this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
+      true,
+    );
+
+    const vertexF64 = collection._vertexF64;
+    for (let i = 0; i < vertexCount; i++) {
+      result[i * 3] = vertexF64[(vertexOffset + i) * 3];
+      result[i * 3 + 1] = vertexF64[(vertexOffset + i) * 3 + 1];
+      result[i * 3 + 2] = vertexF64[(vertexOffset + i) * 3 + 2];
+    }
+
+    return result;
+  }
+
+  /** @param {Float64Array} positions */
+  setPositions(positions) {
+    const collection = this._collection;
+    const vertexOffset = collection._batchView.getUint32(
+      this._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
+      true,
+    );
+    const srcVertexCount = collection._batchView.getUint32(
+      this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
+      true,
+    );
+    const dstVertexCount = positions.length / 3;
+
+    const isNewInstance = this._index === collection._batchCount - 1;
+    if (isNewInstance) {
+      collection._vertexCount += dstVertexCount - srcVertexCount;
+      collection._batchView.setUint32(
+        this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
+        dstVertexCount,
+        true,
+      );
+    } else if (srcVertexCount !== dstVertexCount) {
+      // TODO(donmccurdy): Support changing vertex count?
+      throw new DeveloperError("Polyline3D vertex count is immutable.");
+    }
+
+    const vertexF64 = collection._vertexF64;
+    for (let i = 0; i < dstVertexCount; i++) {
+      vertexF64[(vertexOffset + i) * 3] = positions[i * 3];
+      vertexF64[(vertexOffset + i) * 3 + 1] = positions[i * 3 + 1];
+      vertexF64[(vertexOffset + i) * 3 + 2] = positions[i * 3 + 2];
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -755,9 +819,23 @@ class Polyline3DCollection extends Vector3DCollection {
   add(options, result = new Polyline3D()) {
     super.add(options, result);
 
-    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+    this._batchView.setUint32(
+      result._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
+      this._vertexCount * 3,
+      true,
+    );
+    this._batchView.setUint32(
+      result._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
+      0,
+      true,
+    );
 
-    // eslint-disable-next-line no-unreachable
+    result.width = options.width ?? 1;
+
+    if (defined(options.positions)) {
+      result.setPositions(options.positions);
+    }
+
     return result;
   }
 }
