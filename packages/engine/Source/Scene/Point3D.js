@@ -26,9 +26,13 @@ class Point3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
-    /** Offset in position array to current point vertex, number of VEC3 elements. */
+    /**
+     * Offset in position array to current point vertex, number of VEC3 elements.
+     * @type {number}
+     */
     POSITION_OFFSET_U32: Vector3D.Layout.__BYTE_LENGTH,
 
+    /** @type {number} */
     __BYTE_LENGTH: Vector3D.Layout.__BYTE_LENGTH + 4,
   };
 

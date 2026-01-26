@@ -23,8 +23,11 @@ import PrimitiveType from "../Core/PrimitiveType";
 /** @import FrameState from "../Scene/FrameState.js" */
 /** @import Point3DCollection from "./Point3DCollection.js" */
 
+/** @type {{position: number, color: number}} */
 const Point3DAttributeLocations = {
+  /** @type {number} */
   position: 0,
+  /** @type {number} */
   color: 1,
 };
 

@@ -19,19 +19,33 @@ class Polyline3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
-    /** Bounding sphere for polygon. */
+    /**
+     * Bounding sphere for polygon.
+     * @type {number}
+     */
     BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
 
-    /** Width of polyline, 0–255. */
+    /**
+     * Width of polyline, 0–255.
+     * @type {number}
+     */
     WIDTH_U8: Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
 
-    /** Offset in position array to first vertex in polyline, number of VEC3 elements. */
+    /**
+     * Offset in position array to first vertex in polyline, number of VEC3 elements.
+     * @type {number}
+     */
     POSITION_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
-    /** Count of positions (vertices) in this polyline, number of VEC3 elements. */
+
+    /**
+     * Count of positions (vertices) in this polyline, number of VEC3 elements.
+     * @type {number}
+     */
     POSITION_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
 
+    /** @type {number} */
     __BYTE_LENGTH:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
   };

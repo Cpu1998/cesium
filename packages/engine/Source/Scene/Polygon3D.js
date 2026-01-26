@@ -26,30 +26,55 @@ class Polygon3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
-    /** Bounding sphere for polygon. */
+    /**
+     * Bounding sphere for polygon.
+     * @type {number}
+     */
     BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
 
-    /** Offset in position array to first vertex in polygon, number of VEC3 elements. */
+    /**
+     * Offset in position array to first vertex in polygon, number of VEC3 elements.
+     * @type {number}
+     */
     POSITION_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
-    /** Count of positions (vertices) in this polygon, number of VEC3 elements. */
+
+    /**
+     * Count of positions (vertices) in this polygon, number of VEC3 elements.
+     * @type {number}
+     */
     POSITION_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
 
-    /** Offset in holes array to first hole in polygon, number of integer elements. */
+    /**
+     * Offset in holes array to first hole in polygon, number of integer elements.
+     * @type {number}
+     */
     HOLE_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
-    /** Count of holes (indices) in this polygon, number of integer elements. */
+
+    /**
+     * Count of holes (indices) in this polygon, number of integer elements.
+     * @type {number}
+     */
     HOLE_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
 
-    /** Offset in triangles array to first triangle in polygon, number of VEC3 elements. */
+    /**
+     * Offset in triangles array to first triangle in polygon, number of VEC3 elements.
+     * @type {number}
+     */
     TRIANGLE_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
-    /** Count of triangles (3x uint32) in this polygon, number of VEC3 elements. */
+
+    /**
+     * Count of triangles (3x uint32) in this polygon, number of VEC3 elements.
+     * @type {number}
+     */
     TRIANGLE_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
 
+    /** @type {number} */
     __BYTE_LENGTH:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 24,
   };
