@@ -1,19 +1,14 @@
 import {
   Math as CesiumMath,
+  Cartesian3,
   Color,
-  Vector3DCollection as TODO,
-} from "../../index.js";
-import Cartesian3 from "../../Source/Core/Cartesian3.js";
-
-// TODO(donmccurdy): Split into separate files before merging.
-const {
   Point3D,
   Point3DCollection,
   Polyline3D,
   Polyline3DCollection,
   Polygon3D,
   Polygon3DCollection,
-} = TODO;
+} from "../../index.js";
 
 const EPS = CesiumMath.EPSILON8;
 
