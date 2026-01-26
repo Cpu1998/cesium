@@ -115,6 +115,22 @@ class Vector3DCollection {
     throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
+  /**
+   * @param {Function} sortFn
+   */
+  toSorted(sortFn) {
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+  }
+
+  /**
+   * @param {Vector3DCollection<V>} collection
+   * @param {Vector3DCollection<V>} result
+   * @template V extends Vector3D
+   */
+  static clone(collection, result) {
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+  }
+
   /////////////////////////////////////////////////////////////////////////////
   // INSTANCE LIFECYCLE
 
@@ -133,13 +149,6 @@ class Vector3DCollection {
     result.show = options.show ?? true;
     result.setColor(options.color ?? Color.WHITE);
     return result;
-  }
-
-  /**
-   * @param {Function} sortFn
-   */
-  sort(sortFn) {
-    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
   /////////////////////////////////////////////////////////////////////////////
