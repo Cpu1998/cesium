@@ -14,10 +14,10 @@ import Vector3D from "./Vector3D.js";
 class Vector3DCollection {
   /**
    * @param {object} options
-   * @param {number} [options.maxInstanceCount=1024]
-   * @param {number} [options.maxPositionCount=4096]
-   * @param {boolean} [options.show=true] Determines if the collection will be shown.
-   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each instance from model to world coordinates.
+   * @param {number} [options.maxInstanceCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxVertexCount=Vector3D.DEFAULT_COUNT]
+   * @param {boolean} [options.show=true]
+   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY]
    * @param {boolean} [options.debugShowBoundingVolume=false]
    */
   constructor(options = Frozen.EMPTY_OBJECT) {
@@ -46,7 +46,7 @@ class Vector3DCollection {
     /** @type {number} */
     this._batchCount = 0;
     /** @type {number} */
-    this._batchCountMax = options.maxInstanceCount ?? 1024;
+    this._batchCountMax = options.maxInstanceCount ?? Vector3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._batchBuffer = null;
     /** @type {DataView<ArrayBuffer>} */
@@ -57,7 +57,7 @@ class Vector3DCollection {
     /** @type {number} */
     this._positionCount = 0;
     /** @type {number} */
-    this._positionCountMax = options.maxPositionCount ?? 4096;
+    this._positionCountMax = options.maxVertexCount ?? Vector3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._positionBuffer = null;
     /** @type {Float64Array<ArrayBuffer>} */

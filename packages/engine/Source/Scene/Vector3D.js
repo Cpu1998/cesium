@@ -34,6 +34,8 @@ class Vector3D {
     __BYTE_LENGTH: 12,
   };
 
+  static DEFAULT_COUNT = 1024;
+
   static ERR_NOT_IMPLEMENTED = "Not implemented.";
   static ERR_INSTANTIATION =
     "This function defines an interface and should not be called directly.";

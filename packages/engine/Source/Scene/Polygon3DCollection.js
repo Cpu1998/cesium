@@ -1,9 +1,12 @@
 // @ts-check
 
 import defined from "../Core/defined.js";
+import Vector3D from "./Vector3D.js";
 import Vector3DCollection from "./Vector3DCollection.js";
-import Frozen from "../Core/Frozen.js";
 import Polygon3D from "./Polygon3D.js";
+import Frozen from "../Core/Frozen.js";
+
+/** @import Matrix4 from "../Core/Matrix4.js"; */
 
 /**
  * @typedef {object} Polygon3DOptions
@@ -20,17 +23,21 @@ import Polygon3D from "./Polygon3D.js";
 class Polygon3DCollection extends Vector3DCollection {
   /**
    * @param {object} options
-   * @param {number} [options.maxHoleCount = 0]
-   * @param {number} [options.maxTriangleCount = 4096]
+   * @param {number} [options.maxInstanceCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxVertexCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxHoleCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxTriangleCount=Vector3D.DEFAULT_COUNT]
+   * @param {boolean} [options.show=true]
+   * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY]
+   * @param {boolean} [options.debugShowBoundingVolume=false]
    */
   constructor(options = Frozen.EMPTY_OBJECT) {
-    // @ts-expect-error TODO(donmccurdy): Define interfaces in a .d.ts file? Need to duplicate JSDoc?
     super(options);
 
     /** @type {number} */
     this._holeCount = 0;
     /** @type {number} */
-    this._holeCountMax = options.maxHoleCount ?? 0;
+    this._holeCountMax = options.maxHoleCount ?? Vector3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._holeIndexBuffer = null;
     /** @type {Uint32Array<ArrayBuffer>} */
@@ -41,7 +48,7 @@ class Polygon3DCollection extends Vector3DCollection {
     /** @type {number} */
     this._triangleCount = 0;
     /** @type {number} */
-    this._triangleCountMax = options.maxTriangleCount ?? 4096;
+    this._triangleCountMax = options.maxTriangleCount ?? Vector3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._triangleIndexBuffer = null;
     /** @type {Uint32Array<ArrayBuffer>} */
