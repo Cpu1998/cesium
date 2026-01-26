@@ -16,13 +16,17 @@ const { ERR_CAPACITY } = Vector3D;
  */
 
 /**
- * TODO(donmccurdy)
+ * Point3D.
+ *
+ * Represented as one (1) position.
+ *
+ * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.2
  */
 class Point3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
-    /** Offset in bytes, pointing to an offset in elements. */
+    /** Offset in position array to current point vertex, number of VEC3 elements. */
     POSITION_OFFSET_U32: Vector3D.Layout.__BYTE_LENGTH,
 
     __BYTE_LENGTH: Vector3D.Layout.__BYTE_LENGTH + 4,
@@ -51,7 +55,6 @@ class Point3D extends Vector3D {
   getPosition(result) {
     const vertexOffset = this._getUint32(Point3D.Layout.POSITION_OFFSET_U32);
     return Cartesian3.fromArray(
-      // @ts-expect-error TODO(donmccurdy): Will need to support this.
       this._collection._positionF64,
       vertexOffset * 3,
       result,

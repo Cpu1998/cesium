@@ -8,13 +8,6 @@ import DeveloperError from "./DeveloperError.js";
  * @param {*} condition
  * @param {string} msg
  * @returns {asserts condition}
- *
- * @example
- * if (Cesium.defined(positions)) {
- *      doSomething();
- * } else {
- *      doSomethingElse();
- * }
  */
 function assert(condition, msg) {
   if (!condition) {

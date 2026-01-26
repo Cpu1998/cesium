@@ -22,9 +22,13 @@ class Vector3D {
   _byteOffset = -1;
 
   static Layout = {
+    /** Integer ID of this vector, unique in collection.  */
     BATCH_ID_U32: 0,
+    /** Boolean (0 or 1) flag indicating whether vector is shown. */
     SHOW_U8: 4,
+    /** Boolean (0 or 1) flag indicating whether vector is dirty. */
     DIRTY_U8: 5,
+    /** Color of vector, as integer RGBA. */
     COLOR_U32: 8,
 
     __BYTE_LENGTH: 12,

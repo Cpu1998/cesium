@@ -9,7 +9,15 @@ import BoundingSphere from "../Core/BoundingSphere.js";
 const { ERR_CAPACITY, ERR_RESIZE } = Vector3D;
 
 /**
- * TODO
+ * Polygon3D.
+ *
+ * Represented as one (1) external linear ring of four (4) or more
+ * positions, where first and last position are the same. May optionally
+ * define one or more internal linear rings ("holes") within the polygon.
+ * Stores a precomputed triangulation, including one or more triangles.
+ * Holes and triangles are stored as indices into the positions array.
+ *
+ * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.6
  */
 class Polygon3D extends Vector3D {
   /** @type {BoundingSphere} */
@@ -18,23 +26,27 @@ class Polygon3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
+    /** Bounding sphere for polygon. */
     BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
 
-    /** Offset in bytes, pointing to an offset in elements. */
+    /** Offset in position array to first vertex in polygon, number of VEC3 elements. */
     POSITION_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
+    /** Count of positions (vertices) in this polygon, number of VEC3 elements. */
     POSITION_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
 
-    /** Offset in bytes, pointing to an offset in elements. */
+    /** Offset in holes array to first hole in polygon, number of integer elements. */
     HOLE_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
+    /** Count of holes (indices) in this polygon, number of integer elements. */
     HOLE_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
 
-    /** Offset in bytes, pointing to an offset in elements. */
+    /** Offset in triangles array to first triangle in polygon, number of VEC3 elements. */
     TRIANGLE_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
+    /** Count of triangles (3x uint32) in this polygon, number of VEC3 elements. */
     TRIANGLE_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
 

@@ -9,18 +9,26 @@ import assert from "../Core/assert.js";
 const { ERR_RESIZE, ERR_CAPACITY } = Vector3D;
 
 /**
- * TODO
+ * Polyline3D.
+ *
+ * Represented as two (2) or more positions.
+ *
+ * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.4
  */
 class Polyline3D extends Vector3D {
   static Layout = {
     ...Vector3D.Layout,
 
+    /** Bounding sphere for polygon. */
     BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
+
+    /** Width of polyline, 0–255. */
     WIDTH_U8: Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
 
-    /** Offset in bytes, pointing to an offset in elements. */
+    /** Offset in position array to first vertex in polyline, number of VEC3 elements. */
     POSITION_OFFSET_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+    /** Count of positions (vertices) in this polyline, number of VEC3 elements. */
     POSITION_COUNT_U32:
       Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
 
