@@ -7,6 +7,8 @@ import Frozen from "../Core/Frozen.js";
 import Matrix4 from "../Core/Matrix4.js";
 import Vector3D from "./Vector3D.js";
 
+const { ERR_INSTANTIATION, ERR_NOT_IMPLEMENTED } = Vector3D;
+
 /**
  * @abstract
  * @template V extends Vector3D
@@ -71,7 +73,7 @@ class Vector3DCollection {
    * @return {unknown}
    */
   _getVector3DClass() {
-    throw new DeveloperError(Vector3D.ERR_INSTANTIATION);
+    throw new DeveloperError(ERR_INSTANTIATION);
   }
 
   /**
@@ -79,7 +81,7 @@ class Vector3DCollection {
    * @return {unknown}
    */
   _getBatchLayout() {
-    throw new DeveloperError(Vector3D.ERR_INSTANTIATION);
+    throw new DeveloperError(ERR_INSTANTIATION);
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -110,7 +112,7 @@ class Vector3DCollection {
   }
 
   destroy() {
-    throw new DeveloperError(Vector3D.ERR_NOT_IMPLEMENTED);
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -127,29 +129,17 @@ class Vector3DCollection {
     );
     result = Vector3DClass.fromCollection(this, this._batchCount++, result);
     result._setUint32(Vector3D.Layout.BATCH_ID_U32, this._nextBatchId++);
-    result._destroyed = false;
     result._dirty = true;
     result.show = options.show ?? true;
-    result.color = options.color ?? Color.WHITE;
+    result.setColor(options.color ?? Color.WHITE);
     return result;
-  }
-
-  /**
-   * @param {number} index
-   */
-  remove(index) {
-    throw new DeveloperError(Vector3D.ERR_NOT_IMPLEMENTED);
-  }
-
-  removeAll() {
-    throw new DeveloperError(Vector3D.ERR_NOT_IMPLEMENTED);
   }
 
   /**
    * @param {Function} sortFn
    */
   sort(sortFn) {
-    throw new DeveloperError(Vector3D.ERR_NOT_IMPLEMENTED);
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -157,7 +147,7 @@ class Vector3DCollection {
 
   /** @param {object} frameState */
   update(frameState) {
-    throw new DeveloperError(Vector3D.ERR_NOT_IMPLEMENTED);
+    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
   /////////////////////////////////////////////////////////////////////////////

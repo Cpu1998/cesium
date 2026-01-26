@@ -10,6 +10,7 @@ const EPS = CesiumMath.EPSILON8;
 
 describe("Point3DCollection", () => {
   const position = new Cartesian3();
+  const color = new Color();
 
   it("batchId", () => {
     const collection = new Point3DCollection();
@@ -62,10 +63,10 @@ describe("Point3DCollection", () => {
     collection.add({ color: Color.BLUE }, point);
 
     Point3D.fromCollection(collection, 0, point);
-    expect(point.color).toEqualEpsilon(Color.RED, EPS);
+    expect(point.getColor(color)).toEqualEpsilon(Color.RED, EPS);
     Point3D.fromCollection(collection, 1, point);
-    expect(point.color).toEqualEpsilon(Color.GREEN, EPS);
+    expect(point.getColor(color)).toEqualEpsilon(Color.GREEN, EPS);
     Point3D.fromCollection(collection, 2, point);
-    expect(point.color).toEqualEpsilon(Color.BLUE, EPS);
+    expect(point.getColor(color)).toEqualEpsilon(Color.BLUE, EPS);
   });
 });

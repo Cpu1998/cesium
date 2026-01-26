@@ -8,6 +8,8 @@ import {
 const EPS = CesiumMath.EPSILON8;
 
 describe("Polygon3DCollection", () => {
+  const color = new Color();
+
   it("batchId", () => {
     const collection = new Polygon3DCollection();
     const polygon = new Polygon3D();
@@ -147,10 +149,10 @@ describe("Polygon3DCollection", () => {
     collection.add({ color: Color.BLUE }, polygon);
 
     Polygon3D.fromCollection(collection, 0, polygon);
-    expect(polygon.color).toEqualEpsilon(Color.RED, EPS);
+    expect(polygon.getColor(color)).toEqualEpsilon(Color.RED, EPS);
     Polygon3D.fromCollection(collection, 1, polygon);
-    expect(polygon.color).toEqualEpsilon(Color.GREEN, EPS);
+    expect(polygon.getColor(color)).toEqualEpsilon(Color.GREEN, EPS);
     Polygon3D.fromCollection(collection, 2, polygon);
-    expect(polygon.color).toEqualEpsilon(Color.BLUE, EPS);
+    expect(polygon.getColor(color)).toEqualEpsilon(Color.BLUE, EPS);
   });
 });

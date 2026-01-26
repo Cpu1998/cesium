@@ -12,9 +12,6 @@ const { ERR_RESIZE, ERR_CAPACITY } = Vector3D;
  * TODO
  */
 class Polyline3D extends Vector3D {
-  /** @type {BoundingSphere} */
-  _boundingSphere = new BoundingSphere();
-
   static Layout = {
     ...Vector3D.Layout,
 

@@ -21,14 +21,10 @@ class Vector3D {
   /** @type {number} */
   _byteOffset = -1;
 
-  /** @type {Color} */
-  _color = new Color();
-
   static Layout = {
     BATCH_ID_U32: 0,
     SHOW_U8: 4,
-    DESTROYED_U8: 5,
-    DIRTY_U8: 6,
+    DIRTY_U8: 5,
     COLOR_U32: 8,
 
     __BYTE_LENGTH: 12,
@@ -61,15 +57,6 @@ class Vector3D {
     result._index = index;
     result._byteOffset = index * Vector3D.Layout.__BYTE_LENGTH;
     return result;
-  }
-
-  destroy() {
-    this._destroyed = true;
-  }
-
-  /** @returns {boolean} */
-  isDestroyed() {
-    return this._destroyed;
   }
 
   /**
@@ -106,25 +93,18 @@ class Vector3D {
     this._setUint8(Vector3D.Layout.DIRTY_U8, dirty ? 1 : 0);
   }
 
-  /** @type {boolean} */
-  get _destroyed() {
-    return this._getUint8(Vector3D.Layout.DESTROYED_U8) === 1;
+  /**
+   * @param {Color} result
+   * @returns {Color}
+   */
+  getColor(result) {
+    return Color.fromRgba(this._getUint32(Vector3D.Layout.COLOR_U32), result);
   }
 
-  set _destroyed(destroyed) {
-    this._setUint8(Vector3D.Layout.DESTROYED_U8, destroyed ? 1 : 0);
-  }
-
-  // TODO(donmccurdy): Consider `point.getColor(color)` API instead.
-  /** @type {Color} */
-  get color() {
-    return Color.fromRgba(
-      this._getUint32(Vector3D.Layout.COLOR_U32),
-      this._color,
-    );
-  }
-
-  set color(color) {
+  /**
+   * @param {Color} color
+   */
+  setColor(color) {
     this._setUint32(Vector3D.Layout.COLOR_U32, color.toRgba());
   }
 
