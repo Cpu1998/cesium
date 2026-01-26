@@ -23,9 +23,22 @@ import PrimitiveType from "../Core/PrimitiveType";
 
 /** @import FrameState from "./FrameState"; */
 
-const ERR_NOT_IMPLEMENTED = "Not implemented";
+const ERR_NOT_IMPLEMENTED = "Not implemented.";
 const ERR_INSTANTIATION =
   "This function defines an interface and should not be called directly.";
+const ERR_RESIZE = "Collection buffer size is immutable after initialization.";
+const ERR_CAPACITY = "Collection buffer capacity exceeded.";
+
+/**
+ * @param {unknown} condition
+ * @param {string} msg
+ * @returns {asserts condition}
+ */
+function assert(condition, msg) {
+  if (!condition) {
+    throw new DeveloperError(msg);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,6 +103,14 @@ class Vector3D {
     return this._destroyed;
   }
 
+  /**
+   * @returns {boolean}
+   * @protected
+   */
+  _isResizable() {
+    return this._index === this._collection._batchCount - 1;
+  }
+
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
 
@@ -144,6 +165,76 @@ class Vector3D {
     const byteOffset = this._byteOffset + Vector3DLayout.COLOR_U32;
     this._collection._batchView.setUint32(byteOffset, color.toRgba(), true);
   }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // DATAVIEW ACCESSORS
+
+  /**
+   * @param {number} itemByteOffset
+   * @returns {number}
+   */
+  _getUint8(itemByteOffset) {
+    return this._collection._batchView.getUint8(
+      this._byteOffset + itemByteOffset,
+    );
+  }
+
+  /**
+   * @param {number} itemByteOffset
+   * @param {number} itemValue
+   */
+  _setUint8(itemByteOffset, itemValue) {
+    this._collection._batchView.setUint8(
+      this._byteOffset + itemByteOffset,
+      itemValue,
+    );
+  }
+
+  /**
+   * @param {number} itemByteOffset
+   * @returns {number}
+   */
+  _getUint32(itemByteOffset) {
+    return this._collection._batchView.getUint32(
+      this._byteOffset + itemByteOffset,
+      true,
+    );
+  }
+
+  /**
+   * @param {number} itemByteOffset
+   * @param {number} itemValue
+   */
+  _setUint32(itemByteOffset, itemValue) {
+    this._collection._batchView.setUint32(
+      this._byteOffset + itemByteOffset,
+      itemValue,
+      true,
+    );
+  }
+
+  /**
+   * @param {number} itemByteOffset
+   * @returns {number}
+   */
+  _getFloat32(itemByteOffset) {
+    return this._collection._batchView.getFloat32(
+      this._byteOffset + itemByteOffset,
+      true,
+    );
+  }
+
+  /**
+   * @param {number} itemByteOffset
+   * @param {number} itemValue
+   */
+  _setFloat32(itemByteOffset, itemValue) {
+    this._collection._batchView.setFloat32(
+      this._byteOffset + itemByteOffset,
+      itemValue,
+      true,
+    );
+  }
 }
 
 /**
@@ -154,8 +245,7 @@ class Vector3DCollection {
   /**
    * @param {object} options
    * @param {number} [options.maxInstanceCount=1024]
-   * @param {number} [options.maxVertexCount=4096]
-   * @param {number} [options.maxIndexCount=4096]
+   * @param {number} [options.maxPositionCount=4096]
    * @param {boolean} [options.show=true] Determines if the collection will be shown.
    * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY] The 4x4 transformation matrix that transforms each instance from model to world coordinates.
    * @param {boolean} [options.debugShowBoundingVolume=false]
@@ -186,39 +276,24 @@ class Vector3DCollection {
     /** @type {number} */
     this._batchCount = 0;
     /** @type {number} */
-    this._batchCapacity = options.maxInstanceCount ?? 1024;
+    this._batchCountMax = options.maxInstanceCount ?? 1024;
     /** @type {ArrayBuffer} */
     this._batchBuffer = null;
     /** @type {DataView<ArrayBuffer>} */
     this._batchView = null;
 
-    this._allocateBatchBuffer(this._batchCapacity);
+    this._allocateBatchBuffer();
 
     /** @type {number} */
-    this._vertexCount = 0;
+    this._positionCount = 0;
     /** @type {number} */
-    this._vertexCapacity = options.maxVertexCount ?? 4096;
+    this._positionCountMax = options.maxPositionCount ?? 4096;
     /** @type {ArrayBuffer} */
-    this._vertexBuffer = null;
+    this._positionBuffer = null;
     /** @type {Float64Array<ArrayBuffer>} */
-    this._vertexF64 = null;
-    /** @type {Float32Array<ArrayBuffer>} */
-    this._vertexF32 = null;
-    /** @type {Uint32Array<ArrayBuffer>} */
-    this._vertexU32 = null;
-    /** @type {Uint8Array<ArrayBuffer>} */
-    this._vertexU8 = null;
+    this._positionF64 = null;
 
-    this._allocateVertexBuffer(this._vertexCapacity);
-
-    /** @type {number} */
-    this._indexCount = 0;
-    /** @type {number} */
-    this._indexCapacity = options.maxIndexCount ?? 4096;
-    /** @type {Uint32Array<ArrayBuffer> | Uint16Array<ArrayBuffer>} */
-    this._index = null;
-
-    this._allocateIndexBuffer(this._indexCapacity);
+    this._allocatePositionBuffer();
   }
 
   /**
@@ -240,35 +315,24 @@ class Vector3DCollection {
   /////////////////////////////////////////////////////////////////////////////
   // COLLECTION LIFECYCLE
 
-  /** @param {number} capacity */
-  _allocateBatchBuffer(capacity) {
+  /** @private */
+  _allocateBatchBuffer() {
     const batchLayout = /** @type {typeof Vector3DLayout} */ (
       this._getBatchLayout()
     );
-    const batchBufferByteLength = capacity * batchLayout.__BYTE_LENGTH;
+    const batchBufferByteLength =
+      this._batchCountMax * batchLayout.__BYTE_LENGTH;
 
     this._batchBuffer = new ArrayBuffer(batchBufferByteLength);
     this._batchView = new DataView(this._batchBuffer);
-    this._batchCapacity = capacity;
   }
 
-  /** @param {number} capacity */
-  _allocateVertexBuffer(capacity) {
-    const vertexBufferByteLength =
-      capacity * 3 * Float64Array.BYTES_PER_ELEMENT;
-    this._vertexBuffer = new ArrayBuffer(vertexBufferByteLength);
-    this._vertexF64 = new Float64Array(this._vertexBuffer);
-    this._vertexF32 = new Float32Array(this._vertexBuffer);
-    this._vertexU32 = new Uint32Array(this._vertexBuffer);
-    this._vertexU8 = new Uint8Array(this._vertexBuffer);
-    this._vertexCapacity = capacity;
-  }
-
-  /** @param {number} capacity */
-  _allocateIndexBuffer(capacity) {
-    const indexBufferByteLength = capacity * Uint32Array.BYTES_PER_ELEMENT;
-    this._index = new Uint32Array(indexBufferByteLength);
-    this._indexCapacity = capacity;
+  /** @private */
+  _allocatePositionBuffer() {
+    const positionBufferByteLength =
+      this._positionCountMax * 3 * Float64Array.BYTES_PER_ELEMENT;
+    this._positionBuffer = new ArrayBuffer(positionBufferByteLength);
+    this._positionF64 = new Float64Array(this._positionBuffer);
   }
 
   isDestroyed() {
@@ -292,11 +356,7 @@ class Vector3DCollection {
       this._getVector3DClass()
     );
     result = Vector3DClass.fromCollection(this, this._batchCount++, result);
-    this._batchView.setUint32(
-      result._byteOffset + Vector3DLayout.BATCH_ID_U32,
-      this._nextBatchId++,
-      true,
-    );
+    result._setUint32(Vector3DLayout.BATCH_ID_U32, this._nextBatchId++);
     result._destroyed = false;
     result._dirty = true;
     result.show = options.show ?? true;
@@ -346,8 +406,8 @@ class Vector3DCollection {
 const Point3DLayout = {
   ...Vector3DLayout,
 
-  /** Offset in elements, not bytes. */
-  VERTEX_OFFSET_U32: Vector3DLayout.__BYTE_LENGTH,
+  /** Offset in bytes, pointing to an offset in elements. */
+  POSITION_OFFSET_U32: Vector3DLayout.__BYTE_LENGTH,
 
   __BYTE_LENGTH: Vector3DLayout.__BYTE_LENGTH + 4,
 };
@@ -384,27 +444,27 @@ class Point3D extends Vector3D {
    * @returns {Cartesian3}
    */
   getPosition(result) {
-    const vertexOffset = this._collection._batchView.getUint32(
-      this._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
+    const vertexOffset = this._getUint32(Point3DLayout.POSITION_OFFSET_U32);
     return Cartesian3.fromArray(
       // @ts-expect-error TODO(donmccurdy): Will need to support this.
-      this._collection._vertexF64,
-      vertexOffset,
+      this._collection._positionF64,
+      vertexOffset * 3,
       result,
     );
   }
 
   /** @param {Cartesian3} position */
   setPosition(position) {
-    const vertexOffset = this._collection._batchView.getUint32(
-      this._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
-    this._collection._vertexF64[vertexOffset] = position.x;
-    this._collection._vertexF64[vertexOffset + 1] = position.y;
-    this._collection._vertexF64[vertexOffset + 2] = position.z;
+    const collection = /** @type {Point3DCollection} */ (this._collection);
+    const vertexOffset = this._getUint32(Point3DLayout.POSITION_OFFSET_U32);
+
+    //>>includeStart('debug', pragmas.debug);
+    assert(vertexOffset < collection._positionCountMax, ERR_CAPACITY);
+    //>>includeEnd('debug');
+
+    this._collection._positionF64[vertexOffset * 3] = position.x;
+    this._collection._positionF64[vertexOffset * 3 + 1] = position.y;
+    this._collection._positionF64[vertexOffset * 3 + 2] = position.z;
   }
 }
 
@@ -431,12 +491,7 @@ class Point3DCollection extends Vector3DCollection {
   add(options, result = new Point3D()) {
     super.add(options, result);
 
-    this._batchView.setUint32(
-      result._byteOffset + Point3DLayout.VERTEX_OFFSET_U32,
-      this._vertexCount * 3,
-      true,
-    );
-    this._vertexCount++;
+    result._setUint32(Point3DLayout.POSITION_OFFSET_U32, this._positionCount++);
     result.setPosition(options.position ?? Cartesian3.ZERO);
 
     return result;
@@ -542,10 +597,10 @@ function renderPoints(collection, frameState, renderContext) {
       new Matrix4(),
     );
 
-    const positionTypedArray = new Float32Array(collection._vertexCount * 3);
-    const colorTypedArray = new Uint8Array(collection._vertexCount * 4);
+    const positionTypedArray = new Float32Array(collection._positionCount * 3);
+    const colorTypedArray = new Uint8Array(collection._positionCount * 4);
 
-    for (let i = 0, il = collection._vertexCount; i < il; i++) {
+    for (let i = 0, il = collection._positionCount; i < il; i++) {
       Point3D.fromCollection(collection, i, point);
 
       // Position.
@@ -675,20 +730,14 @@ const Polyline3DLayout = {
   BOUNDING_SPHERE: Vector3DLayout.__BYTE_LENGTH,
   WIDTH_U8: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
 
-  /** Offset in elements, not bytes. */
-  VERTEX_OFFSET_U32:
+  /** Offset in bytes, pointing to an offset in elements. */
+  POSITION_OFFSET_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
-  VERTEX_COUNT_U32:
+  POSITION_COUNT_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
 
-  /** Offset in elements, not bytes. */
-  INDEX_OFFSET_U32:
-    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
-  INDEX_COUNT_U32:
-    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
-
   __BYTE_LENGTH:
-    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
 };
 
 /**
@@ -725,62 +774,49 @@ class Polyline3D extends Vector3D {
   /////////////////////////////////////////////////////////////////////////////
   // GEOMETRY
 
+  /** @returns {number} */
+  getPositionCount() {
+    return this._getUint32(Polyline3DLayout.POSITION_COUNT_U32);
+  }
+
   /**
    * @param {Float64Array} result
    * return {Float64Array}
    */
   getPositions(result) {
     const collection = this._collection;
-    const vertexOffset = collection._batchView.getUint32(
-      this._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
-    const vertexCount = collection._batchView.getUint32(
-      this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
-      true,
-    );
-
-    const vertexF64 = collection._vertexF64;
+    const vertexOffset = this._getUint32(Polyline3DLayout.POSITION_OFFSET_U32);
+    const vertexCount = this._getUint32(Polyline3DLayout.POSITION_COUNT_U32);
+    const positionF64 = collection._positionF64;
     for (let i = 0; i < vertexCount; i++) {
-      result[i * 3] = vertexF64[(vertexOffset + i) * 3];
-      result[i * 3 + 1] = vertexF64[(vertexOffset + i) * 3 + 1];
-      result[i * 3 + 2] = vertexF64[(vertexOffset + i) * 3 + 2];
+      result[i * 3] = positionF64[(vertexOffset + i) * 3];
+      result[i * 3 + 1] = positionF64[(vertexOffset + i) * 3 + 1];
+      result[i * 3 + 2] = positionF64[(vertexOffset + i) * 3 + 2];
     }
-
     return result;
   }
 
   /** @param {Float64Array} positions */
   setPositions(positions) {
     const collection = this._collection;
-    const vertexOffset = collection._batchView.getUint32(
-      this._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
-      true,
-    );
-    const srcVertexCount = collection._batchView.getUint32(
-      this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
-      true,
-    );
-    const dstVertexCount = positions.length / 3;
+    const vertexOffset = this._getUint32(Polyline3DLayout.POSITION_OFFSET_U32);
+    const srcCount = this._getUint32(Polyline3DLayout.POSITION_COUNT_U32);
+    const dstCount = positions.length / 3;
+    const collectionCount = collection._positionCount + dstCount - srcCount;
 
-    const isNewInstance = this._index === collection._batchCount - 1;
-    if (isNewInstance) {
-      collection._vertexCount += dstVertexCount - srcVertexCount;
-      collection._batchView.setUint32(
-        this._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
-        dstVertexCount,
-        true,
-      );
-    } else if (srcVertexCount !== dstVertexCount) {
-      // TODO(donmccurdy): Support changing vertex count?
-      throw new DeveloperError("Polyline3D vertex count is immutable.");
-    }
+    //>>includeStart('debug', pragmas.debug);
+    assert(srcCount === dstCount || this._isResizable(), ERR_RESIZE);
+    assert(collectionCount <= collection._positionCountMax, ERR_CAPACITY);
+    //>>includeEnd('debug');
 
-    const vertexF64 = collection._vertexF64;
-    for (let i = 0; i < dstVertexCount; i++) {
-      vertexF64[(vertexOffset + i) * 3] = positions[i * 3];
-      vertexF64[(vertexOffset + i) * 3 + 1] = positions[i * 3 + 1];
-      vertexF64[(vertexOffset + i) * 3 + 2] = positions[i * 3 + 2];
+    collection._positionCount = collectionCount;
+    this._setUint32(Polyline3DLayout.POSITION_COUNT_U32, dstCount);
+
+    const positionF64 = collection._positionF64;
+    for (let i = 0; i < dstCount; i++) {
+      positionF64[(vertexOffset + i) * 3] = positions[i * 3];
+      positionF64[(vertexOffset + i) * 3 + 1] = positions[i * 3 + 1];
+      positionF64[(vertexOffset + i) * 3 + 2] = positions[i * 3 + 2];
     }
   }
 
@@ -789,13 +825,11 @@ class Polyline3D extends Vector3D {
 
   /** @type {number} */
   get width() {
-    const byteOffset = this._byteOffset + Polyline3DLayout.WIDTH_U8;
-    return this._collection._batchView.getUint8(byteOffset);
+    return this._getUint8(Polyline3DLayout.WIDTH_U8);
   }
 
   set width(width) {
-    const byteOffset = this._byteOffset + Polyline3DLayout.WIDTH_U8;
-    this._collection._batchView.setUint8(byteOffset, width);
+    this._setUint8(Polyline3DLayout.WIDTH_U8, width);
   }
 }
 
@@ -819,16 +853,9 @@ class Polyline3DCollection extends Vector3DCollection {
   add(options, result = new Polyline3D()) {
     super.add(options, result);
 
-    this._batchView.setUint32(
-      result._byteOffset + Polyline3DLayout.VERTEX_OFFSET_U32,
-      this._vertexCount * 3,
-      true,
-    );
-    this._batchView.setUint32(
-      result._byteOffset + Polyline3DLayout.VERTEX_COUNT_U32,
-      0,
-      true,
-    );
+    const vertexOffset = this._positionCount * 3;
+    result._setUint32(Polyline3DLayout.POSITION_OFFSET_U32, vertexOffset);
+    result._setUint32(Polyline3DLayout.POSITION_COUNT_U32, 0);
 
     result.width = options.width ?? 1;
 
@@ -849,25 +876,35 @@ const Polygon3DLayout = {
 
   BOUNDING_SPHERE: Vector3DLayout.__BYTE_LENGTH,
 
-  /** Offset in elements, not bytes. */
-  VERTEX_OFFSET_U32: Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
-  VERTEX_COUNT_U32:
+  /** Offset in bytes, pointing to an offset in elements. */
+  POSITION_OFFSET_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength,
+  POSITION_COUNT_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
 
-  /** Offset in elements, not bytes. */
-  INDEX_OFFSET_U32:
+  /** Offset in bytes, pointing to an offset in elements. */
+  HOLE_OFFSET_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
-  INDEX_COUNT_U32:
+  HOLE_COUNT_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
 
-  __BYTE_LENGTH:
+  /** Offset in bytes, pointing to an offset in elements. */
+  TRIANGLE_OFFSET_U32:
     Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
+  TRIANGLE_COUNT_U32:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
+
+  __BYTE_LENGTH:
+    Vector3DLayout.__BYTE_LENGTH + BoundingSphere.packedLength + 24,
 };
 
 /**
  * @typedef {object} Polygon3DOptions
  * @property {boolean} [show=true]
  * @property {Color} [color=Color.WHITE]
+ * @property {Float64Array} [positions]
+ * @property {Uint32Array} [holes]
+ * @property {Uint32Array} [triangles]
  */
 
 /**
@@ -892,12 +929,181 @@ class Polygon3D extends Vector3D {
     result._byteOffset = index * Polygon3DLayout.__BYTE_LENGTH;
     return result;
   }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // GEOMETRY
+
+  /** @returns {number} */
+  getVertexCount() {
+    return this._getUint32(Polygon3DLayout.POSITION_COUNT_U32);
+  }
+
+  /**
+   * @param {Float64Array} result
+   * return {Float64Array}
+   */
+  getPositions(result) {
+    const collection = this._collection;
+    const vertexOffset = this._getUint32(Polygon3DLayout.POSITION_OFFSET_U32);
+    const vertexCount = this._getUint32(Polygon3DLayout.POSITION_COUNT_U32);
+    const positionF64 = collection._positionF64;
+    for (let i = 0; i < vertexCount; i++) {
+      result[i * 3] = positionF64[(vertexOffset + i) * 3];
+      result[i * 3 + 1] = positionF64[(vertexOffset + i) * 3 + 1];
+      result[i * 3 + 2] = positionF64[(vertexOffset + i) * 3 + 2];
+    }
+    return result;
+  }
+
+  /** @param {Float64Array} positions */
+  setPositions(positions) {
+    const collection = this._collection;
+    const vertexOffset = this._getUint32(Polygon3DLayout.POSITION_OFFSET_U32);
+    const srcCount = this._getUint32(Polygon3DLayout.POSITION_COUNT_U32);
+    const dstCount = positions.length / 3;
+    const collectionCount = collection._positionCount + dstCount - srcCount;
+
+    //>>includeStart('debug', pragmas.debug);
+    assert(srcCount === dstCount || this._isResizable(), ERR_RESIZE);
+    assert(collectionCount <= collection._positionCountMax, ERR_CAPACITY);
+    //>>includeEnd('debug');
+
+    collection._positionCount = collectionCount;
+    this._setUint32(Polygon3DLayout.POSITION_COUNT_U32, dstCount);
+
+    const positionF64 = collection._positionF64;
+    for (let i = 0; i < dstCount; i++) {
+      positionF64[(vertexOffset + i) * 3] = positions[i * 3];
+      positionF64[(vertexOffset + i) * 3 + 1] = positions[i * 3 + 1];
+      positionF64[(vertexOffset + i) * 3 + 2] = positions[i * 3 + 2];
+    }
+  }
+
+  /** @returns {number} */
+  getHoleCount() {
+    return this._getUint32(Polygon3DLayout.HOLE_COUNT_U32);
+  }
+
+  /**
+   * @param {Uint32Array} result
+   * @returns {Uint32Array}
+   */
+  getHoles(result) {
+    const collection = /** @type {Polygon3DCollection} */ (this._collection);
+    const holeOffset = this._getUint32(Polygon3DLayout.HOLE_OFFSET_U32);
+    const holeCount = this._getUint32(Polygon3DLayout.HOLE_COUNT_U32);
+    const holeIndexU32 = collection._holeIndexU32;
+    for (let i = 0; i < holeCount; i++) {
+      result[i] = holeIndexU32[holeOffset + i];
+    }
+    return result;
+  }
+
+  /** @param {Uint32Array} holes */
+  setHoles(holes) {
+    const collection = /** @type {Polygon3DCollection} */ (this._collection);
+    const holeOffset = this._getUint32(Polygon3DLayout.HOLE_OFFSET_U32);
+    const srcCount = this._getUint32(Polygon3DLayout.HOLE_COUNT_U32);
+    const dstCount = holes.length;
+    const collectionCount = collection._holeCount + dstCount - srcCount;
+
+    //>>includeStart('debug', pragmas.debug);
+    assert(srcCount === dstCount || this._isResizable(), ERR_RESIZE);
+    assert(collectionCount <= collection._holeCountMax, ERR_CAPACITY);
+    //>>includeEnd('debug');
+
+    collection._holeCount = collectionCount;
+    this._setUint32(Polygon3DLayout.HOLE_COUNT_U32, dstCount);
+
+    const holeIndexU32 = collection._holeIndexU32;
+    for (let i = 0; i < dstCount; i++) {
+      holeIndexU32[holeOffset + i] = holes[i];
+    }
+  }
+
+  /** @returns {number} */
+  getTriangleCount() {
+    return this._getUint32(Polygon3DLayout.TRIANGLE_COUNT_U32);
+  }
+
+  /**
+   * @param {Uint32Array} result
+   * @returns {Uint32Array}
+   */
+  getTriangles(result) {
+    const collection = /** @type {Polygon3DCollection} */ (this._collection);
+    const triangleOffset = this._getUint32(Polygon3DLayout.TRIANGLE_OFFSET_U32);
+    const triangleCount = this._getUint32(Polygon3DLayout.TRIANGLE_COUNT_U32);
+    const indices = collection._triangleIndexU32;
+    for (let i = 0; i < triangleCount; i++) {
+      result[i * 3] = indices[(triangleOffset + i) * 3];
+      result[i * 3 + 1] = indices[(triangleOffset + i) * 3 + 1];
+      result[i * 3 + 2] = indices[(triangleOffset + i) * 3 + 2];
+    }
+    return result;
+  }
+
+  /** @param {Uint32Array} indices */
+  setTriangles(indices) {
+    const collection = /** @type {Polygon3DCollection} */ (this._collection);
+    const triangleOffset = this._getUint32(Polygon3DLayout.TRIANGLE_OFFSET_U32);
+    const srcCount = this._getUint32(Polygon3DLayout.TRIANGLE_COUNT_U32);
+    const dstCount = indices.length / 3;
+    const collectionCount = collection._triangleCount + dstCount - srcCount;
+
+    //>>includeStart('debug', pragmas.debug);
+    assert(srcCount === dstCount || this._isResizable(), ERR_RESIZE);
+    assert(collectionCount <= collection._triangleCountMax, ERR_CAPACITY);
+    //>>includeEnd('debug');
+
+    collection._triangleCount += dstCount - srcCount;
+    this._setUint32(Polygon3DLayout.TRIANGLE_COUNT_U32, dstCount);
+
+    const dstIndices = collection._triangleIndexU32;
+    for (let i = 0; i < dstCount; i++) {
+      dstIndices[(triangleOffset + i) * 3] = indices[i * 3];
+      dstIndices[(triangleOffset + i) * 3 + 1] = indices[i * 3 + 1];
+      dstIndices[(triangleOffset + i) * 3 + 2] = indices[i * 3 + 2];
+    }
+  }
 }
 
 /**
  * @extends Vector3DCollection<Polygon3D>
  */
 class Polygon3DCollection extends Vector3DCollection {
+  /**
+   * @param {object} options
+   * @param {number} [options.maxHoleCount = 0]
+   * @param {number} [options.maxTriangleCount = 4096]
+   */
+  constructor(options = Frozen.EMPTY_OBJECT) {
+    // @ts-expect-error TODO(donmccurdy): Define interfaces in a .d.ts file? Need to duplicate JSDoc?
+    super(options);
+
+    /** @type {number} */
+    this._holeCount = 0;
+    /** @type {number} */
+    this._holeCountMax = options.maxHoleCount ?? 0;
+    /** @type {ArrayBuffer} */
+    this._holeIndexBuffer = null;
+    /** @type {Uint32Array<ArrayBuffer>} */
+    this._holeIndexU32 = null;
+
+    this._allocateHoleIndexBuffer();
+
+    /** @type {number} */
+    this._triangleCount = 0;
+    /** @type {number} */
+    this._triangleCountMax = options.maxTriangleCount ?? 4096;
+    /** @type {ArrayBuffer} */
+    this._triangleIndexBuffer = null;
+    /** @type {Uint32Array<ArrayBuffer>} */
+    this._triangleIndexU32 = null;
+
+    this._allocateTriangleIndexBuffer();
+  }
+
   _getVector3DClass() {
     return Polygon3D;
   }
@@ -905,6 +1111,32 @@ class Polygon3DCollection extends Vector3DCollection {
   _getBatchLayout() {
     return Polygon3DLayout;
   }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // COLLECTION LIFECYCLE
+
+  /**
+   * @private
+   */
+  _allocateHoleIndexBuffer() {
+    const holeIndexBufferByteLength =
+      this._holeCountMax * Uint32Array.BYTES_PER_ELEMENT;
+    this._holeIndexBuffer = new ArrayBuffer(holeIndexBufferByteLength);
+    this._holeIndexU32 = new Uint32Array(this._holeIndexBuffer);
+  }
+
+  /**
+   * @private
+   */
+  _allocateTriangleIndexBuffer() {
+    const triangleIndexBufferByteLength =
+      this._triangleCountMax * 3 * Uint32Array.BYTES_PER_ELEMENT;
+    this._triangleIndexBuffer = new ArrayBuffer(triangleIndexBufferByteLength);
+    this._triangleIndexU32 = new Uint32Array(this._triangleIndexBuffer);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // INSTANCE LIFECYCLE
 
   /**
    * @param {Polygon3DOptions} options
@@ -914,9 +1146,30 @@ class Polygon3DCollection extends Vector3DCollection {
   add(options, result = new Polygon3D()) {
     super.add(options, result);
 
-    throw new DeveloperError(ERR_NOT_IMPLEMENTED);
+    const vertexOffset = this._positionCount;
+    result._setUint32(Polygon3DLayout.POSITION_OFFSET_U32, vertexOffset);
+    result._setUint32(Polygon3DLayout.POSITION_COUNT_U32, 0);
 
-    // eslint-disable-next-line no-unreachable
+    const holeOffset = this._holeCount;
+    result._setUint32(Polygon3DLayout.HOLE_OFFSET_U32, holeOffset);
+    result._setUint32(Polygon3DLayout.HOLE_COUNT_U32, 0);
+
+    const triangleOffset = this._triangleCount;
+    result._setUint32(Polygon3DLayout.TRIANGLE_OFFSET_U32, triangleOffset);
+    result._setUint32(Polygon3DLayout.TRIANGLE_COUNT_U32, 0);
+
+    if (defined(options.positions)) {
+      result.setPositions(options.positions);
+    }
+
+    if (defined(options.holes)) {
+      result.setHoles(options.holes);
+    }
+
+    if (defined(options.triangles)) {
+      result.setTriangles(options.triangles);
+    }
+
     return result;
   }
 }
@@ -929,6 +1182,7 @@ const TODO = {
   Point3DCollection,
   Polyline3D,
   Polyline3DCollection,
+  Polygon3D,
   Polygon3DCollection,
 };
 
