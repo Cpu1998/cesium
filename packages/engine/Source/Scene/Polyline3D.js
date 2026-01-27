@@ -1,12 +1,12 @@
 // @ts-check
 
 import BoundingSphere from "../Core/BoundingSphere.js";
-import Vector3D from "./Vector3D.js";
+import Feature3D from "./Feature3D.js";
 import assert from "../Core/assert.js";
 
 /** @import Polyline3DCollection from "../Scene/Polyline3DCollection.js"; */
 
-const { ERR_RESIZE, ERR_CAPACITY } = Vector3D;
+const { ERR_RESIZE, ERR_CAPACITY } = Feature3D;
 
 /**
  * Polyline3D.
@@ -15,39 +15,39 @@ const { ERR_RESIZE, ERR_CAPACITY } = Vector3D;
  *
  * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.4
  */
-class Polyline3D extends Vector3D {
+class Polyline3D extends Feature3D {
   static Layout = {
-    ...Vector3D.Layout,
+    ...Feature3D.Layout,
 
     /**
      * Bounding sphere for polygon.
      * @type {number}
      */
-    BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
+    BOUNDING_SPHERE: Feature3D.Layout.__BYTE_LENGTH,
 
     /**
      * Width of polyline, 0–255.
      * @type {number}
      */
-    WIDTH_U8: Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
+    WIDTH_U8: Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
 
     /**
      * Offset in position array to first vertex in polyline, number of VEC3 elements.
      * @type {number}
      */
     POSITION_OFFSET_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
 
     /**
      * Count of positions (vertices) in this polyline, number of VEC3 elements.
      * @type {number}
      */
     POSITION_COUNT_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
 
     /** @type {number} */
     __BYTE_LENGTH:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
   };
 
   /////////////////////////////////////////////////////////////////////////////

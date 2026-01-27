@@ -10,7 +10,7 @@ const EPS = CesiumMath.EPSILON8;
 describe("Polyline3DCollection", () => {
   const color = new Color();
 
-  it("batchId", () => {
+  it("featureId", () => {
     const collection = new Polyline3DCollection();
     const polyline = new Polyline3D();
 
@@ -18,9 +18,12 @@ describe("Polyline3DCollection", () => {
     collection.add({}, polyline);
     collection.add({}, polyline);
 
-    expect(Polyline3D.fromCollection(collection, 0, polyline).batchId).toBe(0);
-    expect(Polyline3D.fromCollection(collection, 1, polyline).batchId).toBe(1);
-    expect(Polyline3D.fromCollection(collection, 2, polyline).batchId).toBe(2);
+    Polyline3D.fromCollection(collection, 0, polyline);
+    expect(polyline.featureId).toBe(0);
+    Polyline3D.fromCollection(collection, 1, polyline);
+    expect(polyline.featureId).toBe(1);
+    Polyline3D.fromCollection(collection, 2, polyline);
+    expect(polyline.featureId).toBe(2);
   });
 
   it("positions", () => {

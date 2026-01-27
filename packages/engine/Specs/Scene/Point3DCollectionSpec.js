@@ -12,7 +12,7 @@ describe("Point3DCollection", () => {
   const position = new Cartesian3();
   const color = new Color();
 
-  it("batchId", () => {
+  it("featureId", () => {
     const collection = new Point3DCollection();
     const point = new Point3D();
 
@@ -20,9 +20,9 @@ describe("Point3DCollection", () => {
     collection.add({}, point);
     collection.add({}, point);
 
-    expect(Point3D.fromCollection(collection, 0, point).batchId).toBe(0);
-    expect(Point3D.fromCollection(collection, 1, point).batchId).toBe(1);
-    expect(Point3D.fromCollection(collection, 2, point).batchId).toBe(2);
+    expect(Point3D.fromCollection(collection, 0, point).featureId).toBe(0);
+    expect(Point3D.fromCollection(collection, 1, point).featureId).toBe(1);
+    expect(Point3D.fromCollection(collection, 2, point).featureId).toBe(2);
   });
 
   it("position", () => {

@@ -1,12 +1,12 @@
 // @ts-check
 
 import assert from "../Core/assert.js";
-import Vector3D from "./Vector3D.js";
+import Feature3D from "./Feature3D.js";
 import BoundingSphere from "../Core/BoundingSphere.js";
 
 /** @import Polygon3DCollection from "./Polygon3DCollection.js"; */
 
-const { ERR_CAPACITY, ERR_RESIZE } = Vector3D;
+const { ERR_CAPACITY, ERR_RESIZE } = Feature3D;
 
 /**
  * Polygon3D.
@@ -19,64 +19,64 @@ const { ERR_CAPACITY, ERR_RESIZE } = Vector3D;
  *
  * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.6
  */
-class Polygon3D extends Vector3D {
+class Polygon3D extends Feature3D {
   /** @type {BoundingSphere} */
   _boundingSphere = new BoundingSphere();
 
   static Layout = {
-    ...Vector3D.Layout,
+    ...Feature3D.Layout,
 
     /**
      * Bounding sphere for polygon.
      * @type {number}
      */
-    BOUNDING_SPHERE: Vector3D.Layout.__BYTE_LENGTH,
+    BOUNDING_SPHERE: Feature3D.Layout.__BYTE_LENGTH,
 
     /**
      * Offset in position array to first vertex in polygon, number of VEC3 elements.
      * @type {number}
      */
     POSITION_OFFSET_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength,
 
     /**
      * Count of positions (vertices) in this polygon, number of VEC3 elements.
      * @type {number}
      */
     POSITION_COUNT_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 4,
 
     /**
      * Offset in holes array to first hole in polygon, number of integer elements.
      * @type {number}
      */
     HOLE_OFFSET_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 8,
 
     /**
      * Count of holes (indices) in this polygon, number of integer elements.
      * @type {number}
      */
     HOLE_COUNT_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 12,
 
     /**
      * Offset in triangles array to first triangle in polygon, number of VEC3 elements.
      * @type {number}
      */
     TRIANGLE_OFFSET_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 16,
 
     /**
      * Count of triangles (3x uint32) in this polygon, number of VEC3 elements.
      * @type {number}
      */
     TRIANGLE_COUNT_U32:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 20,
 
     /** @type {number} */
     __BYTE_LENGTH:
-      Vector3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 24,
+      Feature3D.Layout.__BYTE_LENGTH + BoundingSphere.packedLength + 24,
   };
 
   /////////////////////////////////////////////////////////////////////////////

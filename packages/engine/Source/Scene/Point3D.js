@@ -1,12 +1,12 @@
 // @ts-check
 
-import Vector3D from "./Vector3D.js";
+import Feature3D from "./Feature3D.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import assert from "../Core/assert.js";
 
 /** @import Point3DCollection from "./Point3DCollection.js"; */
 
-const { ERR_CAPACITY } = Vector3D;
+const { ERR_CAPACITY } = Feature3D;
 
 /**
  * @typedef {object} Point3DOptions
@@ -22,18 +22,18 @@ const { ERR_CAPACITY } = Vector3D;
  *
  * See: https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.2
  */
-class Point3D extends Vector3D {
+class Point3D extends Feature3D {
   static Layout = {
-    ...Vector3D.Layout,
+    ...Feature3D.Layout,
 
     /**
      * Offset in position array to current point vertex, number of VEC3 elements.
      * @type {number}
      */
-    POSITION_OFFSET_U32: Vector3D.Layout.__BYTE_LENGTH,
+    POSITION_OFFSET_U32: Feature3D.Layout.__BYTE_LENGTH,
 
     /** @type {number} */
-    __BYTE_LENGTH: Vector3D.Layout.__BYTE_LENGTH + 4,
+    __BYTE_LENGTH: Feature3D.Layout.__BYTE_LENGTH + 4,
   };
 
   /**

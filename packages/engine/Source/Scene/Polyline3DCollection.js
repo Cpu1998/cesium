@@ -1,7 +1,7 @@
 // @ts-check
 
 import defined from "../Core/defined.js";
-import Vector3DCollection from "./Vector3DCollection.js";
+import Feature3DCollection from "./Feature3DCollection.js";
 import Polyline3D from "./Polyline3D.js";
 
 /**
@@ -13,14 +13,14 @@ import Polyline3D from "./Polyline3D.js";
  */
 
 /**
- * @extends Vector3DCollection<Polyline3D>
+ * @extends Feature3DCollection<Polyline3D>
  */
-class Polyline3DCollection extends Vector3DCollection {
-  _getVector3DClass() {
+class Polyline3DCollection extends Feature3DCollection {
+  _getFeatureClass() {
     return Polyline3D;
   }
 
-  _getBatchLayout() {
+  _getFeatureLayout() {
     return Polyline3D.Layout;
   }
 

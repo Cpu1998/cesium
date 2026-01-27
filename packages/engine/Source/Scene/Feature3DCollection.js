@@ -5,19 +5,25 @@ import Color from "../Core/Color.js";
 import DeveloperError from "../Core/DeveloperError.js";
 import Frozen from "../Core/Frozen.js";
 import Matrix4 from "../Core/Matrix4.js";
-import Vector3D from "./Vector3D.js";
+import Feature3D from "./Feature3D.js";
 
-const { ERR_INSTANTIATION, ERR_NOT_IMPLEMENTED } = Vector3D;
+const { ERR_INSTANTIATION, ERR_NOT_IMPLEMENTED } = Feature3D;
+
+/**
+ * @typedef {object} Feature3DOptions
+ * @property {boolean} [show=true]
+ * @property {Color} [color=Color.WHITE]
+ */
 
 /**
  * @abstract
- * @template V extends Vector3D
+ * @template T extends Feature3D
  */
-class Vector3DCollection {
+class Feature3DCollection {
   /**
    * @param {object} options
-   * @param {number} [options.maxInstanceCount=Vector3D.DEFAULT_COUNT]
-   * @param {number} [options.maxVertexCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxFeatureCount=Feature3D.DEFAULT_COUNT]
+   * @param {number} [options.maxVertexCount=Feature3D.DEFAULT_COUNT]
    * @param {boolean} [options.show=true]
    * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY]
    * @param {boolean} [options.debugShowBoundingVolume=false]
@@ -43,23 +49,23 @@ class Vector3DCollection {
     this._boundingVolume = new BoundingSphere();
 
     /** @type {number} */
-    this._nextBatchId = 0;
+    this._nextFeatureId = 0;
 
     /** @type {number} */
-    this._batchCount = 0;
+    this._featureCount = 0;
     /** @type {number} */
-    this._batchCountMax = options.maxInstanceCount ?? Vector3D.DEFAULT_COUNT;
+    this._feaureCountMax = options.maxFeatureCount ?? Feature3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
-    this._batchBuffer = null;
+    this._featureBuffer = null;
     /** @type {DataView<ArrayBuffer>} */
-    this._batchView = null;
+    this._featureView = null;
 
-    this._allocateBatchBuffer();
+    this._allocateFeatureBuffer();
 
     /** @type {number} */
     this._positionCount = 0;
     /** @type {number} */
-    this._positionCountMax = options.maxVertexCount ?? Vector3D.DEFAULT_COUNT;
+    this._positionCountMax = options.maxVertexCount ?? Feature3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._positionBuffer = null;
     /** @type {Float64Array<ArrayBuffer>} */
@@ -72,7 +78,7 @@ class Vector3DCollection {
    * @protected
    * @return {unknown}
    */
-  _getVector3DClass() {
+  _getFeatureClass() {
     throw new DeveloperError(ERR_INSTANTIATION);
   }
 
@@ -80,7 +86,7 @@ class Vector3DCollection {
    * @protected
    * @return {unknown}
    */
-  _getBatchLayout() {
+  _getFeatureLayout() {
     throw new DeveloperError(ERR_INSTANTIATION);
   }
 
@@ -88,15 +94,15 @@ class Vector3DCollection {
   // COLLECTION LIFECYCLE
 
   /** @private */
-  _allocateBatchBuffer() {
-    const batchLayout = /** @type {typeof Vector3D.Layout} */ (
-      this._getBatchLayout()
+  _allocateFeatureBuffer() {
+    const featureLayout = /** @type {typeof Feature3D.Layout} */ (
+      this._getFeatureLayout()
     );
-    const batchBufferByteLength =
-      this._batchCountMax * batchLayout.__BYTE_LENGTH;
+    const featureBufferByteLength =
+      this._feaureCountMax * featureLayout.__BYTE_LENGTH;
 
-    this._batchBuffer = new ArrayBuffer(batchBufferByteLength);
-    this._batchView = new DataView(this._batchBuffer);
+    this._featureBuffer = new ArrayBuffer(featureBufferByteLength);
+    this._featureView = new DataView(this._featureBuffer);
   }
 
   /** @private */
@@ -123,28 +129,28 @@ class Vector3DCollection {
   }
 
   /**
-   * @param {Vector3DCollection<V>} collection
-   * @param {Vector3DCollection<V>} result
-   * @template V extends Vector3D
+   * @param {Feature3DCollection<T>} collection
+   * @param {Feature3DCollection<T>} result
+   * @template T extends Feature3D
    */
   static clone(collection, result) {
     throw new DeveloperError(ERR_NOT_IMPLEMENTED);
   }
 
   /////////////////////////////////////////////////////////////////////////////
-  // INSTANCE LIFECYCLE
+  // FEATURE LIFECYCLE
 
   /**
-   * @param {Vector3DOptions} options
-   * @param {Vector3D} result
-   * @returns {Vector3D}
+   * @param {Feature3DOptions} options
+   * @param {Feature3D} result
+   * @returns {Feature3D}
    */
   add(options = Frozen.EMPTY_OBJECT, result) {
-    const Vector3DClass = /** @type {typeof Vector3D} */ (
-      this._getVector3DClass()
+    const FeatureClass = /** @type {typeof Feature3D} */ (
+      this._getFeatureClass()
     );
-    result = Vector3DClass.fromCollection(this, this._batchCount++, result);
-    result._setUint32(Vector3D.Layout.BATCH_ID_U32, this._nextBatchId++);
+    result = FeatureClass.fromCollection(this, this._featureCount++, result);
+    result._setUint32(Feature3D.Layout.FEATURE_ID_U32, this._nextFeatureId++);
     result._dirty = true;
     result.show = options.show ?? true;
     result.setColor(options.color ?? Color.WHITE);
@@ -164,8 +170,8 @@ class Vector3DCollection {
 
   /** @type {number} */
   get length() {
-    return this._batchCount;
+    return this._featureCount;
   }
 }
 
-export default Vector3DCollection;
+export default Feature3DCollection;

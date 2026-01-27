@@ -2,17 +2,11 @@
 
 import Color from "../Core/Color.js";
 
-/** @import Vector3DCollection from './Vector3DCollection.js'; */
-
-/**
- * @typedef {object} Vector3DOptions
- * @property {boolean} [show=true]
- * @property {Color} [color=Color.WHITE]
- */
+/** @import Feature3DCollection from './Feature3DCollection.js'; */
 
 /** @abstract */
-class Vector3D {
-  /** @type {Vector3DCollection<Vector3D>} */
+class Feature3D {
+  /** @type {Feature3DCollection<Feature3D>} */
   _collection = null;
 
   /** @type {number} */
@@ -23,25 +17,25 @@ class Vector3D {
 
   static Layout = {
     /**
-     * Integer ID of this vector, unique in collection.
+     * Integer ID of this feature, unique in collection.
      * @type {number}
      */
-    BATCH_ID_U32: 0,
+    FEATURE_ID_U32: 0,
 
     /**
-     * Boolean (0 or 1) flag indicating whether vector is shown.
+     * Boolean (0 or 1) flag indicating whether feature is shown.
      * @type {number}
      */
     SHOW_U8: 4,
 
     /**
-     * Boolean (0 or 1) flag indicating whether vector is dirty.
+     * Boolean (0 or 1) flag indicating whether feature is dirty.
      * @type {number}
      */
     DIRTY_U8: 5,
 
     /**
-     * Color of vector, as integer RGBA.
+     * Color of feature, as integer RGBA.
      * @type {number}
      */
     COLOR_U32: 8,
@@ -67,15 +61,15 @@ class Vector3D {
   /**
    * @param {unknown} collection
    * @param {number} index
-   * @param {Vector3D} result
-   * @returns {Vector3D}
+   * @param {Feature3D} result
+   * @returns {Feature3D}
    */
   static fromCollection(collection, index, result) {
-    result._collection = /** @type {Vector3DCollection<Vector3D>} */ (
+    result._collection = /** @type {Feature3DCollection<Feature3D>} */ (
       collection
     );
     result._index = index;
-    result._byteOffset = index * Vector3D.Layout.__BYTE_LENGTH;
+    result._byteOffset = index * Feature3D.Layout.__BYTE_LENGTH;
     return result;
   }
 
@@ -84,33 +78,33 @@ class Vector3D {
    * @protected
    */
   _isResizable() {
-    return this._index === this._collection._batchCount - 1;
+    return this._index === this._collection._featureCount - 1;
   }
 
   /////////////////////////////////////////////////////////////////////////////
   // ACCESSORS
 
   /** @type {number} */
-  get batchId() {
-    return this._getUint32(Vector3D.Layout.BATCH_ID_U32);
+  get featureId() {
+    return this._getUint32(Feature3D.Layout.FEATURE_ID_U32);
   }
 
   /** @type {boolean} */
   get show() {
-    return this._getUint8(Vector3D.Layout.SHOW_U8) === 1;
+    return this._getUint8(Feature3D.Layout.SHOW_U8) === 1;
   }
 
   set show(show) {
-    this._setUint8(Vector3D.Layout.SHOW_U8, show ? 1 : 0);
+    this._setUint8(Feature3D.Layout.SHOW_U8, show ? 1 : 0);
   }
 
   /** @type {boolean} */
   get _dirty() {
-    return this._getUint8(Vector3D.Layout.DIRTY_U8) === 1;
+    return this._getUint8(Feature3D.Layout.DIRTY_U8) === 1;
   }
 
   set _dirty(dirty) {
-    this._setUint8(Vector3D.Layout.DIRTY_U8, dirty ? 1 : 0);
+    this._setUint8(Feature3D.Layout.DIRTY_U8, dirty ? 1 : 0);
   }
 
   /**
@@ -118,14 +112,14 @@ class Vector3D {
    * @returns {Color}
    */
   getColor(result) {
-    return Color.fromRgba(this._getUint32(Vector3D.Layout.COLOR_U32), result);
+    return Color.fromRgba(this._getUint32(Feature3D.Layout.COLOR_U32), result);
   }
 
   /**
    * @param {Color} color
    */
   setColor(color) {
-    this._setUint32(Vector3D.Layout.COLOR_U32, color.toRgba());
+    this._setUint32(Feature3D.Layout.COLOR_U32, color.toRgba());
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -136,7 +130,7 @@ class Vector3D {
    * @returns {number}
    */
   _getUint8(itemByteOffset) {
-    return this._collection._batchView.getUint8(
+    return this._collection._featureView.getUint8(
       this._byteOffset + itemByteOffset,
     );
   }
@@ -146,7 +140,7 @@ class Vector3D {
    * @param {number} itemValue
    */
   _setUint8(itemByteOffset, itemValue) {
-    this._collection._batchView.setUint8(
+    this._collection._featureView.setUint8(
       this._byteOffset + itemByteOffset,
       itemValue,
     );
@@ -157,7 +151,7 @@ class Vector3D {
    * @returns {number}
    */
   _getUint32(itemByteOffset) {
-    return this._collection._batchView.getUint32(
+    return this._collection._featureView.getUint32(
       this._byteOffset + itemByteOffset,
       true,
     );
@@ -168,7 +162,7 @@ class Vector3D {
    * @param {number} itemValue
    */
   _setUint32(itemByteOffset, itemValue) {
-    this._collection._batchView.setUint32(
+    this._collection._featureView.setUint32(
       this._byteOffset + itemByteOffset,
       itemValue,
       true,
@@ -180,7 +174,7 @@ class Vector3D {
    * @returns {number}
    */
   _getFloat32(itemByteOffset) {
-    return this._collection._batchView.getFloat32(
+    return this._collection._featureView.getFloat32(
       this._byteOffset + itemByteOffset,
       true,
     );
@@ -191,7 +185,7 @@ class Vector3D {
    * @param {number} itemValue
    */
   _setFloat32(itemByteOffset, itemValue) {
-    this._collection._batchView.setFloat32(
+    this._collection._featureView.setFloat32(
       this._byteOffset + itemByteOffset,
       itemValue,
       true,
@@ -199,4 +193,4 @@ class Vector3D {
   }
 }
 
-export default Vector3D;
+export default Feature3D;

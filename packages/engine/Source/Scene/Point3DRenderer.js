@@ -20,8 +20,8 @@ import DrawCommand from "../Renderer/DrawCommand.js";
 import Pass from "../Renderer/Pass.js";
 import PrimitiveType from "../Core/PrimitiveType";
 
-/** @import FrameState from "../Scene/FrameState.js" */
-/** @import Point3DCollection from "./Point3DCollection.js" */
+/** @import FrameState from "../Scene/FrameState.js"; */
+/** @import Point3DCollection from "./Point3DCollection.js"; */
 
 /** @type {{position: number, color: number}} */
 const Point3DAttributeLocations = {

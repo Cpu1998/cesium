@@ -1,8 +1,8 @@
 // @ts-check
 
 import defined from "../Core/defined.js";
-import Vector3D from "./Vector3D.js";
-import Vector3DCollection from "./Vector3DCollection.js";
+import Feature3D from "./Feature3D.js";
+import Feature3DCollection from "./Feature3DCollection.js";
 import Polygon3D from "./Polygon3D.js";
 import Frozen from "../Core/Frozen.js";
 
@@ -18,15 +18,15 @@ import Frozen from "../Core/Frozen.js";
  */
 
 /**
- * @extends Vector3DCollection<Polygon3D>
+ * @extends Feature3DCollection<Polygon3D>
  */
-class Polygon3DCollection extends Vector3DCollection {
+class Polygon3DCollection extends Feature3DCollection {
   /**
    * @param {object} options
-   * @param {number} [options.maxInstanceCount=Vector3D.DEFAULT_COUNT]
-   * @param {number} [options.maxVertexCount=Vector3D.DEFAULT_COUNT]
-   * @param {number} [options.maxHoleCount=Vector3D.DEFAULT_COUNT]
-   * @param {number} [options.maxTriangleCount=Vector3D.DEFAULT_COUNT]
+   * @param {number} [options.maxFeatureCount=Feature3D.DEFAULT_COUNT]
+   * @param {number} [options.maxVertexCount=Feature3D.DEFAULT_COUNT]
+   * @param {number} [options.maxHoleCount=Feature3D.DEFAULT_COUNT]
+   * @param {number} [options.maxTriangleCount=Feature3D.DEFAULT_COUNT]
    * @param {boolean} [options.show=true]
    * @param {Matrix4} [options.modelMatrix=Matrix4.IDENTITY]
    * @param {boolean} [options.debugShowBoundingVolume=false]
@@ -37,7 +37,7 @@ class Polygon3DCollection extends Vector3DCollection {
     /** @type {number} */
     this._holeCount = 0;
     /** @type {number} */
-    this._holeCountMax = options.maxHoleCount ?? Vector3D.DEFAULT_COUNT;
+    this._holeCountMax = options.maxHoleCount ?? Feature3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._holeIndexBuffer = null;
     /** @type {Uint32Array<ArrayBuffer>} */
@@ -48,7 +48,8 @@ class Polygon3DCollection extends Vector3DCollection {
     /** @type {number} */
     this._triangleCount = 0;
     /** @type {number} */
-    this._triangleCountMax = options.maxTriangleCount ?? Vector3D.DEFAULT_COUNT;
+    this._triangleCountMax =
+      options.maxTriangleCount ?? Feature3D.DEFAULT_COUNT;
     /** @type {ArrayBuffer} */
     this._triangleIndexBuffer = null;
     /** @type {Uint32Array<ArrayBuffer>} */
@@ -57,11 +58,11 @@ class Polygon3DCollection extends Vector3DCollection {
     this._allocateTriangleIndexBuffer();
   }
 
-  _getVector3DClass() {
+  _getFeatureClass() {
     return Polygon3D;
   }
 
-  _getBatchLayout() {
+  _getFeatureLayout() {
     return Polygon3D.Layout;
   }
 
@@ -89,7 +90,7 @@ class Polygon3DCollection extends Vector3DCollection {
   }
 
   /////////////////////////////////////////////////////////////////////////////
-  // INSTANCE LIFECYCLE
+  // FEATURE LIFECYCLE
 
   /**
    * @param {Polygon3DOptions} options

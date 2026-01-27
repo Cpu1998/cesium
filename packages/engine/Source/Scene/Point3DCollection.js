@@ -1,6 +1,6 @@
 // @ts-check
 
-import Vector3DCollection from "./Vector3DCollection.js";
+import Feature3DCollection from "./Feature3DCollection.js";
 import Point3D from "./Point3D.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import renderPoints from "./Point3DRenderer.js";
@@ -8,17 +8,17 @@ import renderPoints from "./Point3DRenderer.js";
 /** @import FrameState from "../Scene/FrameState.js" */
 
 /**
- * @extends Vector3DCollection<Point3D>
+ * @extends Feature3DCollection<Point3D>
  */
-class Point3DCollection extends Vector3DCollection {
+class Point3DCollection extends Feature3DCollection {
   /** @type {Record<string, unknown>} */
   _renderContext = null;
 
-  _getVector3DClass() {
+  _getFeatureClass() {
     return Point3D;
   }
 
-  _getBatchLayout() {
+  _getFeatureLayout() {
     return Point3D.Layout;
   }
 
