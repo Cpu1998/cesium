@@ -3,13 +3,10 @@
 import defined from "../Core/defined.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import Point3D from "./Point3D.js";
-import Ellipsoid from "../Core/Ellipsoid.js";
-import Matrix4 from "../Core/Matrix4.js";
 import Buffer from "../Renderer/Buffer.js";
 import BoundingSphere from "../Core/BoundingSphere.js";
 import BufferUsage from "../Renderer/BufferUsage.js";
 import VertexArray from "../Renderer/VertexArray.js";
-import Transforms from "../Core/Transforms.js";
 import ComponentDatatype from "../Core/ComponentDatatype.js";
 import RenderState from "../Renderer/RenderState.js";
 import BlendingState from "../Scene/BlendingState.js";
@@ -19,16 +16,20 @@ import ShaderProgram from "../Renderer/ShaderProgram.js";
 import DrawCommand from "../Renderer/DrawCommand.js";
 import Pass from "../Renderer/Pass.js";
 import PrimitiveType from "../Core/PrimitiveType";
+import Point3DCollectionVS from "../Shaders/Point3DCollectionVS.js";
+import Point3DCollectionFS from "../Shaders/Point3DCollectionFS.js";
+import EncodedCartesian3 from "../Core/EncodedCartesian3.js";
+import CesiumMath from "../Core/Math.js";
 
 /** @import FrameState from "../Scene/FrameState.js"; */
 /** @import Point3DCollection from "./Point3DCollection.js"; */
 
-/** @type {{position: number, color: number}} */
+/** @type {{positionHighAndShow: number, positionLowAndColor: number}} */
 const Point3DAttributeLocations = {
   /** @type {number} */
-  position: 0,
+  positionHighAndShow: 0,
   /** @type {number} */
-  color: 1,
+  positionLowAndColor: 1,
 };
 
 /**
@@ -37,7 +38,8 @@ const Point3DAttributeLocations = {
  * @property {RenderState} [renderState]
  * @property {ShaderProgram} [shaderProgram]
  * @property {object} [uniformMap]
- * @property {Matrix4} [transform]
+ * @property {boolean} [needsBoundingVolumeUpdate]
+ * @property {boolean} [firstDrawTimed]
  */
 
 /**
@@ -48,9 +50,14 @@ const Point3DAttributeLocations = {
  */
 function renderPoints(collection, frameState, renderContext) {
   const context = frameState.context;
-  renderContext = renderContext || {};
+  renderContext = renderContext || { needsBoundingVolumeUpdate: true };
 
-  if (!defined(renderContext.transform)) {
+  if (!renderContext.firstDrawTimed) {
+    console.time("renderPoints::init");
+  }
+
+  // TODO(donmccurdy): Renderer shouldn't maintain collection bounding volume.
+  if (renderContext.needsBoundingVolumeUpdate) {
     const globalMin = new Cartesian3(
       Number.POSITIVE_INFINITY,
       Number.POSITIVE_INFINITY,
@@ -72,79 +79,55 @@ function renderPoints(collection, frameState, renderContext) {
       Cartesian3.maximumByComponent(globalMax, globalCartesian, globalMax);
     }
 
-    // Compute the ENU matrix
-    const ecefCenter = Cartesian3.midpoint(
-      globalMin,
-      globalMax,
-      new Cartesian3(),
-    );
-
-    const toGlobal = Transforms.eastNorthUpToFixedFrame(
-      ecefCenter,
-      Ellipsoid.WGS84,
-      new Matrix4(),
-    );
-
-    renderContext.transform = toGlobal;
-
-    // TODO(donmccurdy): Renderer shouldn't be responsible for updating collection.
     BoundingSphere.fromCornerPoints(
       globalMin,
       globalMax,
       collection._boundingVolume,
     );
+
+    renderContext.needsBoundingVolumeUpdate = false;
   }
 
   if (!defined(renderContext.vertexArray)) {
     const point = new Point3D();
-    const globalCartesian = new Cartesian3();
-    const localCartesian = new Cartesian3();
+    const color = new Color();
+    const cartesian = new Cartesian3();
+    const encodedCartesian = new EncodedCartesian3();
 
-    const localMin = new Cartesian3(
-      Number.POSITIVE_INFINITY,
-      Number.POSITIVE_INFINITY,
-      Number.POSITIVE_INFINITY,
-    );
+    const vertexCount = collection._positionCount;
+    const stride = 4;
 
-    const localMax = new Cartesian3(
-      Number.NEGATIVE_INFINITY,
-      Number.NEGATIVE_INFINITY,
-      Number.NEGATIVE_INFINITY,
-    );
+    const positionHighAndShowArray = new Float32Array(vertexCount * stride);
+    const positionLowAndColorArray = new Float32Array(vertexCount * stride);
 
-    const toLocal = Matrix4.inverseTransformation(
-      renderContext.transform,
-      new Matrix4(),
-    );
-
-    const positionTypedArray = new Float32Array(collection._positionCount * 3);
-    const colorTypedArray = new Uint8Array(collection._positionCount * 4);
-
-    for (let i = 0, il = collection._positionCount; i < il; i++) {
+    for (let i = 0, il = vertexCount; i < il; i++) {
       Point3D.fromCollection(collection, i, point);
 
-      // Position.
-      point.getPosition(globalCartesian);
-      Matrix4.multiplyByPoint(toLocal, globalCartesian, localCartesian);
-      Cartesian3.minimumByComponent(localMin, localCartesian, localMin);
-      Cartesian3.maximumByComponent(localMax, localCartesian, localMax);
-      // @ts-expect-error TODO(donmccurdy): Incorrect types.
-      Cartesian3.pack(localCartesian, positionTypedArray, i * 3);
+      point.getPosition(cartesian);
+      EncodedCartesian3.fromCartesian(cartesian, encodedCartesian);
 
-      // Color.
-      // @ts-expect-error TODO(donmccurdy): Incorrect types.
-      Color.pack(point.color, colorTypedArray, i * 4);
+      point.getColor(color);
+
+      positionHighAndShowArray[i * stride] = encodedCartesian.high.x;
+      positionHighAndShowArray[i * stride + 1] = encodedCartesian.high.y;
+      positionHighAndShowArray[i * stride + 2] = encodedCartesian.high.z;
+      positionHighAndShowArray[i * stride + 3] = point.show ? 1 : 0;
+
+      positionLowAndColorArray[i * stride] = encodedCartesian.low.x;
+      positionLowAndColorArray[i * stride + 1] = encodedCartesian.low.y;
+      positionLowAndColorArray[i * stride + 2] = encodedCartesian.low.z;
+      positionLowAndColorArray[i * stride + 3] = compressRGB(color);
     }
 
-    const positionBuffer = Buffer.createVertexBuffer({
-      typedArray: positionTypedArray,
+    const positionHighBuffer = Buffer.createVertexBuffer({
+      typedArray: positionHighAndShowArray,
       context,
       // @ts-expect-error TODO(donmccurdy): BufferUsage types incorrect.
       usage: BufferUsage.STATIC_DRAW,
     });
 
-    const colorBuffer = Buffer.createVertexBuffer({
-      typedArray: colorTypedArray,
+    const positionLowBuffer = Buffer.createVertexBuffer({
+      typedArray: positionLowAndColorArray,
       context,
       // @ts-expect-error TODO(donmccurdy): BufferUsage types incorrect.
       usage: BufferUsage.STATIC_DRAW,
@@ -154,15 +137,15 @@ function renderPoints(collection, frameState, renderContext) {
       context,
       attributes: [
         {
-          index: Point3DAttributeLocations.position,
-          vertexBuffer: positionBuffer,
+          index: Point3DAttributeLocations.positionHighAndShow,
+          vertexBuffer: positionHighBuffer,
           componentDatatype: ComponentDatatype.FLOAT,
-          componentsPerAttribute: 3,
+          componentsPerAttribute: 4,
         },
         {
-          index: Point3DAttributeLocations.color,
-          vertexBuffer: colorBuffer,
-          componentDatatype: ComponentDatatype.UNSIGNED_BYTE,
+          index: Point3DAttributeLocations.positionLowAndColor,
+          vertexBuffer: positionLowBuffer,
+          componentDatatype: ComponentDatatype.FLOAT,
           componentsPerAttribute: 4,
         },
       ],
@@ -174,7 +157,7 @@ function renderPoints(collection, frameState, renderContext) {
     renderContext.renderState = RenderState.fromCache({
       blending: BlendingState.DISABLED,
       depthMask: false,
-      depthTest: { enabled: false }, // TODO(donmccurdy)
+      depthTest: { enabled: true },
       polygonOffset: { enabled: false },
     });
   }
@@ -185,30 +168,11 @@ function renderPoints(collection, frameState, renderContext) {
 
   if (!defined(renderContext.shaderProgram)) {
     const vertexShaderSource = new ShaderSource({
-      defines: [],
-      sources: [
-        `
-in vec3 position;
-in vec4 color;
-void main()
-{
-  // TODO(donmccurdy): u_modelViewMatrix * position, possibly?
-  vec4 positionEC = vec4(position, 1.0);
-  gl_Position = czm_projection * positionEC;
-}`.trim(),
-      ],
+      sources: [Point3DCollectionVS],
     });
 
     const fragmentShaderSource = new ShaderSource({
-      defines: [],
-      sources: [
-        `
-void main()
-{
-  out_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-  czm_writeLogDepth();
-}`.trim(),
-      ],
+      sources: [Point3DCollectionFS],
     });
 
     renderContext.shaderProgram = ShaderProgram.fromCache({
@@ -231,13 +195,31 @@ void main()
     owner: collection,
     boundingVolume: collection._boundingVolume,
     debugShowBoundingVolume: collection.debugShowBoundingVolume,
-
-    // TODO(donmccurdy): pickId
   });
 
   frameState.commandList.push(command);
 
+  if (!renderContext.firstDrawTimed) {
+    console.timeEnd("renderPoints::init");
+    renderContext.firstDrawTimed = true;
+  }
+
   return renderContext;
+}
+
+const LEFT_SHIFT16 = 65536.0;
+const LEFT_SHIFT8 = 256.0;
+
+/**
+ * @param {Color} color
+ * @returns {number}
+ */
+function compressRGB(color) {
+  return (
+    Math.round(CesiumMath.clamp(color.red * 255, 0, 255)) * LEFT_SHIFT16 +
+    Math.round(CesiumMath.clamp(color.green * 255, 0, 255)) * LEFT_SHIFT8 +
+    Math.round(CesiumMath.clamp(color.blue * 255, 0, 255))
+  );
 }
 
 export default renderPoints;
