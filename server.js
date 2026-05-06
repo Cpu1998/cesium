@@ -21,7 +21,8 @@ import {
   buildEngine,
   buildWidgets,
 } from "./scripts/build.js";
-
+// 新增：禁用 Hugging Face 自动下载模型，解决网络超时
+process.env.TRANSFORMERS_DISABLED = "true";
 const argv = await yargs(process.argv)
   .options({
     port: {
