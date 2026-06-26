@@ -1,0 +1,236 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/FadeMaterial.glsl",
+      "type": "file",
+      "name": "FadeMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/FadeMaterial.glsl",
+      "summary": "Fade 材质的 GLSL 片元 shader，根据距离与方向在 fadeInColor 和 fadeOutColor 之间渐变，可选重复模式。",
+      "tags": ["shader", "glsl", "material", "fragment", "rendering"],
+      "complexity": "simple",
+      "languageNotes": "实现 czm_getMaterial 入口，依赖 Cesium 内置 czm_ 命名空间的 uniform 与材质输入结构。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/GridMaterial.glsl",
+      "type": "file",
+      "name": "GridMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/GridMaterial.glsl",
+      "summary": "Grid 材质片元 shader，基于 lineCount、lineThickness 和 lineOffset 绘制可配置模糊度的网格线，支持 derivatives 抗锯齿。",
+      "tags": ["shader", "glsl", "material", "fragment", "rendering"],
+      "complexity": "moderate",
+      "languageNotes": "算法源自《3D Engine Design for Virtual Globes》(Cozzi & Ring) Listing 4.13。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/NormalMapMaterial.glsl",
+      "type": "file",
+      "name": "NormalMapMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/NormalMapMaterial.glsl",
+      "summary": "NormalMap 材质片元 shader，从法线贴图采样并转换为切线空间法线供光照计算使用。",
+      "tags": ["shader", "glsl", "material", "fragment", "normal-mapping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/PolylineArrowMaterial.glsl",
+      "type": "file",
+      "name": "PolylineArrowMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/PolylineArrowMaterial.glsl",
+      "summary": "PolylineArrow 材质片元 shader，沿 st 坐标绘制带尖端箭头形状的线材质，使用 fwidth 在 derivatives 可用时锐化箭头底边。",
+      "tags": ["shader", "glsl", "material", "polyline", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/PolylineDashMaterial.glsl",
+      "type": "file",
+      "name": "PolylineDashMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/PolylineDashMaterial.glsl",
+      "summary": "PolylineDash 材质片元 shader，根据 dashLength 与 dashPattern 位掩码在线条上生成虚线模式。",
+      "tags": ["shader", "glsl", "material", "polyline", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/PolylineGlowMaterial.glsl",
+      "type": "file",
+      "name": "PolylineGlowMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/PolylineGlowMaterial.glsl",
+      "summary": "PolylineGlow 材质片元 shader，沿线条基于到中心的距离生成带 taper 与 glow power 的发光效果。",
+      "tags": ["shader", "glsl", "material", "polyline", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/PolylineOutlineMaterial.glsl",
+      "type": "file",
+      "name": "PolylineOutlineMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/PolylineOutlineMaterial.glsl",
+      "summary": "PolylineOutline 材质片元 shader，在线条主体颜色周围绘制可配置 outlineWidth 与 outlineColor 的描边。",
+      "tags": ["shader", "glsl", "material", "polyline", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/RimLightingMaterial.glsl",
+      "type": "file",
+      "name": "RimLightingMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/RimLightingMaterial.glsl",
+      "summary": "RimLighting 材质片元 shader，基于法线与视线夹角生成边缘光照（轮廓光）效果。",
+      "tags": ["shader", "glsl", "material", "fragment", "lighting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/SlopeRampMaterial.glsl",
+      "type": "file",
+      "name": "SlopeRampMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/SlopeRampMaterial.glsl",
+      "summary": "SlopeRamp 材质片元 shader，根据坡度（slope）从 ramp 纹理采样颜色用于地形分类着色。",
+      "tags": ["shader", "glsl", "material", "fragment", "terrain"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/StripeMaterial.glsl",
+      "type": "file",
+      "name": "StripeMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/StripeMaterial.glsl",
+      "summary": "Stripe 材质片元 shader，沿 horizontal 或 repeat 方向在 lightColor 与 darkColor 之间交替绘制条纹。",
+      "tags": ["shader", "glsl", "material", "fragment", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/Water.glsl",
+      "type": "file",
+      "name": "Water.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/Water.glsl",
+      "summary": "Water 材质片元 shader，结合 specularMap 与 normalMap 模拟水面的波纹动画、镜面反射与距离淡化效果。",
+      "tags": ["shader", "glsl", "material", "fragment", "water"],
+      "complexity": "moderate",
+      "languageNotes": "实现源自 Jonas (29a.ch) 的 WebGL 水体渲染示例。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/WaterMaskMaterial.glsl",
+      "type": "file",
+      "name": "WaterMaskMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/WaterMaskMaterial.glsl",
+      "summary": "WaterMask 材质片元 shader，基于 waterMask 在 landColor 与 waterColor 之间混合并做 gamma 校正。",
+      "tags": ["shader", "glsl", "material", "fragment", "water"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/AtmosphereStageFS.glsl",
+      "type": "file",
+      "name": "AtmosphereStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/AtmosphereStageFS.glsl",
+      "summary": "Model 渲染管线的 Atmosphere（大气）片元阶段 shader，通过快速椭圆距离近似计算雾/大气光强与着色。",
+      "tags": ["shader", "glsl", "model", "atmosphere", "fragment"],
+      "complexity": "complex",
+      "languageNotes": "采用迭代式椭圆近似（单次迭代以优化性能），无三角函数，参考 0xfaded 的 ellipse_demo。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/AtmosphereStageVS.glsl",
+      "type": "file",
+      "name": "AtmosphereStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/AtmosphereStageVS.glsl",
+      "summary": "Model 渲染管线的 Atmosphere 顶点阶段 shader，向片元阶段传递大气计算所需的几何参数。",
+      "tags": ["shader", "glsl", "model", "atmosphere", "vertex"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ConstantLodStageFS.glsl",
+      "type": "file",
+      "name": "ConstantLodStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ConstantLodStageFS.glsl",
+      "summary": "Model 渲染管线的 ConstantLOD 片元阶段 shader，根据对数距离对纹理做两次采样并混合以实现固定 LOD 的纹理查找。",
+      "tags": ["shader", "glsl", "model", "lod", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ConstantLodStageVS.glsl",
+      "type": "file",
+      "name": "ConstantLodStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ConstantLodStageVS.glsl",
+      "summary": "Model 渲染管线的 ConstantLOD 顶点阶段 shader，为片元阶段准备 constant LOD 纹理采样所需的自定义 UV 与距离参数。",
+      "tags": ["shader", "glsl", "model", "lod", "vertex"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/CPUStylingStageFS.glsl",
+      "type": "file",
+      "name": "CPUStylingStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/CPUStylingStageFS.glsl",
+      "summary": "Model 渲染管线的 CPU 样式片元阶段 shader，按 feature 颜色应用 CPU 侧样式并按 pass 类型（不透明/半透明/轮廓）过滤可见性。",
+      "tags": ["shader", "glsl", "model", "styling", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/CPUStylingStageVS.glsl",
+      "type": "file",
+      "name": "CPUStylingStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/CPUStylingStageVS.glsl",
+      "summary": "Model 渲染管线的 CPU 样式顶点阶段 shader，根据 CPU 计算的 feature 样式（显示/颜色）传递给后续阶段。",
+      "tags": ["shader", "glsl", "model", "styling", "vertex"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/CustomShaderStageFS.glsl",
+      "type": "file",
+      "name": "CustomShaderStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/CustomShaderStageFS.glsl",
+      "summary": "Model 渲染管线的 CustomShader 片元阶段 shader，将 attributes、featureIds 与 metadata 打包为 FragmentInput 并调用用户自定义的 fragmentMain。",
+      "tags": ["shader", "glsl", "model", "custom-shader", "fragment"],
+      "complexity": "simple",
+      "languageNotes": "FragmentInput 与 initializeInputStruct 由 JS 端 CustomShaderPipelineStage.js 动态生成。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/CustomShaderStageVS.glsl",
+      "type": "file",
+      "name": "CustomShaderStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/CustomShaderStageVS.glsl",
+      "summary": "Model 渲染管线的 CustomShader 顶点阶段 shader，为用户自定义 vertexMain 组装 VertexInput 结构。",
+      "tags": ["shader", "glsl", "model", "custom-shader", "vertex"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/EdgeDetectionStageFS.glsl",
+      "type": "file",
+      "name": "EdgeDetectionStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/EdgeDetectionStageFS.glsl",
+      "summary": "Model 渲染管线的边缘检测片元阶段 shader，基于相邻面法线与视线方向判断轮廓/硬边并按 edge 颜色着色。",
+      "tags": ["shader", "glsl", "model", "edge-detection", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/EdgeVisibilityStageFS.glsl",
+      "type": "file",
+      "name": "EdgeVisibilityStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/EdgeVisibilityStageFS.glsl",
+      "summary": "Model 渲染管线的边缘可见性片元阶段 shader，使用顶点阶段传入的 edgeType/法线/shouldDiscard 信息丢弃不可见边缘并按类型着色。",
+      "tags": ["shader", "glsl", "model", "edge-detection", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/EdgeVisibilityStageVS.glsl",
+      "type": "file",
+      "name": "EdgeVisibilityStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/EdgeVisibilityStageVS.glsl",
+      "summary": "Model 渲染管线的边缘可见性顶点阶段 shader，对轮廓边做 silhouette 检测并决定边是否参与绘制（仅在 edge pass 中运行）。",
+      "tags": ["shader", "glsl", "model", "edge-detection", "vertex"],
+      "complexity": "complex",
+      "languageNotes": "在顶点侧对边的两个端点用法线·视线点积判定轮廓，受 u_isEdgePass 守卫。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/FeatureIdStageFS.glsl",
+      "type": "file",
+      "name": "FeatureIdStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/FeatureIdStageFS.glsl",
+      "summary": "Model 渲染管线的 feature id 片元阶段 shader，从 attributes 初始化 feature id 及其别名用于按要素样式/拾取。",
+      "tags": ["shader", "glsl", "model", "feature-id", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/FeatureIdStageVS.glsl",
+      "type": "file",
+      "name": "FeatureIdStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/FeatureIdStageVS.glsl",
+      "summary": "Model 渲染管线的 feature id 顶点阶段 shader，初始化并传递 feature id 相关属性到片元阶段。",
+      "tags": ["shader", "glsl", "model", "feature-id", "vertex"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

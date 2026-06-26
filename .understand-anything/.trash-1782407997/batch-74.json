@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "config:Tools/ast-grep/rules/no-export-object-freeze.yml",
+      "type": "config",
+      "name": "no-export-object-freeze.yml",
+      "filePath": "Tools/ast-grep/rules/no-export-object-freeze.yml",
+      "summary": "ast-grep 规则,禁止在 export default 语句中直接导出 Object.freeze(...) 的结果,以避免枚举类型信息在 tsd-jsdoc 类型生成时丢失;应先冻结再单独导出枚举。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "code-style", "javascript"],
+      "complexity": "simple",
+      "languageNotes": "利用 ast-grep 的 follows + context 锚定紧跟 @enum 注释声明的变量,匹配 export default Object.freeze($A) 模式。"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/no-jsdoc-class-declaration-params.yml",
+      "type": "config",
+      "name": "no-jsdoc-class-declaration-params.yml",
+      "filePath": "Tools/ast-grep/rules/no-jsdoc-class-declaration-params.yml",
+      "summary": "ast-grep 规则,禁止将 @param 文档写在 class 声明上方,要求参数 JSDoc 必须放在构造函数上而非 class 声明处。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "jsdoc", "code-style"],
+      "complexity": "simple",
+      "languageNotes": "通过 comment precedes class_declaration 锚定紧贴在 class 声明之前的 @param/@privateParam 注释。"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/no-jsdoc-constructor.yml",
+      "type": "config",
+      "name": "no-jsdoc-constructor.yml",
+      "filePath": "Tools/ast-grep/rules/no-jsdoc-constructor.yml",
+      "summary": "ast-grep 规则,禁止在 ES6 class 声明上使用 @constructor 或 @alias 标签,因为这些标签对原生 class 声明是多余的。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "jsdoc", "code-style"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/no-jsdoc-memberof.yml",
+      "type": "config",
+      "name": "no-jsdoc-memberof.yml",
+      "filePath": "Tools/ast-grep/rules/no-jsdoc-memberof.yml",
+      "summary": "ast-grep 规则(带自动修复),禁止 ES6 class 成员上的 @memberof 标签,并使用 transform 正则替换将违规标签从注释中删除。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "jsdoc", "auto-fix"],
+      "complexity": "simple",
+      "languageNotes": "提供 transform 与 fix 字段实现自动修复:用 replace 函数从 $COMMENT 中移除 @memberof 行。"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/no-public-static-fields.yml",
+      "type": "config",
+      "name": "no-public-static-fields.yml",
+      "filePath": "Tools/ast-grep/rules/no-public-static-fields.yml",
+      "summary": "ast-grep 规则,禁止 ES6 class 体中带文档的 public 静态字段声明(因 tsd-jsdoc 会错误地输出为实例字段),建议改用 MyClass.STATIC_PROP = 123 赋值形式;忽略未文档化或 @ignore/@private 的字段。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "code-style", "javascript"],
+      "complexity": "moderate",
+      "languageNotes": "组合使用 follows / not / any 复合断言,排除非 JSDoc 注释、@ignore/@private 字段以及位于 private class 上的字段,逻辑较复杂。"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/require-jsdoc-memberof.yml",
+      "type": "config",
+      "name": "require-jsdoc-memberof.yml",
+      "filePath": "Tools/ast-grep/rules/require-jsdoc-memberof.yml",
+      "summary": "ast-grep 规则,要求通过 Object.defineProperties() 定义的类成员赋值必须带 @memberof 标签;匹配位于 Object.defineProperties 参数对象内、且缺少 @memberof/@memberOf/@ignore/@private 的注释。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "jsdoc", "code-style"],
+      "complexity": "simple",
+      "languageNotes": "通过多层 inside 嵌套定位到 Object.defineProperties($$$,$$$) 的 call_expression arguments 内的 object 节点。"
+    },
+    {
+      "id": "config:Tools/ast-grep/rules/require-jsdoc-readonly-and-constant.yml",
+      "type": "config",
+      "name": "require-jsdoc-readonly-and-constant.yml",
+      "filePath": "Tools/ast-grep/rules/require-jsdoc-readonly-and-constant.yml",
+      "summary": "ast-grep 规则,要求 ES6 class 体中 readonly 实例字段的 JSDoc 同时标注 @readonly 和 @constant;当二者只出现其一时报错,以保证 TypeScript 类型检查与 tsd-jsdoc 类型生成正确。",
+      "tags": ["lint-rule", "ast-grep", "configuration", "jsdoc", "code-style"],
+      "complexity": "simple",
+      "languageNotes": "使用 any + {regex, not regex} 互斥结构匹配仅含 @readonly 或仅含 @constant 之一的注释。"
+    }
+  ],
+  "edges": []
+}

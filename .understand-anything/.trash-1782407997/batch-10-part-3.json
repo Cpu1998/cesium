@@ -1,0 +1,1099 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "type": "file",
+      "name": "CumulusCloud.js",
+      "filePath": "packages/engine/Source/Scene/CumulusCloud.js",
+      "summary": "描述单个积云 (cumulus cloud) 的视觉参数：位置、缩放、最大尺寸、是否显示及所属 CloudCollection。",
+      "tags": [
+        "cloud",
+        "data-model",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "type": "file",
+      "name": "DebugInspector.js",
+      "filePath": "packages/engine/Source/Scene/DebugInspector.js",
+      "summary": "调试工具：生成用于显示视锥体、命令统计与 uniform 调试的 shader program 与 uniform map。",
+      "tags": [
+        "debug",
+        "shader",
+        "inspector",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "file",
+      "name": "DepthFunction.js",
+      "filePath": "packages/engine/Source/Scene/DepthFunction.js",
+      "summary": "枚举：映射到 WebGLConstants，指定深度测试的比较函数（NEVER/LESS/EQUAL 等）。",
+      "tags": [
+        "enum",
+        "webgl",
+        "type-definition",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "type": "file",
+      "name": "DepthPlane.js",
+      "filePath": "packages/engine/Source/Scene/DepthPlane.js",
+      "summary": "在地表附近绘制一个不可见的深度平面，用于遮挡地下几何体并提供深度写入。",
+      "tags": [
+        "primitive",
+        "depth",
+        "globe",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "type": "file",
+      "name": "DerivedCommand.js",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "summary": "工厂集合：从基础 shader program 派生出深度-only、对数深度、拾取以及 metadata 拾取等派生命令所需 shader/render state。",
+      "tags": [
+        "factory",
+        "shader",
+        "derived-command",
+        "pick",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "type": "file",
+      "name": "DynamicEnvironmentMapManager.js",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "summary": "动态环境贴图管理器：根据大气与相机位置更新辐照度/镜面反射环境立方体贴图与球谐系数，用于 PBR IBL。",
+      "tags": [
+        "environment-map",
+        "pbr",
+        "ibl",
+        "atmosphere",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CumulusCloud.js:CumulusCloud",
+      "type": "function",
+      "name": "CumulusCloud",
+      "filePath": "packages/engine/Source/Scene/CumulusCloud.js",
+      "lineRange": [
+        36,
+        61
+      ],
+      "summary": "构造单个积云数据对象，绑定到所属集合。",
+      "tags": [
+        "cloud",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DebugInspector.js:getAttributeLocations",
+      "type": "function",
+      "name": "getAttributeLocations",
+      "filePath": "packages/engine/Source/Scene/DebugInspector.js",
+      "lineRange": [
+        14,
+        24
+      ],
+      "summary": "从 shaderProgram 提取属性位置表。",
+      "tags": [
+        "debug",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsShaderProgram",
+      "type": "function",
+      "name": "createDebugShowFrustumsShaderProgram",
+      "filePath": "packages/engine/Source/Scene/DebugInspector.js",
+      "lineRange": [
+        26,
+        74
+      ],
+      "summary": "生成用于调试显示视锥体统计的着色器程序。",
+      "tags": [
+        "debug",
+        "shader",
+        "frustum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsUniformMap",
+      "type": "function",
+      "name": "createDebugShowFrustumsUniformMap",
+      "filePath": "packages/engine/Source/Scene/DebugInspector.js",
+      "lineRange": [
+        77,
+        123
+      ],
+      "summary": "生成调试视锥体显示所用的 uniform map。",
+      "tags": [
+        "debug",
+        "uniform-map",
+        "frustum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DepthPlane.js:computeDepthQuad",
+      "type": "function",
+      "name": "computeDepthQuad",
+      "filePath": "packages/engine/Source/Scene/DepthPlane.js",
+      "lineRange": [
+        44,
+        117
+      ],
+      "summary": "根据椭球与帧状态计算深度平面四边形几何。",
+      "tags": [
+        "depth",
+        "globe",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyShaderProgram",
+      "type": "function",
+      "name": "getDepthOnlyShaderProgram",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        17,
+        70
+      ],
+      "summary": "从基础 shader 派生仅写深度的着色器程序。",
+      "tags": [
+        "shader",
+        "derived-command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyRenderState",
+      "type": "function",
+      "name": "getDepthOnlyRenderState",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        72,
+        93
+      ],
+      "summary": "返回仅写深度所需的渲染状态。",
+      "tags": [
+        "render-state",
+        "derived-command"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getLogDepthShaderProgram",
+      "type": "function",
+      "name": "getLogDepthShaderProgram",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        139,
+        229
+      ],
+      "summary": "派生对数深度 (log depth) 着色器程序。",
+      "tags": [
+        "shader",
+        "derived-command",
+        "log-depth"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickShaderProgram",
+      "type": "function",
+      "name": "getPickShaderProgram",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        253,
+        291
+      ],
+      "summary": "派生拾取着色器程序（注入 pickId）。",
+      "tags": [
+        "shader",
+        "pick",
+        "derived-command"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickRenderState",
+      "type": "function",
+      "name": "getPickRenderState",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        293,
+        313
+      ],
+      "summary": "返回拾取所需的渲染状态。",
+      "tags": [
+        "render-state",
+        "pick",
+        "derived-command"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringScalar",
+      "type": "function",
+      "name": "getSourceValueStringScalar",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        433,
+        449
+      ],
+      "summary": "生成标量 metadata 属性在 shader 中的取值字符串。",
+      "tags": [
+        "shader",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringComponent",
+      "type": "function",
+      "name": "getSourceValueStringComponent",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        461,
+        487
+      ],
+      "summary": "生成分量 metadata 属性在 shader 中的取值字符串。",
+      "tags": [
+        "shader",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickMetadataShaderProgram",
+      "type": "function",
+      "name": "getPickMetadataShaderProgram",
+      "filePath": "packages/engine/Source/Scene/DerivedCommand.js",
+      "lineRange": [
+        508,
+        606
+      ],
+      "summary": "派生用于拾取 metadata 的着色器程序。",
+      "tags": [
+        "shader",
+        "pick",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:DynamicEnvironmentMapManager",
+      "type": "function",
+      "name": "DynamicEnvironmentMapManager",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        69,
+        202
+      ],
+      "summary": "构造动态环境贴图管理器，初始化辐照度/镜面/球谐资源与更新标志。",
+      "tags": [
+        "environment-map",
+        "ibl",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:atmosphereNeedsUpdate",
+      "type": "function",
+      "name": "atmosphereNeedsUpdate",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        437,
+        475
+      ],
+      "summary": "判断大气环境贴图是否需要重新生成。",
+      "tags": [
+        "environment-map",
+        "atmosphere"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateRadianceMap",
+      "type": "function",
+      "name": "updateRadianceMap",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        488,
+        612
+      ],
+      "summary": "根据当前场景重新生成辐照度环境立方体贴图。",
+      "tags": [
+        "environment-map",
+        "ibl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSpecularMaps",
+      "type": "function",
+      "name": "updateSpecularMaps",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        620,
+        739
+      ],
+      "summary": "更新镜面反射环境贴图的各级 mipmap。",
+      "tags": [
+        "environment-map",
+        "ibl",
+        "specular"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateIrradianceResources",
+      "type": "function",
+      "name": "updateIrradianceResources",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        749,
+        800
+      ],
+      "summary": "更新辐照度相关资源（球谐系数与纹理）。",
+      "tags": [
+        "environment-map",
+        "ibl",
+        "irradiance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSphericalHarmonicCoefficients",
+      "type": "function",
+      "name": "updateSphericalHarmonicCoefficients",
+      "filePath": "packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "lineRange": [
+        808,
+        844
+      ],
+      "summary": "从环境贴图计算/更新球谐光照系数。",
+      "tags": [
+        "environment-map",
+        "ibl",
+        "spherical-harmonics"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "function:packages/engine/Source/Scene/CumulusCloud.js:CumulusCloud",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "function:packages/engine/Source/Scene/CumulusCloud.js:CumulusCloud",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:getAttributeLocations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:getAttributeLocations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsUniformMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "function:packages/engine/Source/Scene/DebugInspector.js:createDebugShowFrustumsUniformMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "function:packages/engine/Source/Scene/DepthPlane.js:computeDepthQuad",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "function:packages/engine/Source/Scene/DepthPlane.js:computeDepthQuad",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getDepthOnlyRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getLogDepthShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getLogDepthShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringScalar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringScalar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringComponent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getSourceValueStringComponent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickMetadataShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "function:packages/engine/Source/Scene/DerivedCommand.js:getPickMetadataShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:DynamicEnvironmentMapManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:DynamicEnvironmentMapManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:atmosphereNeedsUpdate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:atmosphereNeedsUpdate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateRadianceMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateRadianceMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSpecularMaps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSpecularMaps",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateIrradianceResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateIrradianceResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSphericalHarmonicCoefficients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "function:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js:updateSphericalHarmonicCoefficients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugInspector.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DepthPlane.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DerivedCommand.js",
+      "target": "file:packages/engine/Source/Scene/Model/MetadataPickingPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Scene/Atmosphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Scene/DynamicAtmosphereLightingType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

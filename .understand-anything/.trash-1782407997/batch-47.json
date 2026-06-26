@@ -1,0 +1,625 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/src/Standalone/main-standalone.tsx",
+      "type": "file",
+      "name": "main-standalone.tsx",
+      "filePath": "packages/sandcastle/src/Standalone/main-standalone.tsx",
+      "summary": "Standalone 模式的应用入口点，挂载 AppStandalone 组件到根 DOM 节点。",
+      "tags": ["entry-point", "standalone", "react-bootstrap"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/ViewerConsoleStack.tsx",
+      "type": "file",
+      "name": "ViewerConsoleStack.tsx",
+      "filePath": "packages/sandcastle/src/ViewerConsoleStack.tsx",
+      "summary": "在 Cesium Viewer 与可折叠/展开的控制台面板之间管理布局与尺寸的容器组件，通过 ref 暴露命令式 API。",
+      "tags": ["component", "layout", "console", "react"],
+      "complexity": "moderate",
+      "languageNotes": "使用 useImperativeHandle 暴露 toggleExpanded 给父组件。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/ViewerConsoleStack.tsx:ViewerConsoleStack",
+      "type": "function",
+      "name": "ViewerConsoleStack",
+      "filePath": "packages/sandcastle/src/ViewerConsoleStack.tsx",
+      "lineRange": [23, 102],
+      "summary": "渲染 Viewer 与控制台的堆叠布局，维护展开状态和上一次高度，并通过 forwardRef 暴露命令式切换方法。",
+      "tags": ["component", "layout", "imperative-handle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx",
+      "type": "file",
+      "name": "ApiKeyDialog.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ApiKeyDialog.tsx",
+      "summary": "用于配置 Anthropic、Gemini 与 Vertex AI 凭据的对话框组件，包含密钥格式校验、保存和刷新可用模型的逻辑。",
+      "tags": ["component", "dialog", "credentials", "validation", "settings"],
+      "complexity": "complex",
+      "languageNotes": "同时处理三种 provider 的密钥校验逻辑（Anthropic/Gemini/Vertex Service Account JSON）。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ApiKeyDialog.tsx:ApiKeyDialogBody",
+      "type": "function",
+      "name": "ApiKeyDialogBody",
+      "filePath": "packages/sandcastle/src/copilot/ApiKeyDialog.tsx",
+      "lineRange": [44, 346],
+      "summary": "对话框主体，管理各 provider 密钥状态、校验输入并调用 ApiKeyManager 持久化凭据。",
+      "tags": ["component", "form", "credentials", "validation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ChatMessage.tsx",
+      "type": "file",
+      "name": "ChatMessage.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ChatMessage.tsx",
+      "summary": "渲染单条聊天消息的组件，支持 Markdown、代码块复制、思考块、工具调用展示与差异预览。",
+      "tags": ["component", "chat", "markdown", "rendering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "type": "file",
+      "name": "ChatPanel.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "summary": "Copilot 的核心聊天面板组件，编排消息流、流式响应、工具链执行、自动修复、附件处理与多 provider 路由。",
+      "tags": ["component", "chat", "orchestrator", "streaming", "ai"],
+      "complexity": "complex",
+      "languageNotes": "约 1276 行的巨型组件，集中编排所有 AI 交互逻辑、批处理更新与 RAF 调度的 UI 刷新。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:ChatPanel",
+      "type": "function",
+      "name": "ChatPanel",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "lineRange": [148, 1276],
+      "summary": "聊天面板主组件，整合消息状态、工具链循环、流式生成、自动修复与图片附件，并提供对话控制（发送/停止/重置）。",
+      "tags": ["component", "orchestrator", "streaming", "tool-chain"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:createImageAttachment",
+      "type": "function",
+      "name": "createImageAttachment",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "lineRange": [119, 132],
+      "summary": "将 File 读取为 data URL，解析尺寸后生成附带元数据的图片附件对象。",
+      "tags": ["utility", "attachment", "image-processing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:readFileAsDataUrl",
+      "type": "function",
+      "name": "readFileAsDataUrl",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "lineRange": [85, 100],
+      "summary": "使用 FileReader 将文件读取为 base64 data URL 的 Promise 包装。",
+      "tags": ["utility", "file-io", "promise"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:getImageDimensions",
+      "type": "function",
+      "name": "getImageDimensions",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "lineRange": [102, 117],
+      "summary": "加载 data URL 对应的图片并返回其宽高，失败时回退到默认尺寸。",
+      "tags": ["utility", "image-processing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:appendDraftToInput",
+      "type": "function",
+      "name": "appendDraftToInput",
+      "filePath": "packages/sandcastle/src/copilot/ChatPanel.tsx",
+      "lineRange": [134, 146],
+      "summary": "将草稿文本智能追加到当前输入框，自动处理换行分隔。",
+      "tags": ["utility", "input-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ModelPicker.tsx",
+      "type": "file",
+      "name": "ModelPicker.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ModelPicker.tsx",
+      "summary": "下拉选择 AI 模型的组件，根据可用模型列表渲染选项并通知父组件选择变更。",
+      "tags": ["component", "dropdown", "model-selection", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/PromptInput.tsx",
+      "type": "file",
+      "name": "PromptInput.tsx",
+      "filePath": "packages/sandcastle/src/copilot/PromptInput.tsx",
+      "summary": "用户输入提示词的多行文本框组件，处理 Enter 发送、Shift+Enter 换行及附件展示。",
+      "tags": ["component", "input", "textarea", "user-input"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ThinkingBlock.tsx",
+      "type": "file",
+      "name": "ThinkingBlock.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ThinkingBlock.tsx",
+      "summary": "展示 AI 推理过程（thinking）的可折叠区块，含动画状态机控制展开/收起的时间序列。",
+      "tags": ["component", "thinking", "animation", "streaming"],
+      "complexity": "moderate",
+      "languageNotes": "使用多个 setTimeout 编排推理激活状态的渐变动画。"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ToolCallDisplay.tsx",
+      "type": "file",
+      "name": "ToolCallDisplay.tsx",
+      "filePath": "packages/sandcastle/src/copilot/ToolCallDisplay.tsx",
+      "summary": "展示单个工具调用的组件，显示工具名、参数、执行状态与结果，支持展开折叠。",
+      "tags": ["component", "tool-call", "display", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/TypingIndicator.tsx",
+      "type": "file",
+      "name": "TypingIndicator.tsx",
+      "filePath": "packages/sandcastle/src/copilot/TypingIndicator.tsx",
+      "summary": "显示 AI 正在输入的动画指示器组件（三点动画）。",
+      "tags": ["component", "indicator", "animation", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts",
+      "type": "file",
+      "name": "AIClientFactory.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts",
+      "summary": "AI 客户端工厂，根据模型路由在 Anthropic/Gemini/Vertex 客户端之间选择并创建实例，校验凭据与 Vertex 区域支持。",
+      "tags": ["factory", "client", "routing", "provider-selection"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts:AIClientFactory",
+      "type": "class",
+      "name": "AIClientFactory",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts",
+      "lineRange": [92, 300],
+      "summary": "静态工具类，根据模型 ID 映射到对应 provider，校验凭据可用性，并构造合适的 AI 客户端实例。",
+      "tags": ["factory", "static-class", "provider-routing"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts",
+      "type": "file",
+      "name": "AnthropicClient.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts",
+      "summary": "直接调用 Anthropic Messages API 的客户端实现，处理工具转换、extended thinking 配置、SSE 流解析与防卡死超时。",
+      "tags": ["client", "anthropic", "streaming", "sse", "api"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts:AnthropicClient",
+      "type": "class",
+      "name": "AnthropicClient",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts",
+      "lineRange": [38, 412],
+      "summary": "封装 Anthropic Messages API 的客户端类，提供流式生成、SSE 事件处理、工具格式转换与思考链配置。",
+      "tags": ["client", "anthropic", "streaming", "tool-use"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts",
+      "type": "file",
+      "name": "ApiKeyManager.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts",
+      "summary": "管理 Gemini/Anthropic/Vertex API 密钥与 Vertex Service Account JSON 的持久化、读取、校验与清除，基于 localStorage。",
+      "tags": ["service", "credentials", "storage", "validation"],
+      "complexity": "complex",
+      "languageNotes": "对 Vertex Service Account JSON 进行结构化校验（private_key、project_id 等）。"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts:ApiKeyManager",
+      "type": "class",
+      "name": "ApiKeyManager",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts",
+      "lineRange": [14, 275],
+      "summary": "静态类，提供三种 provider 密钥的存储/读取/校验/清除方法，并聚合 hasAnyCredentials 判断。",
+      "tags": ["static-class", "credentials", "storage"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts",
+      "type": "file",
+      "name": "GeminiClient.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts",
+      "summary": "直接调用 Google Gemini API 的客户端实现，处理 function declarations 转换、思考签名提取与流式 SSE 解析。",
+      "tags": ["client", "gemini", "streaming", "sse", "tool-use"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts:GeminiClient",
+      "type": "class",
+      "name": "GeminiClient",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts",
+      "lineRange": [38, 384],
+      "summary": "封装 Gemini API 的客户端类，提供流式生成、函数调用转换、响应 part 处理与防卡死超时。",
+      "tags": ["client", "gemini", "streaming", "tool-use"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts",
+      "type": "file",
+      "name": "VertexAIClient.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts",
+      "summary": "通过 Vertex AI 端点调用 Gemini 与 Claude 模型的客户端，封装 OAuth 鉴权 fetch、端点构造与双 provider 流式处理。",
+      "tags": ["client", "vertex-ai", "streaming", "oauth", "multi-provider"],
+      "complexity": "complex",
+      "languageNotes": "单类同时支持 Vertex 上的 Gemini 与 Claude 模型，使用不同的端点与请求体格式。"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts:VertexAIClient",
+      "type": "class",
+      "name": "VertexAIClient",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts",
+      "lineRange": [44, 1015],
+      "summary": "Vertex AI 客户端类，通过 OAuth 鉴权代理 Gemini/Claude 调用，含 setupAbortAndTimeout、authedFetch 与双 SSE 解析路径。",
+      "tags": ["client", "vertex-ai", "oauth", "streaming"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts",
+      "type": "file",
+      "name": "VertexAuth.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts",
+      "summary": "实现 Vertex AI 的 OAuth2 JWT 认证流程，基于 Service Account 私钥签名获取并缓存访问令牌。",
+      "tags": ["auth", "oauth", "jwt", "vertex-ai", "credentials"],
+      "complexity": "complex",
+      "languageNotes": "使用 Web Crypto API 的 PKCS#8 密钥导入与 RS256 签名实现 JWT。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:importPkcs8Key",
+      "type": "function",
+      "name": "importPkcs8Key",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts",
+      "lineRange": [231, 250],
+      "summary": "将 PEM 格式的 PKCS#8 私钥解码并导入为 Web Crypto 的 CryptoKey 对象。",
+      "tags": ["utility", "crypto", "pem-decode"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:base64UrlEncode",
+      "type": "function",
+      "name": "base64UrlEncode",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts",
+      "lineRange": [253, 262],
+      "summary": "将 ArrayBuffer 编码为 base64url 字符串，用于 JWT 头与负载。",
+      "tags": ["utility", "encoding", "base64url"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts",
+      "type": "file",
+      "name": "geminiShared.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/geminiShared.ts",
+      "summary": "Gemini 客户端共享的工具函数集合，包括内容反转义、函数调用 part 构造与思考签名提取。",
+      "tags": ["utility", "gemini", "shared", "helpers"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts:extractThoughtSignature",
+      "type": "function",
+      "name": "extractThoughtSignature",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/geminiShared.ts",
+      "lineRange": [48, 57],
+      "summary": "从 Gemini 响应 part 中提取 thoughtSignature 用于思考链追踪。",
+      "tags": ["utility", "gemini", "thinking"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts",
+      "type": "file",
+      "name": "streamUtils.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/streamUtils.ts",
+      "summary": "AI 客户端共享的流式工具函数，提供防卡死超时、AbortSignal 串联、错误格式化与 POST 流式请求。",
+      "tags": ["utility", "streaming", "shared", "abort", "timeout"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:createStallTimeout",
+      "type": "function",
+      "name": "createStallTimeout",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/streamUtils.ts",
+      "lineRange": [3, 21],
+      "summary": "创建可重置的防卡死定时器，超时后触发 AbortController 中止流式请求。",
+      "tags": ["utility", "timeout", "abort"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:wireAbortSignal",
+      "type": "function",
+      "name": "wireAbortSignal",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/streamUtils.ts",
+      "lineRange": [27, 41],
+      "summary": "将外部 AbortSignal 与内部 controller 串联，任一 abort 即触发整体中止。",
+      "tags": ["utility", "abort", "signal"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:postStreamRequest",
+      "type": "function",
+      "name": "postStreamRequest",
+      "filePath": "packages/sandcastle/src/copilot/ai/clients/streamUtils.ts",
+      "lineRange": [66, 87],
+      "summary": "执行带鉴权头的 POST 流式请求并返回响应体读取器，统一错误处理。",
+      "tags": ["utility", "http", "fetch", "streaming"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts",
+      "type": "file",
+      "name": "DiffMatcher.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts",
+      "summary": "将 AI 生成的 SEARCH/REPLACE 风格 diff 应用到源代码的匹配引擎，支持模糊匹配、行规范化与多 hunk 应用。",
+      "tags": ["diff", "matcher", "code-editing", "ai"],
+      "complexity": "complex",
+      "languageNotes": "实现了基于文本规范化与相似度评分的模糊行匹配算法。"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts:DiffMatcher",
+      "type": "class",
+      "name": "DiffMatcher",
+      "filePath": "packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts",
+      "lineRange": [1, 686],
+      "summary": "解析并应用 SEARCH/REPLACE 块到目标代码的核心类，含模糊匹配、缩进归一化与冲突回退策略。",
+      "tags": ["diff", "matcher", "fuzzy-matching"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts",
+      "type": "file",
+      "name": "RooStyleDiffStrategy.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts",
+      "summary": "实现 Roo 风格 SEARCH/REPLACE diff 应用的策略类，委托 DiffMatcher 执行实际的代码替换与验证。",
+      "tags": ["diff", "strategy", "code-editing", "ai"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts:RooStyleDiffStrategy",
+      "type": "class",
+      "name": "RooStyleDiffStrategy",
+      "filePath": "packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts",
+      "lineRange": [1, 256],
+      "summary": "封装 Roo 风格 diff 解析与应用的策略，提取 diff 块并调用 DiffMatcher 应用到工作代码。",
+      "tags": ["diff", "strategy", "roo-style"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts",
+      "type": "file",
+      "name": "PromptBuilder.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts",
+      "summary": "构建发送给 AI 的提示词，包括基于 diff 的上下文提示、自动修复提示与控制台消息格式化。",
+      "tags": ["prompt", "builder", "context", "ai"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:buildDiffBasedPrompt",
+      "type": "function",
+      "name": "buildDiffBasedPrompt",
+      "filePath": "packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts",
+      "lineRange": [123, 157],
+      "summary": "基于当前工作代码与用户消息构建带代码上下文的提示，引导 AI 输出 SEARCH/REPLACE diff。",
+      "tags": ["prompt", "diff", "context"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:formatConsoleMessages",
+      "type": "function",
+      "name": "formatConsoleMessages",
+      "filePath": "packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts",
+      "lineRange": [174, 213],
+      "summary": "将控制台日志消息格式化为 AI 可读的文本，用于错误自动修复上下文。",
+      "tags": ["prompt", "formatting", "console"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/prompts/prompts.ts",
+      "type": "file",
+      "name": "prompts.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/prompts/prompts.ts",
+      "summary": "导出 CesiumJS API 弃用列表常量，供提示词构建使用。",
+      "tags": ["constants", "prompts", "deprecations"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts",
+      "type": "file",
+      "name": "toolRegistry.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts",
+      "summary": "AI 工具注册表，定义 apply_diff 等工具及其处理函数，并管理全局 toolRegistry 单例的初始化与替换。",
+      "tags": ["tool-registry", "factory", "ai", "tool-use"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:ToolRegistry",
+      "type": "class",
+      "name": "ToolRegistry",
+      "filePath": "packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts",
+      "lineRange": [1, 225],
+      "summary": "管理 AI 可用工具的注册表类，存储工具定义与处理函数映射并提供查询接口。",
+      "tags": ["tool-registry", "registry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:createApplyDiffHandler",
+      "type": "function",
+      "name": "createApplyDiffHandler",
+      "filePath": "packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts",
+      "lineRange": [68, 178],
+      "summary": "创建 apply_diff 工具的处理函数，解析 AI 输出的 diff 并通过 RooStyleDiffStrategy 应用到工作代码。",
+      "tags": ["tool-handler", "diff", "factory"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:initializeToolRegistry",
+      "type": "function",
+      "name": "initializeToolRegistry",
+      "filePath": "packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts",
+      "lineRange": [180, 218],
+      "summary": "初始化全局 ToolRegistry 单例，注册 apply_diff 等核心工具及其处理函数。",
+      "tags": ["initialization", "factory", "tool-registry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/types.ts",
+      "summary": "定义 Copilot AI 模块的核心类型：消息、工具调用、AI 客户端接口、模型/provider 枚举与流式事件。",
+      "tags": ["type-definition", "ai", "types", "interfaces"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/src/Standalone/main-standalone.tsx", "target": "file:packages/sandcastle/src/Standalone/AppStandalone.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "file:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "file:packages/sandcastle/src/copilot/ApiKeyDialog.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "file:packages/sandcastle/src/copilot/contexts/useModel.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "file:packages/sandcastle/src/SandcastleDialog.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "function:packages/sandcastle/src/copilot/ApiKeyDialog.tsx:ApiKeyDialogBody", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "function:packages/sandcastle/src/copilot/ApiKeyDialog.tsx:ApiKeyDialogBody", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/ViewerConsoleStack.tsx", "target": "function:packages/sandcastle/src/ViewerConsoleStack.tsx:ViewerConsoleStack", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/ViewerConsoleStack.tsx", "target": "function:packages/sandcastle/src/ViewerConsoleStack.tsx:ViewerConsoleStack", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/ChatMessage.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/ThinkingBlock.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/ToolCallDisplay.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/copilot/TypingIndicator.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ChatMessage.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ChatPanel.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/contexts/useModel.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/hooks/useChatMessages.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/ModelPicker.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/PromptInput.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:ChatPanel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:ChatPanel", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:createImageAttachment", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:readFileAsDataUrl", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:getImageDimensions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "function:packages/sandcastle/src/copilot/ChatPanel.tsx:appendDraftToInput", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/src/copilot/ModelPicker.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ModelPicker.tsx", "target": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ModelPicker.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/PromptInput.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/PromptInput.tsx", "target": "file:packages/sandcastle/src/copilot/PromptInput.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/PromptInput.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/ThinkingBlock.tsx", "target": "file:packages/sandcastle/src/copilot/TypingIndicator.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/ToolCallDisplay.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ToolCallDisplay.tsx", "target": "file:packages/sandcastle/src/copilot/ToolCallDisplay.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ToolCallDisplay.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/TypingIndicator.tsx", "target": "file:packages/sandcastle/src/copilot/TypingIndicator.css", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts:AIClientFactory", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts:AIClientFactory", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts:AnthropicClient", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts:AnthropicClient", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts:GeminiClient", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts:GeminiClient", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts:VertexAIClient", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts:VertexAIClient", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:importPkcs8Key", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:base64UrlEncode", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts:extractThoughtSignature", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts:extractThoughtSignature", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:createStallTimeout", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:createStallTimeout", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:wireAbortSignal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:wireAbortSignal", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:postStreamRequest", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:postStreamRequest", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "target": "file:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts:DiffMatcher", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts:DiffMatcher", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "target": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts:RooStyleDiffStrategy", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts:RooStyleDiffStrategy", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "file:packages/sandcastle/src/copilot/ai/prompts/prompts.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:buildDiffBasedPrompt", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:buildDiffBasedPrompt", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:formatConsoleMessages", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:formatConsoleMessages", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "file:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "class:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:ToolRegistry", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "class:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:ToolRegistry", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "function:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:createApplyDiffHandler", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "function:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:initializeToolRegistry", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "function:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts:initializeToolRegistry", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/ApiKeyDialog.tsx", "target": "class:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts:ApiKeyManager", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ChatPanel.tsx", "target": "class:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts:AIClientFactory", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts:AnthropicClient", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts:GeminiClient", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts:VertexAIClient", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/ApiKeyManager.ts:ApiKeyManager", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:createStallTimeout", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:wireAbortSignal", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "function:packages/sandcastle/src/copilot/ai/clients/streamUtils.ts:postStreamRequest", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/AnthropicClient.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:buildDiffBasedPrompt", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/GeminiClient.ts", "target": "function:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts:buildDiffBasedPrompt", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/clients/VertexAIClient.ts", "target": "class:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts:AIClientFactory", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/DiffMatcher.ts:DiffMatcher", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "target": "class:packages/sandcastle/src/copilot/ai/diff/RooStyleDiffStrategy.ts:RooStyleDiffStrategy", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:importPkcs8Key", "target": "function:packages/sandcastle/src/copilot/ai/clients/VertexAuth.ts:base64UrlEncode", "type": "related", "direction": "forward", "weight": 0.5}
+  ]
+}

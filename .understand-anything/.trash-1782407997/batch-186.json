@@ -1,0 +1,334 @@
+{
+  "nodes": [
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/glTF/MorphPrimitivesTest.gltf",
+      "type": "schema",
+      "name": "MorphPrimitivesTest.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/glTF/MorphPrimitivesTest.gltf",
+      "summary": "glTF 2.0 测试模型，含两个 primitive 并各带一个 morph target，通过 weights=[0.5] 以半强度应用形变目标，用于验证 Cesium 的 morph target 加载逻辑。",
+      "tags": ["gltf", "test-fixture", "morph-target", "data", "3d-model"],
+      "complexity": "moderate",
+      "languageNotes": "glTF JSON 描述文件，定义 meshes、accessors 以及 morph target weights。"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/README.md",
+      "type": "document",
+      "name": "MorphPrimitivesTest README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/README.md",
+      "summary": "MorphPrimitivesTest 测试模型的说明文档，描述模型结构、morph target 半强度应用方式以及常见渲染问题排查。",
+      "tags": ["documentation", "test-fixture", "gltf", "morph-target"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/MultiUVTest/glTF-Binary/MultiUVTest.glb",
+      "type": "file",
+      "name": "MultiUVTest.glb",
+      "filePath": "Specs/Data/Models/glTF-2.0/MultiUVTest/glTF-Binary/MultiUVTest.glb",
+      "summary": "glTF-Binary（GLB）测试模型，演示同一 mesh 上多组 UV 坐标的使用，用于验证 Cesium 的多纹理坐标集加载。",
+      "tags": ["glb", "test-fixture", "data", "3d-model", "multi-uv"],
+      "complexity": "simple",
+      "languageNotes": "GLB 将 JSON 描述与二进制 buffer 打包于单文件。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.bin",
+      "type": "file",
+      "name": "PointCloudWithPropertyAttributes.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.bin",
+      "summary": "点云模型的二进制 buffer 数据，包含点云顶点几何与 EXT_mesh_gpu_instancing / 属性属性所需的原始字节。",
+      "tags": ["bin", "test-fixture", "data", "point-cloud", "buffer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.gltf",
+      "type": "schema",
+      "name": "PointCloudWithPropertyAttributes.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.gltf",
+      "summary": "glTF 2.0 点云模型，使用 EXT_structural_metadata 的 property attributes 为点云顶点附加属性数据，用于测试 Cesium 的点云属性解析。",
+      "tags": ["gltf", "test-fixture", "point-cloud", "ext-structural-metadata", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/PointCloudWithRGBColors/glTF-Binary/PointCloudWithRGBColors.glb",
+      "type": "file",
+      "name": "PointCloudWithRGBColors.glb",
+      "filePath": "Specs/Data/Models/glTF-2.0/PointCloudWithRGBColors/glTF-Binary/PointCloudWithRGBColors.glb",
+      "summary": "glTF-Binary 点云模型，使用顶点 RGB 颜色属性，用于验证 Cesium 点云着色渲染。",
+      "tags": ["glb", "test-fixture", "data", "point-cloud", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/PropertyTextureWith32BitTypes.gltf",
+      "type": "schema",
+      "name": "PropertyTextureWith32BitTypes.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/PropertyTextureWith32BitTypes.gltf",
+      "summary": "glTF 2.0 模型，通过 EXT_structural_metadata property texture 将单个 32 位 float 属性（insideTemperature）编码为纹理四通道各 8 位，用于测试 32 位类型属性纹理的解码。",
+      "tags": ["gltf", "test-fixture", "ext-structural-metadata", "property-texture", "data"],
+      "complexity": "moderate",
+      "languageNotes": "将 32-bit float 拆解为 RGBA 四通道，验证 property texture 的位级编码。"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/README.md",
+      "type": "document",
+      "name": "PropertyTextureWith32BitTypes README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/README.md",
+      "summary": "PropertyTextureWith32BitTypes 模型说明文档，包含将 32 位 float 编码进 RGBA 纹理通道的 Python 生成脚本及原理说明。",
+      "tags": ["documentation", "test-fixture", "property-texture", "ext-structural-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform_data.bin",
+      "type": "file",
+      "name": "PropertyTextureWithTextureTransform_data.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform_data.bin",
+      "summary": "PropertyTextureWithTextureTransform 模型的二进制 buffer，存放 property texture 相关几何与属性数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "property-texture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform.gltf",
+      "type": "schema",
+      "name": "PropertyTextureWithTextureTransform.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform.gltf",
+      "summary": "glTF 2.0 模型，结合 EXT_structural_metadata property texture 与 KHR_texture_transform，用于测试带纹理变换的属性纹理解析。",
+      "tags": ["gltf", "test-fixture", "ext-structural-metadata", "khr-texture-transform", "property-texture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/README.md",
+      "type": "document",
+      "name": "PropertyTextureWithTextureTransform README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/README.md",
+      "summary": "PropertyTextureWithTextureTransform 模型的简短说明，介绍该测试用例针对的 EXT_structural_metadata 与纹理变换组合特性。",
+      "tags": ["documentation", "test-fixture", "property-texture", "khr-texture-transform"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/glTF/PropertyTextureWithVectorProperties.gltf",
+      "type": "schema",
+      "name": "PropertyTextureWithVectorProperties.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/glTF/PropertyTextureWithVectorProperties.gltf",
+      "summary": "glTF 2.0 模型，通过 property texture 同时承载标量与矢量（VEC2/VEC3）属性，用于验证 Cesium 对矢量类型属性纹理的读取。",
+      "tags": ["gltf", "test-fixture", "ext-structural-metadata", "property-texture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/README.md",
+      "type": "document",
+      "name": "PropertyTextureWithVectorProperties README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/README.md",
+      "summary": "PropertyTextureWithVectorProperties 模型说明文档，描述其中包含的标量与矢量属性纹理测试场景。",
+      "tags": ["documentation", "test-fixture", "property-texture", "ext-structural-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/RiggedFigureTest/glTF/RiggedFigureTest.gltf",
+      "type": "schema",
+      "name": "RiggedFigureTest.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/RiggedFigureTest/glTF/RiggedFigureTest.gltf",
+      "summary": "glTF 2.0 骨骼绑定（skinning）测试模型，定义完整骨架、蒙皮与动画，用于验证 Cesium 的 skin、joint matrix 与骨骼动画加载。",
+      "tags": ["gltf", "test-fixture", "skinning", "rigged-figure", "3d-model"],
+      "complexity": "complex",
+      "languageNotes": "体量最大的 glTF（约 1900 行），包含多个 skin、joint 与动画 accessor。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/RiggedFigureTest/RiggedFigureTest.dae",
+      "type": "file",
+      "name": "RiggedFigureTest.dae",
+      "filePath": "Specs/Data/Models/glTF-2.0/RiggedFigureTest/RiggedFigureTest.dae",
+      "summary": "RiggedFigureTest 模型的 COLLADA（.dae）源文件，作为生成对应 glTF 的原始 3D 编辑器导出物。",
+      "tags": ["dae", "collada", "test-fixture", "data", "3d-model"],
+      "complexity": "complex",
+      "languageNotes": "COLLADA XML 格式，被 glTF 取代但仍作为模型来源参考。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/SimpleMorph.gltf",
+      "type": "schema",
+      "name": "SimpleMorph.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/SimpleMorph.gltf",
+      "summary": "glTF 2.0 简单 morph target 测试模型，引用外部 .bin buffer 提供几何与动画数据，用于验证基础的 morph 形变加载。",
+      "tags": ["gltf", "test-fixture", "morph-target", "data", "3d-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphAnimation.bin",
+      "type": "file",
+      "name": "simpleMorphAnimation.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphAnimation.bin",
+      "summary": "SimpleMorph 模型的二进制 buffer，存放 morph target 动画的关键帧数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphGeometry.bin",
+      "type": "file",
+      "name": "simpleMorphGeometry.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphGeometry.bin",
+      "summary": "SimpleMorph 模型的二进制 buffer，存放基础几何与 morph target 顶点数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "geometry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/SimpleMorph/README.md",
+      "type": "document",
+      "name": "SimpleMorph README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleMorph/README.md",
+      "summary": "SimpleMorph 测试模型说明文档，描述 morph target 应用方式及预期渲染效果。",
+      "tags": ["documentation", "test-fixture", "morph-target", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/SimplePropertyTexture/glTF/SimplePropertyTexture.gltf",
+      "type": "schema",
+      "name": "SimplePropertyTexture.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimplePropertyTexture/glTF/SimplePropertyTexture.gltf",
+      "summary": "glTF 2.0 基础 property texture 测试模型，使用 EXT_structural_metadata 为顶点附加简单的标量属性，是该特性的最小验证用例。",
+      "tags": ["gltf", "test-fixture", "ext-structural-metadata", "property-texture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/SimplePropertyTexture/README.md",
+      "type": "document",
+      "name": "SimplePropertyTexture README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimplePropertyTexture/README.md",
+      "summary": "SimplePropertyTexture 模型说明文档，描述基础 property texture 测试场景及对应属性定义。",
+      "tags": ["documentation", "test-fixture", "property-texture", "ext-structural-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/inverseBindMatrices.bin",
+      "type": "file",
+      "name": "inverseBindMatrices.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/inverseBindMatrices.bin",
+      "summary": "SimpleSkin 模型的二进制 buffer，存放 skin 的逆向绑定矩阵（inverse bind matrices）数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "skinning"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/SimpleSkin.gltf",
+      "type": "schema",
+      "name": "SimpleSkin.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/SimpleSkin.gltf",
+      "summary": "glTF 2.0 基础顶点蒙皮（skinning）测试模型，引用外部 .bin 提供几何、动画与逆向绑定矩阵，用于验证 joint matrix 加载。",
+      "tags": ["gltf", "test-fixture", "skinning", "3d-model", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinAnimation.bin",
+      "type": "file",
+      "name": "skinAnimation.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinAnimation.bin",
+      "summary": "SimpleSkin 模型的二进制 buffer，存放关节旋转动画关键帧数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinGeometry.bin",
+      "type": "file",
+      "name": "skinGeometry.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinGeometry.bin",
+      "summary": "SimpleSkin 模型的二进制 buffer，存放带关节权重（JOINTS/WEIGHTS）的顶点几何数据。",
+      "tags": ["bin", "test-fixture", "data", "buffer", "geometry"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/glTF/MorphPrimitivesTest.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/MorphPrimitivesTest/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/PointCloudWithPropertyAttributes/glTF/PointCloudWithPropertyAttributes.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/PropertyTextureWith32BitTypes.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWith32BitTypes/glTF/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform_data.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/glTF/PropertyTextureWithTextureTransform.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWithTextureTransform/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/glTF/PropertyTextureWithVectorProperties.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/PropertyTextureWithVectorProperties/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/RiggedFigureTest/glTF/RiggedFigureTest.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/RiggedFigureTest/RiggedFigureTest.dae",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/SimpleMorph.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphAnimation.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/SimpleMorph.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/simpleMorphGeometry.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleMorph/glTF/SimpleMorph.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/SimpleMorph/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimplePropertyTexture/glTF/SimplePropertyTexture.gltf",
+      "target": "document:Specs/Data/Models/glTF-2.0/SimplePropertyTexture/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/SimpleSkin.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/inverseBindMatrices.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/SimpleSkin.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinAnimation.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/SimpleSkin.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/SimpleSkin/glTF/skinGeometry.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

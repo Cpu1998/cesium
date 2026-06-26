@@ -1,0 +1,1064 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Core/GeometryType.js",
+   "type": "file",
+   "name": "GeometryType.js",
+   "filePath": "packages/engine/Source/Core/GeometryType.js",
+   "summary": "私有枚举，标识几何体图元类型（NONE / TRIANGLES / LINES / POLYLINES）。",
+   "tags": [
+    "enum",
+    "geometry",
+    "private"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "type": "file",
+   "name": "GoogleEarthEnterpriseTerrainData.js",
+   "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "summary": "解析 Google Earth Enterprise 服务返回的地形数据，提供高度插值与网格重构，供地形瓦片加载使用。",
+   "tags": [
+    "terrain",
+    "google-earth",
+    "data-model",
+    "heightmap"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "type": "file",
+   "name": "GroundPolylineGeometry.js",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "summary": "生成贴地（clamped-to-terrain）折线的几何体，考虑地形高度并对线段做细分、miter 法线与日期线拆分。",
+   "tags": [
+    "geometry",
+    "polyline",
+    "terrain",
+    "ground-clamp"
+   ],
+   "complexity": "complex",
+   "languageNotes": "包含大段细分逻辑与 projectNormal 投影，处理贴地几何的法线与高度调整。"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "type": "file",
+   "name": "HeadingPitchRoll.js",
+   "filePath": "packages/engine/Source/Core/HeadingPitchRoll.js",
+   "summary": "用航向（heading）、俯仰（pitch）、横滚（roll）三个欧拉角描述姿态的数据结构。",
+   "tags": [
+    "data-model",
+    "orientation",
+    "euler"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "type": "file",
+   "name": "HeightmapTessellator.js",
+   "filePath": "packages/engine/Source/Core/HeightmapTessellator.js",
+   "summary": "将高度图（heightmap）曲面化为三角形网格的细分器，用于地形瓦片的几何生成。",
+   "tags": [
+    "terrain",
+    "heightmap",
+    "tessellator",
+    "geometry"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "type": "file",
+   "name": "Iau2000Orientation.js",
+   "filePath": "packages/engine/Source/Core/Iau2000Orientation.js",
+   "summary": "IAU/IAG 2000 报告中各天体的自转方向与旋转参数表，用于计算行星/卫星的姿态（私有命名空间）。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "orientation",
+    "private"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "type": "file",
+   "name": "IauOrientationAxes.js",
+   "filePath": "packages/engine/Source/Core/IauOrientationAxes.js",
+   "summary": "根据 IAU 旋转参数构造天体的姿态轴（旋转矩阵/四元数），用于将 inertial 坐标转换到 body-fixed 坐标。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "orientation",
+    "transform"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/IauOrientationParameters.js",
+   "type": "file",
+   "name": "IauOrientationParameters.js",
+   "filePath": "packages/engine/Source/Core/IauOrientationParameters.js",
+   "summary": "天体姿态参数的数据结构（赤经、赤纬、旋转角及角速度），由 IAU 模型在给定时刻计算得出（私有）。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "data-model",
+    "private"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "type": "file",
+   "name": "IndexDatatype.js",
+   "filePath": "packages/engine/Source/Core/IndexDatatype.js",
+   "summary": "WebGL 索引数据类型枚举（UNSIGNED_BYTE/SHORT/INT），并提供字节数与校验辅助函数。",
+   "tags": [
+    "enum",
+    "webgl",
+    "index",
+    "geometry"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:GoogleEarthEnterpriseTerrainData",
+   "type": "function",
+   "name": "GoogleEarthEnterpriseTerrainData",
+   "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "lineRange": [
+    57,
+    93
+   ],
+   "summary": "GoogleEarthEnterpriseTerrainData 构造函数，封装地形网格与高度缓冲。",
+   "tags": [
+    "terrain",
+    "data-model",
+    "google-earth",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateMeshHeight",
+   "type": "function",
+   "name": "interpolateMeshHeight",
+   "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "lineRange": [
+    436,
+    488
+   ],
+   "summary": "在已曲面化的地形网格上通过双线性插值估算给定 UV 处的高度。",
+   "tags": [
+    "terrain",
+    "interpolation",
+    "heightmap"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateHeight",
+   "type": "function",
+   "name": "interpolateHeight",
+   "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "lineRange": [
+    496,
+    605
+   ],
+   "summary": "根据地形表示方式（mesh / heightmap）计算指定 UV 的高度。",
+   "tags": [
+    "terrain",
+    "interpolation",
+    "heightmap"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:GroundPolylineGeometry",
+   "type": "function",
+   "name": "GroundPolylineGeometry",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "lineRange": [
+    74,
+    132
+   ],
+   "summary": "GroundPolylineGeometry 构造函数，根据位置列表与高度配置贴地折线。",
+   "tags": [
+    "geometry",
+    "polyline",
+    "ground-clamp",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:interpolateSegment",
+   "type": "function",
+   "name": "interpolateSegment",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "lineRange": [
+    201,
+    272
+   ],
+   "summary": "按 arcType 对折线段进行测地线/等角航线细分，输出底部/顶部位置与法线。",
+   "tags": [
+    "polyline",
+    "interpolation",
+    "geodesic",
+    "rhumb"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:computeVertexMiterNormal",
+   "type": "function",
+   "name": "computeVertexMiterNormal",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "lineRange": [
+    396,
+    438
+   ],
+   "summary": "基于前后顶点计算折线顶点的 miter 法线，保证拐角处宽度连续。",
+   "tags": [
+    "polyline",
+    "miter",
+    "normal",
+    "geometry"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:projectNormal",
+   "type": "function",
+   "name": "projectNormal",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "lineRange": [
+    835,
+    891
+   ],
+   "summary": "将折线法线在投影坐标系下计算并定位，生成 Vec4 几何属性。",
+   "tags": [
+    "polyline",
+    "projection",
+    "normal"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:generateGeometryAttributes",
+   "type": "function",
+   "name": "generateGeometryAttributes",
+   "filePath": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "lineRange": [
+    1056,
+    1635
+   ],
+   "summary": "汇总细分结果生成贴地折线的完整顶点属性、索引与包围球。",
+   "tags": [
+    "polyline",
+    "geometry",
+    "attributes",
+    "tessellation"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/HeadingPitchRoll.js:HeadingPitchRoll",
+   "type": "function",
+   "name": "HeadingPitchRoll",
+   "filePath": "packages/engine/Source/Core/HeadingPitchRoll.js",
+   "lineRange": [
+    16,
+    35
+   ],
+   "summary": "HeadingPitchRoll 构造函数，封装三个欧拉角。",
+   "tags": [
+    "data-model",
+    "orientation",
+    "constructor"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IauOrientationAxes.js:IauOrientationAxes",
+   "type": "function",
+   "name": "IauOrientationAxes",
+   "filePath": "packages/engine/Source/Core/IauOrientationAxes.js",
+   "lineRange": [
+    21,
+    27
+   ],
+   "summary": "IauOrientationAxes 构造函数，接收用于计算天体姿态参数的回调。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "orientation",
+    "constructor"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IauOrientationAxes.js:computeRotationMatrix",
+   "type": "function",
+   "name": "computeRotationMatrix",
+   "filePath": "packages/engine/Source/Core/IauOrientationAxes.js",
+   "lineRange": [
+    33,
+    63
+   ],
+   "summary": "根据赤经/赤纬/旋转角计算天体的 body-fixed 旋转矩阵。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "rotation",
+    "matrix"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IauOrientationParameters.js:IauOrientationParameters",
+   "type": "function",
+   "name": "IauOrientationParameters",
+   "filePath": "packages/engine/Source/Core/IauOrientationParameters.js",
+   "lineRange": [
+    13,
+    53
+   ],
+   "summary": "IauOrientationParameters 构造函数，保存赤经/赤纬/旋转角/角速度。",
+   "tags": [
+    "astronomy",
+    "iau",
+    "data-model",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Intersections2D.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/QuantizedMeshTerrainData.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/TerrainData.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "file:packages/engine/Source/Core/TerrainMesh.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ArcType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "target": "file:packages/engine/Source/Core/IauOrientationParameters.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "target": "file:packages/engine/Source/Core/JulianDate.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "target": "file:packages/engine/Source/Core/TimeConstants.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/Iau2000Orientation.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/JulianDate.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:GoogleEarthEnterpriseTerrainData",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:GoogleEarthEnterpriseTerrainData",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateMeshHeight",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateMeshHeight",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateHeight",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js:interpolateHeight",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:GroundPolylineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:GroundPolylineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:interpolateSegment",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:interpolateSegment",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:computeVertexMiterNormal",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:computeVertexMiterNormal",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:projectNormal",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:projectNormal",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:generateGeometryAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Core/GroundPolylineGeometry.js:generateGeometryAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "target": "function:packages/engine/Source/Core/HeadingPitchRoll.js:HeadingPitchRoll",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "target": "function:packages/engine/Source/Core/HeadingPitchRoll.js:HeadingPitchRoll",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationAxes.js:IauOrientationAxes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationAxes.js:IauOrientationAxes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationAxes.js:computeRotationMatrix",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationAxes.js:computeRotationMatrix",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationParameters.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationParameters.js:IauOrientationParameters",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationParameters.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationParameters.js:IauOrientationParameters",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:EllipsoidalOccluder",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+   "target": "function:packages/engine/Source/Core/Intersections2D.js:Intersections2D",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IauOrientationAxes.js",
+   "target": "function:packages/engine/Source/Core/IauOrientationParameters.js:IauOrientationParameters",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  }
+ ]
+}

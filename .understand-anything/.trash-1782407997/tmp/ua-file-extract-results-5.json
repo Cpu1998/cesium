@@ -1,0 +1,4809 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Core/isDataUri.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 19,
+      "functions": [
+        {
+          "name": "isDataUri",
+          "startLine": 15,
+          "endLine": 21,
+          "params": [
+            "uri"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isDataUri",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 17
+        },
+        {
+          "caller": "isDataUri",
+          "callee": "dataUriRegex.test",
+          "lineNumber": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/loadAndExecuteScript.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "loadAndExecuteScript",
+          "startLine": 4,
+          "endLine": 26,
+          "params": [
+            "url"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "document.createElement",
+          "lineNumber": 5
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "script.setAttribute",
+          "lineNumber": 11
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "document.getElementsByTagName",
+          "lineNumber": 14
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "head.removeChild",
+          "lineNumber": 17
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "resolve",
+          "lineNumber": 18
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "reject",
+          "lineNumber": 21
+        },
+        {
+          "caller": "loadAndExecuteScript",
+          "callee": "head.appendChild",
+          "lineNumber": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "loadImageFromTypedArray",
+          "startLine": 16,
+          "endLine": 65,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 21
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 22
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Resource.supportsImageBitmapOptions()\n    .then(function (result) {\n      if (result) {\n        return Promise.resolve(\n          Resource.createImageBitmapFromBlob(blob, {\n            flipY: flipY,\n            premultiplyAlpha: false,\n            skipColorSpaceConversion: skipColorSpaceConversion,\n          }),\n        );\n      }\n\n      blobUrl = window.URL.createObjectURL(blob);\n      const resource = new Resource({\n        url: blobUrl,\n        request: request,\n      });\n\n      return resource.fetchImage({\n        flipY: flipY,\n        skipColorSpaceConversion: skipColorSpaceConversion,\n      });\n    })\n    .then(function (result) {\n      if (defined(blobUrl)) {\n        window.URL.revokeObjectURL(blobUrl);\n      }\n      return result;\n    })\n    .catch",
+          "lineNumber": 30
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Resource.supportsImageBitmapOptions()\n    .then(function (result) {\n      if (result) {\n        return Promise.resolve(\n          Resource.createImageBitmapFromBlob(blob, {\n            flipY: flipY,\n            premultiplyAlpha: false,\n            skipColorSpaceConversion: skipColorSpaceConversion,\n          }),\n        );\n      }\n\n      blobUrl = window.URL.createObjectURL(blob);\n      const resource = new Resource({\n        url: blobUrl,\n        request: request,\n      });\n\n      return resource.fetchImage({\n        flipY: flipY,\n        skipColorSpaceConversion: skipColorSpaceConversion,\n      });\n    })\n    .then",
+          "lineNumber": 30
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Resource.supportsImageBitmapOptions()\n    .then",
+          "lineNumber": 30
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Resource.supportsImageBitmapOptions",
+          "lineNumber": 30
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Promise.resolve",
+          "lineNumber": 33
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Resource.createImageBitmapFromBlob",
+          "lineNumber": 34
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "window.URL.createObjectURL",
+          "lineNumber": 42
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "resource.fetchImage",
+          "lineNumber": 48
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "defined",
+          "lineNumber": 54
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "window.URL.revokeObjectURL",
+          "lineNumber": 55
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "window.URL.revokeObjectURL",
+          "lineNumber": 61
+        },
+        {
+          "caller": "loadImageFromTypedArray",
+          "callee": "Promise.reject",
+          "lineNumber": 63
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/objectToQuery.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "objectToQuery",
+          "startLine": 25,
+          "endLine": 56,
+          "params": [
+            "obj"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "objectToQuery",
+          "callee": "defined",
+          "lineNumber": 27
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "obj.hasOwnProperty",
+          "lineNumber": 34
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "encodeURIComponent",
+          "lineNumber": 37
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "Array.isArray",
+          "lineNumber": 38
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "encodeURIComponent",
+          "lineNumber": 40
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "encodeURIComponent",
+          "lineNumber": 43
+        },
+        {
+          "caller": "objectToQuery",
+          "callee": "result.slice",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/parseResponseHeaders.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 33,
+      "functions": [
+        {
+          "name": "parseResponseHeaders",
+          "startLine": 14,
+          "endLine": 36,
+          "params": [
+            "headerString"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseResponseHeaders",
+          "callee": "headerString.split",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseResponseHeaders",
+          "callee": "headerPair.indexOf",
+          "lineNumber": 27
+        },
+        {
+          "caller": "parseResponseHeaders",
+          "callee": "headerPair.substring",
+          "lineNumber": 29
+        },
+        {
+          "caller": "parseResponseHeaders",
+          "callee": "headerPair.substring",
+          "lineNumber": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/queryToObject.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 60,
+      "nonEmptyLines": 56,
+      "functions": [
+        {
+          "name": "queryToObject",
+          "startLine": 25,
+          "endLine": 59,
+          "params": [
+            "queryString"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "queryToObject",
+          "callee": "defined",
+          "lineNumber": 27
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "queryString.replace(/\\+/g, \"%20\").split",
+          "lineNumber": 36
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "queryString.replace",
+          "lineNumber": 36
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "parts[i].split",
+          "lineNumber": 38
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "decodeURIComponent",
+          "lineNumber": 40
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "decodeURIComponent",
+          "lineNumber": 43
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "Array.isArray",
+          "lineNumber": 52
+        },
+        {
+          "caller": "queryToObject",
+          "callee": "resultValue.push",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/sampleTerrain.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 291,
+      "nonEmptyLines": 266,
+      "functions": [
+        {
+          "name": "sampleTerrain",
+          "startLine": 46,
+          "endLine": 63,
+          "params": [
+            "terrainProvider",
+            "level",
+            "positions",
+            "rejectOnTileFail"
+          ]
+        },
+        {
+          "name": "attemptConsumeNextQueueItem",
+          "startLine": 74,
+          "endLine": 104,
+          "params": [
+            "tileRequests",
+            "results",
+            "rejectOnTileFail"
+          ]
+        },
+        {
+          "name": "delay",
+          "startLine": 111,
+          "endLine": 115,
+          "params": [
+            "ms"
+          ]
+        },
+        {
+          "name": "drainTileRequestQueue",
+          "startLine": 127,
+          "endLine": 149,
+          "params": [
+            "tileRequests",
+            "results",
+            "rejectOnTileFail"
+          ]
+        },
+        {
+          "name": "doSampling",
+          "startLine": 151,
+          "endLine": 198,
+          "params": [
+            "terrainProvider",
+            "level",
+            "positions",
+            "rejectOnTileFail"
+          ]
+        },
+        {
+          "name": "interpolateAndAssignHeight",
+          "startLine": 211,
+          "endLine": 225,
+          "params": [
+            "position",
+            "terrainData",
+            "rectangle"
+          ]
+        },
+        {
+          "name": "createInterpolateFunction",
+          "startLine": 227,
+          "endLine": 279,
+          "params": [
+            "tileRequest"
+          ]
+        },
+        {
+          "name": "createMarkFailedFunction",
+          "startLine": 281,
+          "endLine": 289,
+          "params": [
+            "tileRequest"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "sampleTerrain",
+          "callee": "defined",
+          "lineNumber": 52
+        },
+        {
+          "caller": "sampleTerrain",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 56
+        },
+        {
+          "caller": "sampleTerrain",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 57
+        },
+        {
+          "caller": "sampleTerrain",
+          "callee": "Check.typeOf.bool",
+          "lineNumber": 58
+        },
+        {
+          "caller": "sampleTerrain",
+          "callee": "Check.defined",
+          "lineNumber": 59
+        },
+        {
+          "caller": "sampleTerrain",
+          "callee": "doSampling",
+          "lineNumber": 62
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "tileRequest.terrainProvider.requestTileGeometry",
+          "lineNumber": 76
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "requestPromise.then",
+          "lineNumber": 90
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "createInterpolateFunction",
+          "lineNumber": 90
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "requestPromise\n      .then(createInterpolateFunction(tileRequest))\n      .catch",
+          "lineNumber": 92
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "requestPromise\n      .then",
+          "lineNumber": 92
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "createInterpolateFunction",
+          "lineNumber": 93
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "createMarkFailedFunction",
+          "lineNumber": 94
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "tileRequests.shift",
+          "lineNumber": 99
+        },
+        {
+          "caller": "attemptConsumeNextQueueItem",
+          "callee": "results.push",
+          "lineNumber": 100
+        },
+        {
+          "caller": "delay",
+          "callee": "setTimeout",
+          "lineNumber": 113
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "Promise.resolve",
+          "lineNumber": 130
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "attemptConsumeNextQueueItem",
+          "lineNumber": 136
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "drainTileRequestQueue",
+          "lineNumber": 142
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "delay(100).then",
+          "lineNumber": 146
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "delay",
+          "lineNumber": 146
+        },
+        {
+          "caller": "drainTileRequestQueue",
+          "callee": "drainTileRequestQueue",
+          "lineNumber": 147
+        },
+        {
+          "caller": "doSampling",
+          "callee": "tilingScheme.positionToTileXY",
+          "lineNumber": 160
+        },
+        {
+          "caller": "doSampling",
+          "callee": "defined",
+          "lineNumber": 161
+        },
+        {
+          "caller": "doSampling",
+          "callee": "xy.toString",
+          "lineNumber": 165
+        },
+        {
+          "caller": "doSampling",
+          "callee": "tileRequestSet.hasOwnProperty",
+          "lineNumber": 167
+        },
+        {
+          "caller": "doSampling",
+          "callee": "tileRequests.push",
+          "lineNumber": 178
+        },
+        {
+          "caller": "doSampling",
+          "callee": "tileRequestSet[key].positions.push",
+          "lineNumber": 182
+        },
+        {
+          "caller": "doSampling",
+          "callee": "drainTileRequestQueue(\n    tileRequests,\n    tilePromises,\n    rejectOnTileFail,\n  ).then",
+          "lineNumber": 187
+        },
+        {
+          "caller": "doSampling",
+          "callee": "drainTileRequestQueue",
+          "lineNumber": 187
+        },
+        {
+          "caller": "doSampling",
+          "callee": "Promise.all(tilePromises).then",
+          "lineNumber": 194
+        },
+        {
+          "caller": "doSampling",
+          "callee": "Promise.all",
+          "lineNumber": 194
+        },
+        {
+          "caller": "interpolateAndAssignHeight",
+          "callee": "terrainData.interpolateHeight",
+          "lineNumber": 212
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "tileRequest.tilingScheme.tileXYToRectangle",
+          "lineNumber": 229
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "interpolateAndAssignHeight",
+          "lineNumber": 238
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "Promise.resolve",
+          "lineNumber": 254
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "terrainData\n      .createMesh({\n        tilingScheme: tileRequest.tilingScheme,\n        x: tileRequest.x,\n        y: tileRequest.y,\n        level: tileRequest.level,\n        // don't throttle this mesh creation because we've asked to sample these points;\n        //  so sample them! We don't care how many tiles that is!\n        throttle: false,\n      })\n      .then",
+          "lineNumber": 259
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "terrainData\n      .createMesh",
+          "lineNumber": 259
+        },
+        {
+          "caller": "createInterpolateFunction",
+          "callee": "interpolateAndAssignHeight",
+          "lineNumber": 275
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 132,
+      "nonEmptyLines": 121,
+      "functions": [
+        {
+          "name": "sampleTerrainMostDetailed",
+          "startLine": 37,
+          "endLine": 131,
+          "params": [
+            "terrainProvider",
+            "positions",
+            "rejectOnTileFail"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 49
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "availability.computeMaximumLevelAtPosition",
+          "lineNumber": 70
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "terrainProvider.tilingScheme.positionToTileXY",
+          "lineNumber": 76
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "terrainProvider.loadTileDataAvailability",
+          "lineNumber": 81
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "promises.push",
+          "lineNumber": 87
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "atLevel.push",
+          "lineNumber": 95
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "Promise.all",
+          "lineNumber": 98
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "Promise.all",
+          "lineNumber": 99
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "byLevel.map",
+          "lineNumber": 100
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "defined",
+          "lineNumber": 101
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "sampleTerrain",
+          "lineNumber": 102
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "availability.computeMaximumLevelAtPosition",
+          "lineNumber": 114
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "changedPositions.push",
+          "lineNumber": 118
+        },
+        {
+          "caller": "sampleTerrainMostDetailed",
+          "callee": "sampleTerrainMostDetailed",
+          "lineNumber": 123
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/writeTextToCanvas.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 173,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "measureText",
+          "startLine": 13,
+          "endLine": 42,
+          "params": [
+            "context2D",
+            "textString"
+          ]
+        },
+        {
+          "name": "writeTextToCanvas",
+          "startLine": 65,
+          "endLine": 172,
+          "params": [
+            "text",
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "measureText",
+          "callee": "context2D.measureText",
+          "lineNumber": 14
+        },
+        {
+          "caller": "measureText",
+          "callee": "/\\S/.test",
+          "lineNumber": 15
+        },
+        {
+          "caller": "measureText",
+          "callee": "Math.round",
+          "lineNumber": 29
+        },
+        {
+          "caller": "measureText",
+          "callee": "Math.round",
+          "lineNumber": 30
+        },
+        {
+          "caller": "measureText",
+          "callee": "Math.max",
+          "lineNumber": 33
+        },
+        {
+          "caller": "measureText",
+          "callee": "Math.round",
+          "lineNumber": 40
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 67
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "document.createElement",
+          "lineNumber": 84
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "canvas.getContext",
+          "lineNumber": 89
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 91
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 94
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 96
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "document.body.appendChild",
+          "lineNumber": 111
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "measureText",
+          "lineNumber": 113
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "document.body.removeChild",
+          "lineNumber": 119
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "/\\S/.test",
+          "lineNumber": 125
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "Math.ceil",
+          "lineNumber": 126
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "Math.ceil",
+          "lineNumber": 135
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "backgroundColor.toCssColorString",
+          "lineNumber": 155
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "context2D.fillRect",
+          "lineNumber": 156
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "strokeColor.toCssColorString",
+          "lineNumber": 161
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "context2D.strokeText",
+          "lineNumber": 162
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "fillColor.toCssColorString",
+          "lineNumber": 167
+        },
+        {
+          "caller": "writeTextToCanvas",
+          "callee": "context2D.fillText",
+          "lineNumber": 168
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Renderer/loadCubeMap.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 88,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "loadCubeMap",
+          "startLine": 41,
+          "endLine": 87,
+          "params": [
+            "context",
+            "urls",
+            "skipColorSpaceConversion"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadCubeMap",
+          "callee": "Check.defined",
+          "lineNumber": 43
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Check.defined",
+          "lineNumber": 44
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Object.values(CubeMap.FaceName).some",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Object.values",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "defined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.positiveX).fetchImage",
+          "lineNumber": 66
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 66
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.negativeX).fetchImage",
+          "lineNumber": 67
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 67
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.positiveY).fetchImage",
+          "lineNumber": 68
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 68
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.negativeY).fetchImage",
+          "lineNumber": 69
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 69
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.positiveZ).fetchImage",
+          "lineNumber": 70
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 70
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded(urls.negativeZ).fetchImage",
+          "lineNumber": 71
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 71
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Promise.all(facePromises).then",
+          "lineNumber": 74
+        },
+        {
+          "caller": "loadCubeMap",
+          "callee": "Promise.all",
+          "lineNumber": 74
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ArcGisBaseMapType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 14,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 875,
+      "nonEmptyLines": 808,
+      "functions": [
+        {
+          "name": "ImageryProviderBuilder",
+          "startLine": 72,
+          "endLine": 93,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "metadataSuccess",
+          "startLine": 130,
+          "endLine": 229,
+          "params": [
+            "data",
+            "imageryProviderBuilder"
+          ]
+        },
+        {
+          "name": "metadataFailure",
+          "startLine": 231,
+          "endLine": 238,
+          "params": [
+            "resource",
+            "error"
+          ]
+        },
+        {
+          "name": "requestMetadata",
+          "startLine": 240,
+          "endLine": 253,
+          "params": [
+            "resource",
+            "imageryProviderBuilder"
+          ]
+        },
+        {
+          "name": "ArcGisMapServerImageryProvider",
+          "startLine": 301,
+          "endLine": 344,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "buildImageResource",
+          "startLine": 442,
+          "endLine": 482,
+          "params": [
+            "imageryProvider",
+            "x",
+            "y",
+            "level",
+            "request"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 132
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 155
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 157
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 158
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "projection.unproject",
+          "lineNumber": 166
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "Math.max",
+          "lineNumber": 168
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "Math.max",
+          "lineNumber": 173
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "projection.unproject",
+          "lineNumber": 181
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "Math.min",
+          "lineNumber": 183
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "Math.min",
+          "lineNumber": 188
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "Rectangle.fromDegrees",
+          "lineNumber": 203
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 222
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 223
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "defined",
+          "lineNumber": 233
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "defined",
+          "lineNumber": 233
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "resource.getDerivedResource",
+          "lineNumber": 241
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "jsonResource.fetchJson",
+          "lineNumber": 248
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataSuccess",
+          "lineNumber": 249
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataFailure",
+          "lineNumber": 251
+        },
+        {
+          "caller": "buildImageResource",
+          "callee": "imageryProvider._resource.getDerivedResource",
+          "lineNumber": 445
+        },
+        {
+          "caller": "buildImageResource",
+          "callee": "imageryProvider._tilingScheme.tileXYToNativeRectangle",
+          "lineNumber": 451
+        },
+        {
+          "caller": "buildImageResource",
+          "callee": "imageryProvider._resource.getDerivedResource",
+          "lineNumber": 475
+        }
+      ],
+      "metrics": {
+        "importCount": 22,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ArcGisMapService.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 71,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 393,
+      "nonEmptyLines": 350,
+      "functions": [
+        {
+          "name": "Azure2DImageryProvider",
+          "startLine": 41,
+          "endLine": 102,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "fetchViewportAttribution",
+          "startLine": 378,
+          "endLine": 390,
+          "params": [
+            "resource",
+            "url",
+            "key",
+            "tilesetId",
+            "level"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "Check.defined",
+          "lineNumber": 50
+        },
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "resource.getUrlComponent",
+          "lineNumber": 60
+        },
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "trailingSlashRegex.test",
+          "lineNumber": 61
+        },
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "resource.setQueryParameters",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Azure2DImageryProvider",
+          "callee": "defined",
+          "lineNumber": 82
+        },
+        {
+          "caller": "fetchViewportAttribution",
+          "callee": "resource.getDerivedResource",
+          "lineNumber": 379
+        },
+        {
+          "caller": "fetchViewportAttribution",
+          "callee": "JSON.stringify",
+          "lineNumber": 385
+        },
+        {
+          "caller": "fetchViewportAttribution",
+          "callee": "viewportResource.fetchJson",
+          "lineNumber": 388
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 769,
+      "nonEmptyLines": 689,
+      "functions": [
+        {
+          "name": "ImageryProviderBuilder",
+          "startLine": 46,
+          "endLine": 54,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "metadataSuccess",
+          "startLine": 110,
+          "endLine": 133,
+          "params": [
+            "data",
+            "imageryProviderBuilder"
+          ]
+        },
+        {
+          "name": "metadataFailure",
+          "startLine": 135,
+          "endLine": 153,
+          "params": [
+            "metadataResource",
+            "error",
+            "provider"
+          ]
+        },
+        {
+          "name": "requestMetadata",
+          "startLine": 155,
+          "endLine": 173,
+          "params": [
+            "metadataResource",
+            "imageryProviderBuilder",
+            "provider"
+          ]
+        },
+        {
+          "name": "BingMapsImageryProvider",
+          "startLine": 207,
+          "endLine": 250,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "buildImageResource",
+          "startLine": 701,
+          "endLine": 721,
+          "params": [
+            "imageryProvider",
+            "x",
+            "y",
+            "level",
+            "request"
+          ]
+        },
+        {
+          "name": "getRectangleAttribution",
+          "startLine": 725,
+          "endLine": 765,
+          "params": [
+            "attributionList",
+            "level",
+            "rectangle"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 125
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "resource.imageryProviders.filter",
+          "lineNumber": 128
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "provider.coverageAreas?.some",
+          "lineNumber": 129
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "defined",
+          "lineNumber": 129
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "defined",
+          "lineNumber": 137
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "defined",
+          "lineNumber": 137
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 141
+        },
+        {
+          "caller": "metadataFailure",
+          "callee": "defined",
+          "lineNumber": 144
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "defined",
+          "lineNumber": 162
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataResource.fetchJson",
+          "lineNumber": 163
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataSuccess",
+          "lineNumber": 169
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataFailure",
+          "lineNumber": 171
+        },
+        {
+          "caller": "BingMapsImageryProvider",
+          "callee": "defined",
+          "lineNumber": 227
+        },
+        {
+          "caller": "buildImageResource",
+          "callee": "imageryProvider._resource.getDerivedResource",
+          "lineNumber": 707
+        },
+        {
+          "caller": "buildImageResource",
+          "callee": "BingMapsImageryProvider.tileXYToQuadKey",
+          "lineNumber": 711
+        },
+        {
+          "caller": "getRectangleAttribution",
+          "callee": "Rectangle.intersection",
+          "lineNumber": 748
+        },
+        {
+          "caller": "getRectangleAttribution",
+          "callee": "defined",
+          "lineNumber": 753
+        },
+        {
+          "caller": "getRectangleAttribution",
+          "callee": "result.push",
+          "lineNumber": 760
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BingMapsStyle.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 98,
+      "nonEmptyLines": 86,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 169,
+      "nonEmptyLines": 153,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "Cesium3DContentGroup",
+          "startLine": 18,
+          "endLine": 25,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Cesium3DContentGroup",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 2528,
+      "nonEmptyLines": 2287,
+      "functions": [
+        {
+          "name": "Cesium3DTile",
+          "startLine": 61,
+          "endLine": 536,
+          "params": [
+            "tileset",
+            "baseResource",
+            "header",
+            "parent"
+          ]
+        },
+        {
+          "name": "isPriorityDeferred",
+          "startLine": 800,
+          "endLine": 899,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "isPriorityProgressiveResolution",
+          "startLine": 969,
+          "endLine": 993,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "getPriorityReverseScreenSpaceError",
+          "startLine": 1001,
+          "endLine": 1013,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "updateExpireDate",
+          "startLine": 1086,
+          "endLine": 1104,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "createPriorityFunction",
+          "startLine": 1111,
+          "endLine": 1115,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "requestMultipleContents",
+          "startLine": 1153,
+          "endLine": 1205,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "processArrayBuffer",
+          "startLine": 1207,
+          "endLine": 1293,
+          "params": [
+            "tile",
+            "tileset",
+            "request",
+            "expired",
+            "requestPromise"
+          ]
+        },
+        {
+          "name": "requestSingleContent",
+          "startLine": 1300,
+          "endLine": 1330,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "isEmptyTile",
+          "startLine": 1340,
+          "endLine": 1351,
+          "params": [
+            "tile",
+            "error"
+          ]
+        },
+        {
+          "name": "markTileAsEmptyContent",
+          "startLine": 1353,
+          "endLine": 1357,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "makeContent",
+          "startLine": 1372,
+          "endLine": 1452,
+          "params": [
+            "tile",
+            "arrayBuffer"
+          ]
+        },
+        {
+          "name": "getBoundingVolume",
+          "startLine": 1506,
+          "endLine": 1526,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "getContentBoundingVolume",
+          "startLine": 1534,
+          "endLine": 1553,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createBox",
+          "startLine": 1718,
+          "endLine": 1732,
+          "params": [
+            "box",
+            "transform",
+            "result"
+          ]
+        },
+        {
+          "name": "createBoxFromTransformedRegion",
+          "startLine": 1742,
+          "endLine": 1780,
+          "params": [
+            "region",
+            "transform",
+            "initialTransform",
+            "result"
+          ]
+        },
+        {
+          "name": "createRegion",
+          "startLine": 1811,
+          "endLine": 1848,
+          "params": [
+            "region",
+            "transform",
+            "initialTransform",
+            "result"
+          ]
+        },
+        {
+          "name": "createSphere",
+          "startLine": 1857,
+          "endLine": 1877,
+          "params": [
+            "sphere",
+            "transform",
+            "result"
+          ]
+        },
+        {
+          "name": "exaggerateBoundingBox",
+          "startLine": 1993,
+          "endLine": 2017,
+          "params": [
+            "tileOrientedBoundingBox",
+            "exaggeration",
+            "exaggerationRelativeHeight"
+          ]
+        },
+        {
+          "name": "applyDebugSettings",
+          "startLine": 2112,
+          "endLine": 2199,
+          "params": [
+            "tile",
+            "tileset",
+            "frameState",
+            "passOptions"
+          ]
+        },
+        {
+          "name": "updateContent",
+          "startLine": 2207,
+          "endLine": 2238,
+          "params": [
+            "tile",
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateClippingPlanes",
+          "startLine": 2250,
+          "endLine": 2261,
+          "params": [
+            "tile",
+            "tileset"
+          ]
+        },
+        {
+          "name": "updateClippingPolygons",
+          "startLine": 2273,
+          "endLine": 2288,
+          "params": [
+            "tile",
+            "tileset"
+          ]
+        },
+        {
+          "name": "isolateDigits",
+          "startLine": 2374,
+          "endLine": 2378,
+          "params": [
+            "normalizedValue",
+            "numberOfDigits",
+            "leftShift"
+          ]
+        },
+        {
+          "name": "priorityNormalizeAndClamp",
+          "startLine": 2387,
+          "endLine": 2393,
+          "params": [
+            "value",
+            "minimum",
+            "maximum"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 65
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "hasExtension",
+          "lineNumber": 68
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 82
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Matrix4.unpack",
+          "lineNumber": 83
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Matrix4.clone",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 89
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 95
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 98
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "findTileMetadata",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "this.createBoundingVolume",
+          "lineNumber": 128
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "this.createBoundingVolume",
+          "lineNumber": 142
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 151
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "this.createBoundingVolume",
+          "lineNumber": 152
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 169
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 170
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Cesium3DTile._deprecationWarning",
+          "lineNumber": 173
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "this.updateGeometricErrorScale",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 182
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Cesium3DTile._deprecationWarning",
+          "lineNumber": 184
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "header.refine.toUpperCase",
+          "lineNumber": 188
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "header.refine.toUpperCase",
+          "lineNumber": 192
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 195
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 238
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "baseResource.clone",
+          "lineNumber": 244
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 245
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 247
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Cesium3DTile._deprecationWarning",
+          "lineNumber": 248
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Cesium3DTile._deprecationWarning",
+          "lineNumber": 255
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "baseResource.getDerivedResource",
+          "lineNumber": 264
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "RequestScheduler.getServerKey",
+          "lineNumber": 267
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "contentResource.getUrlComponent",
+          "lineNumber": 268
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 382
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "defined",
+          "lineNumber": 384
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "JulianDate.fromIso8601",
+          "lineNumber": 385
+        },
+        {
+          "caller": "Cesium3DTile",
+          "callee": "Color.fromRandom",
+          "lineNumber": 517
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 807
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.add",
+          "lineNumber": 812
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 818
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 823
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 831
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 832
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.add",
+          "lineNumber": 837
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 842
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 847
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Math.abs",
+          "lineNumber": 853
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 853
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "Math.cos",
+          "lineNumber": 873
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 883
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "tileset.foveatedInterpolationCallback",
+          "lineNumber": 888
+        },
+        {
+          "caller": "isPriorityDeferred",
+          "callee": "defined",
+          "lineNumber": 894
+        },
+        {
+          "caller": "isPriorityProgressiveResolution",
+          "callee": "defined",
+          "lineNumber": 985
+        },
+        {
+          "caller": "getPriorityReverseScreenSpaceError",
+          "callee": "defined",
+          "lineNumber": 1004
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "defined",
+          "lineNumber": 1087
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "JulianDate.now",
+          "lineNumber": 1090
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "JulianDate.addSeconds",
+          "lineNumber": 1091
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "defined",
+          "lineNumber": 1097
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "JulianDate.lessThan",
+          "lineNumber": 1098
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "JulianDate.clone",
+          "lineNumber": 1099
+        },
+        {
+          "caller": "updateExpireDate",
+          "callee": "JulianDate.clone",
+          "lineNumber": 1102
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "defined",
+          "lineNumber": 1157
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "hasExtension",
+          "lineNumber": 1160
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "tile._contentResource.clone",
+          "lineNumber": 1167
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "multipleContents.requestInnerContents",
+          "lineNumber": 1173
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "defined",
+          "lineNumber": 1175
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "promise\n    .then((content) => {\n      if (tile.isDestroyed()) {\n        // Tile is unloaded before the content can process\n        return;\n      }\n\n      // Tile was canceled, try again later\n      if (!defined(content)) {\n        return;\n      }\n\n      tile._contentState = Cesium3DTileContentState.PROCESSING;\n      return multipleContents;\n    })\n    .catch",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "promise\n    .then",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1183
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "defined",
+          "lineNumber": 1189
+        },
+        {
+          "caller": "requestMultipleContents",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1197
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1223
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "isEmptyTile",
+          "lineNumber": 1235
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "markTileAsEmptyContent",
+          "lineNumber": 1240
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "makeContent",
+          "lineNumber": 1264
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1267
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "markTileAsEmptyContent",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "processArrayBuffer",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1285
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "tile._contentResource.clone",
+          "lineNumber": 1303
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "resource.setQueryParameters",
+          "lineNumber": 1307
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "tile.expireDate.toString",
+          "lineNumber": 1308
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "createPriorityFunction",
+          "lineNumber": 1316
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "resource.fetchArrayBuffer",
+          "lineNumber": 1323
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "defined",
+          "lineNumber": 1324
+        },
+        {
+          "caller": "requestSingleContent",
+          "callee": "processArrayBuffer",
+          "lineNumber": 1329
+        },
+        {
+          "caller": "isEmptyTile",
+          "callee": "defined",
+          "lineNumber": 1343
+        },
+        {
+          "caller": "isEmptyTile",
+          "callee": "defined",
+          "lineNumber": 1347
+        },
+        {
+          "caller": "isEmptyTile",
+          "callee": "policy.statusCodes.includes",
+          "lineNumber": 1350
+        },
+        {
+          "caller": "makeContent",
+          "callee": "defined",
+          "lineNumber": 1375
+        },
+        {
+          "caller": "makeContent",
+          "callee": "Promise.resolve",
+          "lineNumber": 1376
+        },
+        {
+          "caller": "makeContent",
+          "callee": "codec.createContent",
+          "lineNumber": 1377
+        },
+        {
+          "caller": "makeContent",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1379
+        },
+        {
+          "caller": "makeContent",
+          "callee": "preprocess3DTileContent",
+          "lineNumber": 1385
+        },
+        {
+          "caller": "makeContent",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 1408
+        },
+        {
+          "caller": "makeContent",
+          "callee": "defined",
+          "lineNumber": 1412
+        },
+        {
+          "caller": "makeContent",
+          "callee": "Promise.resolve",
+          "lineNumber": 1413
+        },
+        {
+          "caller": "makeContent",
+          "callee": "contentFactory",
+          "lineNumber": 1414
+        },
+        {
+          "caller": "makeContent",
+          "callee": "Promise.resolve",
+          "lineNumber": 1424
+        },
+        {
+          "caller": "makeContent",
+          "callee": "contentFactory",
+          "lineNumber": 1425
+        },
+        {
+          "caller": "makeContent",
+          "callee": "subtree.getContentMetadataView",
+          "lineNumber": 1439
+        },
+        {
+          "caller": "makeContent",
+          "callee": "findContentMetadata",
+          "lineNumber": 1441
+        },
+        {
+          "caller": "makeContent",
+          "callee": "findGroupMetadata",
+          "lineNumber": 1444
+        },
+        {
+          "caller": "makeContent",
+          "callee": "defined",
+          "lineNumber": 1445
+        },
+        {
+          "caller": "getBoundingVolume",
+          "callee": "defined",
+          "lineNumber": 1509
+        },
+        {
+          "caller": "getBoundingVolume",
+          "callee": "BoundingSphere.projectTo2D",
+          "lineNumber": 1512
+        },
+        {
+          "caller": "getContentBoundingVolume",
+          "callee": "defined",
+          "lineNumber": 1537
+        },
+        {
+          "caller": "getContentBoundingVolume",
+          "callee": "BoundingSphere.projectTo2D",
+          "lineNumber": 1540
+        },
+        {
+          "caller": "createBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1719
+        },
+        {
+          "caller": "createBox",
+          "callee": "Matrix3.fromArray",
+          "lineNumber": 1720
+        },
+        {
+          "caller": "createBox",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1723
+        },
+        {
+          "caller": "createBox",
+          "callee": "Matrix4.getMatrix3",
+          "lineNumber": 1724
+        },
+        {
+          "caller": "createBox",
+          "callee": "Matrix3.multiply",
+          "lineNumber": 1725
+        },
+        {
+          "caller": "createBox",
+          "callee": "defined",
+          "lineNumber": 1727
+        },
+        {
+          "caller": "createBox",
+          "callee": "result.update",
+          "lineNumber": 1728
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Rectangle.unpack",
+          "lineNumber": 1748
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "OrientedBoundingBox.fromRectangle",
+          "lineNumber": 1752
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 1765
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Matrix4.inverseTransformation",
+          "lineNumber": 1767
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1770
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Matrix4.getMatrix3",
+          "lineNumber": 1771
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "Matrix3.multiply",
+          "lineNumber": 1772
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "defined",
+          "lineNumber": 1774
+        },
+        {
+          "caller": "createBoxFromTransformedRegion",
+          "callee": "result.update",
+          "lineNumber": 1775
+        },
+        {
+          "caller": "createRegion",
+          "callee": "Matrix4.equalsEpsilon",
+          "lineNumber": 1813
+        },
+        {
+          "caller": "createRegion",
+          "callee": "createBoxFromTransformedRegion",
+          "lineNumber": 1816
+        },
+        {
+          "caller": "createRegion",
+          "callee": "createBoxFromTransformedRegion",
+          "lineNumber": 1823
+        },
+        {
+          "caller": "createRegion",
+          "callee": "Rectangle.unpack",
+          "lineNumber": 1831
+        },
+        {
+          "caller": "createRegion",
+          "callee": "Rectangle.clone",
+          "lineNumber": 1834
+        },
+        {
+          "caller": "createRegion",
+          "callee": "result.computeBoundingVolumes",
+          "lineNumber": 1839
+        },
+        {
+          "caller": "createSphere",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1858
+        },
+        {
+          "caller": "createSphere",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1867
+        },
+        {
+          "caller": "createSphere",
+          "callee": "Matrix4.getScale",
+          "lineNumber": 1868
+        },
+        {
+          "caller": "createSphere",
+          "callee": "Cartesian3.maximumComponent",
+          "lineNumber": 1869
+        },
+        {
+          "caller": "createSphere",
+          "callee": "defined",
+          "lineNumber": 1872
+        },
+        {
+          "caller": "createSphere",
+          "callee": "result.update",
+          "lineNumber": 1873
+        },
+        {
+          "caller": "exaggerateBoundingBox",
+          "callee": "tileOrientedBoundingBox.boundingVolume\n    .computeCorners(scratchExaggeratedCorners)\n    .map",
+          "lineNumber": 1998
+        },
+        {
+          "caller": "exaggerateBoundingBox",
+          "callee": "tileOrientedBoundingBox.boundingVolume\n    .computeCorners",
+          "lineNumber": 1998
+        },
+        {
+          "caller": "exaggerateBoundingBox",
+          "callee": "VerticalExaggeration.getPosition",
+          "lineNumber": 2001
+        },
+        {
+          "caller": "exaggerateBoundingBox",
+          "callee": "OrientedBoundingBox.fromPoints",
+          "lineNumber": 2009
+        },
+        {
+          "caller": "exaggerateBoundingBox",
+          "callee": "tileOrientedBoundingBox.update",
+          "lineNumber": 2013
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2118
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2118
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2132
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._boundingVolume.createDebugVolume",
+          "lineNumber": 2133
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugBoundingVolume.update",
+          "lineNumber": 2135
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugBoundingVolume.getGeometryInstanceAttributes",
+          "lineNumber": 2137
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "ColorGeometryInstanceAttribute.toValue",
+          "lineNumber": 2138
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2142
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugBoundingVolume.destroy",
+          "lineNumber": 2143
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2147
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._contentBoundingVolume.createDebugVolume",
+          "lineNumber": 2149
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugContentBoundingVolume.update",
+          "lineNumber": 2151
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2154
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugContentBoundingVolume.destroy",
+          "lineNumber": 2157
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2162
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2164
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._viewerRequestVolume.createDebugVolume",
+          "lineNumber": 2166
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugViewerRequestVolume.update",
+          "lineNumber": 2168
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2171
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._debugViewerRequestVolume.destroy",
+          "lineNumber": 2173
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 2178
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tileset._heatmap.colorize",
+          "lineNumber": 2183
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tile._content.applyDebugSettings",
+          "lineNumber": 2193
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "tileset.makeStyleDirty",
+          "lineNumber": 2197
+        },
+        {
+          "caller": "updateContent",
+          "callee": "defined",
+          "lineNumber": 2211
+        },
+        {
+          "caller": "updateContent",
+          "callee": "expiredContent.update",
+          "lineNumber": 2215
+        },
+        {
+          "caller": "updateContent",
+          "callee": "tile._expiredContent.destroy",
+          "lineNumber": 2223
+        },
+        {
+          "caller": "updateContent",
+          "callee": "defined",
+          "lineNumber": 2227
+        },
+        {
+          "caller": "updateContent",
+          "callee": "tile.content.update",
+          "lineNumber": 2233
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "defined",
+          "lineNumber": 2253
+        },
+        {
+          "caller": "updateClippingPolygons",
+          "callee": "defined",
+          "lineNumber": 2277
+        },
+        {
+          "caller": "isolateDigits",
+          "callee": "Math.pow",
+          "lineNumber": 2375
+        },
+        {
+          "caller": "isolateDigits",
+          "callee": "parseInt",
+          "lineNumber": 2376
+        },
+        {
+          "caller": "isolateDigits",
+          "callee": "Math.pow",
+          "lineNumber": 2377
+        },
+        {
+          "caller": "priorityNormalizeAndClamp",
+          "callee": "Math.max",
+          "lineNumber": 2389
+        },
+        {
+          "caller": "priorityNormalizeAndClamp",
+          "callee": "CesiumMath.normalize",
+          "lineNumber": 2390
+        }
+      ],
+      "metrics": {
+        "importCount": 45,
+        "exportCount": 0,
+        "functionCount": 25,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 52,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 135,
+      "nonEmptyLines": 129,
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileContentState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 14,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 181,
+      "nonEmptyLines": 178,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileOptimizationHint.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 15,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 30,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1497,
+      "nonEmptyLines": 1435,
+      "functions": [
+        {
+          "name": "Cesium3DTileStyle",
+          "startLine": 45,
+          "endLine": 90,
+          "params": [
+            "style"
+          ]
+        },
+        {
+          "name": "setup",
+          "startLine": 92,
+          "endLine": 140,
+          "params": [
+            "that",
+            "styleJson"
+          ]
+        },
+        {
+          "name": "getExpression",
+          "startLine": 142,
+          "endLine": 155,
+          "params": [
+            "tileStyle",
+            "value"
+          ]
+        },
+        {
+          "name": "getJsonFromExpression",
+          "startLine": 157,
+          "endLine": 166,
+          "params": [
+            "expression"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Cesium3DTileStyle",
+          "callee": "setup",
+          "lineNumber": 89
+        },
+        {
+          "caller": "setup",
+          "callee": "clone",
+          "lineNumber": 93
+        },
+        {
+          "caller": "setup",
+          "callee": "defined",
+          "lineNumber": 127
+        },
+        {
+          "caller": "setup",
+          "callee": "metaJson.hasOwnProperty",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getExpression",
+          "callee": "defined",
+          "lineNumber": 145
+        },
+        {
+          "caller": "getExpression",
+          "callee": "String",
+          "lineNumber": 148
+        },
+        {
+          "caller": "getExpression",
+          "callee": "defined",
+          "lineNumber": 151
+        },
+        {
+          "caller": "getJsonFromExpression",
+          "callee": "defined",
+          "lineNumber": 158
+        },
+        {
+          "caller": "getJsonFromExpression",
+          "callee": "defined",
+          "lineNumber": 160
+        },
+        {
+          "caller": "getJsonFromExpression",
+          "callee": "defined",
+          "lineNumber": 162
+        },
+        {
+          "caller": "getJsonFromExpression",
+          "callee": "clone",
+          "lineNumber": 163
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "Cesium3DTileStyleEngine",
+          "startLine": 6,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 3973,
+      "nonEmptyLines": 3599,
+      "functions": [
+        {
+          "name": "Cesium3DTileset",
+          "startLine": 205,
+          "endLine": 1120,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "makeTile",
+          "startLine": 2418,
+          "endLine": 2470,
+          "params": [
+            "tileset",
+            "baseResource",
+            "tileHeader",
+            "parentTile"
+          ]
+        },
+        {
+          "name": "processMetadataExtension",
+          "startLine": 2481,
+          "endLine": 2512,
+          "params": [
+            "resource",
+            "tilesetJson"
+          ]
+        },
+        {
+          "name": "updateDynamicScreenSpaceError",
+          "startLine": 2527,
+          "endLine": 2624,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "requestContent",
+          "startLine": 2631,
+          "endLine": 2667,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "sortTilesByPriority",
+          "startLine": 2669,
+          "endLine": 2671,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "cancelOutOfViewRequests",
+          "startLine": 2743,
+          "endLine": 2768,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "requestTiles",
+          "startLine": 2776,
+          "endLine": 2782,
+          "params": [
+            "tileset"
+          ]
+        },
+        {
+          "name": "handleTileFailure",
+          "startLine": 2790,
+          "endLine": 2811,
+          "params": [
+            "error",
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "filterProcessingQueue",
+          "startLine": 2817,
+          "endLine": 2835,
+          "params": [
+            "tileset"
+          ]
+        },
+        {
+          "name": "processUpdateHeight",
+          "startLine": 2841,
+          "endLine": 2890,
+          "params": [
+            "tileset",
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "processTiles",
+          "startLine": 2898,
+          "endLine": 2931,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "increaseScreenSpaceError",
+          "startLine": 2933,
+          "endLine": 2949,
+          "params": [
+            "tileset"
+          ]
+        },
+        {
+          "name": "decreaseScreenSpaceError",
+          "startLine": 2951,
+          "endLine": 2956,
+          "params": [
+            "tileset"
+          ]
+        },
+        {
+          "name": "formatMemoryString",
+          "startLine": 2969,
+          "endLine": 2975,
+          "params": [
+            "memorySizeInBytes"
+          ]
+        },
+        {
+          "name": "computeTileLabelPosition",
+          "startLine": 2982,
+          "endLine": 3000,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "addTileDebugLabel",
+          "startLine": 3009,
+          "endLine": 3072,
+          "params": [
+            "tile",
+            "tileset",
+            "position"
+          ]
+        },
+        {
+          "name": "updateTileDebugLabels",
+          "startLine": 3079,
+          "endLine": 3111,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateTiles",
+          "startLine": 3119,
+          "endLine": 3252,
+          "params": [
+            "tileset",
+            "frameState",
+            "passOptions"
+          ]
+        },
+        {
+          "name": "destroySubtree",
+          "startLine": 3261,
+          "endLine": 3277,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "unloadTile",
+          "startLine": 3284,
+          "endLine": 3289,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "destroyTile",
+          "startLine": 3296,
+          "endLine": 3299,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "raiseLoadProgressEvent",
+          "startLine": 3319,
+          "endLine": 3366,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "resetMinimumMaximum",
+          "startLine": 3372,
+          "endLine": 3382,
+          "params": [
+            "tileset"
+          ]
+        },
+        {
+          "name": "detectModelMatrixChanged",
+          "startLine": 3389,
+          "endLine": 3408,
+          "params": [
+            "tileset",
+            "frameState"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 3418,
+          "endLine": 3464,
+          "params": [
+            "tileset",
+            "frameState",
+            "passStatistics",
+            "passOptions"
+          ]
+        },
+        {
+          "name": "createCredits",
+          "startLine": 3466,
+          "endLine": 3499,
+          "params": [
+            "tileset"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 256
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "defined",
+          "lineNumber": 267
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "Matrix4.clone",
+          "lineNumber": 268
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "Matrix4.clone",
+          "lineNumber": 269
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 323
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "this.imageryLayers.layerAdded.addEventListener",
+          "lineNumber": 393
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "this.imageryLayers.layerRemoved.addEventListener",
+          "lineNumber": 394
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "this.imageryLayers.layerMoved.addEventListener",
+          "lineNumber": 395
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "this.imageryLayers.layerShownOrHidden.addEventListener",
+          "lineNumber": 396
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "defined",
+          "lineNumber": 850
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "ClippingPlaneCollection.setOwner",
+          "lineNumber": 851
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "defined",
+          "lineNumber": 859
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "ClippingPolygonCollection.setOwner",
+          "lineNumber": 860
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "defined",
+          "lineNumber": 867
+        },
+        {
+          "caller": "Cesium3DTileset",
+          "callee": "oneTimeWarning",
+          "lineNumber": 980
+        },
+        {
+          "caller": "makeTile",
+          "callee": "defined",
+          "lineNumber": 2420
+        },
+        {
+          "caller": "makeTile",
+          "callee": "hasExtension",
+          "lineNumber": 2421
+        },
+        {
+          "caller": "makeTile",
+          "callee": "implicitTileset.subtreeUriTemplate.getDerivedResource",
+          "lineNumber": 2446
+        },
+        {
+          "caller": "makeTile",
+          "callee": "rootCoordinates.getTemplateValues",
+          "lineNumber": 2447
+        },
+        {
+          "caller": "makeTile",
+          "callee": "clone",
+          "lineNumber": 2451
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "hasExtension",
+          "lineNumber": 2482
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "defined",
+          "lineNumber": 2487
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "resource.getDerivedResource",
+          "lineNumber": 2488
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "ResourceCache.getSchemaLoader",
+          "lineNumber": 2491
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "defined",
+          "lineNumber": 2494
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "ResourceCache.getSchemaLoader",
+          "lineNumber": 2495
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "schemaLoader.load",
+          "lineNumber": 2502
+        },
+        {
+          "caller": "processMetadataExtension",
+          "callee": "ResourceCache.unload",
+          "lineNumber": 2509
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 2539
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Matrix4.inverseTransformation",
+          "lineNumber": 2546
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 2552
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 2557
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartographic.fromCartesian",
+          "lineNumber": 2559
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 2564
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 2571
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Matrix4.multiplyByPointAsVector",
+          "lineNumber": 2577
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 2582
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Matrix3.getColumn",
+          "lineNumber": 2587
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 2592
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 2609
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Math.abs",
+          "lineNumber": 2616
+        },
+        {
+          "caller": "updateDynamicScreenSpaceError",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 2616
+        },
+        {
+          "caller": "requestContent",
+          "callee": "tile.requestContent",
+          "lineNumber": 2639
+        },
+        {
+          "caller": "requestContent",
+          "callee": "defined",
+          "lineNumber": 2640
+        },
+        {
+          "caller": "requestContent",
+          "callee": "promise\n    .then((content) => {\n      if (!defined(content) || tile.isDestroyed() || tileset.isDestroyed()) {\n        return;\n      }\n\n      tileset._processingQueue.push(tile);\n      ++statistics.numberOfTilesProcessing;\n    })\n    .catch",
+          "lineNumber": 2644
+        },
+        {
+          "caller": "requestContent",
+          "callee": "promise\n    .then",
+          "lineNumber": 2644
+        },
+        {
+          "caller": "requestContent",
+          "callee": "defined",
+          "lineNumber": 2646
+        },
+        {
+          "caller": "requestContent",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 2646
+        },
+        {
+          "caller": "requestContent",
+          "callee": "tileset.isDestroyed",
+          "lineNumber": 2646
+        },
+        {
+          "caller": "requestContent",
+          "callee": "tileset._processingQueue.push",
+          "lineNumber": 2650
+        },
+        {
+          "caller": "requestContent",
+          "callee": "handleTileFailure",
+          "lineNumber": 2654
+        },
+        {
+          "caller": "requestContent",
+          "callee": "destroySubtree",
+          "lineNumber": 2659
+        },
+        {
+          "caller": "requestContent",
+          "callee": "statistics.decrementLoadCounts",
+          "lineNumber": 2661
+        },
+        {
+          "caller": "requestContent",
+          "callee": "tileset._requestedTilesInFlight.push",
+          "lineNumber": 2666
+        },
+        {
+          "caller": "cancelOutOfViewRequests",
+          "callee": "tile.cancelRequests",
+          "lineNumber": 2757
+        },
+        {
+          "caller": "requestTiles",
+          "callee": "requestedTiles.sort",
+          "lineNumber": 2778
+        },
+        {
+          "caller": "requestTiles",
+          "callee": "requestContent",
+          "lineNumber": 2780
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "tileset.isDestroyed",
+          "lineNumber": 2791
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 2796
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "defined",
+          "lineNumber": 2800
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "error.toString",
+          "lineNumber": 2800
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "tileset.tileFailed.raiseEvent",
+          "lineNumber": 2802
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "console.log",
+          "lineNumber": 2807
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "console.log",
+          "lineNumber": 2808
+        },
+        {
+          "caller": "handleTileFailure",
+          "callee": "console.log",
+          "lineNumber": 2809
+        },
+        {
+          "caller": "filterProcessingQueue",
+          "callee": "tile.isDestroyed",
+          "lineNumber": 2824
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "Cartographic.clone",
+          "lineNumber": 2856
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "Cartographic.fromCartesian",
+          "lineNumber": 2860
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "defined",
+          "lineNumber": 2867
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "Cartographic.toCartesian",
+          "lineNumber": 2871
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 2877
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "frameState.afterRender.push",
+          "lineNumber": 2881
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "defined",
+          "lineNumber": 2883
+        },
+        {
+          "caller": "processUpdateHeight",
+          "callee": "callbackData.callback",
+          "lineNumber": 2884
+        },
+        {
+          "caller": "processTiles",
+          "callee": "filterProcessingQueue",
+          "lineNumber": 2899
+        },
+        {
+          "caller": "processTiles",
+          "callee": "tile.process",
+          "lineNumber": 2914
+        },
+        {
+          "caller": "processTiles",
+          "callee": "tileset.tileLoad.raiseEvent",
+          "lineNumber": 2918
+        },
+        {
+          "caller": "processTiles",
+          "callee": "handleTileFailure",
+          "lineNumber": 2922
+        },
+        {
+          "caller": "processTiles",
+          "callee": "decreaseScreenSpaceError",
+          "lineNumber": 2927
+        },
+        {
+          "caller": "processTiles",
+          "callee": "increaseScreenSpaceError",
+          "lineNumber": 2929
+        },
+        {
+          "caller": "increaseScreenSpaceError",
+          "callee": "oneTimeWarning",
+          "lineNumber": 2935
+        },
+        {
+          "caller": "increaseScreenSpaceError",
+          "callee": "tiles[i].updatePriority",
+          "lineNumber": 2946
+        },
+        {
+          "caller": "increaseScreenSpaceError",
+          "callee": "tiles.sort",
+          "lineNumber": 2948
+        },
+        {
+          "caller": "decreaseScreenSpaceError",
+          "callee": "Math.max",
+          "lineNumber": 2952
+        },
+        {
+          "caller": "formatMemoryString",
+          "callee": "memoryInMegabytes.toLocaleString",
+          "lineNumber": 2972
+        },
+        {
+          "caller": "formatMemoryString",
+          "callee": "Math.round(memoryInMegabytes).toLocaleString",
+          "lineNumber": 2974
+        },
+        {
+          "caller": "formatMemoryString",
+          "callee": "Math.round",
+          "lineNumber": 2974
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 2985
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "defined",
+          "lineNumber": 2986
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "defined",
+          "lineNumber": 2990
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 2991
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 2992
+        },
+        {
+          "caller": "computeTileLabelPosition",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2997
+        },
+        {
+          "caller": "addTileDebugLabel",
+          "callee": "formatMemoryString",
+          "lineNumber": 3040
+        },
+        {
+          "caller": "addTileDebugLabel",
+          "callee": "formatMemoryString",
+          "lineNumber": 3043
+        },
+        {
+          "caller": "addTileDebugLabel",
+          "callee": "labelString.substring",
+          "lineNumber": 3064
+        },
+        {
+          "caller": "addTileDebugLabel",
+          "callee": "tileset._tileDebugLabels.add",
+          "lineNumber": 3071
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "tileset._tileDebugLabels.removeAll",
+          "lineNumber": 3084
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "defined",
+          "lineNumber": 3087
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "defined",
+          "lineNumber": 3088
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "computeTileLabelPosition",
+          "lineNumber": 3090
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "addTileDebugLabel",
+          "lineNumber": 3091
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "addTileDebugLabel",
+          "lineNumber": 3101
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "computeTileLabelPosition",
+          "lineNumber": 3101
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "addTileDebugLabel",
+          "lineNumber": 3106
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "computeTileLabelPosition",
+          "lineNumber": 3106
+        },
+        {
+          "caller": "updateTileDebugLabels",
+          "callee": "tileset._tileDebugLabels.update",
+          "lineNumber": 3110
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tileset._styleEngine.applyStyle",
+          "lineNumber": 3120
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "defined",
+          "lineNumber": 3136
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 3140
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "commandList.push",
+          "lineNumber": 3145
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tileVisible.raiseEvent",
+          "lineNumber": 3157
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "processUpdateHeight",
+          "lineNumber": 3159
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tile.update",
+          "lineNumber": 3160
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "statistics.incrementSelectionCounts",
+          "lineNumber": 3161
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tile.update",
+          "lineNumber": 3167
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tileset._backfaceCommands.trim",
+          "lineNumber": 3172
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tileset._pointCloudEyeDomeLighting.update",
+          "lineNumber": 3230
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "defined",
+          "lineNumber": 3244
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "updateTileDebugLabels",
+          "lineNumber": 3247
+        },
+        {
+          "caller": "updateTiles",
+          "callee": "tileset._tileDebugLabels.destroy",
+          "lineNumber": 3250
+        },
+        {
+          "caller": "destroySubtree",
+          "callee": "stack.push",
+          "lineNumber": 3264
+        },
+        {
+          "caller": "destroySubtree",
+          "callee": "stack.pop",
+          "lineNumber": 3266
+        },
+        {
+          "caller": "destroySubtree",
+          "callee": "stack.push",
+          "lineNumber": 3269
+        },
+        {
+          "caller": "destroySubtree",
+          "callee": "destroyTile",
+          "lineNumber": 3272
+        },
+        {
+          "caller": "unloadTile",
+          "callee": "tileset.tileUnload.raiseEvent",
+          "lineNumber": 3285
+        },
+        {
+          "caller": "unloadTile",
+          "callee": "tileset._statistics.decrementLoadCounts",
+          "lineNumber": 3286
+        },
+        {
+          "caller": "unloadTile",
+          "callee": "tile.unloadContent",
+          "lineNumber": 3288
+        },
+        {
+          "caller": "destroyTile",
+          "callee": "tileset._cache.unloadTile",
+          "lineNumber": 3297
+        },
+        {
+          "caller": "destroyTile",
+          "callee": "tile.destroy",
+          "lineNumber": 3298
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "Cesium3DTilesetStatistics.clone",
+          "lineNumber": 3328
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "frameState.afterRender.push",
+          "lineNumber": 3335
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "tileset.loadProgress.raiseEvent",
+          "lineNumber": 3336
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "frameState.afterRender.push",
+          "lineNumber": 3354
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "tileset.allTilesLoaded.raiseEvent",
+          "lineNumber": 3355
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "frameState.afterRender.push",
+          "lineNumber": 3360
+        },
+        {
+          "caller": "raiseLoadProgressEvent",
+          "callee": "tileset.initialTilesLoaded.raiseEvent",
+          "lineNumber": 3361
+        },
+        {
+          "caller": "resetMinimumMaximum",
+          "callee": "tileset._heatmap.resetMinimumMaximum",
+          "lineNumber": 3373
+        },
+        {
+          "caller": "detectModelMatrixChanged",
+          "callee": "defined",
+          "lineNumber": 3392
+        },
+        {
+          "caller": "detectModelMatrixChanged",
+          "callee": "Matrix4.equals",
+          "lineNumber": 3398
+        },
+        {
+          "caller": "detectModelMatrixChanged",
+          "callee": "Matrix4.clone",
+          "lineNumber": 3403
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 3423
+        },
+        {
+          "caller": "update",
+          "callee": "statistics.clear",
+          "lineNumber": 3428
+        },
+        {
+          "caller": "update",
+          "callee": "resetMinimumMaximum",
+          "lineNumber": 3434
+        },
+        {
+          "caller": "update",
+          "callee": "detectModelMatrixChanged",
+          "lineNumber": 3436
+        },
+        {
+          "caller": "update",
+          "callee": "tileset\n    .getTraversal(passOptions)\n    .selectTiles",
+          "lineNumber": 3440
+        },
+        {
+          "caller": "update",
+          "callee": "tileset\n    .getTraversal",
+          "lineNumber": 3440
+        },
+        {
+          "caller": "update",
+          "callee": "requestTiles",
+          "lineNumber": 3445
+        },
+        {
+          "caller": "update",
+          "callee": "updateTiles",
+          "lineNumber": 3448
+        },
+        {
+          "caller": "update",
+          "callee": "Cesium3DTilesetStatistics.clone",
+          "lineNumber": 3451
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 3455
+        },
+        {
+          "caller": "update",
+          "callee": "frameState.creditDisplay.addCreditToNextFrame",
+          "lineNumber": 3458
+        },
+        {
+          "caller": "createCredits",
+          "callee": "defined",
+          "lineNumber": 3468
+        },
+        {
+          "caller": "createCredits",
+          "callee": "defined",
+          "lineNumber": 3473
+        },
+        {
+          "caller": "createCredits",
+          "callee": "tileset.resource.credits.forEach",
+          "lineNumber": 3474
+        },
+        {
+          "caller": "createCredits",
+          "callee": "credits.push",
+          "lineNumber": 3475
+        },
+        {
+          "caller": "createCredits",
+          "callee": "Credit.clone",
+          "lineNumber": 3475
+        },
+        {
+          "caller": "createCredits",
+          "callee": "defined",
+          "lineNumber": 3481
+        },
+        {
+          "caller": "createCredits",
+          "callee": "defined",
+          "lineNumber": 3482
+        },
+        {
+          "caller": "createCredits",
+          "callee": "defined",
+          "lineNumber": 3483
+        },
+        {
+          "caller": "createCredits",
+          "callee": "credits.push",
+          "lineNumber": 3488
+        },
+        {
+          "caller": "createCredits",
+          "callee": "credits.forEach",
+          "lineNumber": 3492
+        },
+        {
+          "caller": "removeCallback",
+          "callee": "addedCallbacks.splice",
+          "lineNumber": 3824
+        }
+      ],
+      "metrics": {
+        "importCount": 66,
+        "exportCount": 0,
+        "functionCount": 27,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 291,
+      "nonEmptyLines": 249,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetBaseTraversal",
+          "startLine": 16,
+          "endLine": 16,
+          "params": []
+        },
+        {
+          "name": "selectDesiredTile",
+          "startLine": 81,
+          "endLine": 85,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateAndPushChildren",
+          "startLine": 94,
+          "endLine": 178,
+          "params": [
+            "tile",
+            "stack",
+            "frameState"
+          ]
+        },
+        {
+          "name": "executeTraversal",
+          "startLine": 189,
+          "endLine": 236,
+          "params": [
+            "root",
+            "frameState"
+          ]
+        },
+        {
+          "name": "executeEmptyTraversal",
+          "startLine": 247,
+          "endLine": 289,
+          "params": [
+            "root",
+            "frameState"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "selectDesiredTile",
+          "callee": "Cesium3DTilesetTraversal.selectTile",
+          "lineNumber": 83
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "updateTile",
+          "lineNumber": 100
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "children.sort",
+          "lineNumber": 104
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "stack.push",
+          "lineNumber": 120
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "loadTile",
+          "lineNumber": 133
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "touchTile",
+          "lineNumber": 134
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "executeEmptyTraversal",
+          "lineNumber": 141
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "Math.min",
+          "lineNumber": 163
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "Math.min",
+          "lineNumber": 167
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "stack.push",
+          "lineNumber": 195
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "Math.max",
+          "lineNumber": 198
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "stack.pop",
+          "lineNumber": 203
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "defined",
+          "lineNumber": 206
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "canTraverse",
+          "lineNumber": 208
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "updateAndPushChildren",
+          "lineNumber": 209
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "tileset._emptyTiles.push",
+          "lineNumber": 217
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 218
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 220
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 224
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 225
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 227
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 229
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "visitTile",
+          "lineNumber": 233
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "touchTile",
+          "lineNumber": 234
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "stack.push",
+          "lineNumber": 252
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "Math.max",
+          "lineNumber": 255
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "stack.pop",
+          "lineNumber": 260
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "canTraverse",
+          "lineNumber": 265
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "updateTile",
+          "lineNumber": 273
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "loadTile",
+          "lineNumber": 276
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "touchTile",
+          "lineNumber": 277
+        },
+        {
+          "caller": "executeEmptyTraversal",
+          "callee": "stack.push",
+          "lineNumber": 283
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetCache",
+          "startLine": 9,
+          "endLine": 15,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Cesium3DTilesetCache",
+          "callee": "this._list.add",
+          "lineNumber": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 165,
+      "nonEmptyLines": 150,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetHeatmap",
+          "startLine": 13,
+          "endLine": 34,
+          "params": [
+            "tilePropertyName"
+          ]
+        },
+        {
+          "name": "getHeatmapValue",
+          "startLine": 40,
+          "endLine": 48,
+          "params": [
+            "tileValue",
+            "tilePropertyName"
+          ]
+        },
+        {
+          "name": "getHeatmapValueAndUpdateMinimumMaximum",
+          "startLine": 72,
+          "endLine": 87,
+          "params": [
+            "heatmap",
+            "tile"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getHeatmapValue",
+          "callee": "JulianDate.toDate(tileValue).getTime",
+          "lineNumber": 43
+        },
+        {
+          "caller": "getHeatmapValue",
+          "callee": "JulianDate.toDate",
+          "lineNumber": 43
+        },
+        {
+          "caller": "getHeatmapValueAndUpdateMinimumMaximum",
+          "callee": "defined",
+          "lineNumber": 74
+        },
+        {
+          "caller": "getHeatmapValueAndUpdateMinimumMaximum",
+          "callee": "getHeatmapValue",
+          "lineNumber": 75
+        },
+        {
+          "caller": "getHeatmapValueAndUpdateMinimumMaximum",
+          "callee": "defined",
+          "lineNumber": 79
+        },
+        {
+          "caller": "getHeatmapValueAndUpdateMinimumMaximum",
+          "callee": "Math.max",
+          "lineNumber": 83
+        },
+        {
+          "caller": "getHeatmapValueAndUpdateMinimumMaximum",
+          "callee": "Math.min",
+          "lineNumber": 84
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 131,
+      "nonEmptyLines": 106,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetMostDetailedTraversal",
+          "startLine": 15,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "canTraverse",
+          "startLine": 85,
+          "endLine": 101,
+          "params": [
+            "tile"
+          ]
+        },
+        {
+          "name": "updateAndPushChildren",
+          "startLine": 103,
+          "endLine": 113,
+          "params": [
+            "tile",
+            "stack",
+            "frameState"
+          ]
+        },
+        {
+          "name": "loadTile",
+          "startLine": 115,
+          "endLine": 120,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "selectDesiredTile",
+          "startLine": 122,
+          "endLine": 129,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "child.updateVisibility",
+          "lineNumber": 108
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "stack.push",
+          "lineNumber": 110
+        },
+        {
+          "caller": "loadTile",
+          "callee": "tileset._requestedTiles.push",
+          "lineNumber": 118
+        },
+        {
+          "caller": "selectDesiredTile",
+          "callee": "tile.contentVisibility",
+          "lineNumber": 125
+        },
+        {
+          "caller": "selectDesiredTile",
+          "callee": "tile.tileset._selectedTiles.push",
+          "lineNumber": 127
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 420,
+      "nonEmptyLines": 375,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetSkipTraversal",
+          "startLine": 15,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "selectDescendants",
+          "startLine": 94,
+          "endLine": 119,
+          "params": [
+            "root",
+            "frameState"
+          ]
+        },
+        {
+          "name": "selectDesiredTile",
+          "startLine": 130,
+          "endLine": 143,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateTileAncestorContentLinks",
+          "startLine": 152,
+          "endLine": 174,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "reachedSkippingThreshold",
+          "startLine": 185,
+          "endLine": 195,
+          "params": [
+            "tileset",
+            "tile"
+          ]
+        },
+        {
+          "name": "updateAndPushChildren",
+          "startLine": 204,
+          "endLine": 229,
+          "params": [
+            "tile",
+            "stack",
+            "frameState"
+          ]
+        },
+        {
+          "name": "inBaseTraversal",
+          "startLine": 240,
+          "endLine": 254,
+          "params": [
+            "tile",
+            "baseScreenSpaceError"
+          ]
+        },
+        {
+          "name": "executeTraversal",
+          "startLine": 266,
+          "endLine": 331,
+          "params": [
+            "root",
+            "frameState"
+          ]
+        },
+        {
+          "name": "traverseAndSelect",
+          "startLine": 353,
+          "endLine": 418,
+          "params": [
+            "root",
+            "frameState"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "selectDescendants",
+          "callee": "stack.push",
+          "lineNumber": 97
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "Math.max",
+          "lineNumber": 99
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "stack.pop",
+          "lineNumber": 103
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "updateTile",
+          "lineNumber": 109
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "touchTile",
+          "lineNumber": 110
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "selectTile",
+          "lineNumber": 111
+        },
+        {
+          "caller": "selectDescendants",
+          "callee": "stack.push",
+          "lineNumber": 114
+        },
+        {
+          "caller": "selectDesiredTile",
+          "callee": "defined",
+          "lineNumber": 135
+        },
+        {
+          "caller": "selectDesiredTile",
+          "callee": "selectDescendants",
+          "lineNumber": 141
+        },
+        {
+          "caller": "updateTileAncestorContentLinks",
+          "callee": "defined",
+          "lineNumber": 157
+        },
+        {
+          "caller": "reachedSkippingThreshold",
+          "callee": "defined",
+          "lineNumber": 190
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "updateTile",
+          "lineNumber": 209
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "children.sort",
+          "lineNumber": 213
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "stack.push",
+          "lineNumber": 220
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "loadTile",
+          "lineNumber": 223
+        },
+        {
+          "caller": "updateAndPushChildren",
+          "callee": "touchTile",
+          "lineNumber": 224
+        },
+        {
+          "caller": "inBaseTraversal",
+          "callee": "defined",
+          "lineNumber": 245
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "Math.max",
+          "lineNumber": 270
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "stack.push",
+          "lineNumber": 277
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "Math.max",
+          "lineNumber": 280
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "stack.pop",
+          "lineNumber": 285
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "updateTileAncestorContentLinks",
+          "lineNumber": 287
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "defined",
+          "lineNumber": 289
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "canTraverse",
+          "lineNumber": 291
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "updateAndPushChildren",
+          "lineNumber": 292
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "tileset._emptyTiles.push",
+          "lineNumber": 301
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 302
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 304
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 308
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 309
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "inBaseTraversal",
+          "lineNumber": 311
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 314
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 316
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "selectDesiredTile",
+          "lineNumber": 320
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 321
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "reachedSkippingThreshold",
+          "lineNumber": 322
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "loadTile",
+          "lineNumber": 324
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "visitTile",
+          "lineNumber": 328
+        },
+        {
+          "caller": "executeTraversal",
+          "callee": "touchTile",
+          "lineNumber": 329
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "stack.push",
+          "lineNumber": 358
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "Math.max",
+          "lineNumber": 361
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "Math.max",
+          "lineNumber": 365
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "ancestorStack.peek",
+          "lineNumber": 371
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "ancestorStack.pop",
+          "lineNumber": 373
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "selectTile",
+          "lineNumber": 377
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "stack.pop",
+          "lineNumber": 382
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "defined",
+          "lineNumber": 383
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "canTraverse",
+          "lineNumber": 388
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "selectTile",
+          "lineNumber": 392
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "selectTile",
+          "lineNumber": 400
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "ancestorStack.push",
+          "lineNumber": 403
+        },
+        {
+          "caller": "traverseAndSelect",
+          "callee": "stack.push",
+          "lineNumber": 413
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 195,
+      "nonEmptyLines": 185,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetStatistics",
+          "startLine": 7,
+          "endLine": 35,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

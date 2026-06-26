@@ -1,0 +1,429 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl",
+      "type": "file",
+      "name": "antialias.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl",
+      "summary": "程序化抗锯齿 builtin 函数 czm_antialias，通过在锐利边缘两侧颜色之间做基于距离的模糊混合来消除锯齿。",
+      "tags": ["shader", "glsl", "builtin-function", "antialiasing", "rendering"],
+      "complexity": "simple",
+      "languageNotes": "Cesium czm_* 内置 GLSL 函数片段，由 shader 构建系统按名字自动注入，无 GLSL import。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl:czm_antialias",
+      "type": "function",
+      "name": "czm_antialias",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl",
+      "lineRange": [20, 39],
+      "summary": "根据片段到边缘的距离对两种颜色做平滑混合，实现对锐利边缘的程序化抗锯齿。",
+      "tags": ["shader", "antialiasing", "color-blending"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl",
+      "type": "file",
+      "name": "applyHSBShift.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl",
+      "summary": "实现 czm_applyHSBShift，将 RGB 颜色转到 HSB 空间后对色相、饱和度、亮度进行偏移再转回 RGB。",
+      "tags": ["shader", "glsl", "builtin-function", "color-processing", "hsb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl:czm_applyHSBShift",
+      "type": "function",
+      "name": "czm_applyHSBShift",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl",
+      "lineRange": [12, 32],
+      "summary": "对 RGB 颜色施加 HSB 偏移，可选地跳过黑色像素以适配大气等效果。",
+      "tags": ["shader", "color-processing", "hsb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl",
+      "type": "file",
+      "name": "approximateSphericalCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl",
+      "summary": "提供 czm_approximateSphericalCoordinates，使用近似反三角函数由法线快速估算经纬度球坐标。",
+      "tags": ["shader", "glsl", "builtin-function", "geometry", "approximation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl:czm_approximateSphericalCoordinates",
+      "type": "function",
+      "name": "czm_approximateSphericalCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl",
+      "lineRange": [13, 18],
+      "summary": "由法线近似计算球坐标（经纬度），避免跨厂商反三角函数差异。",
+      "tags": ["shader", "geometry", "approximation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/approximateTanh.glsl",
+      "type": "file",
+      "name": "approximateTanh.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/approximateTanh.glsl",
+      "summary": "提供 czm_approximateTanh，使用有理多项式近似计算 tanh(x)。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "approximation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/backFacing.glsl",
+      "type": "file",
+      "name": "backFacing.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/backFacing.glsl",
+      "summary": "提供 czm_backFacing，判断当前片段是否为背面，规避 Mac/Intel 上 gl_FrontFacing 的已知问题。",
+      "tags": ["shader", "glsl", "builtin-function", "rendering", "workaround"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl",
+      "type": "file",
+      "name": "branchFreeTernary.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl",
+      "summary": "提供 czm_branchFreeTernary，用算术混合替代三元分支以避免 GPU 分支发散，含 float/vec2/vec3/vec4 多个重载。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "gpu-optimization"],
+      "complexity": "moderate",
+      "languageNotes": "通过 float(bool) 把分支转为乘加运算，是 GPU shader 中常见的分支消除技巧。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl:czm_branchFreeTernary",
+      "type": "function",
+      "name": "czm_branchFreeTernary",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl",
+      "lineRange": [16, 71],
+      "summary": "无分支三元运算的多个 GLSL 重载，返回比较结果对应的向量或标量值。",
+      "tags": ["shader", "math", "gpu-optimization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/cascadeColor.glsl",
+      "type": "file",
+      "name": "cascadeColor.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cascadeColor.glsl",
+      "summary": "提供 czm_cascadeColor，按级联权重将四个固定颜色混合，用于阴影级联的可视化着色。",
+      "tags": ["shader", "glsl", "builtin-function", "shadow-map", "debug"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/cascadeDistance.glsl",
+      "type": "file",
+      "name": "cascadeDistance.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cascadeDistance.glsl",
+      "summary": "提供 czm_cascadeDistance，依据级联权重从 shadowMap_cascadeDistances uniform 取得对应级联距离。",
+      "tags": ["shader", "glsl", "builtin-function", "shadow-map"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/cascadeMatrix.glsl",
+      "type": "file",
+      "name": "cascadeMatrix.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cascadeMatrix.glsl",
+      "summary": "提供 czm_cascadeMatrix，按级联权重对 shadowMap_cascadeMatrices 中四个矩阵做加权混合得到当前级联的变换矩阵。",
+      "tags": ["shader", "glsl", "builtin-function", "shadow-map", "matrix"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/cascadeWeights.glsl",
+      "type": "file",
+      "name": "cascadeWeights.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cascadeWeights.glsl",
+      "summary": "提供 czm_cascadeWeights，根据片段深度相对 shadowMap_cascadeSplits 的位置计算级联选择权重向量。",
+      "tags": ["shader", "glsl", "builtin-function", "shadow-map"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl",
+      "type": "file",
+      "name": "clipPolygons.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl",
+      "summary": "提供 czm_clipPolygons 及辅助 getSignedDistance，根据裁剪距离纹理对片段进行多边形裁剪（含反向模式）。",
+      "tags": ["shader", "glsl", "builtin-function", "clipping", "polygon"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl:czm_clipPolygons",
+      "type": "function",
+      "name": "czm_clipPolygons",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl",
+      "lineRange": [6, 37],
+      "summary": "依据裁剪距离纹理的有向距离对片段执行 discard/保留，实现多边形区域裁剪。",
+      "tags": ["shader", "clipping", "polygon"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/columbusViewMorph.glsl",
+      "type": "file",
+      "name": "columbusViewMorph.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/columbusViewMorph.glsl",
+      "summary": "提供 czm_columbusViewMorph，在 2D 与 3D 位置间按 time 做线性插值以实现 Columbus View 过渡。",
+      "tags": ["shader", "glsl", "builtin-function", "columbus-view", "interpolation"],
+      "complexity": "simple",
+      "languageNotes": "手动实现 mix 以规避部分 GPU 上 mix 的精度抖动问题。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl",
+      "type": "file",
+      "name": "computeAtmosphereColor.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl",
+      "summary": "提供 czm_computeAtmosphereColor，结合 Rayleigh 与 Mie 散射颜色及自动 uniform 计算片段的大气颜色。",
+      "tags": ["shader", "glsl", "builtin-function", "atmosphere", "scattering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl:czm_computeAtmosphereColor",
+      "type": "function",
+      "name": "czm_computeAtmosphereColor",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl",
+      "lineRange": [15, 88],
+      "summary": "在世界坐标、光照方向与散射颜色基础上合成最终大气颜色，与 Scene 大气设置自动同步。",
+      "tags": ["shader", "atmosphere", "scattering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl",
+      "type": "file",
+      "name": "computeGroundAtmosphereScattering.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl",
+      "summary": "提供 czm_computeGroundAtmosphereScattering，为地面大气与雾效计算 Rayleigh/Mie 散射及透射率。",
+      "tags": ["shader", "glsl", "builtin-function", "atmosphere", "scattering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl:czm_computeGroundAtmosphereScattering",
+      "type": "function",
+      "name": "czm_computeGroundAtmosphereScattering",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl",
+      "lineRange": [13, 30],
+      "summary": "为地面大气和雾计算散射量，输出到传入的 rayleigh/mie/opacity 变量。",
+      "tags": ["shader", "atmosphere", "scattering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl",
+      "type": "file",
+      "name": "computePosition.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl",
+      "summary": "提供 czm_computePosition，根据当前场景模式（3D/2D/Columbus）返回相对于眼睛的模型坐标位置，供 Appearance 顶点着色器使用。",
+      "tags": ["shader", "glsl", "builtin-function", "vertex-shader", "scene-mode"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl:czm_computePosition",
+      "type": "function",
+      "name": "czm_computePosition",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl",
+      "lineRange": [15, 22],
+      "summary": "依据场景模式在 2D/3D 高低精度位置属性间选择并合成相对眼睛的位置。",
+      "tags": ["shader", "vertex-shader", "scene-mode"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl",
+      "type": "file",
+      "name": "computeScattering.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl",
+      "summary": "提供 czm_computeScattering，沿光线积分计算 Rayleigh 与 Mie 散射颜色及透射率，是大气渲染的核心积分函数。",
+      "tags": ["shader", "glsl", "builtin-function", "atmosphere", "scattering"],
+      "complexity": "complex",
+      "languageNotes": "通过沿光线分段积分累加散射贡献，是物理大气渲染的性能敏感热点。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl:czm_computeScattering",
+      "type": "function",
+      "name": "czm_computeScattering",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl",
+      "lineRange": [16, 149],
+      "summary": "沿主光线进行多段积分，累加 Rayleigh/Mie 散射并写入透射率，用于大气光照计算。",
+      "tags": ["shader", "atmosphere", "scattering", "integration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl",
+      "type": "file",
+      "name": "computeTextureTransform.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl",
+      "summary": "提供 czm_computeTextureTransform，按 KHR_texture_transform glTF 扩展对纹理坐标施加平移/旋转/缩放变换。",
+      "tags": ["shader", "glsl", "builtin-function", "texture", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl:czm_computeTextureTransform",
+      "type": "function",
+      "name": "czm_computeTextureTransform",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl",
+      "lineRange": [12, 23],
+      "summary": "将 3x3 纹理变换矩阵应用到 vec2 纹理坐标上。",
+      "tags": ["shader", "texture", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl",
+      "type": "file",
+      "name": "cosineAndSine.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl",
+      "summary": "提供 cordic，使用 CORDIC 算法通过 24 次旋转迭代同时计算角度的余弦与正弦值。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "cordic"],
+      "complexity": "complex",
+      "languageNotes": "使用 CORDIC 迭代避免直接调用三角函数，适合对一致性有要求的 GPU 实现。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl:cordic",
+      "type": "function",
+      "name": "cordic",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl",
+      "lineRange": [4, 211],
+      "summary": "CORDIC 算法实现，对输入角度做 24 次旋转迭代以输出 (cos, sin)。",
+      "tags": ["shader", "math", "cordic"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl",
+      "type": "file",
+      "name": "decodeRGB8.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl",
+      "summary": "提供 czm_decodeRGB8，将打包进单个 float 的 8 位精度 RGB 值解码为 vec4。",
+      "tags": ["shader", "glsl", "builtin-function", "encoding", "color"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl:czm_decodeRGB8",
+      "type": "function",
+      "name": "czm_decodeRGB8",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl",
+      "lineRange": [12, 22],
+      "summary": "通过位移与掩码从单个 float 中还原 RGB 分量。",
+      "tags": ["shader", "encoding", "color"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl",
+      "type": "file",
+      "name": "decompressTextureCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl",
+      "summary": "提供 czm_decompressTextureCoordinates，将压缩进单个 float 的纹理坐标解包为 vec2。",
+      "tags": ["shader", "glsl", "builtin-function", "texture", "encoding"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl:czm_decompressTextureCoordinates",
+      "type": "function",
+      "name": "czm_decompressTextureCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl",
+      "lineRange": [11, 17],
+      "summary": "用 4096 除法与 fract 运算从 float 中恢复 u、v 纹理坐标。",
+      "tags": ["shader", "texture", "encoding"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl",
+      "type": "file",
+      "name": "depthClamp.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl",
+      "summary": "提供 czm_depthClamp 等，在 WebGL1/2 中模拟 GL_DEPTH_CLAMP，避免近远裁剪面之外几何体被剪裁，常用于阴影体。",
+      "tags": ["shader", "glsl", "builtin-function", "depth", "webgl-compat"],
+      "complexity": "moderate",
+      "languageNotes": "依赖 GL_EXT_frag_depth 与自定义 noperspective 插值模拟，处理移动端无该扩展的回退路径。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl:czm_depthClamp",
+      "type": "function",
+      "name": "czm_depthClamp",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl",
+      "lineRange": [30, 47],
+      "summary": "在顶点着色器中钳制剪裁空间 z 以模拟 GL_DEPTH_CLAMP 行为。",
+      "tags": ["shader", "depth", "webgl-compat"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl",
+      "type": "file",
+      "name": "eastNorthUpToEyeCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl",
+      "summary": "提供 czm_eastNorthUpToEyeCoordinates，构造将椭球东-北-上切空间向量变换到眼坐标的 3x3 旋转矩阵。",
+      "tags": ["shader", "glsl", "builtin-function", "coordinate-transform", "ellipsoid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl:czm_eastNorthUpToEyeCoordinates",
+      "type": "function",
+      "name": "czm_eastNorthUpToEyeCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl",
+      "lineRange": [24, 33],
+      "summary": "由模型坐标位置与眼坐标法线构建 ENU 到眼坐标的旋转矩阵，可用于 bump mapping 等。",
+      "tags": ["shader", "coordinate-transform", "ellipsoid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/ellipsoidContainsPoint.glsl",
+      "type": "file",
+      "name": "ellipsoidContainsPoint.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/ellipsoidContainsPoint.glsl",
+      "summary": "提供 czm_ellipsoidContainsPoint，判断给定点是否位于由反向半径定义的椭球内部。",
+      "tags": ["shader", "glsl", "builtin-function", "geometry", "ellipsoid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/ellipsoidTextureCoordinates.glsl",
+      "type": "file",
+      "name": "ellipsoidTextureCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/ellipsoidTextureCoordinates.glsl",
+      "summary": "提供 czm_ellipsoidTextureCoordinates，由椭球法线近似生成球面 UV 纹理坐标。",
+      "tags": ["shader", "glsl", "builtin-function", "texture", "ellipsoid"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl",
+      "type": "file",
+      "name": "equalsEpsilon.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl",
+      "summary": "提供 czm_equalsEpsilon，对 float/vec2/vec3/vec4 分量在指定 epsilon 范围内进行近似相等比较。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "comparison"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl:czm_equalsEpsilon",
+      "type": "function",
+      "name": "czm_equalsEpsilon",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl",
+      "lineRange": [22, 36],
+      "summary": "对各类数值向量逐分量判断是否在 epsilon 容差内相等。",
+      "tags": ["shader", "math", "comparison"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl:czm_antialias", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/antialias.glsl:czm_antialias", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl:czm_applyHSBShift", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/applyHSBShift.glsl:czm_applyHSBShift", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl:czm_approximateSphericalCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/approximateSphericalCoordinates.glsl:czm_approximateSphericalCoordinates", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl:czm_branchFreeTernary", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/branchFreeTernary.glsl:czm_branchFreeTernary", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl:czm_clipPolygons", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/clipPolygons.glsl:czm_clipPolygons", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl:czm_computeAtmosphereColor", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeAtmosphereColor.glsl:czm_computeAtmosphereColor", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl:czm_computeGroundAtmosphereScattering", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeGroundAtmosphereScattering.glsl:czm_computeGroundAtmosphereScattering", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl:czm_computePosition", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computePosition.glsl:czm_computePosition", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl:czm_computeScattering", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeScattering.glsl:czm_computeScattering", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl:czm_computeTextureTransform", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/computeTextureTransform.glsl:czm_computeTextureTransform", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl:cordic", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/cosineAndSine.glsl:cordic", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl:czm_decodeRGB8", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/decodeRGB8.glsl:czm_decodeRGB8", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl:czm_decompressTextureCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/decompressTextureCoordinates.glsl:czm_decompressTextureCoordinates", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl:czm_depthClamp", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/depthClamp.glsl:czm_depthClamp", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl:czm_eastNorthUpToEyeCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eastNorthUpToEyeCoordinates.glsl:czm_eastNorthUpToEyeCoordinates", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl:czm_equalsEpsilon", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/equalsEpsilon.glsl:czm_equalsEpsilon", "type": "exports", "direction": "forward", "weight": 0.8}
+  ]
+}

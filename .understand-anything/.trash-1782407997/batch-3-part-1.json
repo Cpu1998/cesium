@@ -1,0 +1,910 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "file",
+      "name": "BoundingRectangle.js",
+      "filePath": "packages/engine/Source/Core/BoundingRectangle.js",
+      "summary": "表示一个 2D 轴对齐包围矩形，提供构造、克隆、相交判断与并集/交集计算，用于 2D 地图与屏幕空间裁剪。",
+      "tags": [
+        "data-model",
+        "geometry",
+        "bounding-volume",
+        "2d"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "file",
+      "name": "Cartesian2.js",
+      "filePath": "packages/engine/Source/Core/Cartesian2.js",
+      "summary": "二维笛卡尔向量类型，提供完整的向量代数运算（加减、点乘、归一化、插值、距离等）与数组打包/解包方法。",
+      "tags": [
+        "data-model",
+        "math",
+        "vector",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Color.js",
+      "type": "file",
+      "name": "Color.js",
+      "filePath": "packages/engine/Source/Core/Color.js",
+      "summary": "核心颜色类型，支持 RGBA、HSL、CSS 字符串、字节表示之间的转换，以及颜色混合、增亮、变暗等运算，是渲染与样式系统的基础。",
+      "tags": [
+        "data-model",
+        "color",
+        "rendering",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "file",
+      "name": "EncodedCartesian3.js",
+      "filePath": "packages/engine/Source/Core/EncodedCartesian3.js",
+      "summary": "将 3D 笛卡尔坐标拆分为高/低两部分以提升 GPU 双精度模拟精度，用于消除 z-fighting 等精度问题。",
+      "tags": [
+        "data-model",
+        "math",
+        "gpu-precision",
+        "encoding"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "file",
+      "name": "NearFarScalar.js",
+      "filePath": "packages/engine/Source/Core/NearFarScalar.js",
+      "summary": "基于相机远近范围做插值的标量值，常用于根据距离缩放 label/icon 等屏幕空间元素的视觉属性。",
+      "tags": [
+        "data-model",
+        "interpolation",
+        "distance-scaling",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "file",
+      "name": "PixelFormat.js",
+      "filePath": "packages/engine/Source/Core/PixelFormat.js",
+      "summary": "枚举并校验 WebGL 像素格式与数据类型，提供格式兼容性查询和 isCompressed 判定，是纹理与帧缓冲管线的基础。",
+      "tags": [
+        "data-model",
+        "webgl",
+        "pixel-format",
+        "texture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "type": "file",
+      "name": "SphereOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "summary": "生成球体的线框轮廓几何体，内部委托 EllipsoidOutlineGeometry 计算。",
+      "tags": [
+        "geometry",
+        "data-model",
+        "outline",
+        "sphere"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TerrainQuantization.js",
+      "type": "file",
+      "name": "TerrainQuantization.js",
+      "filePath": "packages/engine/Source/Core/TerrainQuantization.js",
+      "summary": "地形量化模式的冻结枚举常量集，定义地形数据在 GPU 端的压缩/量化策略。",
+      "tags": [
+        "data-model",
+        "enumeration",
+        "terrain",
+        "frozen"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TexturePacker.js",
+      "type": "file",
+      "name": "TexturePacker.js",
+      "filePath": "packages/engine/Source/Core/TexturePacker.js",
+      "summary": "将多个小纹理打包到一张图集中以减少 draw call 与纹理切换，供批渲染使用。",
+      "tags": [
+        "utility",
+        "texture-atlas",
+        "rendering",
+        "packing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "file",
+      "name": "WebGLConstants.js",
+      "filePath": "packages/engine/Source/Core/WebGLConstants.js",
+      "summary": "把 WebGL 规范中的常量（缓冲用法、像素格式、图元类型等）整理为冻结的 JavaScript 枚举，作为底层渲染层的共享基础。",
+      "tags": [
+        "data-model",
+        "enumeration",
+        "webgl",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/combine.js",
+      "type": "file",
+      "name": "combine.js",
+      "filePath": "packages/engine/Source/Core/combine.js",
+      "summary": "递归/浅合并两个对象的工具函数，用于合并默认配置与运行时选项。",
+      "tags": [
+        "utility",
+        "merge",
+        "object",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "file",
+      "name": "createGuid.js",
+      "filePath": "packages/engine/Source/Core/createGuid.js",
+      "summary": "生成 RFC4122 风格全局唯一标识符（GUID）的小工具，广泛用于对象/资源追踪。",
+      "tags": [
+        "utility",
+        "guid",
+        "identifier",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "file",
+      "name": "destroyObject.js",
+      "filePath": "packages/engine/Source/Core/destroyObject.js",
+      "summary": "显式销毁并标记对象为已销毁，访问被销毁对象的属性时会抛出 DeveloperError，用于 WebGL 资源生命周期管理。",
+      "tags": [
+        "utility",
+        "lifecycle",
+        "memory-management",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/getImageFromTypedArray.js",
+      "type": "file",
+      "name": "getImageFromTypedArray.js",
+      "filePath": "packages/engine/Source/Core/getImageFromTypedArray.js",
+      "summary": "从 TypedArray 解码为可绘制 ImageBitmap/Image，供纹理上传流程使用。",
+      "tags": [
+        "utility",
+        "image",
+        "texture",
+        "decoding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/loadKTX2.js",
+      "type": "file",
+      "name": "loadKTX2.js",
+      "filePath": "packages/engine/Source/Core/loadKTX2.js",
+      "summary": "异步加载并转码 KTX2 容器纹理（含 BasisU 等压缩格式）为可用 Texture 数据，依赖 KTX2Transcoder。",
+      "tags": [
+        "loader",
+        "texture",
+        "ktx2",
+        "compression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/webGLConstantToGlslType.js",
+      "type": "file",
+      "name": "webGLConstantToGlslType.js",
+      "filePath": "packages/engine/Source/Core/webGLConstantToGlslType.js",
+      "summary": "把 WebGL 常量类型映射为对应的 GLSL 类型枚举，用于 shader 自动生成与属性绑定。",
+      "tags": [
+        "utility",
+        "webgl",
+        "glsl",
+        "mapping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "type": "file",
+      "name": "AutomaticUniforms.js",
+      "filePath": "packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "summary": "定义并注册一批内置自动 uniform（模型/视图/投影矩阵、相机参数、时间等），由渲染器自动注入到 shader 中。",
+      "tags": [
+        "rendering",
+        "shader",
+        "uniform",
+        "webgl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/BoundingRectangle.js:BoundingRectangle",
+      "type": "function",
+      "name": "BoundingRectangle",
+      "filePath": "packages/engine/Source/Core/BoundingRectangle.js",
+      "lineRange": [
+        23,
+        51
+      ],
+      "summary": "BoundingRectangle 构造器与对象初始化，封装 x/y/width/height 四个分量。",
+      "tags": [
+        "data-model",
+        "geometry",
+        "bounding-volume"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Cartesian2.js:Cartesian2",
+      "type": "class",
+      "name": "Cartesian2",
+      "filePath": "packages/engine/Source/Core/Cartesian2.js",
+      "lineRange": [
+        19,
+        739
+      ],
+      "summary": "二维笛卡尔向量类，提供 30+ 个静态与实例方法完成向量代数、打包与比较。",
+      "tags": [
+        "data-model",
+        "math",
+        "vector",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Color.js:hue2rgb",
+      "type": "function",
+      "name": "hue2rgb",
+      "filePath": "packages/engine/Source/Core/Color.js",
+      "lineRange": [
+        9,
+        26
+      ],
+      "summary": "HSL→RGB 转换所用的内部辅助函数，根据色相区间计算 RGB 分量。",
+      "tags": [
+        "utility",
+        "color",
+        "hsl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Color.js:Color",
+      "type": "class",
+      "name": "Color",
+      "filePath": "packages/engine/Source/Core/Color.js",
+      "lineRange": [
+        34,
+        944
+      ],
+      "summary": "颜色类型，支持从 RGBA/HSL/CSS 字符串/字节构造并进行混合、增亮、变暗等运算。",
+      "tags": [
+        "data-model",
+        "color",
+        "rendering",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EncodedCartesian3.js:EncodedCartesian3",
+      "type": "function",
+      "name": "EncodedCartesian3",
+      "filePath": "packages/engine/Source/Core/EncodedCartesian3.js",
+      "lineRange": [
+        18,
+        34
+      ],
+      "summary": "将 Cartesian3 编码为高低分量对，用于 GPU 端提升渲染精度。",
+      "tags": [
+        "data-model",
+        "encoding",
+        "gpu-precision"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/NearFarScalar.js:NearFarScalar",
+      "type": "function",
+      "name": "NearFarScalar",
+      "filePath": "packages/engine/Source/Core/NearFarScalar.js",
+      "lineRange": [
+        16,
+        41
+      ],
+      "summary": "NearFarScalar 构造器，封装近/远范围与对应的两个标量值。",
+      "tags": [
+        "data-model",
+        "interpolation",
+        "distance-scaling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/SphereOutlineGeometry.js:SphereOutlineGeometry",
+      "type": "function",
+      "name": "SphereOutlineGeometry",
+      "filePath": "packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "lineRange": [
+        30,
+        42
+      ],
+      "summary": "构造球体线框轮廓几何体的入口，委托 EllipsoidOutlineGeometry。",
+      "tags": [
+        "geometry",
+        "outline",
+        "sphere"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TexturePacker.js:TextureNode",
+      "type": "function",
+      "name": "TextureNode",
+      "filePath": "packages/engine/Source/Core/TexturePacker.js",
+      "lineRange": [
+        24,
+        44
+      ],
+      "summary": "纹理图集中单个纹理节点的内部数据结构，记录其在图集中的位置与引用。",
+      "tags": [
+        "data-model",
+        "texture-atlas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TexturePacker.js:TexturePacker",
+      "type": "function",
+      "name": "TexturePacker",
+      "filePath": "packages/engine/Source/Core/TexturePacker.js",
+      "lineRange": [
+        56,
+        68
+      ],
+      "summary": "纹理打包器入口，负责把多个小纹理汇集到一张图集纹理上。",
+      "tags": [
+        "utility",
+        "texture-atlas",
+        "packing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/combine.js:combine",
+      "type": "function",
+      "name": "combine",
+      "filePath": "packages/engine/Source/Core/combine.js",
+      "lineRange": [
+        34,
+        78
+      ],
+      "summary": "递归或浅合并两个对象的工具函数，用于合并默认配置与运行时选项。",
+      "tags": [
+        "utility",
+        "merge",
+        "object"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/createGuid.js:createGuid",
+      "type": "function",
+      "name": "createGuid",
+      "filePath": "packages/engine/Source/Core/createGuid.js",
+      "lineRange": [
+        14,
+        21
+      ],
+      "summary": "生成 RFC4122 风格 GUID 的工具函数。",
+      "tags": [
+        "utility",
+        "guid",
+        "identifier"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/destroyObject.js:destroyObject",
+      "type": "function",
+      "name": "destroyObject",
+      "filePath": "packages/engine/Source/Core/destroyObject.js",
+      "lineRange": [
+        34,
+        52
+      ],
+      "summary": "显式销毁对象并标记为已销毁，后续访问会抛出 DeveloperError。",
+      "tags": [
+        "utility",
+        "lifecycle",
+        "memory-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/getImageFromTypedArray.js:getImageFromTypedArray",
+      "type": "function",
+      "name": "getImageFromTypedArray",
+      "filePath": "packages/engine/Source/Core/getImageFromTypedArray.js",
+      "lineRange": [
+        11,
+        23
+      ],
+      "summary": "从 TypedArray 解码为可绘制图像，用于纹理上传。",
+      "tags": [
+        "utility",
+        "image",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/loadKTX2.js:loadKTX2",
+      "type": "function",
+      "name": "loadKTX2",
+      "filePath": "packages/engine/Source/Core/loadKTX2.js",
+      "lineRange": [
+        82,
+        102
+      ],
+      "summary": "异步加载并转码 KTX2 纹理为可用数据，支持 BasisU 等压缩格式。",
+      "tags": [
+        "loader",
+        "texture",
+        "ktx2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/webGLConstantToGlslType.js:webGLConstantToGlslType",
+      "type": "function",
+      "name": "webGLConstantToGlslType",
+      "filePath": "packages/engine/Source/Core/webGLConstantToGlslType.js",
+      "lineRange": [
+        3,
+        24
+      ],
+      "summary": "把 WebGL 常量类型映射到对应的 GLSL 类型。",
+      "tags": [
+        "utility",
+        "webgl",
+        "glsl",
+        "mapping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/AutomaticUniforms.js:AutomaticUniform",
+      "type": "function",
+      "name": "AutomaticUniform",
+      "filePath": "packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "lineRange": [
+        7,
+        11
+      ],
+      "summary": "自动 uniform 描述符构造器，封装默认值、类型与取值函数。",
+      "tags": [
+        "rendering",
+        "shader",
+        "uniform"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "function:packages/engine/Source/Core/BoundingRectangle.js:BoundingRectangle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian2.js",
+      "target": "class:packages/engine/Source/Core/Cartesian2.js:Cartesian2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "function:packages/engine/Source/Core/Color.js:hue2rgb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "class:packages/engine/Source/Core/Color.js:Color",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "target": "function:packages/engine/Source/Core/EncodedCartesian3.js:EncodedCartesian3",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "target": "function:packages/engine/Source/Core/NearFarScalar.js:NearFarScalar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Core/SphereOutlineGeometry.js:SphereOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TexturePacker.js",
+      "target": "function:packages/engine/Source/Core/TexturePacker.js:TextureNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TexturePacker.js",
+      "target": "function:packages/engine/Source/Core/TexturePacker.js:TexturePacker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/combine.js",
+      "target": "function:packages/engine/Source/Core/combine.js:combine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/createGuid.js",
+      "target": "function:packages/engine/Source/Core/createGuid.js:createGuid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/destroyObject.js",
+      "target": "function:packages/engine/Source/Core/destroyObject.js:destroyObject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/getImageFromTypedArray.js",
+      "target": "function:packages/engine/Source/Core/getImageFromTypedArray.js:getImageFromTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadKTX2.js",
+      "target": "function:packages/engine/Source/Core/loadKTX2.js:loadKTX2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/webGLConstantToGlslType.js",
+      "target": "function:packages/engine/Source/Core/webGLConstantToGlslType.js:webGLConstantToGlslType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "target": "function:packages/engine/Source/Renderer/AutomaticUniforms.js:AutomaticUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian2.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian2.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian2.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian2.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Color.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/PixelFormat.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/PixelFormat.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TexturePacker.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TexturePacker.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TexturePacker.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/combine.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/destroyObject.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadKTX2.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadKTX2.js",
+      "target": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadKTX2.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/webGLConstantToGlslType.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

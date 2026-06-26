@@ -1,0 +1,543 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/Clock.js",
+      "type": "file",
+      "name": "Clock.js",
+      "filePath": "packages/engine/Source/Core/Clock.js",
+      "summary": "模拟时钟，控制场景时间的推进方式（系统时钟、刻度倍率、循环范围），并通过 Event 在 tick 时通知订阅者。",
+      "tags": ["clock", "time", "event", "simulation", "core"],
+      "complexity": "complex",
+      "languageNotes": "采用 CesiumJS 传统的构造函数 + prototype 风格定义类，而非 ES6 class。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Clock.js:Clock",
+      "type": "function",
+      "name": "Clock",
+      "filePath": "packages/engine/Source/Core/Clock.js",
+      "lineRange": [43, 141],
+      "summary": "Clock 构造函数，初始化起始/终止时间、倍率、步进方式与范围，并附带 prototype 上的 tick/clone 等方法实现时钟推进逻辑。",
+      "tags": ["constructor", "clock", "time", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ClockRange.js",
+      "type": "file",
+      "name": "ClockRange.js",
+      "filePath": "packages/engine/Source/Core/ClockRange.js",
+      "summary": "枚举，定义时钟在到达起止边界时的行为：无边界、循环、来回往复。",
+      "tags": ["enum", "clock", "time", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ClockStep.js",
+      "type": "file",
+      "name": "ClockStep.js",
+      "filePath": "packages/engine/Source/Core/ClockStep.js",
+      "summary": "枚举，定义 Clock 每次 tick 时的步进方式（系统时钟增量、固定刻度或 TICK_DEPENDENT）。",
+      "tags": ["enum", "clock", "time", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ConstantSpline.js",
+      "type": "file",
+      "name": "ConstantSpline.js",
+      "filePath": "packages/engine/Source/Core/ConstantSpline.js",
+      "summary": "返回常量值的样条实现，继承自 Spline，用于始终返回同一固定值的插值场景（如动画中的常量通道）。",
+      "tags": ["spline", "interpolation", "animation", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/CubicRealPolynomial.js",
+      "type": "file",
+      "name": "CubicRealPolynomial.js",
+      "filePath": "packages/engine/Source/Core/CubicRealPolynomial.js",
+      "summary": "求解三次实系数多项式实根的数值算法，借助二次多项式求解器完成降次。",
+      "tags": ["math", "polynomial", "roots", "numeric", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CubicRealPolynomial.js:computeRealRoots",
+      "type": "function",
+      "name": "computeRealRoots",
+      "filePath": "packages/engine/Source/Core/CubicRealPolynomial.js",
+      "lineRange": [49, 153],
+      "summary": "计算三次实系数多项式的全部实数根，内部使用判别式分类并结合二次多项式求解。",
+      "tags": ["math", "polynomial", "roots", "numeric"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "file",
+      "name": "DeveloperError.js",
+      "filePath": "packages/engine/Source/Core/DeveloperError.js",
+      "summary": "自定义错误类型，用于在 API 误用时抛出带有调用栈的开发者错误，是 CesiumJS 中最常见的参数校验异常。",
+      "tags": ["error", "validation", "utility", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DeveloperError.js:DeveloperError",
+      "type": "function",
+      "name": "DeveloperError",
+      "filePath": "packages/engine/Source/Core/DeveloperError.js",
+      "lineRange": [21, 50],
+      "summary": "DeveloperError 构造函数，继承自 Error，记录消息并捕获堆栈。",
+      "tags": ["error", "constructor", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EarthOrientationParameters.js",
+      "type": "file",
+      "name": "EarthOrientationParameters.js",
+      "filePath": "packages/engine/Source/Core/EarthOrientationParameters.js",
+      "summary": "加载并按需插值地球定向参数（EOP，极移与 UT1-UTC），为 ICRF 到 ITRF 的坐标变换提供时变数据。",
+      "tags": ["eop", "earth-orientation", "interpolation", "astronomy", "core"],
+      "complexity": "complex",
+      "languageNotes": "内部用扁平化双数组存储样本并通过 binarySearch 定位，避免对象分配以提升性能。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EarthOrientationParameters.js:EarthOrientationParameters",
+      "type": "function",
+      "name": "EarthOrientationParameters",
+      "filePath": "packages/engine/Source/Core/EarthOrientationParameters.js",
+      "lineRange": [35, 74],
+      "summary": "EarthOrientationParameters 构造函数，配置数据源 URL/Resource 与默认样本，并暴露 prototype 上的 computeThen、clone 方法。",
+      "tags": ["constructor", "eop", "astronomy"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EarthOrientationParameters.js:interpolate",
+      "type": "function",
+      "name": "interpolate",
+      "filePath": "packages/engine/Source/Core/EarthOrientationParameters.js",
+      "lineRange": [343, 429],
+      "summary": "在 EOP 样本数组中根据给定日期做拉格朗日或线性插值，输出极移、极偏移与 UT1-UTC 增量。",
+      "tags": ["interpolation", "eop", "astronomy", "numeric"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EarthOrientationParametersSample.js",
+      "type": "file",
+      "name": "EarthOrientationParametersSample.js",
+      "filePath": "packages/engine/Source/Core/EarthOrientationParametersSample.js",
+      "summary": "单个 EOP 采样结果的不可变数据容器，保存极移、极偏移与 UT1-UTC 字段。",
+      "tags": ["eop", "data-model", "astronomy", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Event.js",
+      "type": "file",
+      "name": "Event.js",
+      "filePath": "packages/engine/Source/Core/Event.js",
+      "summary": "通用事件发布-订阅实现，提供 addEventListener/removeEventListener/raiseEvent，是 CesiumJS 各类可观察对象通知机制的基础。",
+      "tags": ["event", "observer", "pubsub", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Event.js:Event",
+      "type": "function",
+      "name": "Event",
+      "filePath": "packages/engine/Source/Core/Event.js",
+      "lineRange": [24, 42],
+      "summary": "Event 构造函数，初始化监听器映射，并在 prototype 上挂载 addEventListener/removeEventListener/raiseEvent 方法。",
+      "tags": ["constructor", "event", "pubsub"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "file",
+      "name": "EventHelper.js",
+      "filePath": "packages/engine/Source/Core/EventHelper.js",
+      "summary": "辅助类，集中管理一组 Event 监听器的添加与统一销毁，常用于 widget/visualizer 的生命周期管理。",
+      "tags": ["event", "lifecycle", "helper", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ExtrapolationType.js",
+      "type": "file",
+      "name": "ExtrapolationType.js",
+      "filePath": "packages/engine/Source/Core/ExtrapolationType.js",
+      "summary": "枚举，定义采样属性在采样区间之外的外推策略（NONE、HOLD、EXTRAPOLATE）。",
+      "tags": ["enum", "interpolation", "time", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "file",
+      "name": "Frozen.js",
+      "filePath": "packages/engine/Source/Core/Frozen.js",
+      "summary": "提供 frozen 常量与 empty/frozenArray 等冻结对象，用于不可变默认值以避免误改。",
+      "tags": ["immutable", "utility", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeometryFactory.js",
+      "type": "file",
+      "name": "GeometryFactory.js",
+      "filePath": "packages/engine/Source/Core/GeometryFactory.js",
+      "summary": "抽象工厂占位类型，构造即抛错，子类负责按几何描述创建具体 Geometry 对象。",
+      "tags": ["factory", "geometry", "abstract", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js",
+      "type": "file",
+      "name": "GeometryInstanceAttribute.js",
+      "filePath": "packages/engine/Source/Core/GeometryInstanceAttribute.js",
+      "summary": "描述单个 GeometryInstance 的逐实例属性（如颜色、显示标志），由 componentDatatype、componentsPerAttribute 与 typed value 构成。",
+      "tags": ["geometry", "attribute", "data-model", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GeometryInstanceAttribute.js:GeometryInstanceAttribute",
+      "type": "function",
+      "name": "GeometryInstanceAttribute",
+      "filePath": "packages/engine/Source/Core/GeometryInstanceAttribute.js",
+      "lineRange": [42, 132],
+      "summary": "GeometryInstanceAttribute 构造函数，校验并规范化属性选项，附带 toValue/toConstantValue 等 prototype 方法用于写入 typed array。",
+      "tags": ["constructor", "geometry", "attribute"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GregorianDate.js",
+      "type": "file",
+      "name": "GregorianDate.js",
+      "filePath": "packages/engine/Source/Core/GregorianDate.js",
+      "summary": "提供公历日期时间组件的构造与转换工具，作为 JulianDate 与 JS Date 之间的中间表示。",
+      "tags": ["date", "time", "gregorian", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HeadingPitchRange.js",
+      "type": "file",
+      "name": "HeadingPitchRange.js",
+      "filePath": "packages/engine/Source/Core/HeadingPitchRange.js",
+      "summary": "用航向角、俯仰角与距离描述相机视点围绕目标的相对姿态，是 viewBoundingSphere / lookAt 等相机的常用输入。",
+      "tags": ["camera", "orientation", "data-model", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js",
+      "type": "file",
+      "name": "HermitePolynomialApproximation.js",
+      "filePath": "packages/engine/Source/Core/HermitePolynomialApproximation.js",
+      "summary": "埃尔米特多项式插值算法实现，支持带导数的高阶插值，是 SampledProperty 中 InterpolationAlgorithm 的核心选项之一。",
+      "tags": ["interpolation", "polynomial", "hermite", "numeric", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HermitePolynomialApproximation.js:calculateCoefficientTerm",
+      "type": "function",
+      "name": "calculateCoefficientTerm",
+      "filePath": "packages/engine/Source/Core/HermitePolynomialApproximation.js",
+      "lineRange": [7, 61],
+      "summary": "递归计算埃尔米特基函数的单个系数项，用于构建插值系数矩阵。",
+      "tags": ["interpolation", "polynomial", "numeric"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HermiteSpline.js",
+      "type": "file",
+      "name": "HermiteSpline.js",
+      "filePath": "packages/engine/Source/Core/HermiteSpline.js",
+      "summary": "埃尔米特样条实现，支持自然切线与夹持切线生成方式，用于 3D 路径平滑与相机飞行。",
+      "tags": ["spline", "hermite", "interpolation", "curve", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HermiteSpline.js:HermiteSpline",
+      "type": "function",
+      "name": "HermiteSpline",
+      "filePath": "packages/engine/Source/Core/HermiteSpline.js",
+      "lineRange": [169, 224],
+      "summary": "HermiteSpline 构造函数，保存时间、点、切线数组并暴露 evaluate 方法用于按时刻求值。",
+      "tags": ["constructor", "spline", "interpolation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/InterpolationAlgorithm.js",
+      "type": "file",
+      "name": "InterpolationAlgorithm.js",
+      "filePath": "packages/engine/Source/Core/InterpolationAlgorithm.js",
+      "summary": "插值算法的抽象接口，定义 getRequiredDataPoints/interpolateOrderZero/interpolate 静态契约，由具体算法实现。",
+      "tags": ["interpolation", "interface", "abstract", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/InterpolationAlgorithm.js:InterpolationAlgorithm",
+      "type": "class",
+      "name": "InterpolationAlgorithm",
+      "filePath": "packages/engine/Source/Core/InterpolationAlgorithm.js",
+      "lineRange": [14, 70],
+      "summary": "插值算法接口占位类，定义插值相关静态方法契约（实际由 Lagrange/Linear/Hermite 等实现填充）。",
+      "tags": ["interpolation", "interface", "abstract"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/InterpolationType.js",
+      "type": "file",
+      "name": "InterpolationType.js",
+      "filePath": "packages/engine/Source/Core/InterpolationType.js",
+      "summary": "枚举，标识 SampledProperty 与动画通道使用的插值类型（LINEAR、LAGRANGE、HERMITE）。",
+      "tags": ["enum", "interpolation", "animation", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "file",
+      "name": "JulianDate.js",
+      "filePath": "packages/engine/Source/Core/JulianDate.js",
+      "summary": "CesiumJS 时间体系核心：用浮点天数+秒表示 Julian 日期，支持 TAI/UTC 双标准、闰秒换算、与公历和 JS Date 的互转，是几乎所有时变数据的基线。",
+      "tags": ["date", "time", "julian", "leap-second", "core"],
+      "complexity": "complex",
+      "languageNotes": "通过闭包内 LeapSecond 数组与 binarySearch 处理闰秒，TAI 与 UTC 双轨维护以避免累积误差。"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/JulianDate.js:JulianDate",
+      "type": "class",
+      "name": "JulianDate",
+      "filePath": "packages/engine/Source/Core/JulianDate.js",
+      "lineRange": [199, 1192],
+      "summary": "JulianDate 类：包含 fromGregorianDate/fromDate/fromIso8601/now 等工厂方法，以及 toIso8601/addSeconds/compare/equalsEpsilon 等算术与比较方法，是整个时间子系统的事实入口。",
+      "tags": ["date", "time", "julian", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/LagrangePolynomialApproximation.js",
+      "type": "file",
+      "name": "LagrangePolynomialApproximation.js",
+      "filePath": "packages/engine/Source/Core/LagrangePolynomialApproximation.js",
+      "summary": "拉格朗日多项式插值算法实现，作为 InterpolationAlgorithm 契约的具体选项，支持任意阶过点插值。",
+      "tags": ["interpolation", "polynomial", "lagrange", "numeric", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/LeapSecond.js",
+      "type": "file",
+      "name": "LeapSecond.js",
+      "filePath": "packages/engine/Source/Core/LeapSecond.js",
+      "summary": "记录某次闰秒生效日期及 TAI-UTC 偏移的不可变数据项，被 JulianDate 用于双向换算。",
+      "tags": ["leap-second", "time", "data-model", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/LinearApproximation.js",
+      "type": "file",
+      "name": "LinearApproximation.js",
+      "filePath": "packages/engine/Source/Core/LinearApproximation.js",
+      "summary": "线性插值算法实现，实现 InterpolationAlgorithm 契约，仅需两个数据点即可插值。",
+      "tags": ["interpolation", "linear", "numeric", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/LinearSpline.js",
+      "type": "file",
+      "name": "LinearSpline.js",
+      "filePath": "packages/engine/Source/Core/LinearSpline.js",
+      "summary": "线性样条实现，在相邻点之间做线性插值，是 Spline 子类中最简单的形式，常作为其它样条的退化基线。",
+      "tags": ["spline", "linear", "interpolation", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/MapProjection.js",
+      "type": "file",
+      "name": "MapProjection.js",
+      "filePath": "packages/engine/Source/Core/MapProjection.js",
+      "summary": "地图投影抽象接口，定义 project/unproject 契约，由具体投影（如 WebMercator、Geographic）实现地理坐标与投影坐标互转。",
+      "tags": ["projection", "abstract", "interface", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/MapProjection.js:MapProjection",
+      "type": "class",
+      "name": "MapProjection",
+      "filePath": "packages/engine/Source/Core/MapProjection.js",
+      "lineRange": [18, 56],
+      "summary": "MapProjection 抽象类，声明 project/unproject 方法契约，具体投影类继承实现。",
+      "tags": ["projection", "abstract", "interface"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/MorphWeightSpline.js",
+      "type": "file",
+      "name": "MorphWeightSpline.js",
+      "filePath": "packages/engine/Source/Core/MorphWeightSpline.js",
+      "summary": "glTF 形变目标权重的样条实现，按时间在关键帧之间插值 morph target 权重，用于模型动画。",
+      "tags": ["spline", "gltf", "morph", "animation", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Packable.js",
+      "type": "file",
+      "name": "Packable.js",
+      "filePath": "packages/engine/Source/Core/Packable.js",
+      "summary": "可打包对象的抽象接口，声明 pack/unpack 静态契约，用于将对象序列化为紧凑 typed array 以提升传输与存储效率。",
+      "tags": ["serialization", "interface", "abstract", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/PackableForInterpolation.js",
+      "type": "file",
+      "name": "PackableForInterpolation.js",
+      "filePath": "packages/engine/Source/Core/PackableForInterpolation.js",
+      "summary": "扩展 Packable 接口，声明 packForInterpolation/unpackForInterpolation 契约，为可插值打包对象提供转换格式。",
+      "tags": ["serialization", "interpolation", "interface", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/PolygonHierarchy.js",
+      "type": "file",
+      "name": "PolygonHierarchy.js",
+      "filePath": "packages/engine/Source/Core/PolygonHierarchy.js",
+      "summary": "表示带洞多边形的层级结构，由外边界 positions 与若干子 holes（同样是 PolygonHierarchy）构成。",
+      "tags": ["polygon", "geometry", "hierarchy", "data-model", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Proxy.js",
+      "type": "file",
+      "name": "Proxy.js",
+      "filePath": "packages/engine/Source/Core/Proxy.js",
+      "summary": "代理抽象接口，声明 getURL 契约，用于在请求资源前对 URL 做重写（如鉴权代理）。",
+      "tags": ["proxy", "interface", "abstract", "network", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js",
+      "type": "file",
+      "name": "QuadraticRealPolynomial.js",
+      "filePath": "packages/engine/Source/Core/QuadraticRealPolynomial.js",
+      "summary": "求解二次实系数多项式实根的数值算法，使用带消除检查的求根公式以提升数值稳定性，供高阶多项式降次使用。",
+      "tags": ["math", "polynomial", "roots", "numeric", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/QuadraticRealPolynomial.js:addWithCancellationCheck",
+      "type": "function",
+      "name": "addWithCancellationCheck",
+      "filePath": "packages/engine/Source/Core/QuadraticRealPolynomial.js",
+      "lineRange": [36, 46],
+      "summary": "在两数相加可能产生显著消除时回退返回较大原值，避免求根公式中的数值不稳定。",
+      "tags": ["math", "numeric", "cancellation"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/ClockRange.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/ClockStep.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/getTimestamp.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/ConstantSpline.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/ConstantSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/ConstantSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/CubicRealPolynomial.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/CubicRealPolynomial.js", "target": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/DeveloperError.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/binarySearch.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/EarthOrientationParametersSample.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/LeapSecond.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/Resource.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/RuntimeError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/TimeConstants.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "file:packages/engine/Source/Core/TimeStandard.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/Event.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Event.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/EventHelper.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/EventHelper.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/GeometryFactory.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/GregorianDate.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/GregorianDate.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/GregorianDate.js", "target": "file:packages/engine/Source/Core/isLeapYear.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/HeadingPitchRange.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/Cartesian4.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/LinearSpline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/Matrix4.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "file:packages/engine/Source/Core/TridiagonalSystemSolver.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/InterpolationAlgorithm.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/binarySearch.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/GregorianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/isLeapYear.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/LeapSecond.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/TimeConstants.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "file:packages/engine/Source/Core/TimeStandard.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/LagrangePolynomialApproximation.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/LinearApproximation.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/LinearApproximation.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/LinearSpline.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/LinearSpline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/LinearSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/LinearSpline.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/LinearSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/MapProjection.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/MorphWeightSpline.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/MorphWeightSpline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/MorphWeightSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/MorphWeightSpline.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/MorphWeightSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/Packable.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/PackableForInterpolation.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/PolygonHierarchy.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/Proxy.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/Clock.js", "target": "function:packages/engine/Source/Core/Clock.js:Clock", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/CubicRealPolynomial.js", "target": "function:packages/engine/Source/Core/CubicRealPolynomial.js:computeRealRoots", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/DeveloperError.js", "target": "function:packages/engine/Source/Core/DeveloperError.js:DeveloperError", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "function:packages/engine/Source/Core/EarthOrientationParameters.js:EarthOrientationParameters", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/EarthOrientationParameters.js", "target": "function:packages/engine/Source/Core/EarthOrientationParameters.js:interpolate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/Event.js", "target": "function:packages/engine/Source/Core/Event.js:Event", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js", "target": "function:packages/engine/Source/Core/GeometryInstanceAttribute.js:GeometryInstanceAttribute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js", "target": "function:packages/engine/Source/Core/HermitePolynomialApproximation.js:calculateCoefficientTerm", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/HermiteSpline.js", "target": "function:packages/engine/Source/Core/HermiteSpline.js:HermiteSpline", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/InterpolationAlgorithm.js", "target": "class:packages/engine/Source/Core/InterpolationAlgorithm.js:InterpolationAlgorithm", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/JulianDate.js", "target": "class:packages/engine/Source/Core/JulianDate.js:JulianDate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/MapProjection.js", "target": "class:packages/engine/Source/Core/MapProjection.js:MapProjection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js", "target": "function:packages/engine/Source/Core/QuadraticRealPolynomial.js:addWithCancellationCheck", "type": "contains", "direction": "forward", "weight": 1.0}
+  ]
+}

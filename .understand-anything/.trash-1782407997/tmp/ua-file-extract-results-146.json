@@ -1,0 +1,1493 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/sandcastle/gallery/panorama/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/parallels-and-meridians/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 248,
+      "nonEmptyLines": 218,
+      "functions": [
+        {
+          "name": "parallel",
+          "startLine": 7,
+          "endLine": 30,
+          "params": [
+            "latitude",
+            "color",
+            "granularity"
+          ]
+        },
+        {
+          "name": "meridian",
+          "startLine": 32,
+          "endLine": 51,
+          "params": [
+            "longitude",
+            "color",
+            "granularity"
+          ]
+        },
+        {
+          "name": "labelCoordinates",
+          "startLine": 53,
+          "endLine": 67,
+          "params": [
+            "cartographic"
+          ]
+        },
+        {
+          "name": "makeGrid",
+          "startLine": 69,
+          "endLine": 80,
+          "params": [
+            "numberOfDivisions",
+            "color",
+            "show"
+          ]
+        },
+        {
+          "name": "makeParallelsRecursive",
+          "startLine": 82,
+          "endLine": 104,
+          "params": [
+            "minLatitude",
+            "maxLatitude",
+            "depth",
+            "color"
+          ]
+        },
+        {
+          "name": "makeMeridiansRecursive",
+          "startLine": 106,
+          "endLine": 128,
+          "params": [
+            "minLongitude",
+            "maxLongitude",
+            "depth",
+            "color"
+          ]
+        },
+        {
+          "name": "updateCrosshairs",
+          "startLine": 148,
+          "endLine": 194,
+          "params": [
+            "cartographic"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parallel",
+          "callee": "viewer.entities.add",
+          "lineNumber": 9
+        },
+        {
+          "caller": "parallel",
+          "callee": "Cesium.Cartesian3.fromDegreesArray",
+          "lineNumber": 12
+        },
+        {
+          "caller": "meridian",
+          "callee": "viewer.entities.add",
+          "lineNumber": 34
+        },
+        {
+          "caller": "meridian",
+          "callee": "Cesium.Cartesian3.fromDegreesArray",
+          "lineNumber": 37
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "Cesium.Cartographic.toCartesian",
+          "lineNumber": 54
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "toDegrees(cartographic.latitude).toFixed",
+          "lineNumber": 55
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "toDegrees",
+          "lineNumber": 55
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "toDegrees(cartographic.longitude).toFixed",
+          "lineNumber": 56
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "toDegrees",
+          "lineNumber": 56
+        },
+        {
+          "caller": "labelCoordinates",
+          "callee": "viewer.entities.add",
+          "lineNumber": 59
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "makeParallelsRecursive",
+          "lineNumber": 70
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "makeMeridiansRecursive",
+          "lineNumber": 71
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "meridians.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "meridian",
+          "lineNumber": 72
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "parallels.concat",
+          "lineNumber": 74
+        },
+        {
+          "caller": "makeGrid",
+          "callee": "allLines.forEach",
+          "lineNumber": 75
+        },
+        {
+          "caller": "makeParallelsRecursive",
+          "callee": "result.push",
+          "lineNumber": 85
+        },
+        {
+          "caller": "makeParallelsRecursive",
+          "callee": "parallel",
+          "lineNumber": 85
+        },
+        {
+          "caller": "makeParallelsRecursive",
+          "callee": "makeParallelsRecursive",
+          "lineNumber": 88
+        },
+        {
+          "caller": "makeParallelsRecursive",
+          "callee": "makeParallelsRecursive",
+          "lineNumber": 94
+        },
+        {
+          "caller": "makeParallelsRecursive",
+          "callee": "southernLines.concat",
+          "lineNumber": 100
+        },
+        {
+          "caller": "makeMeridiansRecursive",
+          "callee": "result.push",
+          "lineNumber": 109
+        },
+        {
+          "caller": "makeMeridiansRecursive",
+          "callee": "meridian",
+          "lineNumber": 109
+        },
+        {
+          "caller": "makeMeridiansRecursive",
+          "callee": "makeMeridiansRecursive",
+          "lineNumber": 112
+        },
+        {
+          "caller": "makeMeridiansRecursive",
+          "callee": "makeMeridiansRecursive",
+          "lineNumber": 118
+        },
+        {
+          "caller": "makeMeridiansRecursive",
+          "callee": "westernLines.concat",
+          "lineNumber": 124
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "Cesium.defined",
+          "lineNumber": 151
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 152
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 153
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 154
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 155
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 156
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "viewer.entities.remove",
+          "lineNumber": 157
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "toDegrees",
+          "lineNumber": 160
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "toDegrees",
+          "lineNumber": 163
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "parallel",
+          "lineNumber": 169
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "toDegrees",
+          "lineNumber": 170
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "meridian",
+          "lineNumber": 174
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "toDegrees",
+          "lineNumber": 175
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "labelCoordinates",
+          "lineNumber": 179
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "Cesium.Cartographic.fromDegrees",
+          "lineNumber": 182
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "parallel",
+          "lineNumber": 187
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "meridian",
+          "lineNumber": 188
+        },
+        {
+          "caller": "updateCrosshairs",
+          "callee": "labelCoordinates",
+          "lineNumber": 189
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/parallels-and-meridians/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/partial-ellipsoids/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/partial-ellipsoids/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 176,
+      "nonEmptyLines": 163,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/partial-ellipsoids/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-fireworks/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-fireworks/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 174,
+      "nonEmptyLines": 155,
+      "functions": [
+        {
+          "name": "getImage",
+          "startLine": 19,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "createFirework",
+          "startLine": 43,
+          "endLine": 103,
+          "params": [
+            "offset",
+            "color",
+            "bursts"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getImage",
+          "callee": "Cesium.defined",
+          "lineNumber": 20
+        },
+        {
+          "caller": "getImage",
+          "callee": "document.createElement",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getImage",
+          "callee": "particleCanvas.getContext",
+          "lineNumber": 24
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.beginPath",
+          "lineNumber": 25
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.arc",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.closePath",
+          "lineNumber": 27
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.fill",
+          "lineNumber": 29
+        },
+        {
+          "caller": "createFirework",
+          "callee": "Cesium.Cartesian3.add",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createFirework",
+          "callee": "Cesium.Matrix4.fromTranslation",
+          "lineNumber": 49
+        },
+        {
+          "caller": "createFirework",
+          "callee": "Cesium.Matrix4.multiply",
+          "lineNumber": 53
+        },
+        {
+          "caller": "createFirework",
+          "callee": "Cesium.Matrix4.inverseTransformation",
+          "lineNumber": 58
+        },
+        {
+          "caller": "createFirework",
+          "callee": "Cesium.Math.randomBetween",
+          "lineNumber": 63
+        },
+        {
+          "caller": "force",
+          "callee": "Cesium.Matrix4.multiplyByPoint",
+          "lineNumber": 69
+        },
+        {
+          "caller": "force",
+          "callee": "Cesium.Cartesian3.magnitudeSquared",
+          "lineNumber": 74
+        },
+        {
+          "caller": "force",
+          "callee": "Cesium.Cartesian3.clone",
+          "lineNumber": 75
+        },
+        {
+          "caller": "createFirework",
+          "callee": "scene.primitives.add",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createFirework",
+          "callee": "getImage",
+          "lineNumber": 88
+        },
+        {
+          "caller": "createFirework",
+          "callee": "color.withAlpha",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-fireworks/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-tails/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 244,
+      "nonEmptyLines": 224,
+      "functions": [
+        {
+          "name": "resetCamera",
+          "startLine": 18,
+          "endLine": 20,
+          "params": []
+        },
+        {
+          "name": "getImage",
+          "startLine": 25,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "forceFunction",
+          "startLine": 135,
+          "endLine": 170,
+          "params": [
+            "options",
+            "iteration"
+          ]
+        },
+        {
+          "name": "createParticleSystems",
+          "startLine": 176,
+          "endLine": 210,
+          "params": [
+            "options",
+            "systemsArray"
+          ]
+        },
+        {
+          "name": "showAll",
+          "startLine": 218,
+          "endLine": 223,
+          "params": [
+            "systemsArray",
+            "show"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resetCamera",
+          "callee": "viewer.camera.lookAt",
+          "lineNumber": 19
+        },
+        {
+          "caller": "getImage",
+          "callee": "Cesium.defined",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getImage",
+          "callee": "document.createElement",
+          "lineNumber": 27
+        },
+        {
+          "caller": "getImage",
+          "callee": "particleCanvas.getContext",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.beginPath",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.arc",
+          "lineNumber": 32
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.closePath",
+          "lineNumber": 33
+        },
+        {
+          "caller": "getImage",
+          "callee": "context2D.fill",
+          "lineNumber": 35
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Math.clamp",
+          "lineNumber": 137
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Cartesian3.normalize",
+          "lineNumber": 139
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Cartesian3.multiplyByScalar",
+          "lineNumber": 143
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Cartesian3.add",
+          "lineNumber": 149
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Cartographic.fromCartesian",
+          "lineNumber": 155
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Math.cos",
+          "lineNumber": 164
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Math.sin",
+          "lineNumber": 166
+        },
+        {
+          "caller": "forceFunction",
+          "callee": "Cesium.Cartographic.toCartesian",
+          "lineNumber": 168
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "Math.cos",
+          "lineNumber": 180
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "Math.sin",
+          "lineNumber": 181
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "Cesium.Matrix4.fromTranslation",
+          "lineNumber": 183
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "Cesium.Color.fromRandom",
+          "lineNumber": 187
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "forceFunction",
+          "lineNumber": 190
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "viewer.scene.primitives.add",
+          "lineNumber": 192
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "getImage",
+          "lineNumber": 194
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "color.withAlpha",
+          "lineNumber": 196
+        },
+        {
+          "caller": "createParticleSystems",
+          "callee": "systemsArray.push",
+          "lineNumber": 208
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-tails/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-weather/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 168,
+      "nonEmptyLines": 157,
+      "functions": [
+        {
+          "name": "resetCameraFunction",
+          "startLine": 11,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "snowUpdate",
+          "startLine": 38,
+          "endLine": 62,
+          "params": [
+            "particle",
+            "dt"
+          ]
+        },
+        {
+          "name": "rainUpdate",
+          "startLine": 72,
+          "endLine": 99,
+          "params": [
+            "particle",
+            "dt"
+          ]
+        },
+        {
+          "name": "startSnow",
+          "startLine": 104,
+          "endLine": 130,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resetCameraFunction",
+          "callee": "scene.camera.setView",
+          "lineNumber": 12
+        },
+        {
+          "caller": "snowUpdate",
+          "callee": "Cesium.Cartesian3.normalize",
+          "lineNumber": 39
+        },
+        {
+          "caller": "snowUpdate",
+          "callee": "Cesium.Cartesian3.multiplyByScalar",
+          "lineNumber": 43
+        },
+        {
+          "caller": "snowUpdate",
+          "callee": "Cesium.Math.randomBetween",
+          "lineNumber": 45
+        },
+        {
+          "caller": "snowUpdate",
+          "callee": "Cesium.Cartesian3.add",
+          "lineNumber": 48
+        },
+        {
+          "caller": "snowUpdate",
+          "callee": "Cesium.Cartesian3.distance",
+          "lineNumber": 53
+        },
+        {
+          "caller": "rainUpdate",
+          "callee": "Cesium.Cartesian3.normalize",
+          "lineNumber": 73
+        },
+        {
+          "caller": "rainUpdate",
+          "callee": "Cesium.Cartesian3.multiplyByScalar",
+          "lineNumber": 77
+        },
+        {
+          "caller": "rainUpdate",
+          "callee": "Cesium.Cartesian3.add",
+          "lineNumber": 83
+        },
+        {
+          "caller": "rainUpdate",
+          "callee": "Cesium.Cartesian3.distance",
+          "lineNumber": 89
+        },
+        {
+          "caller": "startSnow",
+          "callee": "scene.primitives.removeAll",
+          "lineNumber": 105
+        },
+        {
+          "caller": "startSnow",
+          "callee": "scene.primitives.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "startSnow",
+          "callee": "Cesium.Matrix4.fromTranslation",
+          "lineNumber": 108
+        },
+        {
+          "caller": "startSnow",
+          "callee": "Cesium.Color.WHITE.withAlpha",
+          "lineNumber": 117
+        },
+        {
+          "caller": "startSnow",
+          "callee": "Cesium.Color.WHITE.withAlpha",
+          "lineNumber": 118
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system-weather/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 136,
+      "nonEmptyLines": 128,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 254,
+      "nonEmptyLines": 211,
+      "functions": [
+        {
+          "name": "computeModelMatrix",
+          "startLine": 40,
+          "endLine": 42,
+          "params": [
+            "entity",
+            "time"
+          ]
+        },
+        {
+          "name": "computeEmitterModelMatrix",
+          "startLine": 50,
+          "endLine": 56,
+          "params": []
+        },
+        {
+          "name": "applyGravity",
+          "startLine": 143,
+          "endLine": 155,
+          "params": [
+            "p",
+            "dt"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "computeModelMatrix",
+          "callee": "entity.computeModelMatrix",
+          "lineNumber": 41
+        },
+        {
+          "caller": "computeEmitterModelMatrix",
+          "callee": "Cesium.HeadingPitchRoll.fromDegrees",
+          "lineNumber": 51
+        },
+        {
+          "caller": "computeEmitterModelMatrix",
+          "callee": "Cesium.Cartesian3.fromElements",
+          "lineNumber": 52
+        },
+        {
+          "caller": "computeEmitterModelMatrix",
+          "callee": "Cesium.Quaternion.fromHeadingPitchRoll",
+          "lineNumber": 53
+        },
+        {
+          "caller": "computeEmitterModelMatrix",
+          "callee": "Cesium.Matrix4.fromTranslationRotationScale",
+          "lineNumber": 55
+        },
+        {
+          "caller": "applyGravity",
+          "callee": "Cesium.Cartesian3.normalize",
+          "lineNumber": 147
+        },
+        {
+          "caller": "applyGravity",
+          "callee": "Cesium.Cartesian3.multiplyByScalar",
+          "lineNumber": 148
+        },
+        {
+          "caller": "applyGravity",
+          "callee": "Cesium.Cartesian3.add",
+          "lineNumber": 154
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/particle-system/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/pbr-lighting-dev/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 165,
+      "nonEmptyLines": 158,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 332,
+      "nonEmptyLines": 291,
+      "functions": [
+        {
+          "name": "computeModelMatrixFromHeight",
+          "startLine": 19,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "updateModelLightingProperties",
+          "startLine": 233,
+          "endLine": 263,
+          "params": []
+        },
+        {
+          "name": "loadModel",
+          "startLine": 265,
+          "endLine": 284,
+          "params": [
+            "ionAssetId"
+          ]
+        },
+        {
+          "name": "zoomToModel",
+          "startLine": 286,
+          "endLine": 310,
+          "params": [
+            "model"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "computeModelMatrixFromHeight",
+          "callee": "Number",
+          "lineNumber": 20
+        },
+        {
+          "caller": "computeModelMatrixFromHeight",
+          "callee": "isNaN",
+          "lineNumber": 21
+        },
+        {
+          "caller": "computeModelMatrixFromHeight",
+          "callee": "Cesium.Cartesian3.fromDegrees",
+          "lineNumber": 26
+        },
+        {
+          "caller": "computeModelMatrixFromHeight",
+          "callee": "Cesium.Transforms.headingPitchRollToFixedFrame",
+          "lineNumber": 31
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "Number",
+          "lineNumber": 234
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "isNaN",
+          "lineNumber": 237
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "Number",
+          "lineNumber": 242
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "isNaN",
+          "lineNumber": 243
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "Number",
+          "lineNumber": 247
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "isNaN",
+          "lineNumber": 248
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "Number",
+          "lineNumber": 252
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "isNaN",
+          "lineNumber": 253
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "Number",
+          "lineNumber": 257
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "isNaN",
+          "lineNumber": 258
+        },
+        {
+          "caller": "updateModelLightingProperties",
+          "callee": "model.environmentMapManager.reset",
+          "lineNumber": 262
+        },
+        {
+          "caller": "loadModel",
+          "callee": "Cesium.IonResource.fromAssetId",
+          "lineNumber": 267
+        },
+        {
+          "caller": "loadModel",
+          "callee": "Cesium.Model.fromGltfAsync",
+          "lineNumber": 268
+        },
+        {
+          "caller": "loadModel",
+          "callee": "computeModelMatrixFromHeight",
+          "lineNumber": 270
+        },
+        {
+          "caller": "loadModel",
+          "callee": "scene.primitives.removeAll",
+          "lineNumber": 274
+        },
+        {
+          "caller": "loadModel",
+          "callee": "scene.primitives.add",
+          "lineNumber": 275
+        },
+        {
+          "caller": "loadModel",
+          "callee": "updateModelLightingProperties",
+          "lineNumber": 276
+        },
+        {
+          "caller": "loadModel",
+          "callee": "model.readyEvent.addEventListener",
+          "lineNumber": 278
+        },
+        {
+          "caller": "loadModel",
+          "callee": "zoomToModel",
+          "lineNumber": 279
+        },
+        {
+          "caller": "loadModel",
+          "callee": "window.alert",
+          "lineNumber": 282
+        },
+        {
+          "caller": "zoomToModel",
+          "callee": "Cesium.Matrix4.multiplyByUniformScale",
+          "lineNumber": 296
+        },
+        {
+          "caller": "zoomToModel",
+          "callee": "Cesium.Math.toRadians",
+          "lineNumber": 304
+        },
+        {
+          "caller": "zoomToModel",
+          "callee": "camera.lookAt",
+          "lineNumber": 306
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/pbr-lighting-dev/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "development",
+          "level": 1,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/per-feature-post-processing/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": "packages/sandcastle/gallery/per-feature-post-processing/main.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 62,
+      "functions": [
+        {
+          "name": "addMouseOver",
+          "startLine": 33,
+          "endLine": 43,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "removeMouseOver",
+          "startLine": 45,
+          "endLine": 48,
+          "params": [
+            "stage"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addMouseOver",
+          "callee": "handler.setInputAction",
+          "lineNumber": 35
+        },
+        {
+          "caller": "addMouseOver",
+          "callee": "viewer.scene.pick",
+          "lineNumber": 36
+        },
+        {
+          "caller": "addMouseOver",
+          "callee": "Cesium.defined",
+          "lineNumber": 37
+        },
+        {
+          "caller": "removeMouseOver",
+          "callee": "handler.destroy",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/gallery/per-feature-post-processing/sandcastle.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "legacyId",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "title",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "thumbnail",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ]
+}

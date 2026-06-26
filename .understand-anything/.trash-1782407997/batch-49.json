@@ -1,0 +1,391 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/testDefinitionChanged.js",
+      "type": "file",
+      "name": "testDefinitionChanged.js",
+      "filePath": "Specs/testDefinitionChanged.js",
+      "summary": "测试辅助工具：验证某个 property 的某个属性被赋值或 setValue 时会正确触发 definitionChanged 事件（含新值、旧值参数），并保证相同赋值不触发事件。",
+      "tags": ["test", "utility", "event-handler", "jasmine", "validation"],
+      "complexity": "simple",
+      "languageNotes": "默认导出一个 Jasmine 测试辅助函数，被众多 GraphicsSpec / MaterialPropertySpec 复用。"
+    },
+    {
+      "id": "function:Specs/testDefinitionChanged.js:testDefinitionChanged",
+      "type": "function",
+      "name": "testDefinitionChanged",
+      "filePath": "Specs/testDefinitionChanged.js",
+      "lineRange": [3, 28],
+      "summary": "断言指定 property 的指定属性在被赋值（new ConstantProperty）或调用 setValue 时会触发 definitionChanged 事件，且传入正确的新旧值；同一引用再次赋值不触发事件。",
+      "tags": ["test", "utility", "event-handler", "definition-changed", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "file",
+      "name": "testMaterialDefinitionChanged.js",
+      "filePath": "Specs/testMaterialDefinitionChanged.js",
+      "summary": "测试辅助工具：针对 Material 类型属性，验证对其 color 子属性的 setValue 会正确触发 definitionChanged 事件，专门覆盖材质类 property 的事件传播。",
+      "tags": ["test", "utility", "event-handler", "jasmine", "material"],
+      "complexity": "simple",
+      "languageNotes": "默认导出一个 Jasmine 测试辅助函数，被含 material 的 GraphicsSpec 复用。"
+    },
+    {
+      "id": "function:Specs/testMaterialDefinitionChanged.js:testMaterialDefinitionChanged",
+      "type": "function",
+      "name": "testMaterialDefinitionChanged",
+      "filePath": "Specs/testMaterialDefinitionChanged.js",
+      "lineRange": [3, 28],
+      "summary": "断言当指定 material 属性的 color 子属性调用 setValue 时会触发 definitionChanged 事件，验证材质 property 嵌套属性的变更传播。",
+      "tags": ["test", "utility", "event-handler", "material", "definition-changed"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/BoxGraphicsSpec.js",
+      "type": "file",
+      "name": "BoxGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/BoxGraphicsSpec.js",
+      "summary": "BoxGraphics 的 Jasmine 测试套件，覆盖构造、克隆、合并（merge）以及各属性的 definitionChanged 事件行为。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/CheckerboardMaterialPropertySpec.js",
+      "type": "file",
+      "name": "CheckerboardMaterialPropertySpec.js",
+      "filePath": "packages/engine/Specs/DataSources/CheckerboardMaterialPropertySpec.js",
+      "summary": "CheckerboardMaterialProperty 的测试套件，验证棋盘格材质 property 的常量值、相等性判断（equals）、definitionChanged 事件与类型标识。",
+      "tags": ["test", "material", "property", "jasmine", "datasource"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/CorridorGraphicsSpec.js",
+      "type": "file",
+      "name": "CorridorGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/CorridorGraphicsSpec.js",
+      "summary": "CorridorGraphics（走廊图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/CylinderGraphicsSpec.js",
+      "type": "file",
+      "name": "CylinderGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/CylinderGraphicsSpec.js",
+      "summary": "CylinderGraphics（圆柱图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/EllipseGraphicsSpec.js",
+      "type": "file",
+      "name": "EllipseGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/EllipseGraphicsSpec.js",
+      "summary": "EllipseGraphics（椭圆图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/EllipsoidGraphicsSpec.js",
+      "type": "file",
+      "name": "EllipsoidGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/EllipsoidGraphicsSpec.js",
+      "summary": "EllipsoidGraphics（椭球体图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/NodeTransformationPropertySpec.js",
+      "type": "file",
+      "name": "NodeTransformationPropertySpec.js",
+      "filePath": "packages/engine/Specs/DataSources/NodeTransformationPropertySpec.js",
+      "summary": "NodeTransformationProperty 的测试套件，验证节点变换 property 的构造、definitionChanged 事件、常量/样本值及相等性。",
+      "tags": ["test", "property", "transformation", "jasmine", "datasource"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/PlaneGraphicsSpec.js",
+      "type": "file",
+      "name": "PlaneGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/PlaneGraphicsSpec.js",
+      "summary": "PlaneGraphics（平面图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/PolygonGraphicsSpec.js",
+      "type": "file",
+      "name": "PolygonGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/PolygonGraphicsSpec.js",
+      "summary": "PolygonGraphics（多边形图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性），是本批次规模最大的 spec。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/PolylineGlowMaterialPropertySpec.js",
+      "type": "file",
+      "name": "PolylineGlowMaterialPropertySpec.js",
+      "filePath": "packages/engine/Specs/DataSources/PolylineGlowMaterialPropertySpec.js",
+      "summary": "PolylineGlowMaterialProperty（发光线条材质）的测试套件，验证构造、definitionChanged 事件、类型标识与相等性。",
+      "tags": ["test", "material", "property", "jasmine", "datasource"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/PolylineGraphicsSpec.js",
+      "type": "file",
+      "name": "PolylineGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/PolylineGraphicsSpec.js",
+      "summary": "PolylineGraphics（折线图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/PolylineVolumeGraphicsSpec.js",
+      "type": "file",
+      "name": "PolylineVolumeGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/PolylineVolumeGraphicsSpec.js",
+      "summary": "PolylineVolumeGraphics（管状体图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/RectangleGraphicsSpec.js",
+      "type": "file",
+      "name": "RectangleGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/RectangleGraphicsSpec.js",
+      "summary": "RectangleGraphics（矩形图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/StripeMaterialPropertySpec.js",
+      "type": "file",
+      "name": "StripeMaterialPropertySpec.js",
+      "filePath": "packages/engine/Specs/DataSources/StripeMaterialPropertySpec.js",
+      "summary": "StripeMaterialProperty（条纹材质）的测试套件，验证构造、definitionChanged 事件、常量/样本值、类型标识与相等性。",
+      "tags": ["test", "material", "property", "jasmine", "datasource"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/DataSources/WallGraphicsSpec.js",
+      "type": "file",
+      "name": "WallGraphicsSpec.js",
+      "filePath": "packages/engine/Specs/DataSources/WallGraphicsSpec.js",
+      "summary": "WallGraphics（墙体图形）的测试套件，覆盖构造、克隆、合并及各属性 definitionChanged 事件传播（含 material 属性）。",
+      "tags": ["test", "datasource", "graphics", "jasmine", "entity"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/testDefinitionChanged.js",
+      "target": "function:Specs/testDefinitionChanged.js:testDefinitionChanged",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/testDefinitionChanged.js",
+      "target": "function:Specs/testDefinitionChanged.js:testDefinitionChanged",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/testMaterialDefinitionChanged.js",
+      "target": "function:Specs/testMaterialDefinitionChanged.js:testMaterialDefinitionChanged",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/testMaterialDefinitionChanged.js",
+      "target": "function:Specs/testMaterialDefinitionChanged.js:testMaterialDefinitionChanged",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/BoxGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/BoxGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/CheckerboardMaterialPropertySpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/CorridorGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/CorridorGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/CylinderGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/CylinderGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/EllipseGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/EllipseGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/EllipsoidGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/EllipsoidGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/NodeTransformationPropertySpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PlaneGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PlaneGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolygonGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolygonGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolylineGlowMaterialPropertySpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolylineGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolylineGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolylineVolumeGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/PolylineVolumeGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/RectangleGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/RectangleGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/StripeMaterialPropertySpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/WallGraphicsSpec.js",
+      "target": "file:Specs/testDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/DataSources/WallGraphicsSpec.js",
+      "target": "file:Specs/testMaterialDefinitionChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

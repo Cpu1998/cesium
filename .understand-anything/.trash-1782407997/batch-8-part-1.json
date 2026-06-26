@@ -1,0 +1,428 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/WallGeometryLibrary.js",
+      "type": "file",
+      "name": "WallGeometryLibrary.js",
+      "filePath": "packages/engine/Source/Core/WallGeometryLibrary.js",
+      "summary": "墙体几何内部库,负责对墙体位置数组进行去重并生成上下边缘顶点,被 WallGeometry / WallOutlineGeometry 复用。",
+      "tags": ["utility", "geometry", "cesium-core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WallGeometryLibrary.js:removeDuplicates",
+      "type": "function",
+      "name": "removeDuplicates",
+      "filePath": "packages/engine/Source/Core/WallGeometryLibrary.js",
+      "lineRange": [22, 100],
+      "summary": "基于经纬度近似相等对墙体的顶部/底部高度位置序列去重,并补齐缺失的高度值。",
+      "tags": ["utility", "geometry", "deduplication"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/WallOutlineGeometry.js",
+      "type": "file",
+      "name": "WallOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Core/WallOutlineGeometry.js",
+      "summary": "定义墙体外轮廓线几何体,基于 WallGeometryLibrary 生成的顶点构建位置/索引属性,供 primitive 渲染。",
+      "tags": ["data-model", "geometry", "cesium-core"],
+      "complexity": "complex",
+      "languageNotes": "采用构造函数 + 静态 createGeometry 模式生成 GPU 几何数据。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WallOutlineGeometry.js:WallOutlineGeometry",
+      "type": "function",
+      "name": "WallOutlineGeometry",
+      "filePath": "packages/engine/Source/Core/WallOutlineGeometry.js",
+      "lineRange": [55, 107],
+      "summary": "构造墙体轮廓几何体,解析位置/高度/granularity 选项并委托 WallGeometryLibrary 生成顶点。",
+      "tags": ["constructor", "geometry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "file",
+      "name": "WebMercatorProjection.js",
+      "filePath": "packages/engine/Source/Core/WebMercatorProjection.js",
+      "summary": "实现 Web Mercator(球面墨卡托)投影与逆投影,广泛用于影像瓦片及在线地图服务。",
+      "tags": ["projection", "utility", "cesium-core", "mapping"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/WebMercatorProjection.js:WebMercatorProjection",
+      "type": "class",
+      "name": "WebMercatorProjection",
+      "filePath": "packages/engine/Source/Core/WebMercatorProjection.js",
+      "lineRange": [21, 132],
+      "summary": "封装 Web Mercator 投影转换,提供 project / unproject 及经纬度到墨卡托角度互转的静态方法。",
+      "tags": ["projection", "class", "mapping"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/WindingOrder.js",
+      "type": "file",
+      "name": "WindingOrder.js",
+      "filePath": "packages/engine/Source/Core/WindingOrder.js",
+      "summary": "枚举多边形顶点环绕方向(顺时针/逆时针),用于面剔除与几何定向判定。",
+      "tags": ["enum", "geometry", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "type": "file",
+      "name": "WireframeIndexGenerator.js",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "summary": "为三角网、三角带、三角扇等图元生成线框索引数组,供 Model/Mesh 线框渲染使用。",
+      "tags": ["utility", "geometry", "rendering", "cesium-core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangles",
+      "type": "function",
+      "name": "createWireframeFromTriangles",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [14, 31],
+      "summary": "基于连续顶点(三角形列表)生成每个三角形的边索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleIndices",
+      "type": "function",
+      "name": "createWireframeFromTriangleIndices",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [33, 54],
+      "summary": "基于给定的索引缓冲(三角形列表)生成去重后的线框边索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleStrip",
+      "type": "function",
+      "name": "createWireframeFromTriangleStrip",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [56, 78],
+      "summary": "为三角带图元(连续顶点)生成线框索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleStripIndices",
+      "type": "function",
+      "name": "createWireframeFromTriangleStripIndices",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [80, 107],
+      "summary": "为带索引缓冲的三角带图元生成线框索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleFan",
+      "type": "function",
+      "name": "createWireframeFromTriangleFan",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [109, 131],
+      "summary": "为三角扇图元(连续顶点)生成线框索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleFanIndices",
+      "type": "function",
+      "name": "createWireframeFromTriangleFanIndices",
+      "filePath": "packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "lineRange": [133, 160],
+      "summary": "为带索引缓冲的三角扇图元生成线框索引。",
+      "tags": ["utility", "geometry", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js",
+      "type": "file",
+      "name": "arrayRemoveDuplicates.js",
+      "filePath": "packages/engine/Source/Core/arrayRemoveDuplicates.js",
+      "summary": "通用工具:基于自定义 equalsEpsilon 谓词移除数组中相邻的近似重复元素,支持环绕去重和移除索引回收。",
+      "tags": ["utility", "array", "cesium-core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/arrayRemoveDuplicates.js:arrayRemoveDuplicates",
+      "type": "function",
+      "name": "arrayRemoveDuplicates",
+      "filePath": "packages/engine/Source/Core/arrayRemoveDuplicates.js",
+      "lineRange": [49, 127],
+      "summary": "按 equalsEpsilon 对相邻元素判等去重,可选 wrapAround 首尾拼接及记录被删除下标。",
+      "tags": ["utility", "array", "deduplication"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/barycentricCoordinates.js",
+      "type": "file",
+      "name": "barycentricCoordinates.js",
+      "filePath": "packages/engine/Source/Core/barycentricCoordinates.js",
+      "summary": "计算二维/三维点相对三角形三个顶点的重心坐标,是点-三角形求交与拾取的基础。",
+      "tags": ["utility", "math", "geometry", "cesium-core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/barycentricCoordinates.js:barycentricCoordinates",
+      "type": "function",
+      "name": "barycentricCoordinates",
+      "filePath": "packages/engine/Source/Core/barycentricCoordinates.js",
+      "lineRange": [31, 108],
+      "summary": "返回点相对三角形 (p0,p1,p2) 的重心坐标 (x,y,z),并处理退化情形。",
+      "tags": ["utility", "math", "geometry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js",
+      "type": "file",
+      "name": "decodeVectorPolylinePositions.js",
+      "filePath": "packages/engine/Source/Core/decodeVectorPolylinePositions.js",
+      "summary": "解压矢量瓦片中 zig-zag 编码的折线顶点,重建为笛卡尔坐标供 Vector 3D Tiles 渲染。",
+      "tags": ["utility", "decoding", "vector-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/decodeVectorPolylinePositions.js:decodeVectorPolylinePositions",
+      "type": "function",
+      "name": "decodeVectorPolylinePositions",
+      "filePath": "packages/engine/Source/Core/decodeVectorPolylinePositions.js",
+      "lineRange": [11, 50],
+      "summary": "对 zig-zag delta 编码的折线缓冲进行解码,按矩形范围和高度区间还原为三维笛卡尔坐标。",
+      "tags": ["utility", "decoding", "vector-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/pointInsideTriangle.js",
+      "type": "file",
+      "name": "pointInsideTriangle.js",
+      "filePath": "packages/engine/Source/Core/pointInsideTriangle.js",
+      "summary": "通过重心坐标判定三维点是否位于三角形内部。",
+      "tags": ["utility", "math", "geometry", "cesium-core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/pointInsideTriangle.js:pointInsideTriangle",
+      "type": "function",
+      "name": "pointInsideTriangle",
+      "filePath": "packages/engine/Source/Core/pointInsideTriangle.js",
+      "lineRange": [26, 38],
+      "summary": "基于 barycentricCoordinates 判定点是否在三角形内。",
+      "tags": ["utility", "math", "geometry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js",
+      "type": "file",
+      "name": "scaleToGeodeticSurface.js",
+      "filePath": "packages/engine/Source/Core/scaleToGeodeticSurface.js",
+      "summary": "求解将点缩放到椭球表面所需的向量,是大地坐标转换(Ellipsoid.cartesianToCartographic 等)的核心算法。",
+      "tags": ["utility", "math", "ellipsoid", "cesium-core"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Newton 迭代法逼近二次曲面交点。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/scaleToGeodeticSurface.js:scaleToGeodeticSurface",
+      "type": "function",
+      "name": "scaleToGeodeticSurface",
+      "filePath": "packages/engine/Source/Core/scaleToGeodeticSurface.js",
+      "lineRange": [25, 146],
+      "summary": "通过迭代法计算将笛卡尔点投影到椭球表面所沿的缩放系数与交点。",
+      "tags": ["utility", "math", "ellipsoid"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/UniformState.js",
+      "type": "file",
+      "name": "UniformState.js",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "summary": "维护并向 WebGL shader 上传场景级 uniform(视图、投影、模型视图、相机、光源等),采用惰性求值(clean* 方法)。",
+      "tags": ["renderer", "uniform", "shader", "scene-state"],
+      "complexity": "complex",
+      "languageNotes": "通过 defineProperty + dirty flag 实现 lazy 派生矩阵缓存,避免每帧重算。"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:UniformState",
+      "type": "function",
+      "name": "UniformState",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [23, 193],
+      "summary": "构造 uniform 状态对象,初始化各类矩阵、向量、视口、光源等缓存字段并定义 getter/setter。",
+      "tags": ["constructor", "renderer", "uniform"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:setCamera",
+      "type": "function",
+      "name": "setCamera",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [1238, 1318],
+      "summary": "从相机对象更新位置、方向、向上向量、经纬度、地表法线及局部 ENU 变换、曲率等派生量。",
+      "tags": ["renderer", "uniform", "camera"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:setSunAndMoonDirections",
+      "type": "function",
+      "name": "setSunAndMoonDirections",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [1322, 1360],
+      "summary": "基于 Simon1994 行星位置计算太阳与月亮方向并将其从惯性系转换到固定系。",
+      "tags": ["renderer", "uniform", "lighting"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:cleanModelViewProjection",
+      "type": "function",
+      "name": "cleanModelViewProjection",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [1685, 1695],
+      "summary": "在脏标记触发时重新计算 modelViewProjection 合并矩阵。",
+      "tags": ["renderer", "uniform", "matrix"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:view2Dto3D",
+      "type": "function",
+      "name": "view2Dto3D",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [1823, 1918],
+      "summary": "将 2D 视图下的位置/方向/right/up 通过投影逆变换映射回 3D 椭球空间,用于 Columbus/2D 模式切换。",
+      "tags": ["renderer", "uniform", "projection"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/UniformState.js:updateView3D",
+      "type": "function",
+      "name": "updateView3D",
+      "filePath": "packages/engine/Source/Renderer/UniformState.js",
+      "lineRange": [1920, 1939],
+      "summary": "更新 3D 视图矩阵及派生的旋转部分,必要时调用 view2Dto3D。",
+      "tags": ["renderer", "uniform", "view-matrix"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Atmosphere.js",
+      "type": "file",
+      "name": "Atmosphere.js",
+      "filePath": "packages/engine/Source/Scene/Atmosphere.js",
+      "summary": "封装大气渲染配置参数(光照类型、亮度、瑞利/米氏系数等),供 Scene / DynamicEnvironmentMapManager 读取。",
+      "tags": ["config", "atmosphere", "scene"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Atmosphere.js:Atmosphere",
+      "type": "function",
+      "name": "Atmosphere",
+      "filePath": "packages/engine/Source/Scene/Atmosphere.js",
+      "lineRange": [39, 126],
+      "summary": "构造大气参数对象,以 getter/setter 暴露动态光照、亮度等可调属性。",
+      "tags": ["constructor", "atmosphere"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "function:packages/engine/Source/Core/WallGeometryLibrary.js:removeDuplicates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/Cartographic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "target": "file:packages/engine/Source/Core/PolylinePipeline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "function:packages/engine/Source/Core/WallOutlineGeometry.js:WallOutlineGeometry", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/BoundingSphere.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/ComponentDatatype.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/Ellipsoid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/Geometry.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/GeometryAttribute.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/GeometryAttributes.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/IndexDatatype.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/PrimitiveType.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WallOutlineGeometry.js", "target": "file:packages/engine/Source/Core/WallGeometryLibrary.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "class:packages/engine/Source/Core/WebMercatorProjection.js:WebMercatorProjection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/Cartographic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/Ellipsoid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WebMercatorProjection.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/WindingOrder.js", "target": "file:packages/engine/Source/Core/WebGLConstants.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangles", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleIndices", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleStrip", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleStripIndices", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleFan", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "function:packages/engine/Source/Core/WireframeIndexGenerator.js:createWireframeFromTriangleFanIndices", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "file:packages/engine/Source/Core/IndexDatatype.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/WireframeIndexGenerator.js", "target": "file:packages/engine/Source/Core/PrimitiveType.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js", "target": "function:packages/engine/Source/Core/arrayRemoveDuplicates.js:arrayRemoveDuplicates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/arrayRemoveDuplicates.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "function:packages/engine/Source/Core/barycentricCoordinates.js:barycentricCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "file:packages/engine/Source/Core/Cartesian2.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/barycentricCoordinates.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js", "target": "function:packages/engine/Source/Core/decodeVectorPolylinePositions.js:decodeVectorPolylinePositions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js", "target": "file:packages/engine/Source/Core/AttributeCompression.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js", "target": "file:packages/engine/Source/Core/Cartographic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/pointInsideTriangle.js", "target": "function:packages/engine/Source/Core/pointInsideTriangle.js:pointInsideTriangle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/pointInsideTriangle.js", "target": "file:packages/engine/Source/Core/barycentricCoordinates.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/pointInsideTriangle.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/pointInsideTriangle.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js", "target": "function:packages/engine/Source/Core/scaleToGeodeticSurface.js:scaleToGeodeticSurface", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:UniformState", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:setCamera", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:setSunAndMoonDirections", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:cleanModelViewProjection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:view2Dto3D", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "function:packages/engine/Source/Renderer/UniformState.js:updateView3D", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/BoundingRectangle.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Cartesian2.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Cartesian4.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Cartographic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Color.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Ellipsoid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/EncodedCartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Matrix3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Matrix4.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/OrthographicFrustum.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Simon1994PlanetaryPositions.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Core/Transforms.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Scene/SceneMode.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Renderer/UniformState.js", "target": "file:packages/engine/Source/Scene/SunLight.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Scene/Atmosphere.js", "target": "function:packages/engine/Source/Scene/Atmosphere.js:Atmosphere", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Scene/Atmosphere.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/Atmosphere.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/Atmosphere.js", "target": "file:packages/engine/Source/Scene/DynamicAtmosphereLightingType.js", "type": "imports", "direction": "forward", "weight": 0.7}
+  ]
+}

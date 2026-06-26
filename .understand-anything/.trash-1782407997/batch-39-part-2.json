@@ -1,0 +1,1462 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "file",
+      "name": "createTaskProcessorWorker.js",
+      "filePath": "packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "summary": "Web Worker 框架核心：将一个 worker 函数包装为带消息监听、错误格式化与 transferable 回传的标准任务处理器，是所有 Cesium worker 的基类。",
+      "tags": [
+        "worker",
+        "geometry",
+        "framework"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "type": "file",
+      "name": "createVectorTileClampedPolylines.js",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "summary": "Vector tile 钳位折线 worker：解码压缩位置、去重、计算斜接法线并生成 clamp 到地形的折线几何体顶点与索引。",
+      "tags": [
+        "worker",
+        "geometry",
+        "vector-tile"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "type": "file",
+      "name": "createVectorTileGeometries.js",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "summary": "Vector tile 几何体 worker：为 box/cylinder/ellipsoid/sphere 等 batch 图元构建模型矩阵、包围盒并合并为批量渲染数据。",
+      "tags": [
+        "worker",
+        "geometry",
+        "vector-tile"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "type": "file",
+      "name": "createVectorTilePoints.js",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePoints.js",
+      "summary": "Vector tile 点 worker：从压缩缓冲解压点位置并转换为笛卡尔坐标，生成点云图元数据。",
+      "tags": [
+        "worker",
+        "geometry",
+        "vector-tile"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "type": "file",
+      "name": "createVectorTilePolygons.js",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "summary": "Vector tile 多边形 worker：解码多边形顶点、按颜色分批、计算 OrientedBoundingBox 并生成批量多边形几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "vector-tile"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "type": "file",
+      "name": "createVectorTilePolylines.js",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "summary": "Vector tile 折线 worker：解码折线位置、应用 RTC 偏移并生成折线顶点/索引/偏移缓冲。",
+      "tags": [
+        "worker",
+        "geometry",
+        "vector-tile"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "type": "file",
+      "name": "createVerticesFromCesium3DTilesTerrain.js",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "summary": "Cesium 3D Tiles terrain worker：调用 Cesium3DTilesTerrainGeometryProcessor 生成地形网格顶点。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain",
+        "terrain-mesh"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "type": "file",
+      "name": "createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "summary": "Google Earth Enterprise 地形 worker：解析 GEE 二进制缓冲，生成带 skirt 的地形网格顶点、UV、包围体与 horizon culling 点。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain-mesh"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "type": "file",
+      "name": "createVerticesFromQuantizedTerrainMesh.js",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "summary": "量化地形网格 worker：将 quantized mesh 解码为地形顶点，添加 skirt、计算包围盒与 occlusion 点，是 quantized terrain 的核心 vertex pipeline。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain",
+        "terrain-mesh"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createWallGeometry.js",
+      "type": "file",
+      "name": "createWallGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createWallGeometry.js",
+      "summary": "Wall geometry worker：解包参数并调用 WallGeometry.createGeometry 生成墙体几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createTaskProcessorWorker.js:createTaskProcessorWorker",
+      "type": "function",
+      "name": "createTaskProcessorWorker",
+      "filePath": "packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "lineRange": [
+        28,
+        81
+      ],
+      "summary": "worker 框架入口：注册 onmessage 监听，调用用户 worker 函数，捕获错误并按 transferable 协议回传结果。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:decodePositions",
+      "type": "function",
+      "name": "decodePositions",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        17,
+        54
+      ],
+      "summary": "从 u/v/height 压缩缓冲解压折线顶点，插值高度并投影到笛卡尔坐标。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:getPositionOffsets",
+      "type": "function",
+      "name": "getPositionOffsets",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        56,
+        66
+      ],
+      "summary": "getPositionOffsets 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:removeDuplicates",
+      "type": "function",
+      "name": "removeDuplicates",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        70,
+        106
+      ],
+      "summary": "去除折线中相邻重复顶点以避免退化几何。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:VertexAttributesAndIndices",
+      "type": "function",
+      "name": "VertexAttributesAndIndices",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        108,
+        128
+      ],
+      "summary": "VertexAttributesAndIndices 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:computeMiteredNormal",
+      "type": "function",
+      "name": "computeMiteredNormal",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        132,
+        170
+      ],
+      "summary": "根据前/当前/后顶点计算斜接法线，用于折线宽度方向。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:createVectorTileClampedPolylines",
+      "type": "function",
+      "name": "createVectorTileClampedPolylines",
+      "filePath": "packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "lineRange": [
+        327,
+        540
+      ],
+      "summary": "worker 入口：组装 clamp 折线几何体的全部顶点属性与索引。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:boxModelMatrixAndBoundingVolume",
+      "type": "function",
+      "name": "boxModelMatrixAndBoundingVolume",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        25,
+        43
+      ],
+      "summary": "boxModelMatrixAndBoundingVolume 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:cylinderModelMatrixAndBoundingVolume",
+      "type": "function",
+      "name": "cylinderModelMatrixAndBoundingVolume",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        45,
+        69
+      ],
+      "summary": "cylinderModelMatrixAndBoundingVolume 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:ellipsoidModelMatrixAndBoundingVolume",
+      "type": "function",
+      "name": "ellipsoidModelMatrixAndBoundingVolume",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        71,
+        89
+      ],
+      "summary": "ellipsoidModelMatrixAndBoundingVolume 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:sphereModelMatrixAndBoundingVolume",
+      "type": "function",
+      "name": "sphereModelMatrixAndBoundingVolume",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        91,
+        116
+      ],
+      "summary": "sphereModelMatrixAndBoundingVolume 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:createPrimitive",
+      "type": "function",
+      "name": "createPrimitive",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        120,
+        202
+      ],
+      "summary": "为单位 box/cylinder/ellipsoid/sphere 应用模型矩阵与缩放，生成单个 batch 图元的几何体。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:packBuffer",
+      "type": "function",
+      "name": "packBuffer",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        226,
+        268
+      ],
+      "summary": "将 batchedIndices、包围球、颜色打包为可回传主线程的扁平缓冲。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:createVectorTileGeometries",
+      "type": "function",
+      "name": "createVectorTileGeometries",
+      "filePath": "packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "lineRange": [
+        270,
+        413
+      ],
+      "summary": "worker 入口：批量生成 vector tile 的 box/cylinder/ellipsoid/sphere 几何体并合并。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePoints.js:unpackBuffer",
+      "type": "function",
+      "name": "unpackBuffer",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePoints.js",
+      "lineRange": [
+        21,
+        32
+      ],
+      "summary": "unpackBuffer 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePoints.js:createVectorTilePoints",
+      "type": "function",
+      "name": "createVectorTilePoints",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePoints.js",
+      "lineRange": [
+        34,
+        80
+      ],
+      "summary": "worker 入口：解码点位置并生成点云顶点缓冲。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:unpackBuffer",
+      "type": "function",
+      "name": "unpackBuffer",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "lineRange": [
+        22,
+        38
+      ],
+      "summary": "unpackBuffer 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:packBuffer",
+      "type": "function",
+      "name": "packBuffer",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "lineRange": [
+        49,
+        91
+      ],
+      "summary": "将多边形 batchedIndices、OBB、颜色打包为扁平回传缓冲。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:createVectorTilePolygons",
+      "type": "function",
+      "name": "createVectorTilePolygons",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "lineRange": [
+        103,
+        411
+      ],
+      "summary": "worker 入口：解码多边形、按颜色分批、计算 OBB 与索引并打包结果。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:unpackBuffer",
+      "type": "function",
+      "name": "unpackBuffer",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "lineRange": [
+        17,
+        31
+      ],
+      "summary": "unpackBuffer 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:getPositionOffsets",
+      "type": "function",
+      "name": "getPositionOffsets",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "lineRange": [
+        33,
+        43
+      ],
+      "summary": "getPositionOffsets 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:createVectorTilePolylines",
+      "type": "function",
+      "name": "createVectorTilePolylines",
+      "filePath": "packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "lineRange": [
+        51,
+        209
+      ],
+      "summary": "worker 入口：解码折线、应用 RTC 偏移并生成顶点/索引/偏移缓冲。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js:createVerticesFromCesium3DTilesTerrain",
+      "type": "function",
+      "name": "createVerticesFromCesium3DTilesTerrain",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "lineRange": [
+        11,
+        42
+      ],
+      "summary": "worker 入口：委托 Cesium3DTilesTerrainGeometryProcessor 生成地形网格并回传顶点。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:indexOfEpsilon",
+      "type": "function",
+      "name": "indexOfEpsilon",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "lineRange": [
+        25,
+        35
+      ],
+      "summary": "indexOfEpsilon 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:createVerticesFromGoogleEarthEnterpriseBuffer",
+      "type": "function",
+      "name": "createVerticesFromGoogleEarthEnterpriseBuffer",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "lineRange": [
+        37,
+        79
+      ],
+      "summary": "worker 入口：克隆 ellipsoid/rectangle 并委托 processBuffer 生成顶点。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:processBuffer",
+      "type": "function",
+      "name": "processBuffer",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "lineRange": [
+        87,
+        565
+      ],
+      "summary": "解析 GEE 二进制缓冲、构建地形顶点/UV/法线、四向 skirt、边界排序与 horizon culling 点计算，是 GEE 地形的核心处理函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:addSkirt",
+      "type": "function",
+      "name": "addSkirt",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "lineRange": [
+        567,
+        648
+      ],
+      "summary": "为地形 tile 的一条边界添加 skirt（裙边）几何体以避免相邻 tile 缝隙。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:createVerticesFromQuantizedTerrainMesh",
+      "type": "function",
+      "name": "createVerticesFromQuantizedTerrainMesh",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "lineRange": [
+        26,
+        403
+      ],
+      "summary": "worker 入口：解码 quantized mesh、构建顶点、四向 skirt、包围体与 occlusion 点，是 quantized 地形 vertex pipeline 的核心。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:findMinMaxSkirts",
+      "type": "function",
+      "name": "findMinMaxSkirts",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "lineRange": [
+        405,
+        449
+      ],
+      "summary": "遍历 skirt 边以计算 skirt 顶点的最小/最大值，用于更新包围盒。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:addSkirt",
+      "type": "function",
+      "name": "addSkirt",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "lineRange": [
+        451,
+        527
+      ],
+      "summary": "为量化地形 mesh 的边界边添加 skirt 几何体并编码到顶点缓冲。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:copyAndSort",
+      "type": "function",
+      "name": "copyAndSort",
+      "filePath": "packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "lineRange": [
+        529,
+        546
+      ],
+      "summary": "copyAndSort 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createWallGeometry.js:createWallGeometry",
+      "type": "function",
+      "name": "createWallGeometry",
+      "filePath": "packages/engine/Source/Workers/createWallGeometry.js",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "worker 入口：解包参数并生成墙体几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "target": "function:packages/engine/Source/Workers/createTaskProcessorWorker.js:createTaskProcessorWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:decodePositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:getPositionOffsets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:removeDuplicates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:VertexAttributesAndIndices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:computeMiteredNormal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileClampedPolylines.js:createVectorTileClampedPolylines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:boxModelMatrixAndBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:cylinderModelMatrixAndBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:ellipsoidModelMatrixAndBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:sphereModelMatrixAndBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:createPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:packBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTileGeometries.js:createVectorTileGeometries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePoints.js:unpackBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePoints.js:createVectorTilePoints",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:unpackBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:packBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolygons.js:createVectorTilePolygons",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:unpackBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:getPositionOffsets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "function:packages/engine/Source/Workers/createVectorTilePolylines.js:createVectorTilePolylines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js:createVerticesFromCesium3DTilesTerrain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:indexOfEpsilon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:createVerticesFromGoogleEarthEnterpriseBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:processBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js:addSkirt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:createVerticesFromQuantizedTerrainMesh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:findMinMaxSkirts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:addSkirt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js:copyAndSort",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createWallGeometry.js:createWallGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "target": "file:packages/engine/Source/Core/formatError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/CylinderGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTileGeometries.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePoints.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolygons.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVectorTilePolylines.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "target": "file:packages/engine/Source/Core/Cesium3DTilesTerrainGeometryProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromCesium3DTilesTerrain.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromGoogleEarthEnterpriseBuffer.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallGeometry.js",
+      "target": "file:packages/engine/Source/Core/WallGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

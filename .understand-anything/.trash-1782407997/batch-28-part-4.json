@@ -1,0 +1,1328 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "type": "file",
+      "name": "GeoJsonLoader.js",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "summary": "将 GeoJSON 几何解析为 ModelComponents 的 ResourceLoader 实现，按 Point/LineString/Polygon 类型生成对应的 lines/points primitive 并附带结构化元数据。",
+      "tags": [
+        "loader",
+        "geojson",
+        "data-pipeline",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "type": "file",
+      "name": "GeometryPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "summary": "几何管线阶段，处理 primitive 的顶点属性（语义、矩阵属性、2D 投影、插值限定符），并向 ShaderBuilder 注入属性声明、varying 与初始化代码。",
+      "tags": [
+        "pipeline-stage",
+        "geometry",
+        "vertex-attribute",
+        "shader-builder"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "type": "file",
+      "name": "I3dmLoader.js",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "summary": "3D Tiles i3dm（实例化 3D 模型）格式的 ResourceLoader，解析 batch table 与 feature table、为每个实例计算位置/旋转/缩放并构造实例化 ModelComponents。",
+      "tags": [
+        "loader",
+        "i3dm",
+        "3d-tiles",
+        "instancing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ImageryConfiguration.js",
+      "type": "file",
+      "name": "ImageryConfiguration.js",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryConfiguration.js",
+      "summary": "记录单个 ImageryLayer 影响外观的设置快照（show/alpha/brightness/contrast 等），供 ModelImagery 检测设置变更以触发 draw command 重建。",
+      "tags": [
+        "imagery",
+        "data-model",
+        "configuration",
+        "change-detection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "type": "file",
+      "name": "ImageryFlags.js",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "summary": "标志集合类，指示哪些 ImageryLayer 处理步骤（alpha/brightness/contrast 等）需要启用，用于决定 ImageryPipelineStage 生成的混合 shader 结构。",
+      "tags": [
+        "imagery",
+        "flags",
+        "shader-builder",
+        "rendering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ImageryInput.js",
+      "type": "file",
+      "name": "ImageryInput.js",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryInput.js",
+      "summary": "单个 imagery 纹理在 shader 中所需的输入汇总类，包含 imageryLayer、纹理、纹理平移缩放与覆盖的纹理坐标矩形。",
+      "tags": [
+        "imagery",
+        "data-model",
+        "uniform",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parseFeature",
+      "type": "function",
+      "name": "parseFeature",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "lineRange": [
+        205,
+        234
+      ],
+      "summary": "解析单个 GeoJSON Feature 并填充 ParseResult。",
+      "tags": [
+        "geojson",
+        "parser",
+        "feature"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createLinesPrimitive",
+      "type": "function",
+      "name": "createLinesPrimitive",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "lineRange": [
+        251,
+        406
+      ],
+      "summary": "由解析后的线状特征构造 ModelComponents lines primitive（顶点/索引/属性）。",
+      "tags": [
+        "geojson",
+        "primitive",
+        "lines"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createPointsPrimitive",
+      "type": "function",
+      "name": "createPointsPrimitive",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "lineRange": [
+        408,
+        527
+      ],
+      "summary": "由解析后的点状特征构造 ModelComponents points primitive。",
+      "tags": [
+        "geojson",
+        "primitive",
+        "points"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parse",
+      "type": "function",
+      "name": "parse",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "lineRange": [
+        529,
+        685
+      ],
+      "summary": "GeoJSON 解析主入口，把 GeoJSON 对象分发到对应的 Point/LineString/Polygon 解析与 primitive 构造流程。",
+      "tags": [
+        "geojson",
+        "parser",
+        "entry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/GeoJsonLoader.js:GeoJsonLoader",
+      "type": "class",
+      "name": "GeoJsonLoader",
+      "filePath": "packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "lineRange": [
+        38,
+        116
+      ],
+      "summary": "ResourceLoader 实现：解析 GeoJSON 输入并产出可被 Model 渲染的 lines/points ModelComponents。",
+      "tags": [
+        "loader",
+        "geojson",
+        "resource-loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:processAttribute",
+      "type": "function",
+      "name": "processAttribute",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        206,
+        254
+      ],
+      "summary": "处理单个顶点属性：决定位置、添加到 render resources 并处理 2D/实例化情形。",
+      "tags": [
+        "geometry",
+        "vertex-attribute",
+        "pipeline-stage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addSemanticDefine",
+      "type": "function",
+      "name": "addSemanticDefine",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        256,
+        274
+      ],
+      "summary": "为带语义的属性添加 shader define。",
+      "tags": [
+        "geometry",
+        "semantic",
+        "shader-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeToRenderResources",
+      "type": "function",
+      "name": "addAttributeToRenderResources",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        276,
+        331
+      ],
+      "summary": "把属性添加到 render resources，处理 2D 模式下的位置变换。",
+      "tags": [
+        "geometry",
+        "attribute",
+        "render-resources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addMatrixAttributeToRenderResources",
+      "type": "function",
+      "name": "addMatrixAttributeToRenderResources",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        333,
+        374
+      ],
+      "summary": "把矩阵属性拆分为多列添加到 render resources。",
+      "tags": [
+        "geometry",
+        "matrix-attribute",
+        "render-resources"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addVaryingDeclaration",
+      "type": "function",
+      "name": "addVaryingDeclaration",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        376,
+        401
+      ],
+      "summary": "为顶点属性在 shader 中添加 varying 声明与插值限定符。",
+      "tags": [
+        "geometry",
+        "varying",
+        "shader-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeDeclaration",
+      "type": "function",
+      "name": "addAttributeDeclaration",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        403,
+        427
+      ],
+      "summary": "为属性在 shader 中添加声明（含 2D 修改）。",
+      "tags": [
+        "geometry",
+        "shader-builder",
+        "declaration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateAttributesStruct",
+      "type": "function",
+      "name": "updateAttributesStruct",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        429,
+        455
+      ],
+      "summary": "更新 shader 中 attributes struct 的字段声明。",
+      "tags": [
+        "geometry",
+        "shader-builder",
+        "struct"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateInitializeAttributesFunction",
+      "type": "function",
+      "name": "updateInitializeAttributesFunction",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        457,
+        487
+      ],
+      "summary": "更新 shader 中初始化 attributes 的函数代码。",
+      "tags": [
+        "geometry",
+        "shader-builder",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateSetDynamicVaryingsFunction",
+      "type": "function",
+      "name": "updateSetDynamicVaryingsFunction",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        489,
+        509
+      ],
+      "summary": "更新 shader 中设置动态 varying 的函数代码（用于 2D）。",
+      "tags": [
+        "geometry",
+        "shader-builder",
+        "varying"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:handleBitangents",
+      "type": "function",
+      "name": "handleBitangents",
+      "filePath": "packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "lineRange": [
+        511,
+        541
+      ],
+      "summary": "为带有切向量的 primitive 推导 bitangent 并补充到属性中。",
+      "tags": [
+        "geometry",
+        "tangent",
+        "bitangent"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createStructuralMetadata",
+      "type": "function",
+      "name": "createStructuralMetadata",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        338,
+        367
+      ],
+      "summary": "把 i3dm batch table 转换为 StructuralMetadata。",
+      "tags": [
+        "i3dm",
+        "metadata",
+        "batch-table"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstances",
+      "type": "function",
+      "name": "createInstances",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        373,
+        634
+      ],
+      "summary": "由 i3dm feature table 计算每个实例的位置/旋转/缩放并构造实例化 ModelComponents.Instances。",
+      "tags": [
+        "i3dm",
+        "instancing",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstancesCopy",
+      "type": "function",
+      "name": "createInstancesCopy",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        647,
+        662
+      ],
+      "summary": "复制实例化 components（用于拆分/重复实例场景）。",
+      "tags": [
+        "i3dm",
+        "instancing",
+        "copy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:getPositions",
+      "type": "function",
+      "name": "getPositions",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        670,
+        726
+      ],
+      "summary": "从 feature table 解析实例位置（含 CONSTANT/RTC/QUANTIZED 等形式）。",
+      "tags": [
+        "i3dm",
+        "position",
+        "feature-table"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processRotation",
+      "type": "function",
+      "name": "processRotation",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        729,
+        833
+      ],
+      "summary": "计算单个实例的旋转（含 UP/RIGHT 法向或 East-North-Up 对齐）。",
+      "tags": [
+        "i3dm",
+        "rotation",
+        "transform"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processScale",
+      "type": "function",
+      "name": "processScale",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        835,
+        858
+      ],
+      "summary": "从 feature table 解析单个实例的缩放（含 NON_UNIFORM 缩放）。",
+      "tags": [
+        "i3dm",
+        "scale",
+        "feature-table"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:unloadBuffers",
+      "type": "function",
+      "name": "unloadBuffers",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        860,
+        870
+      ],
+      "summary": "unloadBuffers 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/I3dmLoader.js:I3dmLoader",
+      "type": "class",
+      "name": "I3dmLoader",
+      "filePath": "packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "lineRange": [
+        53,
+        329
+      ],
+      "summary": "3D Tiles i3dm 格式的 ResourceLoader：加载二进制头、batch/feature table，并构造实例化 ModelComponents。",
+      "tags": [
+        "loader",
+        "i3dm",
+        "resource-loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/ImageryConfiguration.js:ImageryConfiguration",
+      "type": "class",
+      "name": "ImageryConfiguration",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryConfiguration.js",
+      "lineRange": [
+        13,
+        24
+      ],
+      "summary": "ImageryLayer 外观设置的快照值对象，用于变更检测。",
+      "tags": [
+        "imagery",
+        "configuration",
+        "value-object"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/ImageryFlags.js:ImageryFlags",
+      "type": "class",
+      "name": "ImageryFlags",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "lineRange": [
+        19,
+        29
+      ],
+      "summary": "标志集合，指示 imagery 处理中需要启用的步骤。",
+      "tags": [
+        "imagery",
+        "flags",
+        "value-object"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/ImageryInput.js:ImageryInput",
+      "type": "class",
+      "name": "ImageryInput",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryInput.js",
+      "lineRange": [
+        20,
+        58
+      ],
+      "summary": "单个 imagery 纹理在 shader 采样所需的输入汇总。",
+      "tags": [
+        "imagery",
+        "input",
+        "value-object"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/getStringFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/I3dmParser.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/InstanceAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parseFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parseFeature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createLinesPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createLinesPrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createPointsPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:createPointsPrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeoJsonLoader.js:parse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/GeoJsonLoader.js:GeoJsonLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/GeoJsonLoader.js:GeoJsonLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:processAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:processAttribute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addSemanticDefine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addSemanticDefine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeToRenderResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeToRenderResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addMatrixAttributeToRenderResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addMatrixAttributeToRenderResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addVaryingDeclaration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addVaryingDeclaration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeDeclaration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:addAttributeDeclaration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateAttributesStruct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateAttributesStruct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateInitializeAttributesFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateInitializeAttributesFunction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateSetDynamicVaryingsFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:updateSetDynamicVaryingsFunction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:handleBitangents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/GeometryPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/GeometryPipelineStage.js:handleBitangents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createStructuralMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createStructuralMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstances",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstances",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstancesCopy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:createInstancesCopy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:getPositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:getPositions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processRotation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processRotation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processScale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:processScale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:unloadBuffers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/I3dmLoader.js:unloadBuffers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/I3dmLoader.js:I3dmLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/I3dmLoader.js:I3dmLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryConfiguration.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryConfiguration.js:ImageryConfiguration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryConfiguration.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryConfiguration.js:ImageryConfiguration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryFlags.js:ImageryFlags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryFlags.js:ImageryFlags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryInput.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryInput.js:ImageryInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryInput.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryInput.js:ImageryInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

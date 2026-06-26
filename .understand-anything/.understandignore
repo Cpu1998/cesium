@@ -1,0 +1,46 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Full-repository mode: keeping all real code (engine/widgets source, Specs tests,
+# Apps, Documentation, scripts). Only excluding build output, generated type
+# declarations, binary assets, and editor/IDE cruft.
+
+# --- Build output & archives ---
+/Build
+/Cesium-*.zip
+/cesium-*.tgz
+/packages/**/*.tgz
+
+# --- Generated type declarations (not hand-written source) ---
+*.d.ts
+
+# --- Binary/data assets (not analyzable as code) ---
+/Source/Assets/
+/packages/engine/Source/Assets/
+/packages/engine/Source/ThirdParty/
+*.glsl.gz
+*.pnts
+*.b3dm
+*.geojson.bin
+*.ktx2
+
+# --- Editor / OS / cache cruft ---
+.metadata
+.directory
+.DS_Store
+Thumbs.db
+.eslintcache
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf
+GoogleConfig.json
+npm-debug.log
+npm-debug.log.*
+
+# --- Test snapshots & generated spec lists ---
+/Specs/SpecList.js
+/Specs/jasmine/**
+/playwright/.cache/
+/Specs/e2e/*-snapshots/
+
+# --- Generated docs tooling assets ---
+/Tools/jsdoc/cesium_template/static/javascript/prism.js
+/Tools/jsdoc/cesium_template/static/styles/prism.css

@@ -1,0 +1,233 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/BrdfLutGeneratorFS.glsl",
+      "type": "file",
+      "name": "BrdfLutGeneratorFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BrdfLutGeneratorFS.glsl",
+      "summary": "片元着色器，使用 Hammersley 序列与 GGX 重要性采样预计算 BRDF 积分查找表（LUT），用于基于物理的图像光照（PBR）中拆分求和近似的环境光项。",
+      "tags": ["shader", "glsl", "pbr", "brdf", "image-based-lighting"],
+      "complexity": "complex",
+      "languageNotes": "实现了 Van der Corput 根逆序列、importanceSampleGGX 微表面采样以及 Smith 联合 GGX 几何可见性函数，1024 次采样积分。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPointMaterialFS.glsl",
+      "type": "file",
+      "name": "BufferPointMaterialFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPointMaterialFS.glsl",
+      "summary": "缓冲点图元的片元着色器，根据到点中心的距离与 fwidth 抗锯齿计算内外半径的 smoothstep 混合，输出带描边和透明度的圆形点。",
+      "tags": ["shader", "glsl", "fragment", "point-primitive", "anti-aliasing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPointMaterialVS.glsl",
+      "type": "file",
+      "name": "BufferPointMaterialVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPointMaterialVS.glsl",
+      "summary": "缓冲点图元的顶点着色器，从打包属性解包 show/pixelSize/color/outline 并计算内外半径比例与 gl_PointSize，支持 USE_FLOAT64 双精度编码路径。",
+      "tags": ["shader", "glsl", "vertex", "point-primitive", "float64"],
+      "complexity": "moderate",
+      "languageNotes": "通过 #ifdef USE_FLOAT64 在 positionHigh/Low 分量相对眼睛的编码与单一 position 属性之间切换。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPolygonMaterialFS.glsl",
+      "type": "file",
+      "name": "BufferPolygonMaterialFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPolygonMaterialFS.glsl",
+      "summary": "缓冲多边形图元的片元着色器，直接输出顶点插值的颜色与 pickColor 并写入 log 深度。",
+      "tags": ["shader", "glsl", "fragment", "polygon-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPolygonMaterialVS.glsl",
+      "type": "file",
+      "name": "BufferPolygonMaterialVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPolygonMaterialVS.glsl",
+      "summary": "缓冲多边形图元的顶点着色器，解包 show/color/alpha 属性并按 USE_FLOAT64 路径将位置变换到裁剪空间，乘以 show 以隐藏不可见图元。",
+      "tags": ["shader", "glsl", "vertex", "polygon-primitive", "float64"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPolylineMaterialFS.glsl",
+      "type": "file",
+      "name": "BufferPolylineMaterialFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPolylineMaterialFS.glsl",
+      "summary": "缓冲折线图元的片元着色器，输出顶点插值的颜色与 pickColor 并写入 log 深度。",
+      "tags": ["shader", "glsl", "fragment", "polyline-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/BufferPolylineMaterialVS.glsl",
+      "type": "file",
+      "name": "BufferPolylineMaterialVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/BufferPolylineMaterialVS.glsl",
+      "summary": "缓冲折线图元的顶点着色器，依据前/当前/后三顶点位置与 expandDir 展开方向计算窗口坐标，处理拐角连接并传递宽度、纹理坐标与折线角度给片元阶段。",
+      "tags": ["shader", "glsl", "vertex", "polyline-primitive", "float64"],
+      "complexity": "moderate",
+      "languageNotes": "调用 getPolylineWindowCoordinates / getPolylineWindowCoordinatesEC 计算屏幕空间展开，处理 polyline 接缝处的角度归一化。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/degreesPerRadian.glsl",
+      "type": "file",
+      "name": "degreesPerRadian.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/degreesPerRadian.glsl",
+      "summary": "内置 GLSL 常量 czm_degreesPerRadian，用于在 shader 中将弧度转换为角度（与 CesiumMath.DEGREES_PER_RADIAN 对应）。",
+      "tags": ["shader", "glsl", "builtin", "constant", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/depthRange.glsl",
+      "type": "file",
+      "name": "depthRange.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/depthRange.glsl",
+      "summary": "内置 GLSL 常量 czm_depthRange（vec2），作为 IE11 未实现 gl_DepthRange 的 workaround 定义近/远深度范围。",
+      "tags": ["shader", "glsl", "builtin", "constant", "depth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon1.glsl",
+      "type": "file",
+      "name": "epsilon1.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon1.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon1，提供第一个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon2.glsl",
+      "type": "file",
+      "name": "epsilon2.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon2.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon2，提供第二个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon3.glsl",
+      "type": "file",
+      "name": "epsilon3.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon3.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon3，提供第三个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon4.glsl",
+      "type": "file",
+      "name": "epsilon4.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon4.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon4，提供第四个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon5.glsl",
+      "type": "file",
+      "name": "epsilon5.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon5.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon5，提供第五个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon6.glsl",
+      "type": "file",
+      "name": "epsilon6.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon6.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon6，提供第六个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/epsilon7.glsl",
+      "type": "file",
+      "name": "epsilon7.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/epsilon7.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_epsilon7，提供第七个量级的浮点比较容差。",
+      "tags": ["shader", "glsl", "builtin", "constant", "epsilon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/infinity.glsl",
+      "type": "file",
+      "name": "infinity.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/infinity.glsl",
+      "summary": "内置 GLSL 常量 czm_infinity，表示一个大数（约为太阳到冥王星的米距离），用作 shader 中的无穷大量。",
+      "tags": ["shader", "glsl", "builtin", "constant", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/oneOverPi.glsl",
+      "type": "file",
+      "name": "oneOverPi.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/oneOverPi.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_oneOverPi（1/π），用于在 shader 中进行角度与弧度相关的快速换算。",
+      "tags": ["shader", "glsl", "builtin", "constant", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/oneOverTwoPi.glsl",
+      "type": "file",
+      "name": "oneOverTwoPi.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/oneOverTwoPi.glsl",
+      "summary": "内置 GLSL 浮点常量 czm_oneOverTwoPi（1/(2π)），用于在 shader 中进行角度与弧度相关的快速换算。",
+      "tags": ["shader", "glsl", "builtin", "constant", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTile.glsl",
+      "type": "file",
+      "name": "passCesium3DTile.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTile.glsl",
+      "summary": "内置 GLSL 常量 czm_passCesium3DTile（值 5.0），定义 3D Tiles 渲染通道在 czm_pass 中的编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileClassification.glsl",
+      "type": "file",
+      "name": "passCesium3DTileClassification.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileClassification.glsl",
+      "summary": "内置 GLSL 常量 czm_passCesium3DTileClassification，定义 3D Tiles 分类渲染通道在 czm_pass 中的编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileClassificationIgnoreShow.glsl",
+      "type": "file",
+      "name": "passCesium3DTileClassificationIgnoreShow.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileClassificationIgnoreShow.glsl",
+      "summary": "内置 GLSL 常量 czm_passCesium3DTileClassificationIgnoreShow，定义忽略 show 属性的 3D Tiles 分类渲染通道编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileEdges.glsl",
+      "type": "file",
+      "name": "passCesium3DTileEdges.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileEdges.glsl",
+      "summary": "内置 GLSL 常量 czm_passCesium3DTileEdges，定义 3D Tiles 边缘渲染通道在 czm_pass 中的编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileEdgesDirect.glsl",
+      "type": "file",
+      "name": "passCesium3DTileEdgesDirect.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passCesium3DTileEdgesDirect.glsl",
+      "summary": "内置 GLSL 常量 czm_passCesium3DTileEdgesDirect，定义直接渲染的 3D Tiles 边缘通道编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Constants/passClassification.glsl",
+      "type": "file",
+      "name": "passClassification.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Constants/passClassification.glsl",
+      "summary": "内置 GLSL 常量 czm_passClassification，定义通用分类渲染通道在 czm_pass 中的编号。",
+      "tags": ["shader", "glsl", "builtin", "constant", "render-pass"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

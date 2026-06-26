@@ -1,0 +1,1106 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/Visualizer.js",
+      "type": "file",
+      "name": "Visualizer.js",
+      "filePath": "packages/engine/Source/DataSources/Visualizer.js",
+      "summary": "Visualizer 抽象基类：定义将 entity 渲染到场景的接口契约（update/destroy/isVisible 等），构造即抛出实例化错误。",
+      "tags": [
+        "abstract",
+        "interface",
+        "visualizer",
+        "datasources"
+      ],
+      "complexity": "simple",
+      "languageNotes": "抽象基类模式：构造函数中调用 DeveloperError.throwInstantiationError。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "type": "file",
+      "name": "WallGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/WallGraphics.js",
+      "summary": "描述墙体（wall）图形的可视化属性（positions、minimumHeights、maximumHeights、material、outline 等）。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "wall"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "file",
+      "name": "createMaterialPropertyDescriptor.js",
+      "filePath": "packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "summary": "工厂函数：生成专门用于材质的 property descriptor，提供默认的 ColorMaterialProperty/ImageMaterialProperty 回退逻辑。",
+      "tags": [
+        "factory",
+        "property-descriptor",
+        "material",
+        "datasources"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 复用的高阶 createPropertyDescriptor 工厂模式，专门用于材质属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "file",
+      "name": "createPropertyDescriptor.js",
+      "filePath": "packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "summary": "核心工厂函数：为 entity graphics 创建响应式的 property getter/setter descriptor，自动把原始值包装为 ConstantProperty 并触发 definitionChanged。",
+      "tags": [
+        "factory",
+        "property-descriptor",
+        "datasources",
+        "core-utility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 的 reactive property 系统基石，几乎所有 *Graphics 都依赖它创建响应式字段。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "type": "file",
+      "name": "createRawPropertyDescriptor.js",
+      "filePath": "packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "summary": "工厂函数：创建不做 ConstantProperty 包装的原始 property descriptor（值原样存储），用于无需响应式包装的场景。",
+      "tags": [
+        "factory",
+        "property-descriptor",
+        "datasources",
+        "core-utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "与 createPropertyDescriptor 形成对比：不进行值包装。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/exportKml.js",
+      "type": "file",
+      "name": "exportKml.js",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "summary": "将 Cesium 的 Entity 集合导出为 KML/KMZ 文档的核心实现：遍历 entity、生成点/线/面/模型/track 的 KML 节点，处理样式、材质、高度模式、外部文件（贴图/模型）打包为 KMZ。",
+      "tags": [
+        "export",
+        "kml",
+        "serialization",
+        "entity",
+        "datasources"
+      ],
+      "complexity": "complex",
+      "languageNotes": "大型导出模块，包含 ~26 个内部函数（recurseEntities、createPolygon、createTracks 等）和若干内部 helper 类（StyleCache、IdManager、ExternalFileHandler）。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/getElement.js",
+      "type": "file",
+      "name": "getElement.js",
+      "filePath": "packages/engine/Source/DataSources/getElement.js",
+      "summary": "getElement 工具函数：通过 id 或直接传入的元素获取 DOM 元素，统一处理字符串与 Element 输入。",
+      "tags": [
+        "utility",
+        "dom",
+        "helper",
+        "datasources"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderFunction.js",
+      "type": "file",
+      "name": "ShaderFunction.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderFunction.js",
+      "summary": "ShaderFunction 类：表示一个 GLSL shader 函数签名，作为 ShaderBuilder 系统（自动 shader 拼装）中的函数节点。",
+      "tags": [
+        "shader",
+        "renderer",
+        "glsl",
+        "shader-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js:createMaterialProperty",
+      "type": "function",
+      "name": "createMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "lineRange": [
+        8,
+        27
+      ],
+      "summary": "将材质值包装为 MaterialProperty 的内部工厂，根据类型回退到 ColorMaterialProperty 或 ImageMaterialProperty。",
+      "tags": [
+        "factory",
+        "material",
+        "property"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/createPropertyDescriptor.js:createProperty",
+      "type": "function",
+      "name": "createProperty",
+      "filePath": "packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "lineRange": [
+        4,
+        48
+      ],
+      "summary": "为单个属性生成 getter/setter 的内部工厂：自动将原始值包装为 ConstantProperty，并订阅 property 的 definitionChanged 以触发自身变更事件。",
+      "tags": [
+        "factory",
+        "reactive",
+        "property",
+        "descriptor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/createPropertyDescriptor.js:createPropertyDescriptor",
+      "type": "function",
+      "name": "createPropertyDescriptor",
+      "filePath": "packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "lineRange": [
+        60,
+        70
+      ],
+      "summary": "对外暴露的属性 descriptor 工厂入口，绑定名称并返回 createProperty 生成的 descriptor。",
+      "tags": [
+        "factory",
+        "property-descriptor",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/createRawPropertyDescriptor.js:createRawPropertyDescriptor",
+      "type": "function",
+      "name": "createRawPropertyDescriptor",
+      "filePath": "packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "lineRange": [
+        10,
+        12
+      ],
+      "summary": "对外暴露的原始（不包装 ConstantProperty）属性 descriptor 工厂入口。",
+      "tags": [
+        "factory",
+        "property-descriptor",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/getElement.js:getElement",
+      "type": "function",
+      "name": "getElement",
+      "filePath": "packages/engine/Source/DataSources/getElement.js",
+      "lineRange": [
+        10,
+        25
+      ],
+      "summary": "根据字符串 id 查找或直接返回 DOM 元素，统一两种输入形式。",
+      "tags": [
+        "utility",
+        "dom"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:exportKml",
+      "type": "function",
+      "name": "exportKml",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        282,
+        329
+      ],
+      "summary": "KML 导出主入口：构造导出状态、过滤 entity、构建 KML 文档、递归处理 entity 后序列化为 KML/KMZ 字符串。",
+      "tags": [
+        "export",
+        "kml",
+        "entry-point",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createKmz",
+      "type": "function",
+      "name": "createKmz",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        331,
+        350
+      ],
+      "summary": "将 KML 字符串与外部文件（贴图/模型）打包为 KMZ Blob，使用 zip writer 递归写入所有外部文件。",
+      "tags": [
+        "export",
+        "kmz",
+        "zip",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:addExternalFilesToZip",
+      "type": "function",
+      "name": "addExternalFilesToZip",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        352,
+        359
+      ],
+      "summary": "递归将外部文件列表写入 zip writer。",
+      "tags": [
+        "utility",
+        "zip",
+        "recursive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:recurseEntities",
+      "type": "function",
+      "name": "recurseEntities",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        414,
+        577
+      ],
+      "summary": "递归遍历 entity 树，为每个 entity 调用 createPoint/createLineString/createPolygon/createModel 生成对应 KML 节点并组织到 folder 结构中。",
+      "tags": [
+        "export",
+        "kml",
+        "recursive",
+        "entity",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createPoint",
+      "type": "function",
+      "name": "createPoint",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        583,
+        625
+      ],
+      "summary": "为 entity 生成 KML Point 节点，处理静态点与动态 track 两种分支。",
+      "tags": [
+        "export",
+        "kml",
+        "point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createTracks",
+      "type": "function",
+      "name": "createTracks",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        627,
+        801
+      ],
+      "summary": "为动态移动的 entity 生成 KML Track/MultiTrack 节点，按时间区间采样位置并写入 gx:Track。",
+      "tags": [
+        "export",
+        "kml",
+        "track",
+        "animation",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createIconStyleFromBillboard",
+      "type": "function",
+      "name": "createIconStyleFromBillboard",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        827,
+        941
+      ],
+      "summary": "根据 BillboardGraphics 生成 KML IconStyle（图标、缩放、热点、旋转等）。",
+      "tags": [
+        "export",
+        "kml",
+        "icon-style",
+        "billboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createIconStyleFromPoint",
+      "type": "function",
+      "name": "createIconStyleFromPoint",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        803,
+        825
+      ],
+      "summary": "根据 PointGraphics 生成简化的 KML IconStyle（颜色、缩放）。",
+      "tags": [
+        "export",
+        "kml",
+        "icon-style",
+        "point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createLineString",
+      "type": "function",
+      "name": "createLineString",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        943,
+        1000
+      ],
+      "summary": "根据 PolylineGraphics 生成 KML LineString 节点，处理坐标、宽度、材质与高度模式。",
+      "tags": [
+        "export",
+        "kml",
+        "linestring",
+        "polyline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:getRectangleBoundaries",
+      "type": "function",
+      "name": "getRectangleBoundaries",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1002,
+        1046
+      ],
+      "summary": "从 RectangleGraphics 计算四角的经纬度坐标，作为 KML 多边形边界字符串。",
+      "tags": [
+        "utility",
+        "rectangle",
+        "coordinates",
+        "kml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:getLinearRing",
+      "type": "function",
+      "name": "getLinearRing",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1048,
+        1074
+      ],
+      "summary": "将 Cartesian3 位置数组转换为 KML LinearRing 元素（经纬度/高度坐标串）。",
+      "tags": [
+        "utility",
+        "kml",
+        "linear-ring",
+        "coordinates"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:getPolygonBoundaries",
+      "type": "function",
+      "name": "getPolygonBoundaries",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1076,
+        1120
+      ],
+      "summary": "从 PolygonGraphics 提取外环与内洞（holes）的边界 LinearRing 元素。",
+      "tags": [
+        "utility",
+        "kml",
+        "polygon",
+        "coordinates"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createPolygon",
+      "type": "function",
+      "name": "createPolygon",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1122,
+        1205
+      ],
+      "summary": "为 entity 生成 KML Polygon 节点，含材质（贴图 ground overlay）、高度模式、轮廓样式。",
+      "tags": [
+        "export",
+        "kml",
+        "polygon",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createGroundOverlay",
+      "type": "function",
+      "name": "createGroundOverlay",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1207,
+        1279
+      ],
+      "summary": "为带贴图的 polygon 生成 KML GroundOverlay 节点，包含 latLonBox 与图标引用。",
+      "tags": [
+        "export",
+        "kml",
+        "ground-overlay",
+        "image"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createModelGeometry",
+      "type": "function",
+      "name": "createModelGeometry",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1281,
+        1304
+      ],
+      "summary": "根据 ModelGraphics 生成 KML Model geometry 节点（scale、link）。",
+      "tags": [
+        "export",
+        "kml",
+        "model",
+        "gltf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1306,
+        1354
+      ],
+      "summary": "为静态或动态 model entity 生成完整 KML Model 节点（含 Location、Scale、AltitudeMode）。",
+      "tags": [
+        "export",
+        "kml",
+        "model",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:processMaterial",
+      "type": "function",
+      "name": "processMaterial",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1356,
+        1419
+      ],
+      "summary": "根据材质类型（Color/Grid/Stripe/Image 等）在 KML 样式中填充对应的颜色与图案字段。",
+      "tags": [
+        "export",
+        "kml",
+        "material",
+        "style"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:getAltitudeMode",
+      "type": "function",
+      "name": "getAltitudeMode",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1421,
+        1443
+      ],
+      "summary": "根据 HeightReference 推断对应的 KML altitudeMode 文本（clampToGround/relativeToGround/absolute）。",
+      "tags": [
+        "utility",
+        "kml",
+        "altitude-mode",
+        "height-reference"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:getCoordinates",
+      "type": "function",
+      "name": "getCoordinates",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1445,
+        1464
+      ],
+      "summary": "将 Cartesian3（或数组）转换为 KML 坐标字符串（经度,纬度,高度）。",
+      "tags": [
+        "utility",
+        "kml",
+        "coordinates",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:createBasicElementWithText",
+      "type": "function",
+      "name": "createBasicElementWithText",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1466,
+        1492
+      ],
+      "summary": "通用工具：创建带文本内容的 KML 元素（含 CDATA 处理）。",
+      "tags": [
+        "utility",
+        "kml",
+        "xml",
+        "dom"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/exportKml.js:colorToString",
+      "type": "function",
+      "name": "colorToString",
+      "filePath": "packages/engine/Source/DataSources/exportKml.js",
+      "lineRange": [
+        1494,
+        1503
+      ],
+      "summary": "将 Cesium Color 转换为 KML 所需的 aabbggrr 十六进制颜色字符串。",
+      "tags": [
+        "utility",
+        "color",
+        "kml",
+        "serialization"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/Visualizer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/getElement.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderFunction.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "target": "function:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js:createMaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "target": "function:packages/engine/Source/DataSources/createPropertyDescriptor.js:createProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "target": "function:packages/engine/Source/DataSources/createPropertyDescriptor.js:createPropertyDescriptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "target": "function:packages/engine/Source/DataSources/createRawPropertyDescriptor.js:createRawPropertyDescriptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/getElement.js",
+      "target": "function:packages/engine/Source/DataSources/getElement.js:getElement",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:exportKml",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createKmz",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:addExternalFilesToZip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:recurseEntities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createTracks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createIconStyleFromBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createIconStyleFromPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createLineString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:getRectangleBoundaries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:getLinearRing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:getPolygonBoundaries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createGroundOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createModelGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:processMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:getAltitudeMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:getCoordinates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:createBasicElementWithText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/exportKml.js",
+      "target": "function:packages/engine/Source/DataSources/exportKml.js:colorToString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/engine/Source/DataSources/exportKml.js:exportKml",
+      "target": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

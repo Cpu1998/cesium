@@ -1,0 +1,1015 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "file",
+      "name": "DataSource",
+      "filePath": "packages/engine/Source/DataSources/DataSource.js",
+      "summary": "定义所有 DataSource 的抽象接口契约（name、clock、entities、changed/error/loading 事件等），供具体 DataSource 实现。",
+      "tags": [
+        "datasource",
+        "interface",
+        "abstract",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "type": "file",
+      "name": "DataSourceClock",
+      "filePath": "packages/engine/Source/DataSources/DataSourceClock.js",
+      "summary": "为 DataSource 维护一个可随数据时间轴推进的 Clock 配置（start/stop/current、multiplier、range、step）。",
+      "tags": [
+        "clock",
+        "datasource",
+        "time-dynamic",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "type": "file",
+      "name": "DataSourceCollection",
+      "filePath": "packages/engine/Source/DataSources/DataSourceCollection.js",
+      "summary": "管理多个 DataSource 的有序集合，提供 add/remove/reorder/raise/lower 及 collectionChanged 事件。",
+      "tags": [
+        "datasource",
+        "collection",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "type": "file",
+      "name": "EllipseGraphics",
+      "filePath": "packages/engine/Source/DataSources/EllipseGraphics.js",
+      "summary": "描述椭圆/圆形挤出图形属性的集合，供 entity 引用。",
+      "tags": [
+        "graphics",
+        "ellipse",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "type": "file",
+      "name": "EllipsoidGraphics",
+      "filePath": "packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "summary": "描述椭球体图形属性的集合，供 entity 引用并由 GeometryVisualizer 渲染。",
+      "tags": [
+        "graphics",
+        "ellipsoid",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/Entity.js",
+      "type": "file",
+      "name": "Entity",
+      "filePath": "packages/engine/Source/DataSources/Entity.js",
+      "summary": "Cesium entity API 的核心对象，聚合 position、orientation、billboard、label、path 等各类 graphics 属性，并提供时间相关的事件。",
+      "tags": [
+        "entity",
+        "core",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "file",
+      "name": "EntityCluster",
+      "filePath": "packages/engine/Source/DataSources/EntityCluster.js",
+      "summary": "对密集的 billboard/label/point entity 进行屏幕空间聚合（clustering），按像素范围与最小 bbox 合并显示。",
+      "tags": [
+        "clustering",
+        "entity",
+        "billboard",
+        "label",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/DataSource.js:DataSource",
+      "type": "function",
+      "name": "DataSource",
+      "filePath": "packages/engine/Source/DataSources/DataSource.js",
+      "lineRange": [
+        13,
+        15
+      ],
+      "summary": "DataSource 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/DataSourceClock.js:DataSourceClock",
+      "type": "function",
+      "name": "DataSourceClock",
+      "filePath": "packages/engine/Source/DataSources/DataSourceClock.js",
+      "lineRange": [
+        15,
+        23
+      ],
+      "summary": "DataSourceClock 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/DataSourceCollection.js:DataSourceCollection",
+      "type": "function",
+      "name": "DataSourceCollection",
+      "filePath": "packages/engine/Source/DataSources/DataSourceCollection.js",
+      "lineRange": [
+        12,
+        17
+      ],
+      "summary": "DataSourceCollection 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/DataSourceCollection.js:getIndex",
+      "type": "function",
+      "name": "getIndex",
+      "filePath": "packages/engine/Source/DataSources/DataSourceCollection.js",
+      "lineRange": [
+        200,
+        216
+      ],
+      "summary": "在已排序集合中二分查找 dataSource 的插入位置。",
+      "tags": [
+        "collection",
+        "binary-search",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/DataSourceCollection.js:swapDataSources",
+      "type": "function",
+      "name": "swapDataSources",
+      "filePath": "packages/engine/Source/DataSources/DataSourceCollection.js",
+      "lineRange": [
+        218,
+        233
+      ],
+      "summary": "交换两个 dataSource 以维护有序集合。",
+      "tags": [
+        "collection",
+        "swap",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EllipseGraphics.js:EllipseGraphics",
+      "type": "function",
+      "name": "EllipseGraphics",
+      "filePath": "packages/engine/Source/DataSources/EllipseGraphics.js",
+      "lineRange": [
+        48,
+        92
+      ],
+      "summary": "EllipseGraphics 构造函数。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "ellipse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EllipsoidGraphics.js:EllipsoidGraphics",
+      "type": "function",
+      "name": "EllipsoidGraphics",
+      "filePath": "packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "lineRange": [
+        43,
+        83
+      ],
+      "summary": "EllipsoidGraphics 构造函数。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "ellipsoid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/Entity.js:Entity",
+      "type": "function",
+      "name": "Entity",
+      "filePath": "packages/engine/Source/DataSources/Entity.js",
+      "lineRange": [
+        114,
+        210
+      ],
+      "summary": "Entity 构造函数：根据 options 创建并挂载各类 graphics/property。",
+      "tags": [
+        "entity",
+        "constructor",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/Entity.js:updateShow",
+      "type": "function",
+      "name": "updateShow",
+      "filePath": "packages/engine/Source/DataSources/Entity.js",
+      "lineRange": [
+        212,
+        229
+      ],
+      "summary": "同步 entity 及其子 graphics 的显示状态。",
+      "tags": [
+        "entity",
+        "show",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCluster.js:EntityCluster",
+      "type": "function",
+      "name": "EntityCluster",
+      "filePath": "packages/engine/Source/DataSources/EntityCluster.js",
+      "lineRange": [
+        35,
+        77
+      ],
+      "summary": "EntityCluster 构造函数：初始化聚类参数与内部集合。",
+      "tags": [
+        "clustering",
+        "constructor",
+        "entity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCluster.js:getScreenSpacePositions",
+      "type": "function",
+      "name": "getScreenSpacePositions",
+      "filePath": "packages/engine/Source/DataSources/EntityCluster.js",
+      "lineRange": [
+        171,
+        217
+      ],
+      "summary": "收集一组图元在屏幕空间的位置用于聚类。",
+      "tags": [
+        "clustering",
+        "screen-space",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCluster.js:createDeclutterCallback",
+      "type": "function",
+      "name": "createDeclutterCallback",
+      "filePath": "packages/engine/Source/DataSources/EntityCluster.js",
+      "lineRange": [
+        223,
+        506
+      ],
+      "summary": "生成每帧去重/聚合回调，是聚类的核心算法。",
+      "tags": [
+        "clustering",
+        "algorithm",
+        "declutter"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCluster.js:createGetEntity",
+      "type": "function",
+      "name": "createGetEntity",
+      "filePath": "packages/engine/Source/DataSources/EntityCluster.js",
+      "lineRange": [
+        634,
+        688
+      ],
+      "summary": "工厂：为聚类集合按需创建/复用内部 entity。",
+      "tags": [
+        "clustering",
+        "factory",
+        "entity"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSource.js",
+      "target": "function:packages/engine/Source/DataSources/DataSource.js:DataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSource.js",
+      "target": "function:packages/engine/Source/DataSources/DataSource.js:DataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceClock.js:DataSourceClock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceClock.js:DataSourceClock",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceCollection.js:DataSourceCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceCollection.js:DataSourceCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceCollection.js:getIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "function:packages/engine/Source/DataSources/DataSourceCollection.js:swapDataSources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/EllipseGraphics.js:EllipseGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/EllipseGraphics.js:EllipseGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/EllipsoidGraphics.js:EllipsoidGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/EllipsoidGraphics.js:EllipsoidGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "function:packages/engine/Source/DataSources/Entity.js:Entity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "function:packages/engine/Source/DataSources/Entity.js:Entity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "function:packages/engine/Source/DataSources/Entity.js:updateShow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCluster.js:EntityCluster",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCluster.js:EntityCluster",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCluster.js:getScreenSpacePositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCluster.js:createDeclutterCallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCluster.js:createGetEntity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/Core/Clock.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "target": "file:packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/TrackingReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/BoxGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/createRawPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PathGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PlaneGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Entity.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/Billboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/Label.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

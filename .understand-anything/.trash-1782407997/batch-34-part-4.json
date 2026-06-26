@@ -1,0 +1,1293 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "type": "file",
+      "name": "KmlDataSource",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "summary": "加载并解析 KML/KMZ 文件（含 NetworkLink、Style、GroundOverlay、Tour 等），转换为 entity 与相关图形；体量巨大的核心 DataSource。",
+      "tags": [
+        "datasource",
+        "kml",
+        "parser",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlLookAt.js",
+      "type": "file",
+      "name": "KmlLookAt",
+      "filePath": "packages/engine/Source/DataSources/KmlLookAt.js",
+      "summary": "表示 KML <LookAt> 元素的轻量值对象，保存观察点的经纬高与视角。",
+      "tags": [
+        "kml",
+        "lookat",
+        "value-object",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "type": "file",
+      "name": "KmlTour",
+      "filePath": "packages/engine/Source/DataSources/KmlTour.js",
+      "summary": "表示一个 KML Tour，按顺序播放一组 KmlTourFlyTo/KmlTourWait 动画条目并暴露完成事件。",
+      "tags": [
+        "kml",
+        "tour",
+        "animation",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "type": "file",
+      "name": "KmlTourFlyTo",
+      "filePath": "packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "summary": "KML Tour 中的相机飞行条目，用 BoundingSphere 与缓动函数将相机平滑飞向目标。",
+      "tags": [
+        "kml",
+        "tour",
+        "camera",
+        "animation",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlTourWait.js",
+      "type": "file",
+      "name": "KmlTourWait",
+      "filePath": "packages/engine/Source/DataSources/KmlTourWait.js",
+      "summary": "KML Tour 中的等待条目，在指定时长内保持相机静止。",
+      "tags": [
+        "kml",
+        "tour",
+        "wait",
+        "animation",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "type": "file",
+      "name": "LabelGraphics",
+      "filePath": "packages/engine/Source/DataSources/LabelGraphics.js",
+      "summary": "描述文字标签（label）图形属性的集合，供 entity 引用。",
+      "tags": [
+        "graphics",
+        "label",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "type": "file",
+      "name": "ModelGraphics",
+      "filePath": "packages/engine/Source/DataSources/ModelGraphics.js",
+      "summary": "描述 glTF/glb 3D 模型图形属性的集合（含节点变换、articulations、阴影等），供 entity 引用。",
+      "tags": [
+        "graphics",
+        "model",
+        "gltf",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:DeferredLoading",
+      "type": "function",
+      "name": "DeferredLoading",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        194,
+        204
+      ],
+      "summary": "DeferredLoading 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:applyStyle",
+      "type": "function",
+      "name": "applyStyle",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        1012,
+        1115
+      ],
+      "summary": "将 KML Style 应用到目标 entity 的图形属性。",
+      "tags": [
+        "kml",
+        "style",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processLineStringOrLinearRing",
+      "type": "function",
+      "name": "processLineStringOrLinearRing",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        1574,
+        1674
+      ],
+      "summary": "解析 KML LineString/LinearRing 为 polyline，处理 altitudeMode 与 extrude。",
+      "tags": [
+        "kml",
+        "linestring",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processPolygon",
+      "type": "function",
+      "name": "processPolygon",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        1676,
+        1762
+      ],
+      "summary": "解析 KML Polygon（含内外环）为 polygon entity。",
+      "tags": [
+        "kml",
+        "polygon",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processMultiTrack",
+      "type": "function",
+      "name": "processMultiTrack",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        1881,
+        1980
+      ],
+      "summary": "解析 KML gx:MultiTrack 为复合轨迹 entity。",
+      "tags": [
+        "kml",
+        "multi-track",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processDescription",
+      "type": "function",
+      "name": "processDescription",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        2088,
+        2221
+      ],
+      "summary": "处理 KML description/balloon 内容，嵌入资源与样式。",
+      "tags": [
+        "kml",
+        "description",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processFeature",
+      "type": "function",
+      "name": "processFeature",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        2223,
+        2315
+      ],
+      "summary": "递归处理 KML feature 节点的分发器。",
+      "tags": [
+        "kml",
+        "parser",
+        "dispatcher"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processScreenOverlay",
+      "type": "function",
+      "name": "processScreenOverlay",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        2469,
+        2618
+      ],
+      "summary": "解析 KML ScreenOverlay 并渲染屏幕叠加元素。",
+      "tags": [
+        "kml",
+        "screen-overlay",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processGroundOverlay",
+      "type": "function",
+      "name": "processGroundOverlay",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        2620,
+        2772
+      ],
+      "summary": "解析 KML GroundOverlay 并构造矩形 imagery/rectangle entity。",
+      "tags": [
+        "kml",
+        "ground-overlay",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:processNetworkLink",
+      "type": "function",
+      "name": "processNetworkLink",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        2999,
+        3204
+      ],
+      "summary": "处理 KML NetworkLink，建立按视图刷新的子数据源。",
+      "tags": [
+        "kml",
+        "networklink",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:loadKml",
+      "type": "function",
+      "name": "loadKml",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        3220,
+        3288
+      ],
+      "summary": "解析 KML XML 并递归处理 feature/placemark/style 等。",
+      "tags": [
+        "kml",
+        "parser",
+        "xml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:loadKmz",
+      "type": "function",
+      "name": "loadKmz",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        3290,
+        3352
+      ],
+      "summary": "解压 KMZ 并在内部文件中查找 doc.kml 后调用 loadKml。",
+      "tags": [
+        "kml",
+        "kmz",
+        "zip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        3354,
+        3465
+      ],
+      "summary": "加载 KML/KMZ（自动识别 zip），分流到 loadKml/loadKmz。",
+      "tags": [
+        "loader",
+        "kml",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlDataSource",
+      "type": "function",
+      "name": "KmlDataSource",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        3532,
+        3595
+      ],
+      "summary": "KmlDataSource 构造函数，初始化事件、entity 集合与 KML 专用状态。",
+      "tags": [
+        "datasource",
+        "constructor",
+        "kml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlFeatureData",
+      "type": "function",
+      "name": "KmlFeatureData",
+      "filePath": "packages/engine/Source/DataSources/KmlDataSource.js",
+      "lineRange": [
+        4178,
+        4243
+      ],
+      "summary": "KmlFeatureData 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlLookAt.js:KmlLookAt",
+      "type": "function",
+      "name": "KmlLookAt",
+      "filePath": "packages/engine/Source/DataSources/KmlLookAt.js",
+      "lineRange": [
+        8,
+        11
+      ],
+      "summary": "KmlLookAt 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlTour.js:KmlTour",
+      "type": "function",
+      "name": "KmlTour",
+      "filePath": "packages/engine/Source/DataSources/KmlTour.js",
+      "lineRange": [
+        19,
+        73
+      ],
+      "summary": "KmlTour 构造函数：初始化播放条目列表与事件。",
+      "tags": [
+        "kml",
+        "constructor",
+        "tour"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlTour.js:playEntry",
+      "type": "function",
+      "name": "playEntry",
+      "filePath": "packages/engine/Source/DataSources/KmlTour.js",
+      "lineRange": [
+        125,
+        147
+      ],
+      "summary": "播放当前 tour 条目并在结束后推进到下一条。",
+      "tags": [
+        "kml",
+        "tour",
+        "playback"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlTourFlyTo.js:KmlTourFlyTo",
+      "type": "function",
+      "name": "KmlTourFlyTo",
+      "filePath": "packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "lineRange": [
+        19,
+        28
+      ],
+      "summary": "KmlTourFlyTo 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlTourWait.js:KmlTourWait",
+      "type": "function",
+      "name": "KmlTourWait",
+      "filePath": "packages/engine/Source/DataSources/KmlTourWait.js",
+      "lineRange": [
+        13,
+        19
+      ],
+      "summary": "KmlTourWait 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/LabelGraphics.js:LabelGraphics",
+      "type": "function",
+      "name": "LabelGraphics",
+      "filePath": "packages/engine/Source/DataSources/LabelGraphics.js",
+      "lineRange": [
+        51,
+        97
+      ],
+      "summary": "LabelGraphics 构造函数。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "label"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ModelGraphics.js:ModelGraphics",
+      "type": "function",
+      "name": "ModelGraphics",
+      "filePath": "packages/engine/Source/DataSources/ModelGraphics.js",
+      "lineRange": [
+        71,
+        125
+      ],
+      "summary": "ModelGraphics 构造函数：初始化 glTF uri、节点变换、articulations 等。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "model"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:DeferredLoading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:DeferredLoading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:applyStyle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processLineStringOrLinearRing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processMultiTrack",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processScreenOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processGroundOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:processNetworkLink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:loadKml",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:loadKmz",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlDataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlFeatureData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/KmlDataSource.js:KmlFeatureData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlLookAt.js",
+      "target": "function:packages/engine/Source/DataSources/KmlLookAt.js:KmlLookAt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlLookAt.js",
+      "target": "function:packages/engine/Source/DataSources/KmlLookAt.js:KmlLookAt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTour.js:KmlTour",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTour.js:KmlTour",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTour.js:playEntry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTourFlyTo.js:KmlTourFlyTo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTourFlyTo.js:KmlTourFlyTo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourWait.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTourWait.js:KmlTourWait",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourWait.js",
+      "target": "function:packages/engine/Source/DataSources/KmlTourWait.js:KmlTourWait",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/LabelGraphics.js:LabelGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/LabelGraphics.js:LabelGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/ModelGraphics.js:ModelGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/ModelGraphics.js:ModelGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ArcType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockStep.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/defer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/getExtensionFromUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/getFilenameFromUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/HeadingPitchRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/objectToQuery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/PinBuilder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/PolygonHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/queryToObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/Entity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/getElement.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/KmlCamera.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/KmlLookAt.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/KmlTourWait.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PathGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTour.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourFlyTo.js",
+      "target": "file:packages/engine/Source/Core/EasingFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlTourWait.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/NodeTransformationProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

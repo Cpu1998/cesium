@@ -1,0 +1,638 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/clamp-to-3d-model/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clamp-to-3d-model/index.html",
+      "summary": "clamp-to-3d-model Sandcastle 示例的 HTML 入口页，加载 Cesium 并启动主脚本。",
+      "tags": ["markup", "sandcastle", "entry-point", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clamp-to-3d-model/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clamp-to-3d-model/main.js",
+      "summary": "演示如何使用 sampleHeight 将 entity 动态贴合到 3D Tiles 模型表面，实时更新位置高度。",
+      "tags": ["sandcastle", "demo", "3d-tiles", "sample-height"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clamp-to-3d-model/main.js:updatePosition",
+      "type": "function",
+      "name": "updatePosition",
+      "filePath": "packages/sandcastle/gallery/clamp-to-3d-model/main.js",
+      "lineRange": [49, 73],
+      "summary": "每帧调用 scene.sampleHeight 获取地表/模型高度，并将 entity 位置贴合到该高度，同时显示当前高度值。",
+      "tags": ["callback", "sample-height", "clamping", "animation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clamp-to-3d-model/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clamp-to-3d-model/sandcastle.yaml",
+      "summary": "clamp-to-3d-model 示例的 Sandcastle 元数据配置，定义标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/classification-types/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/classification-types/index.html",
+      "summary": "classification-types Sandcastle 示例的 HTML 入口页。",
+      "tags": ["markup", "sandcastle", "entry-point", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/classification-types/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/classification-types/main.js",
+      "summary": "演示 3D Tiles 中不同的分类类型（CESIUM_3D_TILEClassification），区分地形、模型与点云的分类显示。",
+      "tags": ["sandcastle", "demo", "3d-tiles", "classification"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/classification-types/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/classification-types/sandcastle.yaml",
+      "summary": "classification-types 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/classification/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/classification/index.html",
+      "summary": "classification Sandcastle 示例的 HTML 入口页，内含 UI 控件用于切换高亮与分类反相。",
+      "tags": ["markup", "sandcastle", "entry-point", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/classification/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/classification/main.js",
+      "summary": "演示如何使用 classification primitive 对 3D Tiles 中的建筑和树木进行高亮，并支持分类反相与透明度调节。",
+      "tags": ["sandcastle", "demo", "classification", "3d-tiles"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/classification/main.js:highlightBuilding",
+      "type": "function",
+      "name": "highlightBuilding",
+      "filePath": "packages/sandcastle/gallery/classification/main.js",
+      "lineRange": [173, 185],
+      "summary": "将相机视角切换到建筑高亮 primitive 并展示建筑分类结果。",
+      "tags": ["event-handler", "camera", "highlight"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/classification/main.js:highlightTrees",
+      "type": "function",
+      "name": "highlightTrees",
+      "filePath": "packages/sandcastle/gallery/classification/main.js",
+      "lineRange": [187, 199],
+      "summary": "将相机视角切换到树木高亮 primitive 并展示树木分类结果。",
+      "tags": ["event-handler", "camera", "highlight"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/classification/main.js:invertClassification",
+      "type": "function",
+      "name": "invertClassification",
+      "filePath": "packages/sandcastle/gallery/classification/main.js",
+      "lineRange": [201, 219],
+      "summary": "切换所有高亮 primitive 的 Show 属性，实现分类反相显示效果。",
+      "tags": ["event-handler", "classification", "toggle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/classification/main.js:updateAlpha",
+      "type": "function",
+      "name": "updateAlpha",
+      "filePath": "packages/sandcastle/gallery/classification/main.js",
+      "lineRange": [221, 223],
+      "summary": "根据 UI 输入更新高亮 primitive 的透明度 alpha 值。",
+      "tags": ["event-handler", "alpha", "ui-control"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/classification/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/classification/sandcastle.yaml",
+      "summary": "classification 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clipping-performance-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/index.html",
+      "summary": "clipping-performance-dev 开发示例的 HTML 入口页，包含大量用于性能测试的 UI 控件。",
+      "tags": ["markup", "sandcastle", "entry-point", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "summary": "开发用性能测试示例，批量生成多边形 clipping polygon 数据集，用于评估 clipping regions 性能表现。",
+      "tags": ["sandcastle", "demo", "clipping", "performance", "development"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createCirclePoints",
+      "type": "function",
+      "name": "createCirclePoints",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "lineRange": [25, 34],
+      "summary": "根据中心经纬度、半径与点数生成圆形多边形顶点坐标数组。",
+      "tags": ["utility", "geometry", "circle", "generation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createTestData",
+      "type": "function",
+      "name": "createTestData",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "lineRange": [36, 55],
+      "summary": "根据给定点集构造用于性能测试的 GeoJSON 数据源。",
+      "tags": ["factory", "test-data", "geojson"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateClippingPolygons",
+      "type": "function",
+      "name": "updateClippingPolygons",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "lineRange": [62, 119],
+      "summary": "根据 UI 参数批量生成并应用多个 clipping polygon 到模型与地形，用于性能基准测试。",
+      "tags": ["clipping", "performance", "batch", "ui-control"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateModelFromView",
+      "type": "function",
+      "name": "updateModelFromView",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "lineRange": [139, 146],
+      "summary": "读取 UI 输入参数并触发 clipping polygon 批量更新。",
+      "tags": ["event-handler", "ui-control", "clipping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clipping-performance-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clipping-performance-dev/sandcastle.yaml",
+      "summary": "clipping-performance-dev 示例的 Sandcastle 元数据配置，标记为 development 类别。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clipping-regions/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/index.html",
+      "summary": "clipping-regions Sandcastle 示例的 HTML 入口页，提供说明文本与启动指引。",
+      "tags": ["markup", "sandcastle", "entry-point", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/main.js",
+      "summary": "交互式演示：通过鼠标绘制多边形区域，对地形与 3D Tiles tileset 应用 clipping polygon 进行裁剪。",
+      "tags": ["sandcastle", "demo", "clipping", "interaction", "drawing"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-regions/main.js:createPoint",
+      "type": "function",
+      "name": "createPoint",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/main.js",
+      "lineRange": [140, 149],
+      "summary": "在世界坐标处创建一个可视化的点 entity，用于绘制反馈。",
+      "tags": ["utility", "entity", "drawing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-regions/main.js:drawShape",
+      "type": "function",
+      "name": "drawShape",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/main.js",
+      "lineRange": [150, 159],
+      "summary": "根据已采集的坐标点绘制动态多边形/折线 shape entity。",
+      "tags": ["utility", "entity", "drawing", "polygon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-regions/main.js:createClippingPolygon",
+      "type": "function",
+      "name": "createClippingPolygon",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/main.js",
+      "lineRange": [200, 216],
+      "summary": "将采集的坐标点构造成 ClippingPolygon 并应用到 tileset 与 globe 的 clippingPolygons 集合。",
+      "tags": ["clipping", "polygon", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clipping-regions/main.js:terminateShape",
+      "type": "function",
+      "name": "terminateShape",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/main.js",
+      "lineRange": [218, 226],
+      "summary": "结束绘制流程：生成 clipping polygon 并清理临时绘制 entity。",
+      "tags": ["event-handler", "drawing", "cleanup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clipping-regions/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clipping-regions/sandcastle.yaml",
+      "summary": "clipping-regions 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clock/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clock/index.html",
+      "summary": "clock Sandcastle 示例的 HTML 入口页。",
+      "tags": ["markup", "sandcastle", "entry-point", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clock/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clock/main.js",
+      "summary": "演示如何配置 Viewer 的 Clock 与 Timeline 控件，控制场景时间播放速度与范围。",
+      "tags": ["sandcastle", "demo", "clock", "timeline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clock/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clock/sandcastle.yaml",
+      "summary": "clock 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/cloud-parameters/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/cloud-parameters/index.html",
+      "summary": "cloud-parameters Sandcastle 示例的 HTML 入口页，内含大量 UI 控件用于调节云层参数。",
+      "tags": ["markup", "sandcastle", "entry-point", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/cloud-parameters/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/cloud-parameters/main.js",
+      "summary": "通过 UI 控件实时调节 CloudCollection 的颜色、亮度、亮度范围等云层渲染参数。",
+      "tags": ["sandcastle", "demo", "clouds", "ui-control"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/cloud-parameters/main.js:getColor",
+      "type": "function",
+      "name": "getColor",
+      "filePath": "packages/sandcastle/gallery/cloud-parameters/main.js",
+      "lineRange": [7, 9],
+      "summary": "根据颜色名称字符串返回对应的 Cesium.Color 常量。",
+      "tags": ["utility", "color", "mapping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/cloud-parameters/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/cloud-parameters/sandcastle.yaml",
+      "summary": "cloud-parameters 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clouds/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clouds/index.html",
+      "summary": "clouds Sandcastle 示例的 HTML 入口页。",
+      "tags": ["markup", "sandcastle", "entry-point", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clouds/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "summary": "演示使用 CloudCollection 创建前/后景云层与随机云团，并模拟热气球沿时间轨迹飞行的动画。",
+      "tags": ["sandcastle", "demo", "clouds", "animation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clouds/main.js:getRandomNumberInRange",
+      "type": "function",
+      "name": "getRandomNumberInRange",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "lineRange": [18, 20],
+      "summary": "基于 Cesium 随机数生成器返回指定范围内的随机数。",
+      "tags": ["utility", "random", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clouds/main.js:createBackLayerClouds",
+      "type": "function",
+      "name": "createBackLayerClouds",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "lineRange": [25, 74],
+      "summary": "在预设经纬度位置批量添加云层 entity，构建背景云层。",
+      "tags": ["factory", "clouds", "batch"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clouds/main.js:createRandomClouds",
+      "type": "function",
+      "name": "createRandomClouds",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "lineRange": [79, 111],
+      "summary": "在给定经纬度与高度范围内随机生成指定数量的云团 entity。",
+      "tags": ["factory", "clouds", "random"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clouds/main.js:createFrontLayerClouds",
+      "type": "function",
+      "name": "createFrontLayerClouds",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "lineRange": [114, 128],
+      "summary": "在前景区预设位置添加少量云层 entity。",
+      "tags": ["factory", "clouds"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clouds/main.js:computeBalloonFlight",
+      "type": "function",
+      "name": "computeBalloonFlight",
+      "filePath": "packages/sandcastle/gallery/clouds/main.js",
+      "lineRange": [143, 177],
+      "summary": "计算热气球飞行轨迹，沿时间轴添加 SampledPosition 采样点构成动画路径。",
+      "tags": ["animation", "sampled-position", "flight-path"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clouds/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clouds/sandcastle.yaml",
+      "summary": "clouds 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/clustering/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/clustering/index.html",
+      "summary": "clustering Sandcastle 示例的 HTML 入口页，包含调节聚合参数的 UI 控件。",
+      "tags": ["markup", "sandcastle", "entry-point", "ui"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/gallery/clamp-to-3d-model/main.js",
+      "target": "function:packages/sandcastle/gallery/clamp-to-3d-model/main.js:updatePosition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clamp-to-3d-model/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clamp-to-3d-model/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/classification/main.js",
+      "target": "function:packages/sandcastle/gallery/classification/main.js:highlightBuilding",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/classification/main.js",
+      "target": "function:packages/sandcastle/gallery/classification/main.js:highlightTrees",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/classification/main.js",
+      "target": "function:packages/sandcastle/gallery/classification/main.js:invertClassification",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/classification/main.js",
+      "target": "function:packages/sandcastle/gallery/classification/main.js:updateAlpha",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/classification/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/classification/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createCirclePoints",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createTestData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateClippingPolygons",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateModelFromView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateClippingPolygons",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createCirclePoints",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateClippingPolygons",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:createTestData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateModelFromView",
+      "target": "function:packages/sandcastle/gallery/clipping-performance-dev/main.js:updateClippingPolygons",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clipping-performance-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clipping-performance-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-regions/main.js:createPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-regions/main.js:drawShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-regions/main.js:createClippingPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "target": "function:packages/sandcastle/gallery/clipping-regions/main.js:terminateShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/clipping-regions/main.js:terminateShape",
+      "target": "function:packages/sandcastle/gallery/clipping-regions/main.js:createClippingPolygon",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clipping-regions/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clipping-regions/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clock/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clock/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/cloud-parameters/main.js",
+      "target": "function:packages/sandcastle/gallery/cloud-parameters/main.js:getColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/cloud-parameters/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/cloud-parameters/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clouds/main.js",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:getRandomNumberInRange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clouds/main.js",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:createBackLayerClouds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clouds/main.js",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:createRandomClouds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clouds/main.js",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:createFrontLayerClouds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clouds/main.js",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:computeBalloonFlight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/clouds/main.js:createRandomClouds",
+      "target": "function:packages/sandcastle/gallery/clouds/main.js:getRandomNumberInRange",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clouds/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clouds/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

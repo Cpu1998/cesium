@@ -1,0 +1,80 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/schema.json",
+      "type": "config",
+      "name": "schema.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/schema.json",
+      "summary": "3D Tiles metadata schema 定义单一 voxel 类，包含 a、b、c 三个 SCALAR/FLOAT32 属性及 -99999.0 缺失值标记，用于多属性体素测试夹具的属性校验。",
+      "tags": ["schema-definition", "3d-tiles", "voxel", "metadata", "test-fixture"],
+      "complexity": "simple",
+      "languageNotes": "遵循 3D Tiles 1.1 metadata schema 规范，schema 通过外部 JSON 文件被 tileset.json 的 schemaUri 引用。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "summary": "3D Tiles 1.1 体素 tileset 主入口，定义 2x2x2 八叉树隐式分块，启用 3DTILES_content_voxels 扩展并附带的属性统计信息，供 VoxelContent 解析测试使用。",
+      "tags": ["3d-tiles", "voxel", "tileset", "implicit-tiling", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "使用 implicitTiling 的 OCTREE 细分方案，content 引用 tiles/{level}/{x}/{y}/{z}.gltf 模板路径，extensionsRequired 强制依赖 3DTILES_content_voxels 扩展。"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.csv",
+      "type": "file",
+      "name": "voxel2x2.csv",
+      "filePath": "Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.csv",
+      "summary": "2x2x2 体素网格的原始 CSV 数据源，列出 8 个体素的 X/Y/Z 坐标及对应的 a、b、c 三个 FLOAT32 属性值，作为 voxel tiler 管线的输入数据。",
+      "tags": ["voxel", "data", "csv", "test-fixture", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.json",
+      "type": "config",
+      "name": "voxel2x2.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.json",
+      "summary": "voxel tiler 管线配置文件，指定 voxel2x2.csv 为输入、./output 为输出，并通过 voxelTiler 配置 a/b/c 属性、tileDimensions 与 1x1x1 网格间距以生成测试 tileset。",
+      "tags": ["configuration", "voxel", "pipeline", "data-pipeline", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "voxelContentBinary 与 voxelContentCombineBuffers 启用二进制合并缓冲，便于 Cesium 运行时高效加载多属性体素内容。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/schema.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/schema.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.csv",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/voxel2x2.csv",
+      "target": "config:Specs/Data/Cesium3DTiles/Voxel/VoxelMultiAttribute3DTiles/tileset.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

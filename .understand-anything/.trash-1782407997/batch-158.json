@@ -1,0 +1,233 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/widgets/Specs/test.mjs",
+      "type": "file",
+      "name": "test.mjs",
+      "filePath": "packages/widgets/Specs/test.mjs",
+      "summary": "ES Module 测试辅助文件，仅定义一个简单的 testFunc 占位函数，用于 widgets 包测试环境验证模块加载。",
+      "tags": ["test", "utility", "module", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Specs/ThirdParty/knockoutSpec.js",
+      "type": "file",
+      "name": "knockoutSpec.js",
+      "filePath": "packages/widgets/Specs/ThirdParty/knockoutSpec.js",
+      "summary": "针对 Knockout 第三方库的测试用例，验证数据绑定与 observable 行为是否被 widgets 正确依赖。",
+      "tags": ["test", "third-party", "knockout", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Specs/Timeline/TimelineSpec.js",
+      "type": "file",
+      "name": "TimelineSpec.js",
+      "filePath": "packages/widgets/Specs/Timeline/TimelineSpec.js",
+      "summary": "Timeline 控件的单元测试用例，覆盖时间轴渲染与交互行为。",
+      "tags": ["test", "widget", "timeline", "ui-component"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/diff-types.sh",
+      "type": "file",
+      "name": "diff-types.sh",
+      "filePath": "scripts/diff-types.sh",
+      "summary": "Shell 脚本，用于对比 TypeScript 类型声明文件的差异，辅助类型变更的代码审查。",
+      "tags": ["script", "build-system", "typescript", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/isCI.js",
+      "type": "file",
+      "name": "isCI.js",
+      "filePath": "scripts/isCI.js",
+      "summary": "检测当前进程是否运行在 CI 环境（如 GitHub Actions）的辅助脚本，供构建工具按环境切换行为。",
+      "tags": ["utility", "ci-cd", "build-system", "environment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/lebab-batch.js",
+      "type": "file",
+      "name": "lebab-batch.js",
+      "filePath": "scripts/lebab-batch.js",
+      "summary": "批量调用 lebab 工具将 ES5 代码升级为现代 ES 语法的脚本，包含彩色日志输出的辅助函数。",
+      "tags": ["script", "build-system", "tooling", "migration"],
+      "complexity": "moderate",
+      "languageNotes": "包含 bright/dim/red/green 等 ANSI 颜色辅助函数，用于控制台格式化输出。"
+    },
+    {
+      "id": "file:Source/copyrightHeader.js",
+      "type": "file",
+      "name": "copyrightHeader.js",
+      "filePath": "Source/copyrightHeader.js",
+      "summary": "导出 Apache 2.0 版权头文本的模块，被构建工具用于在源文件头部自动注入版权声明。",
+      "tags": ["config", "build-system", "license", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/ArcGIS/9_214_379/root.json",
+      "type": "config",
+      "name": "root.json",
+      "filePath": "Specs/Data/ArcGIS/9_214_379/root.json",
+      "summary": "ArcGIS MapServer 服务的根目录元数据 fixture，包含服务描述、空间参考、字段定义、切片信息等，用于 ArcGIS 影像图层加载测试。",
+      "tags": ["fixture", "test-data", "arcgis", "imagery", "configuration"],
+      "complexity": "complex",
+      "languageNotes": "完整复刻 ArcGIS REST 服务元数据结构，含 55 个顶层字段（capabilities、tileInfo、spatialReference 等）。"
+    },
+    {
+      "id": "file:Specs/Data/ArcGIS/9_214_379/tile_9_214_379.tile",
+      "type": "file",
+      "name": "tile_9_214_379.tile",
+      "filePath": "Specs/Data/ArcGIS/9_214_379/tile_9_214_379.tile",
+      "summary": "ArcGIS 切片缓存中的单个瓦片二进制数据 fixture（层级 9 / 行 214 / 列 379），用于瓦片请求与解码测试。",
+      "tags": ["fixture", "test-data", "arcgis", "tile", "binary"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/ArcGIS/9_214_379/tilemap_10_384_640_128_128.json",
+      "type": "config",
+      "name": "tilemap_10_384_640_128_128.json",
+      "filePath": "Specs/Data/ArcGIS/9_214_379/tilemap_10_384_640_128_128.json",
+      "summary": "ArcGIS tilemap 响应 fixture，描述指定 LOD/位置下 128x128 切片网格的可用性，用于 LERC 切片缓存解析测试。",
+      "tags": ["fixture", "test-data", "arcgis", "tilemap", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/ArcGIS/identify-Geographic.json",
+      "type": "config",
+      "name": "identify-Geographic.json",
+      "filePath": "Specs/Data/ArcGIS/identify-Geographic.json",
+      "summary": "ArcGIS 影像图层在地理坐标系下的 identify 操作响应 fixture，用于像素拾取与要素属性查询测试。",
+      "tags": ["fixture", "test-data", "arcgis", "identify", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/ArcGIS/identify-WebMercator.json",
+      "type": "config",
+      "name": "identify-WebMercator.json",
+      "filePath": "Specs/Data/ArcGIS/identify-WebMercator.json",
+      "summary": "ArcGIS 影像图层在 Web Mercator 坐标系下的 identify 操作响应 fixture，用于像素拾取与要素属性查询测试。",
+      "tags": ["fixture", "test-data", "arcgis", "identify", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Batched/BatchedAnimated/batchedAnimated.glb",
+      "type": "file",
+      "name": "batchedAnimated.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedAnimated/batchedAnimated.glb",
+      "summary": "BatchedAnimated tileset 引用的 glTF 二进制模型 fixture，承载动画相关的 batched 模型几何与材质数据。",
+      "tags": ["fixture", "test-data", "gltf", "3d-tiles", "binary"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedAnimated/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedAnimated/tileset.json",
+      "summary": "3D Tiles tileset 主入口 fixture，引用带动画的 batched glb 模型，用于测试 BatchedTable 动画属性解析。",
+      "tags": ["fixture", "test-data", "3d-tiles", "schema-definition", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedColors/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedColors/tileset.json",
+      "summary": "3D Tiles BatchedColors 测试用 tileset fixture，用于验证每个 batch 的逐顶点颜色覆盖渲染。",
+      "tags": ["fixture", "test-data", "3d-tiles", "schema-definition", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedColorsMix/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedColorsMix/tileset.json",
+      "summary": "3D Tiles BatchedColorsMix 测试用 tileset fixture，用于验证 per-batch 颜色与 per-point 颜色混合渲染逻辑。",
+      "tags": ["fixture", "test-data", "3d-tiles", "schema-definition", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedColorsTranslucent/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedColorsTranslucent/tileset.json",
+      "summary": "3D Tiles BatchedColorsTranslucent 测试用 tileset fixture，用于验证半透明 per-batch 颜色的渲染与混合。",
+      "tags": ["fixture", "test-data", "3d-tiles", "schema-definition", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedDeprecated1/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedDeprecated1/tileset.json",
+      "summary": "3D Tiles 旧版（deprecated）格式变体 1 的 tileset fixture，用于回归测试向后兼容的旧规范解析路径。",
+      "tags": ["fixture", "test-data", "3d-tiles", "legacy", "configuration"],
+      "complexity": "simple",
+      "languageNotes": "采用早期 3D Tiles 规范字段布局，文件较标准 fixture 更长（59 行）。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedDeprecated2/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedDeprecated2/tileset.json",
+      "summary": "3D Tiles 旧版（deprecated）格式变体 2 的 tileset fixture，用于回归测试向后兼容的旧规范解析路径。",
+      "tags": ["fixture", "test-data", "3d-tiles", "legacy", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedExpiration/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedExpiration/tileset.json",
+      "summary": "3D Tiles BatchedExpiration 测试用 tileset fixture，携带 expire 过期元数据，用于验证 tile 缓存过期处理逻辑。",
+      "tags": ["fixture", "test-data", "3d-tiles", "cache", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedNoBatchIds/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedNoBatchIds/tileset.json",
+      "summary": "3D Tiles BatchedNoBatchIds 测试用 tileset fixture，故意省略 batchId 属性，用于验证无 batch 划分时的降级处理。",
+      "tags": ["fixture", "test-data", "3d-tiles", "edge-case", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedTextured/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedTextured/tileset.json",
+      "summary": "3D Tiles BatchedTextured 测试用 tileset fixture，用于验证带纹理坐标的 batched 模型渲染。",
+      "tags": ["fixture", "test-data", "3d-tiles", "texture", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedTranslucent/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedTranslucent/tileset.json",
+      "summary": "3D Tiles BatchedTranslucent 测试用 tileset fixture，用于验证整批半透明材质模型的渲染。",
+      "tags": ["fixture", "test-data", "3d-tiles", "transparency", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedTranslucentOpaqueMix/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedTranslucentOpaqueMix/tileset.json",
+      "summary": "3D Tiles BatchedTranslucentOpaqueMix 测试用 tileset fixture，混合半透明与不透明 batch，用于验证排序与混合渲染。",
+      "tags": ["fixture", "test-data", "3d-tiles", "transparency", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Batched/BatchedWGS84/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Batched/BatchedWGS84/tileset.json",
+      "summary": "3D Tiles BatchedWGS84 测试用 tileset fixture，使用 WGS84 地心坐标（非局部坐标系），用于验证全局坐标转换。",
+      "tags": ["fixture", "test-data", "3d-tiles", "wgs84", "configuration"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

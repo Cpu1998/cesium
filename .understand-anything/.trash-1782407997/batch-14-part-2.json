@@ -1,0 +1,948 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "type": "file",
+   "name": "createGooglePhotorealistic3DTileset.js",
+   "filePath": "packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "summary": "便捷工厂，创建加载 Google Photorealistic 3D Tiles（通过 Cesium ion 或直接 Google API）的 Cesium3DTileset 实例。",
+   "tags": [
+    "3d-tiles",
+    "factory",
+    "google"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "type": "file",
+   "name": "createOsmBuildingsAsync.js",
+   "filePath": "packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "summary": "便捷异步工厂，加载 Cesium OSM Buildings（通过 ion 资产 ID）并应用默认样式的 Cesium3DTileset。",
+   "tags": [
+    "3d-tiles",
+    "factory",
+    "osm-buildings"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "type": "file",
+   "name": "decodeMVT.js",
+   "filePath": "packages/engine/Source/Scene/decodeMVT.js",
+   "summary": "从零实现的 Mapbox Vector Tile (Protobuf) 解码器，解析 layers、features、几何命令流与属性 tag，无外部 protobuf 依赖。",
+   "tags": [
+    "mvt",
+    "protobuf",
+    "decoder"
+   ],
+   "complexity": "complex",
+   "languageNotes": "手写 varint 与 command 解码，避免引入完整的 protobuf 运行时。"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "type": "file",
+   "name": "findContentMetadata.js",
+   "filePath": "packages/engine/Source/Scene/findContentMetadata.js",
+   "summary": "在 3D Tiles 内容上查找 EXT_structural_metadata 的 content 级 metadata（含 3DTILES_metadata 回退）。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/findGroupMetadata.js",
+   "type": "file",
+   "name": "findGroupMetadata.js",
+   "filePath": "packages/engine/Source/Scene/findGroupMetadata.js",
+   "summary": "在 tile 的 group 上查找结构性 metadata（EXT_structural_metadata 或 3DTILES_metadata 回退）。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/findMeshoptExtension.js",
+   "type": "file",
+   "name": "findMeshoptExtension.js",
+   "filePath": "packages/engine/Source/Scene/findMeshoptExtension.js",
+   "summary": "在 glTF primitive 中查找 EXT_meshopt_compression 扩展对象，供缓冲区加载器使用。",
+   "tags": [
+    "gltf",
+    "meshopt",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "type": "file",
+   "name": "findTileMetadata.js",
+   "filePath": "packages/engine/Source/Scene/findTileMetadata.js",
+   "summary": "在 3D Tiles tile 上查找 tile 级 metadata（EXT_structural_metadata 或 3DTILES_metadata 回退）。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/getMetadataClassProperty.js",
+   "type": "file",
+   "name": "getMetadataClassProperty.js",
+   "filePath": "packages/engine/Source/Scene/getMetadataClassProperty.js",
+   "summary": "从 metadata class 中按属性名获取属性定义的工具，处理结构性与枚举类型的回退。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/getMetadataProperty.js",
+   "type": "file",
+   "name": "getMetadataProperty.js",
+   "filePath": "packages/engine/Source/Scene/getMetadataProperty.js",
+   "summary": "从 metadata 对象中按属性名获取属性值的工具，兼容结构性 metadata 与旧 3DTILES_metadata。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/hasExtension.js",
+   "type": "file",
+   "name": "hasExtension.js",
+   "filePath": "packages/engine/Source/Scene/hasExtension.js",
+   "summary": "检测 glTF/3D Tiles 对象上是否存在指定扩展（包括 extensionsUsed 列表）。",
+   "tags": [
+    "gltf",
+    "extension",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "type": "file",
+   "name": "preprocess3DTileContent.js",
+   "filePath": "packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "summary": "解析 3D Tiles 瓦片数据载荷，识别 magic 头（b3dm/i3dm/pnts/...）与 JSON 内容并返回内容类型。",
+   "tags": [
+    "3d-tiles",
+    "preprocessing",
+    "utility"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createRectangleGeometry.js",
+   "type": "file",
+   "name": "createRectangleGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createRectangleGeometry.js",
+   "summary": "Web Worker 入口：将矩形几何参数并行构造为 RectangleGeometry 顶点/索引数据。",
+   "tags": [
+    "worker",
+    "geometry",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "type": "file",
+   "name": "createRectangleOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "summary": "Web Worker 入口：构造矩形几何的轮廓线顶点/索引数据。",
+   "tags": [
+    "worker",
+    "geometry",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "type": "file",
+   "name": "createVerticesFromHeightmap.js",
+   "filePath": "packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "summary": "Web Worker 入口：从高度图网格化生成地形顶点/法线，是地形瓦片几何构建的核心 worker。",
+   "tags": [
+    "worker",
+    "terrain",
+    "geometry"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "type": "file",
+   "name": "decodeGoogleEarthEnterprisePacket.js",
+   "filePath": "packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "summary": "Web Worker 入口：解码 Google Earth Enterprise 加密瓦片包（含 metadata、地形、影像解压）。",
+   "tags": [
+    "worker",
+    "google-earth",
+    "decoder"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "type": "file",
+   "name": "GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "filePath": "packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "summary": "GoogleStreetViewCubeMapPanoramaProvider 的单元测试，验证街景立方体贴图 panorama 加载与采样。",
+   "tags": [
+    "test",
+    "panorama",
+    "google-streetview"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "type": "file",
+   "name": "WebMapTileServiceImageryProviderSpec.js",
+   "filePath": "packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "summary": "WebMapTileServiceImageryProvider 的大型单元测试套件，覆盖 KVP/REST 编码、维度、要素拾取等场景。",
+   "tags": [
+    "test",
+    "imagery",
+    "wmts"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js:createGooglePhotorealistic3DTileset",
+   "type": "function",
+   "name": "createGooglePhotorealistic3DTileset",
+   "filePath": "packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "lineRange": [
+    60,
+    99
+   ],
+   "summary": "工厂入口：构造加载 Google Photorealistic 3D Tiles 的 Cesium3DTileset，处理 ion 与直接 Google 端点。",
+   "tags": [
+    "3d-tiles",
+    "factory"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/createOsmBuildingsAsync.js:createOsmBuildingsAsync",
+   "type": "function",
+   "name": "createOsmBuildingsAsync",
+   "filePath": "packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "lineRange": [
+    60,
+    77
+   ],
+   "summary": "异步工厂：加载 ion 上的 OSM Buildings 资产并返回配置好的 Cesium3DTileset。",
+   "tags": [
+    "3d-tiles",
+    "factory"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/decodeMVT.js:decodeMVT",
+   "type": "function",
+   "name": "decodeMVT",
+   "filePath": "packages/engine/Source/Scene/decodeMVT.js",
+   "lineRange": [
+    116,
+    145
+   ],
+   "summary": "MVT 解码入口：读取 protobuf 字段并分发到 layer/feature/geometry 解码。",
+   "tags": [
+    "mvt",
+    "decoder",
+    "entry-point"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/decodeMVT.js:decodeLayer",
+   "type": "function",
+   "name": "decodeLayer",
+   "filePath": "packages/engine/Source/Scene/decodeMVT.js",
+   "lineRange": [
+    154,
+    214
+   ],
+   "summary": "解码单个 MVT layer（名称、范围、feature 列表）。",
+   "tags": [
+    "mvt",
+    "decoder"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/decodeMVT.js:decodeFeature",
+   "type": "function",
+   "name": "decodeFeature",
+   "filePath": "packages/engine/Source/Scene/decodeMVT.js",
+   "lineRange": [
+    225,
+    293
+   ],
+   "summary": "解码 MVT feature 的 id、属性 tag 与几何。",
+   "tags": [
+    "mvt",
+    "decoder"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/decodeMVT.js:decodeGeometry",
+   "type": "function",
+   "name": "decodeGeometry",
+   "filePath": "packages/engine/Source/Scene/decodeMVT.js",
+   "lineRange": [
+    302,
+    395
+   ],
+   "summary": "解析 MVT 几何命令流（MoveTo/LineTo/ClosePath）生成坐标数组。",
+   "tags": [
+    "mvt",
+    "geometry"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/preprocess3DTileContent.js:preprocess3DTileContent",
+   "type": "function",
+   "name": "preprocess3DTileContent",
+   "filePath": "packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "lineRange": [
+    27,
+    88
+   ],
+   "summary": "检测瓦片载荷格式（magic/header），返回内容类型以便工厂分发到具体 loader。",
+   "tags": [
+    "3d-tiles",
+    "preprocessing"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createVerticesFromHeightmap.js:createVerticesFromHeightmap",
+   "type": "function",
+   "name": "createVerticesFromHeightmap",
+   "filePath": "packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "lineRange": [
+    9,
+    52
+   ],
+   "summary": "Worker 主函数：基于高度图调用 HeightmapTessellator 生成地形顶点/法线/UV。",
+   "tags": [
+    "worker",
+    "terrain",
+    "geometry"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:decodeGoogleEarthEnterprisePacket",
+   "type": "function",
+   "name": "decodeGoogleEarthEnterprisePacket",
+   "filePath": "packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "lineRange": [
+    28,
+    48
+   ],
+   "summary": "Worker 入口：解包 Google Earth Enterprise 瓦片并分发到 metadata/terrain/影像解码。",
+   "tags": [
+    "worker",
+    "google-earth",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:processMetadata",
+   "type": "function",
+   "name": "processMetadata",
+   "filePath": "packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "lineRange": [
+    52,
+    199
+   ],
+   "summary": "解析 GEE 元数据子包，提取每个子瓦片的 terrain/影像信息与 quadtree 状态。",
+   "tags": [
+    "google-earth",
+    "metadata"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:processTerrain",
+   "type": "function",
+   "name": "processTerrain",
+   "filePath": "packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "lineRange": [
+    208,
+    235
+   ],
+   "summary": "解压与处理 GEE 地形子包，输出高度图数据。",
+   "tags": [
+    "google-earth",
+    "terrain"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:uncompressPacket",
+   "type": "function",
+   "name": "uncompressPacket",
+   "filePath": "packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "lineRange": [
+    240,
+    267
+   ],
+   "summary": "对 GEE 加密/压缩包进行解密与 inflate 解压。",
+   "tags": [
+    "google-earth",
+    "decompression"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "function:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js:createGooglePhotorealistic3DTileset",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "function:packages/engine/Source/Scene/createOsmBuildingsAsync.js:createOsmBuildingsAsync",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "target": "function:packages/engine/Source/Scene/decodeMVT.js:decodeMVT",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "target": "function:packages/engine/Source/Scene/decodeMVT.js:decodeLayer",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "target": "function:packages/engine/Source/Scene/decodeMVT.js:decodeFeature",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "target": "function:packages/engine/Source/Scene/decodeMVT.js:decodeGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "function:packages/engine/Source/Scene/preprocess3DTileContent.js:preprocess3DTileContent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "function:packages/engine/Source/Workers/createVerticesFromHeightmap.js:createVerticesFromHeightmap",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:decodeGoogleEarthEnterprisePacket",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:processMetadata",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:processTerrain",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "function:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js:uncompressPacket",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/GoogleMaps.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/IonResource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createGooglePhotorealistic3DTileset.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createOsmBuildingsAsync.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "target": "file:packages/engine/Source/Scene/ContentMetadata.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "target": "file:packages/engine/Source/Scene/hasExtension.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findGroupMetadata.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findGroupMetadata.js",
+   "target": "file:packages/engine/Source/Scene/hasExtension.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findMeshoptExtension.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "target": "file:packages/engine/Source/Scene/hasExtension.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/findTileMetadata.js",
+   "target": "file:packages/engine/Source/Scene/TileMetadata.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/getMetadataClassProperty.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/getMetadataProperty.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/hasExtension.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/getMagic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleGeometry.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleGeometry.js",
+   "target": "file:packages/engine/Source/Core/RectangleGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createRectangleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/RectangleOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Core/HeightmapEncoding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js",
+   "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "file:packages/engine/Source/Core/decodeGoogleEarthEnterpriseData.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/decodeGoogleEarthEnterprisePacket.js",
+   "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Core/GoogleMaps.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/GoogleStreetViewCubeMapPanoramaProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/GoogleStreetViewCubeMapPanoramaProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/PanoramaProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/ImageryLayerFeatureInfo.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "target": "file:Specs/pollToPromise.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Specs/Scene/WebMapTileServiceImageryProviderSpec.js",
+   "target": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  }
+ ]
+}

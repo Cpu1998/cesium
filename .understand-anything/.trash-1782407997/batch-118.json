@@ -1,0 +1,508 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataEnumValueSpec.js",
+      "type": "file",
+      "name": "MetadataEnumValueSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataEnumValueSpec.js",
+      "summary": "MetadataEnumValue 类的单元测试，验证元数据枚举值的构造、序列化与有效性检查。",
+      "tags": ["test", "metadata", "scene", "cesium"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataPickingSpec.js",
+      "type": "file",
+      "name": "MetadataPickingSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataPickingSpec.js",
+      "summary": "MetadataPicking 的端到端测试，覆盖元数据拾取（picking）在 3D Tiles 与 Model 场景下的行为。",
+      "tags": ["test", "metadata", "picking", "scene"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataSchemaLoaderSpec.js",
+      "type": "file",
+      "name": "MetadataSchemaLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataSchemaLoaderSpec.js",
+      "summary": "MetadataSchemaLoader 的单元测试，验证从 JSON 加载并校验 EXT_structural_metadata / 3D Tiles 元数据 schema 的流程。",
+      "tags": ["test", "metadata", "schema", "loader"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataSchemaSpec.js",
+      "type": "file",
+      "name": "MetadataSchemaSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataSchemaSpec.js",
+      "summary": "MetadataSchema 类的单元测试，验证元数据 schema 的构建、类与枚举定义的访问。",
+      "tags": ["test", "metadata", "schema", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataTypeSpec.js",
+      "type": "file",
+      "name": "MetadataTypeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataTypeSpec.js",
+      "summary": "MetadataType 枚举与辅助函数的单元测试，验证元数据类型（标量/向量/矩阵）的判断逻辑。",
+      "tags": ["test", "metadata", "type-checking", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ClassificationModelDrawCommandSpec.js",
+      "type": "file",
+      "name": "ClassificationModelDrawCommandSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ClassificationModelDrawCommandSpec.js",
+      "summary": "ClassificationModelDrawCommand 的单元测试，验证分类（classification）模型 draw command 的构建与渲染状态。",
+      "tags": ["test", "model", "classification", "draw-command", "rendering"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "type": "file",
+      "name": "createVectorTileBuffersFromModelComponentsSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "summary": "createVectorTileBuffersFromModelComponents 的单元测试，验证将 Model 组件转换为矢量瓦片 GPU buffer 的过程，并内置构造测试数据的辅助函数。",
+      "tags": ["test", "model", "vector-tile", "buffer"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createPositionAttribute",
+      "type": "function",
+      "name": "createPositionAttribute",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [14, 20],
+      "summary": "测试辅助函数：根据位置数组构造 GeometryAttributes 兼容的 position 属性对象。",
+      "tags": ["test-helper", "geometry", "attribute"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createFeatureIdAttribute",
+      "type": "function",
+      "name": "createFeatureIdAttribute",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [22, 29],
+      "summary": "测试辅助函数：根据 feature id 数组构造 feature id 属性对象。",
+      "tags": ["test-helper", "feature-id", "attribute"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createFeatureIdSet",
+      "type": "function",
+      "name": "createFeatureIdSet",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [31, 37],
+      "summary": "测试辅助函数：构造包含给定 feature 数量的 feature id 集合对象。",
+      "tags": ["test-helper", "feature-id"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createIndices",
+      "type": "function",
+      "name": "createIndices",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [39, 53],
+      "summary": "测试辅助函数：将索引数组包装为带缓冲区的 indices 对象，支持多种 typedArray 类型。",
+      "tags": ["test-helper", "indices", "buffer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createPrimitive",
+      "type": "function",
+      "name": "createPrimitive",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [55, 74],
+      "summary": "测试辅助函数：组合 position、indices、feature id 等属性构造一个完整的 Model primitive 对象。",
+      "tags": ["test-helper", "primitive", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createComponents",
+      "type": "function",
+      "name": "createComponents",
+      "filePath": "packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "lineRange": [76, 81],
+      "summary": "测试辅助函数：根据根节点构造 Model components 数组，供矢量瓦片缓冲区转换测试使用。",
+      "tags": ["test-helper", "components", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfGpmLoaderSpec.js",
+      "type": "file",
+      "name": "GltfGpmLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfGpmLoaderSpec.js",
+      "summary": "GltfGpmLoader 的单元测试，验证加载 glTF 的 GPM（Geometric Performance Metrics）扩展并解析节点层级与度量数据。",
+      "tags": ["test", "gltf", "gpm", "extension", "loader"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/MappedPositionsSpec.js",
+      "type": "file",
+      "name": "MappedPositionsSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/MappedPositionsSpec.js",
+      "summary": "MappedPositions 的单元测试，验证顶点位置映射在 CPU/GPU 路径下的正确性。",
+      "tags": ["test", "model", "geometry", "position"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelAnimationChannelSpec.js",
+      "type": "file",
+      "name": "ModelAnimationChannelSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelAnimationChannelSpec.js",
+      "summary": "ModelAnimationChannel 的单元测试，验证 glTF 动画通道（平移/旋转/缩放插值）的采样与权重计算。",
+      "tags": ["test", "model", "animation", "interpolation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelAnimationSpec.js",
+      "type": "file",
+      "name": "ModelAnimationSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelAnimationSpec.js",
+      "summary": "ModelAnimation 的单元测试，验证 Model 动画的播放、循环、速度与时间轴控制。",
+      "tags": ["test", "model", "animation", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelArticulationSpec.js",
+      "type": "file",
+      "name": "ModelArticulationSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelArticulationSpec.js",
+      "summary": "ModelArticulation 的单元测试，验证模型关节（articulation）定义及按名称应用变换的逻辑。",
+      "tags": ["test", "model", "articulation", "transform"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelArticulationStageSpec.js",
+      "type": "file",
+      "name": "ModelArticulationStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelArticulationStageSpec.js",
+      "summary": "ModelArticulationStage 的单元测试，验证关节阶段（旋转/平移/缩放/Uniform）的求值与叠加顺序。",
+      "tags": ["test", "model", "articulation", "stage"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelDrawCommandSpec.js",
+      "type": "file",
+      "name": "ModelDrawCommandSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelDrawCommandSpec.js",
+      "summary": "ModelDrawCommand 的大型单元测试，覆盖 draw command 的构建、shader uniform、渲染状态、视锥剔除与拾取。",
+      "tags": ["test", "model", "draw-command", "rendering", "webgl"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelImageryMappingSpec.js",
+      "type": "file",
+      "name": "ModelImageryMappingSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelImageryMappingSpec.js",
+      "summary": "ModelImageryMapping 的单元测试，验证 Model 表面到地图影像图层（imagery layer）的 UV 映射与投影。",
+      "tags": ["test", "model", "imagery", "mapping"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelNodeSpec.js",
+      "type": "file",
+      "name": "ModelNodeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelNodeSpec.js",
+      "summary": "ModelNode 的单元测试，验证 glTF 节点的场景层级、变换矩阵与可见性状态。",
+      "tags": ["test", "model", "node", "scene-graph"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelRuntimeNodeSpec.js",
+      "type": "file",
+      "name": "ModelRuntimeNodeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelRuntimeNodeSpec.js",
+      "summary": "ModelRuntimeNode 的单元测试，验证运行时节点的变换求值、子节点遍历与动画状态更新。",
+      "tags": ["test", "model", "runtime-node", "scene-graph"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelSkinSpec.js",
+      "type": "file",
+      "name": "ModelSkinSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelSkinSpec.js",
+      "summary": "ModelSkin 的单元测试，验证蒙皮（skinning）关节矩阵与逆绑定矩阵的计算。",
+      "tags": ["test", "model", "skin", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelStatisticsSpec.js",
+      "type": "file",
+      "name": "ModelStatisticsSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelStatisticsSpec.js",
+      "summary": "ModelStatistics 的单元测试，验证模型几何统计（三角形/顶点/内存占用）的聚合计算。",
+      "tags": ["test", "model", "statistics", "memory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelTypeSpec.js",
+      "type": "file",
+      "name": "ModelTypeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelTypeSpec.js",
+      "summary": "ModelType 枚举的单元测试，验证模型类型常量（glTF/3D Tiles/Primitive）的定义。",
+      "tags": ["test", "model", "type-definition", "enum"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelUtilitySpec.js",
+      "type": "file",
+      "name": "ModelUtilitySpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelUtilitySpec.js",
+      "summary": "ModelUtility 工具函数的单元测试，覆盖 glTF 相关的属性拷贝、缓冲区处理与辅助判断逻辑。",
+      "tags": ["test", "model", "utility", "gltf"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/TextureUniformSpec.js",
+      "type": "file",
+      "name": "TextureUniformSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/TextureUniformSpec.js",
+      "summary": "TextureUniform 的单元测试，验证 shader 中纹理 uniform 的绑定、克隆与 sampler 配置。",
+      "tags": ["test", "model", "texture", "shader", "uniform"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/OrderedGroundPrimitiveCollectionSpec.js",
+      "type": "file",
+      "name": "OrderedGroundPrimitiveCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/OrderedGroundPrimitiveCollectionSpec.js",
+      "summary": "OrderedGroundPrimitiveCollection 的单元测试，验证贴地 primitive 按顺序叠加渲染与高度排除逻辑。",
+      "tags": ["test", "primitive", "ground", "collection"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/parseBatchTableSpec.js",
+      "type": "file",
+      "name": "parseBatchTableSpec.js",
+      "filePath": "packages/engine/Specs/Scene/parseBatchTableSpec.js",
+      "summary": "parseBatchTable 的单元测试，验证从 3D Tiles / glTF batch table 解析属性（含二进制与 JSON 编码）。",
+      "tags": ["test", "batch-table", "3d-tiles", "parsing"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ParticleSpec.js",
+      "type": "file",
+      "name": "ParticleSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ParticleSpec.js",
+      "summary": "Particle 粒子类的单元测试，验证粒子的位置、速度、生命周期与颜色属性的更新。",
+      "tags": ["test", "particle", "particle-system", "physics"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createPositionAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createFeatureIdAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createFeatureIdSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createIndices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js:createComponents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataEnumValueSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataPickingSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchemaLoader.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataSchemaLoaderSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataSchemaSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataType.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataTypeSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ClassificationModelDrawCommandSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/createVectorTileBuffersFromModelComponents.js",
+      "target": "file:packages/engine/Specs/Scene/Model/createVectorTileBuffersFromModelComponentsSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfGpmLoaderSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MappedPositions.js",
+      "target": "file:packages/engine/Specs/Scene/Model/MappedPositionsSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelAnimationChannelSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelAnimationSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelArticulation.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelArticulationSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelArticulationStage.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelArticulationStageSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelDrawCommandSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelImageryMapping.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelImageryMappingSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelNode.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelNodeSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRuntimeNode.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelRuntimeNodeSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelSkin.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelSkinSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelStatistics.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelStatisticsSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelTypeSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "target": "file:packages/engine/Specs/Scene/Model/ModelUtilitySpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Specs/Scene/Model/TextureUniformSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "target": "file:packages/engine/Specs/Scene/OrderedGroundPrimitiveCollectionSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Specs/Scene/parseBatchTableSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Specs/Scene/ParticleSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

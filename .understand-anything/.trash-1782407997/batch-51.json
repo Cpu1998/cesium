@@ -1,0 +1,137 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/e2e/CesiumPage.js",
+      "type": "file",
+      "name": "CesiumPage.js",
+      "filePath": "Specs/e2e/CesiumPage.js",
+      "summary": "Playwright page object 封装类,负责加载 Cesium 测试页面并注入构建产物(release 或 unminified 版本)以及设置 CESIUM_BASE_URL,供 e2e 测试用例复用。",
+      "tags": ["test", "page-object", "e2e", "playwright", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:Specs/e2e/CesiumPage.js:CesiumPage",
+      "type": "class",
+      "name": "CesiumPage",
+      "filePath": "Specs/e2e/CesiumPage.js",
+      "lineRange": [1, 20],
+      "summary": "Playwright page object 封装,通过 goto() 导航到测试 HTML 页面并根据环境变量注入对应的 Cesium 构建脚本及 CESIUM_BASE_URL。",
+      "tags": ["page-object", "fixture", "e2e", "playwright"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/e2e/models.spec.js",
+      "type": "file",
+      "name": "models.spec.js",
+      "filePath": "Specs/e2e/models.spec.js",
+      "summary": "模型加载的 e2e 视觉回归测试,验证 glTF/glb 模型的动画、Draco 压缩以及 KTX2 纹理三种场景下的渲染截图正确性。",
+      "tags": ["test", "e2e", "gltf", "model", "visual-regression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/e2e/picking.spec.js",
+      "type": "file",
+      "name": "picking.spec.js",
+      "filePath": "Specs/e2e/picking.spec.js",
+      "summary": "鼠标拾取交互的 e2e 视觉回归测试,通过 ScreenSpaceEventHandler 在鼠标移动时将椭球体拾取点转为经纬度并显示在 label 实体上。",
+      "tags": ["test", "e2e", "picking", "interaction", "visual-regression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/e2e/sandcastle.spec.js",
+      "type": "file",
+      "name": "sandcastle.spec.js",
+      "filePath": "Specs/e2e/sandcastle.spec.js",
+      "summary": "遍历 Sandcastle gallery 中所有示例 YAML,为每个示例在 standalone.html 中渲染并进行截图比对,确保示例展示页面不回归。",
+      "tags": ["test", "e2e", "sandcastle", "gallery", "visual-regression"],
+      "complexity": "moderate",
+      "languageNotes": "使用 globbySync 动态枚举 gallery 目录,再以数据驱动方式批量生成测试用例。"
+    },
+    {
+      "id": "file:Specs/e2e/test.js",
+      "type": "file",
+      "name": "test.js",
+      "filePath": "Specs/e2e/test.js",
+      "summary": "e2e 测试的基础 fixture 入口,扩展 Playwright 的 test/expect 并注入固定时间(2023-12-25)以及 CesiumPage page object,供所有 spec 文件复用。",
+      "tags": ["test", "fixture", "e2e", "barrel", "playwright"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/e2e/viewer.spec.js",
+      "type": "file",
+      "name": "viewer.spec.js",
+      "filePath": "Specs/e2e/viewer.spec.js",
+      "summary": "Cesium Viewer 基础渲染的 e2e 视觉回归测试用例。",
+      "tags": ["test", "e2e", "viewer", "visual-regression"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/e2e/voxel-cameras.spec.js",
+      "type": "file",
+      "name": "voxel-cameras.spec.js",
+      "filePath": "Specs/e2e/voxel-cameras.spec.js",
+      "summary": "Voxel 体素渲染的 e2e 视觉回归测试,通过自定义 ProceduralSingleTileVoxelProvider 与 CustomShader,分别验证透视相机和正交相机两种投影下 BOX 形状体素的正确渲染。",
+      "tags": ["test", "e2e", "voxel", "camera", "visual-regression"],
+      "complexity": "complex",
+      "languageNotes": "在 page.evaluate 回调中定义构造器函数并通过 prototype 注入 requestData 方法,生成程序化体素数据并用 CustomShader 模拟光散射效果。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/e2e/CesiumPage.js",
+      "target": "class:Specs/e2e/CesiumPage.js:CesiumPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/e2e/CesiumPage.js",
+      "target": "class:Specs/e2e/CesiumPage.js:CesiumPage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/e2e/models.spec.js",
+      "target": "file:Specs/e2e/test.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/e2e/picking.spec.js",
+      "target": "file:Specs/e2e/test.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/e2e/sandcastle.spec.js",
+      "target": "file:Specs/e2e/test.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/e2e/test.js",
+      "target": "file:Specs/e2e/CesiumPage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/e2e/viewer.spec.js",
+      "target": "file:Specs/e2e/test.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/e2e/voxel-cameras.spec.js",
+      "target": "file:Specs/e2e/test.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

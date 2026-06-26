@@ -1,0 +1,320 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/instancedQuantized.i3dm",
+      "type": "file",
+      "name": "instancedQuantized.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/instancedQuantized.i3dm",
+      "summary": "Instanced 3D Tiles (i3dm) 测试数据，使用量化位置（quantized positions）编码实例的位置属性，用于验证量化坐标的实例化渲染。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "quantized"],
+      "complexity": "simple",
+      "languageNotes": "i3dm 是二进制 instanced 3D Tiles tile 格式，由 header + feature/table + batch/table + glTF payload 组成。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/tileset.json",
+      "summary": "InstancedQuantized tileset 配置，定义 asset、geometricError、root 引用同目录的量化位置 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/instancedQuantizedOct32POrientation.i3dm",
+      "type": "file",
+      "name": "instancedQuantizedOct32POrientation.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/instancedQuantizedOct32POrientation.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，结合量化位置与 oct32p 方向编码（octahedral 32-bit precision orientation），用于验证实例朝向的压缩编码。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "orientation"],
+      "complexity": "simple",
+      "languageNotes": "oct32p 将法线/朝向编码压缩为两分量八面体表示，减少实例属性体积。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/tileset.json",
+      "summary": "InstancedQuantizedOct32POrientation tileset 配置，引用同目录的量化位置 + oct32p 朝向 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/instancedRedMaterial.i3dm",
+      "type": "file",
+      "name": "instancedRedMaterial.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/instancedRedMaterial.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，使用红色材质的实例模型，用于验证实例化模型的材质渲染。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "material"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/tileset.json",
+      "summary": "InstancedRedMaterial tileset 配置，引用同目录的红色材质 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/instancedRTC.i3dm",
+      "type": "file",
+      "name": "instancedRTC.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/instancedRTC.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，启用 RTC（relative-to-center）中心化坐标，用于验证实例相对中心的坐标变换。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "rtc"],
+      "complexity": "simple",
+      "languageNotes": "RTC 将几何相对模型中心定位以提升浮点精度，常用于大尺度场景。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/tileset.json",
+      "summary": "InstancedRTC tileset 配置，引用同目录的 RTC 坐标 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedScale/instancedScale.i3dm",
+      "type": "file",
+      "name": "instancedScale.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedScale/instancedScale.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，应用统一缩放（uniform scale）的实例模型，用于验证实例缩放属性。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "scale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedScale/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedScale/tileset.json",
+      "summary": "InstancedScale tileset 配置，引用同目录的统一缩放 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/instancedScaleNonUniform.i3dm",
+      "type": "file",
+      "name": "instancedScaleNonUniform.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/instancedScaleNonUniform.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，应用非统一缩放（non-uniform scale，各轴不同）的实例模型，用于验证非均匀缩放渲染。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "scale"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/tileset.json",
+      "summary": "InstancedScaleNonUniform tileset 配置，引用同目录的非统一缩放 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/instancedTextured.i3dm",
+      "type": "file",
+      "name": "instancedTextured.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/instancedTextured.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，附带纹理贴图的实例模型，体积较大，用于验证实例化模型的纹理采样。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "texture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/tileset.json",
+      "summary": "InstancedTextured tileset 配置，引用同目录的带纹理 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/instancedWithBatchIds.i3dm",
+      "type": "file",
+      "name": "instancedWithBatchIds.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/instancedWithBatchIds.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，每个实例携带 batch ID，用于验证按实例的批处理属性查询（per-instance batch id picking）。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "batch-id"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/tileset.json",
+      "summary": "InstancedWithBatchIds tileset 配置，引用同目录的带 batch id 的 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/instancedWithBatchTable.i3dm",
+      "type": "file",
+      "name": "instancedWithBatchTable.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/instancedWithBatchTable.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，附带 JSON 格式 batch table，用于验证实例化模型的逐实例元数据读取。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/tileset.json",
+      "summary": "InstancedWithBatchTable tileset 配置，引用同目录的带 JSON batch table 的 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/instancedWithBatchTableBinary.i3dm",
+      "type": "file",
+      "name": "instancedWithBatchTableBinary.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/instancedWithBatchTableBinary.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，附带二进制 batch table，用于验证二进制格式的逐实例元数据读取性能路径。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "batch-table"],
+      "complexity": "simple",
+      "languageNotes": "二进制 batch table 相比 JSON 版本具备更高读取效率与更小体积。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/tileset.json",
+      "summary": "InstancedWithBatchTableBinary tileset 配置，引用同目录的带二进制 batch table 的 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/instancedWithCopyright.i3dm",
+      "type": "file",
+      "name": "instancedWithCopyright.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/instancedWithCopyright.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，内嵌版权（copyright/gltf extras）信息，用于验证实例化模型的版权属性归因显示。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "copyright"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/tileset.json",
+      "summary": "InstancedWithCopyright tileset 配置，引用同目录的带版权信息的 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/instancedWithoutBatchTable.i3dm",
+      "type": "file",
+      "name": "instancedWithoutBatchTable.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/instancedWithoutBatchTable.i3dm",
+      "summary": "Instanced 3D Tiles 测试数据，不含 batch table，用于验证无元数据的实例化 tile 加载路径。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "minimal"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/tileset.json",
+      "summary": "InstancedWithoutBatchTable tileset 配置，引用同目录的无 batch table 的 i3dm tile。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/box.glb",
+      "type": "file",
+      "name": "box.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/box.glb",
+      "summary": "二进制 glTF（glb）box 模型，缺少法线属性，用作 InstancedWithoutNormals 测试的实例几何资源。",
+      "tags": ["test-fixture", "gltf", "glb", "geometry", "model"],
+      "complexity": "simple",
+      "languageNotes": "glb 是 glTF 的二进制容器格式，将 JSON + 嵌入资源打包为单一文件。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantized/instancedQuantized.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedQuantizedOct32POrientation/instancedQuantizedOct32POrientation.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedRedMaterial/instancedRedMaterial.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedRTC/instancedRTC.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedScale/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedScale/instancedScale.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedScaleNonUniform/instancedScaleNonUniform.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedTextured/instancedTextured.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchIds/instancedWithBatchIds.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTable/instancedWithBatchTable.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithBatchTableBinary/instancedWithBatchTableBinary.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithCopyright/instancedWithCopyright.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutBatchTable/instancedWithoutBatchTable.i3dm",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

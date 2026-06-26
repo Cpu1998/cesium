@@ -1,0 +1,1201 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "type": "file",
+      "name": "VoxelPrimitive.js",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "体素（voxel）渲染的核心 primitive：驱动 provider 遍历、形状变换、垂直拉伸、裁剪平面、自定义着色器构建与逐帧更新，是 Cesium 体素可视化的主入口。",
+      "tags": [
+        "voxel",
+        "primitive",
+        "rendering",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "超过 2100 行的 God-object 风格 primitive，集中管理体素渲染的状态机、uniform 与 debug 绘制。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "type": "file",
+      "name": "VoxelShapeType.js",
+      "filePath": "packages/engine/Source/Scene/VoxelShapeType.js",
+      "summary": "定义 VoxelPrimitive 支持的形状类型枚举（Box/Cylinder/Ellipsoid 等）。",
+      "tags": [
+        "voxel",
+        "shape",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "type": "file",
+      "name": "buildVoxelCustomShader.js",
+      "filePath": "packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "summary": "根据 provider 的元数据声明动态拼装 voxel 自定义 GLSL 片段，生成颜色/渐变/元数据采样 shader。",
+      "tags": [
+        "voxel",
+        "shader",
+        "glsl",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "type": "file",
+      "name": "getBinaryAccessor.js",
+      "filePath": "packages/engine/Source/Scene/getBinaryAccessor.js",
+      "summary": "依据 glTF accessor schema 构造对应的二进制属性读写器（ComponentDatatype 与 typed array 的工厂）。",
+      "tags": [
+        "gltf",
+        "binary-accessor",
+        "factory",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "type": "file",
+      "name": "getMeshPrimitives.js",
+      "filePath": "packages/engine/Source/Scene/getMeshPrimitives.js",
+      "summary": "遍历 glTF mesh 收集其下所有 primitive（含嵌套 skin/instances 展平），返回扁平 primitive 列表。",
+      "tags": [
+        "gltf",
+        "mesh",
+        "primitive",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "type": "file",
+      "name": "parseBatchTable.js",
+      "filePath": "packages/engine/Source/Scene/parseBatchTable.js",
+      "summary": "解析 3D Tiles 的传统 batch table（JSON + 二进制属性），并将其转码为 EXT_structural_metadata 的 property attribute / table 形式，兼容旧版格式。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "parser",
+        "legacy"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "type": "file",
+      "name": "parseFeatureMetadataLegacy.js",
+      "filePath": "packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "summary": "解析已废弃的 EXT_feature_metadata 旧版 glTF 扩展，转译为统一的 StructuralMetadata 表示。",
+      "tags": [
+        "gltf",
+        "legacy",
+        "feature-metadata",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "type": "file",
+      "name": "parseStructuralMetadata.js",
+      "filePath": "packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "summary": "解析 glTF EXT_structural_metadata 扩展：构建 schema、property table，并将属性打包进 RGBA8 纹理以供 GPU 采样。",
+      "tags": [
+        "structural-metadata",
+        "gltf",
+        "parser",
+        "gpu-packing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "type": "file",
+      "name": "processVoxelProperties.js",
+      "filePath": "packages/engine/Source/Scene/processVoxelProperties.js",
+      "summary": "在 voxel 渲染资源准备阶段处理 provider 暴露的元数据属性，确定其 GLSL 类型、纹理 swizzle 并生成对应 shader 片段。",
+      "tags": [
+        "voxel",
+        "metadata",
+        "shader",
+        "glsl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/GltfSpzLoaderSpec.js",
+      "type": "file",
+      "name": "GltfSpzLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/GltfSpzLoaderSpec.js",
+      "summary": "针对 GltfSpzLoader（SPZ 球谐压缩 glTF loader）的单元测试，验证点数与球谐阶数的推导、内存估算等。",
+      "tags": [
+        "test",
+        "spec",
+        "gltf",
+        "spz"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataComponentTypeSpec.js",
+      "type": "file",
+      "name": "MetadataComponentTypeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataComponentTypeSpec.js",
+      "summary": "针对 MetadataComponentType 工具类的单元测试，覆盖 getMinimum/getMaximum/normalize 等数值类型边界。",
+      "tags": [
+        "test",
+        "spec",
+        "metadata",
+        "component-type"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelPrimitive.js:VoxelPrimitive",
+      "type": "function",
+      "name": "VoxelPrimitive",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "体素 primitive 的主构造器，初始化 provider/形状/遍历/着色器/裁剪等全部状态。",
+      "tags": [
+        "voxel",
+        "primitive",
+        "constructor",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        53,
+        575
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelPrimitive.js:updateShapeAndTransforms",
+      "type": "function",
+      "name": "updateShapeAndTransforms",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "逐帧更新体素形状变换、包围盒与垂直拉伸相关 uniform。",
+      "tags": [
+        "voxel",
+        "update",
+        "transform"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        1486,
+        1595
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelPrimitive.js:orientedBoundingBoxToNdcAabb",
+      "type": "function",
+      "name": "orientedBoundingBoxToNdcAabb",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "将世界空间 OBB 投影到 NDC，计算用于 voxel 采样的轴对齐包围盒（AABB）。",
+      "tags": [
+        "voxel",
+        "projection",
+        "aabb"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        1916,
+        1998
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelPrimitive.js:updateClippingPlanes",
+      "type": "function",
+      "name": "updateClippingPlanes",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "更新 voxel primitive 的裁剪平面 uniform 与可见性。",
+      "tags": [
+        "voxel",
+        "clipping-planes",
+        "update"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1757,
+        1801
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelPrimitive.js:debugDraw",
+      "type": "function",
+      "name": "debugDraw",
+      "filePath": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "summary": "在 debug 模式下绘制 voxel 遍历边界/采样位置的线框可视化。",
+      "tags": [
+        "voxel",
+        "debug",
+        "visualization"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        2015,
+        2093
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/buildVoxelCustomShader.js:buildVoxelCustomShader",
+      "type": "function",
+      "name": "buildVoxelCustomShader",
+      "filePath": "packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "summary": "根据 provider 元数据拼装完整的 voxel 自定义 ShaderProgram，集成颜色/渐变/采样片段。",
+      "tags": [
+        "voxel",
+        "shader",
+        "glsl",
+        "factory"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        27,
+        48
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/buildVoxelCustomShader.js:buildColorMapShader",
+      "type": "function",
+      "name": "buildColorMapShader",
+      "filePath": "packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "summary": "生成基于颜色映射（gradient）的 voxel 属性着色 GLSL 片段。",
+      "tags": [
+        "voxel",
+        "shader",
+        "gradient",
+        "glsl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        138,
+        197
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/parseBatchTable.js:parseBatchTable",
+      "type": "function",
+      "name": "parseBatchTable",
+      "filePath": "packages/engine/Source/Scene/parseBatchTable.js",
+      "summary": "解析 3D Tiles batch table（JSON+二进制），分类属性并转码为 structural metadata。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "parser"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        38,
+        142
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/parseBatchTable.js:transcodeBinaryPropertiesAsPropertyAttributes",
+      "type": "function",
+      "name": "transcodeBinaryPropertiesAsPropertyAttributes",
+      "filePath": "packages/engine/Source/Scene/parseBatchTable.js",
+      "summary": "将 batch table 二进制属性转码为 EXT_structural_metadata 的 property attribute 形式。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "transcoder",
+        "structural-metadata"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        278,
+        395
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/parseStructuralMetadata.js:parseStructuralMetadata",
+      "type": "function",
+      "name": "parseStructuralMetadata",
+      "filePath": "packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "summary": "解析 EXT_structural_metadata 扩展，构建 schema 与 property table 并准备 GPU 纹理。",
+      "tags": [
+        "structural-metadata",
+        "gltf",
+        "parser"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        36,
+        122
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/parseStructuralMetadata.js:createTextureForPropertyTable",
+      "type": "function",
+      "name": "createTextureForPropertyTable",
+      "filePath": "packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "summary": "将 property table 属性打包进 RGBA8 纹理以供 shader GPU 采样。",
+      "tags": [
+        "structural-metadata",
+        "gpu-packing",
+        "texture"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        139,
+        210
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/processVoxelProperties.js:processVoxelProperties",
+      "type": "function",
+      "name": "processVoxelProperties",
+      "filePath": "packages/engine/Source/Scene/processVoxelProperties.js",
+      "summary": "处理 provider 元数据属性，确定 GLSL 类型与 swizzle 并注入 voxel shader 片段。",
+      "tags": [
+        "voxel",
+        "metadata",
+        "shader"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        15,
+        315
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Model/CustomShader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/VoxelMetadataOrder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "target": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "target": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "target": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Core/createColorRamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Scene/Model/CustomShader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "file:packages/engine/Source/Scene/Model/UniformType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/GltfSpzLoaderSpec.js",
+      "target": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MetadataComponentTypeSpec.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/VoxelPrimitive.js:VoxelPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/VoxelPrimitive.js:updateShapeAndTransforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/VoxelPrimitive.js:orientedBoundingBoxToNdcAabb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/VoxelPrimitive.js:updateClippingPlanes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/VoxelPrimitive.js:debugDraw",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "function:packages/engine/Source/Scene/buildVoxelCustomShader.js:buildVoxelCustomShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "target": "function:packages/engine/Source/Scene/buildVoxelCustomShader.js:buildColorMapShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/parseBatchTable.js:parseBatchTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/parseBatchTable.js:transcodeBinaryPropertiesAsPropertyAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "function:packages/engine/Source/Scene/parseStructuralMetadata.js:parseStructuralMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "target": "function:packages/engine/Source/Scene/parseStructuralMetadata.js:createTextureForPropertyTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "target": "function:packages/engine/Source/Scene/processVoxelProperties.js:processVoxelProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/buildVoxelCustomShader.js:buildVoxelCustomShader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/processVoxelProperties.js:processVoxelProperties",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

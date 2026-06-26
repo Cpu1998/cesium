@@ -1,0 +1,1642 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "type": "file",
+   "name": "PointVisualizer.js",
+   "filePath": "packages/engine/Source/DataSources/PointVisualizer.js",
+   "summary": "基于 BillboardCollection 为 Entity 的 point 图形提供实例化与逐帧更新的可视化器，处理显隐、颜色、缩放、距离条件与高度参考等属性。",
+   "tags": [
+    "visualizer",
+    "point",
+    "entity",
+    "billboard",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "type": "file",
+   "name": "PolygonGeometryUpdater.js",
+   "filePath": "packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "summary": "将 Entity 的 polygon 图形描述转换为可被 Primitive 渲染的 GeometryInstance，支持贴地、挖洞与按材质/颜色绘制。",
+   "tags": [
+    "geometry-updater",
+    "polygon",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "type": "file",
+   "name": "PolylineGeometryUpdater.js",
+   "filePath": "packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "summary": "为 Entity 的 polyline 提供几何更新器，根据材质与贴地属性在 PolylineCollection 与 GroundPolylinePrimitive 之间切换渲染策略。",
+   "tags": [
+    "geometry-updater",
+    "polyline",
+    "entity",
+    "ground-primitive",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "type": "file",
+   "name": "PolylineVisualizer.js",
+   "filePath": "packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "summary": "负责在场景中实例化并维护所有 polyline Entity，将其分发到静态颜色批、静态材质批与动态批中进行高效渲染。",
+   "tags": [
+    "visualizer",
+    "polyline",
+    "batching",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "type": "file",
+   "name": "PolylineVolumeGeometryUpdater.js",
+   "filePath": "packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "summary": "将 Entity 的 polylineVolume 图形（沿折线扫掠的形状）转换为 GeometryInstance，支持颜色与材质两种外观。",
+   "tags": [
+    "geometry-updater",
+    "polyline-volume",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "file",
+   "name": "Property.js",
+   "filePath": "packages/engine/Source/DataSources/Property.js",
+   "summary": "定义所有时间相关属性值（Property）的抽象基类接口，规定 getValue/isConstant/definitionChanged 等契约，子类化以表达随时间变化的值。",
+   "tags": [
+    "property",
+    "abstract",
+    "interface",
+    "datasource",
+    "time-varying"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "type": "file",
+   "name": "RectangleGeometryUpdater.js",
+   "filePath": "packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "summary": "将 Entity 的矩形图形转换为贴地或常规的 GeometryInstance，处理高度参考、材质与颜色属性。",
+   "tags": [
+    "geometry-updater",
+    "rectangle",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "type": "file",
+   "name": "StaticGeometryColorBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "summary": "将使用恒定颜色的静态几何体聚合到同一个 Primitive 中按透明/不透明分批渲染，支持运行时增量更新与移除。",
+   "tags": [
+    "static-batch",
+    "color",
+    "primitive",
+    "batching",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PointVisualizer.js:PointVisualizer",
+   "type": "function",
+   "name": "PointVisualizer",
+   "filePath": "packages/engine/Source/DataSources/PointVisualizer.js",
+   "lineRange": [
+    47,
+    66
+   ],
+   "summary": "构造 point 可视化器，为 EntityCollection 中每个带 point 的实体创建内部数据与 Billboard 回调。",
+   "tags": [
+    "constructor",
+    "visualizer",
+    "point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:PolygonGeometryUpdater",
+   "type": "function",
+   "name": "PolygonGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "lineRange": [
+    68,
+    78
+   ],
+   "summary": "为 polygon Entity 创建几何更新器，绑定 scene 并构造动态更新器子类。",
+   "tags": [
+    "constructor",
+    "geometry-updater",
+    "polygon"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:DynamicPolygonGeometryUpdater",
+   "type": "function",
+   "name": "DynamicPolygonGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "lineRange": [
+    453,
+    464
+   ],
+   "summary": "随时间动态重建 polygon 几何实例的内部更新器，处理材质与贴地属性变化。",
+   "tags": [
+    "dynamic-updater",
+    "polygon",
+    "datasource"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:PolylineGeometryUpdater",
+   "type": "function",
+   "name": "PolylineGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "lineRange": [
+    70,
+    104
+   ],
+   "summary": "为 polyline Entity 创建几何更新器，根据贴地标志选择 GroundPolylineGeometry 或 PolylineGeometry。",
+   "tags": [
+    "constructor",
+    "geometry-updater",
+    "polyline"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:DynamicPolylineGeometryUpdater",
+   "type": "function",
+   "name": "DynamicPolylineGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "lineRange": [
+    642,
+    673
+   ],
+   "summary": "随时间动态更新折线几何，按材质/颜色路由到 GroundPolylinePrimitive 或 PolylineCollection。",
+   "tags": [
+    "dynamic-updater",
+    "polyline",
+    "datasource"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:PolylineVisualizer",
+   "type": "function",
+   "name": "PolylineVisualizer",
+   "filePath": "packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "lineRange": [
+    80,
+    188
+   ],
+   "summary": "管理全部 polyline Entity 的可视化，将更新器分发到静态颜色/材质与动态批渲染管线。",
+   "tags": [
+    "constructor",
+    "visualizer",
+    "polyline",
+    "batching"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:insertUpdaterIntoBatch",
+   "type": "function",
+   "name": "insertUpdaterIntoBatch",
+   "filePath": "packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "lineRange": [
+    29,
+    68
+   ],
+   "summary": "依据材质、分类与阴影属性将折线更新器插入合适的静态或动态批。",
+   "tags": [
+    "utility",
+    "batching",
+    "polyline"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:PolylineVolumeGeometryUpdater",
+   "type": "function",
+   "name": "PolylineVolumeGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "lineRange": [
+    39,
+    54
+   ],
+   "summary": "为 polylineVolume Entity 创建几何更新器，沿形状路径扫掠生成几何实例。",
+   "tags": [
+    "constructor",
+    "geometry-updater",
+    "polyline-volume"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:DynamicPolylineVolumeGeometryUpdater",
+   "type": "function",
+   "name": "DynamicPolylineVolumeGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "lineRange": [
+    243,
+    254
+   ],
+   "summary": "随时间动态重建 polylineVolume 几何实例的更新器。",
+   "tags": [
+    "dynamic-updater",
+    "polyline-volume",
+    "datasource"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:RectangleGeometryUpdater",
+   "type": "function",
+   "name": "RectangleGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "lineRange": [
+    55,
+    70
+   ],
+   "summary": "为矩形 Entity 创建几何更新器，处理贴地、高度参考与材质属性。",
+   "tags": [
+    "constructor",
+    "geometry-updater",
+    "rectangle"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:DynamicRectangleGeometryUpdater",
+   "type": "function",
+   "name": "DynamicRectangleGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "lineRange": [
+    330,
+    341
+   ],
+   "summary": "随时间动态重建矩形几何实例的内部更新器。",
+   "tags": [
+    "dynamic-updater",
+    "rectangle",
+    "datasource"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "lineRange": [
+    22,
+    61
+   ],
+   "summary": "颜色批的内部容器，按透明度维护 GeometryInstance 集合并管理增量添加/移除/更新。",
+   "tags": [
+    "batch",
+    "container",
+    "color"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:StaticGeometryColorBatch",
+   "type": "function",
+   "name": "StaticGeometryColorBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "lineRange": [
+    407,
+    421
+   ],
+   "summary": "构造按颜色聚合的静态几何批渲染管线，区分透明与不透明子批。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "color"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:updateItems",
+   "type": "function",
+   "name": "updateItems",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "lineRange": [
+    496,
+    517
+   ],
+   "summary": "更新批内所有几何实例的属性（颜色、显隐、距离条件）并重建受影响的 Primitive。",
+   "tags": [
+    "updater",
+    "batch",
+    "color"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:moveItems",
+   "type": "function",
+   "name": "moveItems",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "lineRange": [
+    477,
+    494
+   ],
+   "summary": "在子批之间迁移发生属性变化（如透明度切换）的几何项。",
+   "tags": [
+    "utility",
+    "batch",
+    "migration"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:removeItem",
+   "type": "function",
+   "name": "removeItem",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "lineRange": [
+    456,
+    469
+   ],
+   "summary": "从批中移除指定更新器并释放其 Primitive 槽位。",
+   "tags": [
+    "utility",
+    "batch",
+    "removal"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PointVisualizer.js:PointVisualizer",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PointVisualizer.js:PointVisualizer",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:PolygonGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:PolygonGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:DynamicPolygonGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolygonGeometryUpdater.js:DynamicPolygonGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:PolylineGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:PolylineGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:DynamicPolylineGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineGeometryUpdater.js:DynamicPolylineGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:PolylineVisualizer",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:PolylineVisualizer",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:insertUpdaterIntoBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVisualizer.js:insertUpdaterIntoBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:PolylineVolumeGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:PolylineVolumeGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:DynamicPolylineVolumeGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js:DynamicPolylineVolumeGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:RectangleGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:RectangleGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:DynamicRectangleGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/RectangleGeometryUpdater.js:DynamicRectangleGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:StaticGeometryColorBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:StaticGeometryColorBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:updateItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:updateItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:moveItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:moveItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:removeItem",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryColorBatch.js:removeItem",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ArcType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/CoplanarPolygonGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/CoplanarPolygonOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolygonOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ArcType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolylineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolylinePipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Entity.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PolylineCollection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/PolylineGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+   "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolylineVolumeGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/PolylineVolumeOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/Property.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/Property.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/RectangleGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/RectangleOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

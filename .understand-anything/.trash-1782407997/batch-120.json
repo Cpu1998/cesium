@@ -1,0 +1,449 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Specs/Scene/VertexAttributeSemanticSpec.js",
+      "type": "file",
+      "name": "VertexAttributeSemanticSpec.js",
+      "filePath": "packages/engine/Specs/Scene/VertexAttributeSemanticSpec.js",
+      "summary": "针对 VertexAttributeSemantic 类的单元测试，验证各语义枚举（POSITION、NORMAL、TEXCOORD、FEATURE_ID 等）的 hasSetIndex 行为及异常输入的 DeveloperError 抛出。",
+      "tags": ["test", "scene", "voxel", "semantic", "validation"],
+      "complexity": "moderate",
+      "languageNotes": "采用 Jasmine 的 describe/it 风格与 toConformToInterface/toThrowDeveloperError 断言。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/VoxelBoxShapeSpec.js",
+      "type": "file",
+      "name": "VoxelBoxShapeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/VoxelBoxShapeSpec.js",
+      "summary": "VoxelBoxShape（盒形体素形状）的单元测试，覆盖 VoxelShape 接口一致性、构造、边界球/OrientedBoundingBox 计算以及与坐标变换相关的几何断言。",
+      "tags": ["test", "scene", "voxel", "geometry", "shape"],
+      "complexity": "complex",
+      "languageNotes": "针对体素渲染管线中盒形 bounding region 的稀疏采样与空间节点（SpatialNode）做对照断言。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/VoxelCylinderShapeSpec.js",
+      "type": "file",
+      "name": "VoxelCylinderShapeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/VoxelCylinderShapeSpec.js",
+      "summary": "VoxelCylinderShape（圆柱形体素形状）的单元测试，验证 VoxelShape 接口一致性、构造以及圆柱坐标下的边界体与采样断言。",
+      "tags": ["test", "scene", "voxel", "geometry", "shape"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/VoxelEllipsoidShapeSpec.js",
+      "type": "file",
+      "name": "VoxelEllipsoidShapeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/VoxelEllipsoidShapeSpec.js",
+      "summary": "VoxelEllipsoidShape（椭球形体素形状）的单元测试，验证 VoxelShape 接口一致性、构造及椭球边界区域下的几何/采样行为。",
+      "tags": ["test", "scene", "voxel", "geometry", "shape"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/VoxelShapeTypeSpec.js",
+      "type": "file",
+      "name": "VoxelShapeTypeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/VoxelShapeTypeSpec.js",
+      "summary": "VoxelShapeType 枚举的轻量单元测试，校验形状类型常量的取值与一致性。",
+      "tags": ["test", "scene", "voxel", "enum", "shape"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/test.mjs",
+      "type": "file",
+      "name": "test.mjs",
+      "filePath": "packages/engine/Specs/test.mjs",
+      "summary": "NodeJS 冒烟测试，使用 createWorldTerrainAsync 与 sampleTerrain 在 Everest 附近采样高程并断言高度落在预期区间内，验证 @cesium/engine 在 Node 环境下的可用性。",
+      "tags": ["test", "smoke-test", "terrain", "node", "elevation"],
+      "complexity": "simple",
+      "languageNotes": "使用原生 ES module (.mjs) 与 node:assert 进行顶级 await 风格的地形采样。"
+    },
+    {
+      "id": "function:packages/engine/Specs/test.mjs:test",
+      "type": "function",
+      "name": "test",
+      "filePath": "packages/engine/Specs/test.mjs",
+      "lineRange": [5, 16],
+      "summary": "异步入口：创建世界地形 provider，对 Everest 区域两点执行 sampleTerrain 并断言高程介于 5000–10000 米之间。",
+      "tags": ["smoke-test", "terrain", "async", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-articulations-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-models-articulations-dev/index.html",
+      "summary": "3D Models Articulations 开发示例的 HTML 容器，引入 bucket.css 样式并放置 cesiumContainer、加载遮罩与 toolbar 容器。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "container"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-articulations-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-models-articulations-dev/main.js",
+      "summary": "Sandcastle 开发示例：加载含 articulation（关节铰接）的 glTF 模型并通过 Cesium 的节点变换接口操控关节，演示模型组件级的铰接控制。",
+      "tags": ["sandcastle", "gallery", "gltf", "model", "articulation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-models-articulations-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-models-articulations-dev/sandcastle.yaml",
+      "summary": "Sandcastle 示例的元数据配置，声明 legacyId、标题、描述、标签、缩略图与 development 标记，供 Sandcastle gallery 索引与展示。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery"],
+      "complexity": "simple",
+      "languageNotes": "YAML frontmatter 风格字段：legacyId / title / description / labels / thumbnail / development。"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-coloring/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/index.html",
+      "summary": "3D Models Coloring 示例的 HTML 容器，内嵌内联样式、cesiumContainer 与用于颜色混合模式选择的工具栏容器。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "container"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "summary": "Sandcastle 示例：演示 glTF 模型的颜色混合（MIX/REPLACE/HIGHLIGHT）与着色，通过工具栏切换模式并调用 createModel 加载示例模型。",
+      "tags": ["sandcastle", "gallery", "gltf", "model", "coloring"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:getColorBlendMode",
+      "type": "function",
+      "name": "getColorBlendMode",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "lineRange": [13, 15],
+      "summary": "根据下拉菜单选择返回对应的 Cesium.ColorBlendMode 枚举值。",
+      "tags": ["helper", "coloring", "ui", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:getColor",
+      "type": "function",
+      "name": "getColor",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "lineRange": [17, 20],
+      "summary": "根据颜色名称与 alpha 构造带透明度的 Cesium.Color 实例。",
+      "tags": ["helper", "coloring", "color", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "lineRange": [95, 131],
+      "summary": "在指定经纬度/高度放置并加载 glTF 模型 entity，设置朝向与缩放并将相机锁定到该 entity。",
+      "tags": ["model", "gltf", "entity", "loader"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-models-coloring/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-models-coloring/sandcastle.yaml",
+      "summary": "3D Models Coloring 示例的 Sandcastle 元数据，声明标题、描述、标签与缩略图供 gallery 展示。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/index.html",
+      "summary": "3D Models 开发示例的 HTML 容器，引入 bucket.css 并放置 cesiumContainer、加载遮罩、toolbar 及说明容器。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "container"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/main.js",
+      "summary": "Sandcastle 开发示例：综合演示 glTF 模型加载（含 Draco/KTX2 压缩）、动画、实例化与朝向/缩放控制，是模型能力最完整的开发演示。",
+      "tags": ["sandcastle", "gallery", "gltf", "model", "development"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-dev/main.js:getColorBlendMode",
+      "type": "function",
+      "name": "getColorBlendMode",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/main.js",
+      "lineRange": [12, 14],
+      "summary": "将 UI 下拉选择的字符串映射为 Cesium.ColorBlendMode 枚举值。",
+      "tags": ["helper", "coloring", "ui", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-dev/main.js:getColor",
+      "type": "function",
+      "name": "getColor",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/main.js",
+      "lineRange": [16, 18],
+      "summary": "根据颜色名称返回对应的 Cesium.Color 实例。",
+      "tags": ["helper", "coloring", "color", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models-dev/main.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/main.js",
+      "lineRange": [71, 130],
+      "summary": "在指定经纬度/高度按 heading/pitch/roll 朝向放置 glTF 模型 entity 并锁定相机，是开发示例中模型加载的核心构造函数。",
+      "tags": ["model", "gltf", "entity", "loader", "orientation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-models-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-models-dev/sandcastle.yaml",
+      "summary": "3D Models 开发示例的 Sandcastle 元数据，标记 development 为 true 并声明 Draco/KTX2/动画/实例化等标签。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-node-explorer-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-models-node-explorer-dev/index.html",
+      "summary": "3D Models Node Explorer 开发示例的 HTML 容器，包含内联样式、cesiumContainer、加载遮罩以及一组用于节点选择与平移/旋转/缩放控制的工具栏。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models-node-explorer-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-models-node-explorer-dev/main.js",
+      "summary": "Sandcastle 开发示例：使用 Cesium.knockout 构建节点浏览器 UI，加载 CesiumMan 模型并允许逐节点查看与修改平移/旋转/缩放变换矩阵。",
+      "tags": ["sandcastle", "gallery", "gltf", "node-transform", "knockout"],
+      "complexity": "complex",
+      "languageNotes": "通过 Cesium.knockout 实现响应式 viewModel，与 model node API 双向绑定。"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-models-node-explorer-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-models-node-explorer-dev/sandcastle.yaml",
+      "summary": "Node Explorer 开发示例的 Sandcastle 元数据，标记 development 并声明节点变换相关标签。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-models/index.html",
+      "summary": "3D Models 正式示例的极简 HTML 容器，引入模板样式并放置 cesiumContainer、加载遮罩与工具栏。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "container"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-models/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-models/main.js",
+      "summary": "Sandcastle 正式示例：演示如何用 entity API 加载并放置 glTF/glb 模型，设置最小像素尺寸与朝向，作为入门级的模型加载教学。",
+      "tags": ["sandcastle", "gallery", "gltf", "model", "tutorial"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-models/main.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/sandcastle/gallery/3d-models/main.js",
+      "lineRange": [11, 39],
+      "summary": "清空现有 entity，在指定经纬度/高度按 HeadingPitchRoll 朝向加载 glTF 模型并将相机锁定至该 entity。",
+      "tags": ["model", "gltf", "entity", "loader", "orientation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-models/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-models/sandcastle.yaml",
+      "summary": "3D Models 正式示例的 Sandcastle 元数据，声明标题、描述、标签与缩略图供 gallery 公开展示。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/index.html",
+      "summary": "3D Tiles 1.1 CDB Yemen 示例的 HTML 容器，包含样式引入、cesiumContainer、加载遮罩与用于场景切换的工具栏。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "summary": "Sandcastle 示例：加载 CDB Yemen 数据集的 3D Tiles 1.1 tileset，预设多个相机视角并在机场/陨石坑间巡游，演示 1.1 规范与高亮拾取。",
+      "tags": ["sandcastle", "gallery", "3d-tiles", "tileset", "camera"],
+      "complexity": "complex",
+      "languageNotes": "大量预计算的相机 destination/direction/up Cartesian3 用于视角巡游。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js:flyCameraTo",
+      "type": "function",
+      "name": "flyCameraTo",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "lineRange": [82, 93],
+      "summary": "按预设的相机变换对象（destination/direction/up）以指定时长平滑飞行到目标视角。",
+      "tags": ["camera", "navigation", "3d-tiles", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js:resetHighlight",
+      "type": "function",
+      "name": "resetHighlight",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "lineRange": [321, 330],
+      "summary": "重置之前拾取到的 tile 要素的高亮颜色，恢复其在 tileset 中的原始显示。",
+      "tags": ["3d-tiles", "highlight", "picking", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/sandcastle.yaml",
+      "summary": "CDB Yemen 示例的 Sandcastle 元数据，声明 3D Tiles 1.1 / CDB 相关标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "gallery", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-1.1-photogrammetry-classification/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-1.1-photogrammetry-classification/index.html",
+      "summary": "3D Tiles 1.1 Photogrammetry Classification 示例的极简 HTML 容器，引入模板样式并放置 cesiumContainer、加载遮罩与工具栏。",
+      "tags": ["markup", "sandcastle", "gallery", "html", "3d-tiles"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Specs/test.mjs",
+      "target": "function:packages/engine/Specs/test.mjs:test",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:getColorBlendMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:getColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-coloring/main.js:createModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-dev/main.js:getColorBlendMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-dev/main.js:getColor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models-dev/main.js:createModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-models/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-models/main.js:createModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js:flyCameraTo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "target": "function:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js:resetHighlight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-models-articulations-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-models-articulations-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-models-coloring/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-models-coloring/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-models-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-models-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-models-node-explorer-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-models-node-explorer-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-models/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-models/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/3d-tiles-1.1-cdb-yemen/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

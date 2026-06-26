@@ -1,0 +1,530 @@
+{
+  "nodes": [
+    {
+      "id": "config:packages/sandcastle/gallery/panorama/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/panorama/sandcastle.yaml",
+      "summary": "panorama 示例的 Sandcastle 元数据配置，定义标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/parallels-and-meridians/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/index.html",
+      "summary": "parallels-and-meridians 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "summary": "通过递归算法在地球表面绘制经纬度网格（经线与纬线），并支持鼠标交互式十字光标高亮当前位置。",
+      "tags": ["sandcastle", "example", "entity", "visualization", "recursive"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:parallel",
+      "type": "function",
+      "name": "parallel",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [7, 30],
+      "summary": "在指定纬度生成一条 polyline 纬线 entity，添加到 viewer.entities。",
+      "tags": ["utility", "entity", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:meridian",
+      "type": "function",
+      "name": "meridian",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [32, 51],
+      "summary": "在指定经度生成一条 polyline 经线 entity，添加到 viewer.entities。",
+      "tags": ["utility", "entity", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:labelCoordinates",
+      "type": "function",
+      "name": "labelCoordinates",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [53, 67],
+      "summary": "为给定地理坐标生成一个显示经纬度度数的 label entity。",
+      "tags": ["utility", "entity", "label", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeGrid",
+      "type": "function",
+      "name": "makeGrid",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [69, 80],
+      "summary": "通过递归调用构建经纬度网格，并将所有经纬线 entity 合并返回。",
+      "tags": ["utility", "entity", "grid", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeParallelsRecursive",
+      "type": "function",
+      "name": "makeParallelsRecursive",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [82, 104],
+      "summary": "递归地在纬度区间内二分细分生成纬线，南北两个子区间分别递归后合并结果。",
+      "tags": ["utility", "recursive", "entity", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeMeridiansRecursive",
+      "type": "function",
+      "name": "makeMeridiansRecursive",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [106, 128],
+      "summary": "递归地在经度区间内二分细分生成经线，东西两个子区间分别递归后合并结果。",
+      "tags": ["utility", "recursive", "entity", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:updateCrosshairs",
+      "type": "function",
+      "name": "updateCrosshairs",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/main.js",
+      "lineRange": [148, 194],
+      "summary": "根据鼠标移动位置更新十字光标：移除旧 entity 并在当前经纬度生成新的高亮经线、纬线与坐标标签。",
+      "tags": ["event-handler", "interaction", "visualization", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/parallels-and-meridians/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/parallels-and-meridians/sandcastle.yaml",
+      "summary": "parallels-and-meridians 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/partial-ellipsoids/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/partial-ellipsoids/index.html",
+      "summary": "partial-ellipsoids 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/partial-ellipsoids/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/partial-ellipsoids/main.js",
+      "summary": "演示 EllipsoidGraphics 的部分渲染特性，通过设置 minimumClock/maximumClock 等参数创建部分椭球体（如半球或切片椭球）。",
+      "tags": ["sandcastle", "example", "entity", "ellipsoid", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/partial-ellipsoids/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/partial-ellipsoids/sandcastle.yaml",
+      "summary": "partial-ellipsoids 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-fireworks/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/particle-system-fireworks/index.html",
+      "summary": "particle-system-fireworks 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-fireworks/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/particle-system-fireworks/main.js",
+      "summary": "利用 Cesium ParticleSystem 与自定义 force 函数在场景中创建随机色彩的烟花粒子爆炸效果。",
+      "tags": ["sandcastle", "example", "particle-system", "visualization", "animation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-fireworks/main.js:getImage",
+      "type": "function",
+      "name": "getImage",
+      "filePath": "packages/sandcastle/gallery/particle-system-fireworks/main.js",
+      "lineRange": [19, 32],
+      "summary": "懒加载生成一个圆形径向渐变的 Canvas2D 图像，作为烟花粒子的贴图。",
+      "tags": ["utility", "canvas", "particle-system", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-fireworks/main.js:createFirework",
+      "type": "function",
+      "name": "createFirework",
+      "filePath": "packages/sandcastle/gallery/particle-system-fireworks/main.js",
+      "lineRange": [43, 103],
+      "summary": "在指定偏移位置创建单个烟花 ParticleSystem，包含自定义重力/向心 force 函数与随机色粒子配置。",
+      "tags": ["factory", "particle-system", "animation", "visualization"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/particle-system-fireworks/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/particle-system-fireworks/sandcastle.yaml",
+      "summary": "particle-system-fireworks 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-tails/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/index.html",
+      "summary": "particle-system-tails 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-tails/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "summary": "演示多个带尾迹的 ParticleSystem（火箭/喷流风格），通过可配置的 force 函数驱动粒子运动，并使用 Widget 控制显隐与重置相机。",
+      "tags": ["sandcastle", "example", "particle-system", "visualization", "animation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-tails/main.js:getImage",
+      "type": "function",
+      "name": "getImage",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "lineRange": [25, 38],
+      "summary": "懒加载生成圆形 Canvas2D 贴图，用作粒子系统的发射图像。",
+      "tags": ["utility", "canvas", "particle-system", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-tails/main.js:forceFunction",
+      "type": "function",
+      "name": "forceFunction",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "lineRange": [135, 170],
+      "summary": "粒子系统的自定义 force 更新回调：结合径向衰减、高度衰减与正弦扰动为粒子施加力，产生尾迹摇摆效果。",
+      "tags": ["particle-system", "force-callback", "animation", "physics"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-tails/main.js:createParticleSystems",
+      "type": "function",
+      "name": "createParticleSystems",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "lineRange": [176, 210],
+      "summary": "按环形布局批量创建多个带尾迹的 ParticleSystem，使用随机色并推入 systemsArray。",
+      "tags": ["factory", "particle-system", "animation", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-tails/main.js:showAll",
+      "type": "function",
+      "name": "showAll",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/main.js",
+      "lineRange": [218, 223],
+      "summary": "切换 systemsArray 中所有粒子系统的显示状态。",
+      "tags": ["utility", "particle-system", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/particle-system-tails/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/particle-system-tails/sandcastle.yaml",
+      "summary": "particle-system-tails 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-weather/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/index.html",
+      "summary": "particle-system-weather 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system-weather/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "summary": "演示雨/雪天气粒子效果：提供 snowUpdate、rainUpdate 更新函数以及 startSnow/startRain 启动入口，通过按钮切换天气模式。",
+      "tags": ["sandcastle", "example", "particle-system", "visualization", "weather"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-weather/main.js:resetCameraFunction",
+      "type": "function",
+      "name": "resetCameraFunction",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "lineRange": [11, 23],
+      "summary": "将场景相机重置到用于观察天气效果的预设视角。",
+      "tags": ["utility", "camera", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-weather/main.js:snowUpdate",
+      "type": "function",
+      "name": "snowUpdate",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "lineRange": [38, 62],
+      "summary": "雪粒子的更新回调：模拟下落、风力扰动与触地重生，形成雪花飘落效果。",
+      "tags": ["particle-system", "force-callback", "weather", "physics"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-weather/main.js:rainUpdate",
+      "type": "function",
+      "name": "rainUpdate",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "lineRange": [72, 99],
+      "summary": "雨粒子的更新回调：模拟倾斜下落与触地重生，形成降雨效果。",
+      "tags": ["particle-system", "force-callback", "weather", "physics"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system-weather/main.js:startSnow",
+      "type": "function",
+      "name": "startSnow",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/main.js",
+      "lineRange": [104, 130],
+      "summary": "清除现有图元并初始化雪粒子系统（含贴图、生命周期、力场），切换到雪天模式。",
+      "tags": ["particle-system", "weather", "initialization", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/particle-system-weather/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/particle-system-weather/sandcastle.yaml",
+      "summary": "particle-system-weather 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/particle-system/index.html",
+      "summary": "particle-system 示例的 HTML 入口，除 Sandcastle 引导外还内嵌较丰富的示例 UI 说明与 CDN 资源引用。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/particle-system/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/particle-system/main.js",
+      "summary": "经典 ParticleSystem 示例：从 entity 计算模型矩阵，构建发射器模型矩阵，并实现 applyGravity 自定义力来模拟带重力的粒子（如尾焰）。",
+      "tags": ["sandcastle", "example", "particle-system", "visualization", "physics"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system/main.js:computeEmitterModelMatrix",
+      "type": "function",
+      "name": "computeEmitterModelMatrix",
+      "filePath": "packages/sandcastle/gallery/particle-system/main.js",
+      "lineRange": [50, 56],
+      "summary": "根据 HeadingPitchRoll 与平移构造粒子发射器的 emitterModelMatrix。",
+      "tags": ["utility", "particle-system", "matrix", "physics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/particle-system/main.js:applyGravity",
+      "type": "function",
+      "name": "applyGravity",
+      "filePath": "packages/sandcastle/gallery/particle-system/main.js",
+      "lineRange": [143, 155],
+      "summary": "粒子系统的自定义更新回调：沿地球径向施加重力加速度，使粒子被拉向地心。",
+      "tags": ["particle-system", "force-callback", "physics", "gravity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/particle-system/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/particle-system/sandcastle.yaml",
+      "summary": "particle-system 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/pbr-lighting-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/index.html",
+      "summary": "pbr-lighting-dev 示例的 HTML 入口，内嵌大量 UI 控件（滑块/选择器）用于调整 PBR 材质与光照参数。",
+      "tags": ["markup", "entry-point", "sandcastle", "ui", "pbr"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "summary": "PBR（基于物理的渲染）光照调试示例：加载 glTF 模型并暴露材质、环境光、方向光等参数的实时调整，用于验证 PBR 流水线。",
+      "tags": ["sandcastle", "example", "pbr", "gltf", "model"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:computeModelMatrixFromHeight",
+      "type": "function",
+      "name": "computeModelMatrixFromHeight",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "lineRange": [19, 32],
+      "summary": "根据经纬度与 UI 输入的高度计算模型的 modelMatrix（使用 headingPitchRollToFixedFrame 变换）。",
+      "tags": ["utility", "matrix", "model", "pbr"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:updateModelLightingProperties",
+      "type": "function",
+      "name": "updateModelLightingProperties",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "lineRange": [233, 263],
+      "summary": "读取 UI 控件中的数值，将其应用到模型的 image-based lighting、方向光与环境光属性，并重置环境贴图。",
+      "tags": ["event-handler", "pbr", "lighting", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:loadModel",
+      "type": "function",
+      "name": "loadModel",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "lineRange": [265, 284],
+      "summary": "通过 Cesium ion 资产 ID 异步加载 glTF 模型，设置模型矩阵，挂载 readyEvent 并在失败时弹出提示。",
+      "tags": ["factory", "gltf", "model", "pbr", "async"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:zoomToModel",
+      "type": "function",
+      "name": "zoomToModel",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/main.js",
+      "lineRange": [286, 310],
+      "summary": "在模型就绪后根据其包围盒缩放并定位相机视角到模型。",
+      "tags": ["utility", "camera", "model", "pbr"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/pbr-lighting-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/pbr-lighting-dev/sandcastle.yaml",
+      "summary": "pbr-lighting-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发调试示例。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/per-feature-post-processing/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/per-feature-post-processing/index.html",
+      "summary": "per-feature-post-processing 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["markup", "entry-point", "sandcastle", "example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/per-feature-post-processing/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/per-feature-post-processing/main.js",
+      "summary": "演示 per-feature 后处理：为 3D Tiles 添加 PostProcessStage，并通过鼠标 hover 拾取 feature 应用局部高亮效果。",
+      "tags": ["sandcastle", "example", "post-processing", "interaction", "3d-tiles"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/per-feature-post-processing/main.js:addMouseOver",
+      "type": "function",
+      "name": "addMouseOver",
+      "filePath": "packages/sandcastle/gallery/per-feature-post-processing/main.js",
+      "lineRange": [33, 43],
+      "summary": "注册鼠标 MOUSE_MOVE 输入动作，在拾取到 feature 时为该 feature 设置高亮后处理 stage。",
+      "tags": ["event-handler", "post-processing", "interaction", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/per-feature-post-processing/main.js:removeMouseOver",
+      "type": "function",
+      "name": "removeMouseOver",
+      "filePath": "packages/sandcastle/gallery/per-feature-post-processing/main.js",
+      "lineRange": [45, 48],
+      "summary": "销毁鼠标事件 handler，移除 hover 高亮交互。",
+      "tags": ["event-handler", "post-processing", "interaction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/per-feature-post-processing/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/per-feature-post-processing/sandcastle.yaml",
+      "summary": "per-feature-post-processing 示例的 Sandcastle 元数据配置，包含 legacyId、标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "example"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:parallel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:meridian", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:labelCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeGrid", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeParallelsRecursive", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:makeMeridiansRecursive", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "target": "function:packages/sandcastle/gallery/parallels-and-meridians/main.js:updateCrosshairs", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/particle-system-fireworks/main.js", "target": "function:packages/sandcastle/gallery/particle-system-fireworks/main.js:getImage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-fireworks/main.js", "target": "function:packages/sandcastle/gallery/particle-system-fireworks/main.js:createFirework", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "target": "function:packages/sandcastle/gallery/particle-system-tails/main.js:getImage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "target": "function:packages/sandcastle/gallery/particle-system-tails/main.js:forceFunction", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "target": "function:packages/sandcastle/gallery/particle-system-tails/main.js:createParticleSystems", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "target": "function:packages/sandcastle/gallery/particle-system-tails/main.js:showAll", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "target": "function:packages/sandcastle/gallery/particle-system-weather/main.js:resetCameraFunction", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "target": "function:packages/sandcastle/gallery/particle-system-weather/main.js:snowUpdate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "target": "function:packages/sandcastle/gallery/particle-system-weather/main.js:rainUpdate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "target": "function:packages/sandcastle/gallery/particle-system-weather/main.js:startSnow", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/particle-system/main.js", "target": "function:packages/sandcastle/gallery/particle-system/main.js:computeEmitterModelMatrix", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/particle-system/main.js", "target": "function:packages/sandcastle/gallery/particle-system/main.js:applyGravity", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "target": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:computeModelMatrixFromHeight", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "target": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:updateModelLightingProperties", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "target": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:loadModel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "target": "function:packages/sandcastle/gallery/pbr-lighting-dev/main.js:zoomToModel", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/per-feature-post-processing/main.js", "target": "function:packages/sandcastle/gallery/per-feature-post-processing/main.js:addMouseOver", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/per-feature-post-processing/main.js", "target": "function:packages/sandcastle/gallery/per-feature-post-processing/main.js:removeMouseOver", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "config:packages/sandcastle/gallery/parallels-and-meridians/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/partial-ellipsoids/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/partial-ellipsoids/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/particle-system-fireworks/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/particle-system-fireworks/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/particle-system-tails/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/particle-system-weather/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/particle-system/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/particle-system/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/pbr-lighting-dev/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "config:packages/sandcastle/gallery/per-feature-post-processing/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/per-feature-post-processing/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:packages/sandcastle/gallery/parallels-and-meridians/index.html", "target": "file:packages/sandcastle/gallery/parallels-and-meridians/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/partial-ellipsoids/index.html", "target": "file:packages/sandcastle/gallery/partial-ellipsoids/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/particle-system-fireworks/index.html", "target": "file:packages/sandcastle/gallery/particle-system-fireworks/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/particle-system-tails/index.html", "target": "file:packages/sandcastle/gallery/particle-system-tails/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/particle-system-weather/index.html", "target": "file:packages/sandcastle/gallery/particle-system-weather/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/particle-system/index.html", "target": "file:packages/sandcastle/gallery/particle-system/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/pbr-lighting-dev/index.html", "target": "file:packages/sandcastle/gallery/pbr-lighting-dev/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/per-feature-post-processing/index.html", "target": "file:packages/sandcastle/gallery/per-feature-post-processing/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6}
+  ]
+}

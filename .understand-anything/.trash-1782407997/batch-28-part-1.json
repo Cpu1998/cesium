@@ -1,0 +1,908 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/CustomShaderMode.js",
+      "type": "file",
+      "name": "CustomShaderMode.js",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderMode.js",
+      "summary": "枚举类型，定义 CustomShader 与 fragment shader 的交互方式（MODIFY_MATERIAL 或 REPLACE_MATERIAL），用于决定自定义 shader 与材质阶段的结合方式。",
+      "tags": [
+        "enum",
+        "custom-shader",
+        "shader",
+        "3d-tiles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "type": "file",
+      "name": "CustomShaderPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "summary": "CustomShader 渲染管线阶段，负责把用户自定义的 vertex/fragment shader 代码注入到 Model 的 ShaderBuilder 中，并推断属性默认值、处理 primitive property id。",
+      "tags": [
+        "pipeline-stage",
+        "custom-shader",
+        "shader-builder",
+        "rendering"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/CustomShaderTranslucencyMode.js",
+      "type": "file",
+      "name": "CustomShaderTranslucencyMode.js",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderTranslucencyMode.js",
+      "summary": "枚举类型，控制 CustomShader 的半透明行为（INHERIT/OPAQUE/TRANSLUCENT），决定是否覆盖 primitive 材质的透明度设置。",
+      "tags": [
+        "enum",
+        "custom-shader",
+        "translucency",
+        "3d-tiles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "type": "file",
+      "name": "DequantizationPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "summary": "反量化管线阶段，为量化的顶点属性（含 oct 编码法线）注入 uniform 与 GLSL 反量化代码，把压缩属性恢复为浮点值。",
+      "tags": [
+        "pipeline-stage",
+        "dequantization",
+        "vertex-attribute",
+        "shader-builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/EdgeDetectionPipelineStage.js",
+      "type": "file",
+      "name": "EdgeDetectionPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeDetectionPipelineStage.js",
+      "summary": "屏幕空间边缘检测/合成管线阶段，注入 fragment shader 逻辑以采样 EdgeVisibilityPipelineStage 生成的边缘缓冲，并做深度与 feature id 过滤后合成最终边缘颜色。",
+      "tags": [
+        "pipeline-stage",
+        "edge-detection",
+        "fragment-shader",
+        "rendering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "type": "file",
+      "name": "EdgeVisibilityPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "summary": "边缘可见性管线阶段，从 primitive 几何中抽取唯一边、计算每条边的面法向与可见性，并构造四边形边几何写入专门的边缘渲染 pass。",
+      "tags": [
+        "pipeline-stage",
+        "edge-visibility",
+        "geometry",
+        "rendering"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:inferAttributeDefaults",
+      "type": "function",
+      "name": "inferAttributeDefaults",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        204,
+        222
+      ],
+      "summary": "推断 custom shader 引用的 builtin 属性的默认值。",
+      "tags": [
+        "custom-shader",
+        "attribute",
+        "default-value"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateVertexShaderLines",
+      "type": "function",
+      "name": "generateVertexShaderLines",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        231,
+        300
+      ],
+      "summary": "根据 CustomShader 配置生成 vertex shader 代码行，处理属性注入与 builtin position 变量。",
+      "tags": [
+        "custom-shader",
+        "vertex-shader",
+        "shader-builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generatePositionBuiltins",
+      "type": "function",
+      "name": "generatePositionBuiltins",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        302,
+        331
+      ],
+      "summary": "generatePositionBuiltins 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateFragmentShaderLines",
+      "type": "function",
+      "name": "generateFragmentShaderLines",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        342,
+        417
+      ],
+      "summary": "根据 CustomShader 配置生成 fragment shader 代码行，注入材质属性与 primitive property id。",
+      "tags": [
+        "custom-shader",
+        "fragment-shader",
+        "shader-builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getPrimitiveAttributesUsedInShader",
+      "type": "function",
+      "name": "getPrimitiveAttributesUsedInShader",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        435,
+        462
+      ],
+      "summary": "收集 shader 中实际使用的 primitive 属性集合，区分 vertex/fragment shader。",
+      "tags": [
+        "custom-shader",
+        "attribute",
+        "analysis"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAttributesNeedingDefaults",
+      "type": "function",
+      "name": "getAttributesNeedingDefaults",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        475,
+        504
+      ],
+      "summary": "确定 shader 引用但 primitive 未提供的属性，为其生成默认值。",
+      "tags": [
+        "custom-shader",
+        "attribute",
+        "default-value"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateShaderLines",
+      "type": "function",
+      "name": "generateShaderLines",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        513,
+        548
+      ],
+      "summary": "CustomShader 阶段入口，协调 vertex/fragment shader 行的生成并写入 ShaderBuilder。",
+      "tags": [
+        "custom-shader",
+        "pipeline-stage",
+        "entry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addVertexLinesToShader",
+      "type": "function",
+      "name": "addVertexLinesToShader",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        550,
+        611
+      ],
+      "summary": "把生成的 vertex shader 代码行按结构添加到 ShaderBuilder 的对应位置。",
+      "tags": [
+        "shader-builder",
+        "vertex-shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addFragmentLinesToShader",
+      "type": "function",
+      "name": "addFragmentLinesToShader",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        613,
+        672
+      ],
+      "summary": "把生成的 fragment shader 代码行按结构添加到 ShaderBuilder 的对应位置。",
+      "tags": [
+        "shader-builder",
+        "fragment-shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addLinesToShader",
+      "type": "function",
+      "name": "addLinesToShader",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        676,
+        705
+      ],
+      "summary": "addLinesToShader 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAllPropertyIds",
+      "type": "function",
+      "name": "getAllPropertyIds",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        717,
+        749
+      ],
+      "summary": "枚举 primitive 上所有可用的 structural metadata property id，供 custom shader 引用校验。",
+      "tags": [
+        "custom-shader",
+        "metadata",
+        "property-id"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:checkMetadataCompatibility",
+      "type": "function",
+      "name": "checkMetadataCompatibility",
+      "filePath": "packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "lineRange": [
+        763,
+        782
+      ],
+      "summary": "校验 custom shader 引用的 metadata property id 在 primitive 上确实存在。",
+      "tags": [
+        "custom-shader",
+        "metadata",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:addDequantizationUniforms",
+      "type": "function",
+      "name": "addDequantizationUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "lineRange": [
+        82,
+        125
+      ],
+      "summary": "为量化属性添加反量化所需的 uniform（如归一化范围、平移缩放）到 render resources。",
+      "tags": [
+        "dequantization",
+        "uniform",
+        "quantization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:updateDequantizationFunction",
+      "type": "function",
+      "name": "updateDequantizationFunction",
+      "filePath": "packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "lineRange": [
+        135,
+        150
+      ],
+      "summary": "向 ShaderBuilder 注入属性反量化函数调用代码。",
+      "tags": [
+        "dequantization",
+        "shader-builder",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateOctDecodeLine",
+      "type": "function",
+      "name": "generateOctDecodeLine",
+      "filePath": "packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "lineRange": [
+        152,
+        165
+      ],
+      "summary": "生成 oct 编码法线的解码 GLSL 代码行。",
+      "tags": [
+        "dequantization",
+        "oct-encoding",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateDequantizeLine",
+      "type": "function",
+      "name": "generateDequantizeLine",
+      "filePath": "packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "lineRange": [
+        167,
+        176
+      ],
+      "summary": "生成通用属性反量化的 GLSL 代码行。",
+      "tags": [
+        "dequantization",
+        "shader",
+        "attribute"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:generateEdgeFaceNormals",
+      "type": "function",
+      "name": "generateEdgeFaceNormals",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "lineRange": [
+        270,
+        327
+      ],
+      "summary": "为每条边计算其两侧面的法向量，用于边缘显示着色与可见性判断。",
+      "tags": [
+        "edge-visibility",
+        "normal",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:extractVisibleEdges",
+      "type": "function",
+      "name": "extractVisibleEdges",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "lineRange": [
+        344,
+        512
+      ],
+      "summary": "遍历 primitive 的边与邻接面，依据二面角等准则抽取可见边的索引与元数据。",
+      "tags": [
+        "edge-visibility",
+        "geometry",
+        "visibility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:collectVertexColors",
+      "type": "function",
+      "name": "collectVertexColors",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "lineRange": [
+        514,
+        588
+      ],
+      "summary": "收集 primitive 的顶点颜色属性以支持边缘着色。",
+      "tags": [
+        "edge-visibility",
+        "vertex-color",
+        "attribute"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:createQuadEdgeGeometry",
+      "type": "function",
+      "name": "createQuadEdgeGeometry",
+      "filePath": "packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "lineRange": [
+        619,
+        1037
+      ],
+      "summary": "为每条可见边构造四边形几何（含法向、feature id、累积距离等属性），写入边缘渲染缓冲。",
+      "tags": [
+        "edge-visibility",
+        "geometry",
+        "quad",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/CustomShaderMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/CustomShaderTranslucencyMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelReader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:inferAttributeDefaults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:inferAttributeDefaults",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateVertexShaderLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateVertexShaderLines",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generatePositionBuiltins",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generatePositionBuiltins",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateFragmentShaderLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateFragmentShaderLines",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getPrimitiveAttributesUsedInShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getPrimitiveAttributesUsedInShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAttributesNeedingDefaults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAttributesNeedingDefaults",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateShaderLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:generateShaderLines",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addVertexLinesToShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addVertexLinesToShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addFragmentLinesToShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addFragmentLinesToShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addLinesToShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:addLinesToShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAllPropertyIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:getAllPropertyIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:checkMetadataCompatibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/CustomShaderPipelineStage.js:checkMetadataCompatibility",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:addDequantizationUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:addDequantizationUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:updateDequantizationFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:updateDequantizationFunction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateOctDecodeLine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateOctDecodeLine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateDequantizeLine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/DequantizationPipelineStage.js:generateDequantizeLine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:generateEdgeFaceNormals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:generateEdgeFaceNormals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:extractVisibleEdges",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:extractVisibleEdges",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:collectVertexColors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:collectVertexColors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:createQuadEdgeGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js:createQuadEdgeGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

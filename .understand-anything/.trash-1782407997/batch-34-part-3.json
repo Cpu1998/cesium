@@ -1,0 +1,1295 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "file",
+      "name": "EntityCollection",
+      "filePath": "packages/engine/Source/DataSources/EntityCollection.js",
+      "summary": "管理一组 Entity 的集合，处理 add/remove/update 及 entityChanged/collectionChanged 事件，并支持 availability 计算。",
+      "tags": [
+        "entity",
+        "collection",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EntityView.js",
+      "type": "file",
+      "name": "EntityView",
+      "filePath": "packages/engine/Source/DataSources/EntityView.js",
+      "summary": "将相机绑定到某个 entity 的位置/朝向 property 上，实现跟随 entity 的视角更新。",
+      "tags": [
+        "camera",
+        "tracking",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "type": "file",
+      "name": "GeoJsonDataSource",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "summary": "加载并解析 GeoJSON/TopoJSON，把 Point/LineString/Polygon 等要素转换为 entity；支持 CRS 与样式。",
+      "tags": [
+        "datasource",
+        "geojson",
+        "parser",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "type": "file",
+      "name": "GpxDataSource",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "summary": "加载并解析 GPX（GPS Exchange Format）文件，把 wpt/rte/trk 转换为带时间轴的 entity 与 polyline。",
+      "tags": [
+        "datasource",
+        "gpx",
+        "parser",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "type": "file",
+      "name": "GridMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "summary": "产生网格（grid）图案材质的 property，控制网格颜色、线条数、单元格透明度等。",
+      "tags": [
+        "material-property",
+        "grid",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "type": "file",
+      "name": "ImageMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "summary": "以图像作为材质的 property，支持贴图、颜色叠加与重复。",
+      "tags": [
+        "material-property",
+        "image",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/KmlCamera.js",
+      "type": "file",
+      "name": "KmlCamera",
+      "filePath": "packages/engine/Source/DataSources/KmlCamera.js",
+      "summary": "表示 KML <Camera> 元素的轻量值对象，保存 position 与 headingPitchRoll。",
+      "tags": [
+        "kml",
+        "camera",
+        "value-object",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCollection.js:fireChangedEvent",
+      "type": "function",
+      "name": "fireChangedEvent",
+      "filePath": "packages/engine/Source/DataSources/EntityCollection.js",
+      "lineRange": [
+        15,
+        46
+      ],
+      "summary": "在 entity 变更后聚合触发 collectionChanged 事件。",
+      "tags": [
+        "entity",
+        "event",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityCollection.js:EntityCollection",
+      "type": "function",
+      "name": "EntityCollection",
+      "filePath": "packages/engine/Source/DataSources/EntityCollection.js",
+      "lineRange": [
+        55,
+        67
+      ],
+      "summary": "EntityCollection 构造函数：初始化 entity 字典与事件。",
+      "tags": [
+        "entity",
+        "constructor",
+        "collection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityView.js:updateTransform",
+      "type": "function",
+      "name": "updateTransform",
+      "filePath": "packages/engine/Source/DataSources/EntityView.js",
+      "lineRange": [
+        32,
+        313
+      ],
+      "summary": "每帧根据 entity 的 position/orientation property 更新相机变换。",
+      "tags": [
+        "camera",
+        "tracking",
+        "transform"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/EntityView.js:EntityView",
+      "type": "function",
+      "name": "EntityView",
+      "filePath": "packages/engine/Source/DataSources/EntityView.js",
+      "lineRange": [
+        324,
+        364
+      ],
+      "summary": "EntityView 构造函数：绑定 entity、scene 与 ellipsoid。",
+      "tags": [
+        "camera",
+        "constructor",
+        "tracking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createObject",
+      "type": "function",
+      "name": "createObject",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        113,
+        180
+      ],
+      "summary": "从 GeoJSON 要素构造 entity 并设置描述与样式。",
+      "tags": [
+        "geojson",
+        "factory",
+        "entity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createPoint",
+      "type": "function",
+      "name": "createPoint",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        266,
+        331
+      ],
+      "summary": "将 GeoJSON Point/MultiPoint 转为 billboard/point entity。",
+      "tags": [
+        "geojson",
+        "point",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createLineString",
+      "type": "function",
+      "name": "createLineString",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        350,
+        399
+      ],
+      "summary": "将 GeoJSON LineString 坐标转为 polyline entity。",
+      "tags": [
+        "geojson",
+        "linestring",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createPolygon",
+      "type": "function",
+      "name": "createPolygon",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        430,
+        517
+      ],
+      "summary": "将 GeoJSON Polygon 坐标转为 Cesium polygon entity。",
+      "tags": [
+        "geojson",
+        "polygon",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:GeoJsonDataSource",
+      "type": "function",
+      "name": "GeoJsonDataSource",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        593,
+        605
+      ],
+      "summary": "GeoJsonDataSource 构造函数。",
+      "tags": [
+        "datasource",
+        "constructor",
+        "geojson"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:preload",
+      "type": "function",
+      "name": "preload",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        909,
+        970
+      ],
+      "summary": "预加载 GeoJSON 引用的图像资源（PinBuilder 等）。",
+      "tags": [
+        "geojson",
+        "preload",
+        "image"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "lineRange": [
+        985,
+        1056
+      ],
+      "summary": "加载 GeoJSON 数据并按 geometry 类型分发到对应 creator。",
+      "tags": [
+        "geojson",
+        "loader",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GpxDataSource.js:processDescription",
+      "type": "function",
+      "name": "processDescription",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "lineRange": [
+        240,
+        285
+      ],
+      "summary": "从 GPX metadata/cmt/desc 节点构造 entity 描述。",
+      "tags": [
+        "gpx",
+        "description",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GpxDataSource.js:processTrk",
+      "type": "function",
+      "name": "processTrk",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "lineRange": [
+        335,
+        384
+      ],
+      "summary": "处理 GPX track 段，构造带时间轴的采样位置 polyline。",
+      "tags": [
+        "gpx",
+        "track",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GpxDataSource.js:loadGpx",
+      "type": "function",
+      "name": "loadGpx",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "lineRange": [
+        554,
+        644
+      ],
+      "summary": "解析 GPX XML 并调度 wpt/rte/trk 处理器。",
+      "tags": [
+        "gpx",
+        "parser",
+        "xml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GpxDataSource.js:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "lineRange": [
+        667,
+        730
+      ],
+      "summary": "加载 GPX 数据（字符串/blob/url）并解析。",
+      "tags": [
+        "gpx",
+        "loader",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GpxDataSource.js:GpxDataSource",
+      "type": "function",
+      "name": "GpxDataSource",
+      "filePath": "packages/engine/Source/DataSources/GpxDataSource.js",
+      "lineRange": [
+        747,
+        760
+      ],
+      "summary": "GpxDataSource 构造函数。",
+      "tags": [
+        "datasource",
+        "constructor",
+        "gpx"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/GridMaterialProperty.js:GridMaterialProperty",
+      "type": "function",
+      "name": "GridMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "lineRange": [
+        29,
+        49
+      ],
+      "summary": "GridMaterialProperty 构造函数。",
+      "tags": [
+        "material-property",
+        "constructor",
+        "grid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ImageMaterialProperty.js:ImageMaterialProperty",
+      "type": "function",
+      "name": "ImageMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "lineRange": [
+        25,
+        42
+      ],
+      "summary": "ImageMaterialProperty 构造函数。",
+      "tags": [
+        "material-property",
+        "constructor",
+        "image"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/KmlCamera.js:KmlCamera",
+      "type": "function",
+      "name": "KmlCamera",
+      "filePath": "packages/engine/Source/DataSources/KmlCamera.js",
+      "lineRange": [
+        9,
+        12
+      ],
+      "summary": "KmlCamera 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCollection.js:fireChangedEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCollection.js:EntityCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "function:packages/engine/Source/DataSources/EntityCollection.js:EntityCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "function:packages/engine/Source/DataSources/EntityView.js:updateTransform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "function:packages/engine/Source/DataSources/EntityView.js:EntityView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "function:packages/engine/Source/DataSources/EntityView.js:EntityView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createObject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createLineString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:createPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:GeoJsonDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:GeoJsonDataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:preload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GeoJsonDataSource.js:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:processDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:processTrk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:loadGpx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:GpxDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/GpxDataSource.js:GpxDataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/GridMaterialProperty.js:GridMaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/GridMaterialProperty.js:GridMaterialProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ImageMaterialProperty.js:ImageMaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ImageMaterialProperty.js:ImageMaterialProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlCamera.js",
+      "target": "function:packages/engine/Source/DataSources/KmlCamera.js:KmlCamera",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/KmlCamera.js",
+      "target": "function:packages/engine/Source/DataSources/KmlCamera.js:KmlCamera",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "target": "file:packages/engine/Source/DataSources/Entity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/HeadingPitchRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/TrackingReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EntityView.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/ArcType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/getFilenameFromUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/PinBuilder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/PolygonHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CallbackProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockStep.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/PinBuilder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GpxDataSource.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-cutout/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imagery-cutout/main.js",
+      "summary": "Sandcastle 示例：演示如何在 imagery layer 上叠加矩形剪裁区域（cutout），并通过键盘控制视角移动与经度环绕（wrapLongitude）。",
+      "tags": ["sandcastle", "imagery", "clipping", "demo", "event-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-cutout/main.js:getFlagForKeyCode",
+      "type": "function",
+      "name": "getFlagForKeyCode",
+      "filePath": "packages/sandcastle/gallery/imagery-cutout/main.js",
+      "lineRange": [58, 71],
+      "summary": "将键盘按键代码映射为对应的移动标志位（move flag），用于驱动相机平移。",
+      "tags": ["keyboard", "input-mapping", "camera-control"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-cutout/main.js:wrapLongitude",
+      "type": "function",
+      "name": "wrapLongitude",
+      "filePath": "packages/sandcastle/gallery/imagery-cutout/main.js",
+      "lineRange": [124, 132],
+      "summary": "在跨越国际日期变更线时对实体经度做环绕处理，保证 imagery 剪裁框连续显示。",
+      "tags": ["longitude", "geospatial", "imagery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imagery-cutout/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imagery-cutout/sandcastle.yaml",
+      "summary": "Imagery Cutout 示例的 Sandcastle 元数据，定义标题、描述、标签（Imagery、Clipping）与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-manipulation/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/index.html",
+      "summary": "Imagery Layers Manipulation 示例的 HTML 宿主页面，构建图层层级与透明度调节的 UI 控件，并加载对应的 main.js。",
+      "tags": ["markup", "sandcastle", "imagery", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "summary": "演示如何从多种来源（WMS、Bing Maps、ArcGIS Online、OpenStreetMaps 等）叠加 imagery layer，并独立调节每一层的透明度、亮度与可见性。",
+      "tags": ["sandcastle", "imagery", "layer-management", "demo"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:setupLayers",
+      "type": "function",
+      "name": "setupLayers",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "lineRange": [48, 154],
+      "summary": "创建基础影像图层，叠加多个 WMS / TMS / ArcGIS 来源的 imagery provider，并绑定透明度滑块等 UI 回调。",
+      "tags": ["imagery", "layer-setup", "wms", "provider"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:addBaseLayerOption",
+      "type": "function",
+      "name": "addBaseLayerOption",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "lineRange": [156, 167],
+      "summary": "向基础图层选择下拉菜单中添加一个选项，并处理切换基础 imagery provider 的逻辑。",
+      "tags": ["imagery", "ui", "base-layer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:addAdditionalLayerOption",
+      "type": "function",
+      "name": "addAdditionalLayerOption",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "lineRange": [169, 187],
+      "summary": "向叠加图层列表中添加新选项，支持勾选显示/隐藏并调节该层的透明度与亮度。",
+      "tags": ["imagery", "ui", "overlay-layer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:updateLayerList",
+      "type": "function",
+      "name": "updateLayerList",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "lineRange": [189, 195],
+      "summary": "刷新侧边 UI 中的图层列表，反映 imagery 图层的添加、删除与排序变化。",
+      "tags": ["imagery", "ui-refresh", "layer-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imagery-layers-manipulation/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-manipulation/sandcastle.yaml",
+      "summary": "Imagery Layers Manipulation 示例的 Sandcastle 元数据，描述多来源 imagery 叠加与独立透明度调节的功能。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-split/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-split/index.html",
+      "summary": "Imagery Layers Split 示例的 HTML 宿主页面，提供左右分割滑块 UI 并加载 main.js。",
+      "tags": ["markup", "sandcastle", "imagery", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "summary": "演示利用 ImageryLayer 的 split 属性，仅在滑块一侧显示图层，实现两幅影像的对比查看。",
+      "tags": ["sandcastle", "imagery", "split", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-split/main.js:move",
+      "type": "function",
+      "name": "move",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "lineRange": [30, 40],
+      "summary": "滑块拖动回调，更新分割位置并同步到 imagery layer 的 split 数值。",
+      "tags": ["imagery", "split", "slider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imagery-layers-split/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-split/sandcastle.yaml",
+      "summary": "Imagery Layers Split 示例的 Sandcastle 元数据，描述使用 split 属性实现滑块左右分割影像的功能。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/index.html",
+      "summary": "Imagery Layers Texture Filters 示例的 HTML 宿主页面，提供纹理过滤模式与各项滑块控件。",
+      "tags": ["markup", "sandcastle", "imagery", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "summary": "演示设置 imagery layer 的纹理缩小（minification）与放大（magnification）过滤器，并实时调整各向异性等采样参数。",
+      "tags": ["sandcastle", "imagery", "texture-filter", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:mouseUp",
+      "type": "function",
+      "name": "mouseUp",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "lineRange": [44, 46],
+      "summary": "鼠标释放事件处理，结束滑块拖动状态。",
+      "tags": ["event-handler", "mouse", "slider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:mouseDown",
+      "type": "function",
+      "name": "mouseDown",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "lineRange": [48, 52],
+      "summary": "鼠标按下事件处理，开始滑块拖动以调整纹理过滤参数。",
+      "tags": ["event-handler", "mouse", "slider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:sliderMove",
+      "type": "function",
+      "name": "sliderMove",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "lineRange": [54, 60],
+      "summary": "滑块移动回调，根据位置更新 imagery layer 的 minification/magnification 过滤器配置。",
+      "tags": ["imagery", "texture-filter", "slider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imagery-layers-texture-filters/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imagery-layers-texture-filters/sandcastle.yaml",
+      "summary": "Imagery Layers Texture Filters 示例的 Sandcastle 元数据，描述设置影像层纹理过滤器的功能。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/imagery-layers/index.html",
+      "summary": "Imagery Layers 基础示例的 HTML 宿主页面，加载对应的 main.js。",
+      "tags": ["markup", "sandcastle", "imagery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imagery-layers/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imagery-layers/main.js",
+      "summary": "最简示例：演示如何从多种来源创建 imagery layer，作为 imagery 功能的入门样例。",
+      "tags": ["sandcastle", "imagery", "demo", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imagery-layers/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imagery-layers/sandcastle.yaml",
+      "summary": "Imagery Layers 示例的 Sandcastle 元数据，描述从多个来源创建影像图层的功能。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imodel-mesh-export-service/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/index.html",
+      "summary": "iModel Mesh Export Service 示例的 HTML 宿主页面，加载 iTwin 平台 3D Tiles 流式加载示例的 main.js。",
+      "tags": ["markup", "sandcastle", "itwin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "summary": "Showcase 示例：从 iTwin 平台以 3D Tiles 流式加载 iModel 设计数据，支持 feature 拾取、样式化、photosphere 切换及周边 reality mesh 集成。",
+      "tags": ["sandcastle", "itwin", "3d-tiles", "showcase", "feature-picking"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:selectFeature",
+      "type": "function",
+      "name": "selectFeature",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "lineRange": [52, 70],
+      "summary": "拾取 iModel feature 后高亮选中状态并应用样式，展示 3D Tiles feature picking 工作流。",
+      "tags": ["feature-picking", "styling", "itwin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:unselectFeature",
+      "type": "function",
+      "name": "unselectFeature",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "lineRange": [72, 80],
+      "summary": "取消已选中 iModel feature 的高亮状态并恢复默认样式。",
+      "tags": ["feature-picking", "styling", "itwin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:togglePhotosphere",
+      "type": "function",
+      "name": "togglePhotosphere",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "lineRange": [182, 206],
+      "summary": "切换全景照片球（photosphere）的显示/隐藏，将街景影像与 3D Tiles 模型融合查看。",
+      "tags": ["photosphere", "itwin", "toggle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/imodel-mesh-export-service/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/imodel-mesh-export-service/sandcastle.yaml",
+      "summary": "iModel Mesh Export Service 示例的 Sandcastle 元数据，描述通过 3D Tiles 流式加载 iTwin 设计数据的功能（Showcases、3D Tiles、iTwin）。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/interpolation/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/interpolation/index.html",
+      "summary": "Interpolation 示例的 HTML 宿主页面，加载插值与飞行轨迹动画示例的 main.js。",
+      "tags": ["markup", "sandcastle", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/interpolation/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/interpolation/main.js",
+      "summary": "演示如何基于一组离散已知点插值生成新的轨迹点，并通过 SampledPositionProperty 构建圆形飞行动画。",
+      "tags": ["sandcastle", "interpolation", "animation", "entities", "demo"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/interpolation/main.js:computeCirclularFlight",
+      "type": "function",
+      "name": "computeCirclularFlight",
+      "filePath": "packages/sandcastle/gallery/interpolation/main.js",
+      "lineRange": [35, 63],
+      "summary": "基于圆心、半径与飞行时长计算一组插值位置点，生成用于动画的圆形飞行轨迹。",
+      "tags": ["interpolation", "flight-path", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/interpolation/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/interpolation/sandcastle.yaml",
+      "summary": "Interpolation 示例的 Sandcastle 元数据，描述在离散已知点范围内构造新数据点的功能（Entities、Animation）。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/itwin-feature-service/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/itwin-feature-service/index.html",
+      "summary": "iTwin Feature Service 示例的 HTML 宿主页面，加载 AI 推导地理特征流式加载示例的 main.js。",
+      "tags": ["markup", "sandcastle", "itwin"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/itwin-feature-service/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/itwin-feature-service/main.js",
+      "summary": "Showcase 示例：连接 iTwin Feature Service，流式加载并样式化 AI 从 reality data 推导的地理特征（点、线、面），与 3D reality mesh、点云共同构建数字孪生应用。",
+      "tags": ["sandcastle", "itwin", "feature-service", "classification", "showcase"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/itwin-feature-service/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/itwin-feature-service/sandcastle.yaml",
+      "summary": "iTwin Feature Service 示例的 Sandcastle 元数据，描述流式加载 AI 推导地理特征以构建数字孪生的功能（Showcases、Point Clouds、Photogrammetry、Classification、iTwin）。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/itwin-gaussian-splats/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/itwin-gaussian-splats/index.html",
+      "summary": "iTwin Gaussian Splats 示例的 HTML 宿主页面，加载高斯泼溅（Gaussian Splatting）渲染示例的 main.js。",
+      "tags": ["markup", "sandcastle", "gaussian-splats"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/itwin-gaussian-splats/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/itwin-gaussian-splats/main.js",
+      "summary": "演示加载并渲染 Gaussian Splatting（高斯泼溅）模型数据，作为 iTwin 平台辐射场重建可视化的小型示例。",
+      "tags": ["sandcastle", "gaussian-splats", "itwin", "demo"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-cutout/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-cutout/main.js:getFlagForKeyCode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-cutout/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-cutout/main.js:wrapLongitude",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imagery-cutout/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imagery-cutout/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-manipulation/index.html",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:setupLayers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:addBaseLayerOption",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:addAdditionalLayerOption",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-manipulation/main.js:updateLayerList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imagery-layers-manipulation/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-manipulation/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-split/index.html",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-split/main.js:move",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imagery-layers-split/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-split/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/index.html",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:mouseUp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:mouseDown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "target": "function:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js:sliderMove",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imagery-layers-texture-filters/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imagery-layers-texture-filters/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imagery-layers/index.html",
+      "target": "file:packages/sandcastle/gallery/imagery-layers/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imagery-layers/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imagery-layers/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imodel-mesh-export-service/index.html",
+      "target": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "target": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:selectFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "target": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:unselectFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "target": "function:packages/sandcastle/gallery/imodel-mesh-export-service/main.js:togglePhotosphere",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/imodel-mesh-export-service/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/imodel-mesh-export-service/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/interpolation/index.html",
+      "target": "file:packages/sandcastle/gallery/interpolation/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/interpolation/main.js",
+      "target": "function:packages/sandcastle/gallery/interpolation/main.js:computeCirclularFlight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/interpolation/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/interpolation/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/itwin-feature-service/index.html",
+      "target": "file:packages/sandcastle/gallery/itwin-feature-service/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/itwin-feature-service/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/itwin-feature-service/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/itwin-gaussian-splats/index.html",
+      "target": "file:packages/sandcastle/gallery/itwin-gaussian-splats/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

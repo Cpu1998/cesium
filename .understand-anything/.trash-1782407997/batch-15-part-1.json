@@ -1,0 +1,1126 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "type": "file",
+      "name": "PointCloudEyeDomeLighting.js",
+      "filePath": "packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "summary": "为点云实现 Eye Dome Lighting 后处理效果，通过深度图生成无光照感增强的着色效果，提升点云立体可读性。",
+      "tags": [
+        "point-cloud",
+        "shading",
+        "post-process",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "type": "file",
+      "name": "PostProcessStageTextureCache.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "summary": "后处理阶段纹理缓存，根据 stage 间的输入/输出依赖关系复用 framebuffer 纹理，避免冗余分配。",
+      "tags": [
+        "post-process",
+        "texture-cache",
+        "framebuffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "type": "file",
+      "name": "ShadowMap.js",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "阴影贴图（ShadowMap）实现，支持定向光级联阴影、点光源全方向立方体阴影，负责 framebuffer、相机 fit、debug 视图与命令派生。",
+      "tags": [
+        "shadow",
+        "lighting",
+        "webgl",
+        "cascaded",
+        "cubemap"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含 CSM（Cascaded Shadow Maps）与全方向点光阴影两条技术分支。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "file",
+      "name": "ShadowMode.js",
+      "filePath": "packages/engine/Source/Scene/ShadowMode.js",
+      "summary": "阴影模式枚举，定义 DISABLED、ENABLED、CAST_ONLY、RECEIVE_ONLY 四种参与阴影的方式。",
+      "tags": [
+        "enum",
+        "shadow",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "type": "file",
+      "name": "SkyAtmosphere.js",
+      "filePath": "packages/engine/Source/Scene/SkyAtmosphere.js",
+      "summary": "天空大气渲染 primitive，基于椭球几何与瑞利/米氏散射近似绘制地球边缘的大气辉光效果。",
+      "tags": [
+        "sky",
+        "atmosphere",
+        "shader",
+        "webgl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SkyBox.js",
+      "type": "file",
+      "name": "SkyBox.js",
+      "filePath": "packages/engine/Source/Scene/SkyBox.js",
+      "summary": "天空盒 primitive，使用立方体贴图（或 CubeMapPanorama 全景图）渲染远处的星空背景。",
+      "tags": [
+        "sky",
+        "cubemap",
+        "background"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "file",
+      "name": "StencilConstants.js",
+      "filePath": "packages/engine/Source/Scene/StencilConstants.js",
+      "summary": "模板缓冲常量集合，集中定义常用模板测试/操作组合（如 3D Tiles 阴影所需的遮罩值）。",
+      "tags": [
+        "config",
+        "stencil",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "file",
+      "name": "StencilOperation.js",
+      "filePath": "packages/engine/Source/Scene/StencilOperation.js",
+      "summary": "模板操作枚举，将 WebGL 的 KEEP/REPLACE/INCR 等模板操作映射为 Cesium 常量。",
+      "tags": [
+        "enum",
+        "stencil",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js:createCommands",
+      "type": "function",
+      "name": "createCommands",
+      "filePath": "packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "summary": "构造 EDL 所需的 downsample/blur/upsample DrawCommand 序列。",
+      "tags": [
+        "point-cloud",
+        "edl",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        62,
+        107
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js:getECShaderProgram",
+      "type": "function",
+      "name": "getECShaderProgram",
+      "filePath": "packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "summary": "返回 EDL 用的着色器程序（按需克隆并替换源码）。",
+      "tags": [
+        "point-cloud",
+        "edl",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        122,
+        169
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:getDependencies",
+      "type": "function",
+      "name": "getDependencies",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "summary": "计算所有 stage 之间的输入纹理依赖关系。",
+      "tags": [
+        "post-process",
+        "dependency",
+        "cache"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        142,
+        191
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:getFramebuffer",
+      "type": "function",
+      "name": "getFramebuffer",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "summary": "依据依赖获取/复用 stage 的 framebuffer 纹理。",
+      "tags": [
+        "post-process",
+        "framebuffer",
+        "cache"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        193,
+        256
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:updateFramebuffers",
+      "type": "function",
+      "name": "updateFramebuffers",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "summary": "根据依赖图重新分配 framebuffer 纹理。",
+      "tags": [
+        "post-process",
+        "framebuffer",
+        "update"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        280,
+        308
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:ShadowMap",
+      "type": "function",
+      "name": "ShadowMap",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "ShadowMap 构造函数，配置光源、模式、尺寸等参数。",
+      "tags": [
+        "shadow",
+        "constructor",
+        "lighting"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        81,
+        285
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:computeCascades",
+      "type": "function",
+      "name": "computeCascades",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "为 CSM 计算各层级视锥切分与对应的阴影相机。",
+      "tags": [
+        "shadow",
+        "csm",
+        "cascaded"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1080,
+        1233
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:fitShadowMapToScene",
+      "type": "function",
+      "name": "fitShadowMapToScene",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "将阴影相机紧贴场景包围盒以最大化阴影精度。",
+      "tags": [
+        "shadow",
+        "fit",
+        "camera"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1240,
+        1347
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:computeOmnidirectional",
+      "type": "function",
+      "name": "computeOmnidirectional",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "为点光源全方向阴影计算六面立方体相机参数。",
+      "tags": [
+        "shadow",
+        "cubemap",
+        "point-light"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1376,
+        1407
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:checkVisibility",
+      "type": "function",
+      "name": "checkVisibility",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "判断光源相对相机是否需要渲染阴影贴图。",
+      "tags": [
+        "shadow",
+        "culling",
+        "visibility"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1414,
+        1495
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:updateCameras",
+      "type": "function",
+      "name": "updateCameras",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "更新所有阴影相机的视图/投影矩阵。",
+      "tags": [
+        "shadow",
+        "camera",
+        "update"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1497,
+        1559
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:combineUniforms",
+      "type": "function",
+      "name": "combineUniforms",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "合并 shadow 相关 uniform 到主着色器 uniform 映射。",
+      "tags": [
+        "shadow",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1627,
+        1687
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ShadowMap.js:createCastDerivedCommand",
+      "type": "function",
+      "name": "createCastDerivedCommand",
+      "filePath": "packages/engine/Source/Scene/ShadowMap.js",
+      "summary": "派生生成阴影投射阶段的 DrawCommand。",
+      "tags": [
+        "shadow",
+        "draw-command",
+        "cast"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1689,
+        1783
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/SkyAtmosphere.js:SkyAtmosphere",
+      "type": "function",
+      "name": "SkyAtmosphere",
+      "filePath": "packages/engine/Source/Scene/SkyAtmosphere.js",
+      "summary": "SkyAtmosphere 构造函数，构建椭球几何并初始化大气着色器。",
+      "tags": [
+        "sky",
+        "atmosphere",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        42,
+        201
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/SkyAtmosphere.js:hasColorCorrection",
+      "type": "function",
+      "name": "hasColorCorrection",
+      "filePath": "packages/engine/Source/Scene/SkyAtmosphere.js",
+      "summary": "判断当前大气 shader 是否启用了色彩校正。",
+      "tags": [
+        "sky",
+        "atmosphere",
+        "color"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        343,
+        361
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "function:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js:createCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "function:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js:getECShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:getDependencies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:getFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageTextureCache.js:updateFramebuffers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:ShadowMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:computeCascades",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:fitShadowMapToScene",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:computeOmnidirectional",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:checkVisibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:updateCameras",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:combineUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:createCastDerivedCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "function:packages/engine/Source/Scene/SkyAtmosphere.js:SkyAtmosphere",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "function:packages/engine/Source/Scene/SkyAtmosphere.js:hasColorCorrection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/CullingVolume.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/Camera.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/DebugCameraPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMapShader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyBox.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyBox.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyBox.js",
+      "target": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyBox.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMap.js",
+      "target": "function:packages/engine/Source/Scene/ShadowMap.js:ShadowMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "target": "function:packages/engine/Source/Scene/SkyAtmosphere.js:SkyAtmosphere",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

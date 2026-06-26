@@ -1,0 +1,80 @@
+{
+  "nodes": [
+    {
+      "id": "document:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/README.md",
+      "summary": "说明 ExternalInMultipleContents 测试夹具的文档：一个根节点包含 4 个 content（1 个红色 GLB + 3 个外部 tileset，分别为绿/蓝/白单位立方体），作为 cesium issue #11960 的回归测试。",
+      "tags": ["documentation", "test-fixture", "3d-tiles", "regression-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "summary": "3D Tiles 1.1 主 tileset 配置：根节点 ADD 细化，boundingVolume 为 box，contents 数组引用 1 个 GLB (contentA.glb) 和 3 个外部 tileset (externalB/C/D.json)。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "multiple-contents"],
+      "complexity": "simple",
+      "languageNotes": "演示 3D Tiles 1.1 多 content 特性——单个 tile 同时承载 GLB 与外部 tileset 引用。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalB.json",
+      "type": "config",
+      "name": "externalB.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalB.json",
+      "summary": "外部 tileset 配置，被主 tileset.json 引用，含自身 boundingVolume/transform，content 指向 contentB.glb（绿色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "external-tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalC.json",
+      "type": "config",
+      "name": "externalC.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalC.json",
+      "summary": "外部 tileset 配置，被主 tileset.json 引用，content 指向 contentC.glb（蓝色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "external-tileset", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalD.json",
+      "type": "config",
+      "name": "externalD.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalD.json",
+      "summary": "外部 tileset 配置，被主 tileset.json 引用，content 指向 contentD.glb（白色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "external-tileset", "test-fixture"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/README.md",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalB.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalC.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/ExternalInMultipleContents/externalD.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,808 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "type": "file",
+      "name": "VoxelTraversal.js",
+      "filePath": "packages/engine/Source/Scene/VoxelTraversal.js",
+      "summary": "Voxel primitive 的八叉树遍历器，调度空间/关键帧节点的按需加载、LOD 选择与 megatexture 合成。",
+      "tags": [
+        "voxel",
+        "octree",
+        "traversal",
+        "lod"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 DoubleEndedPriorityQueue 进行节点加载优先级排序，单文件超 1200 行，是体素渲染的核心调度器。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/VoxelTraversal.js:VoxelTraversal",
+      "type": "class",
+      "name": "VoxelTraversal",
+      "filePath": "packages/engine/Source/Scene/VoxelTraversal.js",
+      "lineRange": [
+        33,
+        255
+      ],
+      "summary": "体素遍历器构造函数，初始化空间/关键帧八叉树、megatexture 与纹理内存预算并构建根节点。",
+      "tags": [
+        "voxel",
+        "octree",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelTraversal.js:updateKeyframeNodes",
+      "type": "function",
+      "name": "updateKeyframeNodes",
+      "filePath": "packages/engine/Source/Scene/VoxelTraversal.js",
+      "lineRange": [
+        557,
+        630
+      ],
+      "summary": "按优先级队列更新关键帧节点的加载与卸载，维护体素动画时序。",
+      "tags": [
+        "voxel",
+        "scheduling",
+        "keyframe"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelTraversal.js:generateOctree",
+      "type": "function",
+      "name": "generateOctree",
+      "filePath": "packages/engine/Source/Scene/VoxelTraversal.js",
+      "lineRange": [
+        976,
+        1096
+      ],
+      "summary": "递归生成空间八叉树节点，结合 SSE 与样本计数决定细分与层级混合因子。",
+      "tags": [
+        "voxel",
+        "octree",
+        "lod"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelTraversal.js:postPassesUpdate",
+      "type": "function",
+      "name": "postPassesUpdate",
+      "filePath": "packages/engine/Source/Scene/VoxelTraversal.js",
+      "lineRange": [
+        800,
+        931
+      ],
+      "summary": "在渲染 pass 完成后回收上传缓冲、推进挂起请求并更新纹理内存统计。",
+      "tags": [
+        "voxel",
+        "frame-update",
+        "resource-management"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "type": "file",
+      "name": "TimeDynamicPointCloud.js",
+      "filePath": "packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "summary": "时序点云 primitive，按时间区间（interval）调度加载与渲染帧，支持 EDL 阴影、裁剪平面与样式，用于播放动态点云数据。",
+      "tags": [
+        "primitive",
+        "point-cloud",
+        "time-dynamic",
+        "scene"
+      ],
+      "complexity": "complex",
+      "languageNotes": "采用构造函数 + 闭包内私有 helper 的模式（如 getNextInterval、prepareFrame），通过 frozen 默认选项对象对外暴露参数。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/TimeDynamicPointCloud.js:TimeDynamicPointCloud",
+      "type": "class",
+      "name": "TimeDynamicPointCloud",
+      "filePath": "packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "lineRange": [
+        41,
+        189
+      ],
+      "summary": "时序点云 primitive 构造函数，管理 intervals 列表、当前帧索引、时钟倍率与样式，并触发按需帧加载。",
+      "tags": [
+        "primitive",
+        "point-cloud",
+        "constructor",
+        "time-dynamic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/TimeDynamicPointCloud.js:prepareFrame",
+      "type": "function",
+      "name": "prepareFrame",
+      "filePath": "packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "lineRange": [
+        411,
+        440
+      ],
+      "summary": "根据时钟时间定位到目标 interval 并触发下一帧的异步加载。",
+      "tags": [
+        "frame-update",
+        "scheduling",
+        "point-cloud"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/TimeDynamicPointCloud.js:renderFrame",
+      "type": "function",
+      "name": "renderFrame",
+      "filePath": "packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "lineRange": [
+        468,
+        496
+      ],
+      "summary": "将已加载帧的 draw command 提交到 frameState 以渲染当前时刻的点云。",
+      "tags": [
+        "rendering",
+        "draw-command",
+        "point-cloud"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "type": "file",
+      "name": "renderBufferPointCollection.js",
+      "filePath": "packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "summary": "把 BufferPointCollection 渲染为 draw command 的辅助模块，处理顶点属性压缩、混合选项与 shader。",
+      "tags": [
+        "buffer-primitive",
+        "point",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "type": "file",
+      "name": "buildVoxelDrawCommands.js",
+      "filePath": "packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "summary": "工厂函数：基于 VoxelRenderResources 与 VoxelBoundsCollection 构造体素 primitive 的 draw command 列表。",
+      "tags": [
+        "voxel",
+        "draw-command",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/buildVoxelDrawCommands.js:buildVoxelDrawCommands",
+      "type": "function",
+      "name": "buildVoxelDrawCommands",
+      "filePath": "packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "lineRange": [
+        1,
+        177
+      ],
+      "summary": "组装体素渲染的 render state、shader program 与 uniform，生成最终的 DrawCommand 数组。",
+      "tags": [
+        "voxel",
+        "draw-command",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "type": "file",
+      "name": "getClippingFunction.js",
+      "filePath": "packages/engine/Source/Scene/getClippingFunction.js",
+      "summary": "根据 ClippingPlaneCollection 生成裁剪判定的 GLSL 函数字符串，统一被 globe surface 与点云 shader 调用。",
+      "tags": [
+        "shader",
+        "glsl",
+        "clipping",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileImagery.js",
+      "type": "file",
+      "name": "TileImagery.js",
+      "filePath": "packages/engine/Source/Scene/TileImagery.js",
+      "summary": "瓦片与影像层的关联对象，跟踪单个 terrain tile 上每个 imagery layer 的加载状态、纹理坐标及就绪状态。",
+      "tags": [
+        "data-model",
+        "scene",
+        "imagery",
+        "tile"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/CullingVolume.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Scene/KeyframeNode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Megatexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "file:packages/engine/Source/Scene/SpatialNode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "class:packages/engine/Source/Scene/VoxelTraversal.js:VoxelTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "class:packages/engine/Source/Scene/VoxelTraversal.js:VoxelTraversal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "function:packages/engine/Source/Scene/VoxelTraversal.js:updateKeyframeNodes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "function:packages/engine/Source/Scene/VoxelTraversal.js:generateOctree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelTraversal.js",
+      "target": "function:packages/engine/Source/Scene/VoxelTraversal.js:postPassesUpdate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/PointCloud.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "class:packages/engine/Source/Scene/TimeDynamicPointCloud.js:TimeDynamicPointCloud",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "class:packages/engine/Source/Scene/TimeDynamicPointCloud.js:TimeDynamicPointCloud",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "function:packages/engine/Source/Scene/TimeDynamicPointCloud.js:prepareFrame",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "target": "function:packages/engine/Source/Scene/TimeDynamicPointCloud.js:renderFrame",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Scene/BufferPoint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPointCollection.js",
+      "target": "file:packages/engine/Source/Scene/BufferPointMaterial.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/processVoxelProperties.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/VoxelRenderResources.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "function:packages/engine/Source/Scene/buildVoxelDrawCommands.js:buildVoxelDrawCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/buildVoxelDrawCommands.js",
+      "target": "function:packages/engine/Source/Scene/buildVoxelDrawCommands.js:buildVoxelDrawCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileImagery.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileImagery.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Panorama.js",
+      "target": "file:packages/engine/Specs/Scene/PanoramaSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

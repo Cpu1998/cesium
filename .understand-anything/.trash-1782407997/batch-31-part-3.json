@@ -1,0 +1,740 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "type": "file",
+      "name": "Vector3DTileClampedPolylines.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "summary": "将 Vector3DTile 中的折线 clamp 到地形高程，并通过模板测试与 EDL 完成地形贴合的折线渲染。",
+      "tags": [
+        "3d-tiles",
+        "polyline",
+        "classification",
+        "terrain"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 TaskProcessor 把几何解码放到 worker，主线程仅做 draw command 组装。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "type": "file",
+      "name": "Vector3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTileContent.js",
+      "summary": "解析 Vector 3D Tiles 的二进制 tile 内容，按 feature/batch 表分发到点、线、面、clamp 折线子 primitive。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "parser",
+        "vector"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Vector3DTileContent.js:Vector3DTileContent",
+      "type": "class",
+      "name": "Vector3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Vector3DTileContent.js",
+      "lineRange": [
+        1,
+        741
+      ],
+      "summary": "Vector 3D Tiles 内容对象的构造与生命周期，负责读取 batch/feature 表并组合各类子 primitive 的渲染。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "type": "file",
+      "name": "Vector3DTilePoints.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "summary": "Vector3DTile 点要素子 primitive，使用 BillboardCollection 渲染点并支持按高度参考与近远缩放。",
+      "tags": [
+        "3d-tiles",
+        "points",
+        "billboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "type": "file",
+      "name": "ViewportQuad.js",
+      "filePath": "packages/engine/Source/Scene/ViewportQuad.js",
+      "summary": "在视口绘制单个全屏四边形并应用 Material 的 primitive，常用于 HUD 叠加或调试可视化。",
+      "tags": [
+        "primitive",
+        "viewport",
+        "material",
+        "debug"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "type": "file",
+      "name": "computeFlyToLocationForRectangle.js",
+      "filePath": "packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "summary": "异步计算给定矩形范围在 3D 模式下的合适相机视点（含地形采样），供 flyTo/flyHome 使用。",
+      "tags": [
+        "camera",
+        "utility",
+        "fly-to"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createSphereOutlineGeometry.js",
+      "type": "file",
+      "name": "createSphereOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createSphereOutlineGeometry.js",
+      "summary": "Web Worker 入口：基于参数创建 SphereOutlineGeometry 并返回可传输的 Geometry 对象。",
+      "tags": [
+        "worker",
+        "geometry",
+        "sphere"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileSelectionResult.js",
+      "type": "file",
+      "name": "TileSelectionResult.js",
+      "filePath": "packages/engine/Source/Scene/TileSelectionResult.js",
+      "summary": "定义 quadtree tile 选择结果的枚举常量（如 RENDER/REFINE/CULL），被四叉树 primitive 用于统一返回值。",
+      "tags": [
+        "type-definition",
+        "enum",
+        "tile",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Tonemapper.js",
+      "type": "file",
+      "name": "Tonemapper.js",
+      "filePath": "packages/engine/Source/Scene/Tonemapper.js",
+      "summary": "定义色调映射算法的枚举（如 REINHARD、FILMIC），用于 post-process 阶段选择 HDR 转 LDR 的曲线。",
+      "tags": [
+        "type-definition",
+        "enum",
+        "post-process",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTileBatch.js",
+      "type": "file",
+      "name": "Vector3DTileBatch.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTileBatch.js",
+      "summary": "定义 Vector3DTile 中一个批次的轻量数据结构，记录批次在顶点/索引缓冲中的偏移与边界盒。",
+      "tags": [
+        "data-model",
+        "3d-tiles",
+        "batch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "file",
+      "name": "VerticalOrigin.js",
+      "filePath": "packages/engine/Source/Scene/VerticalOrigin.js",
+      "summary": "定义垂直对齐原点的枚举（TOP/CENTER/BOTTOM），被 billboard/label 用于锚点定位。",
+      "tags": [
+        "type-definition",
+        "enum",
+        "layout"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/decodeVectorPolylinePositions.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileClampedPolylines.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTilePolygons.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Vector3DTileContent.js:Vector3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Vector3DTileContent.js:Vector3DTileContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePoints.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ViewportQuad.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "target": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSphereOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

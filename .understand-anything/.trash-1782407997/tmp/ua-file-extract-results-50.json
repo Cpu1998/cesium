@@ -1,0 +1,4498 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 15,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "gulpfile.apps.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 157,
+      "nonEmptyLines": 138,
+      "functions": [
+        {
+          "name": "printBuildWarning",
+          "startLine": 14,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "handleBuildWarnings",
+          "startLine": 30,
+          "endLine": 39,
+          "params": [
+            "result"
+          ]
+        },
+        {
+          "name": "buildCesiumViewer",
+          "startLine": 41,
+          "endLine": 119,
+          "params": []
+        },
+        {
+          "name": "buildSandcastle",
+          "startLine": 121,
+          "endLine": 155,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "buildCesiumViewer",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "buildSandcastle",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "buildApps",
+          "line": 157,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "printBuildWarning",
+          "callee": "console.log",
+          "lineNumber": 26
+        },
+        {
+          "caller": "handleBuildWarnings",
+          "callee": "warning.location.file.includes",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleBuildWarnings",
+          "callee": "warning.location.file.includes",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleBuildWarnings",
+          "callee": "printBuildWarning",
+          "lineNumber": 36
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "mkdirp.sync",
+          "lineNumber": 45
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 47
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "esbuild",
+          "lineNumber": 64
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "handleBuildWarnings",
+          "lineNumber": 66
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "esbuild",
+          "lineNumber": 68
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "join",
+          "lineNumber": 76
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "bundleWorkers",
+          "lineNumber": 80
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp\n    .src(\n      [\n        \"Apps/CesiumViewer/**\",\n        \"!Apps/CesiumViewer/Images\",\n        \"!Apps/CesiumViewer/**/*.js\",\n        \"!Apps/CesiumViewer/**/*.css\",\n      ],\n      {\n        encoding: false,\n      },\n    )\n    .pipe(\n      gulp.src(\n        [\n          \"Build/Cesium/Assets/**\",\n          \"Build/Cesium/Workers/**\",\n          \"Build/Cesium/ThirdParty/**\",\n          \"Build/Cesium/Widgets/**\",\n          \"!Build/Cesium/Widgets/**/*.css\",\n        ],\n        {\n          base: \"Build/Cesium\",\n          nodir: true,\n          encoding: false,\n        },\n      ),\n    )\n    .pipe(gulp.src([\"web.config\"]))\n    .pipe",
+          "lineNumber": 86
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp\n    .src(\n      [\n        \"Apps/CesiumViewer/**\",\n        \"!Apps/CesiumViewer/Images\",\n        \"!Apps/CesiumViewer/**/*.js\",\n        \"!Apps/CesiumViewer/**/*.css\",\n      ],\n      {\n        encoding: false,\n      },\n    )\n    .pipe(\n      gulp.src(\n        [\n          \"Build/Cesium/Assets/**\",\n          \"Build/Cesium/Workers/**\",\n          \"Build/Cesium/ThirdParty/**\",\n          \"Build/Cesium/Widgets/**\",\n          \"!Build/Cesium/Widgets/**/*.css\",\n        ],\n        {\n          base: \"Build/Cesium\",\n          nodir: true,\n          encoding: false,\n        },\n      ),\n    )\n    .pipe",
+          "lineNumber": 86
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp\n    .src(\n      [\n        \"Apps/CesiumViewer/**\",\n        \"!Apps/CesiumViewer/Images\",\n        \"!Apps/CesiumViewer/**/*.js\",\n        \"!Apps/CesiumViewer/**/*.css\",\n      ],\n      {\n        encoding: false,\n      },\n    )\n    .pipe",
+          "lineNumber": 86
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp\n    .src",
+          "lineNumber": 86
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp.src",
+          "lineNumber": 99
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp.src",
+          "lineNumber": 114
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "gulp.dest",
+          "lineNumber": 115
+        },
+        {
+          "caller": "buildCesiumViewer",
+          "callee": "finished",
+          "lineNumber": 117
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs(process.argv.slice(5))\n    .options({\n      \"outer-origin\": {\n        type: \"string\",\n        description:\n          \"The outer origin for the Sandcastle App. Defaults to localhost:8080 if not specified\",\n      },\n      \"inner-origin\": {\n        type: \"string\",\n        description:\n          \"The inner origin for the Sandcastle viewer iframe. Defaults to the outer-origin if not specified or localhost:8081 if neither are specified\",\n      },\n    })\n    .help(false)\n    .version(false)\n    .strict()\n    .parse",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs(process.argv.slice(5))\n    .options({\n      \"outer-origin\": {\n        type: \"string\",\n        description:\n          \"The outer origin for the Sandcastle App. Defaults to localhost:8080 if not specified\",\n      },\n      \"inner-origin\": {\n        type: \"string\",\n        description:\n          \"The inner origin for the Sandcastle viewer iframe. Defaults to the outer-origin if not specified or localhost:8081 if neither are specified\",\n      },\n    })\n    .help(false)\n    .version(false)\n    .strict",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs(process.argv.slice(5))\n    .options({\n      \"outer-origin\": {\n        type: \"string\",\n        description:\n          \"The outer origin for the Sandcastle App. Defaults to localhost:8080 if not specified\",\n      },\n      \"inner-origin\": {\n        type: \"string\",\n        description:\n          \"The inner origin for the Sandcastle viewer iframe. Defaults to the outer-origin if not specified or localhost:8081 if neither are specified\",\n      },\n    })\n    .help(false)\n    .version",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs(process.argv.slice(5))\n    .options({\n      \"outer-origin\": {\n        type: \"string\",\n        description:\n          \"The outer origin for the Sandcastle App. Defaults to localhost:8080 if not specified\",\n      },\n      \"inner-origin\": {\n        type: \"string\",\n        description:\n          \"The inner origin for the Sandcastle viewer iframe. Defaults to the outer-origin if not specified or localhost:8081 if neither are specified\",\n      },\n    })\n    .help",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs(process.argv.slice(5))\n    .options",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "yargs",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "process.argv.slice",
+          "lineNumber": 122
+        },
+        {
+          "caller": "buildSandcastle",
+          "callee": "buildSandcastleApp",
+          "lineNumber": 149
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "gulpfile.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1362,
+      "nonEmptyLines": 1206,
+      "functions": [
+        {
+          "name": "getWorkspaces",
+          "startLine": 39,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "build",
+          "startLine": 80,
+          "endLine": 107,
+          "params": []
+        },
+        {
+          "name": "buildTs",
+          "startLine": 208,
+          "endLine": 243,
+          "params": []
+        },
+        {
+          "name": "tsc",
+          "startLine": 245,
+          "endLine": 273,
+          "params": []
+        },
+        {
+          "name": "clean",
+          "startLine": 287,
+          "endLine": 291,
+          "params": []
+        },
+        {
+          "name": "clocSource",
+          "startLine": 293,
+          "endLine": 331,
+          "params": []
+        },
+        {
+          "name": "prepare",
+          "startLine": 333,
+          "endLine": 373,
+          "params": []
+        },
+        {
+          "name": "buildDocs",
+          "startLine": 378,
+          "endLine": 398,
+          "params": []
+        },
+        {
+          "name": "buildDocsWatch",
+          "startLine": 400,
+          "endLine": 404,
+          "params": []
+        },
+        {
+          "name": "postversion",
+          "startLine": 463,
+          "endLine": 496,
+          "params": []
+        },
+        {
+          "name": "deploySetVersion",
+          "startLine": 498,
+          "endLine": 505,
+          "params": []
+        },
+        {
+          "name": "deployStatus",
+          "startLine": 507,
+          "endLine": 526,
+          "params": []
+        },
+        {
+          "name": "setStatus",
+          "startLine": 528,
+          "endLine": 556,
+          "params": [
+            "state",
+            "targetUrl",
+            "description",
+            "context"
+          ]
+        },
+        {
+          "name": "runCoverage",
+          "startLine": 571,
+          "endLine": 761,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "coverage",
+          "startLine": 763,
+          "endLine": 802,
+          "params": []
+        },
+        {
+          "name": "test",
+          "startLine": 805,
+          "endLine": 945,
+          "params": []
+        },
+        {
+          "name": "fixTypescriptDefinitionsSource",
+          "startLine": 957,
+          "endLine": 1000,
+          "params": [
+            "source"
+          ]
+        },
+        {
+          "name": "generateTypeScriptDefinitions",
+          "startLine": 1013,
+          "endLine": 1074,
+          "params": [
+            "workspaceName",
+            "definitionsPath",
+            "configurationPath",
+            "processSourceFunc",
+            "processModulesFunc",
+            "importModules"
+          ]
+        },
+        {
+          "name": "processEngineModules",
+          "startLine": 1076,
+          "endLine": 1081,
+          "params": [
+            "modules"
+          ]
+        },
+        {
+          "name": "processTypescriptSource",
+          "startLine": 1092,
+          "endLine": 1141,
+          "params": [
+            "definitionsPath",
+            "source"
+          ]
+        },
+        {
+          "name": "processEngineSource",
+          "startLine": 1143,
+          "endLine": 1157,
+          "params": [
+            "definitionsPath",
+            "source"
+          ]
+        },
+        {
+          "name": "createTypeScriptDefinitions",
+          "startLine": 1159,
+          "endLine": 1208,
+          "params": []
+        },
+        {
+          "name": "getLicenseDataFromThirdPartyExtra",
+          "startLine": 1216,
+          "endLine": 1260,
+          "params": [
+            "path",
+            "discoveredDependencies"
+          ]
+        },
+        {
+          "name": "getLicenseDataFromPackage",
+          "startLine": 1270,
+          "endLine": 1335,
+          "params": [
+            "packageJson",
+            "packageName",
+            "discoveredDependencies",
+            "licenseOverride",
+            "notes"
+          ]
+        },
+        {
+          "name": "buildThirdParty",
+          "startLine": 1337,
+          "endLine": 1362,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "build",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "buildWatch",
+          "line": 110,
+          "isDefault": false
+        },
+        {
+          "name": "buildTs",
+          "line": 208,
+          "isDefault": false
+        },
+        {
+          "name": "tsc",
+          "line": 245,
+          "isDefault": false
+        },
+        {
+          "name": "clean",
+          "line": 287,
+          "isDefault": false
+        },
+        {
+          "name": "prepare",
+          "line": 333,
+          "isDefault": false
+        },
+        {
+          "name": "cloc",
+          "line": 375,
+          "isDefault": false
+        },
+        {
+          "name": "buildDocs",
+          "line": 378,
+          "isDefault": false
+        },
+        {
+          "name": "buildDocsWatch",
+          "line": 400,
+          "isDefault": false
+        },
+        {
+          "name": "websiteRelease",
+          "line": 406,
+          "isDefault": false
+        },
+        {
+          "name": "buildRelease",
+          "line": 435,
+          "isDefault": false
+        },
+        {
+          "name": "release",
+          "line": 458,
+          "isDefault": false
+        },
+        {
+          "name": "postversion",
+          "line": 463,
+          "isDefault": false
+        },
+        {
+          "name": "deploySetVersion",
+          "line": 498,
+          "isDefault": false
+        },
+        {
+          "name": "deployStatus",
+          "line": 507,
+          "isDefault": false
+        },
+        {
+          "name": "runCoverage",
+          "line": 571,
+          "isDefault": false
+        },
+        {
+          "name": "coverage",
+          "line": 763,
+          "isDefault": false
+        },
+        {
+          "name": "test",
+          "line": 805,
+          "isDefault": false
+        },
+        {
+          "name": "buildThirdParty",
+          "line": 1337,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getWorkspaces",
+          "callee": "Object.keys",
+          "lineNumber": 40
+        },
+        {
+          "caller": "getWorkspaces",
+          "callee": "packageJson.workspaces.filter",
+          "lineNumber": 42
+        },
+        {
+          "caller": "getWorkspaces",
+          "callee": "dependencies.includes",
+          "lineNumber": 43
+        },
+        {
+          "caller": "getWorkspaces",
+          "callee": "workspace.replace",
+          "lineNumber": 44
+        },
+        {
+          "caller": "build",
+          "callee": "buildEngine",
+          "lineNumber": 99
+        },
+        {
+          "caller": "build",
+          "callee": "buildWidgets",
+          "lineNumber": 101
+        },
+        {
+          "caller": "build",
+          "callee": "buildEngine",
+          "lineNumber": 104
+        },
+        {
+          "caller": "build",
+          "callee": "buildWidgets",
+          "lineNumber": 105
+        },
+        {
+          "caller": "build",
+          "callee": "buildCesium",
+          "lineNumber": 106
+        },
+        {
+          "caller": "buildTs",
+          "callee": "Array.isArray",
+          "lineNumber": 210
+        },
+        {
+          "caller": "buildTs",
+          "callee": "getWorkspaces",
+          "lineNumber": 215
+        },
+        {
+          "caller": "buildTs",
+          "callee": "workspace\n      .replace(`@${scope}/`, \"\")\n      .replace",
+          "lineNumber": 221
+        },
+        {
+          "caller": "buildTs",
+          "callee": "workspace\n      .replace",
+          "lineNumber": 221
+        },
+        {
+          "caller": "buildTs",
+          "callee": "generateTypeScriptDefinitions",
+          "lineNumber": 224
+        },
+        {
+          "caller": "buildTs",
+          "callee": "createTypeScriptDefinitions",
+          "lineNumber": 242
+        },
+        {
+          "caller": "tsc",
+          "callee": "Array.isArray",
+          "lineNumber": 247
+        },
+        {
+          "caller": "tsc",
+          "callee": "execSync",
+          "lineNumber": 252
+        },
+        {
+          "caller": "tsc",
+          "callee": "getWorkspaces",
+          "lineNumber": 257
+        },
+        {
+          "caller": "tsc",
+          "callee": "workspace\n      .replace(`@${scope}/`, \"\")\n      .replace",
+          "lineNumber": 261
+        },
+        {
+          "caller": "tsc",
+          "callee": "workspace\n      .replace",
+          "lineNumber": 261
+        },
+        {
+          "caller": "tsc",
+          "callee": "existsSync",
+          "lineNumber": 266
+        },
+        {
+          "caller": "tsc",
+          "callee": "execSync",
+          "lineNumber": 267
+        },
+        {
+          "caller": "clean",
+          "callee": "rimraf",
+          "lineNumber": 288
+        },
+        {
+          "caller": "clean",
+          "callee": "globby",
+          "lineNumber": 289
+        },
+        {
+          "caller": "clean",
+          "callee": "Promise.all",
+          "lineNumber": 290
+        },
+        {
+          "caller": "clean",
+          "callee": "files.map",
+          "lineNumber": 290
+        },
+        {
+          "caller": "clean",
+          "callee": "rimraf",
+          "lineNumber": 290
+        },
+        {
+          "caller": "clocSource",
+          "callee": "exec",
+          "lineNumber": 303
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 305
+        },
+        {
+          "caller": "clocSource",
+          "callee": "reject",
+          "lineNumber": 306
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 308
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 309
+        },
+        {
+          "caller": "clocSource",
+          "callee": "resolve",
+          "lineNumber": 310
+        },
+        {
+          "caller": "clocSource",
+          "callee": "exec",
+          "lineNumber": 321
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 323
+        },
+        {
+          "caller": "clocSource",
+          "callee": "reject",
+          "lineNumber": 324
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 326
+        },
+        {
+          "caller": "clocSource",
+          "callee": "console.log",
+          "lineNumber": 327
+        },
+        {
+          "caller": "clocSource",
+          "callee": "resolve",
+          "lineNumber": 328
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 335
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 340
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 345
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 349
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 355
+        },
+        {
+          "caller": "prepare",
+          "callee": "copyFileSync",
+          "lineNumber": 359
+        },
+        {
+          "caller": "prepare",
+          "callee": "globby",
+          "lineNumber": 365
+        },
+        {
+          "caller": "prepare",
+          "callee": "gulp.src(files).pipe",
+          "lineNumber": 370
+        },
+        {
+          "caller": "prepare",
+          "callee": "gulp.src",
+          "lineNumber": 370
+        },
+        {
+          "caller": "prepare",
+          "callee": "gulp.dest",
+          "lineNumber": 370
+        },
+        {
+          "caller": "prepare",
+          "callee": "finished",
+          "lineNumber": 371
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "execSync",
+          "lineNumber": 381
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "Object.assign",
+          "lineNumber": 385
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "getWorkspaces",
+          "lineNumber": 387
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "gulp\n    .src([\"Documentation/Images/**\"], { encoding: false })\n    .pipe",
+          "lineNumber": 392
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "gulp\n    .src",
+          "lineNumber": 392
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "gulp.dest",
+          "lineNumber": 394
+        },
+        {
+          "caller": "buildDocs",
+          "callee": "finished",
+          "lineNumber": 396
+        },
+        {
+          "caller": "buildDocsWatch",
+          "callee": "buildDocs",
+          "lineNumber": 401
+        },
+        {
+          "caller": "buildDocsWatch",
+          "callee": "console.log",
+          "lineNumber": 402
+        },
+        {
+          "caller": "buildDocsWatch",
+          "callee": "gulp.watch",
+          "lineNumber": 403
+        },
+        {
+          "caller": "postversion",
+          "callee": "workspace.replaceAll",
+          "lineNumber": 468
+        },
+        {
+          "caller": "postversion",
+          "callee": "require",
+          "lineNumber": 469
+        },
+        {
+          "caller": "postversion",
+          "callee": "globby",
+          "lineNumber": 474
+        },
+        {
+          "caller": "postversion",
+          "callee": "packageJsons.map",
+          "lineNumber": 478
+        },
+        {
+          "caller": "postversion",
+          "callee": "basename",
+          "lineNumber": 480
+        },
+        {
+          "caller": "postversion",
+          "callee": "dirname",
+          "lineNumber": 480
+        },
+        {
+          "caller": "postversion",
+          "callee": "require",
+          "lineNumber": 484
+        },
+        {
+          "caller": "postversion",
+          "callee": "Object.hasOwn",
+          "lineNumber": 485
+        },
+        {
+          "caller": "postversion",
+          "callee": "console.log",
+          "lineNumber": 486
+        },
+        {
+          "caller": "postversion",
+          "callee": "writeFile",
+          "lineNumber": 493
+        },
+        {
+          "caller": "postversion",
+          "callee": "JSON.stringify",
+          "lineNumber": 493
+        },
+        {
+          "caller": "postversion",
+          "callee": "Promise.all",
+          "lineNumber": 495
+        },
+        {
+          "caller": "deploySetVersion",
+          "callee": "buildVersion.replace",
+          "lineNumber": 502
+        },
+        {
+          "caller": "deploySetVersion",
+          "callee": "writeFile",
+          "lineNumber": 503
+        },
+        {
+          "caller": "deploySetVersion",
+          "callee": "JSON.stringify",
+          "lineNumber": 503
+        },
+        {
+          "caller": "deployStatus",
+          "callee": "Promise.all",
+          "lineNumber": 515
+        },
+        {
+          "caller": "deployStatus",
+          "callee": "setStatus",
+          "lineNumber": 516
+        },
+        {
+          "caller": "deployStatus",
+          "callee": "setStatus",
+          "lineNumber": 517
+        },
+        {
+          "caller": "deployStatus",
+          "callee": "setStatus",
+          "lineNumber": 518
+        },
+        {
+          "caller": "deployStatus",
+          "callee": "setStatus",
+          "lineNumber": 519
+        },
+        {
+          "caller": "setStatus",
+          "callee": "fetch",
+          "lineNumber": 541
+        },
+        {
+          "caller": "setStatus",
+          "callee": "JSON.stringify",
+          "lineNumber": 545
+        },
+        {
+          "caller": "setStatus",
+          "callee": "response.json",
+          "lineNumber": 554
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "argv.browsers.split",
+          "lineNumber": 580
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "createInstrumenter",
+          "lineNumber": 583
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "build.onLoad",
+          "lineNumber": 592
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "readFile",
+          "lineNumber": 597
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "instrumenter.instrumentSync",
+          "lineNumber": 599
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "join",
+          "lineNumber": 617
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "esbuild",
+          "lineNumber": 618
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "join",
+          "lineNumber": 630
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "esbuild",
+          "lineNumber": 631
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "karma.config.parseConfig",
+          "lineNumber": 697
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "folders.push",
+          "lineNumber": 714
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "folders.forEach",
+          "lineNumber": 738
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "encodeURIComponent",
+          "lineNumber": 739
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "writeFileSync",
+          "lineNumber": 744
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "join",
+          "lineNumber": 744
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "folders.forEach",
+          "lineNumber": 747
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "open",
+          "lineNumber": 748
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "join",
+          "lineNumber": 748
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "reject",
+          "lineNumber": 753
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "resolve",
+          "lineNumber": 757
+        },
+        {
+          "caller": "runCoverage",
+          "callee": "server.start",
+          "lineNumber": 759
+        },
+        {
+          "caller": "coverage",
+          "callee": "workspace.replaceAll",
+          "lineNumber": 766
+        },
+        {
+          "caller": "coverage",
+          "callee": "runCoverage",
+          "lineNumber": 770
+        },
+        {
+          "caller": "coverage",
+          "callee": "runCoverage",
+          "lineNumber": 781
+        },
+        {
+          "caller": "coverage",
+          "callee": "runCoverage",
+          "lineNumber": 793
+        },
+        {
+          "caller": "test",
+          "callee": "grep.replaceAll",
+          "lineNumber": 819
+        },
+        {
+          "caller": "test",
+          "callee": "workspace.replaceAll",
+          "lineNumber": 823
+        },
+        {
+          "caller": "test",
+          "callee": "console.log",
+          "lineNumber": 827
+        },
+        {
+          "caller": "test",
+          "callee": "buildCesium",
+          "lineNumber": 828
+        },
+        {
+          "caller": "test",
+          "callee": "argv.browsers.split",
+          "lineNumber": 835
+        },
+        {
+          "caller": "test",
+          "callee": "karma.config.parseConfig",
+          "lineNumber": 898
+        },
+        {
+          "caller": "test",
+          "callee": "reject",
+          "lineNumber": 937
+        },
+        {
+          "caller": "test",
+          "callee": "resolve",
+          "lineNumber": 941
+        },
+        {
+          "caller": "test",
+          "callee": "server.start",
+          "lineNumber": 943
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace(/<Object>/gm, \"<object>\")\n      .replace(\n        /= \"WebGLConstants\\.(.+)\"/gm,\n        // eslint-disable-next-line no-unused-vars\n        (match, p1) => `= WebGLConstants.${p1}`,\n      )\n      // Strip const enums which can cause errors - https://www.typescriptlang.org/docs/handbook/enums.html#const-enum-pitfalls\n      .replace(/^(\\s*)(export )?const enum (\\S+) {(\\s*)$/gm, \"$1$2enum $3 {$4\")\n      // Replace JSDoc generation version of defined with an improved version using TS type predicates\n      .replace(\n        /\\n?export function defined\\(value: any\\): boolean;/gm,\n        `\\n${readFileSync(\"./packages/engine/Source/Core/defined.d.ts\")\n          .toString()\n          .replace(/\\n*\\/\\*.*?\\*\\/\\n*/gms, \"\")\n          .replace(\"export default\", \"export\")}`,\n      )\n      // Replace JSDoc generation version of Check with one that asserts the type of variables after called\n      .replace(\n        /\\/\\*\\*[\\*\\s\\w]*?\\*\\/\\nexport const Check: any;/m,\n        `\\n${readFileSync(\"./packages/engine/Source/Core/Check.d.ts\")\n          .toString()\n          .replace(/export default.*\\n?/, \"\")\n          .replace(\"const Check\", \"export const Check\")}`,\n      )\n      // Fix https://github.com/CesiumGS/cesium/issues/10498 so we can use the rest parameter expand tuple\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace(/<Object>/gm, \"<object>\")\n      .replace(\n        /= \"WebGLConstants\\.(.+)\"/gm,\n        // eslint-disable-next-line no-unused-vars\n        (match, p1) => `= WebGLConstants.${p1}`,\n      )\n      // Strip const enums which can cause errors - https://www.typescriptlang.org/docs/handbook/enums.html#const-enum-pitfalls\n      .replace(/^(\\s*)(export )?const enum (\\S+) {(\\s*)$/gm, \"$1$2enum $3 {$4\")\n      // Replace JSDoc generation version of defined with an improved version using TS type predicates\n      .replace(\n        /\\n?export function defined\\(value: any\\): boolean;/gm,\n        `\\n${readFileSync(\"./packages/engine/Source/Core/defined.d.ts\")\n          .toString()\n          .replace(/\\n*\\/\\*.*?\\*\\/\\n*/gms, \"\")\n          .replace(\"export default\", \"export\")}`,\n      )\n      // Replace JSDoc generation version of Check with one that asserts the type of variables after called\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace(/<Object>/gm, \"<object>\")\n      .replace(\n        /= \"WebGLConstants\\.(.+)\"/gm,\n        // eslint-disable-next-line no-unused-vars\n        (match, p1) => `= WebGLConstants.${p1}`,\n      )\n      // Strip const enums which can cause errors - https://www.typescriptlang.org/docs/handbook/enums.html#const-enum-pitfalls\n      .replace(/^(\\s*)(export )?const enum (\\S+) {(\\s*)$/gm, \"$1$2enum $3 {$4\")\n      // Replace JSDoc generation version of defined with an improved version using TS type predicates\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace(/<Object>/gm, \"<object>\")\n      .replace(\n        /= \"WebGLConstants\\.(.+)\"/gm,\n        // eslint-disable-next-line no-unused-vars\n        (match, p1) => `= WebGLConstants.${p1}`,\n      )\n      // Strip const enums which can cause errors - https://www.typescriptlang.org/docs/handbook/enums.html#const-enum-pitfalls\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace(/<Object>/gm, \"<object>\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace(/<Boolean>/gm, \"<boolean>\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace(/<String>/gm, \"<string>\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace(/<Number>/gm, \"<number>\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace(/Object\\[]/gm, \"object[]\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace(/Boolean\\[]/gm, \"boolean[]\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace(/String\\[]/gm, \"string[]\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace(/Number\\[]/gm, \"number[]\") // Workaround https://github.com/englercj/tsd-jsdoc/issues/117\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace(/CesiumMath/gm, \"Math\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace(/module \"Math\"/gm, \"namespace Math\")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace(/^declare /gm, \"export \")\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "source\n      .replace",
+          "lineNumber": 959
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/defined.d.ts\")\n          .toString()\n          .replace(/\\n*\\/\\*.*?\\*\\/\\n*/gms, \"\")\n          .replace",
+          "lineNumber": 981
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/defined.d.ts\")\n          .toString()\n          .replace",
+          "lineNumber": 981
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/defined.d.ts\")\n          .toString",
+          "lineNumber": 981
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync",
+          "lineNumber": 981
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/Check.d.ts\")\n          .toString()\n          .replace(/export default.*\\n?/, \"\")\n          .replace",
+          "lineNumber": 989
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/Check.d.ts\")\n          .toString()\n          .replace",
+          "lineNumber": 989
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync(\"./packages/engine/Source/Core/Check.d.ts\")\n          .toString",
+          "lineNumber": 989
+        },
+        {
+          "caller": "fixTypescriptDefinitionsSource",
+          "callee": "readFileSync",
+          "lineNumber": 989
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "execSync",
+          "lineNumber": 1022
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "readFileSync(definitionsPath).toString",
+          "lineNumber": 1026
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "readFileSync",
+          "lineNumber": 1026
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "processSourceFunc",
+          "lineNumber": 1029
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "regex.exec",
+          "lineNumber": 1039
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "matches[2].match",
+          "lineNumber": 1040
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "publicModules.add",
+          "lineNumber": 1041
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "processModulesFunc",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "fixTypescriptDefinitionsSource",
+          "lineNumber": 1048
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "Object.keys(importModules).forEach",
+          "lineNumber": 1052
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "Object.keys",
+          "lineNumber": 1052
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "Array.from(importModules[workspace]).filter",
+          "lineNumber": 1053
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "Array.from",
+          "lineNumber": 1053
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "source.indexOf",
+          "lineNumber": 1054
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "workspaceModules.join",
+          "lineNumber": 1056
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "writeFileSync",
+          "lineNumber": 1071
+        },
+        {
+          "caller": "generateTypeScriptDefinitions",
+          "callee": "Promise.resolve",
+          "lineNumber": 1073
+        },
+        {
+          "caller": "processEngineModules",
+          "callee": "modules.add",
+          "lineNumber": 1079
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "typeScript.createSourceFile",
+          "lineNumber": 1100
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "node.forEachChild",
+          "lineNumber": 1106
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "typeScript.createPrinter",
+          "lineNumber": 1115
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "printer.printNode",
+          "lineNumber": 1121
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "node.forEachChild",
+          "lineNumber": 1127
+        },
+        {
+          "caller": "processTypescriptSource",
+          "callee": "printer.printNode",
+          "lineNumber": 1132
+        },
+        {
+          "caller": "processEngineSource",
+          "callee": "processTypescriptSource",
+          "lineNumber": 1144
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "execSync",
+          "lineNumber": 1161
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "readFileSync(\"Source/Cesium.d.ts\").toString",
+          "lineNumber": 1165
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "readFileSync",
+          "lineNumber": 1165
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "processTypescriptSource",
+          "lineNumber": 1166
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "regex.exec",
+          "lineNumber": 1175
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "matches[2].match",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "publicModules.add",
+          "lineNumber": 1177
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "publicModules.add",
+          "lineNumber": 1182
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "fixTypescriptDefinitionsSource",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "writeFileSync",
+          "lineNumber": 1195
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "execSync",
+          "lineNumber": 1198
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "execSync",
+          "lineNumber": 1203
+        },
+        {
+          "caller": "createTypeScriptDefinitions",
+          "callee": "Promise.resolve",
+          "lineNumber": 1207
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "existsSync",
+          "lineNumber": 1217
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "Promise.reject",
+          "lineNumber": 1218
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "readFile",
+          "lineNumber": 1221
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "JSON.parse",
+          "lineNumber": 1222
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "Promise.all",
+          "lineNumber": 1223
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "thirdPartyExtra.map",
+          "lineNumber": 1224
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "discoveredDependencies.includes",
+          "lineNumber": 1225
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "getLicenseDataFromPackage",
+          "lineNumber": 1226
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "getWorkspaces",
+          "lineNumber": 1239
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "require",
+          "lineNumber": 1240
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "getLicenseDataFromPackage",
+          "lineNumber": 1241
+        },
+        {
+          "caller": "getLicenseDataFromThirdPartyExtra",
+          "callee": "discoveredDependencies.push",
+          "lineNumber": 1255
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "discoveredDependencies.includes",
+          "lineNumber": 1284
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "discoveredDependencies.push",
+          "lineNumber": 1288
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "join",
+          "lineNumber": 1290
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "existsSync",
+          "lineNumber": 1293
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "readFile",
+          "lineNumber": 1295
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "Promise.reject",
+          "lineNumber": 1299
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "JSON.parse",
+          "lineNumber": 1304
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "console.log",
+          "lineNumber": 1318
+        },
+        {
+          "caller": "getLicenseDataFromPackage",
+          "callee": "console.log",
+          "lineNumber": 1324
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "getLicenseDataFromThirdPartyExtra",
+          "lineNumber": 1342
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "licenseJson.concat",
+          "lineNumber": 1347
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "licenseJson.sort",
+          "lineNumber": 1349
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "a.name.toLowerCase",
+          "lineNumber": 1350
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "b.name.toLowerCase",
+          "lineNumber": 1351
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "writeFile",
+          "lineNumber": 1361
+        },
+        {
+          "caller": "buildThirdParty",
+          "callee": "JSON.stringify",
+          "lineNumber": 1361
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 19,
+        "functionCount": 25,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "gulpfile.makezip.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 190,
+      "functions": [
+        {
+          "name": "pruneScriptsForZip",
+          "startLine": 28,
+          "endLine": 81,
+          "params": [
+            "packageJsonPath"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "makeZip",
+          "line": 83,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "readFile",
+          "lineNumber": 30
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "JSON.parse",
+          "lineNumber": 31
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "join",
+          "lineNumber": 72
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "dirname",
+          "lineNumber": 73
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "writeFile",
+          "lineNumber": 76
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "JSON.stringify",
+          "lineNumber": 76
+        },
+        {
+          "caller": "pruneScriptsForZip",
+          "callee": "gulp.src",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/scripts/buildGallery.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 425,
+      "nonEmptyLines": 366,
+      "functions": [
+        {
+          "name": "itemToText",
+          "startLine": 28,
+          "endLine": 34,
+          "params": [
+            "title",
+            "description",
+            "labels"
+          ]
+        },
+        {
+          "name": "generateEmbeddings",
+          "startLine": 36,
+          "endLine": 50,
+          "params": [
+            "items"
+          ]
+        },
+        {
+          "name": "createPagefindIndex",
+          "startLine": 52,
+          "endLine": 69,
+          "params": []
+        },
+        {
+          "name": "exists",
+          "startLine": 71,
+          "endLine": 78,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "buildGalleryList",
+          "startLine": 101,
+          "endLine": 370,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "buildGalleryList",
+          "line": 101,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "itemToText",
+          "callee": "labels.join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "AutoTokenizer.from_pretrained",
+          "lineNumber": 37
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "AutoModel.from_pretrained",
+          "lineNumber": 38
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "items.map",
+          "lineNumber": 42
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "itemToText",
+          "lineNumber": 43
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "tokenizer",
+          "lineNumber": 46
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "model",
+          "lineNumber": 47
+        },
+        {
+          "caller": "generateEmbeddings",
+          "callee": "sentence_embedding.tolist",
+          "lineNumber": 49
+        },
+        {
+          "caller": "createPagefindIndex",
+          "callee": "pagefind.createIndex",
+          "lineNumber": 54
+        },
+        {
+          "caller": "createPagefindIndex",
+          "callee": "join",
+          "lineNumber": 56
+        },
+        {
+          "caller": "exists",
+          "callee": "access",
+          "lineNumber": 73
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "createPagefindIndex",
+          "lineNumber": 112
+        },
+        {
+          "caller": "check",
+          "callee": "errors.push",
+          "lineNumber": 146
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "globby",
+          "lineNumber": 151
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "galleryFilesPattern.map",
+          "lineNumber": 152
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join(rootDirectory, pattern, \"**/*\").replaceAll",
+          "lineNumber": 155
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 155
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "console.warn",
+          "lineNumber": 159
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "galleryFiles.filter",
+          "lineNumber": 163
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "basename(path).match",
+          "lineNumber": 164
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "basename",
+          "lineNumber": 164
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "readFile",
+          "lineNumber": 171
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "parse",
+          "lineNumber": 172
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 174
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "Object.keys",
+          "lineNumber": 183
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 187
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "expectedKeys.join",
+          "lineNumber": 189
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "Object.keys",
+          "lineNumber": 196
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "expectedKeys.includes",
+          "lineNumber": 197
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 198
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "dirname",
+          "lineNumber": 204
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "basename",
+          "lineNumber": 205
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "relative",
+          "lineNumber": 206
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 207
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "check",
+          "lineNumber": 215
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "/^[a-zA-Z0-9-.]+$/.test",
+          "lineNumber": 215
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "check",
+          "lineNumber": 216
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "check",
+          "lineNumber": 217
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "check",
+          "lineNumber": 218
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "labels.includes",
+          "lineNumber": 219
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 226
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "exists",
+          "lineNumber": 227
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 229
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 232
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "exists",
+          "lineNumber": 233
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 235
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 239
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "exists",
+          "lineNumber": 242
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 242
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 244
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "labels.includes",
+          "lineNumber": 256
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "labels.push",
+          "lineNumber": 257
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "readFile",
+          "lineNumber": 265
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "jsFile.split",
+          "lineNumber": 266
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 267
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "output.entries.push",
+          "lineNumber": 269
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "pagefindIndex.addHTMLFile",
+          "lineNumber": 280
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "createGalleryRecord",
+          "lineNumber": 281
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "errors.push",
+          "lineNumber": 291
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "output.entries.sort",
+          "lineNumber": 306
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "a.title.localeCompare",
+          "lineNumber": 306
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 308
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 309
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "createHash(\"sha256\")\n    .update(JSON.stringify(output.entries))\n    .digest",
+          "lineNumber": 312
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "createHash(\"sha256\")\n    .update",
+          "lineNumber": 312
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "createHash",
+          "lineNumber": 312
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "JSON.stringify",
+          "lineNumber": 313
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "exists",
+          "lineNumber": 317
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "readFile",
+          "lineNumber": 318
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "JSON.parse",
+          "lineNumber": 319
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "generateEmbeddings",
+          "lineNumber": 329
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "output.entries.forEach",
+          "lineNumber": 337
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "rimraf",
+          "lineNumber": 342
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "mkdir",
+          "lineNumber": 343
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "writeFile",
+          "lineNumber": 345
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 345
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "JSON.stringify",
+          "lineNumber": 345
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "writeFile",
+          "lineNumber": 346
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "JSON.stringify",
+          "lineNumber": 346
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "pagefindIndex.writeFiles",
+          "lineNumber": 348
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 349
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "galleryFiles.filter",
+          "lineNumber": 353
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "basename(path).match",
+          "lineNumber": 354
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "basename",
+          "lineNumber": 354
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "join",
+          "lineNumber": 358
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "relative",
+          "lineNumber": 361
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "cp",
+          "lineNumber": 363
+        },
+        {
+          "caller": "buildGalleryList",
+          "callee": "console.error",
+          "lineNumber": 366
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/scripts/buildStatic.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 170,
+      "nonEmptyLines": 150,
+      "functions": [
+        {
+          "name": "checkForImport",
+          "startLine": 27,
+          "endLine": 31,
+          "params": [
+            "imports",
+            "name"
+          ]
+        },
+        {
+          "name": "createSandcastleConfig",
+          "startLine": 54,
+          "endLine": 132,
+          "params": []
+        },
+        {
+          "name": "buildStatic",
+          "startLine": 145,
+          "endLine": 170,
+          "params": [
+            "config"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "createSandcastleConfig",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "buildStatic",
+          "line": 145,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "viteStaticCopy",
+          "lineNumber": 79
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "checkForImport",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "checkForImport",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "checkForImport",
+          "lineNumber": 88
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "Object.entries",
+          "lineNumber": 103
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "console.warn",
+          "lineNumber": 109
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "JSON.stringify",
+          "lineNumber": 116
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "JSON.stringify",
+          "lineNumber": 117
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "JSON.stringify",
+          "lineNumber": 118
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "JSON.stringify",
+          "lineNumber": 119
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "JSON.stringify",
+          "lineNumber": 120
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "cesiumPathReplace",
+          "lineNumber": 127
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "insertImportMap",
+          "lineNumber": 128
+        },
+        {
+          "caller": "createSandcastleConfig",
+          "callee": "defineConfig",
+          "lineNumber": 131
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "typescriptCompile",
+          "lineNumber": 149
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "join",
+          "lineNumber": 150
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "console.log",
+          "lineNumber": 154
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "console.log",
+          "lineNumber": 161
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "console.log",
+          "lineNumber": 164
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "build",
+          "lineNumber": 165
+        },
+        {
+          "caller": "buildStatic",
+          "callee": "join",
+          "lineNumber": 167
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/scripts/createGalleryRecord.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "createRecordHtml",
+          "startLine": 1,
+          "endLine": 46,
+          "params": []
+        },
+        {
+          "name": "createGalleryRecord",
+          "startLine": 48,
+          "endLine": 53,
+          "params": [
+            "galleryData"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "createRecordHtml",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "createGalleryRecord",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createRecordHtml",
+          "callee": "labels\n          .map(\n            (label) =>\n              `<li data-pagefind-meta=\"labels\" \n                data-pagefind-filter=\"labels\" \n                data-pagefind-weight=\"2\">${label}</li>`,\n          )\n          .join",
+          "lineNumber": 27
+        },
+        {
+          "caller": "createRecordHtml",
+          "callee": "labels\n          .map",
+          "lineNumber": 27
+        },
+        {
+          "caller": "createGalleryRecord",
+          "callee": "createRecordHtml",
+          "lineNumber": 51
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/scripts/typescriptCompile.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 29,
+      "functions": [
+        {
+          "name": "typescriptCompile",
+          "startLine": 11,
+          "endLine": 33,
+          "params": [
+            "configPath"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "typescriptCompile",
+          "line": 11,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "typescriptCompile",
+          "callee": "fileURLToPath",
+          "lineNumber": 12
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "import.meta.resolve",
+          "lineNumber": 12
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "join",
+          "lineNumber": 13
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "spawn",
+          "lineNumber": 15
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "ls.stdout.on",
+          "lineNumber": 17
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "console.log",
+          "lineNumber": 18
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "ls.stderr.on",
+          "lineNumber": 21
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "console.error",
+          "lineNumber": 22
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "ls.on",
+          "lineNumber": 25
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "resolve",
+          "lineNumber": 27
+        },
+        {
+          "caller": "typescriptCompile",
+          "callee": "reject",
+          "lineNumber": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/vite-plugins.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 62,
+      "nonEmptyLines": 59,
+      "functions": [
+        {
+          "name": "cesiumPathReplace",
+          "startLine": 10,
+          "endLine": 23,
+          "params": [
+            "cesiumBaseUrl"
+          ]
+        },
+        {
+          "name": "insertImportMap",
+          "startLine": 31,
+          "endLine": 62,
+          "params": [
+            "imports"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "cesiumPathReplace",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "insertImportMap",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "config",
+          "callee": "JSON.stringify",
+          "lineNumber": 16
+        },
+        {
+          "caller": "transformIndexHtml",
+          "callee": "html.replaceAll",
+          "lineNumber": 20
+        },
+        {
+          "caller": "handler",
+          "callee": "filenames.includes",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handler",
+          "callee": "basename",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handler",
+          "callee": "JSON.stringify",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/vite.config.dev.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 113,
+      "nonEmptyLines": 103,
+      "functions": [
+        {
+          "name": "getCesiumVersion",
+          "startLine": 11,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "checkForFiles",
+          "startLine": 17,
+          "endLine": 44,
+          "params": [
+            "extraFilesList"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getCesiumVersion",
+          "callee": "readFileSync",
+          "lineNumber": 12
+        },
+        {
+          "caller": "getCesiumVersion",
+          "callee": "join",
+          "lineNumber": 12
+        },
+        {
+          "caller": "getCesiumVersion",
+          "callee": "JSON.parse",
+          "lineNumber": 13
+        },
+        {
+          "caller": "toFwd",
+          "callee": "s.replace",
+          "lineNumber": 20
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "Array.isArray",
+          "lineNumber": 21
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "target.src.map",
+          "lineNumber": 22
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "toFwd",
+          "lineNumber": 23
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "globby",
+          "lineNumber": 24
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "target.src.includes",
+          "lineNumber": 29
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "console.error",
+          "lineNumber": 31
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "target.src.includes",
+          "lineNumber": 34
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "target.src.includes",
+          "lineNumber": 34
+        },
+        {
+          "caller": "checkForFiles",
+          "callee": "console.error",
+          "lineNumber": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/sandcastle/vite.config.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 38,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/ContextCache.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 29,
+      "classes": [
+        {
+          "name": "ContextCache",
+          "startLine": 5,
+          "endLine": 33,
+          "methods": [
+            "constructor",
+            "clear",
+            "rebuild",
+            "isBuilt"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Promise.resolve",
+          "lineNumber": 11
+        },
+        {
+          "caller": "rebuild",
+          "callee": "this.context.rebuild",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "scripts/build.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1201,
+      "nonEmptyLines": 1045,
+      "functions": [
+        {
+          "name": "getVersion",
+          "startLine": 29,
+          "endLine": 33,
+          "params": []
+        },
+        {
+          "name": "getCopyrightHeader",
+          "startLine": 35,
+          "endLine": 41,
+          "params": []
+        },
+        {
+          "name": "escapeCharacters",
+          "startLine": 44,
+          "endLine": 46,
+          "params": [
+            "token"
+          ]
+        },
+        {
+          "name": "constructRegex",
+          "startLine": 52,
+          "endLine": 64,
+          "params": [
+            "pragma",
+            "exclusive"
+          ]
+        },
+        {
+          "name": "printBuildWarning",
+          "startLine": 97,
+          "endLine": 111,
+          "params": []
+        },
+        {
+          "name": "handleBuildWarnings",
+          "startLine": 117,
+          "endLine": 123,
+          "params": [
+            "result"
+          ]
+        },
+        {
+          "name": "defaultESBuildOptions",
+          "startLine": 126,
+          "endLine": 134,
+          "params": []
+        },
+        {
+          "name": "bundleCesiumJs",
+          "startLine": 159,
+          "endLine": 245,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "filePathToModuleId",
+          "startLine": 248,
+          "endLine": 250,
+          "params": [
+            "moduleId"
+          ]
+        },
+        {
+          "name": "generateDeclaration",
+          "startLine": 276,
+          "endLine": 287,
+          "params": [
+            "workspace",
+            "file"
+          ]
+        },
+        {
+          "name": "createCesiumJs",
+          "startLine": 293,
+          "endLine": 311,
+          "params": []
+        },
+        {
+          "name": "bundleIndexJs",
+          "startLine": 324,
+          "endLine": 361,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "createCombinedSpecList",
+          "startLine": 373,
+          "endLine": 391,
+          "params": []
+        },
+        {
+          "name": "bundleWorkers",
+          "startLine": 403,
+          "endLine": 497,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "glslToJavaScript",
+          "startLine": 509,
+          "endLine": 651,
+          "params": [
+            "minify",
+            "minifyStateFilePath",
+            "workspace"
+          ]
+        },
+        {
+          "name": "copyFiles",
+          "startLine": 700,
+          "endLine": 707,
+          "params": [
+            "globs",
+            "destination",
+            "base"
+          ]
+        },
+        {
+          "name": "copyEngineAssets",
+          "startLine": 715,
+          "endLine": 735,
+          "params": [
+            "destination"
+          ]
+        },
+        {
+          "name": "copyWidgetsAssets",
+          "startLine": 743,
+          "endLine": 754,
+          "params": [
+            "destination"
+          ]
+        },
+        {
+          "name": "bundleCombinedSpecs",
+          "startLine": 763,
+          "endLine": 781,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "bundleTestWorkers",
+          "startLine": 790,
+          "endLine": 805,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "createIndexJs",
+          "startLine": 813,
+          "endLine": 845,
+          "params": [
+            "workspace"
+          ]
+        },
+        {
+          "name": "createSpecListForWorkspace",
+          "startLine": 854,
+          "endLine": 868,
+          "params": [
+            "files",
+            "workspace",
+            "outputPath"
+          ]
+        },
+        {
+          "name": "bundleCSS",
+          "startLine": 880,
+          "endLine": 894,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "bundleSpecs",
+          "startLine": 912,
+          "endLine": 940,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "buildEngine",
+          "startLine": 950,
+          "endLine": 1004,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "buildWidgets",
+          "startLine": 1014,
+          "endLine": 1054,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "buildCesium",
+          "startLine": 1069,
+          "endLine": 1201,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getVersion",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "defaultESBuildOptions",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "bundleCesiumJs",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "createCesiumJs",
+          "line": 293,
+          "isDefault": false
+        },
+        {
+          "name": "bundleIndexJs",
+          "line": 324,
+          "isDefault": false
+        },
+        {
+          "name": "createCombinedSpecList",
+          "line": 373,
+          "isDefault": false
+        },
+        {
+          "name": "bundleWorkers",
+          "line": 403,
+          "isDefault": false
+        },
+        {
+          "name": "glslToJavaScript",
+          "line": 509,
+          "isDefault": false
+        },
+        {
+          "name": "copyFiles",
+          "line": 700,
+          "isDefault": false
+        },
+        {
+          "name": "copyEngineAssets",
+          "line": 715,
+          "isDefault": false
+        },
+        {
+          "name": "copyWidgetsAssets",
+          "line": 743,
+          "isDefault": false
+        },
+        {
+          "name": "bundleCombinedSpecs",
+          "line": 763,
+          "isDefault": false
+        },
+        {
+          "name": "bundleTestWorkers",
+          "line": 790,
+          "isDefault": false
+        },
+        {
+          "name": "createIndexJs",
+          "line": 813,
+          "isDefault": false
+        },
+        {
+          "name": "buildEngine",
+          "line": 950,
+          "isDefault": false
+        },
+        {
+          "name": "buildWidgets",
+          "line": 1014,
+          "isDefault": false
+        },
+        {
+          "name": "buildCesium",
+          "line": 1069,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getVersion",
+          "callee": "readFile",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getVersion",
+          "callee": "JSON.parse",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getCopyrightHeader",
+          "callee": "readFile",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getCopyrightHeader",
+          "callee": "path.join",
+          "lineNumber": 37
+        },
+        {
+          "caller": "getCopyrightHeader",
+          "callee": "copyrightHeaderTemplate.replace",
+          "lineNumber": 40
+        },
+        {
+          "caller": "getCopyrightHeader",
+          "callee": "getVersion",
+          "lineNumber": 40
+        },
+        {
+          "caller": "escapeCharacters",
+          "callee": "token.replace",
+          "lineNumber": 45
+        },
+        {
+          "caller": "constructRegex",
+          "callee": "escapeCharacters",
+          "lineNumber": 54
+        },
+        {
+          "caller": "printBuildWarning",
+          "callee": "assert",
+          "lineNumber": 98
+        },
+        {
+          "caller": "printBuildWarning",
+          "callee": "console.log",
+          "lineNumber": 110
+        },
+        {
+          "caller": "handleBuildWarnings",
+          "callee": "warning.location?.file.includes",
+          "lineNumber": 119
+        },
+        {
+          "caller": "handleBuildWarnings",
+          "callee": "printBuildWarning",
+          "lineNumber": 120
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 160
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "getCopyrightHeader",
+          "lineNumber": 167
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "build",
+          "lineNumber": 178
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "path.join",
+          "lineNumber": 181
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "handleBuildWarnings",
+          "lineNumber": 187
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "bundleWorkers",
+          "lineNumber": 192
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "build",
+          "lineNumber": 202
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "path.join",
+          "lineNumber": 207
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "handleBuildWarnings",
+          "lineNumber": 217
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "rimraf.sync",
+          "lineNumber": 218
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "build",
+          "lineNumber": 223
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "path.join",
+          "lineNumber": 234
+        },
+        {
+          "caller": "bundleCesiumJs",
+          "callee": "handleBuildWarnings",
+          "lineNumber": 240
+        },
+        {
+          "caller": "filePathToModuleId",
+          "callee": "moduleId.substring(0, moduleId.lastIndexOf(\".\")).replace",
+          "lineNumber": 249
+        },
+        {
+          "caller": "filePathToModuleId",
+          "callee": "moduleId.substring",
+          "lineNumber": 249
+        },
+        {
+          "caller": "filePathToModuleId",
+          "callee": "moduleId.lastIndexOf",
+          "lineNumber": 249
+        },
+        {
+          "caller": "generateDeclaration",
+          "callee": "path.basename",
+          "lineNumber": 277
+        },
+        {
+          "caller": "generateDeclaration",
+          "callee": "path.extname",
+          "lineNumber": 277
+        },
+        {
+          "caller": "generateDeclaration",
+          "callee": "filePathToModuleId",
+          "lineNumber": 280
+        },
+        {
+          "caller": "generateDeclaration",
+          "callee": "moduleId.indexOf",
+          "lineNumber": 282
+        },
+        {
+          "caller": "generateDeclaration",
+          "callee": "assignmentName.replace",
+          "lineNumber": 285
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "getVersion",
+          "lineNumber": 294
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "Object.keys",
+          "lineNumber": 298
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "globby",
+          "lineNumber": 299
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "files.map",
+          "lineNumber": 302
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "generateDeclaration",
+          "lineNumber": 303
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "declarations.join",
+          "lineNumber": 305
+        },
+        {
+          "caller": "createCesiumJs",
+          "callee": "writeFile",
+          "lineNumber": 308
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 327
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "getCopyrightHeader",
+          "lineNumber": 334
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "build",
+          "lineNumber": 346
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "path.join",
+          "lineNumber": 349
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "options.entryPoint.includes",
+          "lineNumber": 351
+        },
+        {
+          "caller": "bundleIndexJs",
+          "callee": "handleBuildWarnings",
+          "lineNumber": 357
+        },
+        {
+          "caller": "createCombinedSpecList",
+          "callee": "getVersion",
+          "lineNumber": 374
+        },
+        {
+          "caller": "createCombinedSpecList",
+          "callee": "Object.keys",
+          "lineNumber": 377
+        },
+        {
+          "caller": "createCombinedSpecList",
+          "callee": "globby",
+          "lineNumber": 378
+        },
+        {
+          "caller": "createCombinedSpecList",
+          "callee": "writeFile",
+          "lineNumber": 386
+        },
+        {
+          "caller": "createCombinedSpecList",
+          "callee": "path.join",
+          "lineNumber": 386
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "globby",
+          "lineNumber": 405
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 410
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "esbuild.build",
+          "lineNumber": 416
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "globby",
+          "lineNumber": 419
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 420
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "globby",
+          "lineNumber": 426
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "files.map",
+          "lineNumber": 427
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "path.basename",
+          "lineNumber": 428
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "path.extname",
+          "lineNumber": 428
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "assignmentName.replace",
+          "lineNumber": 429
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "declarations.join",
+          "lineNumber": 432
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "getCopyrightHeader",
+          "lineNumber": 453
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "path.join",
+          "lineNumber": 456
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "build",
+          "lineNumber": 465
+        },
+        {
+          "caller": "writeInjectionCode",
+          "callee": "assert",
+          "lineNumber": 473
+        },
+        {
+          "caller": "writeInjectionCode",
+          "callee": "Buffer.from(bundle).toString",
+          "lineNumber": 475
+        },
+        {
+          "caller": "writeInjectionCode",
+          "callee": "Buffer.from",
+          "lineNumber": 475
+        },
+        {
+          "caller": "writeInjectionCode",
+          "callee": "writeFile",
+          "lineNumber": 477
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "build",
+          "lineNumber": 482
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "rebuild",
+          "lineNumber": 486
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "writeInjectionCode",
+          "lineNumber": 488
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "build",
+          "lineNumber": 495
+        },
+        {
+          "caller": "bundleWorkers",
+          "callee": "writeInjectionCode",
+          "lineNumber": 496
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "writeFile",
+          "lineNumber": 510
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "minify.toString",
+          "lineNumber": 510
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "existsSync",
+          "lineNumber": 511
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync(minifyStateFilePath).mtime.getTime",
+          "lineNumber": 512
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync",
+          "lineNumber": 512
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "globby",
+          "lineNumber": 520
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "files.forEach",
+          "lineNumber": 524
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.normalize",
+          "lineNumber": 525
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "globby",
+          "lineNumber": 535
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "Promise.all",
+          "lineNumber": 536
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "glslFiles.map",
+          "lineNumber": 537
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.normalize",
+          "lineNumber": 538
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.basename",
+          "lineNumber": 539
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 540
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.dirname",
+          "lineNumber": 540
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 543
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "glslFile.indexOf",
+          "lineNumber": 550
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.normalize",
+          "lineNumber": 550
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 550
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "builtinFunctions.push",
+          "lineNumber": 552
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "glslFile.indexOf",
+          "lineNumber": 554
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.normalize",
+          "lineNumber": 554
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 554
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "builtinConstants.push",
+          "lineNumber": 556
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "glslFile.indexOf",
+          "lineNumber": 558
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.normalize",
+          "lineNumber": 558
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 558
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "builtinStructs.push",
+          "lineNumber": 560
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "existsSync",
+          "lineNumber": 565
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync(jsFile).mtime.getTime",
+          "lineNumber": 567
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync",
+          "lineNumber": 567
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync(glslFile).mtime.getTime",
+          "lineNumber": 569
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "statSync",
+          "lineNumber": 569
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "readFile",
+          "lineNumber": 579
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.replace",
+          "lineNumber": 580
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.match",
+          "lineNumber": 583
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "extractedCopyrightComments.join",
+          "lineNumber": 587
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "glslStripComments",
+          "lineNumber": 591
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents\n          .replace(/\\s+$/gm, \"\")\n          .replace(/^\\s+/gm, \"\")\n          .replace",
+          "lineNumber": 592
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents\n          .replace(/\\s+$/gm, \"\")\n          .replace",
+          "lineNumber": 592
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents\n          .replace",
+          "lineNumber": 592
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.split('\"').join('\\\\\"').replace",
+          "lineNumber": 599
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.split('\"').join",
+          "lineNumber": 599
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.split",
+          "lineNumber": 599
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "writeFile",
+          "lineNumber": 604
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "Object.keys(leftOverJsFiles).forEach",
+          "lineNumber": 609
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "Object.keys",
+          "lineNumber": 609
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "rimraf.sync",
+          "lineNumber": 610
+        },
+        {
+          "caller": "generateBuiltinContents",
+          "callee": "contents.imports.push",
+          "lineNumber": 621
+        },
+        {
+          "caller": "generateBuiltinContents",
+          "callee": "contents.builtinLookup.push",
+          "lineNumber": 624
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "generateBuiltinContents",
+          "lineNumber": 633
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "generateBuiltinContents",
+          "lineNumber": 634
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "generateBuiltinContents",
+          "lineNumber": 635
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.imports.join",
+          "lineNumber": 637
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "contents.builtinLookup.join",
+          "lineNumber": 639
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "writeFile",
+          "lineNumber": 641
+        },
+        {
+          "caller": "glslToJavaScript",
+          "callee": "path.join",
+          "lineNumber": 642
+        },
+        {
+          "caller": "copyFiles",
+          "callee": "gulp\n    .src(globs, { base: base ?? \"\", encoding: false })\n    .pipe",
+          "lineNumber": 701
+        },
+        {
+          "caller": "copyFiles",
+          "callee": "gulp\n    .src",
+          "lineNumber": 701
+        },
+        {
+          "caller": "copyFiles",
+          "callee": "gulp.dest",
+          "lineNumber": 703
+        },
+        {
+          "caller": "copyFiles",
+          "callee": "finished",
+          "lineNumber": 705
+        },
+        {
+          "caller": "copyEngineAssets",
+          "callee": "copyFiles",
+          "lineNumber": 725
+        },
+        {
+          "caller": "copyEngineAssets",
+          "callee": "copyFiles",
+          "lineNumber": 730
+        },
+        {
+          "caller": "copyEngineAssets",
+          "callee": "path.join",
+          "lineNumber": 732
+        },
+        {
+          "caller": "copyWidgetsAssets",
+          "callee": "copyFiles",
+          "lineNumber": 753
+        },
+        {
+          "caller": "bundleCombinedSpecs",
+          "callee": "build",
+          "lineNumber": 768
+        },
+        {
+          "caller": "bundleCombinedSpecs",
+          "callee": "path.join",
+          "lineNumber": 777
+        },
+        {
+          "caller": "bundleTestWorkers",
+          "callee": "globby",
+          "lineNumber": 795
+        },
+        {
+          "caller": "bundleTestWorkers",
+          "callee": "build",
+          "lineNumber": 796
+        },
+        {
+          "caller": "bundleTestWorkers",
+          "callee": "path.join",
+          "lineNumber": 801
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "getVersion",
+          "lineNumber": 814
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "globby",
+          "lineNumber": 823
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "files.forEach",
+          "lineNumber": 824
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "path.relative",
+          "lineNumber": 825
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "filePathToModuleId",
+          "lineNumber": 828
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "path.basename",
+          "lineNumber": 832
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "path.extname",
+          "lineNumber": 832
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "moduleId.indexOf",
+          "lineNumber": 833
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "assignmentName.replace",
+          "lineNumber": 836
+        },
+        {
+          "caller": "createIndexJs",
+          "callee": "writeFile",
+          "lineNumber": 840
+        },
+        {
+          "caller": "createSpecListForWorkspace",
+          "callee": "files.forEach",
+          "lineNumber": 856
+        },
+        {
+          "caller": "createSpecListForWorkspace",
+          "callee": "filePathToModuleId(file).replace",
+          "lineNumber": 857
+        },
+        {
+          "caller": "createSpecListForWorkspace",
+          "callee": "filePathToModuleId",
+          "lineNumber": 857
+        },
+        {
+          "caller": "createSpecListForWorkspace",
+          "callee": "writeFile",
+          "lineNumber": 863
+        },
+        {
+          "caller": "bundleCSS",
+          "callee": "defaultESBuildOptions",
+          "lineNumber": 882
+        },
+        {
+          "caller": "bundleCSS",
+          "callee": "globby",
+          "lineNumber": 883
+        },
+        {
+          "caller": "bundleCSS",
+          "callee": "esbuild.build",
+          "lineNumber": 893
+        },
+        {
+          "caller": "bundleSpecs",
+          "callee": "build",
+          "lineNumber": 930
+        },
+        {
+          "caller": "bundleSpecs",
+          "callee": "build",
+          "lineNumber": 935
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "mkdirp.sync",
+          "lineNumber": 958
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "glslToJavaScript",
+          "lineNumber": 961
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "createIndexJs",
+          "lineNumber": 968
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "bundleIndexJs",
+          "lineNumber": 970
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "path.join",
+          "lineNumber": 975
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "bundleWorkers",
+          "lineNumber": 984
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "globby",
+          "lineNumber": 991
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "path.join",
+          "lineNumber": 992
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "createSpecListForWorkspace",
+          "lineNumber": 993
+        },
+        {
+          "caller": "buildEngine",
+          "callee": "bundleSpecs",
+          "lineNumber": 995
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "mkdirp.sync",
+          "lineNumber": 1022
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "createIndexJs",
+          "lineNumber": 1025
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "bundleIndexJs",
+          "lineNumber": 1027
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "path.join",
+          "lineNumber": 1032
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "globby",
+          "lineNumber": 1041
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "path.join",
+          "lineNumber": 1042
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "createSpecListForWorkspace",
+          "lineNumber": 1043
+        },
+        {
+          "caller": "buildWidgets",
+          "callee": "bundleSpecs",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "mkdirp.sync",
+          "lineNumber": 1079
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "path.join",
+          "lineNumber": 1082
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "rimraf.sync",
+          "lineNumber": 1083
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "writeFile",
+          "lineNumber": 1085
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "JSON.stringify",
+          "lineNumber": 1087
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "createCesiumJs",
+          "lineNumber": 1094
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "createCombinedSpecList",
+          "lineNumber": 1097
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleCSS",
+          "lineNumber": 1100
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleCSS",
+          "lineNumber": 1111
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "path.join",
+          "lineNumber": 1113
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleCSS",
+          "lineNumber": 1116
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "path.join",
+          "lineNumber": 1118
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleWorkers",
+          "lineNumber": 1122
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleCesiumJs",
+          "lineNumber": 1133
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleCombinedSpecs",
+          "lineNumber": 1145
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "bundleTestWorkers",
+          "lineNumber": 1150
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyEngineAssets",
+          "lineNumber": 1157
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyWidgetsAssets",
+          "lineNumber": 1158
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "path.join",
+          "lineNumber": 1158
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyEngineAssets",
+          "lineNumber": 1162
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyFiles",
+          "lineNumber": 1163
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyWidgetsAssets",
+          "lineNumber": 1169
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "copyFiles",
+          "lineNumber": 1170
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "readFile",
+          "lineNumber": 1180
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "widgetsCssBuffer\n    .toString()\n    .replace",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "widgetsCssBuffer\n    .toString",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "writeFile",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "readFile",
+          "lineNumber": 1186
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "lighterCssBuffer\n    .toString()\n    .replace",
+          "lineNumber": 1187
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "lighterCssBuffer\n    .toString",
+          "lineNumber": 1187
+        },
+        {
+          "caller": "buildCesium",
+          "callee": "writeFile",
+          "lineNumber": 1190
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 17,
+        "functionCount": 27,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/buildSandcastle.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 193,
+      "nonEmptyLines": 183,
+      "functions": [
+        {
+          "name": "getSandcastleConfig",
+          "startLine": 19,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "buildSandcastleApp",
+          "startLine": 46,
+          "endLine": 154,
+          "params": []
+        },
+        {
+          "name": "buildSandcastleGallery",
+          "startLine": 163,
+          "endLine": 193,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getSandcastleConfig",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "buildSandcastleApp",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "buildSandcastleGallery",
+          "line": 163,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getSandcastleConfig",
+          "callee": "join",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getSandcastleConfig",
+          "callee": "import",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getSandcastleConfig",
+          "callee": "pathToFileURL",
+          "lineNumber": 22
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "dirname",
+          "lineNumber": 52
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "fileURLToPath",
+          "lineNumber": 52
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "getVersion",
+          "lineNumber": 53
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 56
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "createSandcastleConfig",
+          "lineNumber": 58
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 59
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 85
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 87
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 92
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 97
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 102
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 107
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 112
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "createSandcastleConfig",
+          "lineNumber": 119
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "join",
+          "lineNumber": 120
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "JSON.stringify",
+          "lineNumber": 126
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "buildStatic",
+          "lineNumber": 146
+        },
+        {
+          "caller": "buildSandcastleApp",
+          "callee": "buildSandcastleGallery",
+          "lineNumber": 148
+        },
+        {
+          "caller": "buildSandcastleGallery",
+          "callee": "getSandcastleConfig",
+          "lineNumber": 167
+        },
+        {
+          "caller": "buildSandcastleGallery",
+          "callee": "join",
+          "lineNumber": 171
+        },
+        {
+          "caller": "buildSandcastleGallery",
+          "callee": "dirname",
+          "lineNumber": 171
+        },
+        {
+          "caller": "buildSandcastleGallery",
+          "callee": "buildGalleryList",
+          "lineNumber": 182
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/createRoute.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "formatTimeSinceInSeconds",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "start"
+          ]
+        },
+        {
+          "name": "serveResult",
+          "startLine": 21,
+          "endLine": 45,
+          "params": [
+            "result",
+            "fileName",
+            "res",
+            "next"
+          ]
+        },
+        {
+          "name": "createRoute",
+          "startLine": 55,
+          "endLine": 94,
+          "params": [
+            "app",
+            "name",
+            "route",
+            "context",
+            "dependantCaches"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "formatTimeSinceInSeconds",
+          "callee": "Math.ceil",
+          "lineNumber": 11
+        },
+        {
+          "caller": "formatTimeSinceInSeconds",
+          "callee": "performance.now",
+          "lineNumber": 11
+        },
+        {
+          "caller": "serveResult",
+          "callee": "path.basename",
+          "lineNumber": 25
+        },
+        {
+          "caller": "serveResult",
+          "callee": "next",
+          "lineNumber": 34
+        },
+        {
+          "caller": "serveResult",
+          "callee": "res.append",
+          "lineNumber": 42
+        },
+        {
+          "caller": "serveResult",
+          "callee": "res.append",
+          "lineNumber": 43
+        },
+        {
+          "caller": "serveResult",
+          "callee": "res.send",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createRoute",
+          "callee": "app.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "createRoute",
+          "callee": "path.basename",
+          "lineNumber": 58
+        },
+        {
+          "caller": "createRoute",
+          "callee": "cache.isBuilt",
+          "lineNumber": 68
+        },
+        {
+          "caller": "createRoute",
+          "callee": "performance.now",
+          "lineNumber": 70
+        },
+        {
+          "caller": "createRoute",
+          "callee": "Promise.all",
+          "lineNumber": 72
+        },
+        {
+          "caller": "createRoute",
+          "callee": "dependantCaches.map",
+          "lineNumber": 73
+        },
+        {
+          "caller": "createRoute",
+          "callee": "dependantCache.isBuilt",
+          "lineNumber": 74
+        },
+        {
+          "caller": "createRoute",
+          "callee": "dependantCache.rebuild",
+          "lineNumber": 75
+        },
+        {
+          "caller": "createRoute",
+          "callee": "cache.rebuild",
+          "lineNumber": 80
+        },
+        {
+          "caller": "createRoute",
+          "callee": "console.log",
+          "lineNumber": 81
+        },
+        {
+          "caller": "createRoute",
+          "callee": "formatTimeSinceInSeconds",
+          "lineNumber": 82
+        },
+        {
+          "caller": "createRoute",
+          "callee": "next",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createRoute",
+          "callee": "serveResult",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "server.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 462,
+      "nonEmptyLines": 412,
+      "functions": [
+        {
+          "name": "formatTimeSinceInSeconds",
+          "startLine": 47,
+          "endLine": 49,
+          "params": [
+            "start"
+          ]
+        },
+        {
+          "name": "generateDevelopmentBuild",
+          "startLine": 56,
+          "endLine": 93,
+          "params": []
+        },
+        {
+          "name": "throttle",
+          "startLine": 98,
+          "endLine": 109,
+          "params": [
+            "callback"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "formatTimeSinceInSeconds",
+          "callee": "Math.ceil",
+          "lineNumber": 48
+        },
+        {
+          "caller": "formatTimeSinceInSeconds",
+          "callee": "performance.now",
+          "lineNumber": 48
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "performance.now",
+          "lineNumber": 57
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "console.log",
+          "lineNumber": 60
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "buildEngine",
+          "lineNumber": 61
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "console.log",
+          "lineNumber": 68
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "buildWidgets",
+          "lineNumber": 69
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "console.log",
+          "lineNumber": 76
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "buildCesium",
+          "lineNumber": 77
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "console.log",
+          "lineNumber": 88
+        },
+        {
+          "caller": "generateDevelopmentBuild",
+          "callee": "formatTimeSinceInSeconds",
+          "lineNumber": 89
+        },
+        {
+          "caller": "throttle",
+          "callee": "clearTimeout",
+          "lineNumber": 103
+        },
+        {
+          "caller": "throttle",
+          "callee": "setTimeout",
+          "lineNumber": 105
+        },
+        {
+          "caller": "throttle",
+          "callee": "resolve",
+          "lineNumber": 106
+        },
+        {
+          "caller": "throttle",
+          "callee": "callback",
+          "lineNumber": 106
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "reqUrl.pathname.substring",
+          "lineNumber": 182
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "fs.createReadStream",
+          "lineNumber": 184
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "readStream.on",
+          "lineNumber": 186
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "next",
+          "lineNumber": 187
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "readStream.on",
+          "lineNumber": 190
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "chunk.equals",
+          "lineNumber": 191
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "res.header",
+          "lineNumber": 192
+        },
+        {
+          "caller": "checkGzipAndNext",
+          "callee": "next",
+          "lineNumber": 194
+        },
+        {
+          "caller": "clearTopLevelCaches",
+          "callee": "esmCache.clear",
+          "lineNumber": 279
+        },
+        {
+          "caller": "clearTopLevelCaches",
+          "callee": "iifeCache.clear",
+          "lineNumber": 280
+        },
+        {
+          "caller": "clearTopLevelCaches",
+          "callee": "workersCache.clear",
+          "lineNumber": 281
+        },
+        {
+          "caller": "clearTopLevelCaches",
+          "callee": "iifeWorkersCache.clear",
+          "lineNumber": 282
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

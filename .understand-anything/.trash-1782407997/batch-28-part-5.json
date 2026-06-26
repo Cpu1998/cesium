@@ -1,0 +1,1356 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "type": "file",
+      "name": "ImageryPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "summary": "影像叠加管线阶段，在 Model3DTileContent 上将 ImageryLayer 的纹理按 coverage 投影到 primitive 上，生成采样与混合 shader 代码及相关 uniform。",
+      "tags": [
+        "pipeline-stage",
+        "imagery",
+        "shader-builder",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "type": "file",
+      "name": "InstancingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "summary": "实例化管线阶段，把 instance 的变换（矩阵或 vec3 平移）、feature id 等属性组织成实例顶点缓冲，并处理 2D 投影与参考点计算。",
+      "tags": [
+        "pipeline-stage",
+        "instancing",
+        "vertex-buffer",
+        "2d-projection"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/LightingModel.js",
+      "type": "file",
+      "name": "LightingModel.js",
+      "filePath": "packages/engine/Source/Scene/Model/LightingModel.js",
+      "summary": "枚举类型，定义 Model 的光照模型：UNLIT（无光照）或 PBR（基于物理的渲染，含金属粗糙度/镜面光泽度与基于图像的光照）。",
+      "tags": [
+        "enum",
+        "lighting",
+        "pbr",
+        "3d-tiles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/LightingPipelineStage.js",
+      "type": "file",
+      "name": "LightingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/LightingPipelineStage.js",
+      "summary": "光照管线阶段，根据 Model 的 lightingOptions（光照模型、自定义光源色、IBL 等）向 ShaderBuilder 注入光照阶段 fragment 代码与相关 define。",
+      "tags": [
+        "pipeline-stage",
+        "lighting",
+        "shader-builder",
+        "rendering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/MappedPositions.js",
+      "type": "file",
+      "name": "MappedPositions.js",
+      "filePath": "packages/engine/Source/Scene/Model/MappedPositions.js",
+      "summary": "在指定椭球上由笛卡尔位置转换得到的地理坐标集合及其包围矩形的容器，缓存于 ModelPrimitiveImagery 中以避免重复投影计算。",
+      "tags": [
+        "imagery",
+        "data-model",
+        "cartographic",
+        "ellipsoid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "type": "file",
+      "name": "MaterialPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "summary": "材质管线阶段，处理 glTF 材质（PBR 金属粗糙度、镜面光泽度、specular、anisotropy、clearcoat、line style 等）的 uniform、纹理变换与 shader define。",
+      "tags": [
+        "pipeline-stage",
+        "material",
+        "pbr",
+        "shader-builder"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/ImageryPipelineStage.js:ImageryPipelineStage",
+      "type": "class",
+      "name": "ImageryPipelineStage",
+      "filePath": "packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "lineRange": [
+        44,
+        1041
+      ],
+      "summary": "影像叠加管线阶段类，把 ImageryLayer 纹理投影到 primitive 并生成采样/混合 shader。",
+      "tags": [
+        "pipeline-stage",
+        "imagery",
+        "shader-builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformTo2D",
+      "type": "function",
+      "name": "projectTransformTo2D",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        220,
+        246
+      ],
+      "summary": "把单个变换矩阵投影到 2D。",
+      "tags": [
+        "instancing",
+        "2d-projection",
+        "matrix"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectPositionTo2D",
+      "type": "function",
+      "name": "projectPositionTo2D",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        248,
+        284
+      ],
+      "summary": "把单个位置投影到 2D。",
+      "tags": [
+        "instancing",
+        "2d-projection",
+        "position"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getModelMatrixAndNodeTransform",
+      "type": "function",
+      "name": "getModelMatrixAndNodeTransform",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        286,
+        322
+      ],
+      "summary": "计算实例节点的模型矩阵与节点变换。",
+      "tags": [
+        "instancing",
+        "transform",
+        "model-matrix"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformsTo2D",
+      "type": "function",
+      "name": "projectTransformsTo2D",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        329,
+        378
+      ],
+      "summary": "把实例变换矩阵投影到 2D（Columbus 视图）下的等价矩阵。",
+      "tags": [
+        "instancing",
+        "2d-projection",
+        "transform"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTranslationsTo2D",
+      "type": "function",
+      "name": "projectTranslationsTo2D",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        380,
+        417
+      ],
+      "summary": "把实例平移投影到 2D 下的等价平移。",
+      "tags": [
+        "instancing",
+        "2d-projection",
+        "translation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:computeReferencePoint2D",
+      "type": "function",
+      "name": "computeReferencePoint2D",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        422,
+        457
+      ],
+      "summary": "计算实例集合在 2D 投影下的参考点。",
+      "tags": [
+        "instancing",
+        "2d-projection",
+        "reference-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:transformsToTypedArray",
+      "type": "function",
+      "name": "transformsToTypedArray",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        459,
+        483
+      ],
+      "summary": "把变换矩阵列表转为 Float32Array。",
+      "tags": [
+        "instancing",
+        "typed-array",
+        "matrix"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:translationsToTypedArray",
+      "type": "function",
+      "name": "translationsToTypedArray",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        485,
+        500
+      ],
+      "summary": "把平移列表转为 Float32Array。",
+      "tags": [
+        "instancing",
+        "typed-array",
+        "translation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTransformsAsMatrices",
+      "type": "function",
+      "name": "getInstanceTransformsAsMatrices",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        506,
+        628
+      ],
+      "summary": "把所有实例变换（可能为矩阵或 vec3+旋转）收集为矩阵 TypedArray。",
+      "tags": [
+        "instancing",
+        "transform",
+        "matrix"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTranslationsAsCartesian3s",
+      "type": "function",
+      "name": "getInstanceTranslationsAsCartesian3s",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        630,
+        679
+      ],
+      "summary": "把实例平移属性收集为 Cartesian3 TypedArray。",
+      "tags": [
+        "instancing",
+        "transform",
+        "translation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:createVertexBuffer",
+      "type": "function",
+      "name": "createVertexBuffer",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        681,
+        693
+      ],
+      "summary": "为实例属性创建 GPU 顶点缓冲。",
+      "tags": [
+        "instancing",
+        "buffer",
+        "gpu"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformAttributes",
+      "type": "function",
+      "name": "processTransformAttributes",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        695,
+        727
+      ],
+      "summary": "分发实例变换属性的处理（矩阵形式或 vec3 形式）。",
+      "tags": [
+        "instancing",
+        "pipeline-stage",
+        "dispatch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformMatrixAttributes",
+      "type": "function",
+      "name": "processTransformMatrixAttributes",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        729,
+        815
+      ],
+      "summary": "处理矩阵形式的实例变换属性。",
+      "tags": [
+        "instancing",
+        "matrix",
+        "attribute"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformVec3Attributes",
+      "type": "function",
+      "name": "processTransformVec3Attributes",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        817,
+        937
+      ],
+      "summary": "处理 vec3 形式的实例变换属性（平移/旋转/缩放）。",
+      "tags": [
+        "instancing",
+        "vec3",
+        "attribute"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processMatrixAttributes",
+      "type": "function",
+      "name": "processMatrixAttributes",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        939,
+        990
+      ],
+      "summary": "把单个矩阵实例属性添加到顶点缓冲布局。",
+      "tags": [
+        "instancing",
+        "matrix",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processVec3Attribute",
+      "type": "function",
+      "name": "processVec3Attribute",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        992,
+        1013
+      ],
+      "summary": "把单个 vec3 实例属性添加到顶点缓冲布局。",
+      "tags": [
+        "instancing",
+        "vec3",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processFeatureIdAttributes",
+      "type": "function",
+      "name": "processFeatureIdAttributes",
+      "filePath": "packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "lineRange": [
+        1015,
+        1054
+      ],
+      "summary": "处理实例化的 feature id 属性。",
+      "tags": [
+        "instancing",
+        "feature-id",
+        "attribute"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/MappedPositions.js:MappedPositions",
+      "type": "class",
+      "name": "MappedPositions",
+      "filePath": "packages/engine/Source/Scene/Model/MappedPositions.js",
+      "lineRange": [
+        15,
+        82
+      ],
+      "summary": "在特定椭球上由笛卡尔位置转换得到的地理坐标集合及其包围矩形容器。",
+      "tags": [
+        "imagery",
+        "cartographic",
+        "value-object"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processConstantLod",
+      "type": "function",
+      "name": "processConstantLod",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        246,
+        339
+      ],
+      "summary": "处理常驻 LOD（constant LOD）纹理相关的 uniform 与 define。",
+      "tags": [
+        "material",
+        "lod",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processLineStyleUniforms",
+      "type": "function",
+      "name": "processLineStyleUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        351,
+        475
+      ],
+      "summary": "处理矢量瓦片 line style（线宽、端点/连接）的 uniform。",
+      "tags": [
+        "material",
+        "line-style",
+        "vector-tile"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureTransform",
+      "type": "function",
+      "name": "processTextureTransform",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        488,
+        513
+      ],
+      "summary": "处理 KHR_texture_transform 扩展的纹理平移/旋转/缩放。",
+      "tags": [
+        "material",
+        "texture-transform",
+        "extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureScale",
+      "type": "function",
+      "name": "processTextureScale",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        526,
+        551
+      ],
+      "summary": "处理纹理缩放相关的 uniform。",
+      "tags": [
+        "material",
+        "texture",
+        "scale"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTexture",
+      "type": "function",
+      "name": "processTexture",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        566,
+        635
+      ],
+      "summary": "为单个材质纹理注入 uniform、define 与纹理变换。",
+      "tags": [
+        "material",
+        "texture",
+        "uniform"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMaterialUniforms",
+      "type": "function",
+      "name": "processMaterialUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        637,
+        730
+      ],
+      "summary": "处理通用 glTF 材质 uniform（baseColor、emissive 等）与纹理。",
+      "tags": [
+        "material",
+        "uniform",
+        "pbr"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularGlossinessUniforms",
+      "type": "function",
+      "name": "processSpecularGlossinessUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        743,
+        847
+      ],
+      "summary": "处理 PBR 镜面光泽度（KHR_materials_pbrSpecularGlossiness）材质的 uniform 与纹理。",
+      "tags": [
+        "material",
+        "pbr",
+        "specular-glossiness"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularUniforms",
+      "type": "function",
+      "name": "processSpecularUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        859,
+        941
+      ],
+      "summary": "处理 KHR_materials_specular 扩展的 uniform 与纹理。",
+      "tags": [
+        "material",
+        "specular",
+        "extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processAnisotropyUniforms",
+      "type": "function",
+      "name": "processAnisotropyUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        955,
+        995
+      ],
+      "summary": "处理 KHR_materials_anisotropy 扩展的 uniform 与纹理。",
+      "tags": [
+        "material",
+        "anisotropy",
+        "extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processClearcoatUniforms",
+      "type": "function",
+      "name": "processClearcoatUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        1007,
+        1098
+      ],
+      "summary": "处理 KHR_materials_clearcoat 扩展的 uniform 与纹理。",
+      "tags": [
+        "material",
+        "clearcoat",
+        "extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMetallicRoughnessUniforms",
+      "type": "function",
+      "name": "processMetallicRoughnessUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "lineRange": [
+        1111,
+        1212
+      ],
+      "summary": "处理 PBR 金属粗糙度材质的 uniform 与纹理（baseColor、metallic、roughness）。",
+      "tags": [
+        "material",
+        "pbr",
+        "metallic-roughness"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ImageryFlags.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ImageryInput.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelPrimitiveImagery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/InstanceAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/LightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/LightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/LightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/LightingModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MappedPositions.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AlphaMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/LightingModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryPipelineStage.js:ImageryPipelineStage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageryPipelineStage.js",
+      "target": "class:packages/engine/Source/Scene/Model/ImageryPipelineStage.js:ImageryPipelineStage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformTo2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformTo2D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectPositionTo2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectPositionTo2D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getModelMatrixAndNodeTransform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getModelMatrixAndNodeTransform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformsTo2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTransformsTo2D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTranslationsTo2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:projectTranslationsTo2D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:computeReferencePoint2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:computeReferencePoint2D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:transformsToTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:transformsToTypedArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:translationsToTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:translationsToTypedArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTransformsAsMatrices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTransformsAsMatrices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTranslationsAsCartesian3s",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:getInstanceTranslationsAsCartesian3s",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:createVertexBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:createVertexBuffer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformAttributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformMatrixAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformMatrixAttributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformVec3Attributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processTransformVec3Attributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processMatrixAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processMatrixAttributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processVec3Attribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processVec3Attribute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processFeatureIdAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/InstancingPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/InstancingPipelineStage.js:processFeatureIdAttributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MappedPositions.js",
+      "target": "class:packages/engine/Source/Scene/Model/MappedPositions.js:MappedPositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MappedPositions.js",
+      "target": "class:packages/engine/Source/Scene/Model/MappedPositions.js:MappedPositions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processConstantLod",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processConstantLod",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processLineStyleUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processLineStyleUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureTransform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureTransform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureScale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTextureScale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processTexture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMaterialUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMaterialUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularGlossinessUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularGlossinessUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processSpecularUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processAnisotropyUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processAnisotropyUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processClearcoatUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processClearcoatUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMetallicRoughnessUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MaterialPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MaterialPipelineStage.js:processMetallicRoughnessUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

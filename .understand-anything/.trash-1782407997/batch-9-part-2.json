@@ -1,0 +1,1236 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "file",
+      "name": "TextureMagnificationFilter",
+      "filePath": "packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "summary": "纹理放大过滤模式枚举（NEAREST/LINEAR），映射到 WebGL 常量。",
+      "tags": [
+        "enumeration",
+        "texture",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "file",
+      "name": "TextureMinificationFilter",
+      "filePath": "packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "summary": "纹理缩小过滤模式枚举，包含 NEAREST/LINEAR 及多种 mipmap 组合，映射到 WebGL 常量。",
+      "tags": [
+        "enumeration",
+        "texture",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "file",
+      "name": "TextureWrap",
+      "filePath": "packages/engine/Source/Renderer/TextureWrap.js",
+      "summary": "纹理包裹模式枚举（CLAMP_TO_EDGE/REPEAT/MIRRORED_REPEAT），含 validate 方法并冻结对象。",
+      "tags": [
+        "enumeration",
+        "texture",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/freezeRenderState.js",
+      "type": "file",
+      "name": "freezeRenderState",
+      "filePath": "packages/engine/Source/Renderer/freezeRenderState.js",
+      "summary": "深度冻结 RenderState 对象（跳过 _applyFunctions 属性）的工具函数，返回冻结后的不可变 renderState。",
+      "tags": [
+        "utility",
+        "immutable",
+        "render-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/demodernizeShader.js",
+      "type": "file",
+      "name": "demodernizeShader",
+      "filePath": "packages/engine/Source/Renderer/demodernizeShader.js",
+      "summary": "将现代 GLSL ES 3.00 着色器源码降级为 GLSL ES 1.00 兼容形式的转换器，处理版本声明、attribute/varying/in/out 关键字映射。",
+      "tags": [
+        "shader",
+        "glsl",
+        "compatibility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "GLSL ES 3.00 -> 1.00 降级是 CesiumJS 在不同 WebGL 上下文间复用着色器的关键机制。"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/demodernizeShader.js:demodernizeShader",
+      "type": "function",
+      "name": "demodernizeShader",
+      "filePath": "packages/engine/Source/Renderer/demodernizeShader.js",
+      "lineRange": [
+        15,
+        82
+      ],
+      "summary": "将 GLSL ES 3.00 着色器文本转换为 GLSL ES 1.00 等价形式，重写版本声明、类型限定符与内置函数。",
+      "tags": [
+        "shader",
+        "glsl",
+        "compatibility",
+        "transform"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/freezeRenderState.js:freezeRenderState",
+      "type": "function",
+      "name": "freezeRenderState",
+      "filePath": "packages/engine/Source/Renderer/freezeRenderState.js",
+      "lineRange": [
+        11,
+        29
+      ],
+      "summary": "递归深度冻结 renderState 对象字面量，跳过名为 _applyFunctions 的函数属性以保留其可调用性。",
+      "tags": [
+        "utility",
+        "immutable",
+        "render-state",
+        "recursion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "file",
+      "name": "Texture.js",
+      "filePath": "packages/engine/Source/Renderer/Texture.js",
+      "summary": "2D WebGL Texture 的核心封装：从图像、缓冲区、framebuffer 等多种来源创建纹理，处理像素格式/数据类型、mipmap 与采样器绑定。",
+      "tags": [
+        "texture",
+        "webgl",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/Texture.js:Texture",
+      "type": "class",
+      "name": "Texture",
+      "filePath": "packages/engine/Source/Renderer/Texture.js",
+      "lineRange": [
+        47,
+        273
+      ],
+      "summary": "Texture 构造器：根据 source 类型分派到对应 load* 路径，建立 GL 纹理对象与初始采样器。",
+      "tags": [
+        "texture",
+        "constructor",
+        "webgl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Texture.js:loadBufferSource",
+      "type": "function",
+      "name": "loadBufferSource",
+      "filePath": "packages/engine/Source/Renderer/Texture.js",
+      "lineRange": [
+        332,
+        391
+      ],
+      "summary": "从 typed array 缓冲区上传像素数据到纹理（含 mipmap 与像素格式处理）。",
+      "tags": [
+        "texture",
+        "webgl",
+        "upload"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Texture.js:loadCompressedBufferSource",
+      "type": "function",
+      "name": "loadCompressedBufferSource",
+      "filePath": "packages/engine/Source/Renderer/Texture.js",
+      "lineRange": [
+        283,
+        322
+      ],
+      "summary": "上传压缩纹理格式（S3TC/ETC/ASTC 等）缓冲区数据。",
+      "tags": [
+        "texture",
+        "webgl",
+        "upload"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Texture.js:setupSampler",
+      "type": "function",
+      "name": "setupSampler",
+      "filePath": "packages/engine/Source/Renderer/Texture.js",
+      "lineRange": [
+        777,
+        829
+      ],
+      "summary": "根据 Sampler 设置纹理的过滤/包裹 GL 参数并决定是否生成 mipmap。",
+      "tags": [
+        "texture",
+        "webgl",
+        "upload"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "type": "file",
+      "name": "Texture3D.js",
+      "filePath": "packages/engine/Source/Renderer/Texture3D.js",
+      "summary": "3D WebGL Texture 封装（WebGL2），用于体数据渲染，从 3D 缓冲区上传体素并支持 mipmap 与采样器。",
+      "tags": [
+        "texture",
+        "3d",
+        "webgl2",
+        "volume"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/Texture3D.js:Texture3D",
+      "type": "class",
+      "name": "Texture3D",
+      "filePath": "packages/engine/Source/Renderer/Texture3D.js",
+      "lineRange": [
+        54,
+        260
+      ],
+      "summary": "Texture3D 构造器：建立 3D GL 纹理对象并按 source 类型上传体素数据。",
+      "tags": [
+        "texture",
+        "3d",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "type": "file",
+      "name": "TextureAtlas.js",
+      "filePath": "packages/engine/Source/Renderer/TextureAtlas.js",
+      "summary": "纹理图集打包器：动态将多张图像打包进单张大纹理，维护各子图的 BoundingRectangle 坐标，供 billboard 等集合批量采样。",
+      "tags": [
+        "texture",
+        "atlas",
+        "packer",
+        "billboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/TextureAtlas.js:TextureAtlas",
+      "type": "class",
+      "name": "TextureAtlas",
+      "filePath": "packages/engine/Source/Renderer/TextureAtlas.js",
+      "lineRange": [
+        39,
+        74
+      ],
+      "summary": "TextureAtlas 构造器：初始化底图纹理、索引表与待添加图像队列。",
+      "tags": [
+        "texture",
+        "atlas",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "type": "file",
+      "name": "TextureCache.js",
+      "filePath": "packages/engine/Source/Renderer/TextureCache.js",
+      "summary": "按 GUID 缓存 Texture 实例的轻量容器，供多个使用者共享同一纹理并在引用归零时统一销毁。",
+      "tags": [
+        "texture",
+        "cache",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/TextureCache.js:TextureCache",
+      "type": "class",
+      "name": "TextureCache",
+      "filePath": "packages/engine/Source/Renderer/TextureCache.js",
+      "lineRange": [
+        7,
+        11
+      ],
+      "summary": "TextureCache 构造器：初始化内部纹理映射表。",
+      "tags": [
+        "texture",
+        "cache",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "file",
+      "name": "VertexArray.js",
+      "filePath": "packages/engine/Source/Renderer/VertexArray.js",
+      "summary": "WebGL VertexArray 对象的核心封装：组织顶点属性 buffer、索引 buffer，处理属性交错布局、常量属性与 instanced divisor。",
+      "tags": [
+        "vertex-array",
+        "webgl",
+        "geometry",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/VertexArray.js:VertexArray",
+      "type": "class",
+      "name": "VertexArray",
+      "filePath": "packages/engine/Source/Renderer/VertexArray.js",
+      "lineRange": [
+        290,
+        370
+      ],
+      "summary": "VertexArray 构造器：根据属性配置创建 GL VAO 并绑定各属性 buffer 与索引 buffer。",
+      "tags": [
+        "vertex-array",
+        "constructor",
+        "webgl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/VertexArray.js:addAttribute",
+      "type": "function",
+      "name": "addAttribute",
+      "filePath": "packages/engine/Source/Renderer/VertexArray.js",
+      "lineRange": [
+        19,
+        163
+      ],
+      "summary": "为单个顶点属性配置 GL pointer/integer pointer 并处理 instanced 与常量情况。",
+      "tags": [
+        "vertex-array",
+        "webgl",
+        "attribute"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/VertexArray.js:interleaveAttributes",
+      "type": "function",
+      "name": "interleaveAttributes",
+      "filePath": "packages/engine/Source/Renderer/VertexArray.js",
+      "lineRange": [
+        383,
+        516
+      ],
+      "summary": "将多个属性 buffer 交错打包为单个紧凑 buffer 以提升 GPU 带宽利用。",
+      "tags": [
+        "vertex-array",
+        "webgl",
+        "attribute"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "type": "file",
+      "name": "VertexArrayFacade.js",
+      "filePath": "packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "summary": "对 VertexArray 的高层封装：按容量动态管理多个 buffer 切片，提供 per-vertex 属性写入器，供 billboard/label 等集合使用。",
+      "tags": [
+        "vertex-array",
+        "facade",
+        "collection"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/VertexArrayFacade.js:VertexArrayFacade",
+      "type": "class",
+      "name": "VertexArrayFacade",
+      "filePath": "packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "lineRange": [
+        14,
+        97
+      ],
+      "summary": "VertexArrayFacade 构造器：按属性类型预分配多份 buffer（STATIC/DYNAMIC/STREAM）并建立写入器。",
+      "tags": [
+        "vertex-array",
+        "facade",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "type": "file",
+      "name": "AutoExposure.js",
+      "filePath": "packages/engine/Source/Scene/AutoExposure.js",
+      "summary": "自动曝光后处理：通过直方图/downsample pass 估算场景平均亮度并生成曝光量，驱动色调映射。",
+      "tags": [
+        "post-process",
+        "exposure",
+        "hdr",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/AutoExposure.js:AutoExposure",
+      "type": "class",
+      "name": "AutoExposure",
+      "filePath": "packages/engine/Source/Scene/AutoExposure.js",
+      "lineRange": [
+        17,
+        62
+      ],
+      "summary": "AutoExposure 构造器：初始化 framebuffer、uniform map 与多级 downsample 命令。",
+      "tags": [
+        "post-process",
+        "exposure",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/AutoExposure.js:getShaderSource",
+      "type": "function",
+      "name": "getShaderSource",
+      "filePath": "packages/engine/Source/Scene/AutoExposure.js",
+      "lineRange": [
+        203,
+        255
+      ],
+      "summary": "为指定 downsample 级别生成直方图计算着色器源码。",
+      "tags": [
+        "shader",
+        "exposure",
+        "glsl"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Renderer/demodernizeShader.js",
+      "target": "function:packages/engine/Source/Renderer/demodernizeShader.js:demodernizeShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/demodernizeShader.js",
+      "target": "function:packages/engine/Source/Renderer/demodernizeShader.js:demodernizeShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/freezeRenderState.js",
+      "target": "function:packages/engine/Source/Renderer/freezeRenderState.js:freezeRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/freezeRenderState.js",
+      "target": "function:packages/engine/Source/Renderer/freezeRenderState.js:freezeRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "class:packages/engine/Source/Renderer/Texture.js:Texture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "class:packages/engine/Source/Renderer/Texture.js:Texture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "function:packages/engine/Source/Renderer/Texture.js:loadBufferSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "function:packages/engine/Source/Renderer/Texture.js:loadCompressedBufferSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "function:packages/engine/Source/Renderer/Texture.js:setupSampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "class:packages/engine/Source/Renderer/Texture3D.js:Texture3D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "class:packages/engine/Source/Renderer/Texture3D.js:Texture3D",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "class:packages/engine/Source/Renderer/TextureAtlas.js:TextureAtlas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "class:packages/engine/Source/Renderer/TextureAtlas.js:TextureAtlas",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "target": "class:packages/engine/Source/Renderer/TextureCache.js:TextureCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "target": "class:packages/engine/Source/Renderer/TextureCache.js:TextureCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "class:packages/engine/Source/Renderer/VertexArray.js:VertexArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "class:packages/engine/Source/Renderer/VertexArray.js:VertexArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "function:packages/engine/Source/Renderer/VertexArray.js:addAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "function:packages/engine/Source/Renderer/VertexArray.js:interleaveAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "class:packages/engine/Source/Renderer/VertexArrayFacade.js:VertexArrayFacade",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "class:packages/engine/Source/Renderer/VertexArrayFacade.js:VertexArrayFacade",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "class:packages/engine/Source/Scene/AutoExposure.js:AutoExposure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "class:packages/engine/Source/Scene/AutoExposure.js:AutoExposure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "function:packages/engine/Source/Scene/AutoExposure.js:getShaderSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Core/TexturePacker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/assert.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "class:packages/engine/Source/Renderer/Texture.js:Texture",
+      "target": "function:packages/engine/Source/Renderer/Texture.js:loadBufferSource",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:packages/engine/Source/Renderer/Texture.js:Texture",
+      "target": "function:packages/engine/Source/Renderer/Texture.js:setupSampler",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

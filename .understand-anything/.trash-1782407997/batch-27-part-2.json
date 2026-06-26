@@ -1,0 +1,862 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "type": "file",
+      "name": "GaussianSplatPrimitive.js",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "summary": "高斯泼溅 primitive 的渲染与更新逻辑，负责管理 GPU 资源、按视距排序 splat 快照、生成球形谐函数纹理并向 RenderState 提交 DrawCommand。",
+      "tags": [
+        "gaussian-splatting",
+        "primitive",
+        "renderer",
+        "scene",
+        "sorter"
+      ],
+      "complexity": "complex",
+      "languageNotes": "在每帧按距离对 splat 进行稳定的 web-worker 排序，并复用 aggregate scratch buffer。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "type": "file",
+      "name": "GltfBufferViewLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "summary": "glTF bufferView 的 ResourceLoader 实现，按需拉取并缓存 meshopt 等扩展对应的二进制视图。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "buffer",
+        "scene",
+        "private"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "type": "file",
+      "name": "GltfDracoLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfDracoLoader.js",
+      "summary": "glTF 中 KHR_draco_mesh_compression 扩展的 ResourceLoader，调用 Draco 解码器将压缩几何还原为顶点属性。",
+      "tags": [
+        "gltf",
+        "draco",
+        "resource-loader",
+        "compression",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "type": "file",
+      "name": "GltfIndexBufferLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "summary": "glTF 索引缓冲的 ResourceLoader，将 accessor 解析为可上传到 GPU 的 IndexDatatype，支持 meshopt 与 Draco。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "index-buffer",
+        "scene",
+        "renderer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "type": "file",
+      "name": "GltfSpzLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfSpzLoader.js",
+      "summary": "Spz 高斯泼溅格式在 glTF 中的 ResourceLoader，将 SPZ 压缩的球谐系数解码为标准顶点属性。",
+      "tags": [
+        "gltf",
+        "spz",
+        "gaussian-splatting",
+        "resource-loader",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/JobType.js",
+      "type": "file",
+      "name": "JobType.js",
+      "filePath": "packages/engine/Source/Scene/JobType.js",
+      "summary": "JobScheduler 使用的工作类型枚举（如顶点缓冲创建、Draco 解码等），用于调度 web worker 任务。",
+      "tags": [
+        "enum",
+        "job-scheduler",
+        "worker",
+        "scene",
+        "private"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "type": "file",
+      "name": "MetadataTable.js",
+      "filePath": "packages/engine/Source/Scene/MetadataTable.js",
+      "summary": "二进制元数据表，按 class 定义组织一组 MetadataTableProperty，用于 batch table 与 3D Tiles Next 扩展的属性存储。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "table",
+        "binary",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "type": "file",
+      "name": "ClassificationPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "summary": "Model 渲染管线中的分类阶段，向 shader 注入分类标记并整理 batch 长度/偏移，供 ClassificationModelDrawCommand 批量渲染。",
+      "tags": [
+        "model",
+        "pipeline-stage",
+        "classification",
+        "shader",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:GaussianSplatPrimitive",
+      "type": "function",
+      "name": "GaussianSplatPrimitive",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "lineRange": [
+        805,
+        1073
+      ],
+      "summary": "高斯泼溅 primitive 的构造与初始化，配置属性、纹理、排序器并准备渲染管线。",
+      "tags": [
+        "gaussian-splatting",
+        "primitive",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:processGeneratedSplatTextureData",
+      "type": "function",
+      "name": "processGeneratedSplatTextureData",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "lineRange": [
+        475,
+        632
+      ],
+      "summary": "在 splat 排序完成后将生成的纹理数据提交给 GPU 并刷新 DrawCommand。",
+      "tags": [
+        "gaussian-splatting",
+        "texture",
+        "renderer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:commitSnapshot",
+      "type": "function",
+      "name": "commitSnapshot",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "lineRange": [
+        406,
+        461
+      ],
+      "summary": "把一帧的 splat 快照提交到稳定排序流水线。",
+      "tags": [
+        "gaussian-splatting",
+        "sorter",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfBufferViewLoader.js:GltfBufferViewLoader",
+      "type": "class",
+      "name": "GltfBufferViewLoader",
+      "filePath": "packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "lineRange": [
+        17,
+        143
+      ],
+      "summary": "ResourceLoader 实现，按 bufferView id 拉取并缓存 glTF 二进制视图。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "buffer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfDracoLoader.js:GltfDracoLoader",
+      "type": "class",
+      "name": "GltfDracoLoader",
+      "filePath": "packages/engine/Source/Scene/GltfDracoLoader.js",
+      "lineRange": [
+        18,
+        201
+      ],
+      "summary": "ResourceLoader 实现，调用 DracoLoader 把压缩几何解压为顶点属性。",
+      "tags": [
+        "gltf",
+        "draco",
+        "resource-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfIndexBufferLoader.js:GltfIndexBufferLoader",
+      "type": "class",
+      "name": "GltfIndexBufferLoader",
+      "filePath": "packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "lineRange": [
+        22,
+        255
+      ],
+      "summary": "ResourceLoader 实现，把 accessor 转换为 GPU 可用的索引缓冲（支持 meshopt/Draco）。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "index-buffer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfSpzLoader.js:GltfSpzLoader",
+      "type": "class",
+      "name": "GltfSpzLoader",
+      "filePath": "packages/engine/Source/Scene/GltfSpzLoader.js",
+      "lineRange": [
+        94,
+        263
+      ],
+      "summary": "ResourceLoader 实现，将 SPZ 压缩的球谐系数解码为顶点属性。",
+      "tags": [
+        "gltf",
+        "spz",
+        "resource-loader"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:GaussianSplatPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:processGeneratedSplatTextureData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:commitSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfBufferViewLoader.js:GltfBufferViewLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfDracoLoader.js:GltfDracoLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfIndexBufferLoader.js:GltfIndexBufferLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfSpzLoader.js:GltfSpzLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Scene/findMeshoptExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/JobType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTable.js",
+      "target": "function:packages/engine/Source/Scene/MetadataTableProperty.js:MetadataTableProperty",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "target": "file:packages/engine/Specs/Scene/GaussianSplatPrimitiveSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "target": "file:packages/engine/Specs/Scene/GltfSpzLoaderSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

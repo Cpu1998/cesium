@@ -1,0 +1,557 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/addDefaultMatchers.js",
+      "type": "file",
+      "name": "addDefaultMatchers.js",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "summary": "CesiumJS 测试套件的核心匹配器定义文件，为 Jasmine 注册大量针对 3D 场景的自定义匹配器，包括渲染结果比对、pick 结果比对、TypedArray 相等性判断以及异步 toThrow 变体。",
+      "tags": ["test", "matcher", "jasmine", "webgl", "rendering"],
+      "complexity": "complex",
+      "languageNotes": "通过 makeThrowFunction 工厂为每个匹配器动态生成断言失败消息函数；createDefaultMatchers 是一个超过 500 行的巨型工厂，集中返回所有 matcher 对象。"
+    },
+    {
+      "id": "file:Specs/customizeJasmine.js",
+      "type": "file",
+      "name": "customizeJasmine.js",
+      "filePath": "Specs/customizeJasmine.js",
+      "summary": "Jasmine 测试环境定制入口，根据传入的类别、webgl 校验/stub、release 等配置覆盖 describe/xdescribe 行为、注册 beforeEach、调用 addDefaultMatchers 并注入自定义相等性比较器。",
+      "tags": ["test", "jasmine", "configuration", "setup"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/equals.js",
+      "type": "file",
+      "name": "equals.js",
+      "filePath": "Specs/equals.js",
+      "summary": "轻量的相等性比较工具，将 TypedArray 转换为普通数组后委托给 Jasmine 的 util.equals，供 addDefaultMatchers 使用。",
+      "tags": ["test", "utility", "equality", "typed-array"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/equalsMethodEqualityTester.js",
+      "type": "file",
+      "name": "equalsMethodEqualityTester.js",
+      "filePath": "Specs/equalsMethodEqualityTester.js",
+      "summary": "自定义相等性比较器，当比较双方都实现了 equals/equalsEpsilon 方法时，委托给对象自身的 equals 方法进行深度比较，否则回退到原型链判断。",
+      "tags": ["test", "equality", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/karma-main.js",
+      "type": "file",
+      "name": "karma-main.js",
+      "filePath": "Specs/karma-main.js",
+      "summary": "Karma 运行器下的测试启动入口，从 __karma__.config.args 读取类别过滤、webgl 校验/stub、release 等开关，设置 CESIUM_BASE_URL 并调用 customizeJasmine 初始化环境。",
+      "tags": ["test", "entry-point", "karma", "bootstrap"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/spec-main.js",
+      "type": "file",
+      "name": "spec-main.js",
+      "filePath": "Specs/spec-main.js",
+      "summary": "浏览器（HTML）方式运行测试套件时的启动入口，从 URL 查询参数解析过滤与配置，配置 jasmine.Env 并调用 customizeJasmine 完成初始化。",
+      "tags": ["test", "entry-point", "jasmine", "browser"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:createMissingFunctionMessageFunction",
+      "type": "function",
+      "name": "createMissingFunctionMessageFunction",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [17, 25],
+      "summary": "生成用于断言失败时报告“对象缺少某方法”的消息生成函数。",
+      "tags": ["test", "matcher", "message-factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:makeAsyncThrowFunction",
+      "type": "function",
+      "name": "makeAsyncThrowFunction",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [27, 95],
+      "summary": "工厂函数，为异步匹配器生成 toThrow/toThrowError 的判断逻辑，封装对 Promise resolve/reject 的预期校验与失败消息。",
+      "tags": ["test", "matcher", "async", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:makeThrowFunction",
+      "type": "function",
+      "name": "makeThrowFunction",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [97, 158],
+      "summary": "工厂函数，为同步匹配器生成 toThrow/toThrowError 的判断逻辑，匹配抛出异常的类型与消息。",
+      "tags": ["test", "matcher", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "type": "function",
+      "name": "createDefaultMatchers",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [160, 727],
+      "summary": "返回包含全部同步匹配器（数组/对象相等、渲染相等、pick/drillPick 相等、context 渲染、toThrow 等）的对象工厂，是本文件的核心。",
+      "tags": ["test", "matcher", "factory", "rendering", "picking"],
+      "complexity": "complex",
+      "languageNotes": "单函数 500+ 行，内部包含 equalityTester 递归比较器，支持 equalsEpsilon 数值近似相等与原型链方法比对。"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:createDefaultAsyncMatchers",
+      "type": "function",
+      "name": "createDefaultAsyncMatchers",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [729, 737],
+      "summary": "返回包含异步 toThrow 系列匹配器的对象工厂，基于 makeAsyncThrowFunction 构建。",
+      "tags": ["test", "matcher", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:countRenderedPixels",
+      "type": "function",
+      "name": "countRenderedPixels",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [739, 754],
+      "summary": "统计渲染像素缓冲中与给定 RGBA 不匹配的像素数量，用于渲染相等的容错判断。",
+      "tags": ["test", "rendering", "pixel-comparison"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:renderAndReadPixels",
+      "type": "function",
+      "name": "renderAndReadPixels",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [756, 776],
+      "summary": "执行场景渲染并读取指定区域的帧缓冲像素，是渲染相等类匹配器的公共采样入口。",
+      "tags": ["test", "rendering", "webgl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:isTypedArray",
+      "type": "function",
+      "name": "isTypedArray",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [778, 782],
+      "summary": "检测给定对象是否为某种 TypedArray（如 Float32Array、Uint8Array 等）。",
+      "tags": ["utility", "typed-array", "type-check"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:typedArrayToArray",
+      "type": "function",
+      "name": "typedArrayToArray",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [784, 789],
+      "summary": "将 TypedArray 转换为普通 JavaScript 数组，便于深度相等比较。",
+      "tags": ["utility", "typed-array", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:renderEquals",
+      "type": "function",
+      "name": "renderEquals",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [791, 820],
+      "summary": "渲染两个场景并比较像素是否相等，支撑 toRender/toNotRender 系列匹配器。",
+      "tags": ["test", "matcher", "rendering", "pixel-comparison"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:pickPrimitiveEquals",
+      "type": "function",
+      "name": "pickPrimitiveEquals",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [822, 850],
+      "summary": "在指定像素区域执行 scene.pick 并比较两次 pick 结果是否一致，用于 pick 相等匹配器。",
+      "tags": ["test", "matcher", "picking"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:drillPickPrimitiveEquals",
+      "type": "function",
+      "name": "drillPickPrimitiveEquals",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [852, 880],
+      "summary": "在指定像素区域执行 scene.drillPick 并比较穿透拾取的图元列表是否一致。",
+      "tags": ["test", "matcher", "picking"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:contextRenderAndReadPixels",
+      "type": "function",
+      "name": "contextRenderAndReadPixels",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [882, 968],
+      "summary": "在直接给定的 Context 上构建/执行 DrawCommand 并读取像素，支撑 Context 层级的渲染匹配器。",
+      "tags": ["test", "rendering", "webgl", "context"],
+      "complexity": "moderate",
+      "languageNotes": "手动管理 ShaderProgram/VertexBuffer/VertexArray 的创建与销毁，模拟 CesiumJS 引擎内部渲染管线。"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:expectContextToRender",
+      "type": "function",
+      "name": "expectContextToRender",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [970, 1033],
+      "summary": "断言给定 Context 在渲染后实际像素颜色与预期颜色匹配（含容差），用于 expectContextToRenderToLookLike/expectContextToRenderToError 等匹配器。",
+      "tags": ["test", "matcher", "rendering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "type": "function",
+      "name": "addDefaultMatchers",
+      "filePath": "Specs/addDefaultMatchers.js",
+      "lineRange": [1035, 1040],
+      "summary": "对外导出的入口，将同步与异步默认匹配器注册到 Jasmine 环境。",
+      "tags": ["test", "entry-point", "matcher"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/customizeJasmine.js:customizeJasmine",
+      "type": "function",
+      "name": "customizeJasmine",
+      "filePath": "Specs/customizeJasmine.js",
+      "lineRange": [4, 57],
+      "summary": "根据运行配置重写 describe/xdescribe、设置 beforeEach、注册默认匹配器与自定义相等性比较器，是 Karma 与浏览器两种运行模式的统一初始化函数。",
+      "tags": ["test", "jasmine", "setup", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/equals.js:isTypedArray",
+      "type": "function",
+      "name": "isTypedArray",
+      "filePath": "Specs/equals.js",
+      "lineRange": [3, 7],
+      "summary": "检测对象是否为 TypedArray，依赖 FeatureDetection.typedArrayTypes。",
+      "tags": ["utility", "typed-array", "type-check"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/equals.js:typedArrayToArray",
+      "type": "function",
+      "name": "typedArrayToArray",
+      "filePath": "Specs/equals.js",
+      "lineRange": [9, 14],
+      "summary": "将 TypedArray 转为普通数组以便比较。",
+      "tags": ["utility", "typed-array", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/equals.js:equals",
+      "type": "function",
+      "name": "equals",
+      "filePath": "Specs/equals.js",
+      "lineRange": [16, 20],
+      "summary": "对外导出的相等性比较入口，先将两侧 TypedArray 归一化为数组再委托 Jasmine util.equals。",
+      "tags": ["utility", "equality", "test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/equalsMethodEqualityTester.js:equalsMethodEqualityTester",
+      "type": "function",
+      "name": "equalsMethodEqualityTester",
+      "filePath": "Specs/equalsMethodEqualityTester.js",
+      "lineRange": [3, 32],
+      "summary": "Jasmine 自定义相等性比较器：若两侧对象同原型且实现了 equals/equalsEpsilon，则委托对象自身方法比较，否则返回 undefined 交还默认逻辑。",
+      "tags": ["test", "equality", "utility"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "file:Specs/equals.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/customizeJasmine.js",
+      "target": "file:Specs/addDefaultMatchers.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/customizeJasmine.js",
+      "target": "file:Specs/equalsMethodEqualityTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/karma-main.js",
+      "target": "file:Specs/customizeJasmine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/spec-main.js",
+      "target": "file:Specs/customizeJasmine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:createMissingFunctionMessageFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:makeAsyncThrowFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:makeThrowFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:createDefaultAsyncMatchers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:countRenderedPixels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:renderAndReadPixels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:isTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:typedArrayToArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:renderEquals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:pickPrimitiveEquals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:drillPickPrimitiveEquals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:contextRenderAndReadPixels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:expectContextToRender",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/addDefaultMatchers.js",
+      "target": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/customizeJasmine.js",
+      "target": "function:Specs/customizeJasmine.js:customizeJasmine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/customizeJasmine.js",
+      "target": "function:Specs/customizeJasmine.js:customizeJasmine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/equals.js",
+      "target": "function:Specs/equals.js:isTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/equals.js",
+      "target": "function:Specs/equals.js:typedArrayToArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/equals.js",
+      "target": "function:Specs/equals.js:equals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/equals.js",
+      "target": "function:Specs/equals.js:equals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/equalsMethodEqualityTester.js",
+      "target": "function:Specs/equalsMethodEqualityTester.js:equalsMethodEqualityTester",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/equalsMethodEqualityTester.js",
+      "target": "function:Specs/equalsMethodEqualityTester.js:equalsMethodEqualityTester",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/customizeJasmine.js:customizeJasmine",
+      "target": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/customizeJasmine.js:customizeJasmine",
+      "target": "function:Specs/equalsMethodEqualityTester.js:equalsMethodEqualityTester",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:addDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:createDefaultAsyncMatchers",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:renderEquals",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:pickPrimitiveEquals",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:drillPickPrimitiveEquals",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:expectContextToRender",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:createDefaultMatchers",
+      "target": "function:Specs/addDefaultMatchers.js:createMissingFunctionMessageFunction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:renderEquals",
+      "target": "function:Specs/addDefaultMatchers.js:renderAndReadPixels",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:expectContextToRender",
+      "target": "function:Specs/addDefaultMatchers.js:contextRenderAndReadPixels",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:typedArrayToArray",
+      "target": "function:Specs/addDefaultMatchers.js:isTypedArray",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/addDefaultMatchers.js:renderEquals",
+      "target": "function:Specs/equals.js:equals",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

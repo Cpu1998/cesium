@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "代码扫描忽略规则配置,列出 understand-anything 工具链在分析项目时应跳过的目录与文件(如 build 产物、测试数据、第三方依赖等)。",
+      "tags": ["configuration", "tooling", "ignore-rules"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.understand-anything/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".understand-anything/config.json",
+      "summary": "understand-anything 工具的配置文件,设置输出语言等分析参数。",
+      "tags": ["configuration", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/CesiumViewer/CesiumViewer.css",
+      "type": "file",
+      "name": "CesiumViewer.css",
+      "filePath": "Apps/CesiumViewer/CesiumViewer.css",
+      "summary": "CesiumViewer 演示应用的样式表,定义加载指示器与全屏容器的布局样式。",
+      "tags": ["styling", "viewer-app", "frontend"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/CesiumViewer/CesiumViewer.js",
+      "type": "file",
+      "name": "CesiumViewer.js",
+      "filePath": "Apps/CesiumViewer/CesiumViewer.js",
+      "summary": "CesiumViewer 演示应用的主入口脚本,从查询字符串解析运行时选项,初始化 Viewer,加载 CZML/GeoJSON/KML/GPX 数据源,处理相机视角、主题、调试选项并将相机状态序列化回 URL。",
+      "tags": ["entry-point", "viewer-app", "demo", "datasource-loading"],
+      "complexity": "complex",
+      "languageNotes": "ES module 从 Build/CesiumUnminified 构建产物导入,使用 async/await 与 queryToObject/objectToQuery 实现 URL 状态持久化。"
+    },
+    {
+      "id": "function:Apps/CesiumViewer/CesiumViewer.js:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "Apps/CesiumViewer/CesiumViewer.js",
+      "lineRange": [24, 242],
+      "summary": "异步主函数:解析 URL 查询选项、创建 Viewer 实例、挂载 drag-drop 与 inspector mixin、按文件扩展名自动识别并加载数据源、设置相机视角并监听 camera.changed 事件以将视角回写到 URL。",
+      "tags": ["entry-point", "initialization", "datasource-loading", "camera-control"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Apps/CesiumViewer/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "Apps/CesiumViewer/index.html",
+      "summary": "CesiumViewer 应用的 HTML 宿主页面,定义全屏 cesiumContainer 与加载指示器,并通过 type=module 引入 CesiumViewer.js。",
+      "tags": ["entry-point", "viewer-app", "markup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/HelloWorld.html",
+      "type": "file",
+      "name": "HelloWorld.html",
+      "filePath": "Apps/HelloWorld.html",
+      "summary": "最简 CesiumJS 入门示例,在单页 HTML 中加载 Cesium 构建产物并创建一个基础 3D 地球 Viewer。",
+      "tags": ["demo", "entry-point", "example", "markup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Batched/BatchedColors/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Batched/BatchedColors/tileset.json",
+      "summary": "3D Tiles tileset 描述文件(Batched Colors 样本),声明 asset 版本、包围盒、几何误差层级与指向 b3dm 内容的根瓦片。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Batched/BatchedTranslucent/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Batched/BatchedTranslucent/tileset.json",
+      "summary": "3D Tiles tileset 描述文件(Batched Translucent 样本),演示半透明 Batched 3D Model 瓦片集的层级与几何误差配置。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "translucency"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Batched/BatchedTranslucentOpaqueMix/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Batched/BatchedTranslucentOpaqueMix/tileset.json",
+      "summary": "3D Tiles tileset 描述文件(半透明与不透明混合样本),用于测试混合渲染的 Batched 3D Model 瓦片集。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "translucency"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Batched/BatchedWithBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Batched/BatchedWithBatchTable/tileset.json",
+      "summary": "3D Tiles tileset 描述文件(带 Batch Table 的 Batched 样本),验证每个 feature 的批处理属性表读取。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Classification/Photogrammetry/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Classification/Photogrammetry/tileset.json",
+      "summary": "3D Tiles 分类样本 tileset(摄影测量),用于测试在摄影测量模型上的分类渲染。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "classification"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Classification/PointCloud/content.geom",
+      "type": "file",
+      "name": "content.geom",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Classification/PointCloud/content.geom",
+      "summary": "分类点云样本所引用的二进制几何内容文件,作为 PointCloud 分类 tileset 的瓦片数据负载。",
+      "tags": ["3d-tiles", "sample-data", "point-cloud", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Classification/PointCloud/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Classification/PointCloud/tileset.json",
+      "summary": "3D Tiles 分类样本 tileset(点云),声明 asset、几何误差层级与引用 content.geom 的根瓦片。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "classification"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Composite/Composite/composite.cmpt",
+      "type": "file",
+      "name": "composite.cmpt",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Composite/Composite/composite.cmpt",
+      "summary": "3D Tiles Composite(cmpt)二进制瓦片样本,封装多个内部瓦片(i3dm/b3dm/pnts)用于组合渲染测试。",
+      "tags": ["3d-tiles", "sample-data", "composite", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Composite/Composite/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Composite/Composite/tileset.json",
+      "summary": "3D Tiles Composite tileset 描述文件,声明包围盒、几何误差与指向 composite.cmpt 的根瓦片。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "composite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Hierarchy/BatchTableHierarchy/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Hierarchy/BatchTableHierarchy/tileset.json",
+      "summary": "3D Tiles 批处理层级样本 tileset,启用 3DTILES_batch_table_hierarchy 扩展以表达实体间的父子层级关系。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "batch-table", "hierarchy"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Instanced/InstancedOrientation/instancedOrientation.i3dm",
+      "type": "file",
+      "name": "instancedOrientation.i3dm",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Instanced/InstancedOrientation/instancedOrientation.i3dm",
+      "summary": "3D Tiles Instanced 3D Model(i3dm)二进制瓦片样本,展示带朝向的实例化模型渲染。",
+      "tags": ["3d-tiles", "sample-data", "instanced-model", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Instanced/InstancedOrientation/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Instanced/InstancedOrientation/tileset.json",
+      "summary": "3D Tiles 实例化朝向样本 tileset,声明包围盒与指向 instancedOrientation.i3dm 的根瓦片。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "instanced-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Instanced/InstancedWithBatchTable/instancedWithBatchTable.i3dm",
+      "type": "file",
+      "name": "instancedWithBatchTable.i3dm",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Instanced/InstancedWithBatchTable/instancedWithBatchTable.i3dm",
+      "summary": "3D Tiles i3dm 二进制瓦片样本,带有批处理属性表,用于验证实例化模型每个实例的 per-feature 属性。",
+      "tags": ["3d-tiles", "sample-data", "instanced-model", "batch-table", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Instanced/InstancedWithBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Instanced/InstancedWithBatchTable/tileset.json",
+      "summary": "3D Tiles 实例化(带 Batch Table)样本 tileset,声明包围盒与指向 instancedWithBatchTable.i3dm 的根瓦片。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "instanced-model", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudBatched/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudBatched/tileset.json",
+      "summary": "3D Tiles 点云样本 tileset(Batched),用于测试分批处理的点云渲染。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "point-cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudConstantColor/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudConstantColor/tileset.json",
+      "summary": "3D Tiles 点云样本 tileset(Constant Color),用于测试统一着色模式的点云渲染。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "point-cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudDraco/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudDraco/tileset.json",
+      "summary": "3D Tiles 点云样本 tileset(Draco 压缩),声明 3DTILES_draco_point_compression 扩展以测试 Draco 解码后的点云。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "point-cloud", "draco-compression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudNormals/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudNormals/tileset.json",
+      "summary": "3D Tiles 点云样本 tileset(带法线),用于测试带顶点法线的光照点云渲染。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "point-cloud"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudRGB/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudRGB/tileset.json",
+      "summary": "3D Tiles 点云样本 tileset(RGB 着色),用于测试带每点颜色的点云渲染。",
+      "tags": ["3d-tiles", "sample-data", "tileset", "point-cloud"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Apps/CesiumViewer/CesiumViewer.js",
+      "target": "function:Apps/CesiumViewer/CesiumViewer.js:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Apps/CesiumViewer/index.html",
+      "target": "file:Apps/CesiumViewer/CesiumViewer.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/CesiumViewer/index.html",
+      "target": "file:Apps/CesiumViewer/CesiumViewer.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Classification/PointCloud/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Classification/PointCloud/content.geom",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

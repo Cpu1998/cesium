@@ -1,0 +1,3589 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 755,
+      "nonEmptyLines": 671,
+      "functions": [
+        {
+          "name": "TerrainProviderBuilder",
+          "startLine": 43,
+          "endLine": 57,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "parseMetadataSuccess",
+          "startLine": 81,
+          "endLine": 192,
+          "params": [
+            "terrainProviderBuilder",
+            "metadata"
+          ]
+        },
+        {
+          "name": "requestMetadata",
+          "startLine": 194,
+          "endLine": 213,
+          "params": [
+            "terrainProviderBuilder",
+            "metadataResource",
+            "provider"
+          ]
+        },
+        {
+          "name": "ArcGISTiledElevationTerrainProvider",
+          "startLine": 236,
+          "endLine": 256,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "isTileAvailable",
+          "startLine": 473,
+          "endLine": 496,
+          "params": [
+            "that",
+            "level",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "findRange",
+          "startLine": 549,
+          "endLine": 627,
+          "params": [
+            "origin",
+            "width",
+            "height",
+            "data"
+          ]
+        },
+        {
+          "name": "computeAvailability",
+          "startLine": 629,
+          "endLine": 670,
+          "params": [
+            "x",
+            "y",
+            "width",
+            "height",
+            "data"
+          ]
+        },
+        {
+          "name": "requestAvailability",
+          "startLine": 672,
+          "endLine": 754,
+          "params": [
+            "that",
+            "level",
+            "x",
+            "y"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 83
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "Rectangle.fromDegrees",
+          "lineNumber": 94
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 136
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "metadata.capabilities.indexOf",
+          "lineNumber": 149
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilesAvailable.addAvailableTileRange",
+          "lineNumber": 155
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 159
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 160
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TerrainProvider.getEstimatedLevelZeroGeometricErrorForAHeightmap",
+          "lineNumber": 169
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 172
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "console.log",
+          "lineNumber": 176
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 181
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 181
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "metadataResource.fetchJson",
+          "lineNumber": 200
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "parseMetadataSuccess",
+          "lineNumber": 201
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 204
+        },
+        {
+          "caller": "requestMetadata",
+          "callee": "defined",
+          "lineNumber": 207
+        },
+        {
+          "caller": "isTileAvailable",
+          "callee": "tilesAvailable.isTileAvailable",
+          "lineNumber": 486
+        },
+        {
+          "caller": "isTileAvailable",
+          "callee": "tilesAvailabilityLoaded.isTileAvailable",
+          "lineNumber": 491
+        },
+        {
+          "caller": "findRange",
+          "callee": "endingIndices.push",
+          "lineNumber": 583
+        },
+        {
+          "caller": "findRange",
+          "callee": "endingIndices.push",
+          "lineNumber": 608
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "data.every",
+          "lineNumber": 632
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "ranges.push",
+          "lineNumber": 637
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "positions.pop",
+          "lineNumber": 650
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "findRange",
+          "lineNumber": 651
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "ranges.push",
+          "lineNumber": 660
+        },
+        {
+          "caller": "computeAvailability",
+          "callee": "positions.concat",
+          "lineNumber": 665
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "Math.floor",
+          "lineNumber": 678
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "Math.floor",
+          "lineNumber": 679
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "Math.min",
+          "lineNumber": 681
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "defined",
+          "lineNumber": 685
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "that._resource.getDerivedResource",
+          "lineNumber": 695
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "tilemapResource.fetchJson",
+          "lineNumber": 700
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "defined",
+          "lineNumber": 701
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "promise.then",
+          "lineNumber": 705
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "computeAvailability",
+          "lineNumber": 706
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "that._tilesAvailabilityLoaded.addAvailableTileRange",
+          "lineNumber": 715
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "tilesAvailable.addAvailableTileRange",
+          "lineNumber": 726
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "isTileAvailable",
+          "lineNumber": 736
+        },
+        {
+          "caller": "requestAvailability",
+          "callee": "promise.finally",
+          "lineNumber": 744
+        }
+      ],
+      "metrics": {
+        "importCount": 20,
+        "exportCount": 0,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 127,
+      "nonEmptyLines": 113,
+      "functions": [
+        {
+          "name": "BingMapsGeocoderService",
+          "startLine": 22,
+          "endLine": 50,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "BingMapsGeocoderService",
+          "callee": "defined",
+          "lineNumber": 26
+        },
+        {
+          "caller": "BingMapsGeocoderService",
+          "callee": "defined",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1052,
+      "nonEmptyLines": 931,
+      "functions": [
+        {
+          "name": "Cesium3DTilesTerrainProvider",
+          "startLine": 68,
+          "endLine": 116,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getRootIdFromGeographic",
+          "startLine": 473,
+          "endLine": 482,
+          "params": [
+            "level",
+            "x"
+          ]
+        },
+        {
+          "name": "getImplicitTileCoordinatesFromGeographicCoordinates",
+          "startLine": 493,
+          "endLine": 519,
+          "params": [
+            "implicitTileset",
+            "level",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "loadWaterMask",
+          "startLine": 528,
+          "endLine": 587,
+          "params": [
+            "gltf",
+            "gltfResource"
+          ]
+        },
+        {
+          "name": "isChildAvailable",
+          "startLine": 599,
+          "endLine": 621,
+          "params": [
+            "implicitTileset",
+            "subtree",
+            "coord",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "getImplicitTileCoordinates",
+          "startLine": 632,
+          "endLine": 649,
+          "params": [
+            "implicitTileset",
+            "level",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "ImplicitSubtreeCacheNode",
+          "startLine": 767,
+          "endLine": 771,
+          "params": [
+            "rootId",
+            "subtree",
+            "stamp"
+          ]
+        },
+        {
+          "name": "ImplicitSubtreeCache",
+          "startLine": 781,
+          "endLine": 790,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "computeDescendantCoordinatesAtUv",
+          "startLine": 1003,
+          "endLine": 1028,
+          "params": [
+            "implicitTileset",
+            "subtreeCoord",
+            "u",
+            "v",
+            "levelOffset"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getRootIdFromGeographic",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 475
+        },
+        {
+          "caller": "getRootIdFromGeographic",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 476
+        },
+        {
+          "caller": "getImplicitTileCoordinatesFromGeographicCoordinates",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 500
+        },
+        {
+          "caller": "getImplicitTileCoordinatesFromGeographicCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 501
+        },
+        {
+          "caller": "getImplicitTileCoordinatesFromGeographicCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 502
+        },
+        {
+          "caller": "getImplicitTileCoordinatesFromGeographicCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 503
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 530
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 530
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "schemaLoader.load",
+          "lineNumber": 538
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 542
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "schema.classes.hasOwnProperty",
+          "lineNumber": 544
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 547
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 554
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "extension.propertyTextures.find",
+          "lineNumber": 558
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "defined",
+          "lineNumber": 561
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "ResourceCache.getBufferViewLoader",
+          "lineNumber": 571
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "bufferViewLoader.load",
+          "lineNumber": 577
+        },
+        {
+          "caller": "loadWaterMask",
+          "callee": "loadImageFromTypedArray",
+          "lineNumber": 579
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 601
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 602
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 603
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 604
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 605
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "coord.isBottomOfSubtree",
+          "lineNumber": 610
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "getImplicitTileCoordinates",
+          "lineNumber": 613
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "coord.getDescendantCoordinates",
+          "lineNumber": 614
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "subtree.childSubtreeIsAvailableAtCoordinates",
+          "lineNumber": 617
+        },
+        {
+          "caller": "isChildAvailable",
+          "callee": "subtree.tileIsAvailableAtCoordinates",
+          "lineNumber": 618
+        },
+        {
+          "caller": "getImplicitTileCoordinates",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 634
+        },
+        {
+          "caller": "getImplicitTileCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 635
+        },
+        {
+          "caller": "getImplicitTileCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 636
+        },
+        {
+          "caller": "getImplicitTileCoordinates",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 637
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 1011
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 1012
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 1013
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 1014
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 1015
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1019
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1020
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "getImplicitTileCoordinates",
+          "lineNumber": 1021
+        },
+        {
+          "caller": "computeDescendantCoordinatesAtUv",
+          "callee": "subtreeCoord.getDescendantCoordinates",
+          "lineNumber": 1027
+        }
+      ],
+      "metrics": {
+        "importCount": 27,
+        "exportCount": 0,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1408,
+      "nonEmptyLines": 1285,
+      "functions": [
+        {
+          "name": "LayerInformation",
+          "startLine": 26,
+          "endLine": 39,
+          "params": [
+            "layer"
+          ]
+        },
+        {
+          "name": "TerrainProviderBuilder",
+          "startLine": 61,
+          "endLine": 86,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "parseMetadataSuccess",
+          "startLine": 117,
+          "endLine": 361,
+          "params": [
+            "terrainProviderBuilder",
+            "data",
+            "provider"
+          ]
+        },
+        {
+          "name": "parseMetadataFailure",
+          "startLine": 363,
+          "endLine": 382,
+          "params": [
+            "terrainProviderBuilder",
+            "error",
+            "provider"
+          ]
+        },
+        {
+          "name": "metadataSuccess",
+          "startLine": 384,
+          "endLine": 415,
+          "params": [
+            "terrainProviderBuilder",
+            "data",
+            "provider"
+          ]
+        },
+        {
+          "name": "requestLayerJson",
+          "startLine": 417,
+          "endLine": 441,
+          "params": [
+            "terrainProviderBuilder",
+            "provider"
+          ]
+        },
+        {
+          "name": "CesiumTerrainProvider",
+          "startLine": 477,
+          "endLine": 525,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getRequestHeader",
+          "startLine": 562,
+          "endLine": 573,
+          "params": [
+            "extensionsList"
+          ]
+        },
+        {
+          "name": "createHeightmapTerrainData",
+          "startLine": 575,
+          "endLine": 594,
+          "params": [
+            "provider",
+            "buffer",
+            "level",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "createQuantizedMeshTerrainData",
+          "startLine": 596,
+          "endLine": 835,
+          "params": [
+            "provider",
+            "buffer",
+            "level",
+            "x",
+            "y",
+            "layer"
+          ]
+        },
+        {
+          "name": "requestTileGeometry",
+          "startLine": 912,
+          "endLine": 1000,
+          "params": [
+            "provider",
+            "x",
+            "y",
+            "level",
+            "layerToUse",
+            "request"
+          ]
+        },
+        {
+          "name": "getAvailabilityTile",
+          "startLine": 1321,
+          "endLine": 1340,
+          "params": [
+            "layer",
+            "x",
+            "y",
+            "level"
+          ]
+        },
+        {
+          "name": "checkLayer",
+          "startLine": 1342,
+          "endLine": 1404,
+          "params": [
+            "provider",
+            "x",
+            "y",
+            "level",
+            "layer",
+            "topLayer"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 120
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 123
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 133
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 136
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 150
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "data.format.indexOf",
+          "lineNumber": 164
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 166
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 169
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "Math.max",
+          "lineNumber": 179
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 199
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 202
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TerrainProvider.getEstimatedLevelZeroGeometricErrorForAHeightmap",
+          "lineNumber": 210
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 213
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 219
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 222
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 238
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "data.extensions.indexOf",
+          "lineNumber": 239
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 243
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "data.extensions.indexOf",
+          "lineNumber": 244
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 249
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "data.extensions.indexOf",
+          "lineNumber": 249
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 252
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "data.extensions.indexOf",
+          "lineNumber": 252
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 259
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 259
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 267
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 268
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.overallAvailability[level].push",
+          "lineNumber": 280
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "availability.addAvailableTileRange",
+          "lineNumber": 286
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 295
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "availability.addAvailableTileRange",
+          "lineNumber": 305
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 315
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.layers.push",
+          "lineNumber": 322
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 339
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "defined",
+          "lineNumber": 340
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "console.log",
+          "lineNumber": 341
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.lastResource.getDerivedResource",
+          "lineNumber": 348
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.lastResource.appendForwardSlash",
+          "lineNumber": 351
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "terrainProviderBuilder.lastResource.getDerivedResource",
+          "lineNumber": 353
+        },
+        {
+          "caller": "parseMetadataSuccess",
+          "callee": "requestLayerJson",
+          "lineNumber": 356
+        },
+        {
+          "caller": "parseMetadataFailure",
+          "callee": "defined",
+          "lineNumber": 365
+        },
+        {
+          "caller": "parseMetadataFailure",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 369
+        },
+        {
+          "caller": "parseMetadataFailure",
+          "callee": "defined",
+          "lineNumber": 372
+        },
+        {
+          "caller": "parseMetadataFailure",
+          "callee": "requestLayerJson",
+          "lineNumber": 378
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "parseMetadataSuccess",
+          "lineNumber": 385
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "availability.addAvailableTileRange",
+          "lineNumber": 398
+        },
+        {
+          "caller": "metadataSuccess",
+          "callee": "terrainProviderBuilder.tileCredits.push",
+          "lineNumber": 411
+        },
+        {
+          "caller": "requestLayerJson",
+          "callee": "terrainProviderBuilder.layerJsonResource.fetchJson",
+          "lineNumber": 419
+        },
+        {
+          "caller": "requestLayerJson",
+          "callee": "metadataSuccess",
+          "lineNumber": 420
+        },
+        {
+          "caller": "requestLayerJson",
+          "callee": "defined",
+          "lineNumber": 423
+        },
+        {
+          "caller": "requestLayerJson",
+          "callee": "parseMetadataSuccess",
+          "lineNumber": 424
+        },
+        {
+          "caller": "requestLayerJson",
+          "callee": "parseMetadataFailure",
+          "lineNumber": 439
+        },
+        {
+          "caller": "getRequestHeader",
+          "callee": "defined",
+          "lineNumber": 563
+        },
+        {
+          "caller": "getRequestHeader",
+          "callee": "extensionsList.join",
+          "lineNumber": 569
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 613
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 614
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 615
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat32",
+          "lineNumber": 619
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat32",
+          "lineNumber": 621
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 626
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 627
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 628
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 630
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 635
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 636
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getFloat64",
+          "lineNumber": 637
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 641
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "encodedVertexBuffer.subarray",
+          "lineNumber": 653
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "encodedVertexBuffer.subarray",
+          "lineNumber": 654
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "encodedVertexBuffer.subarray",
+          "lineNumber": 655
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "AttributeCompression.zigZagDeltaDecode",
+          "lineNumber": 660
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 667
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "IndexDatatype.createTypedArrayFromArrayBuffer",
+          "lineNumber": 669
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 690
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "IndexDatatype.createTypedArrayFromArrayBuffer",
+          "lineNumber": 692
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 700
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "IndexDatatype.createTypedArrayFromArrayBuffer",
+          "lineNumber": 702
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 710
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "IndexDatatype.createTypedArrayFromArrayBuffer",
+          "lineNumber": 712
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 720
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "IndexDatatype.createTypedArrayFromArrayBuffer",
+          "lineNumber": 722
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint8",
+          "lineNumber": 733
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 735
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "view.getUint32",
+          "lineNumber": 752
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "getJsonFromTypedArray",
+          "lineNumber": 754
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "defined",
+          "lineNumber": 760
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "provider._tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 765
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "provider.availability.addAvailableTileRange",
+          "lineNumber": 775
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "layer.availability.addAvailableTileRange",
+          "lineNumber": 782
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "layer.availabilityTilesLoaded.addAvailableTileRange",
+          "lineNumber": 793
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "provider.getLevelMaximumGeometricError",
+          "lineNumber": 798
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "provider._tilingScheme.tileXYToRectangle",
+          "lineNumber": 805
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "OrientedBoundingBox.fromRectangle",
+          "lineNumber": 806
+        },
+        {
+          "caller": "createQuantizedMeshTerrainData",
+          "callee": "provider.availability.computeChildMaskForTile",
+          "lineNumber": 831
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 913
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "Promise.reject",
+          "lineNumber": 914
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "provider._tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 925
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "extensionList.push",
+          "lineNumber": 933
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "extensionList.push",
+          "lineNumber": 940
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "extensionList.push",
+          "lineNumber": 943
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 952
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 953
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "extensionList.join",
+          "lineNumber": 957
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "getRequestHeader",
+          "lineNumber": 959
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "getRequestHeader",
+          "lineNumber": 962
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "resource\n    .getDerivedResource({\n      url: url,\n      templateValues: {\n        version: layerToUse.version,\n        z: level,\n        x: x,\n        y: terrainY,\n      },\n      queryParameters: query,\n      headers: headers,\n      request: request,\n    })\n    .fetchArrayBuffer",
+          "lineNumber": 965
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "resource\n    .getDerivedResource",
+          "lineNumber": 965
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 980
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "promise.then",
+          "lineNumber": 984
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 985
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "Promise.reject",
+          "lineNumber": 986
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "defined",
+          "lineNumber": 988
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "createHeightmapTerrainData",
+          "lineNumber": 989
+        },
+        {
+          "caller": "requestTileGeometry",
+          "callee": "createQuantizedMeshTerrainData",
+          "lineNumber": 991
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "defined",
+          "lineNumber": 1343
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "getAvailabilityTile",
+          "lineNumber": 1357
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "defined",
+          "lineNumber": 1358
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "availability.isTileAvailable",
+          "lineNumber": 1360
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "availabilityTilesLoaded.isTileAvailable",
+          "lineNumber": 1361
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "defined",
+          "lineNumber": 1367
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "requestTileGeometry",
+          "lineNumber": 1375
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "defined",
+          "lineNumber": 1383
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "requestPromise.then",
+          "lineNumber": 1385
+        },
+        {
+          "caller": "checkLayer",
+          "callee": "getAvailabilityTile",
+          "lineNumber": 1398
+        }
+      ],
+      "metrics": {
+        "importCount": 24,
+        "exportCount": 0,
+        "functionCount": 13,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 125,
+      "nonEmptyLines": 120,
+      "functions": [
+        {
+          "name": "CompressedTextureBuffer",
+          "startLine": 14,
+          "endLine": 26,
+          "params": [
+            "internalFormat",
+            "pixelDatatype",
+            "width",
+            "height",
+            "buffer"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Credit.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 169,
+      "nonEmptyLines": 148,
+      "classes": [
+        {
+          "name": "Credit",
+          "startLine": 21,
+          "endLine": 167,
+          "methods": [
+            "constructor",
+            "html",
+            "id",
+            "showOnScreen",
+            "showOnScreen",
+            "element",
+            "equals",
+            "equals",
+            "isIon",
+            "getIonCredit",
+            "clone"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 30
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 35
+        },
+        {
+          "caller": "element",
+          "callee": "defined",
+          "lineNumber": 88
+        },
+        {
+          "caller": "element",
+          "callee": "DOMPurify.sanitize",
+          "lineNumber": 89
+        },
+        {
+          "caller": "element",
+          "callee": "document.createElement",
+          "lineNumber": 91
+        },
+        {
+          "caller": "element",
+          "callee": "div.querySelectorAll",
+          "lineNumber": 98
+        },
+        {
+          "caller": "element",
+          "callee": "links[i].setAttribute",
+          "lineNumber": 100
+        },
+        {
+          "caller": "equals",
+          "callee": "defined",
+          "lineNumber": 118
+        },
+        {
+          "caller": "equals",
+          "callee": "defined",
+          "lineNumber": 119
+        },
+        {
+          "caller": "equals",
+          "callee": "Credit.equals",
+          "lineNumber": 132
+        },
+        {
+          "caller": "isIon",
+          "callee": "this.html.indexOf",
+          "lineNumber": 139
+        },
+        {
+          "caller": "getIonCredit",
+          "callee": "defined",
+          "lineNumber": 150
+        },
+        {
+          "caller": "clone",
+          "callee": "defined",
+          "lineNumber": 163
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 287,
+      "nonEmptyLines": 263,
+      "functions": [
+        {
+          "name": "CustomHeightmapTerrainProvider",
+          "startLine": 56,
+          "endLine": 92,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "Check.defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "Check.defined",
+          "lineNumber": 61
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "Check.defined",
+          "lineNumber": 62
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "defined",
+          "lineNumber": 68
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "Math.max",
+          "lineNumber": 76
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "TerrainProvider.getEstimatedLevelZeroGeometricErrorForAHeightmap",
+          "lineNumber": 79
+        },
+        {
+          "caller": "CustomHeightmapTerrainProvider",
+          "callee": "this._tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 82
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 405,
+      "nonEmptyLines": 355,
+      "functions": [
+        {
+          "name": "DoubleEndedPriorityQueue",
+          "startLine": 17,
+          "endLine": 36,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "swap",
+          "startLine": 313,
+          "endLine": 318,
+          "params": [
+            "that",
+            "indexA",
+            "indexB"
+          ]
+        },
+        {
+          "name": "lessThan",
+          "startLine": 320,
+          "endLine": 322,
+          "params": [
+            "that",
+            "indexA",
+            "indexB"
+          ]
+        },
+        {
+          "name": "greaterThan",
+          "startLine": 324,
+          "endLine": 326,
+          "params": [
+            "that",
+            "indexA",
+            "indexB"
+          ]
+        },
+        {
+          "name": "pushUp",
+          "startLine": 328,
+          "endLine": 354,
+          "params": [
+            "that",
+            "index"
+          ]
+        },
+        {
+          "name": "pushDown",
+          "startLine": 356,
+          "endLine": 396,
+          "params": [
+            "that",
+            "index"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "DoubleEndedPriorityQueue",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 19
+        },
+        {
+          "caller": "DoubleEndedPriorityQueue",
+          "callee": "Check.defined",
+          "lineNumber": 20
+        },
+        {
+          "caller": "DoubleEndedPriorityQueue",
+          "callee": "defined",
+          "lineNumber": 21
+        },
+        {
+          "caller": "DoubleEndedPriorityQueue",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 22
+        },
+        {
+          "caller": "DoubleEndedPriorityQueue",
+          "callee": "defined",
+          "lineNumber": 32
+        },
+        {
+          "caller": "lessThan",
+          "callee": "that._comparator",
+          "lineNumber": 321
+        },
+        {
+          "caller": "greaterThan",
+          "callee": "that._comparator",
+          "lineNumber": 325
+        },
+        {
+          "caller": "pushUp",
+          "callee": "Math.floor",
+          "lineNumber": 332
+        },
+        {
+          "caller": "pushUp",
+          "callee": "CesiumMath.log2",
+          "lineNumber": 332
+        },
+        {
+          "caller": "pushUp",
+          "callee": "Math.floor",
+          "lineNumber": 333
+        },
+        {
+          "caller": "pushUp",
+          "callee": "lessThan",
+          "lineNumber": 334
+        },
+        {
+          "caller": "pushUp",
+          "callee": "swap",
+          "lineNumber": 338
+        },
+        {
+          "caller": "pushUp",
+          "callee": "Math.floor",
+          "lineNumber": 347
+        },
+        {
+          "caller": "pushUp",
+          "callee": "lessThan",
+          "lineNumber": 348
+        },
+        {
+          "caller": "pushUp",
+          "callee": "swap",
+          "lineNumber": 351
+        },
+        {
+          "caller": "pushDown",
+          "callee": "Math.floor",
+          "lineNumber": 358
+        },
+        {
+          "caller": "pushDown",
+          "callee": "CesiumMath.log2",
+          "lineNumber": 358
+        },
+        {
+          "caller": "pushDown",
+          "callee": "lessThan",
+          "lineNumber": 367
+        },
+        {
+          "caller": "pushDown",
+          "callee": "Math.max",
+          "lineNumber": 371
+        },
+        {
+          "caller": "pushDown",
+          "callee": "Math.min",
+          "lineNumber": 372
+        },
+        {
+          "caller": "pushDown",
+          "callee": "lessThan",
+          "lineNumber": 377
+        },
+        {
+          "caller": "pushDown",
+          "callee": "lessThan",
+          "lineNumber": 384
+        },
+        {
+          "caller": "pushDown",
+          "callee": "swap",
+          "lineNumber": 385
+        },
+        {
+          "caller": "pushDown",
+          "callee": "Math.floor",
+          "lineNumber": 387
+        },
+        {
+          "caller": "pushDown",
+          "callee": "greaterThan",
+          "lineNumber": 388
+        },
+        {
+          "caller": "pushDown",
+          "callee": "swap",
+          "lineNumber": 389
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/DoublyLinkedList.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 95,
+      "functions": [
+        {
+          "name": "DoublyLinkedList",
+          "startLine": 6,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "DoublyLinkedListNode",
+          "startLine": 23,
+          "endLine": 27,
+          "params": [
+            "item",
+            "previous",
+            "next"
+          ]
+        },
+        {
+          "name": "remove",
+          "startLine": 50,
+          "endLine": 70,
+          "params": [
+            "list",
+            "node"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "remove",
+          "callee": "defined",
+          "lineNumber": 51
+        },
+        {
+          "caller": "remove",
+          "callee": "defined",
+          "lineNumber": 51
+        },
+        {
+          "caller": "remove",
+          "callee": "defined",
+          "lineNumber": 54
+        },
+        {
+          "caller": "remove",
+          "callee": "defined",
+          "lineNumber": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 201,
+      "nonEmptyLines": 188,
+      "functions": [
+        {
+          "name": "EllipsoidTerrainProvider",
+          "startLine": 26,
+          "endLine": 46,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EllipsoidTerrainProvider",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "EllipsoidTerrainProvider",
+          "callee": "TerrainProvider.getEstimatedLevelZeroGeometricErrorForAHeightmap",
+          "lineNumber": 39
+        },
+        {
+          "caller": "EllipsoidTerrainProvider",
+          "callee": "this._tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/FeatureDetection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 404,
+      "nonEmptyLines": 356,
+      "functions": [
+        {
+          "name": "extractVersion",
+          "startLine": 13,
+          "endLine": 19,
+          "params": [
+            "versionString"
+          ]
+        },
+        {
+          "name": "isChrome",
+          "startLine": 23,
+          "endLine": 37,
+          "params": []
+        },
+        {
+          "name": "chromeVersion",
+          "startLine": 39,
+          "endLine": 41,
+          "params": []
+        },
+        {
+          "name": "isSafari",
+          "startLine": 45,
+          "endLine": 64,
+          "params": []
+        },
+        {
+          "name": "safariVersion",
+          "startLine": 66,
+          "endLine": 68,
+          "params": []
+        },
+        {
+          "name": "isWebkit",
+          "startLine": 72,
+          "endLine": 85,
+          "params": []
+        },
+        {
+          "name": "webkitVersion",
+          "startLine": 87,
+          "endLine": 89,
+          "params": []
+        },
+        {
+          "name": "isEdge",
+          "startLine": 93,
+          "endLine": 103,
+          "params": []
+        },
+        {
+          "name": "edgeVersion",
+          "startLine": 105,
+          "endLine": 107,
+          "params": []
+        },
+        {
+          "name": "isFirefox",
+          "startLine": 111,
+          "endLine": 122,
+          "params": []
+        },
+        {
+          "name": "isWindows",
+          "startLine": 125,
+          "endLine": 130,
+          "params": []
+        },
+        {
+          "name": "isIPadOrIOS",
+          "startLine": 133,
+          "endLine": 142,
+          "params": []
+        },
+        {
+          "name": "firefoxVersion",
+          "startLine": 144,
+          "endLine": 146,
+          "params": []
+        },
+        {
+          "name": "supportsPointerEvents",
+          "startLine": 149,
+          "endLine": 163,
+          "params": []
+        },
+        {
+          "name": "supportsImageRenderingPixelated",
+          "startLine": 167,
+          "endLine": 182,
+          "params": []
+        },
+        {
+          "name": "imageRenderingValue",
+          "startLine": 184,
+          "endLine": 188,
+          "params": []
+        },
+        {
+          "name": "supportsWebP",
+          "startLine": 190,
+          "endLine": 199,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "extractVersion",
+          "callee": "versionString.split",
+          "lineNumber": 14
+        },
+        {
+          "caller": "extractVersion",
+          "callee": "parseInt",
+          "lineNumber": 16
+        },
+        {
+          "caller": "isChrome",
+          "callee": "defined",
+          "lineNumber": 24
+        },
+        {
+          "caller": "isChrome",
+          "callee": "isEdge",
+          "lineNumber": 27
+        },
+        {
+          "caller": "isChrome",
+          "callee": "/ Chrome\\/([\\.0-9]+)/.exec",
+          "lineNumber": 28
+        },
+        {
+          "caller": "isChrome",
+          "callee": "extractVersion",
+          "lineNumber": 31
+        },
+        {
+          "caller": "chromeVersion",
+          "callee": "isChrome",
+          "lineNumber": 40
+        },
+        {
+          "caller": "isSafari",
+          "callee": "defined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "isSafari",
+          "callee": "isChrome",
+          "lineNumber": 51
+        },
+        {
+          "caller": "isSafari",
+          "callee": "isEdge",
+          "lineNumber": 52
+        },
+        {
+          "caller": "isSafari",
+          "callee": "/ Safari\\/[\\.0-9]+/.test",
+          "lineNumber": 53
+        },
+        {
+          "caller": "isSafari",
+          "callee": "/ Version\\/([\\.0-9]+)/.exec",
+          "lineNumber": 55
+        },
+        {
+          "caller": "isSafari",
+          "callee": "extractVersion",
+          "lineNumber": 58
+        },
+        {
+          "caller": "safariVersion",
+          "callee": "isSafari",
+          "lineNumber": 67
+        },
+        {
+          "caller": "isWebkit",
+          "callee": "defined",
+          "lineNumber": 73
+        },
+        {
+          "caller": "isWebkit",
+          "callee": "/ AppleWebKit\\/([\\.0-9]+)(\\+?)/.exec",
+          "lineNumber": 76
+        },
+        {
+          "caller": "isWebkit",
+          "callee": "extractVersion",
+          "lineNumber": 79
+        },
+        {
+          "caller": "webkitVersion",
+          "callee": "isWebkit",
+          "lineNumber": 88
+        },
+        {
+          "caller": "isEdge",
+          "callee": "defined",
+          "lineNumber": 94
+        },
+        {
+          "caller": "isEdge",
+          "callee": "/ Edg\\/([\\.0-9]+)/.exec",
+          "lineNumber": 96
+        },
+        {
+          "caller": "isEdge",
+          "callee": "extractVersion",
+          "lineNumber": 99
+        },
+        {
+          "caller": "edgeVersion",
+          "callee": "isEdge",
+          "lineNumber": 106
+        },
+        {
+          "caller": "isFirefox",
+          "callee": "defined",
+          "lineNumber": 112
+        },
+        {
+          "caller": "isFirefox",
+          "callee": "/Firefox\\/([\\.0-9]+)/.exec",
+          "lineNumber": 115
+        },
+        {
+          "caller": "isFirefox",
+          "callee": "extractVersion",
+          "lineNumber": 118
+        },
+        {
+          "caller": "isWindows",
+          "callee": "defined",
+          "lineNumber": 126
+        },
+        {
+          "caller": "isWindows",
+          "callee": "/Windows/i.test",
+          "lineNumber": 127
+        },
+        {
+          "caller": "isIPadOrIOS",
+          "callee": "defined",
+          "lineNumber": 134
+        },
+        {
+          "caller": "firefoxVersion",
+          "callee": "isFirefox",
+          "lineNumber": 145
+        },
+        {
+          "caller": "supportsPointerEvents",
+          "callee": "defined",
+          "lineNumber": 150
+        },
+        {
+          "caller": "supportsPointerEvents",
+          "callee": "isFirefox",
+          "lineNumber": 158
+        },
+        {
+          "caller": "supportsPointerEvents",
+          "callee": "defined",
+          "lineNumber": 160
+        },
+        {
+          "caller": "supportsImageRenderingPixelated",
+          "callee": "defined",
+          "lineNumber": 168
+        },
+        {
+          "caller": "supportsImageRenderingPixelated",
+          "callee": "document.createElement",
+          "lineNumber": 169
+        },
+        {
+          "caller": "supportsImageRenderingPixelated",
+          "callee": "canvas.setAttribute",
+          "lineNumber": 170
+        },
+        {
+          "caller": "supportsImageRenderingPixelated",
+          "callee": "defined",
+          "lineNumber": 176
+        },
+        {
+          "caller": "imageRenderingValue",
+          "callee": "supportsImageRenderingPixelated",
+          "lineNumber": 185
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 17,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Fullscreen.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 249,
+      "nonEmptyLines": 221,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeocodeType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 25,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeocoderService.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 60,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "GeocoderService",
+          "startLine": 22,
+          "endLine": 24,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GeocoderService",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeographicTilingScheme.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 226,
+      "nonEmptyLines": 197,
+      "classes": [
+        {
+          "name": "GeographicTilingScheme",
+          "startLine": 23,
+          "endLine": 224,
+          "methods": [
+            "constructor",
+            "ellipsoid",
+            "rectangle",
+            "projection",
+            "getNumberOfXTilesAtLevel",
+            "getNumberOfYTilesAtLevel",
+            "rectangleToNativeRectangle",
+            "tileXYToNativeRectangle",
+            "tileXYToRectangle",
+            "positionToTileXY"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "Check.defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 103
+        },
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 104
+        },
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 105
+        },
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 106
+        },
+        {
+          "caller": "rectangleToNativeRectangle",
+          "callee": "defined",
+          "lineNumber": 108
+        },
+        {
+          "caller": "tileXYToNativeRectangle",
+          "callee": "this.tileXYToRectangle",
+          "lineNumber": 132
+        },
+        {
+          "caller": "tileXYToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 133
+        },
+        {
+          "caller": "tileXYToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 134
+        },
+        {
+          "caller": "tileXYToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 135
+        },
+        {
+          "caller": "tileXYToNativeRectangle",
+          "callee": "CesiumMath.toDegrees",
+          "lineNumber": 136
+        },
+        {
+          "caller": "tileXYToRectangle",
+          "callee": "this.getNumberOfXTilesAtLevel",
+          "lineNumber": 154
+        },
+        {
+          "caller": "tileXYToRectangle",
+          "callee": "this.getNumberOfYTilesAtLevel",
+          "lineNumber": 155
+        },
+        {
+          "caller": "tileXYToRectangle",
+          "callee": "defined",
+          "lineNumber": 165
+        },
+        {
+          "caller": "positionToTileXY",
+          "callee": "Rectangle.contains",
+          "lineNumber": 189
+        },
+        {
+          "caller": "positionToTileXY",
+          "callee": "this.getNumberOfXTilesAtLevel",
+          "lineNumber": 194
+        },
+        {
+          "caller": "positionToTileXY",
+          "callee": "this.getNumberOfYTilesAtLevel",
+          "lineNumber": 195
+        },
+        {
+          "caller": "positionToTileXY",
+          "callee": "defined",
+          "lineNumber": 216
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 584,
+      "nonEmptyLines": 529,
+      "functions": [
+        {
+          "name": "stringToBuffer",
+          "startLine": 15,
+          "endLine": 24,
+          "params": [
+            "str"
+          ]
+        },
+        {
+          "name": "GoogleEarthEnterpriseMetadata",
+          "startLine": 46,
+          "endLine": 99,
+          "params": [
+            "resourceOrUrl"
+          ]
+        },
+        {
+          "name": "populateSubtree",
+          "startLine": 393,
+          "endLine": 456,
+          "params": [
+            "that",
+            "quadKey",
+            "request"
+          ]
+        },
+        {
+          "name": "getMetadataResource",
+          "startLine": 490,
+          "endLine": 495,
+          "params": [
+            "that",
+            "quadKey",
+            "version",
+            "request"
+          ]
+        },
+        {
+          "name": "requestDbRoot",
+          "startLine": 499,
+          "endLine": 583,
+          "params": [
+            "that"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "stringToBuffer",
+          "callee": "str.charCodeAt",
+          "lineNumber": 20
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "defined",
+          "lineNumber": 398
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "t.hasSubtree",
+          "lineNumber": 398
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "t.hasChildren",
+          "lineNumber": 398
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "q.substring",
+          "lineNumber": 403
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "defined",
+          "lineNumber": 410
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "promise.then",
+          "lineNumber": 411
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "populateSubtree",
+          "lineNumber": 419
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "defined",
+          "lineNumber": 427
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "t.hasSubtree",
+          "lineNumber": 427
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "Promise.reject",
+          "lineNumber": 428
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "that.getQuadTreePacket",
+          "lineNumber": 436
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "defined",
+          "lineNumber": 437
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "promise\n    .then(function () {\n      // Recursively call this in case we need multiple subtree requests\n      subtreeRequest = new Request({\n        throttle: request.throttle,\n        throttleByServer: request.throttleByServer,\n        type: request.type,\n        priorityFunction: request.priorityFunction,\n      });\n      return populateSubtree(that, quadKey, subtreeRequest);\n    })\n    .finally",
+          "lineNumber": 442
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "promise\n    .then",
+          "lineNumber": 442
+        },
+        {
+          "caller": "populateSubtree",
+          "callee": "populateSubtree",
+          "lineNumber": 451
+        },
+        {
+          "caller": "getMetadataResource",
+          "callee": "that._resource.getDerivedResource",
+          "lineNumber": 491
+        },
+        {
+          "caller": "getMetadataResource",
+          "callee": "version.toString",
+          "lineNumber": 492
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "that._resource.getDerivedResource",
+          "lineNumber": 500
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 507
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "buildModuleUrl",
+          "lineNumber": 508
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "loadAndExecuteScript(url).then",
+          "lineNumber": 510
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "loadAndExecuteScript",
+          "lineNumber": 510
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "window.cesiumGoogleEarthDbRootParser",
+          "lineNumber": 511
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 512
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParserPromise\n    .then(function () {\n      return resource.fetchArrayBuffer();\n    })\n    .then(function (buf) {\n      const encryptedDbRootProto = dbrootParser.EncryptedDbRootProto.decode(\n        new Uint8Array(buf),\n      );\n\n      let byteArray = encryptedDbRootProto.encryptionData;\n      let offset = byteArray.byteOffset;\n      let end = offset + byteArray.byteLength;\n      const key = (that.key = byteArray.buffer.slice(offset, end));\n\n      byteArray = encryptedDbRootProto.dbrootData;\n      offset = byteArray.byteOffset;\n      end = offset + byteArray.byteLength;\n      const dbRootCompressed = byteArray.buffer.slice(offset, end);\n      return taskProcessor.scheduleTask(\n        {\n          buffer: dbRootCompressed,\n          type: \"DbRoot\",\n          key: key,\n        },\n        [dbRootCompressed],\n      );\n    })\n    .then(function (result) {\n      const dbRoot = dbrootParser.DbRootProto.decode(\n        new Uint8Array(result.buffer),\n      );\n      that.imageryPresent = dbRoot.imageryPresent ?? that.imageryPresent;\n      that.protoImagery = dbRoot.protoImagery;\n      that.terrainPresent = dbRoot.terrainPresent ?? that.terrainPresent;\n      if (defined(dbRoot.endSnippet) && defined(dbRoot.endSnippet.model)) {\n        const model = dbRoot.endSnippet.model;\n        that.negativeAltitudeExponentBias =\n          model.negativeAltitudeExponentBias ??\n          that.negativeAltitudeExponentBias;\n        that.negativeAltitudeThreshold =\n          model.compressedNegativeAltitudeThreshold ??\n          that.negativeAltitudeThreshold;\n      }\n      if (defined(dbRoot.databaseVersion)) {\n        that._quadPacketVersion =\n          dbRoot.databaseVersion.quadtreeVersion ?? that._quadPacketVersion;\n      }\n      const providers = that.providers;\n      const providerInfo = dbRoot.providerInfo ?? [];\n      const count = providerInfo.length;\n      for (let i = 0; i < count; ++i) {\n        const provider = providerInfo[i];\n        const copyrightString = provider.copyrightString;\n        if (defined(copyrightString)) {\n          providers[provider.providerId] = new Credit(copyrightString.value);\n        }\n      }\n    })\n    .catch",
+          "lineNumber": 520
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParserPromise\n    .then(function () {\n      return resource.fetchArrayBuffer();\n    })\n    .then(function (buf) {\n      const encryptedDbRootProto = dbrootParser.EncryptedDbRootProto.decode(\n        new Uint8Array(buf),\n      );\n\n      let byteArray = encryptedDbRootProto.encryptionData;\n      let offset = byteArray.byteOffset;\n      let end = offset + byteArray.byteLength;\n      const key = (that.key = byteArray.buffer.slice(offset, end));\n\n      byteArray = encryptedDbRootProto.dbrootData;\n      offset = byteArray.byteOffset;\n      end = offset + byteArray.byteLength;\n      const dbRootCompressed = byteArray.buffer.slice(offset, end);\n      return taskProcessor.scheduleTask(\n        {\n          buffer: dbRootCompressed,\n          type: \"DbRoot\",\n          key: key,\n        },\n        [dbRootCompressed],\n      );\n    })\n    .then",
+          "lineNumber": 520
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParserPromise\n    .then(function () {\n      return resource.fetchArrayBuffer();\n    })\n    .then",
+          "lineNumber": 520
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParserPromise\n    .then",
+          "lineNumber": 520
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "resource.fetchArrayBuffer",
+          "lineNumber": 522
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParser.EncryptedDbRootProto.decode",
+          "lineNumber": 525
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "byteArray.buffer.slice",
+          "lineNumber": 532
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "byteArray.buffer.slice",
+          "lineNumber": 537
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "taskProcessor.scheduleTask",
+          "lineNumber": 538
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "dbrootParser.DbRootProto.decode",
+          "lineNumber": 548
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 554
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 554
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 563
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "defined",
+          "lineNumber": 573
+        },
+        {
+          "caller": "requestDbRoot",
+          "callee": "console.log",
+          "lineNumber": 580
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 574,
+      "nonEmptyLines": 518,
+      "functions": [
+        {
+          "name": "TerrainCache",
+          "startLine": 28,
+          "endLine": 31,
+          "params": []
+        },
+        {
+          "name": "GoogleEarthEnterpriseTerrainProvider",
+          "startLine": 99,
+          "endLine": 128,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "computeChildMask",
+          "startLine": 272,
+          "endLine": 287,
+          "params": [
+            "quadKey",
+            "info",
+            "metadata"
+          ]
+        },
+        {
+          "name": "buildTerrainResource",
+          "startLine": 567,
+          "endLine": 573,
+          "params": [
+            "terrainProvider",
+            "quadKey",
+            "version",
+            "request"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TerrainCache",
+          "callee": "JulianDate.now",
+          "lineNumber": 30
+        },
+        {
+          "caller": "computeChildMask",
+          "callee": "info.getChildBitmask",
+          "lineNumber": 273
+        },
+        {
+          "caller": "computeChildMask",
+          "callee": "metadata.getTileInformationFromQuadKey",
+          "lineNumber": 277
+        },
+        {
+          "caller": "computeChildMask",
+          "callee": "i.toString",
+          "lineNumber": 278
+        },
+        {
+          "caller": "computeChildMask",
+          "callee": "defined",
+          "lineNumber": 280
+        },
+        {
+          "caller": "computeChildMask",
+          "callee": "child.hasTerrain",
+          "lineNumber": 280
+        },
+        {
+          "caller": "buildTerrainResource",
+          "callee": "defined",
+          "lineNumber": 568
+        },
+        {
+          "caller": "buildTerrainResource",
+          "callee": "terrainProvider._metadata.resource.getDerivedResource",
+          "lineNumber": 569
+        },
+        {
+          "caller": "buildTerrainResource",
+          "callee": "version.toString",
+          "lineNumber": 570
+        }
+      ],
+      "metrics": {
+        "importCount": 17,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 125,
+      "functions": [
+        {
+          "name": "GoogleEarthEnterpriseTileInformation",
+          "startLine": 23,
+          "endLine": 39,
+          "params": [
+            "bits",
+            "cnodeVersion",
+            "imageryVersion",
+            "terrainVersion",
+            "imageryProvider",
+            "terrainProvider"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleGeocoderService.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 96,
+      "functions": [
+        {
+          "name": "GoogleGeocoderService",
+          "startLine": 23,
+          "endLine": 38,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GoogleGeocoderService",
+          "callee": "defined",
+          "lineNumber": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleMaps.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 55,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Heap.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 233,
+      "nonEmptyLines": 210,
+      "functions": [
+        {
+          "name": "Heap",
+          "startLine": 14,
+          "endLine": 24,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "swap",
+          "startLine": 98,
+          "endLine": 102,
+          "params": [
+            "array",
+            "a",
+            "b"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Heap",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Heap",
+          "callee": "Check.defined",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/HeightmapEncoding.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 26,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 903,
+      "nonEmptyLines": 824,
+      "functions": [
+        {
+          "name": "HeightmapTerrainData",
+          "startLine": 96,
+          "endLine": 139,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "interpolateHeight",
+          "startLine": 675,
+          "endLine": 755,
+          "params": [
+            "sourceHeights",
+            "elementsPerHeight",
+            "elementMultiplier",
+            "stride",
+            "isBigEndian",
+            "sourceRectangle",
+            "width",
+            "height",
+            "longitude",
+            "latitude"
+          ]
+        },
+        {
+          "name": "interpolateMeshHeight",
+          "startLine": 757,
+          "endLine": 821,
+          "params": [
+            "buffer",
+            "encoding",
+            "heightOffset",
+            "heightScale",
+            "sourceRectangle",
+            "width",
+            "height",
+            "longitude",
+            "latitude"
+          ]
+        },
+        {
+          "name": "triangleInterpolateHeight",
+          "startLine": 823,
+          "endLine": 847,
+          "params": [
+            "dX",
+            "dY",
+            "southwestHeight",
+            "southeastHeight",
+            "northwestHeight",
+            "northeastHeight"
+          ]
+        },
+        {
+          "name": "getHeight",
+          "startLine": 849,
+          "endLine": 873,
+          "params": [
+            "heights",
+            "elementsPerHeight",
+            "elementMultiplier",
+            "stride",
+            "isBigEndian",
+            "index"
+          ]
+        },
+        {
+          "name": "setHeight",
+          "startLine": 875,
+          "endLine": 902,
+          "params": [
+            "heights",
+            "elementsPerHeight",
+            "elementMultiplier",
+            "divisor",
+            "stride",
+            "isBigEndian",
+            "index",
+            "height"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "HeightmapTerrainData",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 100
+        },
+        {
+          "caller": "HeightmapTerrainData",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 101
+        },
+        {
+          "caller": "HeightmapTerrainData",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 102
+        },
+        {
+          "caller": "HeightmapTerrainData",
+          "callee": "defined",
+          "lineNumber": 113
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "getHeight",
+          "lineNumber": 714
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "getHeight",
+          "lineNumber": 722
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "getHeight",
+          "lineNumber": 730
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "getHeight",
+          "lineNumber": 738
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "triangleInterpolateHeight",
+          "lineNumber": 747
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 797
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 801
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 805
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 809
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "triangleInterpolateHeight",
+          "lineNumber": 813
+        }
+      ],
+      "metrics": {
+        "importCount": 17,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/HilbertOrder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 99,
+      "functions": [
+        {
+          "name": "rotate",
+          "startLine": 97,
+          "endLine": 110,
+          "params": [
+            "n",
+            "p",
+            "rx",
+            "ry"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/ITwinPlatform.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 389,
+      "nonEmptyLines": 362,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Iau2006XysData.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 286,
+      "nonEmptyLines": 245,
+      "functions": [
+        {
+          "name": "Iau2006XysData",
+          "startLine": 28,
+          "endLine": 72,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getDaysSinceEpoch",
+          "startLine": 76,
+          "endLine": 81,
+          "params": [
+            "xys",
+            "dayTT",
+            "secondTT"
+          ]
+        },
+        {
+          "name": "requestXysChunkJson",
+          "startLine": 251,
+          "endLine": 259,
+          "params": [
+            "resource",
+            "index",
+            "xysData"
+          ]
+        },
+        {
+          "name": "requestXysChunk",
+          "startLine": 261,
+          "endLine": 285,
+          "params": [
+            "xysData",
+            "chunkIndex"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Iau2006XysData",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Iau2006XysData",
+          "callee": "Math.pow",
+          "lineNumber": 54
+        },
+        {
+          "caller": "getDaysSinceEpoch",
+          "callee": "JulianDate.daysDifference",
+          "lineNumber": 80
+        },
+        {
+          "caller": "requestXysChunkJson",
+          "callee": "resource.fetchJson",
+          "lineNumber": 253
+        },
+        {
+          "caller": "requestXysChunkJson",
+          "callee": "xysData._updateChunkData",
+          "lineNumber": 254
+        },
+        {
+          "caller": "requestXysChunk",
+          "callee": "defined",
+          "lineNumber": 262
+        },
+        {
+          "caller": "requestXysChunk",
+          "callee": "defined",
+          "lineNumber": 269
+        },
+        {
+          "caller": "requestXysChunk",
+          "callee": "xysFileUrlTemplate.getDerivedResource",
+          "lineNumber": 270
+        },
+        {
+          "caller": "requestXysChunk",
+          "callee": "buildModuleUrl",
+          "lineNumber": 277
+        },
+        {
+          "caller": "requestXysChunk",
+          "callee": "requestXysChunkJson",
+          "lineNumber": 281
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Iau2006XysSample.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "Iau2006XysSample",
+          "startLine": 13,
+          "endLine": 31,
+          "params": [
+            "x",
+            "y",
+            "s"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Ion.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 49,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IonGeocodeProviderType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 32,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IonGeocoderService.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 147,
+      "nonEmptyLines": 133,
+      "functions": [
+        {
+          "name": "validateIonGeocodeProviderType",
+          "startLine": 16,
+          "endLine": 26,
+          "params": [
+            "geocodeProviderType"
+          ]
+        },
+        {
+          "name": "providerToQueryParameter",
+          "startLine": 34,
+          "endLine": 36,
+          "params": [
+            "provider"
+          ]
+        },
+        {
+          "name": "queryParameterToProvider",
+          "startLine": 38,
+          "endLine": 42,
+          "params": [
+            "parameter"
+          ]
+        },
+        {
+          "name": "IonGeocoderService",
+          "startLine": 57,
+          "endLine": 95,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validateIonGeocodeProviderType",
+          "callee": "Object.values(IonGeocodeProviderType).some",
+          "lineNumber": 18
+        },
+        {
+          "caller": "validateIonGeocodeProviderType",
+          "callee": "Object.values",
+          "lineNumber": 18
+        },
+        {
+          "caller": "queryParameterToProvider",
+          "callee": "Object.entries(providerToParameterMap).find",
+          "lineNumber": 39
+        },
+        {
+          "caller": "queryParameterToProvider",
+          "callee": "Object.entries",
+          "lineNumber": 39
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 61
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "validateIonGeocodeProviderType",
+          "lineNumber": 67
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 71
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "server.appendForwardSlash",
+          "lineNumber": 72
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "Ion.getDefaultTokenCredit",
+          "lineNumber": 74
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "defined",
+          "lineNumber": 75
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "options.scene.frameState.creditDisplay.addStaticCredit",
+          "lineNumber": 76
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "Credit.clone",
+          "lineNumber": 77
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "server.getDerivedResource",
+          "lineNumber": 81
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "defined",
+          "lineNumber": 85
+        },
+        {
+          "caller": "IonGeocoderService",
+          "callee": "searchEndpoint.appendQueryParameters",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IonResource.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 321,
+      "nonEmptyLines": 277,
+      "functions": [
+        {
+          "name": "IonResource",
+          "startLine": 34,
+          "endLine": 88,
+          "params": [
+            "endpoint",
+            "endpointResource"
+          ]
+        },
+        {
+          "name": "addClientHeaders",
+          "startLine": 262,
+          "endLine": 271,
+          "params": []
+        },
+        {
+          "name": "retryCallback",
+          "startLine": 273,
+          "endLine": 319,
+          "params": [
+            "that",
+            "error"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "IonResource",
+          "callee": "Check.defined",
+          "lineNumber": 36
+        },
+        {
+          "caller": "IonResource",
+          "callee": "Check.defined",
+          "lineNumber": 37
+        },
+        {
+          "caller": "IonResource",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "IonResource",
+          "callee": "Resource.call",
+          "lineNumber": 63
+        },
+        {
+          "caller": "IonResource",
+          "callee": "new Uri(endpoint.url).authority",
+          "lineNumber": 69
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "defined",
+          "lineNumber": 284
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "Promise.resolve",
+          "lineNumber": 288
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "defined",
+          "lineNumber": 294
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "endpointResource\n      .fetchJson()\n      .then(function (newEndpoint) {\n        const refreshCallback = that.refreshCallback ?? ionRoot.refreshCallback;\n        if (defined(refreshCallback)) {\n          refreshCallback(ionRoot, newEndpoint);\n        }\n\n        // Set the token for root resource so new derived resources automatically pick it up\n        ionRoot._ionEndpoint = newEndpoint;\n        return ionRoot._ionEndpoint;\n      })\n      .finally",
+          "lineNumber": 295
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "endpointResource\n      .fetchJson()\n      .then",
+          "lineNumber": 295
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "endpointResource\n      .fetchJson",
+          "lineNumber": 295
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "defined",
+          "lineNumber": 299
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "refreshCallback",
+          "lineNumber": 300
+        },
+        {
+          "caller": "retryCallback",
+          "callee": "ionRoot._pendingPromise.then",
+          "lineNumber": 314
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/KTX2Transcoder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 92,
+      "nonEmptyLines": 80,
+      "functions": [
+        {
+          "name": "KTX2Transcoder",
+          "startLine": 12,
+          "endLine": 12,
+          "params": []
+        },
+        {
+          "name": "makeReadyPromise",
+          "startLine": 21,
+          "endLine": 34,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "makeReadyPromise",
+          "callee": "KTX2Transcoder._transcodeTaskProcessor\n    .initWebAssemblyModule({\n      wasmBinaryFile: \"ThirdParty/basis_transcoder.wasm\",\n    })\n    .then",
+          "lineNumber": 22
+        },
+        {
+          "caller": "makeReadyPromise",
+          "callee": "KTX2Transcoder._transcodeTaskProcessor\n    .initWebAssemblyModule",
+          "lineNumber": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/ManagedArray.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 162,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "ManagedArray",
+          "startLine": 12,
+          "endLine": 16,
+          "params": [
+            "length"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/MortonOrder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 214,
+      "nonEmptyLines": 198,
+      "functions": [
+        {
+          "name": "insertOneSpacing",
+          "startLine": 30,
+          "endLine": 36,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "insertTwoSpacing",
+          "startLine": 53,
+          "endLine": 59,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "removeOneSpacing",
+          "startLine": 76,
+          "endLine": 83,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "removeTwoSpacing",
+          "startLine": 100,
+          "endLine": 107,
+          "params": [
+            "v"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    }
+  ]
+}

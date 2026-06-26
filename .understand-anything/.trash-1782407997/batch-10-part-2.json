@@ -1,0 +1,1305 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "file",
+      "name": "ClippingPlaneCollection.js",
+      "filePath": "packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "summary": "一组 ClippingPlane 对象集合，用于按平面裁剪 primitive 和 globe，支持平面打包为 Uint8/Float、附加集合与事件通知。",
+      "tags": [
+        "clipping",
+        "plane-collection",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "type": "file",
+      "name": "ClippingPolygonCollection.js",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "summary": "多边形裁剪集合，通过有向距离纹理 (signed distance texture) 实现基于多边形边界的裁剪，支持全局与交叉裁剪模式。",
+      "tags": [
+        "clipping",
+        "polygon",
+        "texture",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "type": "file",
+      "name": "CloudCollection.js",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "summary": "管理一组 CumulusCloud 的集合 primitive，负责顶点数组、batched/instanced 索引缓冲、纹理与每帧位置/缩放写入。",
+      "tags": [
+        "primitive",
+        "cloud",
+        "collection",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/CloudType.js",
+      "type": "file",
+      "name": "CloudType.js",
+      "filePath": "packages/engine/Source/Scene/CloudType.js",
+      "summary": "枚举：指定添加到 CloudCollection 的云类型（积云等）。",
+      "tags": [
+        "enum",
+        "cloud",
+        "type-definition",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "type": "file",
+      "name": "CubeMapPanorama.js",
+      "filePath": "packages/engine/Source/Scene/CubeMapPanorama.js",
+      "summary": "从立方体贴图 (cube map) 创建全景图纹理资源，用于天空盒与环境贴图背景渲染。",
+      "tags": [
+        "panorama",
+        "cube-map",
+        "texture",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "file",
+      "name": "CullFace.js",
+      "filePath": "packages/engine/Source/Scene/CullFace.js",
+      "summary": "枚举：映射到 WebGLConstants，指定三角形的剔除面（前/后/前后）。",
+      "tags": [
+        "enum",
+        "webgl",
+        "type-definition",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:ClippingPlaneCollection",
+      "type": "function",
+      "name": "ClippingPlaneCollection",
+      "filePath": "packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "lineRange": [
+        68,
+        144
+      ],
+      "summary": "构造平面裁剪集合，初始化平面数组、事件与统一矩阵。",
+      "tags": [
+        "clipping",
+        "plane",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsUint8",
+      "type": "function",
+      "name": "packPlanesAsUint8",
+      "filePath": "packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "lineRange": [
+        404,
+        431
+      ],
+      "summary": "将裁剪平面法线/距离打包为 Uint8 纹理数据。",
+      "tags": [
+        "clipping",
+        "packing",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsFloats",
+      "type": "function",
+      "name": "packPlanesAsFloats",
+      "filePath": "packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "lineRange": [
+        434,
+        450
+      ],
+      "summary": "将裁剪平面法线/距离打包为 Float 纹理数据。",
+      "tags": [
+        "clipping",
+        "packing",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:ClippingPolygonCollection",
+      "type": "function",
+      "name": "ClippingPolygonCollection",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        62,
+        135
+      ],
+      "summary": "构造多边形裁剪集合，初始化多边形、事件与统一矩阵。",
+      "tags": [
+        "clipping",
+        "polygon",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:computePaddedExtents",
+      "type": "function",
+      "name": "computePaddedExtents",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        388,
+        406
+      ],
+      "summary": "为多边形范围计算带 padding 的扩展矩形。",
+      "tags": [
+        "clipping",
+        "polygon",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:getExtents",
+      "type": "function",
+      "name": "getExtents",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        469,
+        532
+      ],
+      "summary": "计算所有多边形在球面/平面下的范围矩形。",
+      "tags": [
+        "clipping",
+        "polygon",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:packPolygonsAsFloats",
+      "type": "function",
+      "name": "packPolygonsAsFloats",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        551,
+        642
+      ],
+      "summary": "将裁剪多边形顶点打包为 Float 纹理数据。",
+      "tags": [
+        "clipping",
+        "packing",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createDebugCommand",
+      "type": "function",
+      "name": "createDebugCommand",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        822,
+        849
+      ],
+      "summary": "创建多边形裁剪调试渲染命令。",
+      "tags": [
+        "debug",
+        "clipping",
+        "command"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createSignedDistanceTextureCommand",
+      "type": "function",
+      "name": "createSignedDistanceTextureCommand",
+      "filePath": "packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "lineRange": [
+        866,
+        893
+      ],
+      "summary": "创建从多边形生成有向距离纹理的渲染命令。",
+      "tags": [
+        "clipping",
+        "texture",
+        "command"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:CloudCollection",
+      "type": "function",
+      "name": "CloudCollection",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        106,
+        229
+      ],
+      "summary": "构造云集合 primitive，初始化每云属性数组、VAF 与更新回调。",
+      "tags": [
+        "cloud",
+        "primitive",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:removeClouds",
+      "type": "function",
+      "name": "removeClouds",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        373,
+        390
+      ],
+      "summary": "从集合中移除所有云。",
+      "tags": [
+        "cloud",
+        "collection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:createTextureVA",
+      "type": "function",
+      "name": "createTextureVA",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        453,
+        480
+      ],
+      "summary": "创建云纹理的顶点数组。",
+      "tags": [
+        "cloud",
+        "vertex-array"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferBatched",
+      "type": "function",
+      "name": "getIndexBufferBatched",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        484,
+        515
+      ],
+      "summary": "返回云渲染的 batched 模式索引缓冲。",
+      "tags": [
+        "cloud",
+        "index-buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferInstanced",
+      "type": "function",
+      "name": "getIndexBufferInstanced",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        517,
+        533
+      ],
+      "summary": "返回云渲染的 instanced 模式索引缓冲。",
+      "tags": [
+        "cloud",
+        "index-buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:getVertexBufferInstanced",
+      "type": "function",
+      "name": "getVertexBufferInstanced",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        535,
+        550
+      ],
+      "summary": "返回云渲染的 instanced 模式顶点缓冲。",
+      "tags": [
+        "cloud",
+        "vertex-buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:createVAF",
+      "type": "function",
+      "name": "createVAF",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        552,
+        598
+      ],
+      "summary": "创建云的 VertexArrayFacade（按 batched/instanced 选择）。",
+      "tags": [
+        "cloud",
+        "vertex-array"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CloudCollection.js:writePositionAndScale",
+      "type": "function",
+      "name": "writePositionAndScale",
+      "filePath": "packages/engine/Source/Scene/CloudCollection.js",
+      "lineRange": [
+        602,
+        631
+      ],
+      "summary": "将单个云的位置与缩放写入 VAF。",
+      "tags": [
+        "cloud",
+        "vertex-array"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CubeMapPanorama.js:CubeMapPanorama",
+      "type": "function",
+      "name": "CubeMapPanorama",
+      "filePath": "packages/engine/Source/Scene/CubeMapPanorama.js",
+      "lineRange": [
+        76,
+        121
+      ],
+      "summary": "从立方体贴图创建全景图纹理资源工厂。",
+      "tags": [
+        "panorama",
+        "cube-map",
+        "constructor"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:ClippingPlaneCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:ClippingPlaneCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsUint8",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsUint8",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsFloats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPlaneCollection.js:packPlanesAsFloats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:ClippingPolygonCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:ClippingPolygonCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:computePaddedExtents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:computePaddedExtents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:getExtents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:getExtents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:packPolygonsAsFloats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:packPolygonsAsFloats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createDebugCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createDebugCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createSignedDistanceTextureCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "function:packages/engine/Source/Scene/ClippingPolygonCollection.js:createSignedDistanceTextureCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:CloudCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:CloudCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:removeClouds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:removeClouds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:createTextureVA",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:createTextureVA",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferBatched",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferBatched",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferInstanced",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getIndexBufferInstanced",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getVertexBufferInstanced",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:getVertexBufferInstanced",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:createVAF",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:createVAF",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:writePositionAndScale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "function:packages/engine/Source/Scene/CloudCollection.js:writePositionAndScale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "function:packages/engine/Source/Scene/CubeMapPanorama.js:CubeMapPanorama",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "function:packages/engine/Source/Scene/CubeMapPanorama.js:CubeMapPanorama",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Core/Plane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPolygon.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Scene/CloudType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CloudCollection.js",
+      "target": "file:packages/engine/Source/Scene/CumulusCloud.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CullFace.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

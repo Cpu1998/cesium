@@ -1,0 +1,1109 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "type": "file",
+      "name": "PointPrimitiveCollection.js",
+      "filePath": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "summary": "点图元集合，使用 VertexArrayFacade 高效批量渲染大量 PointPrimitive，处理压缩属性、按距离缩放与显隐等优化。",
+      "tags": [
+        "primitive",
+        "point",
+        "collection",
+        "webgl",
+        "batching"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "type": "file",
+      "name": "PolylineCollection.js",
+      "filePath": "packages/engine/Source/Scene/PolylineCollection.js",
+      "summary": "折线集合，批量管理并渲染大量 Polyline 对象，支持材质、宽度、按包围盒分桶与 buffer 使用量自适应。",
+      "tags": [
+        "primitive",
+        "polyline",
+        "collection",
+        "webgl",
+        "batching"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "type": "file",
+      "name": "PostProcessStageCollection.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "summary": "后处理阶段集合，串联场景内置后处理链（泛光、色调映射、环境光遮蔽等），统一管理 stage 与纹理缓存。",
+      "tags": [
+        "post-process",
+        "collection",
+        "pipeline",
+        "bloom"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "type": "file",
+      "name": "PostProcessStageComposite.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "summary": "由多个 PostProcessStage 组合而成的复合后处理对象，对外作为单一 stage 暴露但内部依次执行多个 input/output 链接的阶段。",
+      "tags": [
+        "post-process",
+        "composite",
+        "pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "type": "file",
+      "name": "PostProcessStageLibrary.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "summary": "后处理 stage 库，提供泛光、轮廓检测、环境光遮蔽、景深、夜景等常用后处理效果的工厂方法。",
+      "tags": [
+        "post-process",
+        "library",
+        "factory",
+        "bloom",
+        "ao"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "file",
+      "name": "SceneMode.js",
+      "filePath": "packages/engine/Source/Scene/SceneMode.js",
+      "summary": "场景模式枚举，定义 MORPHING、COLUMBUS_VIEW、SCENE2D、SCENE3D 四种视图模式常量。",
+      "tags": [
+        "enum",
+        "scene",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ShadowMapShader.js",
+      "type": "file",
+      "name": "ShadowMapShader.js",
+      "filePath": "packages/engine/Source/Scene/ShadowMapShader.js",
+      "summary": "阴影贴图 GLSL shader 工具，向主场景着色器注入阴影采样、PCF 滤波与 uniform 声明代码片段。",
+      "tags": [
+        "shadow",
+        "shader",
+        "glsl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "file",
+      "name": "StencilFunction.js",
+      "filePath": "packages/engine/Source/Scene/StencilFunction.js",
+      "summary": "模板测试函数枚举，将 WebGL 的 NEVER/LESS/EQUAL 等模板比较函数映射为 Cesium 常量。",
+      "tags": [
+        "enum",
+        "stencil",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:PointPrimitiveCollection",
+      "type": "function",
+      "name": "PointPrimitiveCollection",
+      "filePath": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "summary": "点集合构造函数，初始化内部数组与渲染参数。",
+      "tags": [
+        "point",
+        "collection",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        94,
+        221
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:createVAF",
+      "type": "function",
+      "name": "createVAF",
+      "filePath": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "summary": "创建 VertexArrayFacade 以批量管理点的顶点属性 buffer。",
+      "tags": [
+        "point",
+        "vertex-array",
+        "batching"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        453,
+        497
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:recomputeActualPositions",
+      "type": "function",
+      "name": "recomputeActualPositions",
+      "filePath": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "summary": "重新计算所有点的实际世界坐标与包围球。",
+      "tags": [
+        "point",
+        "transform",
+        "batching"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        734,
+        773
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:updateMode",
+      "type": "function",
+      "name": "updateMode",
+      "filePath": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "summary": "根据当前 SceneMode（2D/CV/3D）切换点集合的渲染模式。",
+      "tags": [
+        "point",
+        "scene-mode",
+        "update"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        775,
+        826
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PolylineCollection.js:PolylineCollection",
+      "type": "function",
+      "name": "PolylineCollection",
+      "filePath": "packages/engine/Source/Scene/PolylineCollection.js",
+      "summary": "折线集合构造函数。",
+      "tags": [
+        "polyline",
+        "collection",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        116,
+        189
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PolylineCollection.js:createBatchTable",
+      "type": "function",
+      "name": "createBatchTable",
+      "filePath": "packages/engine/Source/Scene/PolylineCollection.js",
+      "summary": "为折线集合创建 batchTable 以支持拾取与实例化属性。",
+      "tags": [
+        "polyline",
+        "batch-table",
+        "picking"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        362,
+        401
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PolylineCollection.js:createCommandLists",
+      "type": "function",
+      "name": "createCommandLists",
+      "filePath": "packages/engine/Source/Scene/PolylineCollection.js",
+      "summary": "按桶组装折线的 color/pick DrawCommand 列表。",
+      "tags": [
+        "polyline",
+        "draw-command",
+        "webgl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        591,
+        775
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PolylineCollection.js:createVertexArrays",
+      "type": "function",
+      "name": "createVertexArrays",
+      "filePath": "packages/engine/Source/Scene/PolylineCollection.js",
+      "summary": "为各桶构建折线的顶点数组与索引 buffer。",
+      "tags": [
+        "polyline",
+        "vertex-array",
+        "webgl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        841,
+        1121
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageCollection.js:PostProcessStageCollection",
+      "type": "function",
+      "name": "PostProcessStageCollection",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "summary": "构造函数，初始化内置的 bloom、tonemapping 等 stage 链。",
+      "tags": [
+        "post-process",
+        "collection",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        35,
+        102
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageCollection.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "summary": "执行某个 stage，把 color/depth/id 纹理喂给它。",
+      "tags": [
+        "post-process",
+        "execute"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        734,
+        756
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageComposite.js:PostProcessStageComposite",
+      "type": "function",
+      "name": "PostProcessStageComposite",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "summary": "复合 stage 构造函数，按 input/output 串联多个子 stage。",
+      "tags": [
+        "post-process",
+        "composite",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        76,
+        112
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageComposite.js:isSelectedTextureDirty",
+      "type": "function",
+      "name": "isSelectedTextureDirty",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "summary": "检查复合 stage 内选中纹理是否需要重建。",
+      "tags": [
+        "post-process",
+        "picking"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        259,
+        293
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageLibrary.js:createBlur",
+      "type": "function",
+      "name": "createBlur",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "summary": "模糊 stage 工厂，返回多 Pass 组合的模糊 PostProcessStageComposite。",
+      "tags": [
+        "post-process",
+        "blur",
+        "factory"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        38,
+        105
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStageLibrary.js:getSilhouetteEdgeDetection",
+      "type": "function",
+      "name": "getSilhouetteEdgeDetection",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "summary": "构建轮廓边缘检测 stage 链。",
+      "tags": [
+        "post-process",
+        "silhouette",
+        "factory"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        270,
+        314
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:PointPrimitiveCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:createVAF",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:recomputeActualPositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:updateMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "function:packages/engine/Source/Scene/PolylineCollection.js:PolylineCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "function:packages/engine/Source/Scene/PolylineCollection.js:createBatchTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "function:packages/engine/Source/Scene/PolylineCollection.js:createCommandLists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "function:packages/engine/Source/Scene/PolylineCollection.js:createVertexArrays",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageCollection.js:PostProcessStageCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageCollection.js:execute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageComposite.js:PostProcessStageComposite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageComposite.js:isSelectedTextureDirty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageLibrary.js:createBlur",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageLibrary.js:getSilhouetteEdgeDetection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/Plane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Scene/BatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Scene/Polyline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "file:packages/engine/Source/Scene/Tonemapper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Scene/AutoExposure.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMapShader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ShadowMapShader.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitiveCollection.js:PointPrimitiveCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PolylineCollection.js",
+      "target": "function:packages/engine/Source/Scene/PolylineCollection.js:PolylineCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageCollection.js:PostProcessStageCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStageComposite.js:PostProcessStageComposite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

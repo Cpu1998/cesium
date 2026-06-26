@@ -1,0 +1,395 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/GeometryStageFS.glsl",
+      "type": "file",
+      "name": "GeometryStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/GeometryStageFS.glsl",
+      "summary": "Model fragment shader 的几何处理阶段，计算片元的几何相关属性（如法线、位置等）供后续渲染阶段使用。",
+      "tags": ["shader", "fragment-stage", "model", "geometry", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/GeometryStageVS.glsl",
+      "type": "file",
+      "name": "GeometryStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/GeometryStageVS.glsl",
+      "summary": "Model vertex shader 的几何处理阶段，负责将模型空间的位置与法线变换到眼睛坐标系，是顶点变换流水线的核心环节。",
+      "tags": ["shader", "vertex-stage", "model", "geometry", "webgl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ImageBasedLightingStageFS.glsl",
+      "type": "file",
+      "name": "ImageBasedLightingStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ImageBasedLightingStageFS.glsl",
+      "summary": "基于图像的光照（IBL）片段着色阶段，使用环境贴图计算漫反射与镜面反射间接光照，提升 PBR 材质的真实感。",
+      "tags": ["shader", "fragment-stage", "model", "image-based-lighting", "pbr"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/InstancingStageCommon.glsl",
+      "type": "file",
+      "name": "InstancingStageCommon.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/InstancingStageCommon.glsl",
+      "summary": "实例化渲染的通用阶段，定义顶点与片元着色器共用的实例矩阵及属性获取逻辑，供 glTF EXT-mesh-instancing 使用。",
+      "tags": ["shader", "common-stage", "model", "instancing", "gltf"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/InstancingStageVS.glsl",
+      "type": "file",
+      "name": "InstancingStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/InstancingStageVS.glsl",
+      "summary": "实例化渲染的顶点阶段，将实例变换矩阵应用到每个顶点以支持同一网格的高效批量绘制。",
+      "tags": ["shader", "vertex-stage", "model", "instancing", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/LegacyInstancingStageVS.glsl",
+      "type": "file",
+      "name": "LegacyInstancingStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/LegacyInstancingStageVS.glsl",
+      "summary": "兼容旧版实例化扩展的顶点阶段，处理早期非标准实例化属性的读取与应用。",
+      "tags": ["shader", "vertex-stage", "model", "instancing", "legacy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/LightingStageFS.glsl",
+      "type": "file",
+      "name": "LightingStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/LightingStageFS.glsl",
+      "summary": "Model fragment shader 的光照阶段，结合直接光照、IBL 与自定义光照函数计算最终片元颜色，是 PBR 渲染的核心计算环节。",
+      "tags": ["shader", "fragment-stage", "model", "lighting", "pbr"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/MaterialStageFS.glsl",
+      "type": "file",
+      "name": "MaterialStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/MaterialStageFS.glsl",
+      "summary": "Model fragment shader 的材质阶段，解析 glTF 各类材质模型（metallic-roughness、specular-glossiness、unlit 等）并采样纹理填充 czm_modelMaterial 结构，是体积最大的着色阶段。",
+      "tags": ["shader", "fragment-stage", "model", "material", "pbr"],
+      "complexity": "complex",
+      "languageNotes": "通过大量 #ifdef 宏分支支持 glTF 多种材质扩展（KHR_materials_*、specular、sheen、transmission 等），由运行时着色器流水线拼接。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/MetadataStageFS.glsl",
+      "type": "file",
+      "name": "MetadataStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/MetadataStageFS.glsl",
+      "summary": "片元着色器的元数据阶段，将结构化 metadata 写入 multiple render targets 以支持 EXT_structural_metadata 的拾取与查询。",
+      "tags": ["shader", "fragment-stage", "model", "metadata", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/MetadataStageVS.glsl",
+      "type": "file",
+      "name": "MetadataStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/MetadataStageVS.glsl",
+      "summary": "顶点着色器的元数据阶段，处理顶点级 structural metadata 的传递与输出。",
+      "tags": ["shader", "vertex-stage", "model", "metadata", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelClippingPlanesStageFS.glsl",
+      "type": "file",
+      "name": "ModelClippingPlanesStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelClippingPlanesStageFS.glsl",
+      "summary": "片元着色器的裁剪平面阶段，根据 ClippingPlaneCollection 丢弃位于裁剪平面外侧的片元，实现模型剖切。",
+      "tags": ["shader", "fragment-stage", "model", "clipping", "culling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageFS.glsl",
+      "type": "file",
+      "name": "ModelClippingPolygonsStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageFS.glsl",
+      "summary": "片元着色器的多边形裁剪阶段入口，依据裁剪多边形对片元进行区域剔除。",
+      "tags": ["shader", "fragment-stage", "model", "clipping", "polygon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageVS.glsl",
+      "type": "file",
+      "name": "ModelClippingPolygonsStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageVS.glsl",
+      "summary": "顶点着色器的多边形裁剪阶段，计算顶点相对于裁剪多边形的 classified 状态供片元阶段使用。",
+      "tags": ["shader", "vertex-stage", "model", "clipping", "polygon"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelColorStageFS.glsl",
+      "type": "file",
+      "name": "ModelColorStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelColorStageFS.glsl",
+      "summary": "片元着色器的统一着色阶段，将模型整体渲染为单一颜色（color blend mode），用于高亮、轮廓或着色叠加。",
+      "tags": ["shader", "fragment-stage", "model", "color", "styling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "type": "file",
+      "name": "ModelFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "summary": "Model 的主片元着色器，定义默认材质、alpha 处理，并按顺序串联各渲染 stage（几何、材质、光照、裁剪、轮廓等），是模型片元渲染的总入口。",
+      "tags": ["shader", "fragment", "model", "entry-point", "stage-pipeline"],
+      "complexity": "complex",
+      "languageNotes": "通过调用各 stage 函数（materialStage、lightingStage 等）实现可配置的着色器流水线，stage 由 JS 端 Model runtime 动态拼接。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelSilhouetteStageFS.glsl",
+      "type": "file",
+      "name": "ModelSilhouetteStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelSilhouetteStageFS.glsl",
+      "summary": "片元着色器的轮廓描边阶段，为模型生成边缘描边效果。",
+      "tags": ["shader", "fragment-stage", "model", "silhouette", "outline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelSilhouetteStageVS.glsl",
+      "type": "file",
+      "name": "ModelSilhouetteStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelSilhouetteStageVS.glsl",
+      "summary": "顶点着色器的轮廓描边阶段，沿法线方向外扩顶点以构造描边几何。",
+      "tags": ["shader", "vertex-stage", "model", "silhouette", "outline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelSplitterStageFS.glsl",
+      "type": "file",
+      "name": "ModelSplitterStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelSplitterStageFS.glsl",
+      "summary": "片元着色器的分割阶段，用于在多视口/分屏渲染中按区域分割片元输出。",
+      "tags": ["shader", "fragment-stage", "model", "splitter", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "type": "file",
+      "name": "ModelVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "summary": "Model 的主顶点着色器，初始化属性结构体并按顺序调用反量化、morph targets、skinning、instancing、几何等顶点 stage，是模型顶点变换的总入口。",
+      "tags": ["shader", "vertex", "model", "entry-point", "stage-pipeline"],
+      "complexity": "complex",
+      "languageNotes": "通过条件编译（HAS_MORPH_TARGETS、USE_DEQUANTIZATION 等宏）按需调用各顶点 stage，由 Model runtime 拼接生成最终着色器。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/MorphTargetsStageVS.glsl",
+      "type": "file",
+      "name": "MorphTargetsStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/MorphTargetsStageVS.glsl",
+      "summary": "顶点着色器的 morph target 阶段，根据权重插值多个目标顶点数据以实现网格形变动画。",
+      "tags": ["shader", "vertex-stage", "model", "morph-targets", "animation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/PointCloudStylingStageVS.glsl",
+      "type": "file",
+      "name": "PointCloudStylingStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/PointCloudStylingStageVS.glsl",
+      "summary": "点云样式化的顶点阶段，基于点云着色属性（point size、color、eye offset 等）计算每点的渲染样式参数。",
+      "tags": ["shader", "vertex-stage", "model", "point-cloud", "styling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/PrimitiveOutlineStageFS.glsl",
+      "type": "file",
+      "name": "PrimitiveOutlineStageFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/PrimitiveOutlineStageFS.glsl",
+      "summary": "片元着色器的 primitive outline 阶段，基于纹理坐标在 primitive 边缘绘制描边线（用于矢量瓦片轮廓等）。",
+      "tags": ["shader", "fragment-stage", "model", "outline", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/PrimitiveOutlineStageVS.glsl",
+      "type": "file",
+      "name": "PrimitiveOutlineStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/PrimitiveOutlineStageVS.glsl",
+      "summary": "顶点着色器的 primitive outline 阶段入口，传递 outline 坐标供片元阶段使用。",
+      "tags": ["shader", "vertex-stage", "model", "outline", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/SelectedFeatureIdStageCommon.glsl",
+      "type": "file",
+      "name": "SelectedFeatureIdStageCommon.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/SelectedFeatureIdStageCommon.glsl",
+      "summary": "Feature 选中标识的通用阶段，解析 feature id 属性并标记被选中的 feature，供交互式高亮使用。",
+      "tags": ["shader", "common-stage", "model", "feature-id", "selection"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/SkinningStageVS.glsl",
+      "type": "file",
+      "name": "SkinningStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/SkinningStageVS.glsl",
+      "summary": "顶点着色器的蒙皮阶段，根据骨骼关节权重矩阵变换顶点，实现 glTF 蒙皮网格的角色动画。",
+      "tags": ["shader", "vertex-stage", "model", "skinning", "animation"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/GeometryStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/InstancingStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/LegacyInstancingStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/MorphTargetsStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/SkinningStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/MetadataStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/PointCloudStylingStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/PrimitiveOutlineStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelSilhouetteStageVS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/GeometryStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/MaterialStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/LightingStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ImageBasedLightingStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelClippingPlanesStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelColorStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelSilhouetteStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelSplitterStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/MetadataStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/PrimitiveOutlineStageFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/InstancingStageVS.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/InstancingStageCommon.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Model/SelectedFeatureIdStageCommon.glsl",
+      "target": "file:packages/engine/Source/Shaders/Model/ModelFS.glsl",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

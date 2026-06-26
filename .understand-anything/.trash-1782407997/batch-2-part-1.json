@@ -1,0 +1,945 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/ArcType.js",
+      "type": "file",
+      "name": "ArcType.js",
+      "filePath": "packages/engine/Source/Core/ArcType.js",
+      "summary": "定义连接顶点的弧线路径类型枚举（直线、测地线、恒向线），供 corridor/polyline 等几何体使用。",
+      "tags": [
+        "enum",
+        "arc-type",
+        "geometry",
+        "type-definition",
+        "core"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 中常见以纯对象定义 @enum 的模式，无构造函数。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "file",
+      "name": "AttributeCompression.js",
+      "filePath": "packages/engine/Source/Core/AttributeCompression.js",
+      "summary": "提供顶点属性（位置、法线、纹理坐标）的量化压缩与解压缩算法，用于减少 3D Tiles 与几何数据的传输和存储开销。",
+      "tags": [
+        "compression",
+        "attribute",
+        "quantization",
+        "geometry",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "type": "file",
+      "name": "AxisAlignedBoundingBox.js",
+      "filePath": "packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "summary": "轴对齐包围盒（AABB）实现，由最小/最大角点定义，用于空间裁剪与碰撞检测。",
+      "tags": [
+        "bounding-volume",
+        "aabb",
+        "culling",
+        "geometry",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "file",
+      "name": "BoundingSphere.js",
+      "filePath": "packages/engine/Source/Core/BoundingSphere.js",
+      "summary": "球形包围体实现，支持从点集、矩形、其它包围体构造，并提供视锥裁剪、距离计算、变换、合并等大量静态方法。",
+      "tags": [
+        "bounding-volume",
+        "sphere",
+        "culling",
+        "geometry",
+        "data-model"
+      ],
+      "complexity": "complex",
+      "languageNotes": "以构造函数 + 大量静态工厂方法实现的伪 class 模式，Cesium Core 的典型 API 风格。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "file",
+      "name": "BoxGeometry.js",
+      "filePath": "packages/engine/Source/Core/BoxGeometry.js",
+      "summary": "长方体（盒子）可渲染几何体，从长宽高与材质属性生成顶点/索引，用于 entity 与 primitive 绘制。",
+      "tags": [
+        "geometry",
+        "box",
+        "primitive",
+        "mesh",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "type": "file",
+      "name": "BoxOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "summary": "长方体的线框轮廓几何体，仅生成边线顶点/索引，供 wireframe 绘制使用。",
+      "tags": [
+        "geometry",
+        "box",
+        "outline",
+        "wireframe",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "file",
+      "name": "Cartesian3.js",
+      "filePath": "packages/engine/Source/Core/Cartesian3.js",
+      "summary": "三维笛卡尔向量核心类型，提供加减、点积、叉积、归一化、距离、插值、球面转换等全部线性代数运算。",
+      "tags": [
+        "vector",
+        "cartesian",
+        "linear-algebra",
+        "math",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "将所有静态方法同时挂为实例方法（通过 prototype 复用），是 Cesium 中最高频的基础类型。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "file",
+      "name": "Cartographic.js",
+      "filePath": "packages/engine/Source/Core/Cartographic.js",
+      "summary": "大地坐标（经度、纬度、高度）类型，提供与笛卡尔坐标的相互转换及弧度/角度构造方法。",
+      "tags": [
+        "cartographic",
+        "geodesy",
+        "coordinate",
+        "data-model",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "type": "file",
+      "name": "Cesium3DTilesTerrainData.js",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "summary": "以 glTF（glb）网格表示的单瓦片地形数据，支持上采样、裙边生成、水位遮罩与法线请求，作为地形 provider 的数据单元。",
+      "tags": [
+        "terrain",
+        "3d-tiles",
+        "gltf",
+        "mesh",
+        "data-model"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实验性 API，依赖 web worker 异步上采样网格。"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/BoundingSphere.js:BoundingSphere",
+      "type": "class",
+      "name": "BoundingSphere",
+      "filePath": "packages/engine/Source/Core/BoundingSphere.js",
+      "lineRange": [
+        29,
+        1444
+      ],
+      "summary": "球形包围体类，提供 fromPoints/union/intersectPlane/distanceSquaredTo 等数十个静态方法用于视锥裁剪与碰撞检测。",
+      "tags": [
+        "bounding-volume",
+        "sphere",
+        "culling",
+        "data-model",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Cartesian3.js:Cartesian3",
+      "type": "class",
+      "name": "Cartesian3",
+      "filePath": "packages/engine/Source/Core/Cartesian3.js",
+      "lineRange": [
+        20,
+        1124
+      ],
+      "summary": "三维笛卡尔向量类，提供完整线性代数运算（点积、叉积、归一化、插值）及球面/角度坐标构造方法。",
+      "tags": [
+        "vector",
+        "cartesian",
+        "linear-algebra",
+        "math",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Cartographic.js:Cartographic",
+      "type": "class",
+      "name": "Cartographic",
+      "filePath": "packages/engine/Source/Core/Cartographic.js",
+      "lineRange": [
+        16,
+        298
+      ],
+      "summary": "大地坐标类（经度/纬度/高度弧度），提供与笛卡尔坐标互转及角度构造方法。",
+      "tags": [
+        "cartographic",
+        "geodesy",
+        "coordinate",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/AttributeCompression.js:zigZagDecode",
+      "type": "function",
+      "name": "zigZagDecode",
+      "filePath": "packages/engine/Source/Core/AttributeCompression.js",
+      "lineRange": [
+        353,
+        355
+      ],
+      "summary": "Zig-Zag 解码函数，将无符号整数还原为有符号整数，用于解码压缩的顶点属性。",
+      "tags": [
+        "compression",
+        "decoding",
+        "quantization",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/AxisAlignedBoundingBox.js:AxisAlignedBoundingBox",
+      "type": "function",
+      "name": "AxisAlignedBoundingBox",
+      "filePath": "packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "lineRange": [
+        18,
+        45
+      ],
+      "summary": "轴对齐包围盒构造函数，由最小/最大角点（及可选中心）定义。",
+      "tags": [
+        "bounding-volume",
+        "aabb",
+        "constructor",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/BoxGeometry.js:BoxGeometry",
+      "type": "function",
+      "name": "BoxGeometry",
+      "filePath": "packages/engine/Source/Core/BoxGeometry.js",
+      "lineRange": [
+        42,
+        68
+      ],
+      "summary": "长方体几何体构造函数，根据长宽高与 vertexFormat 生成可渲染盒子网格。",
+      "tags": [
+        "geometry",
+        "box",
+        "factory",
+        "mesh"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/BoxOutlineGeometry.js:BoxOutlineGeometry",
+      "type": "function",
+      "name": "BoxOutlineGeometry",
+      "filePath": "packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "lineRange": [
+        37,
+        60
+      ],
+      "summary": "长方体轮廓构造函数，生成长方体边线几何。",
+      "tags": [
+        "geometry",
+        "box",
+        "outline",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:Cesium3DTilesTerrainData",
+      "type": "function",
+      "name": "Cesium3DTilesTerrainData",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "lineRange": [
+        55,
+        103
+      ],
+      "summary": "3D Tiles 地形瓦片数据构造函数，封装 glTF 网格、高度范围与裙边配置。",
+      "tags": [
+        "terrain",
+        "3d-tiles",
+        "gltf",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:upsampleMesh",
+      "type": "function",
+      "name": "upsampleMesh",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "lineRange": [
+        714,
+        855
+      ],
+      "summary": "异步上采样地形网格，从父瓦片生成更精细的子瓦片网格。",
+      "tags": [
+        "terrain",
+        "upsampling",
+        "mesh-processing"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "class:packages/engine/Source/Core/BoundingSphere.js:BoundingSphere",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "class:packages/engine/Source/Core/Cartesian3.js:Cartesian3",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "class:packages/engine/Source/Core/Cartographic.js:Cartographic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "function:packages/engine/Source/Core/AttributeCompression.js:zigZagDecode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "function:packages/engine/Source/Core/AxisAlignedBoundingBox.js:AxisAlignedBoundingBox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "function:packages/engine/Source/Core/BoxGeometry.js:BoxGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Core/BoxOutlineGeometry.js:BoxOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:Cesium3DTilesTerrainData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:upsampleMesh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "class:packages/engine/Source/Core/BoundingSphere.js:BoundingSphere",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "class:packages/engine/Source/Core/Cartesian3.js:Cartesian3",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "class:packages/engine/Source/Core/Cartographic.js:Cartographic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "function:packages/engine/Source/Core/BoxGeometry.js:BoxGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Core/BoxOutlineGeometry.js:BoxOutlineGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "function:packages/engine/Source/Core/AxisAlignedBoundingBox.js:AxisAlignedBoundingBox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:Cesium3DTilesTerrainData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Interval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian3.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartographic.js",
+      "target": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Cesium3DTilesTerrainGeometryProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Intersections2D.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainMesh.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/Cesium3DTilesTerrainData.js:Cesium3DTilesTerrainData",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainGeometryProcessor.js:decodePositions",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

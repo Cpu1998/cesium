@@ -1,0 +1,564 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointDirect.js",
+      "type": "file",
+      "name": "AnchorPointDirect.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointDirect.js",
+      "summary": "NGA_gpm_local glTF 扩展中直接存储方式锚点的元数据类，保存锚点地理坐标与调整参数。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "anchor-point",
+        "gltf-extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "type": "file",
+      "name": "AnchorPointIndirect.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "summary": "NGA_gpm_local 扩展中间接存储方式锚点的元数据类，除位置与调整参数外还保存 3x3 协方差矩阵。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "anchor-point",
+        "gltf-extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "type": "file",
+      "name": "CorrelationGroup.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "summary": "NGA_gpm_local 扩展中的相关性分组元数据类，记录使用相同相关性建模的参数（groupFlags、旋转角与 Spdcf 参数）。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "correlation",
+        "gltf-extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "type": "file",
+      "name": "GltfGpmLoader.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "summary": "NGA_gpm_local 扩展的 glTF 级加载器，解析锚点（直接/间接）与相关性分组并构建 GltfGpmLocal，提供上三角协方差矩阵转换等工具函数。",
+      "tags": [
+        "gpm",
+        "loader",
+        "gltf-extension",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "type": "file",
+      "name": "GltfGpmLocal.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "summary": "NGA_gpm_local 扩展的顶层运行时表示，持有 storageType、锚点列表与相关性分组，并提供按 Direct/Indirect 类型解析的构造逻辑。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "gltf-extension",
+        "runtime"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "type": "file",
+      "name": "GltfMeshPrimitiveGpmLoader.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "summary": "按 primitive 加载 NGA_gpm_local 的 PPE（Per-Point Error）纹理，将其解码为 StructuralMetadata/PropertyTexture 并挂接到 mesh primitive 上。",
+      "tags": [
+        "gpm",
+        "loader",
+        "ppe",
+        "metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js:AnchorPointIndirect",
+      "type": "function",
+      "name": "AnchorPointIndirect",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "lineRange": [
+        23,
+        33
+      ],
+      "summary": "AnchorPointIndirect 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js:CorrelationGroup",
+      "type": "function",
+      "name": "CorrelationGroup",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "lineRange": [
+        27,
+        37
+      ],
+      "summary": "CorrelationGroup 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCovarianceMatrixFromUpperTriangle",
+      "type": "function",
+      "name": "createCovarianceMatrixFromUpperTriangle",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "lineRange": [
+        34,
+        47
+      ],
+      "summary": "由上三角数组重建对称的 3x3 协方差矩阵。",
+      "tags": [
+        "gpm",
+        "covariance",
+        "matrix"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointDirect",
+      "type": "function",
+      "name": "createAnchorPointDirect",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "lineRange": [
+        55,
+        71
+      ],
+      "summary": "从 JSON 构造直接存储方式的 AnchorPointDirect 对象。",
+      "tags": [
+        "gpm",
+        "anchor-point",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointIndirect",
+      "type": "function",
+      "name": "createAnchorPointIndirect",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "lineRange": [
+        79,
+        99
+      ],
+      "summary": "从 JSON 构造间接存储方式的 AnchorPointIndirect 对象。",
+      "tags": [
+        "gpm",
+        "anchor-point",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCorrelationGroup",
+      "type": "function",
+      "name": "createCorrelationGroup",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "lineRange": [
+        107,
+        130
+      ],
+      "summary": "从 JSON 构造相关性分组 CorrelationGroup 对象。",
+      "tags": [
+        "gpm",
+        "correlation",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js:GltfGpmLocal",
+      "type": "function",
+      "name": "GltfGpmLocal",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "lineRange": [
+        52,
+        109
+      ],
+      "summary": "GltfGpmLocal 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:GltfMeshPrimitiveGpmLoader",
+      "type": "function",
+      "name": "GltfMeshPrimitiveGpmLoader",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "lineRange": [
+        41,
+        75
+      ],
+      "summary": "GltfMeshPrimitiveGpmLoader 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:gatherUsedTextureIds",
+      "type": "function",
+      "name": "gatherUsedTextureIds",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "lineRange": [
+        174,
+        186
+      ],
+      "summary": "扫描 GPM 扩展收集所有被引用的纹理索引，便于资源加载与缓存。",
+      "tags": [
+        "gpm",
+        "ppe",
+        "texture"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointDirect.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointDirect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/StorageType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/StorageType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/MeshPrimitiveGpmLocal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js:AnchorPointIndirect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/AnchorPointIndirect.js:AnchorPointIndirect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js:CorrelationGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/CorrelationGroup.js:CorrelationGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCovarianceMatrixFromUpperTriangle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCovarianceMatrixFromUpperTriangle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointDirect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointDirect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointIndirect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createAnchorPointIndirect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCorrelationGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js:createCorrelationGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js:GltfGpmLocal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLocal.js:GltfGpmLocal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:GltfMeshPrimitiveGpmLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:GltfMeshPrimitiveGpmLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:gatherUsedTextureIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js:gatherUsedTextureIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

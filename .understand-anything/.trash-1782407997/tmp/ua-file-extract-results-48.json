@@ -1,0 +1,3565 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 17,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Core/assert.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "assert",
+          "startLine": 21,
+          "endLine": 25,
+          "params": [
+            "condition",
+            "msg"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPoint.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 128,
+      "classes": [
+        {
+          "name": "BufferPoint",
+          "startLine": 30,
+          "endLine": 147,
+          "methods": [
+            "clone",
+            "vertexOffset",
+            "vertexCount",
+            "getPosition",
+            "setPosition",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 67
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setPosition",
+          "lineNumber": 68
+        },
+        {
+          "caller": "clone",
+          "callee": "point.getPosition",
+          "lineNumber": 68
+        },
+        {
+          "caller": "vertexOffset",
+          "callee": "this._getUint32",
+          "lineNumber": 84
+        },
+        {
+          "caller": "getPosition",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 106
+        },
+        {
+          "caller": "setPosition",
+          "callee": "assert",
+          "lineNumber": 119
+        },
+        {
+          "caller": "setPosition",
+          "callee": "collection._makeDirtyBoundingVolume",
+          "lineNumber": 127
+        },
+        {
+          "caller": "toJSON",
+          "callee": "super.toJSON",
+          "lineNumber": 143
+        },
+        {
+          "caller": "toJSON",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 144
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getPosition",
+          "lineNumber": 144
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPointCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 151,
+      "nonEmptyLines": 134,
+      "classes": [
+        {
+          "name": "BufferPointCollection",
+          "startLine": 58,
+          "endLine": 149,
+          "methods": [
+            "constructor",
+            "_getCollectionClass",
+            "_getPrimitiveClass",
+            "_getMaterialClass",
+            "_cloneEmpty",
+            "add",
+            "update"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 75
+        },
+        {
+          "caller": "add",
+          "callee": "super.add",
+          "lineNumber": 123
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 125
+        },
+        {
+          "caller": "add",
+          "callee": "result.setPosition",
+          "lineNumber": 129
+        },
+        {
+          "caller": "update",
+          "callee": "super.update",
+          "lineNumber": 142
+        },
+        {
+          "caller": "update",
+          "callee": "renderPoints",
+          "lineNumber": 146
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPointMaterial.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 95,
+      "nonEmptyLines": 83,
+      "classes": [
+        {
+          "name": "BufferPointMaterial",
+          "startLine": 27,
+          "endLine": 93,
+          "methods": [
+            "constructor",
+            "pack",
+            "unpack",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 45
+        },
+        {
+          "caller": "pack",
+          "callee": "super.pack",
+          "lineNumber": 62
+        },
+        {
+          "caller": "pack",
+          "callee": "view.setUint8",
+          "lineNumber": 63
+        },
+        {
+          "caller": "unpack",
+          "callee": "super.unpack",
+          "lineNumber": 75
+        },
+        {
+          "caller": "unpack",
+          "callee": "view.getUint8",
+          "lineNumber": 76
+        },
+        {
+          "caller": "toJSON",
+          "callee": "super.toJSON",
+          "lineNumber": 91
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolygon.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 517,
+      "nonEmptyLines": 457,
+      "classes": [
+        {
+          "name": "BufferPolygon",
+          "startLine": 37,
+          "endLine": 515,
+          "methods": [
+            "clone",
+            "vertexOffset",
+            "vertexCount",
+            "getPositions",
+            "setPositions",
+            "outerVertexOffset",
+            "outerVertexCount",
+            "getOuterPositions",
+            "holeOffset",
+            "holeCount",
+            "getHoles",
+            "setHoles",
+            "getHoleVertexCount",
+            "getHolePositions",
+            "_getPositionsRange",
+            "triangleOffset",
+            "triangleCount",
+            "getTriangles",
+            "setTriangles",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 114
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setPositions",
+          "lineNumber": 115
+        },
+        {
+          "caller": "clone",
+          "callee": "polygon.getPositions",
+          "lineNumber": 115
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setHoles",
+          "lineNumber": 116
+        },
+        {
+          "caller": "clone",
+          "callee": "polygon.getHoles",
+          "lineNumber": 116
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setTriangles",
+          "lineNumber": 117
+        },
+        {
+          "caller": "clone",
+          "callee": "polygon.getTriangles",
+          "lineNumber": 117
+        },
+        {
+          "caller": "vertexOffset",
+          "callee": "this._getUint32",
+          "lineNumber": 133
+        },
+        {
+          "caller": "vertexCount",
+          "callee": "this._getUint32",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getPositions",
+          "callee": "this._getPositionsRange",
+          "lineNumber": 157
+        },
+        {
+          "caller": "setPositions",
+          "callee": "assert",
+          "lineNumber": 169
+        },
+        {
+          "caller": "setPositions",
+          "callee": "this._isResizable",
+          "lineNumber": 169
+        },
+        {
+          "caller": "setPositions",
+          "callee": "assert",
+          "lineNumber": 170
+        },
+        {
+          "caller": "setPositions",
+          "callee": "this._setUint32",
+          "lineNumber": 174
+        },
+        {
+          "caller": "setPositions",
+          "callee": "collection._makeDirtyBoundingVolume",
+          "lineNumber": 184
+        },
+        {
+          "caller": "outerVertexCount",
+          "callee": "this.getHoles",
+          "lineNumber": 207
+        },
+        {
+          "caller": "getOuterPositions",
+          "callee": "this._getPositionsRange",
+          "lineNumber": 223
+        },
+        {
+          "caller": "holeOffset",
+          "callee": "this._getUint32",
+          "lineNumber": 235
+        },
+        {
+          "caller": "holeCount",
+          "callee": "this._getUint32",
+          "lineNumber": 245
+        },
+        {
+          "caller": "getHoles",
+          "callee": "defined",
+          "lineNumber": 265
+        },
+        {
+          "caller": "setHoles",
+          "callee": "assert",
+          "lineNumber": 300
+        },
+        {
+          "caller": "setHoles",
+          "callee": "this._isResizable",
+          "lineNumber": 300
+        },
+        {
+          "caller": "setHoles",
+          "callee": "assert",
+          "lineNumber": 301
+        },
+        {
+          "caller": "setHoles",
+          "callee": "this._setUint32",
+          "lineNumber": 305
+        },
+        {
+          "caller": "getHoleVertexCount",
+          "callee": "this.getHoles",
+          "lineNumber": 322
+        },
+        {
+          "caller": "getHoleVertexCount",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 325
+        },
+        {
+          "caller": "getHoleVertexCount",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 326
+        },
+        {
+          "caller": "getHolePositions",
+          "callee": "this.getHoles",
+          "lineNumber": 347
+        },
+        {
+          "caller": "getHolePositions",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 350
+        },
+        {
+          "caller": "getHolePositions",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 351
+        },
+        {
+          "caller": "getHolePositions",
+          "callee": "this.getHoleVertexCount",
+          "lineNumber": 355
+        },
+        {
+          "caller": "getHolePositions",
+          "callee": "this._getPositionsRange",
+          "lineNumber": 356
+        },
+        {
+          "caller": "_getPositionsRange",
+          "callee": "assert",
+          "lineNumber": 379
+        },
+        {
+          "caller": "_getPositionsRange",
+          "callee": "assert",
+          "lineNumber": 380
+        },
+        {
+          "caller": "_getPositionsRange",
+          "callee": "assert",
+          "lineNumber": 381
+        },
+        {
+          "caller": "_getPositionsRange",
+          "callee": "assert",
+          "lineNumber": 382
+        },
+        {
+          "caller": "_getPositionsRange",
+          "callee": "defined",
+          "lineNumber": 385
+        },
+        {
+          "caller": "triangleOffset",
+          "callee": "this._getUint32",
+          "lineNumber": 415
+        },
+        {
+          "caller": "triangleCount",
+          "callee": "this._getUint32",
+          "lineNumber": 425
+        },
+        {
+          "caller": "getTriangles",
+          "callee": "defined",
+          "lineNumber": 444
+        },
+        {
+          "caller": "setTriangles",
+          "callee": "assert",
+          "lineNumber": 479
+        },
+        {
+          "caller": "setTriangles",
+          "callee": "this._isResizable",
+          "lineNumber": 479
+        },
+        {
+          "caller": "setTriangles",
+          "callee": "assert",
+          "lineNumber": 480
+        },
+        {
+          "caller": "setTriangles",
+          "callee": "this._setUint32",
+          "lineNumber": 484
+        },
+        {
+          "caller": "toJSON",
+          "callee": "super.toJSON",
+          "lineNumber": 509
+        },
+        {
+          "caller": "toJSON",
+          "callee": "Array.from",
+          "lineNumber": 510
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getPositions",
+          "lineNumber": 510
+        },
+        {
+          "caller": "toJSON",
+          "callee": "Array.from",
+          "lineNumber": 511
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getHoles",
+          "lineNumber": 511
+        },
+        {
+          "caller": "toJSON",
+          "callee": "Array.from",
+          "lineNumber": 512
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getTriangles",
+          "lineNumber": 512
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolygonCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 380,
+      "nonEmptyLines": 336,
+      "classes": [
+        {
+          "name": "BufferPolygonCollection",
+          "startLine": 77,
+          "endLine": 379,
+          "methods": [
+            "constructor",
+            "_getCollectionClass",
+            "_getPrimitiveClass",
+            "_getMaterialClass",
+            "_allocateHoleIndexBuffer",
+            "_allocateTriangleIndexBuffer",
+            "clone",
+            "_cloneEmpty",
+            "_replaceBuffers",
+            "add",
+            "update",
+            "byteLength",
+            "holeCount",
+            "holeCountMax",
+            "triangleCount",
+            "triangleCountMax"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 96
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._allocateHoleIndexBuffer",
+          "lineNumber": 138
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._allocateTriangleIndexBuffer",
+          "lineNumber": 139
+        },
+        {
+          "caller": "_allocateHoleIndexBuffer",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_allocateTriangleIndexBuffer",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 175
+        },
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 199
+        },
+        {
+          "caller": "clone",
+          "callee": "assert",
+          "lineNumber": 202
+        },
+        {
+          "caller": "clone",
+          "callee": "assert",
+          "lineNumber": 203
+        },
+        {
+          "caller": "clone",
+          "callee": "this._copySubArray",
+          "lineNumber": 206
+        },
+        {
+          "caller": "clone",
+          "callee": "this._copySubArray",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_replaceBuffers",
+          "callee": "super._replaceBuffers",
+          "lineNumber": 248
+        },
+        {
+          "caller": "add",
+          "callee": "super.add",
+          "lineNumber": 269
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 272
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 273
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 276
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 277
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 280
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 281
+        },
+        {
+          "caller": "add",
+          "callee": "defined",
+          "lineNumber": 283
+        },
+        {
+          "caller": "add",
+          "callee": "result.setPositions",
+          "lineNumber": 284
+        },
+        {
+          "caller": "add",
+          "callee": "defined",
+          "lineNumber": 287
+        },
+        {
+          "caller": "add",
+          "callee": "result.setHoles",
+          "lineNumber": 288
+        },
+        {
+          "caller": "add",
+          "callee": "defined",
+          "lineNumber": 291
+        },
+        {
+          "caller": "add",
+          "callee": "result.setTriangles",
+          "lineNumber": 292
+        },
+        {
+          "caller": "update",
+          "callee": "super.update",
+          "lineNumber": 306
+        },
+        {
+          "caller": "update",
+          "callee": "renderPolygons",
+          "lineNumber": 310
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolygonMaterial.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 35,
+      "classes": [
+        {
+          "name": "BufferPolygonMaterial",
+          "startLine": 26,
+          "endLine": 39,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolyline.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 186,
+      "nonEmptyLines": 162,
+      "classes": [
+        {
+          "name": "BufferPolyline",
+          "startLine": 29,
+          "endLine": 184,
+          "methods": [
+            "clone",
+            "vertexOffset",
+            "vertexCount",
+            "getPositions",
+            "setPositions",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 75
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setPositions",
+          "lineNumber": 76
+        },
+        {
+          "caller": "clone",
+          "callee": "polyline.getPositions",
+          "lineNumber": 76
+        },
+        {
+          "caller": "vertexOffset",
+          "callee": "this._getUint32",
+          "lineNumber": 92
+        },
+        {
+          "caller": "vertexCount",
+          "callee": "this._getUint32",
+          "lineNumber": 102
+        },
+        {
+          "caller": "getPositions",
+          "callee": "defined",
+          "lineNumber": 118
+        },
+        {
+          "caller": "setPositions",
+          "callee": "assert",
+          "lineNumber": 149
+        },
+        {
+          "caller": "setPositions",
+          "callee": "this._isResizable",
+          "lineNumber": 149
+        },
+        {
+          "caller": "setPositions",
+          "callee": "assert",
+          "lineNumber": 150
+        },
+        {
+          "caller": "setPositions",
+          "callee": "this._setUint32",
+          "lineNumber": 154
+        },
+        {
+          "caller": "setPositions",
+          "callee": "collection._makeDirtyBoundingVolume",
+          "lineNumber": 164
+        },
+        {
+          "caller": "toJSON",
+          "callee": "super.toJSON",
+          "lineNumber": 180
+        },
+        {
+          "caller": "toJSON",
+          "callee": "Array.from",
+          "lineNumber": 181
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getPositions",
+          "lineNumber": 181
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolylineCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 140,
+      "nonEmptyLines": 123,
+      "classes": [
+        {
+          "name": "BufferPolylineCollection",
+          "startLine": 59,
+          "endLine": 138,
+          "methods": [
+            "_getCollectionClass",
+            "_getPrimitiveClass",
+            "_getMaterialClass",
+            "_cloneEmpty",
+            "add",
+            "update"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "add",
+          "callee": "super.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 109
+        },
+        {
+          "caller": "add",
+          "callee": "result._setUint32",
+          "lineNumber": 110
+        },
+        {
+          "caller": "add",
+          "callee": "defined",
+          "lineNumber": 112
+        },
+        {
+          "caller": "add",
+          "callee": "result.setPositions",
+          "lineNumber": 113
+        },
+        {
+          "caller": "update",
+          "callee": "super.update",
+          "lineNumber": 127
+        },
+        {
+          "caller": "update",
+          "callee": "renderPolylines",
+          "lineNumber": 131
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPolylineMaterial.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 81,
+      "classes": [
+        {
+          "name": "BufferPolylineMaterial",
+          "startLine": 27,
+          "endLine": 91,
+          "methods": [
+            "constructor",
+            "pack",
+            "unpack",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 45
+        },
+        {
+          "caller": "pack",
+          "callee": "super.pack",
+          "lineNumber": 61
+        },
+        {
+          "caller": "pack",
+          "callee": "view.setUint8",
+          "lineNumber": 62
+        },
+        {
+          "caller": "unpack",
+          "callee": "super.unpack",
+          "lineNumber": 73
+        },
+        {
+          "caller": "unpack",
+          "callee": "view.getUint8",
+          "lineNumber": 74
+        },
+        {
+          "caller": "toJSON",
+          "callee": "super.toJSON",
+          "lineNumber": 89
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPrimitive.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 347,
+      "nonEmptyLines": 305,
+      "classes": [
+        {
+          "name": "BufferPrimitive",
+          "startLine": 25,
+          "endLine": 345,
+          "methods": [
+            "clone",
+            "_isResizable",
+            "featureId",
+            "featureId",
+            "show",
+            "show",
+            "getMaterial",
+            "setMaterial",
+            "_dirty",
+            "_dirty",
+            "_pickId",
+            "_pickId",
+            "_getUint8",
+            "_setUint8",
+            "_getUint32",
+            "_setUint32",
+            "_getFloat32",
+            "_setFloat32",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clone",
+          "callee": "primitive._collection._getMaterialClass",
+          "lineNumber": 115
+        },
+        {
+          "caller": "clone",
+          "callee": "result._collection._getMaterialClass",
+          "lineNumber": 118
+        },
+        {
+          "caller": "clone",
+          "callee": "assert",
+          "lineNumber": 119
+        },
+        {
+          "caller": "clone",
+          "callee": "result.setMaterial",
+          "lineNumber": 124
+        },
+        {
+          "caller": "clone",
+          "callee": "primitive.getMaterial",
+          "lineNumber": 124
+        },
+        {
+          "caller": "featureId",
+          "callee": "this._getUint32",
+          "lineNumber": 149
+        },
+        {
+          "caller": "featureId",
+          "callee": "this._setUint32",
+          "lineNumber": 153
+        },
+        {
+          "caller": "show",
+          "callee": "this._getUint8",
+          "lineNumber": 161
+        },
+        {
+          "caller": "show",
+          "callee": "this._setUint8",
+          "lineNumber": 165
+        },
+        {
+          "caller": "getMaterial",
+          "callee": "collection._getMaterialClass",
+          "lineNumber": 174
+        },
+        {
+          "caller": "getMaterial",
+          "callee": "MaterialClass.unpack",
+          "lineNumber": 176
+        },
+        {
+          "caller": "setMaterial",
+          "callee": "collection._getMaterialClass",
+          "lineNumber": 188
+        },
+        {
+          "caller": "setMaterial",
+          "callee": "MaterialClass.pack",
+          "lineNumber": 190
+        },
+        {
+          "caller": "_dirty",
+          "callee": "this._getUint8",
+          "lineNumber": 214
+        },
+        {
+          "caller": "_dirty",
+          "callee": "this._collection._primitiveView.setUint8",
+          "lineNumber": 219
+        },
+        {
+          "caller": "_dirty",
+          "callee": "this._collection._makeDirty",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_pickId",
+          "callee": "this._getUint32",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_pickId",
+          "callee": "this._setUint32",
+          "lineNumber": 242
+        },
+        {
+          "caller": "_getUint8",
+          "callee": "this._collection._primitiveView.getUint8",
+          "lineNumber": 254
+        },
+        {
+          "caller": "_setUint8",
+          "callee": "this._collection._primitiveView.setUint8",
+          "lineNumber": 265
+        },
+        {
+          "caller": "_getUint32",
+          "callee": "this._collection._primitiveView.getUint32",
+          "lineNumber": 278
+        },
+        {
+          "caller": "_setUint32",
+          "callee": "this._collection._primitiveView.setUint32",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_getFloat32",
+          "callee": "this._collection._primitiveView.getFloat32",
+          "lineNumber": 304
+        },
+        {
+          "caller": "_setFloat32",
+          "callee": "this._collection._primitiveView.setFloat32",
+          "lineNumber": 316
+        },
+        {
+          "caller": "toJSON",
+          "callee": "collection._getMaterialClass",
+          "lineNumber": 336
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getMaterial(new MaterialClass()).toJSON",
+          "lineNumber": 342
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.getMaterial",
+          "lineNumber": 342
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPrimitiveCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 869,
+      "nonEmptyLines": 767,
+      "classes": [
+        {
+          "name": "BufferPrimitiveCollection",
+          "startLine": 53,
+          "endLine": 854,
+          "methods": [
+            "constructor",
+            "_getCollectionClass",
+            "_getPrimitiveClass",
+            "_getMaterialClass",
+            "_allocatePrimitiveBuffer",
+            "_allocatePositionBuffer",
+            "_allocateMaterialBuffer",
+            "isDestroyed",
+            "destroy",
+            "sort",
+            "clone",
+            "_cloneEmpty",
+            "_replaceBuffers",
+            "_updateBoundingVolume",
+            "_updatePickIds",
+            "get",
+            "add",
+            "_makeDirty",
+            "_makeDirtyBoundingVolume",
+            "update",
+            "primitiveCount",
+            "primitiveCountMax",
+            "byteLength",
+            "vertexCount",
+            "vertexCountMax",
+            "modelMatrix",
+            "boundingVolume",
+            "positionDatatype",
+            "positionNormalized",
+            "_copySubArray",
+            "_copySubDataView",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Matrix4.clone",
+          "lineNumber": 114
+        },
+        {
+          "caller": "constructor",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 121
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 131
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._allocatePrimitiveBuffer",
+          "lineNumber": 252
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._allocatePositionBuffer",
+          "lineNumber": 253
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._allocateMaterialBuffer",
+          "lineNumber": 254
+        },
+        {
+          "caller": "_getCollectionClass",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 265
+        },
+        {
+          "caller": "_getPrimitiveClass",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 274
+        },
+        {
+          "caller": "_getMaterialClass",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 282
+        },
+        {
+          "caller": "_allocatePrimitiveBuffer",
+          "callee": "this._getPrimitiveClass",
+          "lineNumber": 293
+        },
+        {
+          "caller": "_allocatePrimitiveBuffer",
+          "callee": "assert",
+          "lineNumber": 297
+        },
+        {
+          "caller": "_allocatePositionBuffer",
+          "callee": "ComponentDatatype.createTypedArray",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_allocateMaterialBuffer",
+          "callee": "this._getMaterialClass",
+          "lineNumber": 322
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._pickIds.values",
+          "lineNumber": 341
+        },
+        {
+          "caller": "destroy",
+          "callee": "pickId.destroy",
+          "lineNumber": 343
+        },
+        {
+          "caller": "destroy",
+          "callee": "defined",
+          "lineNumber": 347
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._renderContext.destroy",
+          "lineNumber": 348
+        },
+        {
+          "caller": "sort",
+          "callee": "this._getPrimitiveClass",
+          "lineNumber": 368
+        },
+        {
+          "caller": "sort",
+          "callee": "this._getCollectionClass",
+          "lineNumber": 369
+        },
+        {
+          "caller": "sort",
+          "callee": "dstSrcMap.sort",
+          "lineNumber": 381
+        },
+        {
+          "caller": "sort",
+          "callee": "sortFn",
+          "lineNumber": 382
+        },
+        {
+          "caller": "sort",
+          "callee": "this.get",
+          "lineNumber": 382
+        },
+        {
+          "caller": "sort",
+          "callee": "this.get",
+          "lineNumber": 382
+        },
+        {
+          "caller": "sort",
+          "callee": "CollectionClass._cloneEmpty",
+          "lineNumber": 391
+        },
+        {
+          "caller": "sort",
+          "callee": "this.get",
+          "lineNumber": 393
+        },
+        {
+          "caller": "sort",
+          "callee": "tmp.add",
+          "lineNumber": 394
+        },
+        {
+          "caller": "sort",
+          "callee": "PrimitiveClass.clone",
+          "lineNumber": 395
+        },
+        {
+          "caller": "sort",
+          "callee": "CollectionClass._replaceBuffers",
+          "lineNumber": 399
+        },
+        {
+          "caller": "clone",
+          "callee": "assert",
+          "lineNumber": 426
+        },
+        {
+          "caller": "clone",
+          "callee": "assert",
+          "lineNumber": 427
+        },
+        {
+          "caller": "clone",
+          "callee": "collection._getPrimitiveClass",
+          "lineNumber": 430
+        },
+        {
+          "caller": "clone",
+          "callee": "collection._getMaterialClass",
+          "lineNumber": 431
+        },
+        {
+          "caller": "clone",
+          "callee": "collection._getPrimitiveClass",
+          "lineNumber": 432
+        },
+        {
+          "caller": "clone",
+          "callee": "this._copySubDataView",
+          "lineNumber": 434
+        },
+        {
+          "caller": "clone",
+          "callee": "this._copySubArray",
+          "lineNumber": 440
+        },
+        {
+          "caller": "clone",
+          "callee": "this._copySubDataView",
+          "lineNumber": 446
+        },
+        {
+          "caller": "clone",
+          "callee": "result.get",
+          "lineNumber": 460
+        },
+        {
+          "caller": "clone",
+          "callee": "collection.boundingVolume.clone",
+          "lineNumber": 466
+        },
+        {
+          "caller": "_cloneEmpty",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 483
+        },
+        {
+          "caller": "_updateBoundingVolume",
+          "callee": "this._positionView.subarray",
+          "lineNumber": 510
+        },
+        {
+          "caller": "_updateBoundingVolume",
+          "callee": "AttributeCompression.dequantize",
+          "lineNumber": 513
+        },
+        {
+          "caller": "_updateBoundingVolume",
+          "callee": "BoundingSphere.fromVertices",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_updateBoundingVolume",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 529
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "this._pickIds.get",
+          "lineNumber": 544
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "this._pickIds.set",
+          "lineNumber": 551
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "this._getPrimitiveClass",
+          "lineNumber": 555
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "this.get",
+          "lineNumber": 560
+        },
+        {
+          "caller": "primitive",
+          "callee": "collection.get",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "context.createPickId",
+          "lineNumber": 571
+        },
+        {
+          "caller": "_updatePickIds",
+          "callee": "pickIds.push",
+          "lineNumber": 573
+        },
+        {
+          "caller": "get",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 602
+        },
+        {
+          "caller": "get",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 603
+        },
+        {
+          "caller": "get",
+          "callee": "this._getPrimitiveClass",
+          "lineNumber": 608
+        },
+        {
+          "caller": "add",
+          "callee": "assert",
+          "lineNumber": 626
+        },
+        {
+          "caller": "add",
+          "callee": "this._getMaterialClass",
+          "lineNumber": 629
+        },
+        {
+          "caller": "add",
+          "callee": "this.get",
+          "lineNumber": 632
+        },
+        {
+          "caller": "add",
+          "callee": "result.setMaterial",
+          "lineNumber": 635
+        },
+        {
+          "caller": "add",
+          "callee": "defined",
+          "lineNumber": 639
+        },
+        {
+          "caller": "update",
+          "callee": "oneTimeWarning",
+          "lineNumber": 680
+        },
+        {
+          "caller": "update",
+          "callee": "this._updateBoundingVolume",
+          "lineNumber": 687
+        },
+        {
+          "caller": "update",
+          "callee": "this._updatePickIds",
+          "lineNumber": 690
+        },
+        {
+          "caller": "_copySubDataView",
+          "callee": "this._copySubArray",
+          "lineNumber": 822
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this._getPrimitiveClass",
+          "lineNumber": 844
+        },
+        {
+          "caller": "toJSON",
+          "callee": "results.push",
+          "lineNumber": 849
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.get(i, primitive).toJSON",
+          "lineNumber": 849
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.get",
+          "lineNumber": 849
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/BufferPrimitiveMaterial.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 140,
+      "nonEmptyLines": 126,
+      "classes": [
+        {
+          "name": "BufferPrimitiveMaterial",
+          "startLine": 31,
+          "endLine": 138,
+          "methods": [
+            "constructor",
+            "packedLength",
+            "pack",
+            "unpack",
+            "toJSON"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Color.clone",
+          "lineNumber": 54
+        },
+        {
+          "caller": "constructor",
+          "callee": "Color.clone",
+          "lineNumber": 60
+        },
+        {
+          "caller": "pack",
+          "callee": "view.setUint32",
+          "lineNumber": 82
+        },
+        {
+          "caller": "pack",
+          "callee": "material.color.toRgba",
+          "lineNumber": 84
+        },
+        {
+          "caller": "pack",
+          "callee": "view.setUint32",
+          "lineNumber": 87
+        },
+        {
+          "caller": "pack",
+          "callee": "material.outlineColor.toRgba",
+          "lineNumber": 89
+        },
+        {
+          "caller": "pack",
+          "callee": "view.setUint8",
+          "lineNumber": 92
+        },
+        {
+          "caller": "unpack",
+          "callee": "Color.fromRgba",
+          "lineNumber": 107
+        },
+        {
+          "caller": "unpack",
+          "callee": "view.getUint32",
+          "lineNumber": 108
+        },
+        {
+          "caller": "unpack",
+          "callee": "Color.fromRgba",
+          "lineNumber": 111
+        },
+        {
+          "caller": "unpack",
+          "callee": "view.getUint32",
+          "lineNumber": 112
+        },
+        {
+          "caller": "unpack",
+          "callee": "view.getUint8",
+          "lineNumber": 115
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.color.toCssHexString",
+          "lineNumber": 133
+        },
+        {
+          "caller": "toJSON",
+          "callee": "this.outlineColor.toCssHexString",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTileVectorFeature.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 586,
+      "nonEmptyLines": 534,
+      "classes": [
+        {
+          "name": "Cesium3DTileVectorFeature",
+          "startLine": 67,
+          "endLine": 584,
+          "methods": [
+            "constructor",
+            "addPrimitiveByCollection",
+            "show",
+            "show",
+            "color",
+            "color",
+            "pointSize",
+            "pointSize",
+            "pointOutlineColor",
+            "pointOutlineColor",
+            "pointOutlineWidth",
+            "pointOutlineWidth",
+            "lineWidth",
+            "lineWidth",
+            "lineOutlineColor",
+            "lineOutlineColor",
+            "lineOutlineWidth",
+            "lineOutlineWidth",
+            "polygonOutlineColor",
+            "polygonOutlineColor",
+            "polygonOutlineWidth",
+            "polygonOutlineWidth",
+            "content",
+            "tileset",
+            "primitive",
+            "featureId",
+            "_batchTable",
+            "pickIds",
+            "hasProperty",
+            "getPropertyIds",
+            "getProperty",
+            "getPropertyInherited",
+            "setProperty",
+            "isExactClass",
+            "isClass",
+            "getExactClassName",
+            "_iteratePrimitives",
+            "_iteratePrimitivesWith",
+            "_iterateMaterials",
+            "_iteratePointMaterials",
+            "_iteratePolylineMaterials",
+            "_iteratePolygonMaterials",
+            "_iterateMaterialsWith"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addPrimitiveByCollection",
+          "callee": "this._primitivesByCollection.get",
+          "lineNumber": 98
+        },
+        {
+          "caller": "addPrimitiveByCollection",
+          "callee": "this._primitivesByCollection.set",
+          "lineNumber": 101
+        },
+        {
+          "caller": "addPrimitiveByCollection",
+          "callee": "primitiveIndices.push",
+          "lineNumber": 103
+        },
+        {
+          "caller": "show",
+          "callee": "this._iteratePrimitives",
+          "lineNumber": 111
+        },
+        {
+          "caller": "show",
+          "callee": "this._iteratePrimitives",
+          "lineNumber": 120
+        },
+        {
+          "caller": "color",
+          "callee": "this._iterateMaterials",
+          "lineNumber": 130
+        },
+        {
+          "caller": "color",
+          "callee": "Color.clone",
+          "lineNumber": 131
+        },
+        {
+          "caller": "color",
+          "callee": "Color.clone",
+          "lineNumber": 133
+        },
+        {
+          "caller": "color",
+          "callee": "this._iterateMaterials",
+          "lineNumber": 137
+        },
+        {
+          "caller": "color",
+          "callee": "Color.clone",
+          "lineNumber": 138
+        },
+        {
+          "caller": "pointSize",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 147
+        },
+        {
+          "caller": "pointSize",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 154
+        },
+        {
+          "caller": "pointOutlineColor",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 164
+        },
+        {
+          "caller": "pointOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 165
+        },
+        {
+          "caller": "pointOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 167
+        },
+        {
+          "caller": "pointOutlineColor",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 171
+        },
+        {
+          "caller": "pointOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 172
+        },
+        {
+          "caller": "pointOutlineWidth",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 181
+        },
+        {
+          "caller": "pointOutlineWidth",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 188
+        },
+        {
+          "caller": "lineWidth",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 198
+        },
+        {
+          "caller": "lineWidth",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 205
+        },
+        {
+          "caller": "lineOutlineColor",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 215
+        },
+        {
+          "caller": "lineOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 216
+        },
+        {
+          "caller": "lineOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 218
+        },
+        {
+          "caller": "lineOutlineColor",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 222
+        },
+        {
+          "caller": "lineOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 223
+        },
+        {
+          "caller": "lineOutlineWidth",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 232
+        },
+        {
+          "caller": "lineOutlineWidth",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 239
+        },
+        {
+          "caller": "polygonOutlineColor",
+          "callee": "this._iteratePolygonMaterials",
+          "lineNumber": 249
+        },
+        {
+          "caller": "polygonOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 250
+        },
+        {
+          "caller": "polygonOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 252
+        },
+        {
+          "caller": "polygonOutlineColor",
+          "callee": "this._iteratePolygonMaterials",
+          "lineNumber": 256
+        },
+        {
+          "caller": "polygonOutlineColor",
+          "callee": "Color.clone",
+          "lineNumber": 257
+        },
+        {
+          "caller": "polygonOutlineWidth",
+          "callee": "this._iteratePolygonMaterials",
+          "lineNumber": 266
+        },
+        {
+          "caller": "polygonOutlineWidth",
+          "callee": "this._iteratePolygonMaterials",
+          "lineNumber": 273
+        },
+        {
+          "caller": "pickIds",
+          "callee": "this._iteratePrimitives",
+          "lineNumber": 334
+        },
+        {
+          "caller": "pickIds",
+          "callee": "pickIds.push",
+          "lineNumber": 335
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "defined",
+          "lineNumber": 350
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "this._batchTable.hasProperty",
+          "lineNumber": 353
+        },
+        {
+          "caller": "getPropertyIds",
+          "callee": "defined",
+          "lineNumber": 366
+        },
+        {
+          "caller": "getPropertyIds",
+          "callee": "this._batchTable.getPropertyIds",
+          "lineNumber": 369
+        },
+        {
+          "caller": "getProperty",
+          "callee": "defined",
+          "lineNumber": 391
+        },
+        {
+          "caller": "getProperty",
+          "callee": "this._batchTable.getProperty",
+          "lineNumber": 394
+        },
+        {
+          "caller": "getPropertyInherited",
+          "callee": "Cesium3DTileFeature.getPropertyInherited",
+          "lineNumber": 414
+        },
+        {
+          "caller": "isExactClass",
+          "callee": "defined",
+          "lineNumber": 463
+        },
+        {
+          "caller": "isExactClass",
+          "callee": "this._batchTable.isExactClass",
+          "lineNumber": 466
+        },
+        {
+          "caller": "isClass",
+          "callee": "defined",
+          "lineNumber": 481
+        },
+        {
+          "caller": "isClass",
+          "callee": "this._batchTable.isClass",
+          "lineNumber": 484
+        },
+        {
+          "caller": "getExactClassName",
+          "callee": "defined",
+          "lineNumber": 498
+        },
+        {
+          "caller": "getExactClassName",
+          "callee": "this._batchTable.getExactClassName",
+          "lineNumber": 501
+        },
+        {
+          "caller": "_iteratePrimitives",
+          "callee": "this._iteratePrimitivesWith",
+          "lineNumber": 511
+        },
+        {
+          "caller": "_iteratePrimitives",
+          "callee": "this._iteratePrimitivesWith",
+          "lineNumber": 512
+        },
+        {
+          "caller": "_iteratePrimitives",
+          "callee": "this._iteratePrimitivesWith",
+          "lineNumber": 513
+        },
+        {
+          "caller": "_iteratePrimitivesWith",
+          "callee": "this._primitivesByCollection.get",
+          "lineNumber": 525
+        },
+        {
+          "caller": "_iteratePrimitivesWith",
+          "callee": "collection.get",
+          "lineNumber": 528
+        },
+        {
+          "caller": "_iterateMaterials",
+          "callee": "this._iteratePointMaterials",
+          "lineNumber": 537
+        },
+        {
+          "caller": "_iterateMaterials",
+          "callee": "this._iteratePolylineMaterials",
+          "lineNumber": 538
+        },
+        {
+          "caller": "_iterateMaterials",
+          "callee": "this._iteratePolygonMaterials",
+          "lineNumber": 539
+        },
+        {
+          "caller": "_iteratePointMaterials",
+          "callee": "this._iterateMaterialsWith",
+          "lineNumber": 545
+        },
+        {
+          "caller": "_iteratePolylineMaterials",
+          "callee": "this._iterateMaterialsWith",
+          "lineNumber": 552
+        },
+        {
+          "caller": "_iteratePolygonMaterials",
+          "callee": "this._iterateMaterialsWith",
+          "lineNumber": 563
+        },
+        {
+          "caller": "_iterateMaterialsWith",
+          "callee": "this._iteratePrimitivesWith",
+          "lineNumber": 578
+        },
+        {
+          "caller": "_iterateMaterialsWith",
+          "callee": "prim.getMaterial",
+          "lineNumber": 579
+        },
+        {
+          "caller": "_iterateMaterialsWith",
+          "callee": "prim.setMaterial",
+          "lineNumber": 581
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GeoJsonPrimitive.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 874,
+      "nonEmptyLines": 785,
+      "functions": [
+        {
+          "name": "createPickObject",
+          "startLine": 382,
+          "endLine": 402,
+          "params": [
+            "loader",
+            "index",
+            "collection",
+            "PrimitiveClass",
+            "properties"
+          ]
+        },
+        {
+          "name": "parseGeoJson",
+          "startLine": 408,
+          "endLine": 489,
+          "params": [
+            "geoJson"
+          ]
+        },
+        {
+          "name": "getInputFeatures",
+          "startLine": 496,
+          "endLine": 521,
+          "params": [
+            "geoJson"
+          ]
+        },
+        {
+          "name": "appendGeometry",
+          "startLine": 528,
+          "endLine": 567,
+          "params": [
+            "geometry",
+            "result"
+          ]
+        },
+        {
+          "name": "appendGeometryCollection",
+          "startLine": 574,
+          "endLine": 582,
+          "params": [
+            "geometries",
+            "result"
+          ]
+        },
+        {
+          "name": "appendPoint",
+          "startLine": 589,
+          "endLine": 594,
+          "params": [
+            "coordinates",
+            "points"
+          ]
+        },
+        {
+          "name": "appendMultiPoint",
+          "startLine": 601,
+          "endLine": 605,
+          "params": [
+            "coordinates",
+            "points"
+          ]
+        },
+        {
+          "name": "appendLineString",
+          "startLine": 612,
+          "endLine": 617,
+          "params": [
+            "coordinates",
+            "polylines"
+          ]
+        },
+        {
+          "name": "appendMultiLineString",
+          "startLine": 624,
+          "endLine": 628,
+          "params": [
+            "coordinates",
+            "polylines"
+          ]
+        },
+        {
+          "name": "appendPolygon",
+          "startLine": 635,
+          "endLine": 640,
+          "params": [
+            "coordinates",
+            "polygons"
+          ]
+        },
+        {
+          "name": "appendMultiPolygon",
+          "startLine": 647,
+          "endLine": 651,
+          "params": [
+            "coordinates",
+            "polygons"
+          ]
+        },
+        {
+          "name": "normalizeLine",
+          "startLine": 658,
+          "endLine": 672,
+          "params": [
+            "coordinates"
+          ]
+        },
+        {
+          "name": "normalizePolygon",
+          "startLine": 679,
+          "endLine": 736,
+          "params": [
+            "rings"
+          ]
+        },
+        {
+          "name": "normalizeRing",
+          "startLine": 743,
+          "endLine": 768,
+          "params": [
+            "coordinates"
+          ]
+        },
+        {
+          "name": "normalizePosition",
+          "startLine": 775,
+          "endLine": 793,
+          "params": [
+            "coordinates"
+          ]
+        },
+        {
+          "name": "samePosition",
+          "startLine": 800,
+          "endLine": 802,
+          "params": [
+            "left",
+            "right"
+          ]
+        },
+        {
+          "name": "isGeometryType",
+          "startLine": 809,
+          "endLine": 819,
+          "params": [
+            "type"
+          ]
+        },
+        {
+          "name": "toCartesian",
+          "startLine": 828,
+          "endLine": 836,
+          "params": [
+            "position",
+            "ellipsoid",
+            "result"
+          ]
+        },
+        {
+          "name": "packPositionsToScratch",
+          "startLine": 851,
+          "endLine": 863,
+          "params": [
+            "positions",
+            "ellipsoid",
+            "getScratch"
+          ]
+        },
+        {
+          "name": "isPlainObject",
+          "startLine": 870,
+          "endLine": 872,
+          "params": [
+            "value"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GeoJsonPrimitive",
+          "startLine": 54,
+          "endLine": 371,
+          "methods": [
+            "constructor",
+            "url",
+            "featureCount",
+            "ids",
+            "properties",
+            "points",
+            "polylines",
+            "polygons",
+            "fromUrl",
+            "fromGeoJson",
+            "getId",
+            "getProperties",
+            "update",
+            "destroy",
+            "isDestroyed"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 62
+        },
+        {
+          "caller": "constructor",
+          "callee": "parseGeoJson",
+          "lineNumber": 67
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._points.add",
+          "lineNumber": 132
+        },
+        {
+          "caller": "constructor",
+          "callee": "toCartesian",
+          "lineNumber": 134
+        },
+        {
+          "caller": "constructor",
+          "callee": "createPickObject",
+          "lineNumber": 136
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._polylines.add",
+          "lineNumber": 149
+        },
+        {
+          "caller": "constructor",
+          "callee": "packPositionsToScratch",
+          "lineNumber": 151
+        },
+        {
+          "caller": "constructor",
+          "callee": "createPickObject",
+          "lineNumber": 157
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._polygons.add",
+          "lineNumber": 171
+        },
+        {
+          "caller": "constructor",
+          "callee": "packPositionsToScratch",
+          "lineNumber": 173
+        },
+        {
+          "caller": "constructor",
+          "callee": "createPickObject",
+          "lineNumber": 181
+        },
+        {
+          "caller": "url",
+          "callee": "defined",
+          "lineNumber": 202
+        },
+        {
+          "caller": "url",
+          "callee": "url.getUrlComponent",
+          "lineNumber": 205
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "defined",
+          "lineNumber": 277
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 282
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "resource.fetchJson",
+          "lineNumber": 283
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "defined",
+          "lineNumber": 284
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "resource.getUrlComponent",
+          "lineNumber": 286
+        },
+        {
+          "caller": "fromUrl",
+          "callee": "GeoJsonPrimitive.fromGeoJson",
+          "lineNumber": 290
+        },
+        {
+          "caller": "getId",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 315
+        },
+        {
+          "caller": "getId",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 316
+        },
+        {
+          "caller": "getProperties",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 326
+        },
+        {
+          "caller": "getProperties",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 327
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 341
+        },
+        {
+          "caller": "update",
+          "callee": "this._points.update",
+          "lineNumber": 342
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 344
+        },
+        {
+          "caller": "update",
+          "callee": "this._polylines.update",
+          "lineNumber": 345
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 347
+        },
+        {
+          "caller": "update",
+          "callee": "this._polygons.update",
+          "lineNumber": 348
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._points.destroy",
+          "lineNumber": 354
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._polylines.destroy",
+          "lineNumber": 358
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._polygons.destroy",
+          "lineNumber": 362
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 365
+        },
+        {
+          "caller": "createPickObject",
+          "callee": "defined",
+          "lineNumber": 389
+        },
+        {
+          "caller": "createPickObject",
+          "callee": "loader._pickObjectFactory",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primitive",
+          "callee": "collection.get",
+          "lineNumber": 397
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "getInputFeatures",
+          "lineNumber": 409
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "appendGeometry",
+          "lineNumber": 435
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "ids.push",
+          "lineNumber": 446
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "properties.push",
+          "lineNumber": 447
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "isPlainObject",
+          "lineNumber": 449
+        },
+        {
+          "caller": "parseGeoJson",
+          "callee": "features.push",
+          "lineNumber": 469
+        },
+        {
+          "caller": "getInputFeatures",
+          "callee": "defined",
+          "lineNumber": 497
+        },
+        {
+          "caller": "getInputFeatures",
+          "callee": "defined",
+          "lineNumber": 497
+        },
+        {
+          "caller": "getInputFeatures",
+          "callee": "isGeometryType",
+          "lineNumber": 509
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "defined",
+          "lineNumber": 529
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "defined",
+          "lineNumber": 529
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendPoint",
+          "lineNumber": 535
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendMultiPoint",
+          "lineNumber": 538
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendLineString",
+          "lineNumber": 544
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendMultiLineString",
+          "lineNumber": 547
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendPolygon",
+          "lineNumber": 553
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendMultiPolygon",
+          "lineNumber": 556
+        },
+        {
+          "caller": "appendGeometry",
+          "callee": "appendGeometryCollection",
+          "lineNumber": 562
+        },
+        {
+          "caller": "appendGeometryCollection",
+          "callee": "Array.isArray",
+          "lineNumber": 575
+        },
+        {
+          "caller": "appendGeometryCollection",
+          "callee": "appendGeometry",
+          "lineNumber": 580
+        },
+        {
+          "caller": "appendPoint",
+          "callee": "normalizePosition",
+          "lineNumber": 590
+        },
+        {
+          "caller": "appendPoint",
+          "callee": "defined",
+          "lineNumber": 591
+        },
+        {
+          "caller": "appendPoint",
+          "callee": "points.push",
+          "lineNumber": 592
+        },
+        {
+          "caller": "appendMultiPoint",
+          "callee": "appendPoint",
+          "lineNumber": 603
+        },
+        {
+          "caller": "appendLineString",
+          "callee": "normalizeLine",
+          "lineNumber": 613
+        },
+        {
+          "caller": "appendLineString",
+          "callee": "defined",
+          "lineNumber": 614
+        },
+        {
+          "caller": "appendLineString",
+          "callee": "polylines.push",
+          "lineNumber": 615
+        },
+        {
+          "caller": "appendMultiLineString",
+          "callee": "appendLineString",
+          "lineNumber": 626
+        },
+        {
+          "caller": "appendPolygon",
+          "callee": "normalizePolygon",
+          "lineNumber": 636
+        },
+        {
+          "caller": "appendPolygon",
+          "callee": "defined",
+          "lineNumber": 637
+        },
+        {
+          "caller": "appendPolygon",
+          "callee": "polygons.push",
+          "lineNumber": 638
+        },
+        {
+          "caller": "appendMultiPolygon",
+          "callee": "appendPolygon",
+          "lineNumber": 649
+        },
+        {
+          "caller": "normalizeLine",
+          "callee": "Array.isArray",
+          "lineNumber": 659
+        },
+        {
+          "caller": "normalizeLine",
+          "callee": "normalizePosition",
+          "lineNumber": 665
+        },
+        {
+          "caller": "normalizeLine",
+          "callee": "defined",
+          "lineNumber": 666
+        },
+        {
+          "caller": "normalizeLine",
+          "callee": "line.push",
+          "lineNumber": 667
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "Array.isArray",
+          "lineNumber": 680
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "normalizeRing",
+          "lineNumber": 686
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "defined",
+          "lineNumber": 687
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "normalizedRings.push",
+          "lineNumber": 688
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "holes.push",
+          "lineNumber": 712
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "positions.push",
+          "lineNumber": 717
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "positions2D.push",
+          "lineNumber": 718
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "PolygonPipeline.triangulate",
+          "lineNumber": 726
+        },
+        {
+          "caller": "normalizePolygon",
+          "callee": "defined",
+          "lineNumber": 727
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "Array.isArray",
+          "lineNumber": 744
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "normalizePosition",
+          "lineNumber": 750
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "defined",
+          "lineNumber": 751
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "ring.push",
+          "lineNumber": 752
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "samePosition",
+          "lineNumber": 760
+        },
+        {
+          "caller": "normalizeRing",
+          "callee": "ring.pop",
+          "lineNumber": 764
+        },
+        {
+          "caller": "normalizePosition",
+          "callee": "Array.isArray",
+          "lineNumber": 776
+        },
+        {
+          "caller": "normalizePosition",
+          "callee": "Number.isFinite",
+          "lineNumber": 785
+        },
+        {
+          "caller": "normalizePosition",
+          "callee": "Number.isFinite",
+          "lineNumber": 786
+        },
+        {
+          "caller": "normalizePosition",
+          "callee": "Number.isFinite",
+          "lineNumber": 787
+        },
+        {
+          "caller": "toCartesian",
+          "callee": "Cartesian3.fromDegrees",
+          "lineNumber": 829
+        },
+        {
+          "caller": "packPositionsToScratch",
+          "callee": "getScratch",
+          "lineNumber": 853
+        },
+        {
+          "caller": "packPositionsToScratch",
+          "callee": "toCartesian",
+          "lineNumber": 856
+        },
+        {
+          "caller": "packPositionsToScratch",
+          "callee": "packed.subarray",
+          "lineNumber": 862
+        },
+        {
+          "caller": "isPlainObject",
+          "callee": "Array.isArray",
+          "lineNumber": 871
+        }
+      ],
+      "metrics": {
+        "importCount": 17,
+        "exportCount": 0,
+        "functionCount": 20,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/createVectorTileBuffersFromModelComponents.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 691,
+      "nonEmptyLines": 614,
+      "functions": [
+        {
+          "name": "createVectorTileBuffersFromModelComponents",
+          "startLine": 49,
+          "endLine": 65,
+          "params": [
+            "content",
+            "components"
+          ]
+        },
+        {
+          "name": "getPrimitiveRestartIndex",
+          "startLine": 71,
+          "endLine": 74,
+          "params": [
+            "indices"
+          ]
+        },
+        {
+          "name": "gatherPrimitiveStats",
+          "startLine": 80,
+          "endLine": 139,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "getPrimitiveCount",
+          "startLine": 148,
+          "endLine": 160,
+          "params": [
+            "indices"
+          ]
+        },
+        {
+          "name": "appendPrimitiveToBuffers",
+          "startLine": 170,
+          "endLine": 231,
+          "params": [
+            "content",
+            "primitive",
+            "collection",
+            "collectionIndex",
+            "features"
+          ]
+        },
+        {
+          "name": "createFeatureFactoryFn",
+          "startLine": 250,
+          "endLine": 292,
+          "params": [
+            "content",
+            "primitive",
+            "features"
+          ]
+        },
+        {
+          "name": "appendBufferPoints",
+          "startLine": 302,
+          "endLine": 334,
+          "params": [
+            "collection",
+            "collectionIndex",
+            "collectionPositions",
+            "indices",
+            "getFeature"
+          ]
+        },
+        {
+          "name": "appendBufferPolylines",
+          "startLine": 344,
+          "endLine": 389,
+          "params": [
+            "collection",
+            "collectionIndex",
+            "collectionPositions",
+            "indices",
+            "getFeature"
+          ]
+        },
+        {
+          "name": "appendBufferPolygonsDeprecated",
+          "startLine": 401,
+          "endLine": 459,
+          "params": [
+            "collection",
+            "collectionIndex",
+            "collectionPositions",
+            "indices",
+            "getFeature",
+            "vector"
+          ]
+        },
+        {
+          "name": "appendBufferPolygons",
+          "startLine": 469,
+          "endLine": 549,
+          "params": [
+            "collection",
+            "collectionIndex",
+            "collectionPositions",
+            "getFeature",
+            "polygon"
+          ]
+        },
+        {
+          "name": "appendNodeToBuffers",
+          "startLine": 558,
+          "endLine": 636,
+          "params": [
+            "content",
+            "node",
+            "parentTransform",
+            "result"
+          ]
+        },
+        {
+          "name": "copyArrayByIndices",
+          "startLine": 651,
+          "endLine": 689,
+          "params": [
+            "array",
+            "indices",
+            "stride",
+            "resultIndices"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createVectorTileBuffersFromModelComponents",
+          "callee": "appendNodeToBuffers",
+          "lineNumber": 61
+        },
+        {
+          "caller": "getPrimitiveRestartIndex",
+          "callee": "Math.pow",
+          "lineNumber": 73
+        },
+        {
+          "caller": "gatherPrimitiveStats",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 95
+        },
+        {
+          "caller": "gatherPrimitiveStats",
+          "callee": "ModelReader.readIndicesAsTypedArray",
+          "lineNumber": 102
+        },
+        {
+          "caller": "gatherPrimitiveStats",
+          "callee": "getPrimitiveCount",
+          "lineNumber": 109
+        },
+        {
+          "caller": "gatherPrimitiveStats",
+          "callee": "getPrimitiveCount",
+          "lineNumber": 128
+        },
+        {
+          "caller": "getPrimitiveCount",
+          "callee": "getPrimitiveRestartIndex",
+          "lineNumber": 149
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 177
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "ModelReader.readAttributeAsRawCompactTypedArray",
+          "lineNumber": 185
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "ModelReader.readAttributeAsTypedArray",
+          "lineNumber": 186
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "ModelReader.readIndicesAsTypedArray",
+          "lineNumber": 190
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "createFeatureFactoryFn",
+          "lineNumber": 193
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "appendBufferPoints",
+          "lineNumber": 196
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "appendBufferPolylines",
+          "lineNumber": 204
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "defined",
+          "lineNumber": 212
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "appendBufferPolygonsDeprecated",
+          "lineNumber": 213
+        },
+        {
+          "caller": "appendPrimitiveToBuffers",
+          "callee": "appendBufferPolygons",
+          "lineNumber": 222
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "ModelUtility.getFeatureIdsByLabel",
+          "lineNumber": 253
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 262
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "ModelReader.readAttributeAsTypedArray",
+          "lineNumber": 271
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "features.has",
+          "lineNumber": 275
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "features.set",
+          "lineNumber": 281
+        },
+        {
+          "caller": "createFeatureFactoryFn",
+          "callee": "features.get",
+          "lineNumber": 289
+        },
+        {
+          "caller": "appendBufferPoints",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 313
+        },
+        {
+          "caller": "appendBufferPoints",
+          "callee": "getFeature",
+          "lineNumber": 320
+        },
+        {
+          "caller": "appendBufferPoints",
+          "callee": "feature.addPrimitiveByCollection",
+          "lineNumber": 322
+        },
+        {
+          "caller": "appendBufferPoints",
+          "callee": "collection.add",
+          "lineNumber": 325
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "getPrimitiveRestartIndex",
+          "lineNumber": 351
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "indices.subarray",
+          "lineNumber": 372
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "copyArrayByIndices",
+          "lineNumber": 373
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "getFeature",
+          "lineNumber": 375
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "feature.addPrimitiveByCollection",
+          "lineNumber": 377
+        },
+        {
+          "caller": "appendBufferPolylines",
+          "callee": "collection.add",
+          "lineNumber": 380
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "collectionPositions.subarray",
+          "lineNumber": 421
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "defined",
+          "lineNumber": 427
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "polygonHoleOffsets.slice",
+          "lineNumber": 429
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "indices.slice",
+          "lineNumber": 438
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "getFeature",
+          "lineNumber": 443
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "feature.addPrimitiveByCollection",
+          "lineNumber": 445
+        },
+        {
+          "caller": "appendBufferPolygonsDeprecated",
+          "callee": "collection.add",
+          "lineNumber": 448
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "getPrimitiveRestartIndex",
+          "lineNumber": 483
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "polygon.loopIndices.subarray",
+          "lineNumber": 493
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "copyArrayByIndices",
+          "lineNumber": 497
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "holesArray.push",
+          "lineNumber": 509
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "defined",
+          "lineNumber": 516
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "polygon.triangleIndices.subarray",
+          "lineNumber": 521
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "getFeature",
+          "lineNumber": 533
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "feature.addPrimitiveByCollection",
+          "lineNumber": 535
+        },
+        {
+          "caller": "appendBufferPolygons",
+          "callee": "collection.add",
+          "lineNumber": 538
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "ModelUtility.getNodeTransform",
+          "lineNumber": 559
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 560
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "gatherPrimitiveStats",
+          "lineNumber": 574
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 576
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.featuresByTableId.has",
+          "lineNumber": 615
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.featuresByTableId.set",
+          "lineNumber": 616
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.collections.push",
+          "lineNumber": 619
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.collectionLocalMatrices.push",
+          "lineNumber": 620
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "Matrix4.clone",
+          "lineNumber": 620
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.collectionFeatureTableIds.set",
+          "lineNumber": 621
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "appendPrimitiveToBuffers",
+          "lineNumber": 623
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "result.featuresByTableId.get",
+          "lineNumber": 628
+        },
+        {
+          "caller": "appendNodeToBuffers",
+          "callee": "appendNodeToBuffers",
+          "lineNumber": 634
+        },
+        {
+          "caller": "copyArrayByIndices",
+          "callee": "getPrimitiveRestartIndex",
+          "lineNumber": 652
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 0,
+        "functionCount": 12,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VectorGltf3DTileContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 452,
+      "nonEmptyLines": 392,
+      "functions": [
+        {
+          "name": "makeModelOptions",
+          "startLine": 398,
+          "endLine": 419,
+          "params": [
+            "tileset",
+            "tile",
+            "content",
+            "glb"
+          ]
+        },
+        {
+          "name": "initializeVectorPrimitives",
+          "startLine": 425,
+          "endLine": 450,
+          "params": [
+            "content"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VectorGltf3DTileContent",
+          "startLine": 59,
+          "endLine": 388,
+          "methods": [
+            "constructor",
+            "featuresLength",
+            "pointsLength",
+            "trianglesLength",
+            "geometryByteLength",
+            "texturesByteLength",
+            "batchTableByteLength",
+            "innerContents",
+            "ready",
+            "tileset",
+            "tile",
+            "url",
+            "batchTables",
+            "batchTable",
+            "metadata",
+            "metadata",
+            "group",
+            "group",
+            "getFeature",
+            "hasProperty",
+            "applyDebugSettings",
+            "applyStyle",
+            "update",
+            "pick",
+            "isDestroyed",
+            "destroy",
+            "fromGltf"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Matrix4.clone",
+          "lineNumber": 113
+        },
+        {
+          "caller": "featuresLength",
+          "callee": "this.batchTables.reduce",
+          "lineNumber": 117
+        },
+        {
+          "caller": "pointsLength",
+          "callee": "this._collections\n      .filter((collection) => collection instanceof BufferPointCollection)\n      .reduce",
+          "lineNumber": 124
+        },
+        {
+          "caller": "pointsLength",
+          "callee": "this._collections\n      .filter",
+          "lineNumber": 124
+        },
+        {
+          "caller": "trianglesLength",
+          "callee": "this._collections.reduce",
+          "lineNumber": 130
+        },
+        {
+          "caller": "geometryByteLength",
+          "callee": "this._collections.reduce",
+          "lineNumber": 141
+        },
+        {
+          "caller": "batchTableByteLength",
+          "callee": "this.batchTables.reduce",
+          "lineNumber": 151
+        },
+        {
+          "caller": "url",
+          "callee": "this._resource.getUrlComponent",
+          "lineNumber": 176
+        },
+        {
+          "caller": "getFeature",
+          "callee": "this._featuresByTableId.get(featureTableId)?.get",
+          "lineNumber": 216
+        },
+        {
+          "caller": "getFeature",
+          "callee": "this._featuresByTableId.get",
+          "lineNumber": 216
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "this.getFeature",
+          "lineNumber": 226
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "feature.hasProperty",
+          "lineNumber": 227
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "color.toCssHexString",
+          "lineNumber": 236
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "this.applyStyle",
+          "lineNumber": 238
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collections.filter",
+          "lineNumber": 252
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collectionFeatureTableIds.get",
+          "lineNumber": 253
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "collection.get",
+          "lineNumber": 255
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this.getFeature",
+          "lineNumber": 256
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 258
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.show.evaluate",
+          "lineNumber": 259
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 261
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.color.evaluate",
+          "lineNumber": 262
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 264
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.pointSize.evaluate",
+          "lineNumber": 265
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 267
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.pointOutlineWidth.evaluate",
+          "lineNumber": 269
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 271
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.pointOutlineColor.evaluate",
+          "lineNumber": 272
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "point.setMaterial",
+          "lineNumber": 275
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collections.filter",
+          "lineNumber": 279
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collectionFeatureTableIds.get",
+          "lineNumber": 280
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "collection.get",
+          "lineNumber": 282
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this.getFeature",
+          "lineNumber": 283
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 285
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.show.evaluate",
+          "lineNumber": 286
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 288
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.color.evaluate",
+          "lineNumber": 289
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 291
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.lineWidth.evaluate",
+          "lineNumber": 292
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "polyline.setMaterial",
+          "lineNumber": 295
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collections.filter",
+          "lineNumber": 299
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._collectionFeatureTableIds.get",
+          "lineNumber": 300
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "collection.get",
+          "lineNumber": 302
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this.getFeature",
+          "lineNumber": 303
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 305
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.show.evaluate",
+          "lineNumber": 306
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 308
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "style.color.evaluate",
+          "lineNumber": 309
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "polygon.setMaterial",
+          "lineNumber": 312
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 322
+        },
+        {
+          "caller": "update",
+          "callee": "model.update",
+          "lineNumber": 325
+        },
+        {
+          "caller": "update",
+          "callee": "initializeVectorPrimitives",
+          "lineNumber": 329
+        },
+        {
+          "caller": "update",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 334
+        },
+        {
+          "caller": "update",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 341
+        },
+        {
+          "caller": "update",
+          "callee": "this._collections[i].update",
+          "lineNumber": 346
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._model?.destroy",
+          "lineNumber": 365
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._collections.forEach",
+          "lineNumber": 367
+        },
+        {
+          "caller": "destroy",
+          "callee": "collection.destroy",
+          "lineNumber": 367
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 369
+        },
+        {
+          "caller": "fromGltf",
+          "callee": "makeModelOptions",
+          "lineNumber": 381
+        },
+        {
+          "caller": "fromGltf",
+          "callee": "Model.fromGltfAsync",
+          "lineNumber": 382
+        },
+        {
+          "caller": "initializeVectorPrimitives",
+          "callee": "ModelUtility.getAxisCorrectionMatrix",
+          "lineNumber": 429
+        },
+        {
+          "caller": "initializeVectorPrimitives",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 435
+        },
+        {
+          "caller": "initializeVectorPrimitives",
+          "callee": "createVectorTileBuffersFromModelComponents",
+          "lineNumber": 441
+        }
+      ],
+      "metrics": {
+        "importCount": 18,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    }
+  ]
+}

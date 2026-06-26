@@ -1,0 +1,973 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/isDataUri.js",
+      "type": "file",
+      "name": "isDataUri.js",
+      "filePath": "packages/engine/Source/Core/isDataUri.js",
+      "summary": "检测一个 URI 字符串是否为 data URI（内嵌 base64 编码的资源），被 Resource 等加载逻辑用于短路网络请求。",
+      "tags": [
+        "utility",
+        "uri",
+        "data-uri",
+        "validation"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用正则表达式匹配 data: 协议前缀。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/loadAndExecuteScript.js",
+      "type": "file",
+      "name": "loadAndExecuteScript.js",
+      "filePath": "packages/engine/Source/Core/loadAndExecuteScript.js",
+      "summary": "异步加载并执行一个外部脚本（动态插入 <script> 标签），完成后 resolve Promise，供 GoogleEarthEnterpriseMetadata 等使用。",
+      "tags": [
+        "utility",
+        "script-loader",
+        "async",
+        "dom"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "type": "file",
+      "name": "loadImageFromTypedArray.js",
+      "filePath": "packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "summary": "从 TypedArray 字节缓冲区解码为 HTMLImageElement/ImageBitmap，支持 flipY 与颜色空间转换选项，是各类影像与 glTF 纹理加载的底层工具。",
+      "tags": [
+        "utility",
+        "image-loader",
+        "async",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/objectToQuery.js",
+      "type": "file",
+      "name": "objectToQuery.js",
+      "filePath": "packages/engine/Source/Core/objectToQuery.js",
+      "summary": "将普通对象序列化为 URL 查询字符串，处理数组与编码，是 Resource 请求与 KmlDataSource 等 URL 构造的反向伙伴。",
+      "tags": [
+        "utility",
+        "url",
+        "serialization",
+        "query-string"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/parseResponseHeaders.js",
+      "type": "file",
+      "name": "parseResponseHeaders.js",
+      "filePath": "packages/engine/Source/Core/parseResponseHeaders.js",
+      "summary": "将 XHR getAllResponseHeaders 返回的原始换行字符串解析为键值对 header 对象，供 Resource/RequestErrorEvent 使用。",
+      "tags": [
+        "utility",
+        "http",
+        "headers",
+        "parser"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/queryToObject.js",
+      "type": "file",
+      "name": "queryToObject.js",
+      "filePath": "packages/engine/Source/Core/queryToObject.js",
+      "summary": "将 URL 查询字符串反序列化为对象（数组参数以数组形式返回），是 objectToQuery 的对应解析器，被 Resource 与 KmlDataSource 使用。",
+      "tags": [
+        "utility",
+        "url",
+        "parser",
+        "deserialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "type": "file",
+      "name": "sampleTerrain.js",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "summary": "在指定 LOD 层级对一组 Cartographic 位置采样地形高度，内部维护瓦片请求队列、节流、插值与失败重试，是 Cesium 地形查询的核心实现。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "async",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过自定义瓦片请求队列 (drainTileRequestQueue) 实现 LOD 限流与逐瓦片插值。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "type": "file",
+      "name": "sampleTerrainMostDetailed.js",
+      "filePath": "packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "summary": "在地形 Provider 的最高可用 LOD 上对位置进行采样，逐级下钻并复用 sampleTerrain 的队列机制，用于精确高度查询（如飞行定位）。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "async",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "type": "file",
+      "name": "writeTextToCanvas.js",
+      "filePath": "packages/engine/Source/Core/writeTextToCanvas.js",
+      "summary": "在 Canvas 上绘制文本并返回 Canvas 元素，支持字体、填充/描边色、背景与垂直偏移等排版参数，是 LabelCollection 与 PinBuilder 文本渲染的基础。",
+      "tags": [
+        "utility",
+        "canvas",
+        "text-rendering",
+        "2d"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "type": "file",
+      "name": "loadCubeMap.js",
+      "filePath": "packages/engine/Source/Renderer/loadCubeMap.js",
+      "summary": "并行加载 6 张立方体贴图面图像并通过 CubeMap 构造出环境贴图，用于天空盒与基于图像的光照（IBL）。",
+      "tags": [
+        "renderer",
+        "cubemap",
+        "texture",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ArcGisBaseMapType.js",
+      "type": "file",
+      "name": "ArcGisBaseMapType.js",
+      "filePath": "packages/engine/Source/Scene/ArcGisBaseMapType.js",
+      "summary": "ArcGIS 影像底图类型的 Frozen 枚举（SATELLITE / TERRAIN / OCEANS 等），供 ArcGisMapServerImageryProvider 选择预设底图。",
+      "tags": [
+        "enum",
+        "arcgis",
+        "imagery",
+        "frozen"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "type": "file",
+      "name": "ArcGisMapServerImageryProvider.js",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "summary": "对接 ArcGIS MapServer REST 服务的 ImageryProvider 实现：处理 tile/map 导出与瓦片请求、元数据、credit 与要素拾取，支持 WebMercator 与 Geographic 切片方案。",
+      "tags": [
+        "imagery-provider",
+        "arcgis",
+        "tile-loader",
+        "service"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实现 ImageryProvider 接口；通过 metadata 接口动态获取缓存与导出能力，并按图层构建瓦片 URL。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/loadAndExecuteScript.js:loadAndExecuteScript",
+      "type": "function",
+      "name": "loadAndExecuteScript",
+      "filePath": "packages/engine/Source/Core/loadAndExecuteScript.js",
+      "lineRange": [
+        4,
+        26
+      ],
+      "summary": "动态创建 <script> 标签加载并执行远端脚本，完成后 resolve，失败 reject。",
+      "tags": [
+        "utility",
+        "script-loader",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/loadImageFromTypedArray.js:loadImageFromTypedArray",
+      "type": "function",
+      "name": "loadImageFromTypedArray",
+      "filePath": "packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "lineRange": [
+        16,
+        65
+      ],
+      "summary": "从 TypedArray 字节解码出图像，优先 createImageBitmap 并回退到 data URL + Image，处理 flipY 与颜色空间。",
+      "tags": [
+        "utility",
+        "image-loader",
+        "async",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/objectToQuery.js:objectToQuery",
+      "type": "function",
+      "name": "objectToQuery",
+      "filePath": "packages/engine/Source/Core/objectToQuery.js",
+      "lineRange": [
+        25,
+        56
+      ],
+      "summary": "将对象序列化为 URL 查询字符串，处理数组、undefined 与 URI 编码。",
+      "tags": [
+        "utility",
+        "url",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/parseResponseHeaders.js:parseResponseHeaders",
+      "type": "function",
+      "name": "parseResponseHeaders",
+      "filePath": "packages/engine/Source/Core/parseResponseHeaders.js",
+      "lineRange": [
+        14,
+        36
+      ],
+      "summary": "将 XHR 返回的换行分隔的原始 header 字符串解析为键值对对象。",
+      "tags": [
+        "utility",
+        "http",
+        "parser"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/queryToObject.js:queryToObject",
+      "type": "function",
+      "name": "queryToObject",
+      "filePath": "packages/engine/Source/Core/queryToObject.js",
+      "lineRange": [
+        25,
+        59
+      ],
+      "summary": "将查询字符串反序列化为对象，重复键合并为数组并做 URI 解码。",
+      "tags": [
+        "utility",
+        "url",
+        "parser"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:sampleTerrain",
+      "type": "function",
+      "name": "sampleTerrain",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        46,
+        63
+      ],
+      "summary": "在指定 LOD 层级对位置数组采样地形高度，内部委托 doSampling 排队与节流。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "core",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:doSampling",
+      "type": "function",
+      "name": "doSampling",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        151,
+        198
+      ],
+      "summary": "sampleTerrain 的实现核心：构建瓦片请求队列，按 RequestScheduler 节流发起请求并对结果做逐瓦片插值。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "queue",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:attemptConsumeNextQueueItem",
+      "type": "function",
+      "name": "attemptConsumeNextQueueItem",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        74,
+        104
+      ],
+      "summary": "尝试从请求队列消费下一项并触发瓦片加载，处理取消与失败。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:drainTileRequestQueue",
+      "type": "function",
+      "name": "drainTileRequestQueue",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        127,
+        149
+      ],
+      "summary": "循环消费瓦片请求队列直到排空或达到并发上限。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:createInterpolateFunction",
+      "type": "function",
+      "name": "createInterpolateFunction",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        227,
+        279
+      ],
+      "summary": "为单个瓦片请求返回插值回调：用周围地形数据插值出每个 position 的高度。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "interpolation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrain.js:interpolateAndAssignHeight",
+      "type": "function",
+      "name": "interpolateAndAssignHeight",
+      "filePath": "packages/engine/Source/Core/sampleTerrain.js",
+      "lineRange": [
+        211,
+        225
+      ],
+      "summary": "在给定瓦片矩形内对单个 position 做双线性插值并写回高度。",
+      "tags": [
+        "terrain",
+        "interpolation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/sampleTerrainMostDetailed.js:sampleTerrainMostDetailed",
+      "type": "function",
+      "name": "sampleTerrainMostDetailed",
+      "filePath": "packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "lineRange": [
+        37,
+        131
+      ],
+      "summary": "在地形 Provider 最高 LOD 对位置采样，递归下钻直到无可细分瓦片。",
+      "tags": [
+        "terrain",
+        "sampling",
+        "most-detailed",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/writeTextToCanvas.js:writeTextToCanvas",
+      "type": "function",
+      "name": "writeTextToCanvas",
+      "filePath": "packages/engine/Source/Core/writeTextToCanvas.js",
+      "lineRange": [
+        65,
+        172
+      ],
+      "summary": "在 Canvas 上排版并绘制文本，返回该 Canvas；支持字体、填充/描边、背景与垂直偏移。",
+      "tags": [
+        "utility",
+        "canvas",
+        "text-rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/writeTextToCanvas.js:measureText",
+      "type": "function",
+      "name": "measureText",
+      "filePath": "packages/engine/Source/Core/writeTextToCanvas.js",
+      "lineRange": [
+        13,
+        42
+      ],
+      "summary": "测量文本在指定 2D 上下文的宽高，处理多行换行。",
+      "tags": [
+        "utility",
+        "canvas",
+        "text"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/loadCubeMap.js:loadCubeMap",
+      "type": "function",
+      "name": "loadCubeMap",
+      "filePath": "packages/engine/Source/Renderer/loadCubeMap.js",
+      "lineRange": [
+        41,
+        87
+      ],
+      "summary": "并行加载 6 个立方体贴图面并通过 context 构造 CubeMap，可选跳过颜色空间转换。",
+      "tags": [
+        "renderer",
+        "cubemap",
+        "texture",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:ArcGisMapServerImageryProvider",
+      "type": "function",
+      "name": "ArcGisMapServerImageryProvider",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "lineRange": [
+        301,
+        344
+      ],
+      "summary": "ArcGIS MapServer ImageryProvider 构造器，初始化切片方案、credit 与元数据请求。",
+      "tags": [
+        "imagery-provider",
+        "arcgis",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:metadataSuccess",
+      "type": "function",
+      "name": "metadataSuccess",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "lineRange": [
+        130,
+        229
+      ],
+      "summary": "ArcGIS 元数据加载成功回调：解析图层层级、缓存范围与导出能力，构造 tiling scheme。",
+      "tags": [
+        "imagery-provider",
+        "arcgis",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:requestMetadata",
+      "type": "function",
+      "name": "requestMetadata",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "lineRange": [
+        240,
+        253
+      ],
+      "summary": "向 ArcGIS MapServer 发起服务/图层元数据请求。",
+      "tags": [
+        "imagery-provider",
+        "arcgis",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:buildImageResource",
+      "type": "function",
+      "name": "buildImageResource",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "lineRange": [
+        442,
+        482
+      ],
+      "summary": "为指定 x/y/level 瓦片构建 ArcGIS 导出/缓存图像 Resource 与请求。",
+      "tags": [
+        "imagery-provider",
+        "arcgis",
+        "tile-loader"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/loadAndExecuteScript.js",
+      "target": "function:packages/engine/Source/Core/loadAndExecuteScript.js:loadAndExecuteScript",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "target": "function:packages/engine/Source/Core/loadImageFromTypedArray.js:loadImageFromTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/objectToQuery.js",
+      "target": "function:packages/engine/Source/Core/objectToQuery.js:objectToQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/parseResponseHeaders.js",
+      "target": "function:packages/engine/Source/Core/parseResponseHeaders.js:parseResponseHeaders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/queryToObject.js",
+      "target": "function:packages/engine/Source/Core/queryToObject.js:queryToObject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:sampleTerrain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:doSampling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:attemptConsumeNextQueueItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:drainTileRequestQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:createInterpolateFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrain.js:interpolateAndAssignHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "function:packages/engine/Source/Core/sampleTerrainMostDetailed.js:sampleTerrainMostDetailed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "function:packages/engine/Source/Core/writeTextToCanvas.js:writeTextToCanvas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "function:packages/engine/Source/Core/writeTextToCanvas.js:measureText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "function:packages/engine/Source/Renderer/loadCubeMap.js:loadCubeMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:ArcGisMapServerImageryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:metadataSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:requestMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js:buildImageResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/isDataUri.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/objectToQuery.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/objectToQuery.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/queryToObject.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/queryToObject.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/loadCubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ArcGisBaseMapType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayerFeatureInfo.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImageryProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/sampleTerrainMostDetailed.js",
+      "target": "file:packages/engine/Source/Core/sampleTerrain.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapServerImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ArcGisBaseMapType.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

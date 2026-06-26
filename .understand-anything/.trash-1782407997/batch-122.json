@@ -1,0 +1,389 @@
+{
+  "nodes": [
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-edge-visibility/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-edge-visibility/sandcastle.yaml",
+      "summary": "Sandcastle 示例的元数据配置，定义 3D Tiles 边缘可见性示例的标题、描述、标签和缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-picking/index.html",
+      "summary": "3D Tiles 要素拾取示例的 HTML 宿主页面，加载 Cesium 库并引导 main.js。",
+      "tags": ["markup", "sandcastle", "entry-point", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-picking/main.js",
+      "summary": "演示如何在 3D Tiles 模型上拾取要素、显示要素名称悬浮层并根据要素属性生成描述信息框。",
+      "tags": ["sandcastle", "3d-tiles", "feature-picking", "demo", "event-handler"],
+      "complexity": "moderate",
+      "languageNotes": "通过全局 Cesium 对象调用 API（脚本注入方式），非 ES 模块导入。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js:updateNameOverlay",
+      "type": "function",
+      "name": "updateNameOverlay",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-picking/main.js",
+      "lineRange": [64, 75],
+      "summary": "根据拾取的要素及其屏幕位置，更新鼠标悬浮时显示的要素名称覆盖层。",
+      "tags": ["feature-picking", "ui-overlay", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js:createPickedFeatureDescription",
+      "type": "function",
+      "name": "createPickedFeatureDescription",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-picking/main.js",
+      "lineRange": [79, 103],
+      "summary": "从拾取要素读取多个属性字段并组装成 HTML 描述信息框内容。",
+      "tags": ["feature-picking", "property-access", "ui-overlay"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-feature-picking/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-picking/sandcastle.yaml",
+      "summary": "3D Tiles 要素拾取示例的 Sandcastle 元数据，包含 legacyId、标题、描述、标签和缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/index.html",
+      "summary": "3D Tiles 要素样式示例的 HTML 宿主页面，包含 UI 控件并引导 main.js。",
+      "tags": ["markup", "sandcastle", "entry-point", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "summary": "演示通过 3D Tiles 样式（3D Tiles Styling）按材质、建筑类型、距离坐标等方式对建筑数据进行着色与显隐控制。",
+      "tags": ["sandcastle", "3d-tiles", "styling", "demo", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:colorByMaterial",
+      "type": "function",
+      "name": "colorByMaterial",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "lineRange": [28, 46],
+      "summary": "将 tileset 样式重置为按材质默认着色的样式字符串。",
+      "tags": ["styling", "visualization", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:highlightAllResidentialBuildings",
+      "type": "function",
+      "name": "highlightAllResidentialBuildings",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "lineRange": [48, 60],
+      "summary": "通过样式条件高亮显示所有住宅类建筑。",
+      "tags": ["styling", "visualization", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:showByBuildingType",
+      "type": "function",
+      "name": "showByBuildingType",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "lineRange": [62, 77],
+      "summary": "根据传入的建筑类型过滤并仅显示匹配类型的建筑要素。",
+      "tags": ["styling", "filtering", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:colorByDistanceToCoordinate",
+      "type": "function",
+      "name": "colorByDistanceToCoordinate",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "lineRange": [80, 95],
+      "summary": "根据要素到指定经纬度坐标的距离对建筑进行渐变着色。",
+      "tags": ["styling", "visualization", "distance", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:removeCoordinatePickingOnLeftClick",
+      "type": "function",
+      "name": "removeCoordinatePickingOnLeftClick",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/main.js",
+      "lineRange": [99, 102],
+      "summary": "移除左键拾取坐标的输入动作并清理相关 UI 高亮。",
+      "tags": ["event-handler", "cleanup", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-feature-styling/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-feature-styling/sandcastle.yaml",
+      "summary": "3D Tiles 要素样式示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-formats/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-formats/index.html",
+      "summary": "3D Tiles 多格式示例的 HTML 宿主页面，加载 Cesium 并引导 main.js。",
+      "tags": ["markup", "sandcastle", "entry-point", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-formats/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-formats/main.js",
+      "summary": "演示加载并展示多种 3D Tiles 内部瓦片格式（如 b3dm、i3dm、pnts、glTF 等）的 Sandcastle 示例。",
+      "tags": ["sandcastle", "3d-tiles", "formats", "demo", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-formats/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-formats/sandcastle.yaml",
+      "summary": "3D Tiles 多格式示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/index.html",
+      "summary": "带 LOD 的 3D Tiles 高斯泼溅示例的 HTML 宿主页面。",
+      "tags": ["markup", "sandcastle", "entry-point", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/main.js",
+      "summary": "演示加载带有细节层次（LOD）的 3D Tiles 高斯泼溅（Gaussian Splatting）数据集。",
+      "tags": ["sandcastle", "gaussian-splatting", "3d-tiles", "lod", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/sandcastle.yaml",
+      "summary": "带 LOD 的高斯泼溅示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/index.html",
+      "summary": "高斯泼溅对比示例的 HTML 宿主页面，包含对比 UI 控件并引导 main.js。",
+      "tags": ["markup", "sandcastle", "entry-point", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js",
+      "summary": "对比展示多个高斯泼溅数据集渲染效果的 Sandcastle 示例，支持鼠标移动切换视角。",
+      "tags": ["sandcastle", "gaussian-splatting", "comparison", "demo", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js:move",
+      "type": "function",
+      "name": "move",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js",
+      "lineRange": [37, 47],
+      "summary": "鼠标移动事件回调，根据移动量调整相机视角以对比查看高斯泼溅数据。",
+      "tags": ["event-handler", "camera", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/sandcastle.yaml",
+      "summary": "高斯泼溅对比示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting/index.html",
+      "summary": "3D Tiles 高斯泼溅基础示例的 HTML 宿主页面。",
+      "tags": ["markup", "sandcastle", "entry-point", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting/main.js",
+      "summary": "基础的 3D Tiles 高斯泼溅（Gaussian Splatting）加载与渲染示例。",
+      "tags": ["sandcastle", "gaussian-splatting", "3d-tiles", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-gaussian-splatting/sandcastle.yaml",
+      "summary": "基础高斯泼溅示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "gaussian-splatting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-inspector/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-inspector/index.html",
+      "summary": "3D Tiles Inspector 示例的 HTML 宿主页面。",
+      "tags": ["markup", "sandcastle", "entry-point", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-inspector/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-inspector/main.js",
+      "summary": "演示启用 Cesium3DTileset 的调试检查器（Inspector）控件以查看瓦片边界、内存等调试信息的示例。",
+      "tags": ["sandcastle", "3d-tiles", "inspector", "debug", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-inspector/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-inspector/sandcastle.yaml",
+      "summary": "3D Tiles Inspector 示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-interactivity/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/index.html",
+      "summary": "3D Tiles 交互性示例的 HTML 宿主页面，包含交互 UI 控件并引导 main.js。",
+      "tags": ["markup", "sandcastle", "entry-point", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "summary": "演示对 3D Tiles 要素的多种交互操作，包括添加标注、打印属性、缩放至要素以及基于朝向/俯仰/距离的相机偏移定位。",
+      "tags": ["sandcastle", "3d-tiles", "interactivity", "camera", "demo"],
+      "complexity": "moderate",
+      "languageNotes": "大量使用 Cesium 的 Transforms、Quaternion、Matrix3/Matrix4 等数学工具进行相机姿态计算。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:annotate",
+      "type": "function",
+      "name": "annotate",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "lineRange": [88, 106],
+      "summary": "在拾取位置添加包含高度信息的标注（annotation）到场景中。",
+      "tags": ["interactivity", "annotation", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:printProperties",
+      "type": "function",
+      "name": "printProperties",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "lineRange": [108, 122],
+      "summary": "遍历并打印拾取要素的所有属性 ID 与取值，并评估样式中的 meta 描述。",
+      "tags": ["interactivity", "property-access", "debug", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:zoom",
+      "type": "function",
+      "name": "zoom",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "lineRange": [124, 154],
+      "summary": "根据要素属性计算目标位置，使用 eastNorthUp 局部坐标系并调用 offsetFromHeadingPitchRange 将相机飞行至要素。",
+      "tags": ["camera", "interactivity", "3d-tiles", "navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:offsetFromHeadingPitchRange",
+      "type": "function",
+      "name": "offsetFromHeadingPitchRange",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/main.js",
+      "lineRange": [156, 184],
+      "summary": "基于朝向（heading）、俯仰（pitch）和距离（range）计算相机相对目标点的偏移位置，使用 Quaternion 与 Matrix3 进行旋转变换。",
+      "tags": ["camera", "math", "quaternion", "3d-tiles"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/3d-tiles-interactivity/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/3d-tiles-interactivity/sandcastle.yaml",
+      "summary": "3D Tiles 交互性示例的 Sandcastle 元数据配置。",
+      "tags": ["configuration", "sandcastle", "metadata", "3d-tiles"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js:updateNameOverlay", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js:createPickedFeatureDescription", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-feature-picking/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-feature-picking/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:colorByMaterial", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:highlightAllResidentialBuildings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:showByBuildingType", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:colorByDistanceToCoordinate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js:removeCoordinatePickingOnLeftClick", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-feature-styling/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-feature-styling/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-formats/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-formats/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-formats/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-formats/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splats-with-lod/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js:move", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting-comparison/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-gaussian-splatting/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-inspector/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-inspector/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-inspector/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-inspector/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:annotate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:printProperties", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:zoom", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "target": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:offsetFromHeadingPitchRange", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:zoom", "target": "function:packages/sandcastle/gallery/3d-tiles-interactivity/main.js:offsetFromHeadingPitchRange", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "config:packages/sandcastle/gallery/3d-tiles-interactivity/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:packages/sandcastle/gallery/3d-tiles-interactivity/index.html", "target": "file:packages/sandcastle/gallery/3d-tiles-interactivity/main.js", "type": "depends_on", "direction": "forward", "weight": 0.6}
+  ]
+}

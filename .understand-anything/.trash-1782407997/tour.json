@@ -1,0 +1,128 @@
+[
+  {
+    "order": 1,
+    "title": "项目总览：CesiumJS 是什么",
+    "description": "从根 README 开始建立全局认知：CesiumJS 是一个基于 WebGL、无需插件的 3D 地球与 2D 地图 JavaScript 库，构建在 3D Tiles、glTF 等开放格式之上，以 `cesium` npm 包以及 scoped 包 `@cesium/engine`、`@cesium/widgets` 分发。这一步定下整条导览的主线——从对外 API 一路下探到渲染核心，让你在后续每一步都能把当前模块摆回这张大图里。",
+    "nodeIds": ["document:README.md"]
+  },
+  {
+    "order": 2,
+    "title": "对外入口与 API 表面",
+    "description": "接着看包如何被外部加载：`index.cjs` 是 CommonJS 入口 stub，按 NODE_ENV 在压缩版（Build/Cesium）与未压缩版（Build/CesiumUnminified）之间切换；`@cesium/engine` 的 package.json 则声明了 ESM 入口与对外导出。这两个文件圈定了库的公共 API 边界——理解它们你就知道一个 `import { Viewer } from 'cesium'` 背后真正解析到了什么，也为第 10 步的 Viewer widget 埋下伏笔。",
+    "nodeIds": ["file:index.cjs", "config:packages/engine/package.json"],
+    "languageLesson": "CommonJS（require/module.exports）与 ESM（import/export）在 Node 生态并存。package.json 的 `type`、`main`、`module`、`exports` 字段共同决定一个包在不同运行时被如何解析。Barrel 文件（re-export 一切的单文件）是把大型库收敛成单一导入入口的常见手法。"
+  },
+  {
+    "order": 3,
+    "title": "Core：数学与几何基石",
+    "description": "导览进入引擎最底层。Core 子系统是整个 CesiumJS 被依赖最多的部分（fan-in 排行里 defined.js 696、Cartesian3.js 271、Math.js 179、Matrix4.js 132 全部在此）。`Cartesian3`/`Matrix4` 提供三维向量与齐次变换，`Ellipsoid` 定义地球形状，`Math`（CesiumMath）集中弧度/角度与几何常数，而 `defined` 是被 696 处引用的判空守卫。先吃透这一层，后面 Scene 与 DataSources 的所有坐标运算才有支点。",
+    "nodeIds": [
+      "file:packages/engine/Source/Core/Cartesian3.js",
+      "file:packages/engine/Source/Core/Matrix4.js",
+      "file:packages/engine/Source/Core/Ellipsoid.js",
+      "file:packages/engine/Source/Core/Math.js",
+      "file:packages/engine/Source/Core/defined.js"
+    ],
+    "languageLesson": "CesiumJS 把向量/矩阵实现为带原型方法的类（如 Cartesian3.add、Matrix4.multiply），而非纯函数式 API，方便链式与就地（in-place）运算以减少 GC 压力——这对每帧渲染的高性能场景至关重要。"
+  },
+  {
+    "order": 4,
+    "title": "Renderer：WebGL 封装层",
+    "description": "Core 之上是 Renderer——对裸 WebGL 的薄但关键的封装。BFS 显示 CesiumWidget 在 depth 1 就直接依赖 Core，而真正的 GPU 管线在此处接手：`Context` 持有 WebGLRenderingContext 并管理资源生命周期，`ShaderProgram` 负责编译/链接 GLSL，`Texture` 与 `Framebuffer` 管理离屏渲染目标。这一层把浏览器原生 API 抽象成 Scene 层可以无差别调用的 draw command 体系，是理解第 6 步 Scene 如何画出一帧的关键。",
+    "nodeIds": [
+      "file:packages/engine/Source/Renderer/Context.js",
+      "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "file:packages/engine/Source/Renderer/Texture.js"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Shaders：GLSL 内建与可编程管线",
+    "description": "Renderer 编译的 GLSL 源码就住在 Shaders 子系统（317 个 .glsl 文件）。这一步把视角从 JS 切到 GPU：内置 `czm_*` 函数（如 eyeOffset 处理深度冲突）是所有材质/模型/后处理 shader 共享的公共字典，而 PostProcessStages 下的 .glsl（ACES tonemapping、AO、AdditiveBlend 等）组成屏幕空间特效链。结合第 4 步看，你会明白 Scene 的 draw command 最终是怎样变成一次真正的 GPU 调用的。",
+    "nodeIds": [
+      "file:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl",
+      "file:packages/engine/Source/Shaders/PostProcessStages/AcesTonemappingStage.glsl",
+      "file:packages/engine/Source/Shaders/PostProcessStages/AmbientOcclusionGenerate.glsl",
+      "file:packages/engine/Source/Shaders/PostProcessStages/AdditiveBlend.glsl"
+    ],
+    "languageLesson": "GLSL 在 OpenGL ES 1.00/3.00 之间有方言差异，CesiumJS 通过自动注入 `czm_*` uniform/函数与 precision 声明，把同一份 shader 源码适配到多版本 WebGL——这是一种用字符串前缀实现的可移植宏系统。"
+  },
+  {
+    "order": 6,
+    "title": "Scene：渲染循环与图元容器",
+    "description": "现在来到引擎的心脏。`Scene.js` 是 fan-out 最高的节点之一（83 条出边），统一管理渲染循环、帧缓冲、相机、光照、阴影与所有 primitive；`Globe` 是地球本体，`Primitive` 是矢量/几何图元的通用渲染单元。BFS 显示 Scene 在 CesiumWidget 之下、Core 之上，正是承上启下的中枢——它消费 Core 的数学，调度 Renderer 的 GPU 资源，并为第 7-9 步更 specialized 的内容（3D Tiles、Model、数据源）提供宿主。",
+    "nodeIds": [
+      "file:packages/engine/Source/Scene/Scene.js",
+      "file:packages/engine/Source/Scene/Globe.js",
+      "file:packages/engine/Source/Scene/Primitive.js"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Scene 进阶：3D Tiles 与 glTF 模型",
+    "description": "在 Scene 容器内，两个最重的子系统撑起 CesiumJS 的开放格式卖点：`Cesium3DTileset`（fan-out 75，约 4000 行）实现 3D Tiles 规范的层次化瓦片加载、SSE 调度与 LRU 缓存；`Model`（fan-out 45）是 glTF 2.0 运行时。它们把第 6 步 Scene 的通用 primitive 机制推向海量异构地理数据——理解了这一步，你就理解了为什么 CesiumJS 能流畅加载整座城市的 photogrammetry 与点云。",
+    "nodeIds": [
+      "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "file:packages/engine/Source/Scene/Model/Model.js"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "DataSources：实体系统与格式解析",
+    "description": "从底层渲染回到高层 API。DataSources 提供 entity/data-source 抽象：`Entity` 是面向业务的声明式图形对象（fan-out 39），而 `CzmlDataSource`（fan-out 92，全库最高）、`KmlDataSource`、`GeoJsonDataSource` 分别把三种主流地理数据格式解析进 entity 体系。BFS depth 4-6 大量节点正是 entity 的 property/material 子系统——这一层把第 6-7 步的渲染原语包装成应用开发者友好的对象图。",
+    "nodeIds": [
+      "file:packages/engine/Source/DataSources/Entity.js",
+      "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "file:packages/engine/Source/DataSources/GeoJsonDataSource.js",
+      "file:packages/engine/Source/DataSources/KmlDataSource.js"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "Workers：后台线程的几何与解码",
+    "description": "CesiumJS 的流畅度很大程度来自把重活丢进 Web Worker。Workers 子系统（53 个模块）在后台线程执行地形网格生成（createVerticesFromHeightmap）、3D Tiles/glTF 解码等任务，通过 transferable 把结果零拷贝回主线程。结合第 7 步看，这是 Cesium3DTileset 能在加载时不卡帧的关键——解码与 CPU 密集几何构建永远不在渲染线程上发生。",
+    "nodeIds": [
+      "file:packages/engine/Source/Workers/createVerticesFromHeightmap.js"
+    ],
+    "languageLesson": "Web Worker 通过 postMessage 通信，默认结构化克隆有开销；传入 ArrayBuffer 时使用 transfer list 可实现零拷贝所有权转移（transferable），是在主线程之外处理大数据的核心性能技巧。"
+  },
+  {
+    "order": 10,
+    "title": "CesiumWidget 与 Viewer：最简渲染窗口",
+    "description": "引擎之上是面向用户的 widget 层。`CesiumWidget`（BFS depth 0 的起点）在单个 DOM 容器内组合 Scene、Globe、Clock 与默认 imagery，是引擎层最简的渲染窗口；`Viewer`（fan-out 39）再向上聚合 CesiumWidget 加上时间轴、底图选择、地理编码、各类 inspector 等子 widget。绝大多数应用代码的起点就是 `new Viewer(container)`——这一步把前 9 步的全部能力收口成一个一行就能跑起来的高层对象。",
+    "nodeIds": [
+      "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "file:packages/widgets/Source/Viewer/Viewer.js"
+    ]
+  },
+  {
+    "order": 11,
+    "title": "Sandcastle：示例画廊与 Copilot 应用",
+    "description": "学完 API，最有效的练习场是 Sandcastle。它既是可交互的示例画廊（每个示例由 main.js + index.html + sandcastle.yaml 组成，聚类的种子单元），又是基于 React/Vite/TypeScript 的 AI Copilot 编辑器应用（App.tsx 是入口）。这里集中体现了库的推荐用法——从 box/entity 到 3D Tiles 点云，每个示例都是把第 6-10 步的概念落到最小可运行代码，是新手从“读懂”迈向“会写”的桥梁。",
+    "nodeIds": [
+      "file:packages/sandcastle/src/App.tsx",
+      "file:packages/sandcastle/standalone.html"
+    ]
+  },
+  {
+    "order": 12,
+    "title": "构建工具链：gulpfile 与开发服务器",
+    "description": "切换到工程视角：`gulpfile.js` 是项目核心 Gulp 入口，集中定义 build、test、coverage、release 等任务；`server.js` 是本地开发服务器（也是脚本选出的 entry 之一），基于 Express 提供按需的 esbuild 增量构建与静态资源服务。它们是把前面所有源码——从 GLSL 到 worker——编排成可分发 npm 包与可调试开发环境的粘合剂，理解它们你就掌握了本地贡献代码的日常循环。",
+    "nodeIds": [
+      "file:gulpfile.js",
+      "file:server.js"
+    ]
+  },
+  {
+    "order": 13,
+    "title": "CI/CD：GitHub Actions 流水线",
+    "description": "导览收尾在自动化流水线。`.github/workflows/dev.yml` 是主开发流水线，在 push 到 main 与 pull_request 时并行跑 lint、构建与测试；`prod.yml` 负责生产发布，依次执行 lint、构建发布归档、文档与部署；`sandcastle-dev.yml` 持续构建生产级 Sandcastle。它们把第 12 步的本地构建任务升级为门禁与发布自动化——任何 PR 都必须穿过这套流水线才能合入，是代码质量与可发布性的最后防线。",
+    "nodeIds": [
+      "pipeline:.github/workflows/dev.yml",
+      "pipeline:.github/workflows/prod.yml",
+      "pipeline:.github/workflows/sandcastle-dev.yml"
+    ],
+    "languageLesson": "GitHub Actions 用 YAML 声明 CI/CD：`on` 定义触发器、`jobs` 表达并行、`steps` 表达串行、`matrix` 跨多版本扇出。把 lint/build/test 拆成并行 job 可以显著缩短 PR 反馈时间，是大型开源仓库的常见编排模式。"
+  }
+]

@@ -1,0 +1,676 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "type": "file",
+      "name": "TilesetPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "summary": "Model 渲染管线阶段：注入 3D Tiles 上下文相关的 shader/uniform（如 tileset stencil 常量）。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline-stage",
+        "3d-tiles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/OIT.js",
+      "type": "file",
+      "name": "OIT.js",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "summary": "Order-Independent Transparency（OIT）实现：维护 accumulation/revealage 纹理与 framebuffer，提供 MRT 与 multipass 两种半透明合成路径及派生 shader。",
+      "tags": [
+        "scene",
+        "oit",
+        "transparency",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 ShaderSource.replaceMain 注入 czm_translucent_main，支持加权混合 OIT。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "type": "file",
+      "name": "OrderedGroundPrimitiveCollection.js",
+      "filePath": "packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "summary": "按高度/地面贴合顺序维护 ground primitive 的有序集合，确保正确的高度排序与贴合绘制。",
+      "tags": [
+        "scene",
+        "primitive",
+        "collection",
+        "ground"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Panorama.js",
+      "type": "file",
+      "name": "Panorama.js",
+      "filePath": "packages/engine/Source/Scene/Panorama.js",
+      "summary": "Panorama 抽象基类（仅抛出实例化错误），定义全景图相关接口契约。",
+      "tags": [
+        "scene",
+        "panorama",
+        "abstract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PickDepth.js",
+      "type": "file",
+      "name": "PickDepth.js",
+      "filePath": "packages/engine/Source/Scene/PickDepth.js",
+      "summary": "将场景深度纹理拷贝为可拾取的深度缓冲，并维护 viewport quad copy 命令以供深度拾取使用。",
+      "tags": [
+        "scene",
+        "pick",
+        "depth",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "type": "file",
+      "name": "PickDepthFramebuffer.js",
+      "filePath": "packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "summary": "管理深度拾取所需的 framebuffer 资源（创建/更新/销毁），封装 PickDepth 的 GL 资源生命周期。",
+      "tags": [
+        "scene",
+        "pick",
+        "depth",
+        "framebuffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "type": "file",
+      "name": "PickFramebuffer.js",
+      "filePath": "packages/engine/Source/Scene/PickFramebuffer.js",
+      "summary": "用于像素拾取的离屏 framebuffer 管理器，按像素坐标解析场景中的对象（pickObjectsFromPixels）。",
+      "tags": [
+        "scene",
+        "pick",
+        "framebuffer",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:OIT",
+      "type": "function",
+      "name": "OIT",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        24,
+        93
+      ],
+      "summary": "构造 OIT 资源管理器，懒加载 accumulation/revealage 纹理与 framebuffer。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:updateTextures",
+      "type": "function",
+      "name": "updateTextures",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        137,
+        156
+      ],
+      "summary": "updateTextures 函数：OIT.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:updateFramebuffers",
+      "type": "function",
+      "name": "updateFramebuffers",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        164,
+        226
+      ],
+      "summary": "按视口尺寸更新 OIT 用的 framebuffer 与附着纹理。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:getTranslucentRenderState",
+      "type": "function",
+      "name": "getTranslucentRenderState",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        441,
+        458
+      ],
+      "summary": "getTranslucentRenderState 函数：OIT.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:getTranslucentShaderProgram",
+      "type": "function",
+      "name": "getTranslucentShaderProgram",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        511,
+        575
+      ],
+      "summary": "派生 OIT 用的半透明 shader（注入 czm_translucent_main）。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:executeTranslucentCommandsSortedMultipass",
+      "type": "function",
+      "name": "executeTranslucentCommandsSortedMultipass",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        709,
+        775
+      ],
+      "summary": "以多遍（multipass）方式执行半透明命令的 OIT 合成。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/OIT.js:executeTranslucentCommandsSortedMRT",
+      "type": "function",
+      "name": "executeTranslucentCommandsSortedMRT",
+      "filePath": "packages/engine/Source/Scene/OIT.js",
+      "lineRange": [
+        786,
+        828
+      ],
+      "summary": "以 MRT 方式执行半透明命令的 OIT 合成（更高效路径）。",
+      "tags": [
+        "oit",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PickDepth.js:updateCopyCommands",
+      "type": "function",
+      "name": "updateCopyCommands",
+      "filePath": "packages/engine/Source/Scene/PickDepth.js",
+      "lineRange": [
+        33,
+        63
+      ],
+      "summary": "创建/更新将深度纹理拷贝到 framebuffer 的 viewport quad 命令。",
+      "tags": [
+        "pick",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PickDepthFramebuffer.js:createResources",
+      "type": "function",
+      "name": "createResources",
+      "filePath": "packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "lineRange": [
+        30,
+        44
+      ],
+      "summary": "按上下文创建深度拾取所需的 framebuffer 与纹理。",
+      "tags": [
+        "pick",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PickFramebuffer.js:PickFramebuffer",
+      "type": "function",
+      "name": "PickFramebuffer",
+      "filePath": "packages/engine/Source/Scene/PickFramebuffer.js",
+      "lineRange": [
+        15,
+        32
+      ],
+      "summary": "构造像素拾取 framebuffer 管理器。",
+      "tags": [
+        "pick",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PickFramebuffer.js:pickObjectsFromPixels",
+      "type": "function",
+      "name": "pickObjectsFromPixels",
+      "filePath": "packages/engine/Source/Scene/PickFramebuffer.js",
+      "lineRange": [
+        45,
+        99
+      ],
+      "summary": "根据屏幕像素区域解析并返回命中的场景对象列表。",
+      "tags": [
+        "pick",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:OIT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:updateTextures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:updateFramebuffers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:getTranslucentRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:getTranslucentShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:executeTranslucentCommandsSortedMultipass",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "function:packages/engine/Source/Scene/OIT.js:executeTranslucentCommandsSortedMRT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "function:packages/engine/Source/Scene/PickDepth.js:updateCopyCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/PickDepthFramebuffer.js:createResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/PickFramebuffer.js:PickFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/PickFramebuffer.js:pickObjectsFromPixels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Scene/BlendEquation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OIT.js",
+      "target": "file:packages/engine/Source/Scene/BlendFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Panorama.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepth.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/Sync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "target": "file:packages/engine/Source/Scene/PickDepth.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

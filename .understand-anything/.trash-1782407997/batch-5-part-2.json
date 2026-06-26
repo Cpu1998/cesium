@@ -1,0 +1,1213 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "type": "file",
+      "name": "ArcGisMapService.js",
+      "filePath": "packages/engine/Source/Scene/ArcGisMapService.js",
+      "summary": "ArcGIS MapServer 服务描述的轻量封装，解析 service 与图层元数据并构造 Credit，被 ArcGisMapServerImageryProvider 复用。",
+      "tags": [
+        "arcgis",
+        "metadata",
+        "service",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "type": "file",
+      "name": "Azure2DImageryProvider.js",
+      "filePath": "packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "summary": "对接 Azure Maps（Bing Maps 替代）REST 切片服务的 ImageryProvider，基于 UrlTemplateImageryProvider 构造 URL 模板并处理订阅 key/attribution。",
+      "tags": [
+        "imagery-provider",
+        "azure-maps",
+        "tile-loader",
+        "service"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "type": "file",
+      "name": "BingMapsImageryProvider.js",
+      "filePath": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "summary": "对接 Bing Maps REST 影像服务的 ImageryProvider：解析元数据子域与 attribution 覆盖区，按 LOD 选择图源样式并构建瓦片请求。",
+      "tags": [
+        "imagery-provider",
+        "bing-maps",
+        "tile-loader",
+        "service"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Bing 的 attribution 按影像覆盖区随 LOD 变化，getRectangleAttribution 负责逐区域匹配。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BingMapsStyle.js",
+      "type": "file",
+      "name": "BingMapsStyle.js",
+      "filePath": "packages/engine/Source/Scene/BingMapsStyle.js",
+      "summary": "Bing Maps 影像样式枚举（AERIAL / ROAD / CANVAS_GRAY 等），供 BingMapsImageryProvider 选择底图风格。",
+      "tags": [
+        "enum",
+        "bing-maps",
+        "imagery"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "type": "file",
+      "name": "BoundingVolumeSemantics.js",
+      "filePath": "packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "summary": "3D Tiles 边界体语义类型的 Frozen 枚举与工具（BOX / REGION / SPHERE / S2_CELL），用于校验和派发边界体解析。",
+      "tags": [
+        "enum",
+        "3d-tiles",
+        "bounding-volume",
+        "frozen"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "type": "file",
+      "name": "Cesium3DContentGroup.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "summary": "3D Tiles 中 Multiple3DTileContent 的一组子内容的容器，维护内容数组并统一 destroy，对应 EXT_multiple_contents 扩展。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "container",
+        "group"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "type": "file",
+      "name": "Cesium3DTile.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "summary": "3D Tiles 单个瓦片的运行时表示：负责内容请求/处理、边界体构建、优先级（SSE）计算、过期/重载、调试与裁剪等，是 tileset 遍历与渲染的基本单元。",
+      "tags": [
+        "3d-tiles",
+        "tile",
+        "core",
+        "content"
+      ],
+      "complexity": "complex",
+      "languageNotes": "文件 ~2500 行，以一组模块级函数操作 tile 实例，而非面向对象的方法，优先级函数使用位运算做归一化排序。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "type": "file",
+      "name": "Cesium3DTileColorBlendMode.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "summary": "3D Tiles 颜色混合模式枚举（HIGHLIGHT / REPLACE / MIX），定义样式着色与原始颜色的合成方式。",
+      "tags": [
+        "enum",
+        "3d-tiles",
+        "color",
+        "styling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "type": "file",
+      "name": "Cesium3DTileContentFactory.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "summary": "根据 3D Tiles 内容的 magic/header 分派到具体 content 解析器（b3dm/i3dm/pnts/cmpt/glTF/隐式等）的工厂注册表。",
+      "tags": [
+        "3d-tiles",
+        "factory",
+        "content",
+        "dispatch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileContentState.js",
+      "type": "file",
+      "name": "Cesium3DTileContentState.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileContentState.js",
+      "summary": "3D Tiles 瓦片内容生命周期状态枚举（UNLOADED / LOADING / PROCESSING / READY / FAILED），驱动遍历与缓存决策。",
+      "tags": [
+        "enum",
+        "3d-tiles",
+        "state",
+        "lifecycle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "type": "file",
+      "name": "Cesium3DTileContentType.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "summary": "识别并分类 3D Tiles 内容类型的模块（外部 tileset / glTF / 点云 / 矢量 / 高斯泼溅 / 多内容等），为 factory 与预处理提供依据。",
+      "tags": [
+        "3d-tiles",
+        "content-type",
+        "classification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileOptimizationHint.js",
+      "type": "file",
+      "name": "Cesium3DTileOptimizationHint.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileOptimizationHint.js",
+      "summary": "3D Tiles 优化提示标志位（NOT_CHECKED / USE_OPTIMIZATION / SKIP_OPTIMIZATION），缓存遍历期间的优化判定结果。",
+      "tags": [
+        "enum",
+        "3d-tiles",
+        "optimization",
+        "traversal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Azure2DImageryProvider.js:Azure2DImageryProvider",
+      "type": "function",
+      "name": "Azure2DImageryProvider",
+      "filePath": "packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "lineRange": [
+        41,
+        102
+      ],
+      "summary": "Azure Maps ImageryProvider 构造器：基于订阅 key 与 tileset 配置 URL 模板。",
+      "tags": [
+        "imagery-provider",
+        "azure-maps",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:BingMapsImageryProvider",
+      "type": "function",
+      "name": "BingMapsImageryProvider",
+      "filePath": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "lineRange": [
+        207,
+        250
+      ],
+      "summary": "Bing Maps ImageryProvider 构造器：拉取元数据以获得子域、图源与 attribution。",
+      "tags": [
+        "imagery-provider",
+        "bing-maps",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:metadataSuccess",
+      "type": "function",
+      "name": "metadataSuccess",
+      "filePath": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "lineRange": [
+        110,
+        133
+      ],
+      "summary": "Bing 元数据加载成功回调：解析图源子域、覆盖区与样式资源。",
+      "tags": [
+        "imagery-provider",
+        "bing-maps",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:getRectangleAttribution",
+      "type": "function",
+      "name": "getRectangleAttribution",
+      "filePath": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "lineRange": [
+        725,
+        765
+      ],
+      "summary": "按当前矩形与 LOD 在 attribution 列表中匹配 Bing 影像覆盖区，返回对应版权 credit。",
+      "tags": [
+        "imagery-provider",
+        "bing-maps",
+        "attribution"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:buildImageResource",
+      "type": "function",
+      "name": "buildImageResource",
+      "filePath": "packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "lineRange": [
+        701,
+        721
+      ],
+      "summary": "为指定瓦片构建 Bing Maps 影像 Resource（含子域轮询）。",
+      "tags": [
+        "imagery-provider",
+        "bing-maps",
+        "tile-loader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:Cesium3DTile",
+      "type": "function",
+      "name": "Cesium3DTile",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        61,
+        536
+      ],
+      "summary": "3D Tiles 瓦片构造函数：解析 header，构建边界体、内容工厂、子节点与请求状态，是瓦片生命周期的起点。",
+      "tags": [
+        "3d-tiles",
+        "tile",
+        "constructor",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:isPriorityDeferred",
+      "type": "function",
+      "name": "isPriorityDeferred",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        800,
+        899
+      ],
+      "summary": "根据帧状态判断瓦片是否应推迟加载（视锥剔除、最大屏幕空间误差、距离等综合判定）。",
+      "tags": [
+        "3d-tiles",
+        "priority",
+        "culling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:requestMultipleContents",
+      "type": "function",
+      "name": "requestMultipleContents",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1153,
+        1205
+      ],
+      "summary": "请求 EXT_multiple_contents 扩展下的多个子内容资源。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "request"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:processArrayBuffer",
+      "type": "function",
+      "name": "processArrayBuffer",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1207,
+        1293
+      ],
+      "summary": "处理已下载的瓦片字节缓冲：嗅探 magic、过预处理、选工厂并实例化 content，支持过期重载。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "parsing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:requestSingleContent",
+      "type": "function",
+      "name": "requestSingleContent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1300,
+        1330
+      ],
+      "summary": "请求单个内容资源并挂接到瓦片处理流程。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "request"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:makeContent",
+      "type": "function",
+      "name": "makeContent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1372,
+        1452
+      ],
+      "summary": "依据缓冲区与内容类型为瓦片创建实际 content 实例。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:createBoxFromTransformedRegion",
+      "type": "function",
+      "name": "createBoxFromTransformedRegion",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1742,
+        1780
+      ],
+      "summary": "由带变换的 region 构造 TileOrientedBoundingBox，处理初始变换与中心点重对齐。",
+      "tags": [
+        "3d-tiles",
+        "bounding-volume",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:createRegion",
+      "type": "function",
+      "name": "createRegion",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1811,
+        1848
+      ],
+      "summary": "由 region（lon/lat/height 范围）构造地理坐标系下的边界体。",
+      "tags": [
+        "3d-tiles",
+        "bounding-volume",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:applyDebugSettings",
+      "type": "function",
+      "name": "applyDebugSettings",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        2112,
+        2199
+      ],
+      "summary": "按调试设置（彩色边界体/瓦片标签）向帧状态注入调试图元。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "visualization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:updateContent",
+      "type": "function",
+      "name": "updateContent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        2207,
+        2238
+      ],
+      "summary": "每帧更新瓦片 content（模型/点云）的状态与 uniform。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "frame-update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:getBoundingVolume",
+      "type": "function",
+      "name": "getBoundingVolume",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1506,
+        1526
+      ],
+      "summary": "根据语义返回瓦片当前帧的边界体（考虑裁剪与垂直夸张）。",
+      "tags": [
+        "3d-tiles",
+        "bounding-volume",
+        "culling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTile.js:exaggerateBoundingBox",
+      "type": "function",
+      "name": "exaggerateBoundingBox",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTile.js",
+      "lineRange": [
+        1993,
+        2017
+      ],
+      "summary": "按垂直夸张系数与相对高度对瓦片边界盒做纵向缩放。",
+      "tags": [
+        "3d-tiles",
+        "bounding-volume",
+        "vertical-exaggeration"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/Azure2DImageryProvider.js:Azure2DImageryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:BingMapsImageryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:metadataSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:getRectangleAttribution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/BingMapsImageryProvider.js:buildImageResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:Cesium3DTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:isPriorityDeferred",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:requestMultipleContents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:processArrayBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:requestSingleContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:makeContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:createBoxFromTransformedRegion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:createRegion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:applyDebugSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:updateContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:getBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTile.js:exaggerateBoundingBox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ArcGisMapService.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/IonResource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/TileProviderError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/BingMapsStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImageryProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/CullingVolume.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/RequestScheduler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/RequestState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileOptimizationHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilePass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Empty3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/findContentMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/findGroupMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/findTileMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/hasExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Implicit3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Tileset3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/VectorGltf3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js",
+      "target": "file:packages/engine/Source/Scene/BingMapsStyle.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "target": "file:packages/engine/Source/Scene/BoundingVolumeSemantics.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

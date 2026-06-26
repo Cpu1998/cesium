@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "document:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/README.md",
+      "summary": "回归测试用例说明文档，描述了针对 GitHub issue #11960 的 tileset：根节点包含 4 个全部为外部 tileset 的 contents，分别承载红、绿、蓝、白色单位立方体 GLB。",
+      "tags": ["documentation", "test-fixture", "3d-tiles", "regression-test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalA.json",
+      "type": "config",
+      "name": "externalA.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalA.json",
+      "summary": "外部 tileset 配置文件，根节点指向 contentA.glb，作为 OnlyExternalInMultipleContents 回归测试中的一个 content（红色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 规范的 external tileset 引用模式。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalB.json",
+      "type": "config",
+      "name": "externalB.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalB.json",
+      "summary": "外部 tileset 配置文件，根节点指向 contentB.glb，作为 OnlyExternalInMultipleContents 回归测试中的一个 content（绿色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 规范的 external tileset 引用模式。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalC.json",
+      "type": "config",
+      "name": "externalC.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalC.json",
+      "summary": "外部 tileset 配置文件，根节点指向 contentC.glb，作为 OnlyExternalInMultipleContents 回归测试中的一个 content（蓝色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 规范的 external tileset 引用模式。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalD.json",
+      "type": "config",
+      "name": "externalD.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalD.json",
+      "summary": "外部 tileset 配置文件，根节点指向 contentD.glb，作为 OnlyExternalInMultipleContents 回归测试中的一个 content（白色单位立方体）。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 规范的 external tileset 引用模式。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "summary": "OnlyExternalInMultipleContents 回归测试的根 tileset 配置，根节点通过 contents 数组引用 4 个全部为外部 tileset 的 JSON（externalA-D.json），用于验证多 content 且全为外部引用的加载行为。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset", "multiple-contents"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 的 contents 数组允许多个 content 共存；此处全部为外部 tileset 引用。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalA.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalB.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalC.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/externalD.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/README.md",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/OnlyExternalInMultipleContents/tileset.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

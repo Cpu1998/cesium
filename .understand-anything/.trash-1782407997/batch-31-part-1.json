@@ -1,0 +1,731 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "type": "file",
+      "name": "CesiumWidget.js",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.js",
+      "summary": "Cesium 顶层 Widget：在 DOM 容器中组合 Scene、Globe、Clock、DataSourceCollection 与渲染循环，是面向应用的高层入口。",
+      "tags": [
+        "entry-point",
+        "widget",
+        "scene",
+        "render-loop"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含 startRenderLoop、resize、zoomTo/flyTo 等运行时调度逻辑，单文件超 1600 行。"
+    },
+    {
+      "id": "class:packages/engine/Source/Widget/CesiumWidget.js:CesiumWidget",
+      "type": "class",
+      "name": "CesiumWidget",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.js",
+      "lineRange": [
+        207,
+        499
+      ],
+      "summary": "CesiumWidget 构造函数：解析容器、创建 Scene/Clock/ScreenSpaceEventHandler 并装配默认的 globe、skybox、dataSourceDisplay。",
+      "tags": [
+        "entry-point",
+        "constructor",
+        "widget"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Widget/CesiumWidget.js:startRenderLoop",
+      "type": "function",
+      "name": "startRenderLoop",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.js",
+      "lineRange": [
+        47,
+        89
+      ],
+      "summary": "通过 requestAnimationFrame 驱动 Scene 渲染并捕获错误，维护 widget 的主循环。",
+      "tags": [
+        "render-loop",
+        "raf",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Widget/CesiumWidget.js:updateZoomTarget",
+      "type": "function",
+      "name": "updateZoomTarget",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.js",
+      "lineRange": [
+        1411,
+        1554
+      ],
+      "summary": "异步计算 zoom/flyTo 的目标 bounding sphere 与相机偏移，是 zoomTo/flyTo 的核心实现。",
+      "tags": [
+        "camera",
+        "fly-to",
+        "bounding-sphere"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Widget/CesiumWidget.js:zoomToOrFly",
+      "type": "function",
+      "name": "zoomToOrFly",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.js",
+      "lineRange": [
+        1282,
+        1385
+      ],
+      "summary": "对目标实体/数据源执行 zoom 或飞行动画的入口，调度 updateZoomTarget 与 camera.flyTo。",
+      "tags": [
+        "camera",
+        "fly-to",
+        "animation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "type": "file",
+      "name": "renderBufferPolygonCollection.js",
+      "filePath": "packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "summary": "把 BufferPolygonCollection 渲染为 draw command 的辅助模块，处理索引/属性压缩与混合。",
+      "tags": [
+        "buffer-primitive",
+        "polygon",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "type": "file",
+      "name": "createElevationBandMaterial.js",
+      "filePath": "packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "summary": "工厂函数：根据高程/坡度梯度色带生成 Material，支持渐变与渐变色纹理，常用于地形着色。",
+      "tags": [
+        "material",
+        "factory",
+        "terrain",
+        "elevation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "type": "file",
+      "name": "CubeMapPanoramaSpec.js",
+      "filePath": "packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "summary": "CubeMapPanorama 的单元测试，验证立方体贴图全景的构造与方向矩阵。",
+      "tags": [
+        "test",
+        "panorama",
+        "cubemap"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/getClipAndStyleCode.js",
+      "type": "file",
+      "name": "getClipAndStyleCode.js",
+      "filePath": "packages/engine/Source/Scene/getClipAndStyleCode.js",
+      "summary": "返回裁剪平面与样式混合所需的 GLSL 片段代码字符串，供 point cloud shader 拼接使用。",
+      "tags": [
+        "shader",
+        "glsl",
+        "clipping",
+        "point-cloud"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Clock.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/formatError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/HeadingPitchRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Core/ScreenSpaceEventHandler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/DataSourceCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/EntityView.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/getElement.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/computeFlyToLocationForRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/Globe.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/Moon.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/Scene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/SkyAtmosphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/SkyBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/Sun.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/TimeDynamicPointCloud.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "class:packages/engine/Source/Widget/CesiumWidget.js:CesiumWidget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "class:packages/engine/Source/Widget/CesiumWidget.js:CesiumWidget",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "function:packages/engine/Source/Widget/CesiumWidget.js:startRenderLoop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "function:packages/engine/Source/Widget/CesiumWidget.js:updateZoomTarget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Widget/CesiumWidget.js",
+      "target": "function:packages/engine/Source/Widget/CesiumWidget.js:zoomToOrFly",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Scene/BufferPolygon.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js",
+      "target": "file:packages/engine/Source/Scene/BufferPolygonMaterial.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/mergeSort.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createElevationBandMaterial.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/Panorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CubeMapPanorama.js",
+      "target": "file:packages/engine/Specs/Scene/CubeMapPanoramaSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/getClipAndStyleCode.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

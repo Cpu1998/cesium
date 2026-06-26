@@ -1,0 +1,124 @@
+{
+  "nodes": [
+    {
+      "id": "document:packages/sandcastle/LICENSE.md",
+      "type": "document",
+      "name": "LICENSE.md",
+      "filePath": "packages/sandcastle/LICENSE.md",
+      "summary": "Sandcastle 包的开源许可证文件，包含 CesiumJS 主许可条款以及第三方代码（如 transformers.js）的归属与许可声明。",
+      "tags": ["documentation", "license", "legal", "third-party"],
+      "complexity": "moderate",
+      "languageNotes": "包含第三方代码 (transformers.js) 的许可归属区块。"
+    },
+    {
+      "id": "document:packages/sandcastle/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "packages/sandcastle/README.md",
+      "summary": "CesiumJS Sandcastle 示例画廊应用的说明文档，涵盖运行与构建流程、应用/Viewer 结构、画廊 (Gallery) 目录组织、sandcastle.yaml 配置及缩略图生成等。",
+      "tags": ["documentation", "entry-point", "build-system", "gallery"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/index.html",
+      "summary": "Sandcastle 应用（画廊模式）的 Vite 入口 HTML，加载 stratakit 设计令牌与字体，并挂载 React 应用主入口 /src/main.tsx。",
+      "tags": ["entry-point", "html", "vite", "markup"],
+      "complexity": "simple",
+      "languageNotes": "通过 <script type=\"module\"> 挂载 React 19 SPA 入口。"
+    },
+    {
+      "id": "config:packages/sandcastle/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/sandcastle/package.json",
+      "summary": "@cesium/sandcastle 包的清单文件，声明 dev/build 脚本、React 19、Monaco 编辑器、@stratakit 设计系统等依赖，以及 npm overrides。",
+      "tags": ["configuration", "package-manifest", "build-system", "npm"],
+      "complexity": "moderate",
+      "languageNotes": "build 脚本显式提示需使用导出的 buildStatic() 函数而非直接构建。"
+    },
+    {
+      "id": "file:packages/sandcastle/standalone.html",
+      "type": "file",
+      "name": "standalone.html",
+      "filePath": "packages/sandcastle/standalone.html",
+      "summary": "Sandcastle 独立 (Standalone) 模式的 Vite 入口 HTML，挂载 /src/Standalone/main-standalone.tsx 用于不依赖画廊的独立示例运行。",
+      "tags": ["entry-point", "html", "vite", "standalone"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/tsconfig.app.json",
+      "type": "config",
+      "name": "tsconfig.app.json",
+      "filePath": "packages/sandcastle/tsconfig.app.json",
+      "summary": "Sandcastle 应用代码（src/ 下的 TS/TSX）的 TypeScript 编译配置，被根 tsconfig.json 引用。",
+      "tags": ["configuration", "typescript", "build-system"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "packages/sandcastle/tsconfig.json",
+      "summary": "Sandcastle 包的 TypeScript 项目引用根配置，使用 references 汇总 app、node 及 templates 三个子 tsconfig。",
+      "tags": ["configuration", "typescript", "project-references", "build-system"],
+      "complexity": "simple",
+      "languageNotes": "使用 TypeScript composite / project references 模式。"
+    },
+    {
+      "id": "config:packages/sandcastle/tsconfig.node.json",
+      "type": "config",
+      "name": "tsconfig.node.json",
+      "filePath": "packages/sandcastle/tsconfig.node.json",
+      "summary": "Sandcastle 构建脚本与 Node 端代码的 TypeScript 编译配置，被根 tsconfig.json 引用。",
+      "tags": ["configuration", "typescript", "node", "build-system"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:packages/sandcastle/README.md",
+      "target": "config:packages/sandcastle/package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:packages/sandcastle/README.md",
+      "target": "file:packages/sandcastle/index.html",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:packages/sandcastle/package.json",
+      "target": "file:packages/sandcastle/index.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/package.json",
+      "target": "file:packages/sandcastle/standalone.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/tsconfig.json",
+      "target": "config:packages/sandcastle/tsconfig.app.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/tsconfig.json",
+      "target": "config:packages/sandcastle/tsconfig.node.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

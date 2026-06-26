@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/EarthOrientationParameters/EOP-2011-July.json",
+      "type": "config",
+      "name": "EOP-2011-July.json",
+      "filePath": "Specs/Data/EarthOrientationParameters/EOP-2011-July.json",
+      "summary": "2011 年 7 月的地球定向参数 (EOP) 测试夹具数据,包含 columnNames 与 samples 数组,记录极移、天极偏移、UT1-UTC 及日长校正等参数,用于驱动 EOP 加载与变换相关测试。",
+      "tags": ["test-fixture", "eop", "earth-orientation", "json-data", "spec-data"],
+      "complexity": "simple",
+      "languageNotes": "采用 Cesium EOP 数据格式:columnNames 描述字段含义,samples 为按列对齐的扁平数值数组。"
+    },
+    {
+      "id": "config:Specs/Data/EarthOrientationParameters/EOP-Invalid.json",
+      "type": "config",
+      "name": "EOP-Invalid.json",
+      "filePath": "Specs/Data/EarthOrientationParameters/EOP-Invalid.json",
+      "summary": "故意构造的无效 EOP 数据夹具 (含无关字段 foo/bar),用于验证 EOP 加载器对错误格式输入的容错与校验行为。",
+      "tags": ["test-fixture", "eop", "invalid-input", "error-handling", "spec-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/EarthOrientationParameters/IcrfToFixedStkComponentsRotationData.json",
+      "type": "config",
+      "name": "IcrfToFixedStkComponentsRotationData.json",
+      "filePath": "Specs/Data/EarthOrientationParameters/IcrfToFixedStkComponentsRotationData.json",
+      "summary": "ICRF (国际天球参考系) 到 Fixed (地球固定系) 的旋转四元数测试夹具数据,按时间戳采样提供 icrfToFixedQuaternion,用于校验坐标系旋转变换的数值正确性。",
+      "tags": ["test-fixture", "icrf", "quaternion", "coordinate-transform", "spec-data"],
+      "complexity": "moderate",
+      "languageNotes": "采样数据为时间戳到四元数 (x,y,z,w) 的数组,共约 848 行,用于对比 STK 组件参考结果。"
+    }
+  ],
+  "edges": []
+}

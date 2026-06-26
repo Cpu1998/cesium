@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "id": "document:packages/engine/LICENSE.md",
+      "type": "document",
+      "name": "LICENSE.md",
+      "filePath": "packages/engine/LICENSE.md",
+      "summary": "Apache-2.0 许可证全文，并附带对约 26 个第三方依赖（zip.js、tween.js、earcut、Draco、KTX-Parse、meshoptimizer、DOMPurify、LERC 等）及测试框架（Jasmine）各自许可证的详细归档说明。",
+      "tags": ["documentation", "license", "legal", "third-party", "apache-2.0"],
+      "complexity": "moderate",
+      "languageNotes": "结构化为多级 Markdown 章节：每个第三方库以三级标题列出，便于审计许可证合规性。"
+    },
+    {
+      "id": "document:packages/engine/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "packages/engine/README.md",
+      "summary": "@cesium/engine 包的入口说明文档，介绍 CesiumJS 核心渲染与数据 API（terrain、imagery、3D Tiles、3D 模型、几何与矢量数据），并给出 npm 安装、模块导入用法及社区链接。",
+      "tags": ["documentation", "entry-point", "overview", "package", "cesiumjs"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/engine/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/engine/package.json",
+      "summary": "@cesium/engine v26 包的 npm 清单：声明入口（index.js / index.d.ts）、ESM type、Node >=22 引擎要求、sideEffects 白名单、约 20 个运行时依赖，以及基于 gulp 的 build/test/coverage 脚本。",
+      "tags": ["configuration", "package-manifest", "npm", "build-system", "dependencies"],
+      "complexity": "moderate",
+      "languageNotes": "sideEffects 字段精确列出 ThirdParty、CSS、Workers、Specs 路径，保证 tree shaking 在其余源码上正常生效。"
+    },
+    {
+      "id": "config:packages/engine/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "packages/engine/tsconfig.json",
+      "summary": "@cesium/engine 的 TypeScript 配置，include 范围为 Source/**/*.js（用于类型检查 JS 源码），继承根 tsconfig.json，并显式关闭 strict、开启 noImplicitAny 以逐步推行类型检查。",
+      "tags": ["configuration", "typescript", "type-checking", "build-system"],
+      "complexity": "simple",
+      "languageNotes": "TypeScript 的 allowJs/checkJs 模式配合 extends 父配置实现渐进式类型检查迁移。"
+    },
+    {
+      "id": "config:packages/engine/tsd-conf.json",
+      "type": "config",
+      "name": "tsd-conf.json",
+      "filePath": "packages/engine/tsd-conf.json",
+      "summary": "tsd-jsdoc / JSDoc 配置，从 packages/engine/Source（排除 ThirdParty 与 Workers）解析 JSDoc 注释，结合自定义 cesiumTags 插件，生成 index.d.ts TypeScript 类型声明文件。",
+      "tags": ["configuration", "jsdoc", "type-generation", "build-system", "documentation"],
+      "complexity": "simple",
+      "languageNotes": "通过 includePattern 匹配 .js/.jsdoc 并排除下划线前缀文件，使用 tsd-jsdoc 模板将 JSDoc 转换为 .d.ts 声明。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:packages/engine/tsconfig.json",
+      "target": "config:packages/engine/package.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:packages/engine/tsd-conf.json",
+      "target": "config:packages/engine/package.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:packages/engine/README.md",
+      "target": "document:packages/engine/LICENSE.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

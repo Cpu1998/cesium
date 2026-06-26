@@ -1,0 +1,572 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "type": "file",
+      "name": "SampledProperty.js",
+      "filePath": "packages/engine/Source/DataSources/SampledProperty.js",
+      "summary": "基于时间采样的通用插值 Property 基类，提供添加/移除样本、按时间求值、外推策略、以及 mergeNewSamples 等大批量样本合并工具。",
+      "tags": [
+        "property",
+        "interpolation",
+        "sampling",
+        "datasources",
+        "core-algorithm"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 binarySearch 维护按时间排序的样本，支持 Lagrange/LinearApproximation 插值；内部含 arrayInsert/mergeNewSamples 处理批量样本插入。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "type": "file",
+      "name": "ScaledPositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "summary": "对位置进行按椭球缩放的 PositionProperty 基类，主要用于在 WGS84 椭球与单位球之间转换位置。",
+      "tags": [
+        "property",
+        "position",
+        "scaling",
+        "datasources"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "type": "file",
+      "name": "StripeMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "summary": "条纹（stripe）材质 property 实现，支持 evenColor/oddColor/repeat/orientation/offset 等可配置字段。",
+      "tags": [
+        "material-property",
+        "entity",
+        "datasources",
+        "stripe"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/StripeOrientation.js",
+      "type": "file",
+      "name": "StripeOrientation.js",
+      "filePath": "packages/engine/Source/DataSources/StripeOrientation.js",
+      "summary": "StripeOrientation 枚举，定义条纹材质的方向常量（HORIZONTAL/VERTICAL），导出为冻结对象。",
+      "tags": [
+        "enum",
+        "orientation",
+        "datasources",
+        "constant"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 Frozen.freeze 冻结的枚举对象。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "type": "file",
+      "name": "TimeIntervalCollectionPositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "summary": "基于时间区间集合（TimeIntervalCollection）的 PositionProperty 实现，在指定区间内取对应位置值。",
+      "tags": [
+        "property",
+        "time-interval",
+        "position",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "type": "file",
+      "name": "TimeIntervalCollectionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "summary": "基于 TimeIntervalCollection 的通用 Property 实现，按时间区间返回不同属性值。",
+      "tags": [
+        "property",
+        "time-interval",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "type": "file",
+      "name": "VelocityOrientationProperty.js",
+      "filePath": "packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "summary": "根据位置 property 推导出 entity 朝向的 property：基于速度向量在椭球上计算朝向四元数。",
+      "tags": [
+        "property",
+        "velocity",
+        "orientation",
+        "datasources"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "委托给内部 VelocityVectorProperty 计算速度方向向量，再换算为朝向四元数。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "type": "file",
+      "name": "VelocityVectorProperty.js",
+      "filePath": "packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "summary": "根据位置 property 在给定时间求导得到归一化速度向量（Cartesian3），并随位置变化触发 definitionChanged。",
+      "tags": [
+        "property",
+        "velocity",
+        "derivative",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/SampledProperty.js:arrayInsert",
+      "type": "function",
+      "name": "arrayInsert",
+      "filePath": "packages/engine/Source/DataSources/SampledProperty.js",
+      "lineRange": [
+        24,
+        41
+      ],
+      "summary": "在保持时间顺序的前提下向样本数组插入若干元素的工具函数。",
+      "tags": [
+        "utility",
+        "sampling",
+        "insertion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/SampledProperty.js:convertDate",
+      "type": "function",
+      "name": "convertDate",
+      "filePath": "packages/engine/Source/DataSources/SampledProperty.js",
+      "lineRange": [
+        43,
+        51
+      ],
+      "summary": "将输入日期（ISO 字符串或 epoch 偏移）统一转换为 JulianDate，供 mergeNewSamples 使用。",
+      "tags": [
+        "utility",
+        "date-conversion",
+        "julian-date"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/SampledProperty.js:mergeNewSamples",
+      "type": "function",
+      "name": "mergeNewSamples",
+      "filePath": "packages/engine/Source/DataSources/SampledProperty.js",
+      "lineRange": [
+        56,
+        112
+      ],
+      "summary": "将一批按时间排列的新样本合并到已有样本集合中，使用 binarySearch 定位并 arrayInsert 插入，保证时间有序。",
+      "tags": [
+        "sampling",
+        "merge",
+        "binary-search",
+        "core-algorithm"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/binarySearch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/ExtrapolationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "file:packages/engine/Source/Core/LinearApproximation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/StripeOrientation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "function:packages/engine/Source/DataSources/SampledProperty.js:arrayInsert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "function:packages/engine/Source/DataSources/SampledProperty.js:convertDate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "target": "function:packages/engine/Source/DataSources/SampledProperty.js:mergeNewSamples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ScaledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "target": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

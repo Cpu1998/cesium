@@ -1,0 +1,5376 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 538,
+      "nonEmptyLines": 492,
+      "functions": [
+        {
+          "name": "EllipsoidalOccluder",
+          "startLine": 31,
+          "endLine": 45,
+          "params": [
+            "ellipsoid",
+            "cameraPosition"
+          ]
+        },
+        {
+          "name": "getPossiblyShrunkEllipsoid",
+          "startLine": 345,
+          "endLine": 360,
+          "params": [
+            "ellipsoid",
+            "minimumHeight",
+            "result"
+          ]
+        },
+        {
+          "name": "computeHorizonCullingPointFromPositions",
+          "startLine": 362,
+          "endLine": 398,
+          "params": [
+            "ellipsoid",
+            "directionToPoint",
+            "positions",
+            "result"
+          ]
+        },
+        {
+          "name": "computeHorizonCullingPointFromVertices",
+          "startLine": 402,
+          "endLine": 446,
+          "params": [
+            "ellipsoid",
+            "directionToPoint",
+            "vertices",
+            "stride",
+            "center",
+            "result"
+          ]
+        },
+        {
+          "name": "isScaledSpacePointVisible",
+          "startLine": 448,
+          "endLine": 471,
+          "params": [
+            "occludeeScaledSpacePosition",
+            "cameraPositionInScaledSpace",
+            "distanceToLimbInScaledSpaceSquared"
+          ]
+        },
+        {
+          "name": "computeMagnitude",
+          "startLine": 476,
+          "endLine": 501,
+          "params": [
+            "ellipsoid",
+            "position",
+            "scaledSpaceDirectionToPoint"
+          ]
+        },
+        {
+          "name": "magnitudeToPoint",
+          "startLine": 503,
+          "endLine": 523,
+          "params": [
+            "scaledSpaceDirectionToPoint",
+            "resultMagnitude",
+            "result"
+          ]
+        },
+        {
+          "name": "computeScaledSpaceDirectionToPoint",
+          "startLine": 527,
+          "endLine": 537,
+          "params": [
+            "ellipsoid",
+            "directionToPoint"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EllipsoidalOccluder",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 33
+        },
+        {
+          "caller": "EllipsoidalOccluder",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "getPossiblyShrunkEllipsoid",
+          "callee": "defined",
+          "lineNumber": 347
+        },
+        {
+          "caller": "getPossiblyShrunkEllipsoid",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 351
+        },
+        {
+          "caller": "getPossiblyShrunkEllipsoid",
+          "callee": "Ellipsoid.fromCartesian3",
+          "lineNumber": 357
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 369
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "Check.defined",
+          "lineNumber": 370
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "defined",
+          "lineNumber": 373
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "computeScaledSpaceDirectionToPoint",
+          "lineNumber": 377
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "computeMagnitude",
+          "lineNumber": 385
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "Math.max",
+          "lineNumber": 394
+        },
+        {
+          "caller": "computeHorizonCullingPointFromPositions",
+          "callee": "magnitudeToPoint",
+          "lineNumber": 397
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 411
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "Check.defined",
+          "lineNumber": 412
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 413
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "defined",
+          "lineNumber": 416
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "computeScaledSpaceDirectionToPoint",
+          "lineNumber": 422
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "computeMagnitude",
+          "lineNumber": 433
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "Math.max",
+          "lineNumber": 442
+        },
+        {
+          "caller": "computeHorizonCullingPointFromVertices",
+          "callee": "magnitudeToPoint",
+          "lineNumber": 445
+        },
+        {
+          "caller": "isScaledSpacePointVisible",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 456
+        },
+        {
+          "caller": "isScaledSpacePointVisible",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 461
+        },
+        {
+          "caller": "isScaledSpacePointVisible",
+          "callee": "Cartesian3.magnitudeSquared",
+          "lineNumber": 468
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "ellipsoid.transformPositionToScaledSpace",
+          "lineNumber": 477
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Cartesian3.magnitudeSquared",
+          "lineNumber": 481
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Math.sqrt",
+          "lineNumber": 482
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Cartesian3.divideByScalar",
+          "lineNumber": 483
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Math.max",
+          "lineNumber": 490
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Math.max",
+          "lineNumber": 491
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 493
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 494
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 495
+        },
+        {
+          "caller": "computeMagnitude",
+          "callee": "Math.sqrt",
+          "lineNumber": 498
+        },
+        {
+          "caller": "magnitudeToPoint",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 518
+        },
+        {
+          "caller": "computeScaledSpaceDirectionToPoint",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 528
+        },
+        {
+          "caller": "computeScaledSpaceDirectionToPoint",
+          "callee": "ellipsoid.transformPositionToScaledSpace",
+          "lineNumber": 532
+        },
+        {
+          "caller": "computeScaledSpaceDirectionToPoint",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 536
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/FrustumGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 583,
+      "nonEmptyLines": 519,
+      "functions": [
+        {
+          "name": "FrustumGeometry",
+          "startLine": 33,
+          "endLine": 79,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getAttributes",
+          "startLine": 200,
+          "endLine": 239,
+          "params": [
+            "offset",
+            "normals",
+            "tangents",
+            "bitangents",
+            "st",
+            "normal",
+            "tangent",
+            "bitangent"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 35
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 36
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 37
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 38
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "frustum.clone",
+          "lineNumber": 62
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 63
+        },
+        {
+          "caller": "FrustumGeometry",
+          "callee": "Quaternion.clone",
+          "lineNumber": 64
+        },
+        {
+          "caller": "getAttributes",
+          "callee": "defined",
+          "lineNumber": 213
+        },
+        {
+          "caller": "getAttributes",
+          "callee": "defined",
+          "lineNumber": 218
+        },
+        {
+          "caller": "getAttributes",
+          "callee": "defined",
+          "lineNumber": 223
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/FrustumOutlineGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 253,
+      "nonEmptyLines": 219,
+      "functions": [
+        {
+          "name": "FrustumOutlineGeometry",
+          "startLine": 29,
+          "endLine": 69,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 31
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 32
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 33
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 34
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "frustum.clone",
+          "lineNumber": 57
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 58
+        },
+        {
+          "caller": "FrustumOutlineGeometry",
+          "callee": "Quaternion.clone",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeographicProjection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 93,
+      "classes": [
+        {
+          "name": "GeographicProjection",
+          "startLine": 21,
+          "endLine": 103,
+          "methods": [
+            "constructor",
+            "ellipsoid",
+            "project",
+            "unproject"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "project",
+          "callee": "defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "unproject",
+          "callee": "defined",
+          "lineNumber": 84
+        },
+        {
+          "caller": "unproject",
+          "callee": "defined",
+          "lineNumber": 94
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Geometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 371,
+      "nonEmptyLines": 338,
+      "functions": [
+        {
+          "name": "Geometry",
+          "startLine": 67,
+          "endLine": 165,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Geometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 71
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeometryAttribute.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 133,
+      "nonEmptyLines": 127,
+      "functions": [
+        {
+          "name": "GeometryAttribute",
+          "startLine": 40,
+          "endLine": 132,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GeometryAttribute",
+          "callee": "defined",
+          "lineNumber": 44
+        },
+        {
+          "caller": "GeometryAttribute",
+          "callee": "defined",
+          "lineNumber": 47
+        },
+        {
+          "caller": "GeometryAttribute",
+          "callee": "defined",
+          "lineNumber": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeometryAttributes.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 88,
+      "nonEmptyLines": 81,
+      "functions": [
+        {
+          "name": "GeometryAttributes",
+          "startLine": 13,
+          "endLine": 87,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeometryPipeline.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 3291,
+      "nonEmptyLines": 2900,
+      "functions": [
+        {
+          "name": "addTriangle",
+          "startLine": 35,
+          "endLine": 44,
+          "params": [
+            "lines",
+            "index",
+            "i0",
+            "i1",
+            "i2"
+          ]
+        },
+        {
+          "name": "trianglesToLines",
+          "startLine": 46,
+          "endLine": 57,
+          "params": [
+            "triangles"
+          ]
+        },
+        {
+          "name": "triangleStripToLines",
+          "startLine": 59,
+          "endLine": 82,
+          "params": [
+            "triangles"
+          ]
+        },
+        {
+          "name": "triangleFanToLines",
+          "startLine": 84,
+          "endLine": 100,
+          "params": [
+            "triangles"
+          ]
+        },
+        {
+          "name": "copyAttributesDescriptions",
+          "startLine": 438,
+          "endLine": 458,
+          "params": [
+            "attributes"
+          ]
+        },
+        {
+          "name": "copyVertex",
+          "startLine": 460,
+          "endLine": 476,
+          "params": [
+            "destinationAttributes",
+            "sourceAttributes",
+            "index"
+          ]
+        },
+        {
+          "name": "transformPoint",
+          "startLine": 792,
+          "endLine": 802,
+          "params": [
+            "matrix",
+            "attribute"
+          ]
+        },
+        {
+          "name": "transformVector",
+          "startLine": 804,
+          "endLine": 818,
+          "params": [
+            "matrix",
+            "attribute"
+          ]
+        },
+        {
+          "name": "findAttributesInAllGeometries",
+          "startLine": 884,
+          "endLine": 935,
+          "params": [
+            "instances",
+            "propertyName"
+          ]
+        },
+        {
+          "name": "combineGeometries",
+          "startLine": 939,
+          "endLine": 1069,
+          "params": [
+            "instances",
+            "propertyName"
+          ]
+        },
+        {
+          "name": "indexTriangles",
+          "startLine": 1630,
+          "endLine": 1657,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexTriangleFan",
+          "startLine": 1659,
+          "endLine": 1686,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexTriangleStrip",
+          "startLine": 1688,
+          "endLine": 1727,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexLines",
+          "startLine": 1729,
+          "endLine": 1754,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexLineStrip",
+          "startLine": 1756,
+          "endLine": 1780,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexLineLoop",
+          "startLine": 1782,
+          "endLine": 1811,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "indexPrimitive",
+          "startLine": 1813,
+          "endLine": 1830,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "offsetPointFromXZPlane",
+          "startLine": 1832,
+          "endLine": 1840,
+          "params": [
+            "p",
+            "isBehind"
+          ]
+        },
+        {
+          "name": "offsetTriangleFromXZPlane",
+          "startLine": 1842,
+          "endLine": 1871,
+          "params": [
+            "p0",
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "getXZIntersectionOffsetPoints",
+          "startLine": 1874,
+          "endLine": 1887,
+          "params": [
+            "p",
+            "p1",
+            "u1",
+            "v1"
+          ]
+        },
+        {
+          "name": "splitTriangle",
+          "startLine": 1899,
+          "endLine": 2001,
+          "params": [
+            "p0",
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "updateGeometryAfterSplit",
+          "startLine": 2003,
+          "endLine": 2037,
+          "params": [
+            "geometry",
+            "computeBoundingSphere"
+          ]
+        },
+        {
+          "name": "copyGeometryForSplit",
+          "startLine": 2039,
+          "endLine": 2064,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "updateInstanceAfterSplit",
+          "startLine": 2066,
+          "endLine": 2081,
+          "params": [
+            "instance",
+            "westGeometry",
+            "eastGeometry"
+          ]
+        },
+        {
+          "name": "generateBarycentricInterpolateFunction",
+          "startLine": 2083,
+          "endLine": 2134,
+          "params": [
+            "CartesianType",
+            "numberOfComponents"
+          ]
+        },
+        {
+          "name": "interpolateAndPackBoolean",
+          "startLine": 2148,
+          "endLine": 2161,
+          "params": [
+            "i0",
+            "i1",
+            "i2",
+            "coords",
+            "sourceValues",
+            "currentValues",
+            "insertedIndex"
+          ]
+        },
+        {
+          "name": "computeTriangleAttributes",
+          "startLine": 2168,
+          "endLine": 2313,
+          "params": [
+            "i0",
+            "i1",
+            "i2",
+            "point",
+            "positions",
+            "normals",
+            "tangents",
+            "bitangents",
+            "texCoords",
+            "extrudeDirections",
+            "applyOffset",
+            "currentAttributes",
+            "customAttributeNames",
+            "customAttributesLength",
+            "allAttributes",
+            "insertedIndex"
+          ]
+        },
+        {
+          "name": "genericInterpolate",
+          "startLine": 2315,
+          "endLine": 2370,
+          "params": [
+            "i0",
+            "i1",
+            "i2",
+            "coords",
+            "insertedIndex",
+            "sourceAttribute",
+            "currentAttribute"
+          ]
+        },
+        {
+          "name": "insertSplitPoint",
+          "startLine": 2372,
+          "endLine": 2400,
+          "params": [
+            "currentAttributes",
+            "currentIndices",
+            "currentIndexMap",
+            "indices",
+            "currentIndex",
+            "point"
+          ]
+        },
+        {
+          "name": "splitLongitudeTriangles",
+          "startLine": 2411,
+          "endLine": 2623,
+          "params": [
+            "instance"
+          ]
+        },
+        {
+          "name": "computeLineAttributes",
+          "startLine": 2630,
+          "endLine": 2649,
+          "params": [
+            "i0",
+            "i1",
+            "point",
+            "positions",
+            "insertIndex",
+            "currentAttributes",
+            "applyOffset"
+          ]
+        },
+        {
+          "name": "splitLongitudeLines",
+          "startLine": 2651,
+          "endLine": 2865,
+          "params": [
+            "instance"
+          ]
+        },
+        {
+          "name": "updateAdjacencyAfterSplit",
+          "startLine": 2879,
+          "endLine": 2928,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "splitLongitudePolyline",
+          "startLine": 2933,
+          "endLine": 3232,
+          "params": [
+            "instance"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "trianglesToLines",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 49
+        },
+        {
+          "caller": "trianglesToLines",
+          "callee": "addTriangle",
+          "lineNumber": 53
+        },
+        {
+          "caller": "triangleStripToLines",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 63
+        },
+        {
+          "caller": "triangleStripToLines",
+          "callee": "addTriangle",
+          "lineNumber": 65
+        },
+        {
+          "caller": "triangleStripToLines",
+          "callee": "addTriangle",
+          "lineNumber": 69
+        },
+        {
+          "caller": "triangleFanToLines",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 88
+        },
+        {
+          "caller": "triangleFanToLines",
+          "callee": "addTriangle",
+          "lineNumber": 93
+        },
+        {
+          "caller": "copyAttributesDescriptions",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 443
+        },
+        {
+          "caller": "copyAttributesDescriptions",
+          "callee": "defined",
+          "lineNumber": 444
+        },
+        {
+          "caller": "copyAttributesDescriptions",
+          "callee": "defined",
+          "lineNumber": 445
+        },
+        {
+          "caller": "copyVertex",
+          "callee": "sourceAttributes.hasOwnProperty",
+          "lineNumber": 463
+        },
+        {
+          "caller": "copyVertex",
+          "callee": "defined",
+          "lineNumber": 464
+        },
+        {
+          "caller": "copyVertex",
+          "callee": "defined",
+          "lineNumber": 465
+        },
+        {
+          "caller": "copyVertex",
+          "callee": "destinationAttributes[attribute].values.push",
+          "lineNumber": 470
+        },
+        {
+          "caller": "transformPoint",
+          "callee": "defined",
+          "lineNumber": 793
+        },
+        {
+          "caller": "transformPoint",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 797
+        },
+        {
+          "caller": "transformPoint",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 798
+        },
+        {
+          "caller": "transformPoint",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 799
+        },
+        {
+          "caller": "transformVector",
+          "callee": "defined",
+          "lineNumber": 805
+        },
+        {
+          "caller": "transformVector",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 809
+        },
+        {
+          "caller": "transformVector",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 810
+        },
+        {
+          "caller": "transformVector",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 811
+        },
+        {
+          "caller": "transformVector",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 815
+        },
+        {
+          "caller": "findAttributesInAllGeometries",
+          "callee": "attributes0.hasOwnProperty",
+          "lineNumber": 894
+        },
+        {
+          "caller": "findAttributesInAllGeometries",
+          "callee": "defined",
+          "lineNumber": 895
+        },
+        {
+          "caller": "findAttributesInAllGeometries",
+          "callee": "defined",
+          "lineNumber": 896
+        },
+        {
+          "caller": "findAttributesInAllGeometries",
+          "callee": "defined",
+          "lineNumber": 907
+        },
+        {
+          "caller": "findAttributesInAllGeometries",
+          "callee": "ComponentDatatype.createTypedArray",
+          "lineNumber": 925
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "defined",
+          "lineNumber": 948
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Matrix4.equals",
+          "lineNumber": 953
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "defined",
+          "lineNumber": 956
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "findAttributesInAllGeometries",
+          "lineNumber": 970
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 977
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1001
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1007
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1023
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "defined",
+          "lineNumber": 1036
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1042
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "defined",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Cartesian3.divideByScalar",
+          "lineNumber": 1046
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 1051
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1052
+        },
+        {
+          "caller": "combineGeometries",
+          "callee": "defined",
+          "lineNumber": 1065
+        },
+        {
+          "caller": "indexTriangles",
+          "callee": "defined",
+          "lineNumber": 1631
+        },
+        {
+          "caller": "indexTriangles",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1634
+        },
+        {
+          "caller": "indexTriangles",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1647
+        },
+        {
+          "caller": "indexTriangleFan",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1660
+        },
+        {
+          "caller": "indexTriangleFan",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1668
+        },
+        {
+          "caller": "indexTriangleStrip",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1689
+        },
+        {
+          "caller": "indexTriangleStrip",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1697
+        },
+        {
+          "caller": "indexLines",
+          "callee": "defined",
+          "lineNumber": 1730
+        },
+        {
+          "caller": "indexLines",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1733
+        },
+        {
+          "caller": "indexLines",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1744
+        },
+        {
+          "caller": "indexLineStrip",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1757
+        },
+        {
+          "caller": "indexLineStrip",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1765
+        },
+        {
+          "caller": "indexLineLoop",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 1783
+        },
+        {
+          "caller": "indexLineLoop",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 1791
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexTriangleFan",
+          "lineNumber": 1816
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexTriangleStrip",
+          "lineNumber": 1818
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexTriangles",
+          "lineNumber": 1820
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexLineStrip",
+          "lineNumber": 1822
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexLineLoop",
+          "lineNumber": 1824
+        },
+        {
+          "caller": "indexPrimitive",
+          "callee": "indexLines",
+          "lineNumber": 1826
+        },
+        {
+          "caller": "offsetPointFromXZPlane",
+          "callee": "Math.abs",
+          "lineNumber": 1833
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1844
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1845
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1846
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "Math.abs",
+          "lineNumber": 1850
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "Math.abs",
+          "lineNumber": 1851
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "Math.abs",
+          "lineNumber": 1852
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1857
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1859
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1862
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1864
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1868
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1869
+        },
+        {
+          "caller": "offsetTriangleFromXZPlane",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1870
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1875
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 1877
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1878
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1884
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1885
+        },
+        {
+          "caller": "getXZIntersectionOffsetPoints",
+          "callee": "offsetPointFromXZPlane",
+          "lineNumber": 1886
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "offsetTriangleFromXZPlane",
+          "lineNumber": 1907
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1928
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1929
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1936
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1937
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1944
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1945
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1960
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1961
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1968
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1969
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1976
+        },
+        {
+          "caller": "splitTriangle",
+          "callee": "getXZIntersectionOffsetPoints",
+          "lineNumber": 1977
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 2012
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2013
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2014
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "ComponentDatatype.createTypedArray",
+          "lineNumber": 2017
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "Geometry.computeNumberOfVertices",
+          "lineNumber": 2024
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 2025
+        },
+        {
+          "caller": "updateGeometryAfterSplit",
+          "callee": "BoundingSphere.fromVertices",
+          "lineNumber": 2031
+        },
+        {
+          "caller": "copyGeometryForSplit",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 2045
+        },
+        {
+          "caller": "copyGeometryForSplit",
+          "callee": "defined",
+          "lineNumber": 2046
+        },
+        {
+          "caller": "copyGeometryForSplit",
+          "callee": "defined",
+          "lineNumber": 2047
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2067
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "updateGeometryAfterSplit",
+          "lineNumber": 2069
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "updateGeometryAfterSplit",
+          "lineNumber": 2070
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2072
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2072
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2074
+        },
+        {
+          "caller": "updateInstanceAfterSplit",
+          "callee": "defined",
+          "lineNumber": 2074
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.fromArray",
+          "lineNumber": 2101
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.fromArray",
+          "lineNumber": 2106
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.fromArray",
+          "lineNumber": 2111
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.multiplyByScalar",
+          "lineNumber": 2117
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.multiplyByScalar",
+          "lineNumber": 2118
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.multiplyByScalar",
+          "lineNumber": 2119
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.add",
+          "lineNumber": 2121
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.add",
+          "lineNumber": 2122
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.normalize",
+          "lineNumber": 2125
+        },
+        {
+          "caller": "generateBarycentricInterpolateFunction",
+          "callee": "CartesianType.pack",
+          "lineNumber": 2128
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2187
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2188
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2189
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2190
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2191
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2197
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2198
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2199
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "barycentricCoordinates",
+          "lineNumber": 2200
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2201
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2205
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "interpolateAndPackCartesian3",
+          "lineNumber": 2206
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2218
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2219
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2220
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2221
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 2223
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 2224
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 2225
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 2229
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 2230
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 2231
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2233
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2234
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 2235
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 2242
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2249
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "interpolateAndPackBoolean",
+          "lineNumber": 2250
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2261
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "interpolateAndPackCartesian3",
+          "lineNumber": 2262
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2274
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "interpolateAndPackCartesian3",
+          "lineNumber": 2275
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "defined",
+          "lineNumber": 2287
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "interpolateAndPackCartesian2",
+          "lineNumber": 2288
+        },
+        {
+          "caller": "computeTriangleAttributes",
+          "callee": "genericInterpolate",
+          "lineNumber": 2302
+        },
+        {
+          "caller": "genericInterpolate",
+          "callee": "interpolateAndPackCartesian4",
+          "lineNumber": 2329
+        },
+        {
+          "caller": "genericInterpolate",
+          "callee": "interpolateAndPackCartesian3",
+          "lineNumber": 2341
+        },
+        {
+          "caller": "genericInterpolate",
+          "callee": "interpolateAndPackCartesian2",
+          "lineNumber": 2353
+        },
+        {
+          "caller": "insertSplitPoint",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 2388
+        },
+        {
+          "caller": "insertSplitPoint",
+          "callee": "currentIndices.push",
+          "lineNumber": 2389
+        },
+        {
+          "caller": "insertSplitPoint",
+          "callee": "currentIndices.push",
+          "lineNumber": 2393
+        },
+        {
+          "caller": "insertSplitPoint",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 2397
+        },
+        {
+          "caller": "insertSplitPoint",
+          "callee": "currentIndices.push",
+          "lineNumber": 2398
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2415
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2418
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2421
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2424
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2425
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2428
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 2436
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2438
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "customAttributeNames.push",
+          "lineNumber": 2440
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2445
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2446
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2471
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2472
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2473
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "splitTriangle",
+          "lineNumber": 2475
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2476
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2495
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "computeTriangleAttributes",
+          "lineNumber": 2503
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "defined",
+          "lineNumber": 2523
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2539
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "computeTriangleAttributes",
+          "lineNumber": 2547
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2566
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "computeTriangleAttributes",
+          "lineNumber": 2574
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2593
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "computeTriangleAttributes",
+          "lineNumber": 2601
+        },
+        {
+          "caller": "splitLongitudeTriangles",
+          "callee": "updateInstanceAfterSplit",
+          "lineNumber": 2622
+        },
+        {
+          "caller": "computeLineAttributes",
+          "callee": "defined",
+          "lineNumber": 2639
+        },
+        {
+          "caller": "computeLineAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2643
+        },
+        {
+          "caller": "computeLineAttributes",
+          "callee": "Cartesian3.equalsEpsilon",
+          "lineNumber": 2644
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "defined",
+          "lineNumber": 2655
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2660
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2661
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2681
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2682
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Math.abs",
+          "lineNumber": 2685
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Math.abs",
+          "lineNumber": 2693
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "IntersectionTests.lineSegmentPlane",
+          "lineNumber": 2708
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "defined",
+          "lineNumber": 2714
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 2716
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 2722
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2732
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2738
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2746
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2756
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2764
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 2774
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2775
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2776
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2784
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2794
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2802
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2826
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2834
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "insertSplitPoint",
+          "lineNumber": 2844
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "computeLineAttributes",
+          "lineNumber": 2852
+        },
+        {
+          "caller": "splitLongitudeLines",
+          "callee": "updateInstanceAfterSplit",
+          "lineNumber": 2864
+        },
+        {
+          "caller": "updateAdjacencyAfterSplit",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 2887
+        },
+        {
+          "caller": "updateAdjacencyAfterSplit",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 2892
+        },
+        {
+          "caller": "updateAdjacencyAfterSplit",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 2906
+        },
+        {
+          "caller": "updateAdjacencyAfterSplit",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 2910
+        },
+        {
+          "caller": "updateAdjacencyAfterSplit",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 2924
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 2941
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 2942
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2946
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "copyGeometryForSplit",
+          "lineNumber": 2947
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2960
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2961
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Math.abs",
+          "lineNumber": 2966
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Math.abs",
+          "lineNumber": 2979
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "IntersectionTests.lineSegmentPlane",
+          "lineNumber": 2996
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 3002
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 3006
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 3012
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.add",
+          "lineNumber": 3019
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.position.values.push",
+          "lineNumber": 3024
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.position.values.push",
+          "lineNumber": 3025
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.position.values.push",
+          "lineNumber": 3030
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.prevPosition.values.push",
+          "lineNumber": 3036
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.prevPosition.values.push",
+          "lineNumber": 3041
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.prevPosition.values.push",
+          "lineNumber": 3046
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.nextPosition.values.push",
+          "lineNumber": 3048
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.nextPosition.values.push",
+          "lineNumber": 3053
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.nextPosition.values.push",
+          "lineNumber": 3058
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.nextPosition.values.push",
+          "lineNumber": 3063
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 3069
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.add",
+          "lineNumber": 3070
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.position.values.push",
+          "lineNumber": 3071
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.position.values.push",
+          "lineNumber": 3076
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.position.values.push",
+          "lineNumber": 3081
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.prevPosition.values.push",
+          "lineNumber": 3083
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.prevPosition.values.push",
+          "lineNumber": 3088
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.prevPosition.values.push",
+          "lineNumber": 3093
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.prevPosition.values.push",
+          "lineNumber": 3098
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.nextPosition.values.push",
+          "lineNumber": 3104
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.nextPosition.values.push",
+          "lineNumber": 3105
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.nextPosition.values.push",
+          "lineNumber": 3110
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian2.fromArray",
+          "lineNumber": 3116
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Math.abs",
+          "lineNumber": 3121
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.expandAndWidth.values.push",
+          "lineNumber": 3123
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.expandAndWidth.values.push",
+          "lineNumber": 3124
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.expandAndWidth.values.push",
+          "lineNumber": 3125
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.expandAndWidth.values.push",
+          "lineNumber": 3126
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.magnitudeSquared",
+          "lineNumber": 3128
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 3129
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.magnitudeSquared",
+          "lineNumber": 3131
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 3132
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 3135
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian4.fromArray",
+          "lineNumber": 3136
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian4.fromArray",
+          "lineNumber": 3137
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 3139
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 3140
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 3141
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 3142
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.color.values.push",
+          "lineNumber": 3145
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.color.values.push",
+          "lineNumber": 3147
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.color.values.push",
+          "lineNumber": 3148
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.color.values.push",
+          "lineNumber": 3149
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.color.values.push",
+          "lineNumber": 3150
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.color.values.push",
+          "lineNumber": 3152
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 3156
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian2.fromArray",
+          "lineNumber": 3157
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "Cartesian2.fromArray",
+          "lineNumber": 3158
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 3164
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.st.values.push",
+          "lineNumber": 3167
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.st.values.push",
+          "lineNumber": 3169
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Attributes.st.values.push",
+          "lineNumber": 3170
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.st.values.push",
+          "lineNumber": 3171
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.st.values.push",
+          "lineNumber": 3172
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Attributes.st.values.push",
+          "lineNumber": 3174
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Indices.push",
+          "lineNumber": 3179
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p0Indices.push",
+          "lineNumber": 3180
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Indices.push",
+          "lineNumber": 3183
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "p2Indices.push",
+          "lineNumber": 3184
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 3197
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 3198
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 3199
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.position.values.push",
+          "lineNumber": 3200
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.prevPosition.values.push",
+          "lineNumber": 3203
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.nextPosition.values.push",
+          "lineNumber": 3204
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.expandAndWidth.values.push",
+          "lineNumber": 3208
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 3209
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.st.values.push",
+          "lineNumber": 3210
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "defined",
+          "lineNumber": 3214
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentAttributes.color.values.push",
+          "lineNumber": 3216
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentIndices.push",
+          "lineNumber": 3221
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "currentIndices.push",
+          "lineNumber": 3222
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "updateAdjacencyAfterSplit",
+          "lineNumber": 3227
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "updateAdjacencyAfterSplit",
+          "lineNumber": 3228
+        },
+        {
+          "caller": "splitLongitudePolyline",
+          "callee": "updateInstanceAfterSplit",
+          "lineNumber": 3231
+        }
+      ],
+      "metrics": {
+        "importCount": 24,
+        "exportCount": 0,
+        "functionCount": 34,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GeometryType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 606,
+      "nonEmptyLines": 546,
+      "functions": [
+        {
+          "name": "GoogleEarthEnterpriseTerrainData",
+          "startLine": 57,
+          "endLine": 93,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "interpolateMeshHeight",
+          "startLine": 436,
+          "endLine": 488,
+          "params": [
+            "terrainData",
+            "u",
+            "v"
+          ]
+        },
+        {
+          "name": "interpolateHeight",
+          "startLine": 496,
+          "endLine": 605,
+          "params": [
+            "terrainData",
+            "u",
+            "v",
+            "rectangle"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GoogleEarthEnterpriseTerrainData",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 60
+        },
+        {
+          "caller": "GoogleEarthEnterpriseTerrainData",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 61
+        },
+        {
+          "caller": "GoogleEarthEnterpriseTerrainData",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 65
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeTextureCoordinates",
+          "lineNumber": 447
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeTextureCoordinates",
+          "lineNumber": 452
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeTextureCoordinates",
+          "lineNumber": 457
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "Intersections2D.computeBarycentricCoordinates",
+          "lineNumber": 463
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 479
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 480
+        },
+        {
+          "caller": "interpolateMeshHeight",
+          "callee": "encoding.decodeHeight",
+          "lineNumber": 481
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getUint32",
+          "lineNumber": 521
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "CesiumMath.toRadians",
+          "lineNumber": 528
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getFloat64",
+          "lineNumber": 528
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "CesiumMath.toRadians",
+          "lineNumber": 530
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getFloat64",
+          "lineNumber": 530
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getInt32",
+          "lineNumber": 538
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getInt32",
+          "lineNumber": 542
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getUint8",
+          "lineNumber": 552
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getUint8",
+          "lineNumber": 553
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getFloat32",
+          "lineNumber": 556
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "dv.getUint16",
+          "lineNumber": 562
+        },
+        {
+          "caller": "interpolateHeight",
+          "callee": "Intersections2D.computeBarycentricCoordinates",
+          "lineNumber": 579
+        }
+      ],
+      "metrics": {
+        "importCount": 17,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/GroundPolylineGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1659,
+      "nonEmptyLines": 1487,
+      "functions": [
+        {
+          "name": "GroundPolylineGeometry",
+          "startLine": 74,
+          "endLine": 132,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "computeRightNormal",
+          "startLine": 185,
+          "endLine": 195,
+          "params": [
+            "start",
+            "end",
+            "maxHeight",
+            "ellipsoid",
+            "result"
+          ]
+        },
+        {
+          "name": "interpolateSegment",
+          "startLine": 201,
+          "endLine": 272,
+          "params": [
+            "start",
+            "end",
+            "minHeight",
+            "maxHeight",
+            "granularity",
+            "arcType",
+            "ellipsoid",
+            "normalsArray",
+            "bottomPositionsArray",
+            "topPositionsArray",
+            "cartographicsArray"
+          ]
+        },
+        {
+          "name": "getPosition",
+          "startLine": 275,
+          "endLine": 283,
+          "params": [
+            "ellipsoid",
+            "cartographic",
+            "height",
+            "result"
+          ]
+        },
+        {
+          "name": "direction",
+          "startLine": 374,
+          "endLine": 378,
+          "params": [
+            "target",
+            "origin",
+            "result"
+          ]
+        },
+        {
+          "name": "tangentDirection",
+          "startLine": 380,
+          "endLine": 388,
+          "params": [
+            "target",
+            "origin",
+            "up",
+            "result"
+          ]
+        },
+        {
+          "name": "computeVertexMiterNormal",
+          "startLine": 396,
+          "endLine": 438,
+          "params": [
+            "previousBottom",
+            "vertexBottom",
+            "vertexTop",
+            "nextBottom",
+            "result"
+          ]
+        },
+        {
+          "name": "breakMiter",
+          "startLine": 806,
+          "endLine": 830,
+          "params": [
+            "endGeometryNormal",
+            "startBottom",
+            "endBottom",
+            "endTop"
+          ]
+        },
+        {
+          "name": "projectNormal",
+          "startLine": 835,
+          "endLine": 891,
+          "params": [
+            "projection",
+            "cartographic",
+            "normal",
+            "projectedPosition",
+            "result"
+          ]
+        },
+        {
+          "name": "adjustHeights",
+          "startLine": 895,
+          "endLine": 926,
+          "params": [
+            "bottom",
+            "top",
+            "minHeight",
+            "maxHeight",
+            "adjustHeightBottom",
+            "adjustHeightTop"
+          ]
+        },
+        {
+          "name": "nudgeXZ",
+          "startLine": 929,
+          "endLine": 945,
+          "params": [
+            "start",
+            "end"
+          ]
+        },
+        {
+          "name": "nudgeCartographic",
+          "startLine": 950,
+          "endLine": 967,
+          "params": [
+            "start",
+            "end"
+          ]
+        },
+        {
+          "name": "generateGeometryAttributes",
+          "startLine": 1056,
+          "endLine": 1635,
+          "params": [
+            "loop",
+            "projection",
+            "bottomPositionsArray",
+            "topPositionsArray",
+            "normalsArray",
+            "cartographicsArray",
+            "compute2dAttributes"
+          ]
+        },
+        {
+          "name": "getVec4GeometryAttribute",
+          "startLine": 1637,
+          "endLine": 1644,
+          "params": [
+            "typedArray"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GroundPolylineGeometry",
+          "callee": "defined",
+          "lineNumber": 79
+        },
+        {
+          "caller": "GroundPolylineGeometry",
+          "callee": "defined",
+          "lineNumber": 83
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "getPosition",
+          "lineNumber": 186
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "getPosition",
+          "lineNumber": 187
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "getPosition",
+          "lineNumber": 188
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "direction",
+          "lineNumber": 190
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "direction",
+          "lineNumber": 191
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 193
+        },
+        {
+          "caller": "computeRightNormal",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 194
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "computeRightNormal",
+          "lineNumber": 231
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "Math.ceil",
+          "lineNumber": 239
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "ellipsoidLine.interpolateUsingSurfaceDistance",
+          "lineNumber": 246
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "getPosition",
+          "lineNumber": 250
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "getPosition",
+          "lineNumber": 256
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 263
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 264
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 265
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "cartographicsArray.push",
+          "lineNumber": 266
+        },
+        {
+          "caller": "interpolateSegment",
+          "callee": "cartographicsArray.push",
+          "lineNumber": 267
+        },
+        {
+          "caller": "getPosition",
+          "callee": "Cartographic.clone",
+          "lineNumber": 276
+        },
+        {
+          "caller": "getPosition",
+          "callee": "Cartographic.toCartesian",
+          "lineNumber": 278
+        },
+        {
+          "caller": "direction",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 375
+        },
+        {
+          "caller": "direction",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 376
+        },
+        {
+          "caller": "tangentDirection",
+          "callee": "direction",
+          "lineNumber": 381
+        },
+        {
+          "caller": "tangentDirection",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 384
+        },
+        {
+          "caller": "tangentDirection",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 385
+        },
+        {
+          "caller": "tangentDirection",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 386
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "direction",
+          "lineNumber": 403
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "tangentDirection",
+          "lineNumber": 406
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "tangentDirection",
+          "lineNumber": 412
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 416
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 417
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 422
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 423
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.add",
+          "lineNumber": 428
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 429
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 432
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 433
+        },
+        {
+          "caller": "computeVertexMiterNormal",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 434
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "direction",
+          "lineNumber": 807
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 809
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "direction",
+          "lineNumber": 811
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "Quaternion.fromAxisAngle",
+          "lineNumber": 816
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "Matrix3.fromQuaternion",
+          "lineNumber": 821
+        },
+        {
+          "caller": "breakMiter",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 822
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartographic.toCartesian",
+          "lineNumber": 842
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartesian3.add",
+          "lineNumber": 847
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 851
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Math.abs",
+          "lineNumber": 860
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 864
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 869
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "projection.project",
+          "lineNumber": 876
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 880
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 886
+        },
+        {
+          "caller": "projectNormal",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 888
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 904
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 909
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 912
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.add",
+          "lineNumber": 917
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 920
+        },
+        {
+          "caller": "adjustHeights",
+          "callee": "Cartesian3.add",
+          "lineNumber": 925
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Plane.getPointDistance",
+          "lineNumber": 930
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Plane.getPointDistance",
+          "lineNumber": 931
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 934
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "direction",
+          "lineNumber": 935
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 936
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Cartesian3.add",
+          "lineNumber": 937
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 939
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "direction",
+          "lineNumber": 941
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 942
+        },
+        {
+          "caller": "nudgeXZ",
+          "callee": "Cartesian3.add",
+          "lineNumber": 943
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "Math.abs",
+          "lineNumber": 951
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "Math.abs",
+          "lineNumber": 952
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 954
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 956
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 960
+        },
+        {
+          "caller": "nudgeCartographic",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 962
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projection.project",
+          "lineNumber": 1125
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projection.project",
+          "lineNumber": 1129
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 1133
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1143
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1152
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1156
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 1161
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1174
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1179
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1180
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1187
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "breakMiter",
+          "lineNumber": 1192
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 1194
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1208
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1209
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1210
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 1216
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1222
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1227
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1228
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "breakMiter",
+          "lineNumber": 1234
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "nudgeCartographic",
+          "lineNumber": 1247
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projection.project",
+          "lineNumber": 1248
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projection.project",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "direction",
+          "lineNumber": 1250
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Math.abs",
+          "lineNumber": 1251
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 1257
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projectNormal",
+          "lineNumber": 1262
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projectNormal",
+          "lineNumber": 1269
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projectNormal",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1288
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Math.abs",
+          "lineNumber": 1289
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "projectNormal",
+          "lineNumber": 1294
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1304
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 1321
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 1323
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1327
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1332
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1334
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1335
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 1336
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1337
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 1339
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1344
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1346
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1347
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 1348
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1353
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 1366
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 1368
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1372
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1380
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1401
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1404
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1407
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1414
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1422
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Rectangle.fromCartographicArray",
+          "lineNumber": 1469
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "ApproximateTerrainHeights.getMinimumMaximumHeights",
+          "lineNumber": 1473
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Math.abs",
+          "lineNumber": 1481
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Math.abs",
+          "lineNumber": 1482
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "adjustHeights",
+          "lineNumber": 1484
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "adjustHeights",
+          "lineNumber": 1492
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 1502
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1507
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1512
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1513
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1514
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "nudgeXZ",
+          "lineNumber": 1517
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "nudgeXZ",
+          "lineNumber": 1518
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1520
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1521
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1522
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1523
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 1525
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1530
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1535
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1536
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1537
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "nudgeXZ",
+          "lineNumber": 1539
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "nudgeXZ",
+          "lineNumber": 1540
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1542
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1547
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1552
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "Cartesian3.pack",
+          "lineNumber": 1553
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "BoundingSphere.fromVertices",
+          "lineNumber": 1577
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "BoundingSphere.fromVertices",
+          "lineNumber": 1583
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "BoundingSphere.fromBoundingSpheres",
+          "lineNumber": 1589
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1601
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1604
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1607
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1610
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1613
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1619
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1620
+        },
+        {
+          "caller": "generateGeometryAttributes",
+          "callee": "getVec4GeometryAttribute",
+          "lineNumber": 1621
+        }
+      ],
+      "metrics": {
+        "importCount": 25,
+        "exportCount": 0,
+        "functionCount": 14,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/HeadingPitchRoll.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 235,
+      "nonEmptyLines": 225,
+      "functions": [
+        {
+          "name": "HeadingPitchRoll",
+          "startLine": 16,
+          "endLine": 35,
+          "params": [
+            "heading",
+            "pitch",
+            "roll"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/HeightmapTessellator.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 518,
+      "nonEmptyLines": 455,
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Iau2000Orientation.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 167,
+      "nonEmptyLines": 154,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IauOrientationAxes.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 89,
+      "functions": [
+        {
+          "name": "IauOrientationAxes",
+          "startLine": 21,
+          "endLine": 27,
+          "params": [
+            "computeFunction"
+          ]
+        },
+        {
+          "name": "computeRotationMatrix",
+          "startLine": 33,
+          "endLine": 63,
+          "params": [
+            "alpha",
+            "delta",
+            "result"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "IauOrientationAxes",
+          "callee": "defined",
+          "lineNumber": 22
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.cos",
+          "lineNumber": 35
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.sin",
+          "lineNumber": 36
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.cos",
+          "lineNumber": 39
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.cos",
+          "lineNumber": 42
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.sin",
+          "lineNumber": 43
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Math.sin",
+          "lineNumber": 44
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 46
+        },
+        {
+          "caller": "computeRotationMatrix",
+          "callee": "defined",
+          "lineNumber": 48
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IauOrientationParameters.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "IauOrientationParameters",
+          "startLine": 13,
+          "endLine": 53,
+          "params": [
+            "rightAscension",
+            "declination",
+            "rotation",
+            "rotationRate"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IndexDatatype.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 201,
+      "nonEmptyLines": 184,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Intersect.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 34,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/IntersectionTests.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1087,
+      "nonEmptyLines": 947,
+      "functions": [
+        {
+          "name": "solveQuadratic",
+          "startLine": 278,
+          "endLine": 306,
+          "params": [
+            "a",
+            "b",
+            "c",
+            "result"
+          ]
+        },
+        {
+          "name": "raySphere",
+          "startLine": 313,
+          "endLine": 338,
+          "params": [
+            "ray",
+            "sphere",
+            "result"
+          ]
+        },
+        {
+          "name": "rayIntervalAlongAABBAxis",
+          "startLine": 566,
+          "endLine": 576,
+          "params": [
+            "origin",
+            "direction",
+            "min",
+            "max",
+            "result"
+          ]
+        },
+        {
+          "name": "addWithCancellationCheck",
+          "startLine": 578,
+          "endLine": 588,
+          "params": [
+            "left",
+            "right",
+            "tolerance"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "solveQuadratic",
+          "callee": "Math.sqrt",
+          "lineNumber": 284
+        },
+        {
+          "caller": "raySphere",
+          "callee": "defined",
+          "lineNumber": 314
+        },
+        {
+          "caller": "raySphere",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 324
+        },
+        {
+          "caller": "raySphere",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 326
+        },
+        {
+          "caller": "raySphere",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 327
+        },
+        {
+          "caller": "raySphere",
+          "callee": "Cartesian3.magnitudeSquared",
+          "lineNumber": 328
+        },
+        {
+          "caller": "raySphere",
+          "callee": "solveQuadratic",
+          "lineNumber": 330
+        },
+        {
+          "caller": "raySphere",
+          "callee": "defined",
+          "lineNumber": 331
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 581
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 581
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "Math.abs",
+          "lineNumber": 582
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "Math.max",
+          "lineNumber": 582
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "Math.abs",
+          "lineNumber": 582
+        },
+        {
+          "caller": "addWithCancellationCheck",
+          "callee": "Math.abs",
+          "lineNumber": 582
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Intersections2D.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 358,
+      "nonEmptyLines": 319,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Interval.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "Interval",
+          "startLine": 9,
+          "endLine": 22,
+          "params": [
+            "start",
+            "stop"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/KeyboardEventModifier.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 32,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Math.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1125,
+      "nonEmptyLines": 1025,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Occluder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 727,
+      "nonEmptyLines": 679,
+      "functions": [
+        {
+          "name": "Occluder",
+          "startLine": 28,
+          "endLine": 48,
+          "params": [
+            "occluderBoundingSphere",
+            "cameraPosition"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Occluder",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Occluder",
+          "callee": "defined",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Occluder",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/OrientedBoundingBox.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1272,
+      "nonEmptyLines": 1119,
+      "functions": [
+        {
+          "name": "OrientedBoundingBox",
+          "startLine": 40,
+          "endLine": 55,
+          "params": [
+            "center",
+            "halfAxes"
+          ]
+        },
+        {
+          "name": "fromPlaneExtents",
+          "startLine": 244,
+          "endLine": 297,
+          "params": [
+            "planeOrigin",
+            "planeXAxis",
+            "planeYAxis",
+            "planeZAxis",
+            "minimumX",
+            "maximumX",
+            "minimumY",
+            "maximumY",
+            "minimumZ",
+            "maximumZ",
+            "result"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "OrientedBoundingBox",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 46
+        },
+        {
+          "caller": "OrientedBoundingBox",
+          "callee": "Matrix3.clone",
+          "lineNumber": 54
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 259
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 260
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 261
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 262
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 263
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 264
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "defined",
+          "lineNumber": 272
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Matrix3.setColumn",
+          "lineNumber": 277
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Matrix3.setColumn",
+          "lineNumber": 278
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Matrix3.setColumn",
+          "lineNumber": 279
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 292
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Cartesian3.add",
+          "lineNumber": 293
+        },
+        {
+          "caller": "fromPlaneExtents",
+          "callee": "Matrix3.multiplyByScale",
+          "lineNumber": 294
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/OrthographicFrustum.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 351,
+      "nonEmptyLines": 316,
+      "functions": [
+        {
+          "name": "OrthographicFrustum",
+          "startLine": 30,
+          "endLine": 66,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 126,
+          "endLine": 172,
+          "params": [
+            "frustum"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 129
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 130
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 131
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 132
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 463,
+      "nonEmptyLines": 424,
+      "functions": [
+        {
+          "name": "OrthographicOffCenterFrustum",
+          "startLine": 38,
+          "endLine": 91,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 93,
+          "endLine": 147,
+          "params": [
+            "frustum"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 96
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 97
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 99
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 101
+        },
+        {
+          "caller": "update",
+          "callee": "Matrix4.computeOrthographicOffCenter",
+          "lineNumber": 137
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/PerspectiveFrustum.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 459,
+      "nonEmptyLines": 412,
+      "functions": [
+        {
+          "name": "PerspectiveFrustum",
+          "startLine": 35,
+          "endLine": 92,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 156,
+          "endLine": 223,
+          "params": [
+            "frustum"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 159
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 160
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 161
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 162
+        },
+        {
+          "caller": "update",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 183
+        },
+        {
+          "caller": "update",
+          "callee": "Check.typeOf.number.lessThan",
+          "lineNumber": 184
+        },
+        {
+          "caller": "update",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 186
+        },
+        {
+          "caller": "update",
+          "callee": "Check.typeOf.number.greaterThanOrEquals",
+          "lineNumber": 192
+        },
+        {
+          "caller": "update",
+          "callee": "Math.atan",
+          "lineNumber": 203
+        },
+        {
+          "caller": "update",
+          "callee": "Math.tan",
+          "lineNumber": 203
+        },
+        {
+          "caller": "update",
+          "callee": "Math.tan",
+          "lineNumber": 206
+        },
+        {
+          "caller": "update",
+          "callee": "Math.tan",
+          "lineNumber": 212
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 522,
+      "nonEmptyLines": 476,
+      "functions": [
+        {
+          "name": "PerspectiveOffCenterFrustum",
+          "startLine": 39,
+          "endLine": 93,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 95,
+          "endLine": 155,
+          "params": [
+            "frustum"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 99
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 101
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 102
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 103
+        },
+        {
+          "caller": "update",
+          "callee": "Matrix4.computePerspectiveOffCenter",
+          "lineNumber": 138
+        },
+        {
+          "caller": "update",
+          "callee": "Matrix4.computeInfinitePerspectiveOffCenter",
+          "lineNumber": 147
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/Plane.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 312,
+      "nonEmptyLines": 281,
+      "functions": [
+        {
+          "name": "Plane",
+          "startLine": 34,
+          "endLine": 66,
+          "params": [
+            "normal",
+            "distance"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Plane",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Plane",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Plane",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Plane",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Plane",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/PlaneGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 250,
+      "nonEmptyLines": 214,
+      "functions": [
+        {
+          "name": "PlaneGeometry",
+          "startLine": 27,
+          "endLine": 34,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 11,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/PlaneOutlineGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 113,
+      "nonEmptyLines": 100,
+      "functions": [
+        {
+          "name": "PlaneOutlineGeometry",
+          "startLine": 18,
+          "endLine": 20,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Core/PolygonGeometry.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1580,
+      "nonEmptyLines": 1424,
+      "functions": [
+        {
+          "name": "adjustPosHeightsForNormal",
+          "startLine": 32,
+          "endLine": 42,
+          "params": [
+            "position",
+            "p1",
+            "p2",
+            "ellipsoid"
+          ]
+        },
+        {
+          "name": "computeAttributes",
+          "startLine": 62,
+          "endLine": 424,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "createGeometryFromPositionsExtruded",
+          "startLine": 428,
+          "endLine": 574,
+          "params": [
+            "ellipsoid",
+            "polygon",
+            "textureCoordinates",
+            "granularity",
+            "hierarchy",
+            "perPositionHeight",
+            "closeTop",
+            "closeBottom",
+            "vertexFormat",
+            "arcType"
+          ]
+        },
+        {
+          "name": "PolygonGeometry",
+          "startLine": 668,
+          "endLine": 748,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "expandRectangle",
+          "startLine": 961,
+          "endLine": 1026,
+          "params": [
+            "polar",
+            "lastPolar",
+            "ellipsoid",
+            "arcType",
+            "polygon",
+            "result"
+          ]
+        },
+        {
+          "name": "getTangentPlane",
+          "startLine": 1147,
+          "endLine": 1158,
+          "params": [
+            "rectangle",
+            "positions",
+            "ellipsoid"
+          ]
+        },
+        {
+          "name": "createProjectTo2d",
+          "startLine": 1161,
+          "endLine": 1196,
+          "params": [
+            "rectangle",
+            "outerPositions",
+            "ellipsoid"
+          ]
+        },
+        {
+          "name": "createProjectPositionTo2d",
+          "startLine": 1198,
+          "endLine": 1226,
+          "params": [
+            "rectangle",
+            "outerRing",
+            "ellipsoid"
+          ]
+        },
+        {
+          "name": "createSplitPolygons",
+          "startLine": 1228,
+          "endLine": 1245,
+          "params": [
+            "rectangle",
+            "ellipsoid",
+            "arcType",
+            "perPositionHeight"
+          ]
+        },
+        {
+          "name": "computeBoundingRectangle",
+          "startLine": 1247,
+          "endLine": 1268,
+          "params": [
+            "outerRing",
+            "rectangle",
+            "ellipsoid",
+            "stRotation"
+          ]
+        },
+        {
+          "name": "textureCoordinateRotationPoints",
+          "startLine": 1532,
+          "endLine": 1546,
+          "params": [
+            "polygonGeometry"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "adjustPosHeightsForNormal",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 33
+        },
+        {
+          "caller": "adjustPosHeightsForNormal",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 35
+        },
+        {
+          "caller": "adjustPosHeightsForNormal",
+          "callee": "ellipsoid.cartographicToCartesian",
+          "lineNumber": 37
+        },
+        {
+          "caller": "adjustPosHeightsForNormal",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 39
+        },
+        {
+          "caller": "adjustPosHeightsForNormal",
+          "callee": "ellipsoid.cartographicToCartesian",
+          "lineNumber": 41
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "defined",
+          "lineNumber": 67
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Quaternion.fromAxisAngle",
+          "lineNumber": 125
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.fromQuaternion",
+          "lineNumber": 130
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Quaternion.fromAxisAngle",
+          "lineNumber": 132
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.fromQuaternion",
+          "lineNumber": 137
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.clone",
+          "lineNumber": 142
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.clone",
+          "lineNumber": 143
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 160
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "defined",
+          "lineNumber": 167
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 168
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "ellipsoid.scaleToGeodeticSurface",
+          "lineNumber": 173
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "projectTo2d",
+          "lineNumber": 174
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian2.subtract",
+          "lineNumber": 175
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 177
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 178
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 203
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 206
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "adjustPosHeightsForNormal",
+          "lineNumber": 212
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 214
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 215
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 216
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 217
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.equalsEpsilon",
+          "lineNumber": 223
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "ellipsoid.geodeticSurfaceNormal",
+          "lineNumber": 230
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 232
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 233
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "ellipsoid.geodeticSurfaceNormal",
+          "lineNumber": 239
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 242
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 247
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 252
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 253
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 261
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 262
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 272
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 273
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Matrix3.multiplyByVector",
+          "lineNumber": 274
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 278
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 279
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "ellipsoid.geodeticSurfaceNormal",
+          "lineNumber": 306
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "defined",
+          "lineNumber": 359
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "defined",
+          "lineNumber": 400
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "offsetAttribute.fill",
+          "lineNumber": 406
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "offsetAttribute.fill",
+          "lineNumber": 408
+        },
+        {
+          "caller": "computeAttributes",
+          "callee": "offsetAttribute.fill",
+          "lineNumber": 413
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "PolygonGeometryLibrary.createGeometryFromPositions",
+          "lineNumber": 446
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "edgePoints.concat",
+          "lineNumber": 462
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 466
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "newIndices.set",
+          "lineNumber": 470
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "topGeo.attributes.normal.values.set",
+          "lineNumber": 491
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "defined",
+          "lineNumber": 494
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "texcoords.concat",
+          "lineNumber": 497
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 503
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "EllipsoidTangentPlane.fromPoints",
+          "lineNumber": 520
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "tangentPlane.projectPointsOntoPlane",
+          "lineNumber": 521
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "PolygonPipeline.computeWindingOrder2D",
+          "lineNumber": 526
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "outerRing.slice().reverse",
+          "lineNumber": 528
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "outerRing.slice",
+          "lineNumber": 528
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "PolygonGeometryLibrary.computeWallGeometry",
+          "lineNumber": 531
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "geos.walls.push",
+          "lineNumber": 539
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "tangentPlane.projectPointsOntoPlane",
+          "lineNumber": 548
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "PolygonPipeline.computeWindingOrder2D",
+          "lineNumber": 553
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "hole.slice().reverse",
+          "lineNumber": 555
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "hole.slice",
+          "lineNumber": 555
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "PolygonGeometryLibrary.computeWallGeometry",
+          "lineNumber": 558
+        },
+        {
+          "caller": "createGeometryFromPositionsExtruded",
+          "callee": "geos.walls.push",
+          "lineNumber": 566
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 670
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 671
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "defined",
+          "lineNumber": 673
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "defined",
+          "lineNumber": 675
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "defined",
+          "lineNumber": 682
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "defined",
+          "lineNumber": 700
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "Math.max",
+          "lineNumber": 705
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "Math.min",
+          "lineNumber": 706
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "VertexFormat.clone",
+          "lineNumber": 710
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "Ellipsoid.clone",
+          "lineNumber": 711
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "PolygonGeometryLibrary.computeHierarchyPackedLength",
+          "lineNumber": 735
+        },
+        {
+          "caller": "PolygonGeometry",
+          "callee": "PolygonGeometryLibrary.computeHierarchyPackedLength",
+          "lineNumber": 742
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.min",
+          "lineNumber": 972
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.max",
+          "lineNumber": 973
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.min",
+          "lineNumber": 975
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.max",
+          "lineNumber": 976
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "polar.getLatitude",
+          "lineNumber": 978
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.min",
+          "lineNumber": 981
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.max",
+          "lineNumber": 982
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.subtract",
+          "lineNumber": 986
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.dot",
+          "lineNumber": 992
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.dot",
+          "lineNumber": 993
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.add",
+          "lineNumber": 995
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.multiplyByScalar",
+          "lineNumber": 997
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Stereographic.clone",
+          "lineNumber": 1000
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "closestPolar.getLatitude",
+          "lineNumber": 1002
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.min",
+          "lineNumber": 1003
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.max",
+          "lineNumber": 1004
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.abs",
+          "lineNumber": 1006
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.abs",
+          "lineNumber": 1006
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Math.sign",
+          "lineNumber": 1014
+        },
+        {
+          "caller": "expandRectangle",
+          "callee": "Cartesian2.angleBetween",
+          "lineNumber": 1016
+        },
+        {
+          "caller": "getTangentPlane",
+          "callee": "Stereographic.fromCartesian",
+          "lineNumber": 1149
+        },
+        {
+          "caller": "getTangentPlane",
+          "callee": "EllipsoidTangentPlane.fromPoints",
+          "lineNumber": 1157
+        },
+        {
+          "caller": "createProjectTo2d",
+          "callee": "defined",
+          "lineNumber": 1167
+        },
+        {
+          "caller": "createProjectTo2d",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1172
+        },
+        {
+          "caller": "createProjectTo2d",
+          "callee": "Stereographic.fromCartesianArray",
+          "lineNumber": 1186
+        },
+        {
+          "caller": "createProjectTo2d",
+          "callee": "EllipsoidTangentPlane.fromPoints",
+          "lineNumber": 1190
+        },
+        {
+          "caller": "createProjectTo2d",
+          "callee": "tangentPlane.projectPointsOntoPlane",
+          "lineNumber": 1194
+        },
+        {
+          "caller": "createProjectPositionTo2d",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1204
+        },
+        {
+          "caller": "createProjectPositionTo2d",
+          "callee": "defined",
+          "lineNumber": 1208
+        },
+        {
+          "caller": "createProjectPositionTo2d",
+          "callee": "Stereographic.fromCartesian",
+          "lineNumber": 1217
+        },
+        {
+          "caller": "createProjectPositionTo2d",
+          "callee": "EllipsoidTangentPlane.fromPoints",
+          "lineNumber": 1221
+        },
+        {
+          "caller": "createProjectPositionTo2d",
+          "callee": "tangentPlane.projectPointsOntoPlane",
+          "lineNumber": 1224
+        },
+        {
+          "caller": "createSplitPolygons",
+          "callee": "PolygonGeometryLibrary.splitPolygonsOnEquator",
+          "lineNumber": 1235
+        },
+        {
+          "caller": "computeBoundingRectangle",
+          "callee": "BoundingRectangle.fromRectangle",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "computeBoundingRectangle",
+          "callee": "EllipsoidTangentPlane.fromPoints",
+          "lineNumber": 1257
+        },
+        {
+          "caller": "computeBoundingRectangle",
+          "callee": "PolygonGeometryLibrary.computeBoundingRectangle",
+          "lineNumber": 1261
+        },
+        {
+          "caller": "computeBoundingRectangle",
+          "callee": "tangentPlane.projectPointOntoPlane.bind",
+          "lineNumber": 1263
+        },
+        {
+          "caller": "textureCoordinateRotationPoints",
+          "callee": "Geometry._textureCoordinateRotationPoints",
+          "lineNumber": 1540
+        }
+      ],
+      "metrics": {
+        "importCount": 28,
+        "exportCount": 0,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    }
+  ]
+}

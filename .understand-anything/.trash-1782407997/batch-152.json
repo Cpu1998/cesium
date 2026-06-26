@@ -1,0 +1,455 @@
+{
+  "nodes": [
+    {
+      "id": "config:packages/sandcastle/gallery/spheres-and-ellipsoids/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/spheres-and-ellipsoids/sandcastle.yaml",
+      "summary": "Sandcastle 示例的元数据配置文件，定义 spheres-and-ellipsoids 示例的标题、简介等展示信息。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/splitdirection/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/splitdirection/index.html",
+      "summary": "splitdirection 示例的 HTML 入口页面，加载 require.config 并引入对应的 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/splitdirection/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/splitdirection/main.js",
+      "summary": "演示 Cesium 的 splitDirection 功能，在左右分屏视图中分别渲染 points 和 billboards，并支持动画移动。",
+      "tags": ["sandcastle", "gallery-example", "demo", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/splitdirection/main.js:testPoints",
+      "type": "function",
+      "name": "testPoints",
+      "filePath": "packages/sandcastle/gallery/splitdirection/main.js",
+      "lineRange": [12, 42],
+      "summary": "创建一组 point primitives 并按 splitDirection 设置到左右分屏中，用于演示分屏渲染效果。",
+      "tags": ["demo", "primitives", "split-direction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/splitdirection/main.js:testBillboards",
+      "type": "function",
+      "name": "testBillboards",
+      "filePath": "packages/sandcastle/gallery/splitdirection/main.js",
+      "lineRange": [44, 72],
+      "summary": "创建 billboard 集合并按 splitDirection 分配到左右分屏，演示图像标注的分屏渲染。",
+      "tags": ["demo", "billboards", "split-direction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/splitdirection/main.js:move",
+      "type": "function",
+      "name": "move",
+      "filePath": "packages/sandcastle/gallery/splitdirection/main.js",
+      "lineRange": [83, 92],
+      "summary": "动画驱动 points 与 billboards 沿地球表面移动的更新回调。",
+      "tags": ["demo", "animation", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/splitdirection/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/splitdirection/sandcastle.yaml",
+      "summary": "splitdirection 示例的元数据配置，定义示例在 Sandcastle 中的标题与简介。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/star-burst/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/star-burst/index.html",
+      "summary": "star-burst 示例的 HTML 入口页面，加载 require 配置并引入 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/star-burst/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "summary": "star-burst 示例，演示通过 SampledPositionProperty 制作卫星发散式爆发动画，可触发、更新与撤销爆发效果。",
+      "tags": ["sandcastle", "gallery-example", "demo", "animation", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/star-burst/main.js:offsetBillboard",
+      "type": "function",
+      "name": "offsetBillboard",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "lineRange": [59, 118],
+      "summary": "创建带偏移的 billboard 并随时间采样位置插值，构建星型发散的可视化效果。",
+      "tags": ["demo", "billboards", "animation", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/star-burst/main.js:starBurst",
+      "type": "function",
+      "name": "starBurst",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "lineRange": [120, 262],
+      "summary": "主入口逻辑：设置 viewer、相机与多个带采样位置的实体，触发星型爆发动画。",
+      "tags": ["demo", "entity", "animation", "sampled-position"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/star-burst/main.js:updateStarBurst",
+      "type": "function",
+      "name": "updateStarBurst",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "lineRange": [264, 298],
+      "summary": "更新爆发效果的参数（如数量、范围），重新生成实体位置。",
+      "tags": ["demo", "animation", "event-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/star-burst/main.js:undoStarBurst",
+      "type": "function",
+      "name": "undoStarBurst",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "lineRange": [300, 329],
+      "summary": "撤销爆发动画，移除相关实体并恢复初始状态。",
+      "tags": ["demo", "entity", "event-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/star-burst/main.js:showLabels",
+      "type": "function",
+      "name": "showLabels",
+      "filePath": "packages/sandcastle/gallery/star-burst/main.js",
+      "lineRange": [333, 360],
+      "summary": "为爆发实体添加文本标签以增强可视化效果。",
+      "tags": ["demo", "labels", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/star-burst/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/star-burst/sandcastle.yaml",
+      "summary": "star-burst 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/styled-gltf-lines-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-lines-dev/index.html",
+      "summary": "styled-gltf-lines-dev 示例的 HTML 入口页面，加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/styled-gltf-lines-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-lines-dev/main.js",
+      "summary": "开发示例：演示对 glTF 模型的线条渲染样式进行自定义。",
+      "tags": ["sandcastle", "gallery-example", "demo", "gltf", "dev"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/styled-gltf-lines-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-lines-dev/sandcastle.yaml",
+      "summary": "styled-gltf-lines-dev 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/styled-gltf-points-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-points-dev/index.html",
+      "summary": "styled-gltf-points-dev 示例的 HTML 入口页面，加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/styled-gltf-points-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-points-dev/main.js",
+      "summary": "开发示例：演示对 glTF 模型的点云渲染样式进行自定义。",
+      "tags": ["sandcastle", "gallery-example", "demo", "gltf", "dev"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/styled-gltf-points-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/styled-gltf-points-dev/sandcastle.yaml",
+      "summary": "styled-gltf-points-dev 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-clipping-planes/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/index.html",
+      "summary": "terrain-clipping-planes 示例的 HTML 入口页面，配置 require 并加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-clipping-planes/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/main.js",
+      "summary": "演示在地形数据上应用 ClippingPlanes 进行裁剪，包含圣海伦火山、大峡谷及 CesiumMan 模型三个场景。",
+      "tags": ["sandcastle", "gallery-example", "demo", "terrain", "clipping-planes"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadCesiumMan",
+      "type": "function",
+      "name": "loadCesiumMan",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/main.js",
+      "lineRange": [36, 79],
+      "summary": "加载 CesiumMan glTF 模型并应用 ClippingPlanes 裁剪集合的演示场景。",
+      "tags": ["demo", "gltf", "clipping-planes", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadStHelens",
+      "type": "function",
+      "name": "loadStHelens",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/main.js",
+      "lineRange": [81, 243],
+      "summary": "加载圣海伦火山地形并通过 ClippingPlanes 与交互控件演示地形裁剪。",
+      "tags": ["demo", "terrain", "clipping-planes", "interaction"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadGrandCanyon",
+      "type": "function",
+      "name": "loadGrandCanyon",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/main.js",
+      "lineRange": [245, 274],
+      "summary": "加载大峡谷地形并应用裁剪平面的演示场景。",
+      "tags": ["demo", "terrain", "clipping-planes"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/terrain-clipping-planes/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/terrain-clipping-planes/sandcastle.yaml",
+      "summary": "terrain-clipping-planes 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-entity-batching-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/terrain-entity-batching-dev/index.html",
+      "summary": "terrain-entity-batching-dev 示例的 HTML 入口页面，加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-entity-batching-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/terrain-entity-batching-dev/main.js",
+      "summary": "开发示例：演示地形与大量 entity 批量渲染的性能表现。",
+      "tags": ["sandcastle", "gallery-example", "demo", "terrain", "entity", "dev", "performance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/terrain-entity-batching-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/terrain-entity-batching-dev/sandcastle.yaml",
+      "summary": "terrain-entity-batching-dev 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-exaggeration/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/terrain-exaggeration/index.html",
+      "summary": "terrain-exaggeration 示例的 HTML 入口页面，包含 UI 控件并加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-exaggeration/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/terrain-exaggeration/main.js",
+      "summary": "演示地形高程夸张（terrain exaggeration）效果，允许通过控件动态调整夸张倍数与材质。",
+      "tags": ["sandcastle", "gallery-example", "demo", "terrain", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-exaggeration/main.js:updateMaterial",
+      "type": "function",
+      "name": "updateMaterial",
+      "filePath": "packages/sandcastle/gallery/terrain-exaggeration/main.js",
+      "lineRange": [40, 78],
+      "summary": "根据控件选择更新地形材质（如等高线/坡度着色）并刷新渲染。",
+      "tags": ["demo", "terrain", "material", "event-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/terrain-exaggeration/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/terrain-exaggeration/sandcastle.yaml",
+      "summary": "terrain-exaggeration 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-performance-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/index.html",
+      "summary": "terrain-performance-dev 示例的 HTML 入口页面，加载 main.js。",
+      "tags": ["markup", "sandcastle", "gallery-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "summary": "开发示例：围绕珠穆朗玛峰地形进行多种相机视角的帧率性能测试与基准测量。",
+      "tags": ["sandcastle", "gallery-example", "demo", "terrain", "performance", "dev"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:startTest",
+      "type": "function",
+      "name": "startTest",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [20, 36],
+      "summary": "启动一次性能测试任务，重置计数并触发后续视角序列。",
+      "tags": ["demo", "performance", "benchmark"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:measureFrameRate",
+      "type": "function",
+      "name": "measureFrameRate",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [38, 48],
+      "summary": "基于 preUpdate/postRender 事件采样统计帧率指标。",
+      "tags": ["demo", "performance", "event-handler", "benchmark"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:viewReady",
+      "type": "function",
+      "name": "viewReady",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [50, 69],
+      "summary": "等待地形瓦片加载完成后触发视角就绪回调。",
+      "tags": ["demo", "terrain", "event-handler"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverestHorizontal",
+      "type": "function",
+      "name": "goToEverestHorizontal",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [71, 93],
+      "summary": "将相机以水平视角飞向珠穆朗玛峰的测试场景。",
+      "tags": ["demo", "camera", "performance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverestTopDown",
+      "type": "function",
+      "name": "goToEverestTopDown",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [95, 117],
+      "summary": "将相机以俯视视角飞向珠穆朗玛峰的测试场景。",
+      "tags": ["demo", "camera", "performance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverest45Degrees",
+      "type": "function",
+      "name": "goToEverest45Degrees",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [119, 141],
+      "summary": "将相机以 45 度倾角飞向珠穆朗玛峰的测试场景。",
+      "tags": ["demo", "camera", "performance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:zoomToEverest",
+      "type": "function",
+      "name": "zoomToEverest",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [143, 156],
+      "summary": "对珠穆朗玛峰进行缩放操作的相机测试场景。",
+      "tags": ["demo", "camera", "performance"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:panAroundEverest",
+      "type": "function",
+      "name": "panAroundEverest",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/main.js",
+      "lineRange": [158, 203],
+      "summary": "围绕珠穆朗玛峰进行环绕平移的相机测试场景，用于测量持续平移下的性能。",
+      "tags": ["demo", "camera", "performance", "animation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/terrain-performance-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/terrain-performance-dev/sandcastle.yaml",
+      "summary": "terrain-performance-dev 示例的元数据配置文件。",
+      "tags": ["configuration", "sandcastle", "gallery-example"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/gallery/splitdirection/main.js", "target": "function:packages/sandcastle/gallery/splitdirection/main.js:testPoints", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/splitdirection/main.js", "target": "function:packages/sandcastle/gallery/splitdirection/main.js:testBillboards", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/splitdirection/main.js", "target": "function:packages/sandcastle/gallery/splitdirection/main.js:move", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/star-burst/main.js", "target": "function:packages/sandcastle/gallery/star-burst/main.js:offsetBillboard", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/star-burst/main.js", "target": "function:packages/sandcastle/gallery/star-burst/main.js:starBurst", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/star-burst/main.js", "target": "function:packages/sandcastle/gallery/star-burst/main.js:updateStarBurst", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/star-burst/main.js", "target": "function:packages/sandcastle/gallery/star-burst/main.js:undoStarBurst", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/star-burst/main.js", "target": "function:packages/sandcastle/gallery/star-burst/main.js:showLabels", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/terrain-clipping-planes/main.js", "target": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadCesiumMan", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-clipping-planes/main.js", "target": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadStHelens", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-clipping-planes/main.js", "target": "function:packages/sandcastle/gallery/terrain-clipping-planes/main.js:loadGrandCanyon", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/terrain-exaggeration/main.js", "target": "function:packages/sandcastle/gallery/terrain-exaggeration/main.js:updateMaterial", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:startTest", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:measureFrameRate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:viewReady", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverestHorizontal", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverestTopDown", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:goToEverest45Degrees", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:zoomToEverest", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/terrain-performance-dev/main.js", "target": "function:packages/sandcastle/gallery/terrain-performance-dev/main.js:panAroundEverest", "type": "contains", "direction": "forward", "weight": 1.0}
+  ]
+}

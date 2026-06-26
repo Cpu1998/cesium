@@ -1,0 +1,850 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/ArticulationStageType.js",
+      "type": "file",
+      "name": "ArticulationStageType.js",
+      "filePath": "packages/engine/Source/Core/ArticulationStageType.js",
+      "summary": "定义 glTF articulated-model 扩展中关节运动阶段的枚举类型,用于描述旋转/平移等关节自由度。",
+      "tags": [
+        "enumeration",
+        "gltf",
+        "articulation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "file",
+      "name": "Cartesian4.js",
+      "filePath": "packages/engine/Source/Core/Cartesian4.js",
+      "summary": "提供 4D 向量 (Cartesian4) 的完整数学运算库:分量运算、打包/解包、点积/叉积、归一化、线性插值等,是 CesiumJS 几何与渲染管线的基础类型。",
+      "tags": [
+        "data-model",
+        "math",
+        "vector",
+        "serialization"
+      ],
+      "complexity": "complex",
+      "languageNotes": "典型的 CesiumJS 静态方法风格,以 Float64Array 风格的 pack/unpack 支持高精度数组序列化。"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Cartesian4.js:Cartesian4",
+      "type": "class",
+      "name": "Cartesian4",
+      "filePath": "packages/engine/Source/Core/Cartesian4.js",
+      "lineRange": [
+        18,
+        894
+      ],
+      "summary": "4D 笛卡尔向量类型,提供 40+ 静态方法用于向量代数、与 TypedArray 的打包/解包及与 Color 的相互转换。",
+      "tags": [
+        "data-model",
+        "math",
+        "vector",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/CartographicGeocoderService.js",
+      "type": "file",
+      "name": "CartographicGeocoderService.js",
+      "filePath": "packages/engine/Source/Core/CartographicGeocoderService.js",
+      "summary": "地理编码服务的抽象基类,定义 geocode 接口契约,供具体 geocoder 服务(如 CartographicGeocoderService 子类)实现将查询文本转换为 Cartographic 坐标。",
+      "tags": [
+        "service",
+        "geocoder",
+        "abstract",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "type": "file",
+      "name": "CatmullRomSpline.js",
+      "filePath": "packages/engine/Source/Core/CatmullRomSpline.js",
+      "summary": "实现 Catmull-Rom 样条插值,继承自 Spline 基类,通过控制点序列在三维空间中生成平滑曲线,常用于相机路径与实体动画。",
+      "tags": [
+        "math",
+        "spline",
+        "interpolation",
+        "animation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CatmullRomSpline.js:createEvaluateFunction",
+      "type": "function",
+      "name": "createEvaluateFunction",
+      "filePath": "packages/engine/Source/Core/CatmullRomSpline.js",
+      "lineRange": [
+        14,
+        101
+      ],
+      "summary": "根据控制点生成闭包形式的求值函数,通过 Matrix4 与 Cartesian3 计算 Hermite 形式的基函数系数。",
+      "tags": [
+        "spline",
+        "interpolation",
+        "factory",
+        "math"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CatmullRomSpline.js:CatmullRomSpline",
+      "type": "function",
+      "name": "CatmullRomSpline",
+      "filePath": "packages/engine/Source/Core/CatmullRomSpline.js",
+      "lineRange": [
+        150,
+        196
+      ],
+      "summary": "CatmullRomSpline 构造函数,校验控制点并预计算 evaluate 函数以加速后续插值调用。",
+      "tags": [
+        "constructor",
+        "spline",
+        "interpolation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Check.js",
+      "type": "file",
+      "name": "Check.js",
+      "filePath": "packages/engine/Source/Core/Check.js",
+      "summary": "运行时参数校验工具,通过 Check.typeOf.* 系列方法在开发构建中抛出带上下文的 DeveloperError,是整个 CesiumJS API 防御式编程的基础设施。",
+      "tags": [
+        "utility",
+        "validation",
+        "error-handling",
+        "developer-tooling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "file",
+      "name": "Matrix2.js",
+      "filePath": "packages/engine/Source/Core/Matrix2.js",
+      "summary": "2x2 矩阵数学库,提供旋转/缩放/乘法/转置等静态方法,服务于 2D 几何变换、纹理坐标变换及 Metadata 类型系统。",
+      "tags": [
+        "math",
+        "matrix",
+        "data-model",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Matrix2.js:Matrix2",
+      "type": "class",
+      "name": "Matrix2",
+      "filePath": "packages/engine/Source/Core/Matrix2.js",
+      "lineRange": [
+        24,
+        1003
+      ],
+      "summary": "2x2 方阵类型,提供 40+ 静态方法用于变换、行列读写、行列主序转换及 TypedArray 打包。",
+      "tags": [
+        "math",
+        "matrix",
+        "serialization",
+        "data-model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "file",
+      "name": "Matrix3.js",
+      "filePath": "packages/engine/Source/Core/Matrix3.js",
+      "summary": "3x3 矩阵数学库,包含由四元数/HPR 构造、特征值分解(Schur 分解)、行列式与求逆等高级运算,是 3D 旋转与定向边界盒计算的核心。",
+      "tags": [
+        "math",
+        "matrix",
+        "linear-algebra",
+        "data-model"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实现了 Jacobi 特征值分解 (computeEigenDecomposition),使用 Frobenius 范数收敛判定。"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Matrix3.js:Matrix3",
+      "type": "class",
+      "name": "Matrix3",
+      "filePath": "packages/engine/Source/Core/Matrix3.js",
+      "lineRange": [
+        39,
+        1663
+      ],
+      "summary": "3x3 方阵类型,提供旋转矩阵构造、特征值分解、求逆与转置等 50+ 静态方法。",
+      "tags": [
+        "math",
+        "matrix",
+        "linear-algebra",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Matrix3.js:shurDecomposition",
+      "type": "function",
+      "name": "shurDecomposition",
+      "filePath": "packages/engine/Source/Core/Matrix3.js",
+      "lineRange": [
+        1846,
+        1904
+      ],
+      "summary": "对 3x3 矩阵执行 Schur 分解,求最大非对角元并构造旋转 Givens 矩阵,服务于特征值计算。",
+      "tags": [
+        "math",
+        "linear-algebra",
+        "eigenvalue",
+        "matrix"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "file",
+      "name": "Matrix4.js",
+      "filePath": "packages/engine/Source/Core/Matrix4.js",
+      "summary": "4x4 齐次变换矩阵库,涵盖视图/投影矩阵构造、TRS 分解、相机变换与求逆,是 CesiumJS 坐标系变换与渲染管线的基石(3000+ 行)。",
+      "tags": [
+        "math",
+        "matrix",
+        "transformation",
+        "data-model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "class",
+      "name": "Matrix4",
+      "filePath": "packages/engine/Source/Core/Matrix4.js",
+      "lineRange": [
+        53,
+        3031
+      ],
+      "summary": "4x4 变换矩阵类型,提供视图/投影构造、TRS 分解、矩阵-向量乘法与求逆等 60+ 静态方法。",
+      "tags": [
+        "math",
+        "matrix",
+        "transformation",
+        "camera"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "file",
+      "name": "Quaternion.js",
+      "filePath": "packages/engine/Source/Core/Quaternion.js",
+      "summary": "四元数数学库,提供球面插值(slerp)、与 Matrix3/HPR 的相互转换、共轭与指数运算,用于表达无万向锁的 3D 旋转。",
+      "tags": [
+        "math",
+        "quaternion",
+        "rotation",
+        "data-model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Quaternion.js:Quaternion",
+      "type": "function",
+      "name": "Quaternion",
+      "filePath": "packages/engine/Source/Core/Quaternion.js",
+      "lineRange": [
+        20,
+        48
+      ],
+      "summary": "四元数伪类构造器,提供 slerp、共轭、axis-angle 转换等静态方法,内部使用 Float64Array 缓冲。",
+      "tags": [
+        "math",
+        "quaternion",
+        "rotation",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TranslationRotationScale.js",
+      "type": "file",
+      "name": "TranslationRotationScale.js",
+      "filePath": "packages/engine/Source/Core/TranslationRotationScale.js",
+      "summary": "封装 Translation-Rotation-Scale (TRS) 复合变换的数据结构,常作为 glTF 节点变换与 Model 场景图的输入。",
+      "tags": [
+        "data-model",
+        "transformation",
+        "gltf",
+        "math"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "file",
+      "name": "addAllToArray.js",
+      "filePath": "packages/engine/Source/Core/addAllToArray.js",
+      "summary": "将源数组的所有元素追加到目标数组末尾的工具函数,广泛用于 batch table、ShaderBuilder 等数组合并场景。",
+      "tags": [
+        "utility",
+        "array",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/clone.js",
+      "type": "file",
+      "name": "clone.js",
+      "filePath": "packages/engine/Source/Core/clone.js",
+      "summary": "深度克隆工具,递归复制对象及其嵌套结构,并支持自定义对象克隆策略,在 3D Tiles 元数据与样式系统中被大量复用。",
+      "tags": [
+        "utility",
+        "clone",
+        "helper",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/createColorRamp.js",
+      "type": "file",
+      "name": "createColorRamp.js",
+      "filePath": "packages/engine/Source/Core/createColorRamp.js",
+      "summary": "根据颜色停止点数组生成颜色渐变 (color ramp) 的工厂函数,服务于 Voxel 自定义着色器的颜色映射。",
+      "tags": [
+        "utility",
+        "color",
+        "voxel",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "file",
+      "name": "deprecationWarning.js",
+      "filePath": "packages/engine/Source/Core/deprecationWarning.js",
+      "summary": "废弃 API 警告工具,在首次调用某废弃 API 时通过 oneTimeWarning 提示用户迁移,用于平滑版本升级。",
+      "tags": [
+        "utility",
+        "warning",
+        "deprecation",
+        "developer-tooling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "file",
+      "name": "oneTimeWarning.js",
+      "filePath": "packages/engine/Source/Core/oneTimeWarning.js",
+      "summary": "保证同一警告仅触发一次的工具函数,内部维护已触发警告集合,避免日志刷屏。",
+      "tags": [
+        "utility",
+        "warning",
+        "logging",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/resizeImageToNextPowerOfTwo.js",
+      "type": "file",
+      "name": "resizeImageToNextPowerOfTwo.js",
+      "filePath": "packages/engine/Source/Core/resizeImageToNextPowerOfTwo.js",
+      "summary": "将图像尺寸调整为不小于原值的下一个 2 的幂,以满足 WebGL 1 对纹理 NPOT 的限制,用于 glTF 纹理加载。",
+      "tags": [
+        "utility",
+        "image",
+        "texture",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/srgbToLinear.js",
+      "type": "file",
+      "name": "srgbToLinear.js",
+      "filePath": "packages/engine/Source/Core/srgbToLinear.js",
+      "summary": "将 sRGB 颜色分量转换为线性空间的小工具,服务于 I3S 几何与符号化中的颜色管线。",
+      "tags": [
+        "utility",
+        "color",
+        "srgb",
+        "conversion"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "class:packages/engine/Source/Core/Cartesian4.js:Cartesian4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "class:packages/engine/Source/Core/Cartesian4.js:Cartesian4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "function:packages/engine/Source/Core/CatmullRomSpline.js:createEvaluateFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "function:packages/engine/Source/Core/CatmullRomSpline.js:CatmullRomSpline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "function:packages/engine/Source/Core/CatmullRomSpline.js:CatmullRomSpline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "class:packages/engine/Source/Core/Matrix2.js:Matrix2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "class:packages/engine/Source/Core/Matrix2.js:Matrix2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "class:packages/engine/Source/Core/Matrix3.js:Matrix3",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "class:packages/engine/Source/Core/Matrix3.js:Matrix3",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "function:packages/engine/Source/Core/Matrix3.js:shurDecomposition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "function:packages/engine/Source/Core/Quaternion.js:Quaternion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "function:packages/engine/Source/Core/Quaternion.js:Quaternion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cartesian4.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CartographicGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CartographicGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/HermiteSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CatmullRomSpline.js",
+      "target": "file:packages/engine/Source/Core/Spline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Check.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Check.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix2.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix3.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Matrix4.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Quaternion.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TranslationRotationScale.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TranslationRotationScale.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/TranslationRotationScale.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/addAllToArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/resizeImageToNextPowerOfTwo.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/srgbToLinear.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/CatmullRomSpline.js:createEvaluateFunction",
+      "target": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

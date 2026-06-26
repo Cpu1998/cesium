@@ -1,0 +1,309 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/QuarticRealPolynomial.js",
+      "type": "file",
+      "name": "QuarticRealPolynomial.js",
+      "filePath": "packages/engine/Source/Core/QuarticRealPolynomial.js",
+      "summary": "提供四次实系数多项式的实根求解,内部使用 Original 与 Neumark 两种算法以提高数值稳定性。",
+      "tags": ["math", "polynomial", "solver", "core"],
+      "complexity": "complex",
+      "languageNotes": "通过双算法策略(Original/Neumark)互为校验,降低浮点误差影响。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/QuarticRealPolynomial.js:original",
+      "type": "function",
+      "name": "original",
+      "filePath": "packages/engine/Source/Core/QuarticRealPolynomial.js",
+      "lineRange": [75, 167],
+      "summary": "基于 Ferrari 方法的传统四次方程求根算法,通过降次为三次与二次方程计算实根。",
+      "tags": ["math", "polynomial-solver", "algorithm"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/QuarticRealPolynomial.js:neumark",
+      "type": "function",
+      "name": "neumark",
+      "filePath": "packages/engine/Source/Core/QuarticRealPolynomial.js",
+      "lineRange": [169, 261],
+      "summary": "使用 Neumark 替代参数化的四次方程求根算法,数值稳定性优于 Original 方法。",
+      "tags": ["math", "polynomial-solver", "algorithm"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/QuaternionSpline.js",
+      "type": "file",
+      "name": "QuaternionSpline.js",
+      "filePath": "packages/engine/Source/Core/QuaternionSpline.js",
+      "summary": "四元数样条曲线,基于关键帧四元数实现球面插值(SLERP),用于 3D 旋转动画。",
+      "tags": ["spline", "quaternion", "animation", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/QuaternionSpline.js:QuaternionSpline",
+      "type": "function",
+      "name": "QuaternionSpline",
+      "filePath": "packages/engine/Source/Core/QuaternionSpline.js",
+      "lineRange": [52, 77],
+      "summary": "QuaternionSpline 构造函数,初始化时间间隔与四元数点集合并构造求值闭包。",
+      "tags": ["constructor", "spline", "quaternion"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/QuaternionSpline.js:createEvaluateFunction",
+      "type": "function",
+      "name": "createEvaluateFunction",
+      "filePath": "packages/engine/Source/Core/QuaternionSpline.js",
+      "lineRange": [7, 27],
+      "summary": "构建用于样条求值的高阶函数,利用 Quaternion.fastSlerp 完成相邻四元数间的快速球面插值。",
+      "tags": ["factory", "interpolation", "spline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "file",
+      "name": "ReferenceFrame.js",
+      "filePath": "packages/engine/Source/Core/ReferenceFrame.js",
+      "summary": "定义坐标系参考枚举(FIXED 与 INERTIAL),供位置属性在不同参考系间转换使用。",
+      "tags": ["enumeration", "reference-frame", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Spherical.js",
+      "type": "file",
+      "name": "Spherical.js",
+      "filePath": "packages/engine/Source/Core/Spherical.js",
+      "summary": "球坐标(clock/cone/magnitude)表示与相关静态转换方法,用于相机视角与向量方位描述。",
+      "tags": ["math", "coordinates", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Spherical.js:Spherical",
+      "type": "function",
+      "name": "Spherical",
+      "filePath": "packages/engine/Source/Core/Spherical.js",
+      "lineRange": [14, 33],
+      "summary": "Spherical 构造函数,初始化球面方位角 clock、俯仰角 cone 与径向距离 magnitude。",
+      "tags": ["constructor", "coordinates"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Spline.js",
+      "type": "file",
+      "name": "Spline.js",
+      "filePath": "packages/engine/Source/Core/Spline.js",
+      "summary": "样条曲线抽象基类,定义时间间隔查找等公共接口,供各具体样条类型继承。",
+      "tags": ["spline", "base-class", "abstract", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Spline.js:Spline",
+      "type": "function",
+      "name": "Spline",
+      "filePath": "packages/engine/Source/Core/Spline.js",
+      "lineRange": [20, 36],
+      "summary": "Spline 抽象构造函数,直接实例化会抛出实例化错误,需通过子类调用。",
+      "tags": ["constructor", "abstract", "spline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/SteppedSpline.js",
+      "type": "file",
+      "name": "SteppedSpline.js",
+      "filePath": "packages/engine/Source/Core/SteppedSpline.js",
+      "summary": "阶跃式样条,在时间区间内保持前一个关键帧的值,用于离散阶梯动画。",
+      "tags": ["spline", "stepped", "animation", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/SteppedSpline.js:SteppedSpline",
+      "type": "function",
+      "name": "SteppedSpline",
+      "filePath": "packages/engine/Source/Core/SteppedSpline.js",
+      "lineRange": [41, 66],
+      "summary": "SteppedSpline 构造函数,基于时间点与点集合初始化阶梯求值逻辑。",
+      "tags": ["constructor", "spline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TilingScheme.js",
+      "type": "file",
+      "name": "TilingScheme.js",
+      "filePath": "packages/engine/Source/Core/TilingScheme.js",
+      "summary": "瓦片切割方案抽象基类,定义地图瓦片坐标计算与经纬度到瓦片索引的映射接口。",
+      "tags": ["tiling", "base-class", "abstract", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/TilingScheme.js:TilingScheme",
+      "type": "class",
+      "name": "TilingScheme",
+      "filePath": "packages/engine/Source/Core/TilingScheme.js",
+      "lineRange": [23, 132],
+      "summary": "瓦片方案抽象类,声明 getNumberOfXTilesAtLevel、tileXYToRectangle 等方法,供 WebMercator/Geographic 等具体方案实现。",
+      "tags": ["abstract", "tiling", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "file",
+      "name": "TimeInterval.js",
+      "filePath": "packages/engine/Source/Core/TimeInterval.js",
+      "summary": "表示一段带起止 JulianDate 的时间区间及其关联数据,是时序属性体系的基础单元。",
+      "tags": ["time", "interval", "core", "data-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TimeInterval.js:TimeInterval",
+      "type": "function",
+      "name": "TimeInterval",
+      "filePath": "packages/engine/Source/Core/TimeInterval.js",
+      "lineRange": [60, 97],
+      "summary": "TimeInterval 构造函数,基于 options 克隆起止 JulianDate 并绑定区间数据与是否包含端点标志。",
+      "tags": ["constructor", "time"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "file",
+      "name": "TimeIntervalCollection.js",
+      "filePath": "packages/engine/Source/Core/TimeIntervalCollection.js",
+      "summary": "时间区间集合,支持按 ISO8601 区间表达式添加、查询与遍历,是 Cesium 时间动态数据(如 CZML)的核心容器。",
+      "tags": ["time", "collection", "iso8601", "core"],
+      "complexity": "complex",
+      "languageNotes": "包含 ISO8601 duration 解析器(parseDuration)与大量基于 JulianDate 的算术运算。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TimeIntervalCollection.js:TimeIntervalCollection",
+      "type": "function",
+      "name": "TimeIntervalCollection",
+      "filePath": "packages/engine/Source/Core/TimeIntervalCollection.js",
+      "lineRange": [23, 33],
+      "summary": "TimeIntervalCollection 构造函数,从初始 intervals 列表构建内部有序区间数组。",
+      "tags": ["constructor", "time", "collection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TimeIntervalCollection.js:parseDuration",
+      "type": "function",
+      "name": "parseDuration",
+      "filePath": "packages/engine/Source/Core/TimeIntervalCollection.js",
+      "lineRange": [908, 979],
+      "summary": "解析 ISO8601 持续时间字符串(年/月/日/时/分/秒),生成可叠加到 JulianDate 的 duration 对象。",
+      "tags": ["iso8601", "parser", "time"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/TimeIntervalCollection.js:addToDate",
+      "type": "function",
+      "name": "addToDate",
+      "filePath": "packages/engine/Source/Core/TimeIntervalCollection.js",
+      "lineRange": [831, 893],
+      "summary": "将解析后的 duration 字段(年/月/日/时/分/秒)按 Gregorian 日历规则叠加到给定 JulianDate。",
+      "tags": ["time", "arithmetic", "calendar"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TimeStandard.js",
+      "type": "file",
+      "name": "TimeStandard.js",
+      "filePath": "packages/engine/Source/Core/TimeStandard.js",
+      "summary": "时间标准枚举(UTC 与 TAI),用于区分 JulianDate 所采用的时标。",
+      "tags": ["enumeration", "time", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Tipsify.js",
+      "type": "file",
+      "name": "Tipsify.js",
+      "filePath": "packages/engine/Source/Core/Tipsify.js",
+      "summary": "Tipsify 三角网格顶点缓存优化算法,重排三角形索引顺序以提升 GPU 渲染性能。",
+      "tags": ["geometry", "optimization", "vertex-cache", "core"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TrackingReferenceFrame.js",
+      "type": "file",
+      "name": "TrackingReferenceFrame.js",
+      "filePath": "packages/engine/Source/Core/TrackingReferenceFrame.js",
+      "summary": "定义跟踪用坐标系枚举,用于 EntityView 相机跟踪时指定位置/速度的参考系。",
+      "tags": ["enumeration", "reference-frame", "tracking", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/TridiagonalSystemSolver.js",
+      "type": "file",
+      "name": "TridiagonalSystemSolver.js",
+      "filePath": "packages/engine/Source/Core/TridiagonalSystemSolver.js",
+      "summary": "使用 Thomas 算法求解三对角线性方程组,服务于 Hermite 样条等需要解带状系统的数值场景。",
+      "tags": ["math", "linear-algebra", "solver", "core"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "file:packages/engine/Source/Core/CubicRealPolynomial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "function:packages/engine/Source/Core/QuarticRealPolynomial.js:original", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/QuarticRealPolynomial.js", "target": "function:packages/engine/Source/Core/QuarticRealPolynomial.js:neumark", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "file:packages/engine/Source/Core/Quaternion.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "function:packages/engine/Source/Core/QuaternionSpline.js:QuaternionSpline", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/QuaternionSpline.js", "target": "function:packages/engine/Source/Core/QuaternionSpline.js:createEvaluateFunction", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "function:packages/engine/Source/Core/QuaternionSpline.js:QuaternionSpline", "target": "function:packages/engine/Source/Core/QuaternionSpline.js:createEvaluateFunction", "type": "calls", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Core/Spherical.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spherical.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spherical.js", "target": "function:packages/engine/Source/Core/Spherical.js:Spherical", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "file:packages/engine/Source/Core/Quaternion.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Spline.js", "target": "function:packages/engine/Source/Core/Spline.js:Spline", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/SteppedSpline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/SteppedSpline.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/SteppedSpline.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/SteppedSpline.js", "target": "file:packages/engine/Source/Core/Spline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/SteppedSpline.js", "target": "function:packages/engine/Source/Core/SteppedSpline.js:SteppedSpline", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/TilingScheme.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TilingScheme.js", "target": "class:packages/engine/Source/Core/TilingScheme.js:TilingScheme", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeInterval.js", "target": "function:packages/engine/Source/Core/TimeInterval.js:TimeInterval", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/binarySearch.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/GregorianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/isLeapYear.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/Iso8601.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "file:packages/engine/Source/Core/TimeInterval.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "function:packages/engine/Source/Core/TimeIntervalCollection.js:TimeIntervalCollection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "function:packages/engine/Source/Core/TimeIntervalCollection.js:parseDuration", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/TimeIntervalCollection.js", "target": "function:packages/engine/Source/Core/TimeIntervalCollection.js:addToDate", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/Tipsify.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Tipsify.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/Tipsify.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Core/TridiagonalSystemSolver.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TridiagonalSystemSolver.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/TridiagonalSystemSolver.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7}
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/absolutize.js",
+      "type": "file",
+      "name": "absolutize.js",
+      "filePath": "Specs/absolutize.js",
+      "summary": "测试辅助工具,通过动态创建 <a> 元素将相对 URL 解析为绝对 URL,供测试套件统一处理路径。",
+      "tags": ["utility", "test", "url", "helper"],
+      "complexity": "simple",
+      "languageNotes": "利用 DOM 的 href 自动规范化机制,把相对路径转换为绝对 URL。"
+    },
+    {
+      "id": "function:Specs/absolutize.js:absolutize",
+      "type": "function",
+      "name": "absolutize",
+      "filePath": "Specs/absolutize.js",
+      "lineRange": [1, 6],
+      "summary": "将传入的相对 URL 转换为基于当前文档 base 的绝对 URL。",
+      "tags": ["utility", "url", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/TaskProcessorSpec.js",
+      "type": "file",
+      "name": "TaskProcessorSpec.js",
+      "filePath": "packages/engine/Specs/Core/TaskProcessorSpec.js",
+      "summary": "针对 TaskProcessor(基于 Web Worker 的任务调度器)的 Jasmine 测试套件,覆盖任务派发、worker 生命周期与回调行为。",
+      "tags": ["test", "task-processor", "worker", "jasmine"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Jasmine describe/it 结构组织测试,测试 Web Worker 相关的任务调度逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/CreditDisplaySpec.js",
+      "type": "file",
+      "name": "CreditDisplaySpec.js",
+      "filePath": "packages/engine/Specs/Scene/CreditDisplaySpec.js",
+      "summary": "针对 CreditDisplay(数据来源版权信息展示组件)的 Jasmine 测试套件,覆盖帧级版权、静态版权、lightbox 弹窗及 Cesium 默认版权的渲染逻辑。",
+      "tags": ["test", "credit-display", "ui", "jasmine", "scene"],
+      "complexity": "complex",
+      "languageNotes": "通过 DOM 容器的 childNodes 与 innerHTML 断言来验证版权元素的渲染与排序行为。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/absolutize.js",
+      "target": "function:Specs/absolutize.js:absolutize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Core/TaskProcessorSpec.js",
+      "target": "file:Specs/absolutize.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/CreditDisplaySpec.js",
+      "target": "file:Specs/absolutize.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

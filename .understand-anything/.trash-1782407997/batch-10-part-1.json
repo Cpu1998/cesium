@@ -1,0 +1,1122 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "type": "file",
+      "name": "BrdfLutGenerator.js",
+      "filePath": "packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "summary": "生成 BRDF (双向反射分布函数) 查找表纹理，用于基于物理的 PBR 渲染的镜面反射环境光预计算。",
+      "tags": [
+        "shader",
+        "pbr",
+        "texture-generator",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "type": "file",
+      "name": "Cesium3DTileBatchTable.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "summary": "管理 3D Tiles 的 batch table 属性解析、二进制属性内存统计、以及为每个特性生成 GLSL 批次表着色器代码。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "shader",
+        "serialization",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "file",
+      "name": "Cesium3DTileFeature.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "summary": "表示 3D Tiles 中的单个 feature 对象，提供属性读写、颜色、拾取、显示控制以及与 tileset/primitive 的关联访问。",
+      "tags": [
+        "3d-tiles",
+        "feature",
+        "data-model",
+        "api-handler",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "type": "file",
+      "name": "Cesium3DTilePointFeature.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "summary": "表示 3D Tiles 中的点云 feature，扩展 feature 概念以支持 billboard 渲染、标签、轮廓颜色等点特有属性。",
+      "tags": [
+        "3d-tiles",
+        "point-cloud",
+        "feature",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "type": "file",
+      "name": "ClassificationPrimitive.js",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "summary": "将几何体分类到 3D Tiles 或地形上的 primitive，管理分类专用的 shader program、render state 和 color/pick command 创建。",
+      "tags": [
+        "primitive",
+        "classification",
+        "shader",
+        "3d-tiles",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "file",
+      "name": "ClassificationType.js",
+      "filePath": "packages/engine/Source/Scene/ClassificationType.js",
+      "summary": "枚举：标识分类影响的对象是地形、3D Tiles 还是两者。",
+      "tags": [
+        "enum",
+        "classification",
+        "type-definition",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:Cesium3DTileBatchTable",
+      "type": "function",
+      "name": "Cesium3DTileBatchTable",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        35,
+        79
+      ],
+      "summary": "构造并初始化一个 3D Tiles batch table，解析 JSON header 与二进制属性元数据。",
+      "tags": [
+        "batch-table",
+        "3d-tiles",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeProperties",
+      "type": "function",
+      "name": "initializeProperties",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        109,
+        128
+      ],
+      "summary": "从 JSON header 解析并初始化 batch table 的属性元数据列表。",
+      "tags": [
+        "batch-table",
+        "initialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeHierarchy",
+      "type": "function",
+      "name": "initializeHierarchy",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        130,
+        155
+      ],
+      "summary": "初始化 batch table 中的层级结构属性元数据。",
+      "tags": [
+        "batch-table",
+        "hierarchy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getBinaryProperties",
+      "type": "function",
+      "name": "getBinaryProperties",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        157,
+        203
+      ],
+      "summary": "解析 batch table 二进制属性的字节偏移、类型与分量数。",
+      "tags": [
+        "batch-table",
+        "binary-parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:countBinaryPropertyMemory",
+      "type": "function",
+      "name": "countBinaryPropertyMemory",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        205,
+        217
+      ],
+      "summary": "统计二进制属性占用的内存大小。",
+      "tags": [
+        "batch-table",
+        "memory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getGlslComputeSt",
+      "type": "function",
+      "name": "getGlslComputeSt",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        459,
+        487
+      ],
+      "summary": "生成从顶点属性计算 batch table 纹理坐标的 GLSL 代码片段。",
+      "tags": [
+        "shader",
+        "batch-table",
+        "glsl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getDefaultShader",
+      "type": "function",
+      "name": "getDefaultShader",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        566,
+        591
+      ],
+      "summary": "生成 batch table 默认着色器源码（带可选高亮）。",
+      "tags": [
+        "shader",
+        "batch-table"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:replaceDiffuseTextureCalls",
+      "type": "function",
+      "name": "replaceDiffuseTextureCalls",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "lineRange": [
+        593,
+        624
+      ],
+      "summary": "在 shader 源码中将漫反射纹理采样替换为 batch table 属性。",
+      "tags": [
+        "shader",
+        "batch-table",
+        "glsl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Cesium3DTileFeature.js:Cesium3DTileFeature",
+      "type": "class",
+      "name": "Cesium3DTileFeature",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "lineRange": [
+        40,
+        425
+      ],
+      "summary": "表示 3D Tiles 单个 feature：属性读写、颜色、拾取、显示控制。",
+      "tags": [
+        "3d-tiles",
+        "feature",
+        "data-model",
+        "api-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:setBillboardImage",
+      "type": "function",
+      "name": "setBillboardImage",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "lineRange": [
+        713,
+        776
+      ],
+      "summary": "根据点特性样式生成/更新 billboard 显示图像（合成点与轮廓）。",
+      "tags": [
+        "point-cloud",
+        "billboard",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:Cesium3DTilePointFeature",
+      "type": "class",
+      "name": "Cesium3DTilePointFeature",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "lineRange": [
+        53,
+        707
+      ],
+      "summary": "3D Tiles 点云 feature：扩展 billboard/label/轮廓颜色等点特性属性。",
+      "tags": [
+        "3d-tiles",
+        "point-cloud",
+        "feature"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:ClassificationPrimitive",
+      "type": "function",
+      "name": "ClassificationPrimitive",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        72,
+        189
+      ],
+      "summary": "构造一个分类 primitive，配置几何、外观、分类类型与 stencil 参数。",
+      "tags": [
+        "primitive",
+        "classification",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getStencilDepthRenderState",
+      "type": "function",
+      "name": "getStencilDepthRenderState",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        332,
+        367
+      ],
+      "summary": "返回分类使用的 stencil/depth 渲染状态（区分 3D Tiles 掩码）。",
+      "tags": [
+        "render-state",
+        "classification",
+        "stencil"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getColorRenderState",
+      "type": "function",
+      "name": "getColorRenderState",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        369,
+        395
+      ],
+      "summary": "返回分类颜色通道所用的渲染状态。",
+      "tags": [
+        "render-state",
+        "classification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createRenderStates",
+      "type": "function",
+      "name": "createRenderStates",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        422,
+        443
+      ],
+      "summary": "按外观与是否双 pass 创建分类所需的多种渲染状态。",
+      "tags": [
+        "render-state",
+        "classification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:modifyForEncodedNormals",
+      "type": "function",
+      "name": "modifyForEncodedNormals",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        445,
+        471
+      ],
+      "summary": "在 shader 源码中替换法线解码逻辑以适配编码法线。",
+      "tags": [
+        "shader",
+        "classification",
+        "normals"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createShaderProgram",
+      "type": "function",
+      "name": "createShaderProgram",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        473,
+        643
+      ],
+      "summary": "为分类 primitive 编译并链接着色器程序（含 batching/clipping 注入）。",
+      "tags": [
+        "shader",
+        "classification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createColorCommands",
+      "type": "function",
+      "name": "createColorCommands",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        645,
+        752
+      ],
+      "summary": "生成分类颜色渲染命令列表。",
+      "tags": [
+        "command",
+        "classification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createPickCommands",
+      "type": "function",
+      "name": "createPickCommands",
+      "filePath": "packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "lineRange": [
+        754,
+        864
+      ],
+      "summary": "生成分类拾取渲染命令列表。",
+      "tags": [
+        "command",
+        "pick",
+        "classification"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:Cesium3DTileBatchTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:Cesium3DTileBatchTable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeProperties",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeHierarchy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:initializeHierarchy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getBinaryProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getBinaryProperties",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:countBinaryPropertyMemory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:countBinaryPropertyMemory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getGlslComputeSt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getGlslComputeSt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getDefaultShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:getDefaultShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:replaceDiffuseTextureCalls",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileBatchTable.js:replaceDiffuseTextureCalls",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "target": "class:packages/engine/Source/Scene/Cesium3DTileFeature.js:Cesium3DTileFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "target": "class:packages/engine/Source/Scene/Cesium3DTileFeature.js:Cesium3DTileFeature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:setBillboardImage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:setBillboardImage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "class:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:Cesium3DTilePointFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "class:packages/engine/Source/Scene/Cesium3DTilePointFeature.js:Cesium3DTilePointFeature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:ClassificationPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:ClassificationPrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getStencilDepthRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getStencilDepthRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getColorRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:getColorRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createRenderStates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createRenderStates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:modifyForEncodedNormals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:modifyForEncodedNormals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createColorCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createColorCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createPickCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/ClassificationPrimitive.js:createPickCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilePointFeature.js",
+      "target": "file:packages/engine/Source/Scene/createBillboardPointCallback.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

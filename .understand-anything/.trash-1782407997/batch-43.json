@@ -1,0 +1,1352 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "type": "file",
+      "name": "PerformanceWatchdogViewModel.js",
+      "filePath": "packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "summary": "性能监控按钮的 ViewModel,跟踪场景帧率与内存使用,在低于阈值时显示低性能警告。",
+      "tags": [
+        "view-model",
+        "performance",
+        "knockout",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "type": "file",
+      "name": "ProjectionPicker.js",
+      "filePath": "packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "summary": "投影方式切换按钮组件,在透视投影与正射投影之间切换场景相机。",
+      "tags": [
+        "widget",
+        "projection",
+        "knockout",
+        "ui-component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "type": "file",
+      "name": "ProjectionPickerViewModel.js",
+      "filePath": "packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "summary": "ProjectionPicker 的 ViewModel,通过命令在 3D 透视与 2D 正射投影间切换。",
+      "tags": [
+        "view-model",
+        "projection",
+        "knockout",
+        "command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "type": "file",
+      "name": "SceneModePicker.js",
+      "filePath": "packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "summary": "场景模式切换下拉按钮组件,提供 3D、2D、哥伦布视图三种切换选项。",
+      "tags": [
+        "widget",
+        "scene-mode",
+        "knockout",
+        "ui-component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "type": "file",
+      "name": "SceneModePickerViewModel.js",
+      "filePath": "packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "summary": "SceneModePicker 的 ViewModel,封装切换到 3D/2D/哥伦布视图的命令及当前模式状态。",
+      "tags": [
+        "view-model",
+        "scene-mode",
+        "knockout",
+        "command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "type": "file",
+      "name": "SelectionIndicator.js",
+      "filePath": "packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "summary": "选中实体指示器组件,在屏幕上显示被选中 Entity 的定位框。",
+      "tags": [
+        "widget",
+        "selection",
+        "knockout",
+        "ui-component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "type": "file",
+      "name": "SelectionIndicatorViewModel.js",
+      "filePath": "packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "summary": "SelectionIndicator 的 ViewModel,计算选中实体在屏幕上的位置并更新指示器。",
+      "tags": [
+        "view-model",
+        "selection",
+        "knockout",
+        "position-tracking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/SvgPathBindingHandler.js",
+      "type": "file",
+      "name": "SvgPathBindingHandler.js",
+      "filePath": "packages/widgets/Source/SvgPathBindingHandler.js",
+      "summary": "自定义 Knockout 绑定处理器,根据 SVG path 数据生成图标元素并注册到 Knockout。",
+      "tags": [
+        "knockout",
+        "binding-handler",
+        "svg",
+        "icon"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过 knockout.bindingHandlers.svgPath 注册自定义绑定。"
+    },
+    {
+      "id": "file:packages/widgets/Source/ThirdParty/knockout-3.5.1.js",
+      "type": "file",
+      "name": "knockout-3.5.1.js",
+      "filePath": "packages/widgets/Source/ThirdParty/knockout-3.5.1.js",
+      "summary": "Knockout MVVM 库 3.5.1 版本的源码副本,提供 observables 与声明式绑定。",
+      "tags": [
+        "third-party",
+        "knockout",
+        "mvvm",
+        "vendored"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "由 License 文件包裹的 vendored 第三方库,体积较大但脚本仅截取头部。"
+    },
+    {
+      "id": "file:packages/widgets/Source/ThirdParty/knockout-es5.js",
+      "type": "file",
+      "name": "knockout-es5.js",
+      "filePath": "packages/widgets/Source/ThirdParty/knockout-es5.js",
+      "summary": "Knockout-ES5 插件,将普通 ES5 属性转换为 Knockout observable,使 ViewModel 写法更简洁。",
+      "tags": [
+        "third-party",
+        "knockout",
+        "es5",
+        "observable"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "file",
+      "name": "knockout.js",
+      "filePath": "packages/widgets/Source/ThirdParty/knockout.js",
+      "summary": "Knockout 聚合入口,加载核心库后挂载 ES5 插件并注册 Cesium 自定义绑定处理器。",
+      "tags": [
+        "knockout",
+        "entry-point",
+        "barrel",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "type": "file",
+      "name": "Timeline.js",
+      "filePath": "packages/widgets/Source/Timeline/Timeline.js",
+      "summary": "时间轴 widget,绘制可缩放的日历条带、当前时间指针及高亮区间,并响应鼠标/触摸操作更新 Clock。",
+      "tags": [
+        "widget",
+        "timeline",
+        "canvas",
+        "input-handling"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 Canvas 2D 绘制时间刻度,并绑定大量 mouse/touch 事件回调。"
+    },
+    {
+      "id": "file:packages/widgets/Source/Timeline/TimelineHighlightRange.js",
+      "type": "file",
+      "name": "TimelineHighlightRange.js",
+      "filePath": "packages/widgets/Source/Timeline/TimelineHighlightRange.js",
+      "summary": "时间轴上彩色高亮区间的描述对象,定义颜色、像素高度与基准位置。",
+      "tags": [
+        "timeline",
+        "highlight-range",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/Timeline/TimelineTrack.js",
+      "type": "file",
+      "name": "TimelineTrack.js",
+      "filePath": "packages/widgets/Source/Timeline/TimelineTrack.js",
+      "summary": "时间轴上单条轨道的描述对象,封装时间区间、像素高度与颜色。",
+      "tags": [
+        "timeline",
+        "track",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/ToggleButtonViewModel.js",
+      "type": "file",
+      "name": "ToggleButtonViewModel.js",
+      "filePath": "packages/widgets/Source/ToggleButtonViewModel.js",
+      "summary": "可切换状态按钮的通用 ViewModel,基于一个 command 维护 toggled 状态。",
+      "tags": [
+        "view-model",
+        "button",
+        "knockout",
+        "reusable"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/VRButton/VRButton.js",
+      "type": "file",
+      "name": "VRButton.js",
+      "filePath": "packages/widgets/Source/VRButton/VRButton.js",
+      "summary": "VR 模式切换按钮组件,触发场景进入/退出 WebXR 虚拟现实渲染。",
+      "tags": [
+        "widget",
+        "vr",
+        "knockout",
+        "ui-component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "type": "file",
+      "name": "VRButtonViewModel.js",
+      "filePath": "packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "summary": "VRButton 的 ViewModel,管理屏幕方向锁、VR 切换命令及正射/透视模式兼容性。",
+      "tags": [
+        "view-model",
+        "vr",
+        "knockout",
+        "command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "type": "file",
+      "name": "Viewer.js",
+      "filePath": "packages/widgets/Source/Viewer/Viewer.js",
+      "summary": "顶级 Viewer widget,聚合 CesiumWidget 与全部子 widget(时间轴、底图选择、地理编码等),提供一站式 3D 地球应用入口。",
+      "tags": [
+        "widget",
+        "viewer",
+        "entry-point",
+        "aggregator",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "作为整个 widgets 包的核心聚合器,实例化并装配十余个子 widget。"
+    },
+    {
+      "id": "file:packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js",
+      "type": "file",
+      "name": "viewerCesium3DTilesInspectorMixin.js",
+      "filePath": "packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js",
+      "summary": "Viewer 的 mixin,为 Viewer 扩展 Cesium3DTilesInspector 面板的挂载能力。",
+      "tags": [
+        "mixin",
+        "viewer-extension",
+        "3d-tiles",
+        "inspector"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js",
+      "type": "file",
+      "name": "viewerCesiumInspectorMixin.js",
+      "filePath": "packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js",
+      "summary": "Viewer 的 mixin,为 Viewer 扩展 CesiumInspector 调试面板的挂载能力。",
+      "tags": [
+        "mixin",
+        "viewer-extension",
+        "inspector",
+        "debug"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js",
+      "type": "file",
+      "name": "viewerPerformanceWatchdogMixin.js",
+      "filePath": "packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js",
+      "summary": "Viewer 的 mixin,为 Viewer 挂载 PerformanceWatchdog 性能监控组件。",
+      "tags": [
+        "mixin",
+        "viewer-extension",
+        "performance",
+        "watchdog"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js",
+      "type": "file",
+      "name": "viewerVoxelInspectorMixin.js",
+      "filePath": "packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js",
+      "summary": "Viewer 的 mixin,为 Viewer 挂载 VoxelInspector 体素调试面板。",
+      "tags": [
+        "mixin",
+        "viewer-extension",
+        "voxel",
+        "inspector"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "type": "file",
+      "name": "VoxelInspector.js",
+      "filePath": "packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "summary": "体素数据调试面板 UI 组件,提供采样、着色、裁剪、变换等体素 primitive 的可视化调试控件。",
+      "tags": [
+        "widget",
+        "voxel",
+        "inspector",
+        "debug",
+        "ui-component"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "type": "file",
+      "name": "VoxelInspectorViewModel.js",
+      "filePath": "packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "summary": "VoxelInspector 的 ViewModel,绑定体素 primitive 的所有可调试属性(着色器、范围、变换矩阵、形状等)。",
+      "tags": [
+        "view-model",
+        "voxel",
+        "inspector",
+        "knockout"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/widgets/Source/createCommand.js",
+      "type": "file",
+      "name": "createCommand.js",
+      "filePath": "packages/widgets/Source/createCommand.js",
+      "summary": "工厂函数,把普通函数包装成带 canExecute observable 与 before/after 事件的 Command,供 ViewModel 使用。",
+      "tags": [
+        "factory",
+        "command",
+        "knockout",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/subscribeAndEvaluate.js",
+      "type": "file",
+      "name": "subscribeAndEvaluate.js",
+      "filePath": "packages/widgets/Source/subscribeAndEvaluate.js",
+      "summary": "工具函数,订阅一个 Knockout ES5 observable 属性并立即以当前值触发一次回调。",
+      "tags": [
+        "utility",
+        "knockout",
+        "observable",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js:PerformanceWatchdogViewModel",
+      "type": "function",
+      "name": "PerformanceWatchdogViewModel",
+      "filePath": "packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "lineRange": [
+        22,
+        79
+      ],
+      "summary": "构造性能监控 ViewModel,初始化帧率/内存阈值、低性能文本并注册场景渲染监听。",
+      "tags": [
+        "view-model",
+        "performance",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js:ProjectionPicker",
+      "type": "function",
+      "name": "ProjectionPicker",
+      "filePath": "packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "lineRange": [
+        34,
+        123
+      ],
+      "summary": "构造投影切换按钮,创建 DOM、应用 Knockout 模板并绑定到对应 ViewModel。",
+      "tags": [
+        "widget",
+        "constructor",
+        "knockout"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js:ProjectionPickerViewModel",
+      "type": "function",
+      "name": "ProjectionPickerViewModel",
+      "filePath": "packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "lineRange": [
+        19,
+        124
+      ],
+      "summary": "构造投影切换 ViewModel,根据当前 SceneMode 提供 dropDown 列表与切换命令。",
+      "tags": [
+        "view-model",
+        "projection",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/SceneModePicker/SceneModePicker.js:SceneModePicker",
+      "type": "function",
+      "name": "SceneModePicker",
+      "filePath": "packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "lineRange": [
+        47,
+        154
+      ],
+      "summary": "构造场景模式下拉按钮,生成下拉项 UI 并与 ViewModel 绑定。",
+      "tags": [
+        "widget",
+        "scene-mode",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js:SceneModePickerViewModel",
+      "type": "function",
+      "name": "SceneModePickerViewModel",
+      "filePath": "packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "lineRange": [
+        19,
+        116
+      ],
+      "summary": "构造 SceneModePicker ViewModel,封装切换至 3D/2D/哥伦布视图的命令。",
+      "tags": [
+        "view-model",
+        "scene-mode",
+        "command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js:SelectionIndicator",
+      "type": "function",
+      "name": "SelectionIndicator",
+      "filePath": "packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "lineRange": [
+        21,
+        71
+      ],
+      "summary": "构造选中指示器,创建容器 DOM、应用模板并绑定到 ViewModel。",
+      "tags": [
+        "widget",
+        "selection",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js:SelectionIndicatorViewModel",
+      "type": "function",
+      "name": "SelectionIndicatorViewModel",
+      "filePath": "packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "lineRange": [
+        22,
+        102
+      ],
+      "summary": "构造选中指示器 ViewModel,监听选中实体变化并计算其在屏幕上的位置。",
+      "tags": [
+        "view-model",
+        "selection",
+        "position-tracking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/Timeline/Timeline.js:Timeline",
+      "type": "function",
+      "name": "Timeline",
+      "filePath": "packages/widgets/Source/Timeline/Timeline.js",
+      "lineRange": [
+        103,
+        190
+      ],
+      "summary": "构造时间轴 widget,初始化 Canvas、轨道列表、高亮区间及事件回调。",
+      "tags": [
+        "widget",
+        "timeline",
+        "constructor",
+        "canvas"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/Timeline/Timeline.js:createMouseMoveCallback",
+      "type": "function",
+      "name": "createMouseMoveCallback",
+      "filePath": "packages/widgets/Source/Timeline/Timeline.js",
+      "lineRange": [
+        799,
+        838
+      ],
+      "summary": "构造鼠标移动事件回调,根据拖动位置缩放或平移时间轴窗口。",
+      "tags": [
+        "event-handler",
+        "mouse",
+        "timeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Timeline/Timeline.js:createTouchMoveCallback",
+      "type": "function",
+      "name": "createTouchMoveCallback",
+      "filePath": "packages/widgets/Source/Timeline/Timeline.js",
+      "lineRange": [
+        915,
+        984
+      ],
+      "summary": "构造触摸移动事件回调,支持双指缩放与单指拖动时间轴。",
+      "tags": [
+        "event-handler",
+        "touch",
+        "timeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/VRButton/VRButton.js:VRButton",
+      "type": "function",
+      "name": "VRButton",
+      "filePath": "packages/widgets/Source/VRButton/VRButton.js",
+      "lineRange": [
+        27,
+        64
+      ],
+      "summary": "构造 VR 按钮组件,创建 DOM 元素并应用 Knockout 模板绑定。",
+      "tags": [
+        "widget",
+        "vr",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/VRButton/VRButtonViewModel.js:VRButtonViewModel",
+      "type": "function",
+      "name": "VRButtonViewModel",
+      "filePath": "packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "lineRange": [
+        81,
+        172
+      ],
+      "summary": "构造 VRButton ViewModel,初始化 isVRMode/isOrthographic observable 与 toggleVR 命令。",
+      "tags": [
+        "view-model",
+        "vr",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/VRButton/VRButtonViewModel.js:toggleVR",
+      "type": "function",
+      "name": "toggleVR",
+      "filePath": "packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "lineRange": [
+        46,
+        71
+      ],
+      "summary": "切换 VR 模式,处理屏幕方向锁与场景 useWebVRFrame 状态切换。",
+      "tags": [
+        "command",
+        "vr",
+        "screen-lock"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/Viewer.js:Viewer",
+      "type": "function",
+      "name": "Viewer",
+      "filePath": "packages/widgets/Source/Viewer/Viewer.js",
+      "lineRange": [
+        400,
+        934
+      ],
+      "summary": "顶级 Viewer 构造函数,创建 CesiumWidget 并装配全部子 widget、数据源集合与事件连线。",
+      "tags": [
+        "widget",
+        "viewer",
+        "constructor",
+        "entry-point"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/Viewer.js:pickImageryLayerFeature",
+      "type": "function",
+      "name": "pickImageryLayerFeature",
+      "filePath": "packages/widgets/Source/Viewer/Viewer.js",
+      "lineRange": [
+        156,
+        211
+      ],
+      "summary": "根据窗口坐标拾取影像图层要素,返回所点击瓦片的地理要素信息。",
+      "tags": [
+        "utility",
+        "picking",
+        "imagery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/Viewer.js:enableVRUI",
+      "type": "function",
+      "name": "enableVRUI",
+      "filePath": "packages/widgets/Source/Viewer/Viewer.js",
+      "lineRange": [
+        220,
+        277
+      ],
+      "summary": "在进入/退出 VR 时切换 Viewer 各子 widget 的可见性以适配 VR UI 布局。",
+      "tags": [
+        "vr",
+        "ui",
+        "viewer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/Viewer.js:linkTimelineToDataSourceClock",
+      "type": "function",
+      "name": "linkTimelineToDataSourceClock",
+      "filePath": "packages/widgets/Source/Viewer/Viewer.js",
+      "lineRange": [
+        133,
+        152
+      ],
+      "summary": "将 Timeline widget 与某个 DataSource 的 clock 同步,使时间轴跟随数据源时间。",
+      "tags": [
+        "timeline",
+        "datasource",
+        "clock"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/VoxelInspector/VoxelInspector.js:VoxelInspector",
+      "type": "function",
+      "name": "VoxelInspector",
+      "filePath": "packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "lineRange": [
+        20,
+        212
+      ],
+      "summary": "构造体素调试面板,创建各个分组容器并装配调试控件。",
+      "tags": [
+        "widget",
+        "voxel",
+        "inspector",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js:VoxelInspectorViewModel",
+      "type": "function",
+      "name": "VoxelInspectorViewModel",
+      "filePath": "packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "lineRange": [
+        55,
+        761
+      ],
+      "summary": "构造体素调试 ViewModel,绑定当前选中 VoxelPrimitive 的全部可调试属性并暴露修改命令。",
+      "tags": [
+        "view-model",
+        "voxel",
+        "inspector",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js:setModelMatrix",
+      "type": "function",
+      "name": "setModelMatrix",
+      "filePath": "packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "lineRange": [
+        768,
+        792
+      ],
+      "summary": "根据调试面板中的平移/旋转/缩放参数更新 VoxelPrimitive 的 modelMatrix。",
+      "tags": [
+        "command",
+        "voxel",
+        "transform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/createCommand.js:createCommand",
+      "type": "function",
+      "name": "createCommand",
+      "filePath": "packages/widgets/Source/createCommand.js",
+      "lineRange": [
+        17,
+        63
+      ],
+      "summary": "把传入函数包装为带 canExecute observable 与 before/after 事件的可执行 Command。",
+      "tags": [
+        "factory",
+        "command",
+        "knockout"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/subscribeAndEvaluate.js:subscribeAndEvaluate",
+      "type": "function",
+      "name": "subscribeAndEvaluate",
+      "filePath": "packages/widgets/Source/subscribeAndEvaluate.js",
+      "lineRange": [
+        18,
+        29
+      ],
+      "summary": "订阅指定 observable 属性变化并立即以当前值触发一次回调。",
+      "tags": [
+        "utility",
+        "knockout",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js:viewerCesium3DTilesInspectorMixin",
+      "type": "function",
+      "name": "viewerCesium3DTilesInspectorMixin",
+      "filePath": "packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js",
+      "lineRange": [
+        16,
+        36
+      ],
+      "summary": "mixin 函数,将 Cesium3DTilesInspector 面板挂载到 Viewer 容器并暴露 extend 方法。",
+      "tags": [
+        "mixin",
+        "3d-tiles",
+        "inspector"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js:viewerCesiumInspectorMixin",
+      "type": "function",
+      "name": "viewerCesiumInspectorMixin",
+      "filePath": "packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js",
+      "lineRange": [
+        20,
+        42
+      ],
+      "summary": "mixin 函数,将 CesiumInspector 面板挂载到 Viewer 容器。",
+      "tags": [
+        "mixin",
+        "inspector",
+        "debug"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js:viewerPerformanceWatchdogMixin",
+      "type": "function",
+      "name": "viewerPerformanceWatchdogMixin",
+      "filePath": "packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js",
+      "lineRange": [
+        24,
+        46
+      ],
+      "summary": "mixin 函数,为 Viewer 挂载 PerformanceWatchdog 性能监控组件。",
+      "tags": [
+        "mixin",
+        "performance",
+        "watchdog"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js:viewerVoxelInspectorMixin",
+      "type": "function",
+      "name": "viewerVoxelInspectorMixin",
+      "filePath": "packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js",
+      "lineRange": [
+        16,
+        33
+      ],
+      "summary": "mixin 函数,将 VoxelInspector 面板挂载到 Viewer 容器。",
+      "tags": [
+        "mixin",
+        "voxel",
+        "inspector"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "target": "function:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js:PerformanceWatchdogViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "target": "function:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js:ProjectionPicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "target": "function:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js:ProjectionPickerViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "target": "function:packages/widgets/Source/SceneModePicker/SceneModePicker.js:SceneModePicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "target": "function:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js:SceneModePickerViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "target": "function:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js:SelectionIndicator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "target": "function:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js:SelectionIndicatorViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "target": "function:packages/widgets/Source/Timeline/Timeline.js:Timeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "target": "function:packages/widgets/Source/Timeline/Timeline.js:createMouseMoveCallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "target": "function:packages/widgets/Source/Timeline/Timeline.js:createTouchMoveCallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButton.js",
+      "target": "function:packages/widgets/Source/VRButton/VRButton.js:VRButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "target": "function:packages/widgets/Source/VRButton/VRButtonViewModel.js:VRButtonViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "target": "function:packages/widgets/Source/VRButton/VRButtonViewModel.js:toggleVR",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "function:packages/widgets/Source/Viewer/Viewer.js:Viewer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "function:packages/widgets/Source/Viewer/Viewer.js:pickImageryLayerFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "function:packages/widgets/Source/Viewer/Viewer.js:enableVRUI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "function:packages/widgets/Source/Viewer/Viewer.js:linkTimelineToDataSourceClock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "target": "function:packages/widgets/Source/VoxelInspector/VoxelInspector.js:VoxelInspector",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "target": "function:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js:VoxelInspectorViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "target": "function:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js:setModelMatrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/createCommand.js",
+      "target": "function:packages/widgets/Source/createCommand.js:createCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/subscribeAndEvaluate.js",
+      "target": "function:packages/widgets/Source/subscribeAndEvaluate.js:subscribeAndEvaluate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js",
+      "target": "function:packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js:viewerCesium3DTilesInspectorMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js",
+      "target": "function:packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js:viewerCesiumInspectorMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js",
+      "target": "function:packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js:viewerPerformanceWatchdogMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js",
+      "target": "function:packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js:viewerVoxelInspectorMixin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "target": "file:packages/widgets/Source/createCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdogViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "target": "file:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "target": "file:packages/widgets/Source/createCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ProjectionPicker/ProjectionPickerViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "target": "file:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "target": "file:packages/widgets/Source/createCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SceneModePicker/SceneModePickerViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "target": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicatorViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "target": "file:packages/widgets/Source/SvgPathBindingHandler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout-3.5.1.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout-es5.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "target": "file:packages/widgets/Source/Timeline/TimelineHighlightRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "target": "file:packages/widgets/Source/Timeline/TimelineTrack.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/ToggleButtonViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButton.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButton.js",
+      "target": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "target": "file:packages/widgets/Source/createCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VRButton/VRButtonViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/Animation/Animation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/Animation/AnimationViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/BaseLayerPicker/BaseLayerPicker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/BaseLayerPicker/createDefaultImageryProviderViewModels.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/BaseLayerPicker/createDefaultTerrainProviderViewModels.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/ClockViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/FullscreenButton/FullscreenButton.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/Geocoder/Geocoder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/HomeButton/HomeButton.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/InfoBox/InfoBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/NavigationHelpButton/NavigationHelpButton.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/ProjectionPicker/ProjectionPicker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/SceneModePicker/SceneModePicker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/SelectionIndicator/SelectionIndicator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/subscribeAndEvaluate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/Timeline/Timeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/Viewer.js",
+      "target": "file:packages/widgets/Source/VRButton/VRButton.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerCesium3DTilesInspectorMixin.js",
+      "target": "file:packages/widgets/Source/Cesium3DTilesInspector/Cesium3DTilesInspector.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerCesiumInspectorMixin.js",
+      "target": "file:packages/widgets/Source/CesiumInspector/CesiumInspector.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerPerformanceWatchdogMixin.js",
+      "target": "file:packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdog.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/Viewer/viewerVoxelInspectorMixin.js",
+      "target": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "target": "file:packages/widgets/Source/InspectorShared.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspector.js",
+      "target": "file:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/VoxelInspector/VoxelInspectorViewModel.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/createCommand.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/widgets/Source/subscribeAndEvaluate.js",
+      "target": "file:packages/widgets/Source/ThirdParty/knockout.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

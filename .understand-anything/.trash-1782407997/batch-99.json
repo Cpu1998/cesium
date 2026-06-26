@@ -1,0 +1,235 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/nearFarScalar.glsl",
+      "type": "file",
+      "name": "nearFarScalar.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/nearFarScalar.glsl",
+      "summary": "定义 czm_nearFarScalar 内置 GLSL 函数，根据距离按 NearFarScalar 规则在近/远边界内进行夹取缩放，不外推。",
+      "tags": ["shader", "glsl", "builtin-function", "interpolation", "scaling"],
+      "complexity": "simple",
+      "languageNotes": "CesiumJS 内置 shader 函数，统一以 czm_ 前缀暴露给所有 shader 使用。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/octDecode.glsl",
+      "type": "file",
+      "name": "octDecode.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/octDecode.glsl",
+      "summary": "将 'oct' 编码的单位向量解码为归一化的三维笛卡尔向量，用于在 GPU 上压缩法线/方向数据。",
+      "tags": ["shader", "glsl", "builtin-function", "compression", "decoding"],
+      "complexity": "moderate",
+      "languageNotes": "基于 Cigolle 2014 论文的 octahedral 编码方案。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/packDepth.glsl",
+      "type": "file",
+      "name": "packDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/packDepth.glsl",
+      "summary": "定义 czm_packDepth，将深度值打包进可由 unsigned byte 表示的 vec4，供深度纹理编码使用。",
+      "tags": ["shader", "glsl", "builtin-function", "depth", "packing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/pbrLighting.glsl",
+      "type": "file",
+      "name": "pbrLighting.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/pbrLighting.glsl",
+      "summary": "实现基于物理的渲染（PBR）光照核心函数，包含 Lambertian 漫反射、Schlick 菲涅尔、几何遮蔽与镜面反射等 BRDF 计算。",
+      "tags": ["shader", "glsl", "pbr", "lighting", "brdf"],
+      "complexity": "complex",
+      "languageNotes": "包含多个辅助函数（lambertianDiffuse、fresnelSchlick2 等），构成 PBR 着色管线基础。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/pbrNeutralTonemapping.glsl",
+      "type": "file",
+      "name": "pbrNeutralTonemapping.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/pbrNeutralTonemapping.glsl",
+      "summary": "实现 Khronos PBR Neutral 色调映射，将线性 Rec.709 颜色映射到 [0,1] 范围，保持中性色调。",
+      "tags": ["shader", "glsl", "tonemapping", "pbr", "color-space"],
+      "complexity": "simple",
+      "languageNotes": "来源于 KhronosGroup ToneMapping 仓库的 PBR_Neutral 方案。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/phong.glsl",
+      "type": "file",
+      "name": "phong.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/phong.glsl",
+      "summary": "提供 Phong 光照模型相关的辅助函数，计算材质的 Lambert 漫反射与高光分量，供 czm_material 系统使用。",
+      "tags": ["shader", "glsl", "lighting", "phong", "material"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/planeDistance.glsl",
+      "type": "file",
+      "name": "planeDistance.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/planeDistance.glsl",
+      "summary": "定义 czm_planeDistance，计算点到平面的有符号距离，用于裁剪平面等几何运算。",
+      "tags": ["shader", "glsl", "builtin-function", "geometry", "clipping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/pointAlongRay.glsl",
+      "type": "file",
+      "name": "pointAlongRay.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/pointAlongRay.glsl",
+      "summary": "定义 czm_pointAlongRay，沿射线在给定时间（正、负或零）处求点，用于射线拾取与相交计算。",
+      "tags": ["shader", "glsl", "builtin-function", "ray", "geometry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/rayEllipsoidIntersectionInterval.glsl",
+      "type": "file",
+      "name": "rayEllipsoidIntersectionInterval.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/rayEllipsoidIntersectionInterval.glsl",
+      "summary": "计算射线与参考椭球的相交区间，是地球上射线求交的核心几何函数。",
+      "tags": ["shader", "glsl", "builtin-function", "ray", "ellipsoid"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/raySphereIntersectionInterval.glsl",
+      "type": "file",
+      "name": "raySphereIntersectionInterval.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/raySphereIntersectionInterval.glsl",
+      "summary": "计算射线与球体的相交区间，返回进入/离开的参数范围。",
+      "tags": ["shader", "glsl", "builtin-function", "ray", "intersection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/readDepth.glsl",
+      "type": "file",
+      "name": "readDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/readDepth.glsl",
+      "summary": "定义 czm_readDepth，从深度纹理采样并通过 czm_reverseLogDepth 还原真实深度值。",
+      "tags": ["shader", "glsl", "builtin-function", "depth", "texture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/readNonPerspective.glsl",
+      "type": "file",
+      "name": "readNonPerspective.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/readNonPerspective.glsl",
+      "summary": "在片元着色器中读取经 czm_writeNonPerspective 变换的 varying，通过除以 w 抵消透视插值，用于屏幕空间纹理坐标等。",
+      "tags": ["shader", "glsl", "builtin-function", "perspective", "varying"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/reverseLogDepth.glsl",
+      "type": "file",
+      "name": "reverseLogDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/reverseLogDepth.glsl",
+      "summary": "定义 czm_reverseLogDepth，将对数深度值还原为线性深度，用于支持大范围深度缓冲（LOG_DEPTH）。",
+      "tags": ["shader", "glsl", "builtin-function", "depth", "logarithmic"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/RGBToHSB.glsl",
+      "type": "file",
+      "name": "RGBToHSB.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/RGBToHSB.glsl",
+      "summary": "定义 czm_RGBToHSB，使用最小分支方案将 RGB 颜色转换为 HSB（色相、饱和度、亮度）。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/RGBToHSL.glsl",
+      "type": "file",
+      "name": "RGBToHSL.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/RGBToHSL.glsl",
+      "summary": "定义 czm_RGBToHSL，将 RGB 颜色转换为 HSL（色相、饱和度、明度）颜色空间。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/RGBToXYZ.glsl",
+      "type": "file",
+      "name": "RGBToXYZ.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/RGBToXYZ.glsl",
+      "summary": "定义 czm_RGBToXYZ，将 RGB 颜色转换为 CIE Yxy 颜色空间，用于 HDR 渲染的亮度变换。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "hdr"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/round.glsl",
+      "type": "file",
+      "name": "round.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/round.glsl",
+      "summary": "定义 czm_round，为 GLSL 1.00（不支持内置 round）提供浮点取整实现，支持 float/vec2/vec3/vec4 多种类型。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "compatibility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/saturation.glsl",
+      "type": "file",
+      "name": "saturation.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/saturation.glsl",
+      "summary": "定义 czm_saturation，通过调整颜色的 HSL 分量来改变饱和度。",
+      "tags": ["shader", "glsl", "builtin-function", "color", "saturation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/shadowDepthCompare.glsl",
+      "type": "file",
+      "name": "shadowDepthCompare.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/shadowDepthCompare.glsl",
+      "summary": "提供从立方体阴影贴图采样并解包深度、与参考深度比较的函数，用于阴影映射。",
+      "tags": ["shader", "glsl", "shadow", "depth-compare", "cubemap"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/shadowVisibility.glsl",
+      "type": "file",
+      "name": "shadowVisibility.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/shadowVisibility.glsl",
+      "summary": "定义 czm_private_shadowVisibility，结合法线着色平滑因子（USE_NORMAL_SHADING）计算最终的阴影可见度。",
+      "tags": ["shader", "glsl", "shadow", "lighting", "visibility"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/signNotZero.glsl",
+      "type": "file",
+      "name": "signNotZero.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/signNotZero.glsl",
+      "summary": "定义 czm_signNotZero，类似内置 sign 但输入为 0 时返回 1.0 而非 0.0，用于 oct 编码等需要非零符号的场景。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "sign"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/sphericalHarmonics.glsl",
+      "type": "file",
+      "name": "sphericalHarmonics.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/sphericalHarmonics.glsl",
+      "summary": "定义三阶球谐函数，根据球谐系数与归一化方向向量计算环境光照颜色，用于 IBL（基于图像的光照）。",
+      "tags": ["shader", "glsl", "builtin-function", "spherical-harmonics", "ibl"],
+      "complexity": "moderate",
+      "languageNotes": "系数顺序为 [L00, L1_1, L10, L11, L2_2, L2_1, L20, L21, L22]。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/srgbToLinear.glsl",
+      "type": "file",
+      "name": "srgbToLinear.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/srgbToLinear.glsl",
+      "summary": "将 sRGB 颜色转换为线性 RGB 颜色空间，支持 vec3 与 vec4 输入。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/tangentToEyeSpaceMatrix.glsl",
+      "type": "file",
+      "name": "tangentToEyeSpaceMatrix.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/tangentToEyeSpaceMatrix.glsl",
+      "summary": "定义 czm_tangentToEyeSpaceMatrix，构造从切线空间到视空间的变换矩阵，供法线贴图等使用。",
+      "tags": ["shader", "glsl", "builtin-function", "matrix", "normal-mapping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/textureCube.glsl",
+      "type": "file",
+      "name": "textureCube.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/textureCube.glsl",
+      "summary": "定义 czm_textureCube，封装 WebGL2 的 texture 与 WebGL1 的 textureCube，统一立方体贴图采样接口。",
+      "tags": ["shader", "glsl", "builtin-function", "texture", "compatibility"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

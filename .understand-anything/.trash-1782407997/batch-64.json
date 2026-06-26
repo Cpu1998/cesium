@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/MetadataSchema.json",
+      "type": "config",
+      "name": "MetadataSchema.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/MetadataSchema.json",
+      "summary": "3D Tiles 元数据 schema 定义文件，声明了 id、classes（含属性定义）与 enums，作为 PropertyAttributesPointCloud 测试数据集中 glTF 资产与 tileset 共享的元数据结构。",
+      "tags": ["configuration", "3d-tiles", "metadata-schema", "test-fixture", "schema-definition"],
+      "complexity": "simple",
+      "languageNotes": "遵循 EXT_structural_metadata 规范的 JSON schema，通过 classes 与 enums 描述 per-vertex / per-feature 属性。"
+    },
+    {
+      "id": "document:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/README.md",
+      "summary": "PropertyAttributesPointCloud 测试数据集的说明文档，解释如何在 glTF 资产与 3D Tiles tileset 之间共享元数据 schema、在 glTF property attributes 中存储元数据，以及为元数据值定义统计信息。",
+      "tags": ["documentation", "3d-tiles", "metadata", "gltf", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/tileset.json",
+      "summary": "3D Tiles tileset 入口 JSON，定义 asset、geometricError、root 层级结构，并通过 schemaUri 引用外部 MetadataSchema.json，同时附带 statistics 统计信息块。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "metadata"],
+      "complexity": "simple",
+      "languageNotes": "tileset.json 通过 schemaUri 外部引用共享 schema，是 EXT_structural_metadata 的标准用法。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/MetadataSchema.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/README.md",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/tileset.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/README.md",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/PropertyAttributesPointCloud/MetadataSchema.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

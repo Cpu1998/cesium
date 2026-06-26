@@ -1,0 +1,673 @@
+{
+  "nodes": [
+    {
+      "id": "file:gulpfile.apps.js",
+      "type": "file",
+      "name": "gulpfile.apps.js",
+      "filePath": "gulpfile.apps.js",
+      "summary": "Gulp 任务集，负责构建 Cesium 示例应用（Cesium Viewer 与 Sandcastle）。封装 esbuild 打包、Web Worker bundle 与构建告警处理逻辑，向上游 gulpfile.js 暴露 buildApps 任务。",
+      "tags": ["build-system", "gulp-task", "apps-builder", "esbuild", "tooling"],
+      "complexity": "moderate",
+      "languageNotes": "使用 ES Module 形式书写的 Gulp 任务文件，通过 PROD 环境变量切换生产/开发构建。"
+    },
+    {
+      "id": "function:gulpfile.apps.js:buildCesiumViewer",
+      "type": "function",
+      "name": "buildCesiumViewer",
+      "filePath": "gulpfile.apps.js",
+      "lineRange": [41, 119],
+      "summary": "使用 esbuild 打包 Cesium Viewer 应用，处理入口脚本、Workers 与第三方依赖，并通过告警处理函数过滤不可控的 protobufjs 警告。",
+      "tags": ["build-task", "esbuild", "viewer", "apps-builder"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gulpfile.apps.js:buildSandcastle",
+      "type": "function",
+      "name": "buildSandcastle",
+      "filePath": "gulpfile.apps.js",
+      "lineRange": [121, 155],
+      "summary": "委托 buildSandcastleApp 完成 Sandcastle 示例应用的构建，处理生产/开发模式差异。",
+      "tags": ["build-task", "sandcastle", "apps-builder"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:gulpfile.js",
+      "type": "file",
+      "name": "gulpfile.js",
+      "filePath": "gulpfile.js",
+      "summary": "项目核心 Gulp 任务入口，集中定义 build、test、coverage、release、buildDocs、buildThirdParty 等所有顶层构建流水线任务。是组织 monorepo 各 package 构建与发布的总指挥。",
+      "tags": ["build-system", "gulp-task", "entry-point", "ci-cd", "release"],
+      "complexity": "complex",
+      "languageNotes": "通过 getWorkspaces 动态发现 monorepo 子包并合并各 package 的 gulp 任务，体现 monorepo 多包构建编排。"
+    },
+    {
+      "id": "function:gulpfile.js:build",
+      "type": "function",
+      "name": "build",
+      "filePath": "gulpfile.js",
+      "lineRange": [80, 107],
+      "summary": "顶层 build Gulp 任务，串行执行各 workspace 的 build 流程以产出未压缩构建产物。",
+      "tags": ["build-task", "monorepo", "orchestration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gulpfile.js:test",
+      "type": "function",
+      "name": "test",
+      "filePath": "gulpfile.js",
+      "lineRange": [805, 945],
+      "summary": "Gulp test 任务，启动 Karma 在多浏览器中运行 CesiumJS 测试套件，覆盖 ci/local/watch 等多种模式。",
+      "tags": ["test-task", "karma", "ci-cd"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:gulpfile.js:runCoverage",
+      "type": "function",
+      "name": "runCoverage",
+      "filePath": "gulpfile.js",
+      "lineRange": [571, 761],
+      "summary": "执行 Istanbul/nyc 代码覆盖率采集与合并，生成测试覆盖率报告。是覆盖率流水线的核心实现。",
+      "tags": ["coverage", "test-task", "istanbul", "ci-cd"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:gulpfile.js:generateTypeScriptDefinitions",
+      "type": "function",
+      "name": "generateTypeScriptDefinitions",
+      "filePath": "gulpfile.js",
+      "lineRange": [1013, 1074],
+      "summary": "通用 TypeScript 类型定义（.d.ts）生成器，按 workspace 输出路径、配置路径及 source 处理回调生成 Cesium 类型声明文件。",
+      "tags": ["type-definition", "typescript", "build-task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gulpfile.js:createTypeScriptDefinitions",
+      "type": "function",
+      "name": "createTypeScriptDefinitions",
+      "filePath": "gulpfile.js",
+      "lineRange": [1159, 1208],
+      "summary": "针对各 workspace 调用 generateTypeScriptDefinitions 与对应的 source 处理函数，产出 Cesium 类型声明文件。",
+      "tags": ["type-definition", "typescript", "build-task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gulpfile.js:getLicenseDataFromPackage",
+      "type": "function",
+      "name": "getLicenseDataFromPackage",
+      "filePath": "gulpfile.js",
+      "lineRange": [1270, 1335],
+      "summary": "解析第三方依赖 package.json，提取许可证信息用于构建 THIRD_PARTY 许可证清单。",
+      "tags": ["license", "third-party", "build-task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gulpfile.js:buildThirdParty",
+      "type": "function",
+      "name": "buildThirdParty",
+      "filePath": "gulpfile.js",
+      "lineRange": [1337, 1362],
+      "summary": "汇总所有依赖的许可证信息，生成 THIRD_PARTY 许可证清单。",
+      "tags": ["license", "third-party", "build-task"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:gulpfile.js:buildDocs",
+      "type": "function",
+      "name": "buildDocs",
+      "filePath": "gulpfile.js",
+      "lineRange": [378, 398],
+      "summary": "构建 JSDoc API 参考文档任务。",
+      "tags": ["documentation", "jsdoc", "build-task"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:gulpfile.js:prepare",
+      "type": "function",
+      "name": "prepare",
+      "filePath": "gulpfile.js",
+      "lineRange": [333, 373],
+      "summary": "npm prepare 钩子对应的 Gulp 任务，在 install 后执行必要的预构建步骤（如运行 build、生成第三方声明）。",
+      "tags": ["lifecycle-hook", "prepare", "build-task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:gulpfile.makezip.js",
+      "type": "file",
+      "name": "gulpfile.makezip.js",
+      "filePath": "gulpfile.makezip.js",
+      "summary": "Gulp 任务，负责在发布后把整个 CesiumJS 构建产物打包成可分发的 ZIP 归档。会裁剪 package.json 中的脚本以保证 ZIP 内可独立运行。",
+      "tags": ["build-system", "gulp-task", "release", "packaging", "zip"],
+      "complexity": "moderate",
+      "languageNotes": "复用 gulpfile.js 的 release 任务并叠加 ZIP 打包逻辑。"
+    },
+    {
+      "id": "function:gulpfile.makezip.js:pruneScriptsForZip",
+      "type": "function",
+      "name": "pruneScriptsForZip",
+      "filePath": "gulpfile.makezip.js",
+      "lineRange": [28, 81],
+      "summary": "从 package.json 中删除在 ZIP 环境内无法运行的脚本（build、prepare 等），确保打包产物可独立安装运行。",
+      "tags": ["packaging", "release", "package-json"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/scripts/buildGallery.js",
+      "type": "file",
+      "name": "buildGallery.js",
+      "filePath": "packages/sandcastle/scripts/buildGallery.js",
+      "summary": "扫描 Sandcastle 示例目录，读取每个示例的 meta 信息并生成示例画廊清单（gallery list）。同时为 Pagefind 搜索构建嵌入向量与索引，提供 Sandcastle 的示例搜索能力。",
+      "tags": ["sandcastle", "gallery", "build-task", "search-index", "pagefind"],
+      "complexity": "complex",
+      "languageNotes": "集成 Pagefind 静态搜索与 @tensorflow-models/universal-sentence-encoder 生成示例语义嵌入向量。"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/buildGallery.js:buildGalleryList",
+      "type": "function",
+      "name": "buildGalleryList",
+      "filePath": "packages/sandcastle/scripts/buildGallery.js",
+      "lineRange": [101, 370],
+      "summary": "主入口：遍历示例目录读取每个示例的 meta（标题、描述、标签、缩略图），生成 gallery-list.json 画廊清单并触发 Pagefind 索引与嵌入构建。",
+      "tags": ["sandcastle", "gallery", "build-task", "metadata"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/buildGallery.js:generateEmbeddings",
+      "type": "function",
+      "name": "generateEmbeddings",
+      "filePath": "packages/sandcastle/scripts/buildGallery.js",
+      "lineRange": [36, 50],
+      "summary": "使用 Universal Sentence Encoder 为示例描述生成语义嵌入向量，用于语义搜索。",
+      "tags": ["embeddings", "search-index", "machine-learning"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/buildGallery.js:createPagefindIndex",
+      "type": "function",
+      "name": "createPagefindIndex",
+      "filePath": "packages/sandcastle/scripts/buildGallery.js",
+      "lineRange": [52, 69],
+      "summary": "为画廊记录生成 Pagefind 静态搜索索引。",
+      "tags": ["pagefind", "search-index", "build-task"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/scripts/buildStatic.js",
+      "type": "file",
+      "name": "buildStatic.js",
+      "filePath": "packages/sandcastle/scripts/buildStatic.js",
+      "summary": "封装 Sandcastle 的 Vite 静态构建：根据传入配置生成 Vite 配置对象并执行 buildStatic 完成静态站点打包。支持 import map、cesiumBaseUrl 注入等 Sandcastle 特有需求。",
+      "tags": ["sandcastle", "vite", "build-task", "static-site"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/buildStatic.js:createSandcastleConfig",
+      "type": "function",
+      "name": "createSandcastleConfig",
+      "filePath": "packages/sandcastle/scripts/buildStatic.js",
+      "lineRange": [54, 132],
+      "summary": "依据 outDir、cesiumBaseUrl、imports 等参数拼装 Sandcastle 专用的 Vite UserConfig，注入 cesiumPathReplace、insertImportMap 等自定义插件。",
+      "tags": ["vite", "config-builder", "sandcastle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/buildStatic.js:buildStatic",
+      "type": "function",
+      "name": "buildStatic",
+      "filePath": "packages/sandcastle/scripts/buildStatic.js",
+      "lineRange": [145, 170],
+      "summary": "调用 Vite build API 按既定配置完成 Sandcastle 静态站点打包。",
+      "tags": ["vite", "build-task", "static-site"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/scripts/createGalleryRecord.js",
+      "type": "file",
+      "name": "createGalleryRecord.js",
+      "filePath": "packages/sandcastle/scripts/createGalleryRecord.js",
+      "summary": "把单个 Sandcastle 示例的元数据转换为可被 Pagefind 索引的 HTML 记录，用于静态搜索。是 buildGallery 流水线的子步骤。",
+      "tags": ["sandcastle", "gallery", "search-index", "pagefind", "html-generator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/createGalleryRecord.js:createRecordHtml",
+      "type": "function",
+      "name": "createRecordHtml",
+      "filePath": "packages/sandcastle/scripts/createGalleryRecord.js",
+      "lineRange": [1, 46],
+      "summary": "把示例的 id、标题、描述、缩略图与代码渲染成带 Pagefind data-pagefind-* 属性的 HTML，作为搜索索引条目。",
+      "tags": ["html-generator", "search-index", "pagefind"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/createGalleryRecord.js:createGalleryRecord",
+      "type": "function",
+      "name": "createGalleryRecord",
+      "filePath": "packages/sandcastle/scripts/createGalleryRecord.js",
+      "lineRange": [48, 53],
+      "summary": "将示例元数据封装为 {url, content} 记录对象供 Pagefind 索引消费。",
+      "tags": ["search-index", "pagefind", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/scripts/typescriptCompile.js",
+      "type": "file",
+      "name": "typescriptCompile.js",
+      "filePath": "packages/sandcastle/scripts/typescriptCompile.js",
+      "summary": "通过 spawn 调用 tsc CLI 编译指定 TypeScript 项目（按 tsconfig 路径），供 Sandcastle 构建脚本复用。",
+      "tags": ["typescript", "build-task", "tsc", "cli-wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/scripts/typescriptCompile.js:typescriptCompile",
+      "type": "function",
+      "name": "typescriptCompile",
+      "filePath": "packages/sandcastle/scripts/typescriptCompile.js",
+      "lineRange": [11, 33],
+      "summary": "定位 typescript 包的 bin/tsc 并以 -p 指定配置文件执行编译，按退出码 resolve/reject。",
+      "tags": ["typescript", "tsc", "cli-wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/vite-plugins.js",
+      "type": "file",
+      "name": "vite-plugins.js",
+      "filePath": "packages/sandcastle/vite-plugins.js",
+      "summary": "为 Sandcastle 的 Vite 构建提供两个自定义插件：cesiumPathReplace 在运行时替换 __CESIUM_BASE_URL__ 占位符，insertImportMap 向 bucket/standalone HTML 注入 import map。",
+      "tags": ["vite", "plugin", "sandcastle", "import-map", "html-transform"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/vite-plugins.js:cesiumPathReplace",
+      "type": "function",
+      "name": "cesiumPathReplace",
+      "filePath": "packages/sandcastle/vite-plugins.js",
+      "lineRange": [10, 23],
+      "summary": "Vite 插件：通过 config.define 与 transformIndexHtml 在构建产物中注入并替换 __CESIUM_BASE_URL__。",
+      "tags": ["vite-plugin", "define", "html-transform"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/vite-plugins.js:insertImportMap",
+      "type": "function",
+      "name": "insertImportMap",
+      "filePath": "packages/sandcastle/vite-plugins.js",
+      "lineRange": [31, 62],
+      "summary": "Vite 插件：在指定 HTML 文件的 head 前置位置注入 import map script 标签，用于 Sandcastle 的裸模块解析。",
+      "tags": ["vite-plugin", "import-map", "html-transform"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/vite.config.dev.ts",
+      "type": "file",
+      "name": "vite.config.dev.ts",
+      "filePath": "packages/sandcastle/vite.config.dev.ts",
+      "summary": "Sandcastle 开发模式的 Vite 配置：在 build 之前校验所有必需的资源/构建产物文件存在，并基于 createSandcastleConfig 拼装带内存路由的开发服务器配置。",
+      "tags": ["vite", "config", "dev-server", "sandcastle"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Vite 的 defineConfig 异步工厂形式以在返回配置前完成文件存在性校验。"
+    },
+    {
+      "id": "function:packages/sandcastle/vite.config.dev.ts:checkForFiles",
+      "type": "function",
+      "name": "checkForFiles",
+      "filePath": "packages/sandcastle/vite.config.dev.ts",
+      "lineRange": [17, 44],
+      "summary": "通过 globby 校验每个 vite-plugin-staticcopy 目标 glob 至少能匹配到文件，否则抛出带修复提示的错误。",
+      "tags": ["validation", "file-check", "dev-server"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/vite.config.js",
+      "type": "file",
+      "name": "vite.config.js",
+      "filePath": "packages/sandcastle/vite.config.js",
+      "summary": "Sandcastle 的基础 Vite 配置：启用 React 插件、关闭 HMR（避免 Viewer 重载内存爆炸）、注入 __COMMIT_SHA__/__CESIUM_VERSION__ 等编译期常量并定义多个 HTML 入口。",
+      "tags": ["vite", "config", "react", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/ContextCache.js",
+      "type": "file",
+      "name": "ContextCache.js",
+      "filePath": "scripts/ContextCache.js",
+      "summary": "封装 esbuild BuildContext 的增量构建缓存：通过 rebuild/clear/isBuilt 控制 CesiumJS 开发服务器中各 bundle 的按需重建与失效。",
+      "tags": ["esbuild", "cache", "incremental-build", "dev-server"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:scripts/ContextCache.js:ContextCache",
+      "type": "class",
+      "name": "ContextCache",
+      "filePath": "scripts/ContextCache.js",
+      "lineRange": [5, 33],
+      "summary": "持有 esbuild BuildContext，对外暴露 rebuild() 增量重建、clear() 失效缓存、isBuilt() 查询当前是否已有产物，保证多次并发请求复用同一构建 Promise。",
+      "tags": ["esbuild", "cache", "incremental-build"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/build.js",
+      "type": "file",
+      "name": "build.js",
+      "filePath": "scripts/build.js",
+      "summary": "CesiumJS 的核心构建工具库：集中实现 esbuild bundle、GLSL→JS 转换、Web Worker 打包、Cesium.js/index.js 工厂、资源复制、引擎/控件/总包的多阶段构建等能力，被 gulpfile、server 与各 package 复用。",
+      "tags": ["build-system", "esbuild", "glsl", "web-worker", "core-library"],
+      "complexity": "complex",
+      "languageNotes": "使用 esbuild 同时承担 bundle 与 GLSL pragma 处理；glslToJavaScript 把 .glsl 资源编译为可 import 的 JS 模块。"
+    },
+    {
+      "id": "function:scripts/build.js:bundleCesiumJs",
+      "type": "function",
+      "name": "bundleCesiumJs",
+      "filePath": "scripts/build.js",
+      "lineRange": [159, 245],
+      "summary": "使用 esbuild 把顶层 Cesium.js 入口打包成单一 CesiumJS bundle，处理外部依赖、压缩与 sourcemap。",
+      "tags": ["esbuild", "bundle", "cesiumjs"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:glslToJavaScript",
+      "type": "function",
+      "name": "glslToJavaScript",
+      "filePath": "scripts/build.js",
+      "lineRange": [509, 651],
+      "summary": "扫描 Source 目录下的 .glsl/.glslx 文件，按 #pragma 分块并生成可被 JS import 的着色器模块，可选压缩状态持久化。",
+      "tags": ["glsl", "shader", "transformation", "build-task"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/build.js:bundleWorkers",
+      "type": "function",
+      "name": "bundleWorkers",
+      "filePath": "scripts/build.js",
+      "lineRange": [403, 497],
+      "summary": "把各 Web Worker 源文件打包为独立 bundle，供主线程按需实例化。",
+      "tags": ["web-worker", "esbuild", "bundle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:createCesiumJs",
+      "type": "function",
+      "name": "createCesiumJs",
+      "filePath": "scripts/build.js",
+      "lineRange": [293, 311],
+      "summary": "生成顶层 Cesium.js barrel 文件，re-export @cesium/engine 与 @cesium/widgets 的全部导出。",
+      "tags": ["barrel", "cesiumjs", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build.js:createIndexJs",
+      "type": "function",
+      "name": "createIndexJs",
+      "filePath": "scripts/build.js",
+      "lineRange": [813, 845],
+      "summary": "为指定 workspace 生成 index.js barrel 入口，按 Source 子目录结构聚合导出。",
+      "tags": ["barrel", "factory", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:bundleIndexJs",
+      "type": "function",
+      "name": "bundleIndexJs",
+      "filePath": "scripts/build.js",
+      "lineRange": [324, 361],
+      "summary": "使用 esbuild 把 workspace 的 index.js 打包成生产 bundle。",
+      "tags": ["esbuild", "bundle", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:buildEngine",
+      "type": "function",
+      "name": "buildEngine",
+      "filePath": "scripts/build.js",
+      "lineRange": [950, 1004],
+      "summary": "@cesium/engine 专属构建流水线：依次执行 bundle、worker、资产复制、index 生成等阶段。",
+      "tags": ["build-task", "engine", "pipeline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:buildWidgets",
+      "type": "function",
+      "name": "buildWidgets",
+      "filePath": "scripts/build.js",
+      "lineRange": [1014, 1054],
+      "summary": "@cesium/widgets 专属构建流水线：bundle 控件代码并复制其静态资产。",
+      "tags": ["build-task", "widgets", "pipeline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/build.js:buildCesium",
+      "type": "function",
+      "name": "buildCesium",
+      "filePath": "scripts/build.js",
+      "lineRange": [1069, 1201],
+      "summary": "顶层 CesiumJS 构建总入口：编排 engine/widgets 子构建、生成 Cesium.js barrel、产出组合包。",
+      "tags": ["build-task", "cesiumjs", "pipeline", "orchestration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/build.js:copyEngineAssets",
+      "type": "function",
+      "name": "copyEngineAssets",
+      "filePath": "scripts/build.js",
+      "lineRange": [715, 735],
+      "summary": "复制 @cesium/engine 的静态资产（Assets、ThirdParty、Widgets 等）到构建输出目录。",
+      "tags": ["assets", "copy", "engine"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/build.js:defaultESBuildOptions",
+      "type": "function",
+      "name": "defaultESBuildOptions",
+      "filePath": "scripts/build.js",
+      "lineRange": [126, 134],
+      "summary": "返回 CesiumJS 通用的 esbuild 配置基线（format、target、sourcemap 等）。",
+      "tags": ["esbuild", "config", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/buildSandcastle.js",
+      "type": "file",
+      "name": "buildSandcastle.js",
+      "filePath": "scripts/buildSandcastle.js",
+      "summary": "Sandcastle 应用与画廊的构建脚本：读取 Sandcastle 配置，分别执行应用构建（buildSandcastleApp，Vite 打包 Sandcastle 站点）与画廊清单构建（buildSandcastleGallery）。",
+      "tags": ["sandcastle", "build-task", "vite", "apps-builder"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/buildSandcastle.js:buildSandcastleApp",
+      "type": "function",
+      "name": "buildSandcastleApp",
+      "filePath": "scripts/buildSandcastle.js",
+      "lineRange": [46, 154],
+      "summary": "使用 Vite 静态构建 Sandcastle 应用站点：校验产物、生成 import map、执行 buildStatic。",
+      "tags": ["sandcastle", "vite", "build-task"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/buildSandcastle.js:buildSandcastleGallery",
+      "type": "function",
+      "name": "buildSandcastleGallery",
+      "filePath": "scripts/buildSandcastle.js",
+      "lineRange": [163, 193],
+      "summary": "委托 buildGalleryList 生成 Sandcastle 示例画廊清单与搜索索引。",
+      "tags": ["sandcastle", "gallery", "build-task"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/buildSandcastle.js:getSandcastleConfig",
+      "type": "function",
+      "name": "getSandcastleConfig",
+      "filePath": "scripts/buildSandcastle.js",
+      "lineRange": [19, 28],
+      "summary": "读取并解析 Sandcastle 配置文件，为构建脚本提供 outDir、cesiumBaseUrl 等参数。",
+      "tags": ["config", "sandcastle", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/createRoute.js",
+      "type": "file",
+      "name": "createRoute.js",
+      "filePath": "scripts/createRoute.js",
+      "summary": "为 CesiumJS 开发服务器创建按需重建的 Express 路由工厂：把请求映射到 esbuild ContextCache，命中缓存直接响应、未构建则触发增量 rebuild。",
+      "tags": ["express", "dev-server", "route", "esbuild", "middleware"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/createRoute.js:createRoute",
+      "type": "function",
+      "name": "createRoute",
+      "filePath": "scripts/createRoute.js",
+      "lineRange": [55, 94],
+      "summary": "为 Express app 注册 GET 路由，根据 URL 文件名从对应 ContextCache 取 bundle，缺失则触发依赖缓存 rebuild 后再响应。",
+      "tags": ["express", "route", "dev-server", "esbuild"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/createRoute.js:serveResult",
+      "type": "function",
+      "name": "serveResult",
+      "filePath": "scripts/createRoute.js",
+      "lineRange": [21, 45],
+      "summary": "从 esbuild BuildResult 的输出文件中按文件名取出对应 bundle 内容并以 application/javascript 响应，失败时转交 next 错误处理。",
+      "tags": ["express", "response", "esbuild"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:server.js",
+      "type": "file",
+      "name": "server.js",
+      "filePath": "server.js",
+      "summary": "CesiumJS 本地开发服务器入口：基于 Express 提供按需的 esbuild 增量构建、文件监听与静态资源服务，是日常开发调试 CesiumJS 的主入口脚本。",
+      "tags": ["entry-point", "dev-server", "express", "esbuild", "tooling"],
+      "complexity": "complex",
+      "languageNotes": "通过动态 import 按需加载 buildSandcastle 模块，生产模式下跳过以减小内存占用。"
+    },
+    {
+      "id": "function:server.js:generateDevelopmentBuild",
+      "type": "function",
+      "name": "generateDevelopmentBuild",
+      "filePath": "server.js",
+      "lineRange": [56, 93],
+      "summary": "构建用于开发模式的 @cesium/engine、@cesium/widgets 与顶层 CesiumJS bundle，返回对应的 esbuild 上下文用于后续增量重建。",
+      "tags": ["dev-server", "esbuild", "build-task"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:server.js:throttle",
+      "type": "function",
+      "name": "throttle",
+      "filePath": "server.js",
+      "lineRange": [98, 109],
+      "summary": "限流工具：在文件监听频繁触发时合并多次重建为单次回调。",
+      "tags": ["throttle", "utility", "dev-server"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:gulpfile.apps.js", "target": "function:gulpfile.apps.js:buildCesiumViewer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.apps.js", "target": "function:gulpfile.apps.js:buildSandcastle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.apps.js", "target": "function:gulpfile.apps.js:buildCesiumViewer", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.apps.js", "target": "function:gulpfile.apps.js:buildSandcastle", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.apps.js", "target": "file:scripts/build.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:gulpfile.apps.js", "target": "file:scripts/buildSandcastle.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:build", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:test", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:runCoverage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:generateTypeScriptDefinitions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:createTypeScriptDefinitions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:getLicenseDataFromPackage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:buildThirdParty", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:buildDocs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:prepare", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:build", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:test", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:runCoverage", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:buildThirdParty", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:prepare", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "function:gulpfile.js:buildDocs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:gulpfile.js", "target": "file:package.json", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:gulpfile.js", "target": "file:scripts/build.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:gulpfile.makezip.js", "target": "function:gulpfile.makezip.js:pruneScriptsForZip", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:gulpfile.makezip.js", "target": "file:gulpfile.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:gulpfile.makezip.js", "target": "file:package.json", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:gulpfile.makezip.js", "target": "file:scripts/build.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:gulpfile.makezip.js", "target": "file:scripts/buildSandcastle.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/scripts/buildGallery.js", "target": "function:packages/sandcastle/scripts/buildGallery.js:buildGalleryList", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/buildGallery.js", "target": "function:packages/sandcastle/scripts/buildGallery.js:generateEmbeddings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/buildGallery.js", "target": "function:packages/sandcastle/scripts/buildGallery.js:createPagefindIndex", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/buildGallery.js", "target": "function:packages/sandcastle/scripts/buildGallery.js:buildGalleryList", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/scripts/buildGallery.js", "target": "file:packages/sandcastle/scripts/createGalleryRecord.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "function:packages/sandcastle/scripts/buildStatic.js:createSandcastleConfig", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "function:packages/sandcastle/scripts/buildStatic.js:buildStatic", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "function:packages/sandcastle/scripts/buildStatic.js:createSandcastleConfig", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "function:packages/sandcastle/scripts/buildStatic.js:buildStatic", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "file:packages/sandcastle/scripts/typescriptCompile.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "file:packages/sandcastle/vite-plugins.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/scripts/buildStatic.js", "target": "file:packages/sandcastle/vite.config.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/scripts/createGalleryRecord.js", "target": "function:packages/sandcastle/scripts/createGalleryRecord.js:createRecordHtml", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/createGalleryRecord.js", "target": "function:packages/sandcastle/scripts/createGalleryRecord.js:createGalleryRecord", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/createGalleryRecord.js", "target": "function:packages/sandcastle/scripts/createGalleryRecord.js:createRecordHtml", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/scripts/createGalleryRecord.js", "target": "function:packages/sandcastle/scripts/createGalleryRecord.js:createGalleryRecord", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/scripts/typescriptCompile.js", "target": "function:packages/sandcastle/scripts/typescriptCompile.js:typescriptCompile", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/scripts/typescriptCompile.js", "target": "function:packages/sandcastle/scripts/typescriptCompile.js:typescriptCompile", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/vite-plugins.js", "target": "function:packages/sandcastle/vite-plugins.js:cesiumPathReplace", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/vite-plugins.js", "target": "function:packages/sandcastle/vite-plugins.js:insertImportMap", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/vite-plugins.js", "target": "function:packages/sandcastle/vite-plugins.js:cesiumPathReplace", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/vite-plugins.js", "target": "function:packages/sandcastle/vite-plugins.js:insertImportMap", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/vite.config.dev.ts", "target": "function:packages/sandcastle/vite.config.dev.ts:checkForFiles", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/vite.config.dev.ts", "target": "file:packages/sandcastle/scripts/buildStatic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:scripts/ContextCache.js", "target": "class:scripts/ContextCache.js:ContextCache", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleCesiumJs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:glslToJavaScript", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleWorkers", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:createCesiumJs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:createIndexJs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleIndexJs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildEngine", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildWidgets", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildCesium", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:copyEngineAssets", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:defaultESBuildOptions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleCesiumJs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:glslToJavaScript", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleWorkers", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:createCesiumJs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:createIndexJs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:bundleIndexJs", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildEngine", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildWidgets", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:buildCesium", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:copyEngineAssets", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/build.js", "target": "function:scripts/build.js:defaultESBuildOptions", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:buildSandcastleApp", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:buildSandcastleGallery", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:getSandcastleConfig", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:buildSandcastleApp", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:buildSandcastleGallery", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/buildSandcastle.js", "target": "function:scripts/buildSandcastle.js:getSandcastleConfig", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:scripts/buildSandcastle.js", "target": "file:packages/sandcastle/scripts/buildGallery.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:scripts/buildSandcastle.js", "target": "file:packages/sandcastle/scripts/buildStatic.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:scripts/buildSandcastle.js", "target": "file:scripts/build.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:scripts/createRoute.js", "target": "function:scripts/createRoute.js:createRoute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/createRoute.js", "target": "function:scripts/createRoute.js:serveResult", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:scripts/createRoute.js", "target": "file:scripts/ContextCache.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:server.js", "target": "function:server.js:generateDevelopmentBuild", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:server.js", "target": "function:server.js:throttle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:server.js", "target": "file:scripts/build.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:server.js", "target": "file:scripts/ContextCache.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:server.js", "target": "file:scripts/createRoute.js", "type": "imports", "direction": "forward", "weight": 0.7}
+  ]
+}

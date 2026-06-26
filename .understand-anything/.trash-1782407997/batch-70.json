@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/GoogleEarthEnterpriseMapsProvider/good.json",
+      "type": "config",
+      "name": "good.json",
+      "filePath": "Specs/Data/GoogleEarthEnterpriseMapsProvider/good.json",
+      "summary": "Google Earth Enterprise 地图服务的有效元数据测试夹具，包含已认证状态、两个图层（Imagery 与 VectorMapsRaster Labels）及服务器 URL，供 GoogleEarthEnterpriseMapsProvider 解析能力测试使用。",
+      "tags": ["test-fixture", "configuration", "google-earth-enterprise", "imagery-provider", "test-data"],
+      "complexity": "simple",
+      "languageNotes": "JSON 元数据结构包含 layers 数组，每个图层携带 requestType（ImageryMaps / VectorMapsRaster）与 version 字段，用于驱动 GEE 瓦片请求的协议版本协商。"
+    },
+    {
+      "id": "config:Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_channel.json",
+      "type": "config",
+      "name": "bad_channel.json",
+      "filePath": "Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_channel.json",
+      "summary": "GEE 地图元数据的负面测试夹具，仅含单个 Imagery 图层但缺少 Labels 图层（通道不完整），用于验证 provider 对异常图层配置的容错处理。",
+      "tags": ["test-fixture", "configuration", "google-earth-enterprise", "negative-test", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_projection.json",
+      "type": "config",
+      "name": "bad_projection.json",
+      "filePath": "Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_projection.json",
+      "summary": "GEE 地图元数据的负面测试夹具，携带非法 projection 字段值（\"asdf\"），用于验证 provider 对无效投影字符串的拒绝或回退行为。",
+      "tags": ["test-fixture", "configuration", "google-earth-enterprise", "negative-test", "projection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_version.json",
+      "type": "config",
+      "name": "bad_version.json",
+      "filePath": "Specs/Data/GoogleEarthEnterpriseMapsProvider/bad_version.json",
+      "summary": "GEE 地图元数据的负面测试夹具，图层对象缺少必需的 version 字段，用于验证 provider 对缺失协议版本字段时的错误处理路径。",
+      "tags": ["test-fixture", "configuration", "google-earth-enterprise", "negative-test", "validation"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

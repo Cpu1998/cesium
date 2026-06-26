@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Button.css",
+      "type": "file",
+      "name": "Button.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Button.css",
+      "summary": "Stratakit 设计系统中 Button 组件的核心样式表，定义了 solid、outline、ghost、borderless 等多种变体以及 hover、press、active、disabled 等交互状态，通过 CSS 自定义属性与 color-mix() 实现主题化。",
+      "tags": ["样式", "组件", "button", "design-system", "theming"],
+      "complexity": "complex",
+      "languageNotes": "大量使用 CSS 自定义属性（带 emoji 前缀的私有变量如 --✨、--🥝 表示内部 token）、@layer 级联层、color-mix(in oklch) 以及 :has()/:where() 现代选择器。"
+    },
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Field.css",
+      "type": "file",
+      "name": "Field.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Field.css",
+      "summary": "Stratakit Field 组件样式，使用 CSS Grid 命名网格区域实现 label 与 control 的 inline（label-first / control-first）及 stacked 三种布局，并基于 data 属性切换排版。",
+      "tags": ["样式", "组件", "field", "form", "layout"],
+      "complexity": "simple",
+      "languageNotes": "通过 grid-template-columns 配合命名网格线（label-start/label-end/control-start/control-end）实现可切换的表单字段布局。"
+    },
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Icon.css",
+      "type": "file",
+      "name": "Icon.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Icon.css",
+      "summary": "Stratakit Icon 组件样式，定义 regular 与 large 两种尺寸及颜色过渡动画，并包含 disclosure arrow（展开箭头）的旋转过渡规则。",
+      "tags": ["样式", "组件", "icon", "design-system", "transition"],
+      "complexity": "simple",
+      "languageNotes": "使用 @layer base/modifiers 组织基础样式与修饰符，通过 data-kiwi-size 属性切换尺寸。"
+    },
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Label.css",
+      "type": "file",
+      "name": "Label.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Label.css",
+      "summary": "Stratakit Label 组件样式，处理 label 元素的文本颜色、光标行为及禁用态（通过 :has() 检测相邻禁用控件并应用禁用样式）。",
+      "tags": ["样式", "组件", "label", "form", "states"],
+      "complexity": "simple",
+      "languageNotes": "使用 :has() 选择器检测相邻禁用控件（:disabled、aria-disabled）以联动设置 label 的禁用态。"
+    },
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Select.css",
+      "type": "file",
+      "name": "Select.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Select.css",
+      "summary": "Stratakit Select 下拉选择组件样式，基于 Button 组件扩展（.stratakit-mimic-select:is(.stratakit-mimic-button)），使用 inline-grid 叠加原生 select 与自定义触发器，并集成 disclosure arrow。",
+      "tags": ["样式", "组件", "select", "form", "composition"],
+      "complexity": "moderate",
+      "languageNotes": "通过 :is() 复用 Button 组件类，并使用 isolation: isolate 与 grid-area 1/1/-1/-1 实现原生 select 与自定义 UI 的叠加。"
+    },
+    {
+      "id": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Switch.css",
+      "type": "file",
+      "name": "Switch.css",
+      "filePath": "packages/sandcastle/public/styles/stratakit-mimic/components/Switch.css",
+      "summary": "Stratakit Switch 开关组件样式，定义了 track 与 thumb 的尺寸、圆角、checked 状态下的 thumb 位移与缩放动画，以及 hover/press/checked 等交互状态的边框与背景色。",
+      "tags": ["样式", "组件", "switch", "toggle", "animation"],
+      "complexity": "moderate",
+      "languageNotes": "通过 CSS 自定义属性控制 checked 位移与按压缩放比例，并使用 color-mix() 实现 glow 效果的边框与背景混合。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Select.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Button.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Select.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Icon.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Field.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Label.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Field.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Switch.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Field.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Select.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Button.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Switch.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Button.css",
+      "target": "file:packages/sandcastle/public/styles/stratakit-mimic/components/Icon.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

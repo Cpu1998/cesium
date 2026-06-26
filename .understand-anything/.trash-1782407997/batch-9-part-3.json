@@ -1,0 +1,1217 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/BlendEquation.js",
+      "type": "file",
+      "name": "BlendEquation",
+      "filePath": "packages/engine/Source/Scene/BlendEquation.js",
+      "summary": "混合方程枚举（ADD/SUBTRACT/REVERSE_SUBTRACT/MIN/MAX），映射到 WebGL 常量。",
+      "tags": [
+        "enumeration",
+        "blending",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BlendFunction.js",
+      "type": "file",
+      "name": "BlendFunction",
+      "filePath": "packages/engine/Source/Scene/BlendFunction.js",
+      "summary": "混合函数枚举（ZERO/ONE/SRC_ALPHA 等多种源/目标因子），映射到 WebGL 常量。",
+      "tags": [
+        "enumeration",
+        "blending",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "file",
+      "name": "BlendOption",
+      "filePath": "packages/engine/Source/Scene/BlendOption.js",
+      "summary": "混合选项枚举（OPAQUE/TRANSLUCENT/OPAQUE_AND_TRANSLUCENT），决定 billboard 等集合的渲染 pass 归属。",
+      "tags": [
+        "enumeration",
+        "blending",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BillboardLoadState.js",
+      "type": "file",
+      "name": "BillboardLoadState",
+      "filePath": "packages/engine/Source/Scene/BillboardLoadState.js",
+      "summary": "billboard 纹理加载状态枚举（NOT_LOADED/LOADING/LOADED/FAILED），供 BillboardTexture 跟踪异步图像加载。",
+      "tags": [
+        "enumeration",
+        "billboard",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BatchTable.js",
+      "type": "file",
+      "name": "BatchTable.js",
+      "filePath": "packages/engine/Source/Scene/BatchTable.js",
+      "summary": "批量渲染的逐实例属性表：将 per-instance 属性打包进纹理，并为着色器生成读取这些属性的 GLSL 函数（getGlslAttributeFunction 等）。",
+      "tags": [
+        "batch",
+        "instancing",
+        "texture",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BatchTable.js:BatchTable",
+      "type": "class",
+      "name": "BatchTable",
+      "filePath": "packages/engine/Source/Scene/BatchTable.js",
+      "lineRange": [
+        62,
+        128
+      ],
+      "summary": "BatchTable 构造器：根据属性元数据计算偏移、stride 并建立属性纹理。",
+      "tags": [
+        "batch",
+        "constructor",
+        "instancing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BatchTable.js:getGlslComputeSt",
+      "type": "function",
+      "name": "getGlslComputeSt",
+      "filePath": "packages/engine/Source/Scene/BatchTable.js",
+      "lineRange": [
+        455,
+        491
+      ],
+      "summary": "生成在着色器中根据实例 id 计算属性纹理采样 (s,t) 坐标的 GLSL 辅助函数。",
+      "tags": [
+        "batch",
+        "glsl",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BatchTable.js:getGlslAttributeFunction",
+      "type": "function",
+      "name": "getGlslAttributeFunction",
+      "filePath": "packages/engine/Source/Scene/BatchTable.js",
+      "lineRange": [
+        511,
+        559
+      ],
+      "summary": "为指定属性生成 GLSL 读取函数，解包纹理采样结果为具体类型。",
+      "tags": [
+        "batch",
+        "glsl",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "type": "file",
+      "name": "BatchTexture.js",
+      "filePath": "packages/engine/Source/Scene/BatchTexture.js",
+      "summary": "管理批量特征（如 3D Tiles feature 表）的逐元素拾取/show/颜色状态，编码进纹理供着色器查询与样式化。",
+      "tags": [
+        "batch",
+        "picking",
+        "styling",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BatchTexture.js:BatchTexture",
+      "type": "class",
+      "name": "BatchTexture",
+      "filePath": "packages/engine/Source/Scene/BatchTexture.js",
+      "lineRange": [
+        30,
+        77
+      ],
+      "summary": "BatchTexture 构造器：初始化 show/颜色/拾取颜色等逐特征状态数组与对应的 GPU 纹理。",
+      "tags": [
+        "batch",
+        "constructor",
+        "picking"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Billboard.js",
+      "type": "file",
+      "name": "Billboard.js",
+      "filePath": "packages/engine/Source/Scene/Billboard.js",
+      "summary": "单个 billboard（屏幕空间广告牌）图元：定义位置、图像、颜色、缩放、原点、眼睛偏移、距离条件等显示属性，由 BillboardCollection 批量渲染。",
+      "tags": [
+        "billboard",
+        "primitive",
+        "scene",
+        "entity"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Billboard.js:Billboard",
+      "type": "class",
+      "name": "Billboard",
+      "filePath": "packages/engine/Source/Scene/Billboard.js",
+      "lineRange": [
+        98,
+        231
+      ],
+      "summary": "Billboard 构造器：绑定所属 collection，定义全部可视化属性的 getter/setter 并触发脏标记。",
+      "tags": [
+        "billboard",
+        "primitive",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "type": "file",
+      "name": "BillboardCollection.js",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "summary": "Billboard 集合：将大量 billboard 打包进紧凑顶点 buffer 批量绘制，处理位置压缩、纹理图集、SDF、距离缩放与视锥剔除。",
+      "tags": [
+        "billboard",
+        "collection",
+        "batch",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BillboardCollection.js:BillboardCollection",
+      "type": "class",
+      "name": "BillboardCollection",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "lineRange": [
+        130,
+        339
+      ],
+      "summary": "BillboardCollection 构造器：建立 batch table、vertex array facade、纹理图集与渲染选项。",
+      "tags": [
+        "billboard",
+        "collection",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BillboardCollection.js:createVAF",
+      "type": "function",
+      "name": "createVAF",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "lineRange": [
+        761,
+        858
+      ],
+      "summary": "为当前 billboard 数量创建 VertexArrayFacade 并定义全部压缩属性写入器。",
+      "tags": [
+        "billboard",
+        "collection",
+        "compression"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BillboardCollection.js:writeCompressedAttrib0",
+      "type": "function",
+      "name": "writeCompressedAttrib0",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "lineRange": [
+        926,
+        1027
+      ],
+      "summary": "将位置、eye offset、比例等压缩进 attrib0 顶点字。",
+      "tags": [
+        "billboard",
+        "collection",
+        "compression"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BillboardCollection.js:writeBillboard",
+      "type": "function",
+      "name": "writeBillboard",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "lineRange": [
+        1362,
+        1415
+      ],
+      "summary": "把单个 billboard 的全部属性写入 VAF 各 buffer。",
+      "tags": [
+        "billboard",
+        "collection",
+        "compression"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BillboardCollection.js:recomputeActualPositions",
+      "type": "function",
+      "name": "recomputeActualPositions",
+      "filePath": "packages/engine/Source/Scene/BillboardCollection.js",
+      "lineRange": [
+        1417,
+        1457
+      ],
+      "summary": "重算所有 billboard 的世界/屏幕坐标与包围球。",
+      "tags": [
+        "billboard",
+        "collection",
+        "compression"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "type": "file",
+      "name": "BillboardTexture.js",
+      "filePath": "packages/engine/Source/Scene/BillboardTexture.js",
+      "summary": "billboard 纹理加载协调器：跟踪单个图像资源的异步加载状态（参考 BillboardLoadState）并向上层暴露加载完成的回调和 id。",
+      "tags": [
+        "billboard",
+        "texture",
+        "async",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BillboardTexture.js:BillboardTexture",
+      "type": "class",
+      "name": "BillboardTexture",
+      "filePath": "packages/engine/Source/Scene/BillboardTexture.js",
+      "lineRange": [
+        14,
+        37
+      ],
+      "summary": "BillboardTexture 构造器：绑定所属 collection 并初始化加载状态为 NOT_LOADED。",
+      "tags": [
+        "billboard",
+        "texture",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "file",
+      "name": "BlendingState.js",
+      "filePath": "packages/engine/Source/Scene/BlendingState.js",
+      "summary": "提供常用混合状态预设（不透明、半透明、加性等）的工厂表，封装 BlendEquation 与 BlendFunction 的组合。",
+      "tags": [
+        "blending",
+        "preset",
+        "scene"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "class:packages/engine/Source/Scene/BatchTable.js:BatchTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "class:packages/engine/Source/Scene/BatchTable.js:BatchTable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "function:packages/engine/Source/Scene/BatchTable.js:getGlslComputeSt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "function:packages/engine/Source/Scene/BatchTable.js:getGlslAttributeFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "class:packages/engine/Source/Scene/BatchTexture.js:BatchTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "class:packages/engine/Source/Scene/BatchTexture.js:BatchTexture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "class:packages/engine/Source/Scene/Billboard.js:Billboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "class:packages/engine/Source/Scene/Billboard.js:Billboard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "class:packages/engine/Source/Scene/BillboardCollection.js:BillboardCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "class:packages/engine/Source/Scene/BillboardCollection.js:BillboardCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "function:packages/engine/Source/Scene/BillboardCollection.js:createVAF",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "function:packages/engine/Source/Scene/BillboardCollection.js:writeCompressedAttrib0",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "function:packages/engine/Source/Scene/BillboardCollection.js:writeBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "function:packages/engine/Source/Scene/BillboardCollection.js:recomputeActualPositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "class:packages/engine/Source/Scene/BillboardTexture.js:BillboardTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "class:packages/engine/Source/Scene/BillboardTexture.js:BillboardTexture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/getExtensionFromUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/isDataUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/Billboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/SDFSettings.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "file:packages/engine/Source/Scene/BillboardLoadState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendEquation.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendFunction.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendingState.js",
+      "target": "file:packages/engine/Source/Scene/BlendEquation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendingState.js",
+      "target": "file:packages/engine/Source/Scene/BlendFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendingState.js",
+      "target": "file:packages/engine/Source/Scene/BlendEquation.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BlendingState.js",
+      "target": "file:packages/engine/Source/Scene/BlendFunction.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "target": "file:packages/engine/Source/Scene/BillboardLoadState.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/Billboard.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArrayFacade.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Billboard.js",
+      "target": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTable.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

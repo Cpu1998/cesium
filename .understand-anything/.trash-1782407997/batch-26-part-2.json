@@ -1,0 +1,1234 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "file",
+      "name": "ShaderDestination.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderDestination.js",
+      "summary": "定义 Shader 阶段目标枚举 (Vertex/Fragment/Compute),被 ShaderBuilder 与所有 Model pipeline stage 用来决定 shader 代码注入位置。",
+      "tags": [
+        "enumeration",
+        "shader",
+        "renderer",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/createUniform.js",
+      "type": "file",
+      "name": "createUniform.js",
+      "filePath": "packages/engine/Source/Renderer/createUniform.js",
+      "summary": "WebGL uniform 单值封装工厂,为 float/vec2-4/mat2-4/sampler/int 等每种 GLSL 类型提供对应的 Uniform* 实现类,负责 setter 与 location 绑定。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniform.js:UniformFloatVec4",
+      "type": "class",
+      "name": "UniformFloatVec4",
+      "filePath": "packages/engine/Source/Renderer/createUniform.js",
+      "lineRange": [
+        183,
+        225
+      ],
+      "summary": "UniformFloatVec4 实现 FloatVec4 类型 GLSL uniform 的 set/location 绑定,与 ShaderProgram 协同上传到 GPU。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniform.js:UniformSampler",
+      "type": "class",
+      "name": "UniformSampler",
+      "filePath": "packages/engine/Source/Renderer/createUniform.js",
+      "lineRange": [
+        232,
+        271
+      ],
+      "summary": "UniformSampler 实现 Sampler 类型 GLSL uniform 的 set/location 绑定,与 ShaderProgram 协同上传到 GPU。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniform.js:UniformMat4",
+      "type": "class",
+      "name": "UniformMat4",
+      "filePath": "packages/engine/Source/Renderer/createUniform.js",
+      "lineRange": [
+        496,
+        527
+      ],
+      "summary": "UniformMat4 实现 Mat4 类型 GLSL uniform 的 set/location 绑定,与 ShaderProgram 协同上传到 GPU。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "type": "file",
+      "name": "createUniformArray.js",
+      "filePath": "packages/engine/Source/Renderer/createUniformArray.js",
+      "summary": "WebGL uniform 数组封装工厂,为 vec/mat/sampler 的数组形式提供 UniformArray* 实现,处理跨 array element 的连续内存写入与 sampler 数组绑定。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayFloatVec4",
+      "type": "class",
+      "name": "UniformArrayFloatVec4",
+      "filePath": "packages/engine/Source/Renderer/createUniformArray.js",
+      "lineRange": [
+        251,
+        321
+      ],
+      "summary": "UniformArrayFloatVec4 实现 FloatVec4 数组类型 GLSL uniform 的逐元素 setter,服务于光照/裁剪面等数组 uniform。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArraySampler",
+      "type": "class",
+      "name": "UniformArraySampler",
+      "filePath": "packages/engine/Source/Renderer/createUniformArray.js",
+      "lineRange": [
+        328,
+        382
+      ],
+      "summary": "UniformArraySampler 实现 Sampler 数组类型 GLSL uniform 的逐元素 setter,服务于光照/裁剪面等数组 uniform。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayMat4",
+      "type": "class",
+      "name": "UniformArrayMat4",
+      "filePath": "packages/engine/Source/Renderer/createUniformArray.js",
+      "lineRange": [
+        703,
+        749
+      ],
+      "summary": "UniformArrayMat4 实现 Mat4 数组类型 GLSL uniform 的逐元素 setter,服务于光照/裁剪面等数组 uniform。",
+      "tags": [
+        "renderer",
+        "webgl",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/AlphaMode.js",
+      "type": "file",
+      "name": "AlphaMode.js",
+      "filePath": "packages/engine/Source/Scene/AlphaMode.js",
+      "summary": "定义 glTF 材质的 alpha 混合模式枚举 (OPAQUE/MASK/BLEND),供 MaterialPipelineStage 与 PntsLoader 决定透明度处理方式。",
+      "tags": [
+        "enumeration",
+        "gltf",
+        "material",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "file",
+      "name": "AttributeType.js",
+      "filePath": "packages/engine/Source/Scene/AttributeType.js",
+      "summary": "将 glTF/3D Tiles 语义属性类型映射到对应的 Cartesian/Matrix 数据类型的查表工具,服务于顶点属性解析与几何管线。",
+      "tags": [
+        "type-definition",
+        "gltf",
+        "attribute",
+        "mapper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "file",
+      "name": "Axis.js",
+      "filePath": "packages/engine/Source/Scene/Axis.js",
+      "summary": "定义 X/Y/Z 坐标轴枚举,并提供根据轴生成对应 3x3/4x4 翻转变换矩阵的工具,用于 glTF glTF_axis 变换与 Gaussian Splat 的 Y-up 翻转。",
+      "tags": [
+        "enumeration",
+        "axis",
+        "transformation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "type": "file",
+      "name": "B3dmParser.js",
+      "filePath": "packages/engine/Source/Scene/B3dmParser.js",
+      "summary": "(已废弃) 解析 Batched 3D Model (b3dm) tile 二进制格式的解析器,提取 glTF 与 feature/table;新代码应使用 Model/B3dmLoader。",
+      "tags": [
+        "parser",
+        "3d-tiles",
+        "b3dm",
+        "deprecated"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "type": "file",
+      "name": "BatchTableHierarchy.js",
+      "filePath": "packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "summary": "解析 3D Tiles EXT_batch_table_hierarchy 扩展的层次化 batch table,支持多父实例遍历与按属性二进制访问,实现 per-feature 元数据。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "metadata",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BatchTableHierarchy.js:BatchTableHierarchy",
+      "type": "function",
+      "name": "BatchTableHierarchy",
+      "filePath": "packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "lineRange": [
+        23,
+        43
+      ],
+      "summary": "构造层次化 batch table,持有 class 定义与实例树,提供属性读写接口。",
+      "tags": [
+        "3d-tiles",
+        "batch-table",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/BatchTableHierarchy.js:traverseHierarchyMultipleParents",
+      "type": "function",
+      "name": "traverseHierarchyMultipleParents",
+      "filePath": "packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "lineRange": [
+        224,
+        269
+      ],
+      "summary": "支持多父实例的层次遍历,使用 visitor 回调避免重复访问。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "hierarchy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "type": "file",
+      "name": "BufferLoader.js",
+      "filePath": "packages/engine/Source/Scene/BufferLoader.js",
+      "summary": "加载 glTF buffer 资源的 ResourceLoader 子类,处理内嵌 base64 与外部 URL 缓冲,服务于 GltfVertexBufferLoader/IndexBufferLoader。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "buffer",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferLoader.js:BufferLoader",
+      "type": "class",
+      "name": "BufferLoader",
+      "filePath": "packages/engine/Source/Scene/BufferLoader.js",
+      "lineRange": [
+        15,
+        105
+      ],
+      "summary": "BufferLoader 类继承 ResourceLoader,管理 buffer 的异步加载与 ResourceCache 生命周期。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "buffer",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "type": "file",
+      "name": "Cesium3DTileFeatureTable.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "summary": "从 3D Tiles 二进制或 JSON feature table 中读取 typed array 属性的解析器,服务于 b3dm/i3dm/pnts 等 tile 内容加载。",
+      "tags": [
+        "3d-tiles",
+        "feature-table",
+        "parser",
+        "binary"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "type": "file",
+      "name": "Cesium3DTilesVoxelProvider.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "summary": "基于 3D Tiles implicit tiling 与 3DTILES_voxel 扩展实现 VoxelProvider 接口的核心类,负责 voxel tile 子树加载、属性提取与 box/cylinder/ellipsoid 形状构造。",
+      "tags": [
+        "3d-tiles",
+        "voxel",
+        "implicit-tiling",
+        "provider"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js:Cesium3DTilesVoxelProvider",
+      "type": "function",
+      "name": "Cesium3DTilesVoxelProvider",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "lineRange": [
+        71,
+        123
+      ],
+      "summary": "构造 voxel 3D Tiles provider,持有 tileset JSON、metadata schema、implicit subtree 缓存及形状解析逻辑。",
+      "tags": [
+        "3d-tiles",
+        "voxel",
+        "provider",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "type": "file",
+      "name": "Cesium3DTilesetMetadata.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "summary": "封装 3D Tiles 1.1 tileset 级元数据与 schema 的访问器,委托给 TilesetMetadata 与 GroupMetadata,集成 EXT_structural_metadata 扩展。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "schema",
+        "accessor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "type": "file",
+      "name": "ClippingPlane.js",
+      "filePath": "packages/engine/Source/Scene/ClippingPlane.js",
+      "summary": "定义单个裁剪平面对象 (Cartesian3 法线 + 距离),用于 Primitive/Voxel 的局部裁剪,可被组织为 ClippingPlaneCollection。",
+      "tags": [
+        "clipping",
+        "plane",
+        "data-model",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "type": "file",
+      "name": "ColorBlendMode.js",
+      "filePath": "packages/engine/Source/Scene/ColorBlendMode.js",
+      "summary": "定义模型颜色混合模式枚举 (HIGHLIGHT/REPLACE/MIX),供 Model 颜色管线决定 entity 着色策略。",
+      "tags": [
+        "enumeration",
+        "color",
+        "model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ContentMetadata.js",
+      "type": "file",
+      "name": "ContentMetadata.js",
+      "filePath": "packages/engine/Source/Scene/ContentMetadata.js",
+      "summary": "封装 3D Tiles tile content 级元数据的访问器,委托给 MetadataEntity,提供 content properties / property attributes 的统一查询接口。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "accessor",
+        "schema"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "type": "file",
+      "name": "DeviceOrientationCameraController.js",
+      "filePath": "packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "summary": "基于设备方向传感器 (DeviceOrientation event) 的相机控制器,将手机陀螺仪/罗盘输入转换为相机旋转,用于移动端 AR 式视角。",
+      "tags": [
+        "camera-controller",
+        "device-orientation",
+        "input",
+        "mobile"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformFloatVec4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformFloatVec4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformSampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformSampler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformMat4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Renderer/createUniform.js:UniformMat4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayFloatVec4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayFloatVec4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArraySampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArraySampler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayMat4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Renderer/createUniformArray.js:UniformArrayMat4",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "function:packages/engine/Source/Scene/BatchTableHierarchy.js:BatchTableHierarchy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "function:packages/engine/Source/Scene/BatchTableHierarchy.js:BatchTableHierarchy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "function:packages/engine/Source/Scene/BatchTableHierarchy.js:traverseHierarchyMultipleParents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "class:packages/engine/Source/Scene/BufferLoader.js:BufferLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "class:packages/engine/Source/Scene/BufferLoader.js:BufferLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js:Cesium3DTilesVoxelProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js:Cesium3DTilesVoxelProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/AttributeType.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Axis.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Axis.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Axis.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/B3dmParser.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BatchTableHierarchy.js",
+      "target": "file:packages/engine/Source/Scene/getBinaryAccessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/hasExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitSubtree.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileCoordinates.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileset.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/VoxelMetadataOrder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js",
+      "target": "file:packages/engine/Source/Scene/VoxelShapeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "target": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "target": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ContentMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ContentMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ContentMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniform.js",
+      "target": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "target": "class:packages/engine/Source/Core/Matrix4.js:Matrix4",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

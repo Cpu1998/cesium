@@ -1,0 +1,2375 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "type": "file",
+      "name": "Cesium3DTilesetTraversal.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "summary": "提供 3D Tiles 集合的遍历基类，定义瓦片可见性更新、屏幕空间误差判定与子节点优先级计算的共享逻辑，由多种具体遍历策略（最详细、跳过等）继承。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "lod",
+        "base-class"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用原型链构造伪类，作为多个遍历子类的共享基类。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "type": "file",
+      "name": "Composite3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Composite3DTileContent.js",
+      "summary": "实现复合瓦片内容，将一个组合瓦片拆解为多个内部子内容并统一代理其 update/pick/destroy 等接口，常用于将多种几何/影像瓦片聚合为单一 content。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "composite",
+        "tile-content"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "type": "file",
+      "name": "ConditionsExpression.js",
+      "filePath": "packages/engine/Source/Scene/ConditionsExpression.js",
+      "summary": "对 3D Tiles 样式中的条件表达式（show/color 条件列表）进行求值，基于 Expression 解析每个条件并在运行时按 feature 属性匹配。",
+      "tags": [
+        "3d-tiles",
+        "styling",
+        "expression",
+        "conditions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "type": "file",
+      "name": "CreditDisplay.js",
+      "filePath": "packages/engine/Source/Scene/CreditDisplay.js",
+      "summary": "管理场景归属信息（credit）的 DOM 展示，负责底图与数据源的版权徽标、分隔符、灯箱展开/收起逻辑及 CSS 样式注入。",
+      "tags": [
+        "ui",
+        "credit",
+        "dom",
+        "attribution",
+        "scene"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 shadow root 注入样式以隔离宿主页面 CSS。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js",
+      "type": "file",
+      "name": "DiscardEmptyTileImagePolicy.js",
+      "filePath": "packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js",
+      "summary": "空瓦片图像丢弃策略：判定图像为空白（如某些 WMS 返回的占位图）并跳过，避免不必要的瓦片渲染。",
+      "tags": [
+        "imagery",
+        "tile-discard",
+        "policy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "type": "file",
+      "name": "DiscardMissingTileImagePolicy.js",
+      "filePath": "packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "summary": "缺失瓦片图像丢弃策略：通过比对预取的参考像素判断瓦片是否为 404 占位图，从而跳过加载该层级缺失的瓦片。",
+      "tags": [
+        "imagery",
+        "tile-discard",
+        "policy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "type": "file",
+      "name": "DracoLoader.js",
+      "filePath": "packages/engine/Source/Scene/DracoLoader.js",
+      "summary": "Draco 几何压缩解码器封装：通过 Web Worker 任务处理器调度 wasm 解码器，为点云与 glTF 的 Draco 压缩 buffer view 提供解压能力。",
+      "tags": [
+        "draco",
+        "compression",
+        "loader",
+        "worker",
+        "gltf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "type": "file",
+      "name": "EdgeDisplayMode.js",
+      "filePath": "packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "summary": "定义 3D 模型/瓦片的边缘显示模式枚举（如 NONE、COLOR 等），供 Cesium3DTileset 与 Model 配置描边渲染效果。",
+      "tags": [
+        "enum",
+        "edge-display",
+        "3d-tiles",
+        "model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Empty3DTileContent.js",
+      "type": "file",
+      "name": "Empty3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Empty3DTileContent.js",
+      "summary": "空内容的 3D Tiles content 实现：满足 content 接口契约但不渲染任何几何，用于无可见数据但需保留瓦片结构的位置。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "empty",
+        "tile-content"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Expression.js",
+      "type": "file",
+      "name": "Expression.js",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "summary": "Cesium 表达式引擎：解析并求值类 GLSL 的样式表达式（含数学/向量/颜色/正则/feature 属性运算），驱动 3D Tiles 样式与条件渲染，并可生成 shader 表达式字符串。",
+      "tags": [
+        "expression",
+        "styling",
+        "parser",
+        "evaluator",
+        "3d-tiles"
+      ],
+      "complexity": "complex",
+      "languageNotes": "基于 jsep 解析器构造 AST，并针对 Cartesian2/3/4 与 Color 逐分量生成求值闭包。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ExpressionNodeType.js",
+      "type": "file",
+      "name": "ExpressionNodeType.js",
+      "filePath": "packages/engine/Source/Scene/ExpressionNodeType.js",
+      "summary": "定义表达式 AST 节点类型的冻结枚举（字面量、变量、运算符、调用等），供 Expression 解析与求值时标识节点类别。",
+      "tags": [
+        "enum",
+        "expression",
+        "ast",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "type": "file",
+      "name": "GaussianSplatSorter.js",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "summary": "高斯泼溅排序器：通过 Web Worker 任务处理器按视角深度对高斯点进行排序，为 GaussianSplatPrimitive 提供前后顺序数据。",
+      "tags": [
+        "gaussian-splat",
+        "sorting",
+        "worker",
+        "point-cloud"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "type": "file",
+      "name": "GaussianSplatTextureGenerator.js",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "summary": "高斯泼溅纹理生成器：在 Web Worker 中将高斯属性（协方差/球谐系数等）预计算为可采样纹理，供 GPU 渲染使用。",
+      "tags": [
+        "gaussian-splat",
+        "texture",
+        "worker",
+        "preprocessing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "type": "file",
+      "name": "Geometry3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "summary": "实现几何类 3D Tiles content（Vector3DTileGeometry 承载），负责解析 i3dm/b3dm 等瓦片的 feature table、batch table 与几何 batch id，并代理样式/拾取/销毁。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "geometry",
+        "vector-tiles",
+        "tile-content"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "type": "file",
+      "name": "GetFeatureInfoFormat.js",
+      "filePath": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "summary": "封装 WMS/WMTS GetFeatureInfo 的多种响应格式（JSON/GeoJSON/XML/GML/MapInfo/ESRI/文本）并将其解析为 ImageryLayerFeatureInfo 列表。",
+      "tags": [
+        "wms",
+        "wmts",
+        "imagery",
+        "feature-info",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "type": "file",
+      "name": "GlobeTranslucency.js",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucency.js",
+      "summary": "配置地球椭球体的半透明渲染参数（前后衰减、矩形裁剪区、近距离不透明度等），供 Globe 实现水下/穿透视觉效果。",
+      "tags": [
+        "globe",
+        "translucency",
+        "rendering",
+        "config"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "type": "file",
+      "name": "GltfJsonLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfJsonLoader.js",
+      "summary": "glTF JSON 加载器：从 URI 或 typed array 加载 glTF/GLB，进行版本升级、扩展处理、data URI 解码与内嵌 buffer 加载，作为 GltfLoader 的 JSON 解析后端。",
+      "tags": [
+        "gltf",
+        "loader",
+        "version-upgrade",
+        "pipeline"
+      ],
+      "complexity": "complex",
+      "languageNotes": "继承 ResourceLoader，使用 GltfPipeline 进行规范化与版本升级。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "file",
+      "name": "ForEach.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "summary": "glTF 管线的通用遍历工具：提供对 nodes/meshes/primitives/materials/textures/animations/accessors/bufferViews 等元素的统一 forEach 迭代 API。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "traversal",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "type": "file",
+      "name": "addBuffer.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "summary": "glTF 管线步骤：向 glTF 资源添加一个新的 buffer 项并返回其索引，供版本升级/组件类型更新等步骤扩展缓冲区数组。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "buffer",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "type": "file",
+      "name": "addDefaults.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "summary": "glTF 管线步骤：为 glTF 资源补全默认值（accessor byteStride、material、technique、动画节点、纹理默认等），保证后续步骤可假定完整结构。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "defaults",
+        "normalization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "type": "file",
+      "name": "addExtensionsRequired.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "summary": "glTF 管线步骤：将指定扩展同时加入 extensionsUsed 与 extensionsRequired 列表（在 addExtensionsUsed 基础上追加 required 标记）。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "extensions",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "type": "file",
+      "name": "addExtensionsUsed.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "summary": "glTF 管线步骤：向 glTF 资源的 extensionsUsed 数组追加扩展名，声明管线用到的扩展。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "extensions",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "type": "file",
+      "name": "addPipelineExtras.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "summary": "glTF 管线步骤：遍历 glTF 资源为其元素附加 _pipelineExtras 占位对象，供管线各步骤存放中间状态。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "extras",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "file",
+      "name": "addToArray.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "summary": "glTF 管线底层工具：将元素插入 glTF 数组属性并返回其索引，若数组不存在则自动创建，作为各 add*/扩展操作的基础。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "array",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "type": "file",
+      "name": "findAccessorMinMax.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "summary": "glTF 管线步骤：读取 accessor 数据并计算其最小/最大值范围，用于补全 accessor.min/max 或归一化组件类型。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "min-max"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "type": "file",
+      "name": "forEachTextureInMaterial.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "summary": "glTF 管线步骤：遍历材质中引用的所有纹理（基础色、法线、自发光等），并对每个 textureInfo 执行回调，用于纹理转换/移除。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "material",
+        "texture",
+        "traversal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "type": "file",
+      "name": "getAccessorByteStride.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "summary": "glTF 管线工具：依据 accessor 与 bufferView 推导出实际的字节步长（考虑默认与 KHR_mesh_quantization 等情况）。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "type": "file",
+      "name": "getComponentReader.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "summary": "glTF 管线工具：根据 accessor 组件类型（BYTE/UNSIGNED_SHORT/FLOAT 等）返回对应的 TypedArray 读取器函数，用于逐分量读取压缩数据。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "reader",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "type": "file",
+      "name": "moveTechniqueRenderStates.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "summary": "glTF 管线步骤：将 KHR_techniques_webgl 的 technique 渲染状态（混合、剔除等）迁移为材质的 glTF 2.0 alpha/双面属性，并补全所需扩展。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "technique",
+        "migration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "type": "file",
+      "name": "moveTechniquesToExtension.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "summary": "glTF 管线步骤：把 glTF 1.0 内联的 techniques/programs/shaders 提取到 KHR_techniques_webgl 扩展对象中，完成 1.0→2.0 的 technique 迁移。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "technique",
+        "migration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "type": "file",
+      "name": "numberOfComponentsForType.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "summary": "glTF 管线工具：将 accessor 的 type（SCALAR/VEC2/.../MAT4）映射为分量数量，供字节步长与读取计算使用。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "type": "file",
+      "name": "parseGlb.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "summary": "glTF 管线步骤：解析 GLB 二进制容器（chunk 读取与版本判定），将其转换为 JSON + 二进制 buffer 的 glTF 对象表示。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "glb",
+        "parser",
+        "binary"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "type": "file",
+      "name": "readAccessorPacked.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "summary": "glTF 管线步骤：以紧凑数组形式读取 accessor 的全部数据（解包字节步长与组件类型），供需要原始数值的步骤（min/max、量化还原等）使用。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "reader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "type": "file",
+      "name": "removeExtension.js",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "summary": "glTF 管线步骤：递归遍历 glTF 资源移除指定扩展对象，并从 extensionsUsed/Required 列表中清除（含 Cesium RTC 的特殊处理）。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "extensions",
+        "cleanup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:updateTileVisibility",
+      "type": "function",
+      "name": "updateTileVisibility",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "lineRange": [
+        208,
+        243
+      ],
+      "summary": "更新单个瓦片及其子节点的可见性，结合 SSE 提前满足判断与子节点可见性聚合。",
+      "tags": [
+        "traversal",
+        "visibility",
+        "lod"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:updateMinimumMaximumPriority",
+      "type": "function",
+      "name": "updateMinimumMaximumPriority",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "lineRange": [
+        290,
+        321
+      ],
+      "summary": "根据瓦片深度/屏幕空间误差维护子节点加载优先级的上下界，指导遍历顺序。",
+      "tags": [
+        "traversal",
+        "priority",
+        "lod"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:isOnScreenLongEnough",
+      "type": "function",
+      "name": "isOnScreenLongEnough",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "lineRange": [
+        162,
+        181
+      ],
+      "summary": "判断瓦片是否已在屏幕停留足够长时间，避免对短暂闪现的瓦片进行加载。",
+      "tags": [
+        "traversal",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:meetsScreenSpaceErrorEarly",
+      "type": "function",
+      "name": "meetsScreenSpaceErrorEarly",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "lineRange": [
+        251,
+        267
+      ],
+      "summary": "提前判断父瓦片是否已满足屏幕空间误差，从而可跳过子瓦片细化。",
+      "tags": [
+        "traversal",
+        "sse"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Composite3DTileContent.js:Composite3DTileContent",
+      "type": "class",
+      "name": "Composite3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Composite3DTileContent.js",
+      "lineRange": [
+        18,
+        361
+      ],
+      "summary": "复合瓦片 content 类，解析复合瓦片字节流并按内部 tileType 委托给各 content factory，统一代理 update/pick/destroy。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "composite"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CreditDisplay.js:CreditDisplay",
+      "type": "function",
+      "name": "CreditDisplay",
+      "filePath": "packages/engine/Source/Scene/CreditDisplay.js",
+      "lineRange": [
+        301,
+        390
+      ],
+      "summary": "CreditDisplay 构造函数：初始化归属 DOM 容器、灯箱、徽标按钮并注入 CSS。",
+      "tags": [
+        "ui",
+        "credit",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CreditDisplay.js:appendCss",
+      "type": "function",
+      "name": "appendCss",
+      "filePath": "packages/engine/Source/Scene/CreditDisplay.js",
+      "lineRange": [
+        165,
+        279
+      ],
+      "summary": "将归属展示所需的 CSS 规则注入到 shadow root 或 document head，实现样式隔离。",
+      "tags": [
+        "ui",
+        "credit",
+        "css",
+        "styling"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/CreditDisplay.js:displayCredits",
+      "type": "function",
+      "name": "displayCredits",
+      "filePath": "packages/engine/Source/Scene/CreditDisplay.js",
+      "lineRange": [
+        79,
+        136
+      ],
+      "summary": "将一组 credit 渲染为 DOM 元素（含分隔符）并更新到容器，处理新增/替换/移除差异。",
+      "tags": [
+        "ui",
+        "credit",
+        "rendering"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js:DiscardMissingTileImagePolicy",
+      "type": "function",
+      "name": "DiscardMissingTileImagePolicy",
+      "filePath": "packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "lineRange": [
+        22,
+        94
+      ],
+      "summary": "构造缺失瓦片丢弃策略：预取参考图像像素以便后续比对判定瓦片是否为 404 占位图。",
+      "tags": [
+        "imagery",
+        "tile-discard",
+        "policy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/DracoLoader.js:DracoLoader",
+      "type": "class",
+      "name": "DracoLoader",
+      "filePath": "packages/engine/Source/Scene/DracoLoader.js",
+      "lineRange": [
+        9,
+        87
+      ],
+      "summary": "Draco 解码器类：管理 wasm 解码任务处理器并提供点云与 buffer view 的解码入口。",
+      "tags": [
+        "draco",
+        "compression",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Empty3DTileContent.js:Empty3DTileContent",
+      "type": "class",
+      "name": "Empty3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Empty3DTileContent.js",
+      "lineRange": [
+        15,
+        130
+      ],
+      "summary": "空瓦片 content 类：实现完整 content 接口但不承载任何可渲染数据。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "empty"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Expression.js:Expression",
+      "type": "function",
+      "name": "Expression",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "lineRange": [
+        37,
+        58
+      ],
+      "summary": "表达式构造函数：替换 defines/变量、用 jsep 解析并编译为可求值的运行时 AST。",
+      "tags": [
+        "expression",
+        "parser",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Expression.js:createRuntimeAst",
+      "type": "function",
+      "name": "createRuntimeAst",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "lineRange": [
+        894,
+        951
+      ],
+      "summary": "将 jsep 解析 AST 递归转换为运行时求值节点（含字面量、调用、一元/二元/三元运算）。",
+      "tags": [
+        "expression",
+        "ast",
+        "compiler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Expression.js:setEvaluateFunction",
+      "type": "function",
+      "name": "setEvaluateFunction",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "lineRange": [
+        953,
+        1053
+      ],
+      "summary": "为运行时节点绑定求值闭包，根据节点类型分派到一元/二元/三元或字面量求值路径。",
+      "tags": [
+        "expression",
+        "evaluator",
+        "compiler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Expression.js:parseCall",
+      "type": "function",
+      "name": "parseCall",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "lineRange": [
+        650,
+        786
+      ],
+      "summary": "解析表达式中的函数调用（数学、向量、颜色、正则、abs/length/distance/cross 等）为运行时节点。",
+      "tags": [
+        "expression",
+        "parser",
+        "call"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Expression.js:getEvaluateBinaryComponentwise",
+      "type": "function",
+      "name": "getEvaluateBinaryComponentwise",
+      "filePath": "packages/engine/Source/Scene/Expression.js",
+      "lineRange": [
+        352,
+        410
+      ],
+      "summary": "为二元逐分量运算（加减乘除等）生成针对 Cartesian2/3/4 的求值闭包工厂。",
+      "tags": [
+        "expression",
+        "evaluator",
+        "vector"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Geometry3DTileContent.js:Geometry3DTileContent",
+      "type": "class",
+      "name": "Geometry3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "lineRange": [
+        19,
+        181
+      ],
+      "summary": "几何类瓦片 content 类：实现 content 接口并委托给 Vector3DTileGeometry 与 batchTable 渲染。",
+      "tags": [
+        "3d-tiles",
+        "content",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Geometry3DTileContent.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "lineRange": [
+        306,
+        487
+      ],
+      "summary": "解析几何瓦片的 feature table/batch table/RTC 中心，构建 Vector3DTileGeometry 实例。",
+      "tags": [
+        "3d-tiles",
+        "parser",
+        "initialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Geometry3DTileContent.js:getBatchIds",
+      "type": "function",
+      "name": "getBatchIds",
+      "filePath": "packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "lineRange": [
+        191,
+        302
+      ],
+      "summary": "从 feature table 中按各种 batch id 语义（无/标量/VEC2/VEC3）提取每个顶点的 batch 标识。",
+      "tags": [
+        "3d-tiles",
+        "parser",
+        "batch-id"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:GetFeatureInfoFormat",
+      "type": "function",
+      "name": "GetFeatureInfoFormat",
+      "filePath": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "lineRange": [
+        22,
+        72
+      ],
+      "summary": "构造 GetFeatureInfo 格式描述：绑定 type/format 并为各响应类型预置解析回调。",
+      "tags": [
+        "wms",
+        "feature-info",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:esriXmlToFeatureInfo",
+      "type": "function",
+      "name": "esriXmlToFeatureInfo",
+      "filePath": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "lineRange": [
+        180,
+        245
+      ],
+      "summary": "将 ESRI ArcGIS XML 形式的 FeatureInfo 响应解析为 ImageryLayerFeatureInfo 列表。",
+      "tags": [
+        "wms",
+        "esri",
+        "xml",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:gmlToFeatureInfo",
+      "type": "function",
+      "name": "gmlToFeatureInfo",
+      "filePath": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "lineRange": [
+        247,
+        271
+      ],
+      "summary": "解析标准 GML FeatureInfo 响应，递归提取属性并构造 feature 信息。",
+      "tags": [
+        "wms",
+        "gml",
+        "xml",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:getGmlPropertiesRecursively",
+      "type": "function",
+      "name": "getGmlPropertiesRecursively",
+      "filePath": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "lineRange": [
+        313,
+        341
+      ],
+      "summary": "递归遍历 GML 节点收集子属性键值对，用于填充 feature 描述。",
+      "tags": [
+        "wms",
+        "gml",
+        "recursive",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfJsonLoader.js:GltfJsonLoader",
+      "type": "class",
+      "name": "GltfJsonLoader",
+      "filePath": "packages/engine/Source/Scene/GltfJsonLoader.js",
+      "lineRange": [
+        28,
+        142
+      ],
+      "summary": "glTF JSON 加载器类：管理缓存键、加载/卸载生命周期与资源缓存集成。",
+      "tags": [
+        "gltf",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfJsonLoader.js:upgradeVersion",
+      "type": "function",
+      "name": "upgradeVersion",
+      "filePath": "packages/engine/Source/Scene/GltfJsonLoader.js",
+      "lineRange": [
+        171,
+        212
+      ],
+      "summary": "将旧版 glTF 资源升级到 2.0：迁移 techniques、移除 1.0 扩展并应用 updateVersion 管线。",
+      "tags": [
+        "gltf",
+        "version-upgrade",
+        "migration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfJsonLoader.js:processGltfJson",
+      "type": "function",
+      "name": "processGltfJson",
+      "filePath": "packages/engine/Source/Scene/GltfJsonLoader.js",
+      "lineRange": [
+        252,
+        282
+      ],
+      "summary": "对已加载的 glTF JSON 执行规范化与升级流程并解码 data URI/内嵌 buffer。",
+      "tags": [
+        "gltf",
+        "processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/ForEach.js:ForEach",
+      "type": "function",
+      "name": "ForEach",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "lineRange": [
+        10,
+        10
+      ],
+      "summary": "glTF 管线统一遍历命名空间：聚合对 node/mesh/material/texture/animation 等各类元素的 forEach 入口。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "traversal",
+        "namespace"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/addDefaults.js:addDefaults",
+      "type": "function",
+      "name": "addDefaults",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "lineRange": [
+        15,
+        184
+      ],
+      "summary": "为 glTF 资源补全默认值：accessor byteStride、material、technique、动画节点与纹理等。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "defaults",
+        "normalization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js:getComponentReader",
+      "type": "function",
+      "name": "getComponentReader",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "lineRange": [
+        11,
+        132
+      ],
+      "summary": "按组件类型返回对应的 TypedArray 读取闭包，支持归一化与压缩格式的逐分量读取。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "reader",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js:moveTechniqueRenderStates",
+      "type": "function",
+      "name": "moveTechniqueRenderStates",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "lineRange": [
+        60,
+        133
+      ],
+      "summary": "将 technique 的混合/剔除渲染状态映射为 glTF 2.0 材质的 alphaMode/doubleSided 属性。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "technique",
+        "migration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js:moveTechniquesToExtension",
+      "type": "function",
+      "name": "moveTechniquesToExtension",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "lineRange": [
+        15,
+        143
+      ],
+      "summary": "提取 glTF 1.0 techniques/programs/shaders 到 KHR_techniques_webgl 扩展对象中。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "technique",
+        "migration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js:forEachTextureInMaterial",
+      "type": "function",
+      "name": "forEachTextureInMaterial",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "lineRange": [
+        13,
+        144
+      ],
+      "summary": "遍历材质引用的所有纹理信息（基础色、金属粗糙、法线、自发光、遮挡等）并对每个执行回调。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "material",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js:findAccessorMinMax",
+      "type": "function",
+      "name": "findAccessorMinMax",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "lineRange": [
+        16,
+        69
+      ],
+      "summary": "读取 accessor 数据并计算其各分量最小/最大值，返回 min/max 数组。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "min-max"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/parseGlb.js:parseGlb",
+      "type": "function",
+      "name": "parseGlb",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "lineRange": [
+        20,
+        38
+      ],
+      "summary": "解析 GLB 二进制容器入口：校验 magic 并按版本分派到 v1/v2 解析路径。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "glb",
+        "parser"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/parseGlb.js:parseGlbVersion2",
+      "type": "function",
+      "name": "parseGlbVersion2",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "lineRange": [
+        85,
+        116
+      ],
+      "summary": "解析 GLB 2.0 容器的 JSON chunk 与 BIN chunk，构造 glTF 对象与内嵌 buffer。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "glb",
+        "parser"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js:readAccessorPacked",
+      "type": "function",
+      "name": "readAccessorPacked",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "lineRange": [
+        16,
+        52
+      ],
+      "summary": "以紧凑 TypedArray 形式读取 accessor 全部数据，解包字节步长与归一化。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "accessor",
+        "reader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/removeExtension.js:removeExtensionAndTraverse",
+      "type": "function",
+      "name": "removeExtensionAndTraverse",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "lineRange": [
+        33,
+        62
+      ],
+      "summary": "递归遍历 glTF 资源对象，删除匹配指定扩展的子对象。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "extensions",
+        "cleanup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfPipeline/addBuffer.js:addBuffer",
+      "type": "function",
+      "name": "addBuffer",
+      "filePath": "packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "lineRange": [
+        12,
+        28
+      ],
+      "summary": "向 glTF 资源添加 buffer 项并返回索引，供管线步骤扩展缓冲区。",
+      "tags": [
+        "gltf",
+        "pipeline",
+        "buffer",
+        "mutation"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:updateTileVisibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:updateMinimumMaximumPriority",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:isOnScreenLongEnough",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js:meetsScreenSpaceErrorEarly",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Composite3DTileContent.js:Composite3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "function:packages/engine/Source/Scene/CreditDisplay.js:CreditDisplay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "function:packages/engine/Source/Scene/CreditDisplay.js:appendCss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "function:packages/engine/Source/Scene/CreditDisplay.js:displayCredits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "function:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js:DiscardMissingTileImagePolicy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "target": "class:packages/engine/Source/Scene/DracoLoader.js:DracoLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Empty3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Empty3DTileContent.js:Empty3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "function:packages/engine/Source/Scene/Expression.js:Expression",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "function:packages/engine/Source/Scene/Expression.js:createRuntimeAst",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "function:packages/engine/Source/Scene/Expression.js:setEvaluateFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "function:packages/engine/Source/Scene/Expression.js:parseCall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "function:packages/engine/Source/Scene/Expression.js:getEvaluateBinaryComponentwise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Geometry3DTileContent.js:Geometry3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "function:packages/engine/Source/Scene/Geometry3DTileContent.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "function:packages/engine/Source/Scene/Geometry3DTileContent.js:getBatchIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:GetFeatureInfoFormat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:esriXmlToFeatureInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:gmlToFeatureInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "function:packages/engine/Source/Scene/GetFeatureInfoFormat.js:getGmlPropertiesRecursively",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfJsonLoader.js:GltfJsonLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfJsonLoader.js:upgradeVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfJsonLoader.js:processGltfJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/ForEach.js:ForEach",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/addDefaults.js:addDefaults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js:getComponentReader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js:moveTechniqueRenderStates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js:moveTechniquesToExtension",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js:forEachTextureInMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js:findAccessorMinMax",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/parseGlb.js:parseGlb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/parseGlb.js:parseGlbVersion2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js:readAccessorPacked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/removeExtension.js:removeExtensionAndTraverse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "target": "function:packages/engine/Source/Scene/GltfPipeline/addBuffer.js:addBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileOptimizationHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/getMagic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Composite3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "target": "file:packages/engine/Source/Scene/Expression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/CreditDisplay.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/getImagePixels.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Empty3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Empty3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Expression.js",
+      "target": "file:packages/engine/Source/Scene/ExpressionNodeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayerFeatureInfo.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucency.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/getMagic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/isDataUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/removePipelineExtras.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/updateVersion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/usesExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/usesExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Core/getMagic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Core/getStringFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/removeExtensionsUsed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/removeExtensionsUsed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

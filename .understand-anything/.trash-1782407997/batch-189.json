@@ -1,0 +1,377 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/test.cjs",
+      "type": "file",
+      "name": "test.cjs",
+      "filePath": "Specs/test.cjs",
+      "summary": "Node.js CommonJS 冒烟测试,通过 createWorldTerrainAsync 与 sampleTerrain 对世界地形 provider 进行采样并断言珠峰附近高程合理范围。",
+      "tags": ["test", "smoke-test", "terrain", "nodejs"],
+      "complexity": "simple",
+      "languageNotes": "使用 require 加载 cesium 顶层包,验证库在 CommonJS 环境下的可加载性。"
+    },
+    {
+      "id": "file:Specs/test.mjs",
+      "type": "file",
+      "name": "test.mjs",
+      "filePath": "Specs/test.mjs",
+      "summary": "Node.js ESM 冒烟测试,以 ES 模块 import 方式验证 cesium 顶层包可正确加载并对地形采样做高程断言。",
+      "tags": ["test", "smoke-test", "terrain", "esm"],
+      "complexity": "simple",
+      "languageNotes": "与 test.cjs 并行存在,确保库同时兼容 CommonJS 与 ESM 两种模块格式。"
+    },
+    {
+      "id": "file:Specs/TestWorkers/createBadGeometry.js",
+      "type": "file",
+      "name": "createBadGeometry.js",
+      "filePath": "Specs/TestWorkers/createBadGeometry.js",
+      "summary": "测试用 Web Worker,通过 createTaskProcessorWorker 包装一个抛出错误的函数,用于验证 TaskProcessor 对错误 worker 的容错处理。",
+      "tags": ["test", "worker", "task-processor", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/returnByteLength.js",
+      "type": "file",
+      "name": "returnByteLength.js",
+      "filePath": "Specs/TestWorkers/returnByteLength.js",
+      "summary": "测试用 Web Worker,返回传入参数的 byteLength 字段,用于验证 TaskProcessor 的参数透传能力。",
+      "tags": ["test", "worker", "task-processor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/returnNonCloneable.js",
+      "type": "file",
+      "name": "returnNonCloneable.js",
+      "filePath": "Specs/TestWorkers/returnNonCloneable.js",
+      "summary": "测试用 Web Worker,返回不可结构化克隆的对象,用于验证 TaskProcessor 对非可克隆返回值的处理路径。",
+      "tags": ["test", "worker", "task-processor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/returnParameters.js",
+      "type": "file",
+      "name": "returnParameters.js",
+      "filePath": "Specs/TestWorkers/returnParameters.js",
+      "summary": "测试用 Web Worker,直接回传接收到的参数,用于验证 TaskProcessor 参数往返(round-trip)的正确性。",
+      "tags": ["test", "worker", "task-processor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/returnWasmConfig.js",
+      "type": "file",
+      "name": "returnWasmConfig.js",
+      "filePath": "Specs/TestWorkers/returnWasmConfig.js",
+      "summary": "测试用 Web Worker,返回一个 WebAssembly 配置对象,用于验证 TaskProcessor 加载并执行 WASM 模块的流程。",
+      "tags": ["test", "worker", "task-processor", "wasm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/TestWasm/testWasm.wasm",
+      "type": "file",
+      "name": "testWasm.wasm",
+      "filePath": "Specs/TestWorkers/TestWasm/testWasm.wasm",
+      "summary": "供 TaskProcessor WebAssembly 加载测试使用的最小测试用 WASM 二进制模块。",
+      "tags": ["test", "wasm", "binary", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/throwError.js",
+      "type": "file",
+      "name": "throwError.js",
+      "filePath": "Specs/TestWorkers/throwError.js",
+      "summary": "测试用 Web Worker,在执行时直接抛出异常,用于验证 TaskProcessor 将 worker 异常传播给主线程 promise 的错误通道。",
+      "tags": ["test", "worker", "task-processor", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TestWorkers/transferArrayBuffer.js",
+      "type": "file",
+      "name": "transferArrayBuffer.js",
+      "filePath": "Specs/TestWorkers/transferArrayBuffer.js",
+      "summary": "测试用 Web Worker,构造 ArrayBuffer 并通过 transferableObjects 列表零拷贝转移回主线程,用于验证 TaskProcessor 的可转移对象机制。",
+      "tags": ["test", "worker", "task-processor", "transferable"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/TypeScript/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "Specs/TypeScript/index.ts",
+      "summary": "TypeScript 类型定义测试入口,从 cesium 顶层包导入大量 API 并构造使用场景,以编译期方式验证对外暴露的类型声明(.d.ts)的正确性与可消费性。",
+      "tags": ["test", "type-definition", "typescript", "entry-point"],
+      "complexity": "complex",
+      "languageNotes": "结合 Cesium.d.ts 在严格模式下(noEmit、strict)做整库 API 的类型契约回归测试,并验证 defined 类型谓词(type predicate)行为。"
+    },
+    {
+      "id": "config:Specs/TypeScript/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "Specs/TypeScript/tsconfig.json",
+      "summary": "TypeScript 类型测试专用的编译器配置,启用 strict 与 isolatedModules,以 noEmit 模式编译 index.ts 与 Cesium.d.ts 进行纯类型检查。",
+      "tags": ["configuration", "typescript", "build-system", "test"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/publish.js",
+      "type": "file",
+      "name": "publish.js",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "summary": "jsdoc 自定义模板的核心发布脚本,读取 doclet 数据、生成签名/导航/源码链接,并将每个文档项渲染为 HTML 输出到目标目录,是 Cesium 文档生成的入口。",
+      "tags": ["documentation", "jsdoc", "build-system", "template"],
+      "complexity": "complex",
+      "languageNotes": "基于 jsdoc 的 taffydb 数据模型与 templateHelper 工具,采用 CommonJS require 加载 jsdoc 运行时模块。"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/static/javascript/cesiumDoc.js",
+      "type": "file",
+      "name": "cesiumDoc.js",
+      "filePath": "Tools/jsdoc/cesium_template/static/javascript/cesiumDoc.js",
+      "summary": "生成文档站点的前端脚本,提供类列表的过滤搜索交互(按名称实时筛选可见条目)。",
+      "tags": ["documentation", "jsdoc", "frontend", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/static/javascript/html5.js",
+      "type": "file",
+      "name": "html5.js",
+      "filePath": "Tools/jsdoc/cesium_template/static/javascript/html5.js",
+      "summary": "HTML5 Shiv 第三方库,为旧版 IE 提供 HTML5 新元素的支持,保证生成的文档站点在低版本浏览器中正常渲染。",
+      "tags": ["documentation", "vendor", "polyfill", "legacy"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/static/styles/jsdoc-default.css",
+      "type": "file",
+      "name": "jsdoc-default.css",
+      "filePath": "Tools/jsdoc/cesium_template/static/styles/jsdoc-default.css",
+      "summary": "Cesium 文档站点的主题样式表,定义布局、排版、导航、代码高亮等全部视觉呈现。",
+      "tags": ["documentation", "styles", "theme", "css"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/augments.tmpl",
+      "type": "file",
+      "name": "augments.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/augments.tmpl",
+      "summary": "jsdoc 模板片段,渲染类的继承(augments/extends)关系区块。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/container.tmpl",
+      "type": "file",
+      "name": "container.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/container.tmpl",
+      "summary": "jsdoc 模板片段,渲染成员容器的主体布局,包括成员列表、源文件链接与详情区。",
+      "tags": ["documentation", "jsdoc", "template", "layout"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/details.tmpl",
+      "type": "file",
+      "name": "details.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/details.tmpl",
+      "summary": "jsdoc 模板片段,渲染文档项的详情区块,如属性、参数、返回值等结构化信息。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/example.tmpl",
+      "type": "file",
+      "name": "example.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/example.tmpl",
+      "summary": "jsdoc 模板片段,渲染单个 @example 代码示例。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/examples.tmpl",
+      "type": "file",
+      "name": "examples.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/examples.tmpl",
+      "summary": "jsdoc 模板片段,遍历并渲染文档项的全部 @example 示例列表。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/exceptions.tmpl",
+      "type": "file",
+      "name": "exceptions.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/exceptions.tmpl",
+      "summary": "jsdoc 模板片段,渲染 @throws/@exception 声明的异常列表。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/indexLayout.tmpl",
+      "type": "file",
+      "name": "indexLayout.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/indexLayout.tmpl",
+      "summary": "jsdoc 模板片段,渲染文档索引页面的整体布局骨架。",
+      "tags": ["documentation", "jsdoc", "template", "layout"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/layout.tmpl",
+      "type": "file",
+      "name": "layout.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/layout.tmpl",
+      "summary": "jsdoc 模板片段,渲染所有文档页的公共 HTML 外层布局(head、脚本与样式引用、导航容器)。",
+      "tags": ["documentation", "jsdoc", "template", "layout"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Tools/jsdoc/cesium_template/tmpl/mainpage.tmpl",
+      "type": "file",
+      "name": "mainpage.tmpl",
+      "filePath": "Tools/jsdoc/cesium_template/tmpl/mainpage.tmpl",
+      "summary": "jsdoc 模板片段,渲染文档首页(README/主页)内容区域。",
+      "tags": ["documentation", "jsdoc", "template", "partial"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/test.cjs:test",
+      "type": "function",
+      "name": "test",
+      "filePath": "Specs/test.cjs",
+      "lineRange": [12, 22],
+      "summary": "异步冒烟测试函数,创建世界地形 provider、采样珠峰附近两点高程并断言结果落在 5000–10000 米区间。",
+      "tags": ["test", "smoke-test", "terrain", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/test.mjs:test",
+      "type": "function",
+      "name": "test",
+      "filePath": "Specs/test.mjs",
+      "lineRange": [6, 16],
+      "summary": "异步冒烟测试函数,以 ESM 方式采样珠峰附近地形高程并断言结果合理性,与 CommonJS 版本逻辑等价。",
+      "tags": ["test", "smoke-test", "terrain", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/TypeScript/index.ts:consumeDefined",
+      "type": "function",
+      "name": "consumeDefined",
+      "filePath": "Specs/TypeScript/index.ts",
+      "lineRange": [397, 399],
+      "summary": "类型测试辅助函数,接收非空的 Cartesian3 并调用 clone,用于验证 defined 类型谓词收窄后的赋值兼容性。",
+      "tags": ["test", "type-definition", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:generate",
+      "type": "function",
+      "name": "generate",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [151, 168],
+      "summary": "将单个文档项渲染为 HTML 并写入输出目录的核心生成函数,支持标题、文档数据与可选的链接解析。",
+      "tags": ["documentation", "jsdoc", "generator", "render"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:buildNav",
+      "type": "function",
+      "name": "buildNav",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [212, 260],
+      "summary": "根据成员数据构建文档站点的导航结构,按模块/命名空间/类等分组组织侧边栏条目。",
+      "tags": ["documentation", "jsdoc", "navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:needsSignature",
+      "type": "function",
+      "name": "needsSignature",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [50, 77],
+      "summary": "判断给定 doclet 是否需要生成函数/类签名,处理函数、类、typedef 等多种情况。",
+      "tags": ["documentation", "jsdoc", "utility"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:attachModuleSymbols",
+      "type": "function",
+      "name": "attachModuleSymbols",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [181, 196],
+      "summary": "将模块作用域内的导出符号挂载到对应模块 doclet 上,用于在文档中正确展示模块成员关系。",
+      "tags": ["documentation", "jsdoc", "module"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:hashToLink",
+      "type": "function",
+      "name": "hashToLink",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [39, 48],
+      "summary": "将 doclet 中的哈希锚点转换为可点击的内部文档链接。",
+      "tags": ["documentation", "jsdoc", "linking"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:addAttribs",
+      "type": "function",
+      "name": "addAttribs",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [108, 128],
+      "summary": "为 doclet 附加属性 attributable 标记(如 static/instance/readonly 等)以供模板渲染。",
+      "tags": ["documentation", "jsdoc", "render"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:shortenPaths",
+      "type": "function",
+      "name": "shortenPaths",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [130, 139],
+      "summary": "根据公共前裁剪源文件路径列表,生成文档中展示用的相对短路径。",
+      "tags": ["documentation", "jsdoc", "utility", "path"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Tools/jsdoc/cesium_template/publish.js:getPathFromDoclet",
+      "type": "function",
+      "name": "getPathFromDoclet",
+      "filePath": "Tools/jsdoc/cesium_template/publish.js",
+      "lineRange": [141, 149],
+      "summary": "从 doclet 中提取规范化的源文件路径,用于生成“查看源码”链接。",
+      "tags": ["documentation", "jsdoc", "utility", "path"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:Specs/test.cjs", "target": "function:Specs/test.cjs:test", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Specs/test.mjs", "target": "function:Specs/test.mjs:test", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Specs/TypeScript/index.ts", "target": "function:Specs/TypeScript/index.ts:consumeDefined", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:generate", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:buildNav", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:needsSignature", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:attachModuleSymbols", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:hashToLink", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:addAttribs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:shortenPaths", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "function:Tools/jsdoc/cesium_template/publish.js:getPathFromDoclet", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "function:Tools/jsdoc/cesium_template/publish.js:generate", "target": "function:Tools/jsdoc/cesium_template/publish.js:hashToLink", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:Tools/jsdoc/cesium_template/publish.js:generate", "target": "function:Tools/jsdoc/cesium_template/publish.js:getPathFromDoclet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:Tools/jsdoc/cesium_template/publish.js:attachModuleSymbols", "target": "function:Tools/jsdoc/cesium_template/publish.js:hashToLink", "type": "calls", "direction": "forward", "weight": 0.8},
+
+    {"source": "config:Specs/TypeScript/tsconfig.json", "target": "file:Specs/TypeScript/index.ts", "type": "configures", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "file:Tools/jsdoc/cesium_template/tmpl/layout.tmpl", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "file:Tools/jsdoc/cesium_template/tmpl/container.tmpl", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "file:Tools/jsdoc/cesium_template/tmpl/indexLayout.tmpl", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:Tools/jsdoc/cesium_template/publish.js", "target": "file:Tools/jsdoc/cesium_template/tmpl/mainpage.tmpl", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/container.tmpl", "target": "file:Tools/jsdoc/cesium_template/tmpl/details.tmpl", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/container.tmpl", "target": "file:Tools/jsdoc/cesium_template/tmpl/examples.tmpl", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/examples.tmpl", "target": "file:Tools/jsdoc/cesium_template/tmpl/example.tmpl", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/details.tmpl", "target": "file:Tools/jsdoc/cesium_template/tmpl/exceptions.tmpl", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/details.tmpl", "target": "file:Tools/jsdoc/cesium_template/tmpl/augments.tmpl", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/layout.tmpl", "target": "file:Tools/jsdoc/cesium_template/static/javascript/cesiumDoc.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/layout.tmpl", "target": "file:Tools/jsdoc/cesium_template/static/javascript/html5.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:Tools/jsdoc/cesium_template/tmpl/layout.tmpl", "target": "file:Tools/jsdoc/cesium_template/static/styles/jsdoc-default.css", "type": "related", "direction": "forward", "weight": 0.5}
+  ]
+}

@@ -1,0 +1,1195 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "type": "file",
+      "name": "ArcGISTiledElevationTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "summary": "ArcGIS 在线瓦片高程地形 Provider，负责请求 ArcGIS REST 元数据并按瓦片坐标计算/请求高程数据的可用性。",
+      "tags": [
+        "terrain-provider",
+        "arcgis",
+        "data-loader",
+        "service"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "file",
+      "name": "FeatureDetection.js",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "summary": "浏览器特性检测工具集，识别 Chrome/Safari/Firefox/Edge 版本及 Pointer Events/WebP 等能力。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "user-agent",
+        "feature-flag"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeocodeType.js",
+      "type": "file",
+      "name": "GeocodeType.js",
+      "filePath": "packages/engine/Source/Core/GeocodeType.js",
+      "summary": "定义地理编码类型的枚举常量（search/autocomplete/reverse），供各 GeocoderService 使用。",
+      "tags": [
+        "enum",
+        "geocoder",
+        "type-definition",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "type": "file",
+      "name": "GoogleEarthEnterpriseTileInformation.js",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "summary": "描述单个 Google Earth Enterprise 瓦片的 imagery/terrain 版本与 provider 信息的数据结构。",
+      "tags": [
+        "google-earth-enterprise",
+        "data-model",
+        "tile-metadata",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "type": "file",
+      "name": "GoogleGeocoderService.js",
+      "filePath": "packages/engine/Source/Core/GoogleGeocoderService.js",
+      "summary": "基于 Google Maps Geocoding API 的地理编码服务实现。",
+      "tags": [
+        "geocoder",
+        "google-maps",
+        "api-handler",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GoogleMaps.js",
+      "type": "file",
+      "name": "GoogleMaps.js",
+      "filePath": "packages/engine/Source/Core/GoogleMaps.js",
+      "summary": "Google Maps 相关 URL/默认参数常量定义，供 imagery 与地理编码服务共享。",
+      "tags": [
+        "google-maps",
+        "constants",
+        "url-builder",
+        "config"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/IonResource.js",
+      "type": "file",
+      "name": "IonResource.js",
+      "filePath": "packages/engine/Source/Core/IonResource.js",
+      "summary": "封装 ion 资源访问的 Resource 子类，自动注入 access token、处理外链跳转与重试。",
+      "tags": [
+        "resource",
+        "cesium-ion",
+        "authentication",
+        "retry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "type": "file",
+      "name": "KTX2Transcoder.js",
+      "filePath": "packages/engine/Source/Core/KTX2Transcoder.js",
+      "summary": "KTX2 纹理转码器封装，延迟加载 Basis Universal WASM 解码器并暴露 readyPromise。",
+      "tags": [
+        "texture",
+        "ktx2",
+        "basis-universal",
+        "transcoder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ManagedArray.js",
+      "type": "file",
+      "name": "ManagedArray.js",
+      "filePath": "packages/engine/Source/Core/ManagedArray.js",
+      "summary": "可动态调整大小的受管数组实现，支持 push/pop/reserve 与按索引的 O(1) 交换。",
+      "tags": [
+        "data-structure",
+        "dynamic-array",
+        "utility",
+        "indexing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:TerrainProviderBuilder",
+      "type": "function",
+      "name": "TerrainProviderBuilder",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        43,
+        57
+      ],
+      "summary": "根据 options 构建并初始化 ArcGIS 地形 Provider 内部状态的辅助构造器。",
+      "tags": [
+        "factory",
+        "terrain-provider",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:parseMetadataSuccess",
+      "type": "function",
+      "name": "parseMetadataSuccess",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        81,
+        192
+      ],
+      "summary": "解析 ArcGIS REST 地形服务元数据成功回调，提取 LOD 层级范围与瓦片可用性。",
+      "tags": [
+        "metadata-parser",
+        "callback",
+        "arcgis"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestMetadata",
+      "type": "function",
+      "name": "requestMetadata",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        194,
+        213
+      ],
+      "summary": "向 ArcGIS REST 服务发起元数据请求的封装函数。",
+      "tags": [
+        "request",
+        "metadata",
+        "arcgis"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:ArcGISTiledElevationTerrainProvider",
+      "type": "function",
+      "name": "ArcGISTiledElevationTerrainProvider",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        236,
+        256
+      ],
+      "summary": "ArcGIS 在线高程地形 Provider 构造函数，初始化瓦片可用性追踪与可用性请求队列。",
+      "tags": [
+        "terrain-provider",
+        "constructor",
+        "arcgis"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:findRange",
+      "type": "function",
+      "name": "findRange",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        549,
+        627
+      ],
+      "summary": "在 ArcGIS 可用性位图中查找连续可用瓦片区间。",
+      "tags": [
+        "availability",
+        "bitmap",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:computeAvailability",
+      "type": "function",
+      "name": "computeAvailability",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        629,
+        670
+      ],
+      "summary": "根据 ArcGIS 可用性位图计算指定矩形区域的瓦片可用性。",
+      "tags": [
+        "availability",
+        "bitmap",
+        "computation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestAvailability",
+      "type": "function",
+      "name": "requestAvailability",
+      "filePath": "packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "lineRange": [
+        672,
+        754
+      ],
+      "summary": "按需请求 ArcGIS 瓦片可用性数据并更新缓存。",
+      "tags": [
+        "request",
+        "availability",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:isChrome",
+      "type": "function",
+      "name": "isChrome",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        23,
+        37
+      ],
+      "summary": "检测当前浏览器是否为 Chrome。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "chrome"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:isSafari",
+      "type": "function",
+      "name": "isSafari",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        45,
+        64
+      ],
+      "summary": "检测当前浏览器是否为 Safari。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "safari"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:isWebkit",
+      "type": "function",
+      "name": "isWebkit",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        72,
+        85
+      ],
+      "summary": "检测当前浏览器是否为 WebKit 内核。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "webkit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:isEdge",
+      "type": "function",
+      "name": "isEdge",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        93,
+        103
+      ],
+      "summary": "检测当前浏览器是否为 Edge。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "edge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:isFirefox",
+      "type": "function",
+      "name": "isFirefox",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        111,
+        122
+      ],
+      "summary": "检测当前浏览器是否为 Firefox。",
+      "tags": [
+        "browser-detection",
+        "utility",
+        "firefox"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:supportsPointerEvents",
+      "type": "function",
+      "name": "supportsPointerEvents",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        149,
+        163
+      ],
+      "summary": "检测浏览器是否支持 Pointer Events API。",
+      "tags": [
+        "feature-detection",
+        "utility",
+        "pointer-events"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:supportsImageRenderingPixelated",
+      "type": "function",
+      "name": "supportsImageRenderingPixelated",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        167,
+        182
+      ],
+      "summary": "检测浏览器是否支持 pixelated 图像渲染。",
+      "tags": [
+        "feature-detection",
+        "utility",
+        "rendering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/FeatureDetection.js:supportsWebP",
+      "type": "function",
+      "name": "supportsWebP",
+      "filePath": "packages/engine/Source/Core/FeatureDetection.js",
+      "lineRange": [
+        190,
+        199
+      ],
+      "summary": "检测浏览器是否支持 WebP 图像格式（基于异步解码）。",
+      "tags": [
+        "feature-detection",
+        "utility",
+        "webp"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js:GoogleEarthEnterpriseTileInformation",
+      "type": "function",
+      "name": "GoogleEarthEnterpriseTileInformation",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "lineRange": [
+        23,
+        39
+      ],
+      "summary": "GEE 单瓦片元信息构造函数，记录 imagery/terrain 版本与 provider。",
+      "tags": [
+        "constructor",
+        "data-model",
+        "gee"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleGeocoderService.js:GoogleGeocoderService",
+      "type": "function",
+      "name": "GoogleGeocoderService",
+      "filePath": "packages/engine/Source/Core/GoogleGeocoderService.js",
+      "lineRange": [
+        23,
+        38
+      ],
+      "summary": "Google Maps 地理编码服务构造函数，校验 API key 并配置 endpoint。",
+      "tags": [
+        "constructor",
+        "geocoder",
+        "google-maps"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonResource.js:IonResource",
+      "type": "function",
+      "name": "IonResource",
+      "filePath": "packages/engine/Source/Core/IonResource.js",
+      "lineRange": [
+        34,
+        88
+      ],
+      "summary": "ion 资源访问构造函数，封装 endpoint、access token 与外链重试逻辑。",
+      "tags": [
+        "constructor",
+        "resource",
+        "cesium-ion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonResource.js:addClientHeaders",
+      "type": "function",
+      "name": "addClientHeaders",
+      "filePath": "packages/engine/Source/Core/IonResource.js",
+      "lineRange": [
+        262,
+        271
+      ],
+      "summary": "向请求注入 ion 客户端鉴权头。",
+      "tags": [
+        "http-header",
+        "authentication",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonResource.js:retryCallback",
+      "type": "function",
+      "name": "retryCallback",
+      "filePath": "packages/engine/Source/Core/IonResource.js",
+      "lineRange": [
+        273,
+        319
+      ],
+      "summary": "ion 资源请求失败重试回调，处理 token 过期与外链跳转。",
+      "tags": [
+        "retry",
+        "callback",
+        "authentication"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/KTX2Transcoder.js:KTX2Transcoder",
+      "type": "function",
+      "name": "KTX2Transcoder",
+      "filePath": "packages/engine/Source/Core/KTX2Transcoder.js",
+      "lineRange": [
+        12,
+        12
+      ],
+      "summary": "KTX2 转码器构造函数，延迟加载 Basis Universal 解码器。",
+      "tags": [
+        "constructor",
+        "transcoder",
+        "ktx2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/KTX2Transcoder.js:makeReadyPromise",
+      "type": "function",
+      "name": "makeReadyPromise",
+      "filePath": "packages/engine/Source/Core/KTX2Transcoder.js",
+      "lineRange": [
+        21,
+        34
+      ],
+      "summary": "构造 KTX2 解码就绪 Promise，加载 WASM 模块。",
+      "tags": [
+        "promise",
+        "lazy-loader",
+        "ktx2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ManagedArray.js:ManagedArray",
+      "type": "function",
+      "name": "ManagedArray",
+      "filePath": "packages/engine/Source/Core/ManagedArray.js",
+      "lineRange": [
+        12,
+        16
+      ],
+      "summary": "受管动态数组构造函数，分配内部存储并维护长度。",
+      "tags": [
+        "constructor",
+        "data-structure",
+        "dynamic-array"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:TerrainProviderBuilder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:TerrainProviderBuilder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:parseMetadataSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:parseMetadataSuccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:ArcGISTiledElevationTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:ArcGISTiledElevationTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:findRange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:findRange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:computeAvailability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:computeAvailability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestAvailability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js:requestAvailability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isChrome",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isChrome",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isSafari",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isSafari",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isWebkit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isWebkit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isEdge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isEdge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isFirefox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:isFirefox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsPointerEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsPointerEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsImageRenderingPixelated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsImageRenderingPixelated",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsWebP",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "function:packages/engine/Source/Core/FeatureDetection.js:supportsWebP",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js:GoogleEarthEnterpriseTileInformation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js:GoogleEarthEnterpriseTileInformation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/GoogleGeocoderService.js:GoogleGeocoderService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/GoogleGeocoderService.js:GoogleGeocoderService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:IonResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:IonResource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:addClientHeaders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:addClientHeaders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:retryCallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "function:packages/engine/Source/Core/IonResource.js:retryCallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "function:packages/engine/Source/Core/KTX2Transcoder.js:KTX2Transcoder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "function:packages/engine/Source/Core/KTX2Transcoder.js:KTX2Transcoder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "function:packages/engine/Source/Core/KTX2Transcoder.js:makeReadyPromise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "function:packages/engine/Source/Core/KTX2Transcoder.js:makeReadyPromise",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ManagedArray.js",
+      "target": "function:packages/engine/Source/Core/ManagedArray.js:ManagedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ManagedArray.js",
+      "target": "function:packages/engine/Source/Core/ManagedArray.js:ManagedArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RequestState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TileAvailability.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TileProviderError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ArcGISTiledElevationTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "target": "file:packages/engine/Source/Core/Fullscreen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "target": "file:packages/engine/Source/Core/isBitSet.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleMaps.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleMaps.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/Ion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonResource.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "file:packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/KTX2Transcoder.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ManagedArray.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/GoogleGeocoderService.js:GoogleGeocoderService",
+      "target": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,934 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "type": "file",
+      "name": "EllipseOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "summary": "椭圆线框轮廓几何体，生成椭圆边线（含挤压墙体轮廓）。",
+      "tags": [
+        "geometry",
+        "ellipse",
+        "outline",
+        "wireframe",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "file",
+      "name": "Ellipsoid.js",
+      "filePath": "packages/engine/Source/Core/Ellipsoid.js",
+      "summary": "三轴椭球体核心类型，提供大地坐标与笛卡尔坐标互转、测地法线、缩放、曲率与表面积等测地计算。",
+      "tags": [
+        "ellipsoid",
+        "geodesy",
+        "core",
+        "data-model",
+        "math"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含默认 WGS84 椭球单例与 Gauss-Legendre 数值积分计算表面积。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "type": "file",
+      "name": "EllipsoidGeodesic.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "summary": "椭球面上两点间的测地线（最短路径），基于 Vincenty 反解公式计算距离、方位角与插值点。",
+      "tags": [
+        "geodesy",
+        "geodesic",
+        "ellipsoid",
+        "vincenty",
+        "math"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实现 Vincenty inverse formula，迭代收敛求解大地主题反解问题。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "type": "file",
+      "name": "EllipsoidGeometry.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidGeometry.js",
+      "summary": "椭球体可渲染几何体，按三个方向细分生成完整椭球面网格。",
+      "tags": [
+        "geometry",
+        "ellipsoid",
+        "primitive",
+        "mesh",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "type": "file",
+      "name": "EllipsoidOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "summary": "椭球体线框轮廓几何体，生成椭球面边线用于 wireframe 绘制。",
+      "tags": [
+        "geometry",
+        "ellipsoid",
+        "outline",
+        "wireframe",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "type": "file",
+      "name": "EllipsoidRhumbLine.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "summary": "椭球面上两点间的恒向线（等方位角航线），按椭圆积分计算长度并支持沿航线插值。",
+      "tags": [
+        "geodesy",
+        "rhumb-line",
+        "ellipsoid",
+        "navigation",
+        "math"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用椭圆积分计算子午线弧长，是航海/航空等方位角路径的基础。"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "type": "file",
+      "name": "EllipsoidTangentPlane.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "summary": "椭球面上某点处的切平面，构造局部二维坐标系用于在该点附近做平面几何运算。",
+      "tags": [
+        "ellipsoid",
+        "tangent-plane",
+        "coordinate",
+        "geometry",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Ellipsoid.js:Ellipsoid",
+      "type": "class",
+      "name": "Ellipsoid",
+      "filePath": "packages/engine/Source/Core/Ellipsoid.js",
+      "lineRange": [
+        89,
+        754
+      ],
+      "summary": "三轴椭球体类，提供大地坐标与笛卡尔坐标互转、测地法线、曲率与表面积等核心测地计算，含 WGS84 默认实例。",
+      "tags": [
+        "ellipsoid",
+        "geodesy",
+        "core",
+        "data-model",
+        "math"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidGeometry.js:EllipsoidGeometry",
+      "type": "function",
+      "name": "EllipsoidGeometry",
+      "filePath": "packages/engine/Source/Core/EllipsoidGeometry.js",
+      "lineRange": [
+        57,
+        94
+      ],
+      "summary": "椭球体几何体构造函数，按三个方向细分生成完整椭球面网格。",
+      "tags": [
+        "geometry",
+        "ellipsoid",
+        "factory",
+        "mesh"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidOutlineGeometry.js:EllipsoidOutlineGeometry",
+      "type": "function",
+      "name": "EllipsoidOutlineGeometry",
+      "filePath": "packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "lineRange": [
+        49,
+        95
+      ],
+      "summary": "椭球体轮廓构造函数，生成椭球面边线几何。",
+      "tags": [
+        "geometry",
+        "ellipsoid",
+        "outline",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidGeodesic.js:EllipsoidGeodesic",
+      "type": "function",
+      "name": "EllipsoidGeodesic",
+      "filePath": "packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "lineRange": [
+        285,
+        300
+      ],
+      "summary": "椭球面测地线构造函数，基于 Vincenty 反解公式计算两点间最短路径。",
+      "tags": [
+        "geodesy",
+        "geodesic",
+        "vincenty",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:EllipsoidRhumbLine",
+      "type": "function",
+      "name": "EllipsoidRhumbLine",
+      "filePath": "packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "lineRange": [
+        392,
+        406
+      ],
+      "summary": "椭球面恒向线构造函数，按椭圆积分计算等方位角航线。",
+      "tags": [
+        "geodesy",
+        "rhumb-line",
+        "navigation",
+        "factory"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidTangentPlane.js:EllipsoidTangentPlane",
+      "type": "function",
+      "name": "EllipsoidTangentPlane",
+      "filePath": "packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "lineRange": [
+        28,
+        58
+      ],
+      "summary": "椭球面切平面构造函数，在某点建立局部二维坐标系。",
+      "tags": [
+        "ellipsoid",
+        "tangent-plane",
+        "coordinate",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidGeodesic.js:vincentyInverseFormula",
+      "type": "function",
+      "name": "vincentyInverseFormula",
+      "filePath": "packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "lineRange": [
+        110,
+        229
+      ],
+      "summary": "Vincenty 反解公式实现，迭代求解椭球面两点间的大地主题反解问题。",
+      "tags": [
+        "geodesy",
+        "vincenty",
+        "algorithm",
+        "geodesic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:calculateInverseM",
+      "type": "function",
+      "name": "calculateInverseM",
+      "filePath": "packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "lineRange": [
+        64,
+        158
+      ],
+      "summary": "通过椭圆积分反解子午线弧长对应纬度，用于恒向线计算。",
+      "tags": [
+        "geodesy",
+        "rhumb-line",
+        "elliptic-integral",
+        "algorithm"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:interpolateUsingSurfaceDistance",
+      "type": "function",
+      "name": "interpolateUsingSurfaceDistance",
+      "filePath": "packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "lineRange": [
+        306,
+        378
+      ],
+      "summary": "沿恒向线按表面距离插值出中间点坐标。",
+      "tags": [
+        "geodesy",
+        "rhumb-line",
+        "interpolation"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "class:packages/engine/Source/Core/Ellipsoid.js:Ellipsoid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidGeometry.js:EllipsoidGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidOutlineGeometry.js:EllipsoidOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidGeodesic.js:EllipsoidGeodesic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidGeodesic.js:vincentyInverseFormula",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:EllipsoidRhumbLine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:calculateInverseM",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:interpolateUsingSurfaceDistance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidTangentPlane.js:EllipsoidTangentPlane",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "class:packages/engine/Source/Core/Ellipsoid.js:Ellipsoid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidGeometry.js:EllipsoidGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidOutlineGeometry.js:EllipsoidOutlineGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidGeodesic.js:EllipsoidGeodesic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidRhumbLine.js:EllipsoidRhumbLine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidTangentPlane.js:EllipsoidTangentPlane",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/EllipseGeometryLibrary.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "target": "file:packages/engine/Source/Core/scaleToGeodeticSurface.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeodesic.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidRhumbLine.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Plane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Ray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

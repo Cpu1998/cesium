@@ -1,0 +1,534 @@
+{
+  "nodes": [
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTextured/glTF-Binary/BoxTextured.glb",
+      "type": "schema",
+      "name": "BoxTextured.glb",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTextured/glTF-Binary/BoxTextured.glb",
+      "summary": "glTF 2.0 Binary (.glb) 形式的 BoxTextured 测试样本，将几何、纹理与 JSON 描述打包进单一二进制文件，用于验证 CesiumJS Model loader 对 glTF-Binary 容器的解析。",
+      "tags": ["gltf", "test-fixture", "schema-definition", "binary", "3d-model"],
+      "complexity": "simple",
+      "languageNotes": "glTF-Binary 容器：12 字节 header + JSON chunk + BIN chunk，便于单文件分发。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTextured/glTF-Embedded/BoxTextured.gltf",
+      "type": "schema",
+      "name": "BoxTextured.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTextured/glTF-Embedded/BoxTextured.gltf",
+      "summary": "glTF 2.0 Embedded 形式的 BoxTextured 样本，buffer 与图像数据以 base64 内嵌于 JSON，用于测试 CesiumJS 对内嵌 bufferView 的解码。",
+      "tags": ["gltf", "test-fixture", "schema-definition", "embedded-base64", "3d-model"],
+      "complexity": "moderate",
+      "languageNotes": "dataURI 内嵌资源，常用于自包含的小型测试模型。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured.gltf",
+      "type": "schema",
+      "name": "BoxTextured.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured.gltf",
+      "summary": "glTF 2.0 标准形式的 BoxTextured 样本（外部 .bin + 外部纹理），覆盖最常见的带纹理立方体模型加载路径，是 Model loader 测试的基础用例。",
+      "tags": ["gltf", "test-fixture", "schema-definition", "textured", "3d-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured0.bin",
+      "type": "file",
+      "name": "BoxTextured0.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured0.bin",
+      "summary": "BoxTextured.gltf 的外部二进制 buffer，存放顶点位置、法线、UV 与索引数据，由 bufferView 引用。",
+      "tags": ["binary", "buffer-data", "gltf", "test-fixture", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/BoxTextured/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTextured/README.md",
+      "summary": "BoxTextured 样本的说明文档，包含截图引用与 CC-BY 4.0 许可信息，由 Cesium 捐赠用于 glTF 测试。",
+      "tags": ["documentation", "gltf", "test-fixture", "license"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF-Binary/BoxTexturedKtx2Basis.glb",
+      "type": "schema",
+      "name": "BoxTexturedKtx2Basis.glb",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF-Binary/BoxTexturedKtx2Basis.glb",
+      "summary": "glTF-Binary 形式的 KTX2/Basis 纹理压缩测试样本，使用 KHR_texture_basisu 扩展，验证 CesiumJS 对 GPU 通用压缩纹理的解码与上传。",
+      "tags": ["gltf", "test-fixture", "ktx2", "basisu", "binary"],
+      "complexity": "simple",
+      "languageNotes": "KHR_texture_basisu 提供跨平台 GPU 纹理压缩（ETC1S/UASTC），显著降低显存占用。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.bin",
+      "type": "file",
+      "name": "BoxTexturedKtx2Basis.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.bin",
+      "summary": "BoxTexturedKtx2Basis.gltf 的外部 buffer，存放几何数据，纹理以独立 KTX2 文件引用。",
+      "tags": ["binary", "buffer-data", "gltf", "test-fixture", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.gltf",
+      "type": "schema",
+      "name": "BoxTexturedKtx2Basis.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.gltf",
+      "summary": "glTF 2.0 标准形式的 KTX2 纹理压缩样本，声明 KHR_texture_basisu 扩展，用于测试 CesiumJS 对 Basis 超级压缩纹理的转码流程。",
+      "tags": ["gltf", "test-fixture", "ktx2", "basisu", "schema-definition"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTextured0.bin",
+      "type": "file",
+      "name": "BoxTextured0.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTextured0.bin",
+      "summary": "BoxTexturedWithPropertyAttributes.gltf 的几何 buffer，包含顶点位置、法线、UV 与索引。",
+      "tags": ["binary", "buffer-data", "gltf", "test-fixture", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTexturedWithPropertyAttributes.gltf",
+      "type": "schema",
+      "name": "BoxTexturedWithPropertyAttributes.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTexturedWithPropertyAttributes.gltf",
+      "summary": "BoxTextured 的 EXT_structural_metadata 变体，在每个顶点附加 2x2 warp 矩阵与归一化温度向量，专用于单元测试属性 attribute 的读取与 offset/scale 解码。",
+      "tags": ["gltf", "test-fixture", "ext-structural-metadata", "schema-definition", "3d-model"],
+      "complexity": "complex",
+      "languageNotes": "EXT_structural_metadata 通过 property attributes 把每顶点结构化属性挂在 primitive 上，使用 offset/scale 反归一化。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "type": "file",
+      "name": "make_box_textured_metadata.py",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "summary": "代码生成脚本，用 NumPy 生成 EXT_structural_metadata 所需的 metadata.bin：循环写入 24 个顶点的 2x2 warp 矩阵与随机 UINT16 温度向量，并打印 buffer offset/length。",
+      "tags": ["python", "codegen", "script", "gltf", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "矩阵按列主序存储但整体 bufferView 按行主序（order='C'）导出，对应 EXT_structural_metadata 的 mat2 属性布局。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/metadata.bin",
+      "type": "file",
+      "name": "metadata.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/metadata.bin",
+      "summary": "由 make_box_textured_metadata.py 生成的属性 buffer，包含 EXT_structural_metadata 的 warp 矩阵与温度向量数据，被 BoxTexturedWithPropertyAttributes.gltf 的 bufferView 引用。",
+      "tags": ["binary", "buffer-data", "gltf", "generated", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/README.md",
+      "summary": "BoxTexturedWithPropertyAttributes 样本的说明文档，描述其为单元测试设计的 EXT_structural_metadata 变体，并附 metadata.bin 的生成命令与许可信息。",
+      "tags": ["documentation", "gltf", "test-fixture", "ext-structural-metadata", "license"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/BoxVertexColors.gltf",
+      "type": "schema",
+      "name": "BoxVertexColors.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/BoxVertexColors.gltf",
+      "summary": "带逐顶点颜色属性的 Box 模型，用于测试 CesiumJS 解析 COLOR_0 顶点属性并将其映射到材质顶点色的渲染路径。",
+      "tags": ["gltf", "test-fixture", "vertex-colors", "schema-definition", "3d-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/buffer.bin",
+      "type": "file",
+      "name": "buffer.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/buffer.bin",
+      "summary": "BoxVertexColors.gltf 的二进制 buffer，存放位置、法线、UV、顶点颜色与索引数据。",
+      "tags": ["binary", "buffer-data", "gltf", "test-fixture", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/BoxVertexColors/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxVertexColors/README.md",
+      "summary": "BoxVertexColors 样本的说明文档，包含截图引用与由 Michael Feldstein 捐赠的许可说明。",
+      "tags": ["documentation", "gltf", "test-fixture", "license"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxVertexColorsDracoRGB/glTF-Draco/BoxVertexColorsDracoRGB.gltf",
+      "type": "schema",
+      "name": "BoxVertexColorsDracoRGB.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxVertexColorsDracoRGB/glTF-Draco/BoxVertexColorsDracoRGB.gltf",
+      "summary": "使用 KHR_draco_mesh_compression 扩展压缩几何的逐顶点颜色 Box 模型，验证 CesiumJS 对 Draco 解码后顶点属性的重建与渲染。",
+      "tags": ["gltf", "test-fixture", "draco-compression", "vertex-colors", "schema-definition"],
+      "complexity": "moderate",
+      "languageNotes": "KHR_draco_mesh_compression 以 Draco 库对位置/法线/颜色等属性做有损或无损几何压缩，需运行时解码器还原 bufferView。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWeb3dQuantizedAttributes/glTF/BoxWeb3dQuantizedAttributes.gltf",
+      "type": "schema",
+      "name": "BoxWeb3dQuantizedAttributes.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWeb3dQuantizedAttributes/glTF/BoxWeb3dQuantizedAttributes.gltf",
+      "summary": "使用 WEB3D_quantized_attributes 扩展的 Box 模型，验证 CesiumJS 对量化顶点属性（将浮点属性编码为整数并附带归一化矩阵）的反量化解析。",
+      "tags": ["gltf", "test-fixture", "quantized-attributes", "schema-definition", "3d-model"],
+      "complexity": "moderate",
+      "languageNotes": "WEB3D_quantized_attributes 是早期非 KHR 扩展，把顶点属性量化为 16 位整数并用 decodeMatrix 还原，后被 KHR_mesh_quantization 取代。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box.gltf",
+      "type": "schema",
+      "name": "Box.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box.gltf",
+      "summary": "带 asset.copyright 字段的基本 Box 模型，用于测试 CesiumJS 读取并暴露 glTF 资产版权元数据的能力。",
+      "tags": ["gltf", "test-fixture", "copyright-metadata", "schema-definition", "3d-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box0.bin",
+      "type": "file",
+      "name": "Box0.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box0.bin",
+      "summary": "BoxWithCopyright/Box.gltf 的二进制 buffer，存放位置、法线与索引数据。",
+      "tags": ["binary", "buffer-data", "gltf", "test-fixture", "3d-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithLines/glTF-Draco/BoxWithLines.gltf",
+      "type": "schema",
+      "name": "BoxWithLines.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithLines/glTF-Draco/BoxWithLines.gltf",
+      "summary": "包含三角形与线段两种 primitive 模式并使用 KHR_draco_mesh_compression 压缩的 Box 模型，测试 CesiumJS 对混合 primitive 拓扑（TRIANGLES + LINES）的 Draco 解码渲染。",
+      "tags": ["gltf", "test-fixture", "draco-compression", "primitive-modes", "schema-definition"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithOffset/glTF/BoxWithOffset.gltf",
+      "type": "schema",
+      "name": "BoxWithOffset.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithOffset/glTF/BoxWithOffset.gltf",
+      "summary": "带顶点位置 offset（RTC center 或 position 偏移）配置的 Box 模型，用于测试 CesiumJS 在双精度地理坐标下对模型原点偏移的处理。",
+      "tags": ["gltf", "test-fixture", "vertex-offset", "schema-definition", "3d-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/BoxWithPrimitiveOutline.gltf",
+      "type": "schema",
+      "name": "BoxWithPrimitiveOutline.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/BoxWithPrimitiveOutline.gltf",
+      "summary": "使用 Cesium 私有扩展 CESIUM_primitive_outline 的 Box 模型，在 primitive 上附加边线索引，测试 CesiumJS 对模型轮廓描边的渲染。",
+      "tags": ["gltf", "test-fixture", "cesium-primitive-outline", "schema-definition", "3d-model"],
+      "complexity": "moderate",
+      "languageNotes": "CESIUM_primitive_outline 是 Cesium 私有扩展，索引仅允许 16/32 位，用于在三角形网格上叠加独立边线。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "type": "file",
+      "name": "make_primitive_outlines.py",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "summary": "代码生成脚本，根据 Blender 导出的三角形索引推导每个四边形的外轮廓边线，以 uint16 打包写入 outlines.bin，供 CESIUM_primitive_outline 扩展使用。",
+      "tags": ["python", "codegen", "script", "gltf", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "利用三角形索引模式 (a b c / a d b) 重组四边形并提取外边 (a-d-b-c)，用 struct 小端打包为 uint16。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/outlines.bin",
+      "type": "file",
+      "name": "outlines.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/outlines.bin",
+      "summary": "由 make_primitive_outlines.py 生成的边线索引 buffer，被 BoxWithPrimitiveOutline.gltf 的 CESIUM_primitive_outline 扩展引用以渲染轮廓。",
+      "tags": ["binary", "buffer-data", "gltf", "generated", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_scale",
+      "type": "function",
+      "name": "make_scale",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "lineRange": [11, 20],
+      "summary": "构造一个 2x2 的均匀缩放矩阵（对角线为 scale_factor），用于生成 warp 矩阵样本。",
+      "tags": ["python", "matrix", "utility", "codegen"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:set_mat2",
+      "type": "function",
+      "name": "set_mat2",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "lineRange": [29, 32],
+      "summary": "将单个 2x2 矩阵写入大 buffer view 中对应顶点行的位置，作为构建每顶点 warp 矩阵 buffer 的辅助函数。",
+      "tags": ["python", "matrix", "utility", "codegen"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "type": "function",
+      "name": "make_warp_matrices",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "lineRange": [34, 48],
+      "summary": "为 24 个顶点循环填入按预定义缩放集合循环的 2x2 warp 矩阵，并按行主序导出为二进制字节，对应 EXT_structural_metadata 的 mat2 属性。",
+      "tags": ["python", "codegen", "gltf", "ext-structural-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_temperature_vectors",
+      "type": "function",
+      "name": "make_temperature_vectors",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "lineRange": [50, 60],
+      "summary": "用固定种子的 RNG 生成 24 个顶点的 2 分量 UINT16 随机温度向量，按行主序导出，运行时由 offset/scale 反归一化还原温度值。",
+      "tags": ["python", "codegen", "gltf", "ext-structural-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "lineRange": [63, 81],
+      "summary": "脚本入口，拼接 warp 矩阵与温度向量为 metadata.bin，并打印各属性的 buffer offset 与长度以便手动填入 glTF JSON。",
+      "tags": ["python", "entry-point", "codegen", "script"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "function",
+      "name": "compute_edge_indices",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "lineRange": [30, 53],
+      "summary": "遍历 Blender 导出的三角形索引，按每四边形 (a b c / a d b) 模式提取外轮廓边 (a-d-b-c)，并以 uint16 小端打包为二进制边线索引。",
+      "tags": ["python", "codegen", "edge-topology", "gltf"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "lineRange": [55, 58],
+      "summary": "脚本入口，调用 compute_edge_indices 生成边线索引并写入 outlines.bin 供 CESIUM_primitive_outline 扩展引用。",
+      "tags": ["python", "entry-point", "codegen", "script"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/BoxTextured/README.md",
+      "target": "schema:Specs/Data/Models/glTF-2.0/BoxTextured/glTF/BoxTextured.gltf",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTexturedKtx2Basis/glTF/BoxTexturedKtx2Basis.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTexturedWithPropertyAttributes.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTextured0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTexturedWithPropertyAttributes.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/metadata.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/metadata.bin",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/README.md",
+      "target": "schema:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/BoxTexturedWithPropertyAttributes.gltf",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/README.md",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/BoxVertexColors.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/buffer.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/BoxVertexColors/README.md",
+      "target": "schema:Specs/Data/Models/glTF-2.0/BoxVertexColors/glTF/BoxVertexColors.gltf",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithCopyright/glTF/Box0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/BoxWithPrimitiveOutline.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/outlines.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/outlines.bin",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_scale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:set_mat2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_temperature_vectors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_scale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:set_mat2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_temperature_vectors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:main",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:main",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_temperature_vectors",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:set_mat2",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_warp_matrices",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxTexturedWithPropertyAttributes/glTF/make_box_textured_metadata.py:make_scale",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:main",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

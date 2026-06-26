@@ -1,0 +1,904 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Particle.js",
+      "type": "file",
+      "name": "Particle.js",
+      "filePath": "packages/engine/Source/Scene/Particle.js",
+      "summary": "表示粒子系统中的单个粒子，封装位置、速度、加速度、质量、生命周期与颜色等属性，由 ParticleSystem 更新。",
+      "tags": [
+        "particle",
+        "data-model",
+        "scene",
+        "physics"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Particle.js:Particle",
+      "type": "function",
+      "name": "Particle",
+      "filePath": "packages/engine/Source/Scene/Particle.js",
+      "lineRange": [
+        27,
+        96
+      ],
+      "summary": "构造函数，根据质量、位置、速度、生命周期、颜色与图像等参数创建粒子实例。",
+      "tags": [
+        "constructor",
+        "particle",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ParticleBurst.js",
+      "type": "file",
+      "name": "ParticleBurst.js",
+      "filePath": "packages/engine/Source/Scene/ParticleBurst.js",
+      "summary": "表示在特定时刻一次性发射一组粒子的爆发事件，由 ParticleSystem 在更新时触发，常用于爆炸、烟花效果。",
+      "tags": [
+        "particle",
+        "burst",
+        "emitter",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleBurst.js:ParticleBurst",
+      "type": "function",
+      "name": "ParticleBurst",
+      "filePath": "packages/engine/Source/Scene/ParticleBurst.js",
+      "lineRange": [
+        14,
+        37
+      ],
+      "summary": "构造函数，根据发射时间与粒子数量创建粒子爆发事件实例。",
+      "tags": [
+        "constructor",
+        "particle",
+        "burst"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ParticleEmitter.js",
+      "type": "file",
+      "name": "ParticleEmitter.js",
+      "filePath": "packages/engine/Source/Scene/ParticleEmitter.js",
+      "summary": "粒子发射器的抽象基类接口，定义按速率与方向生成新粒子的契约，由 CircleEmitter、BoxEmitter 等具体发射器派生。",
+      "tags": [
+        "particle",
+        "emitter",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "type": "file",
+      "name": "ParticleSystem.js",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "summary": "粒子系统核心，管理粒子池、发射器、更新力、生命周期与 Billboard 渲染，模拟火焰、烟雾、雨雪等基于粒子的视觉效果。",
+      "tags": [
+        "particle",
+        "system",
+        "simulation",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用对象池（particle pool）复用粒子实例避免 GC，并通过 BillboardCollection 批量渲染粒子精灵。"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleSystem.js:ParticleSystem",
+      "type": "function",
+      "name": "ParticleSystem",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "lineRange": [
+        58,
+        153
+      ],
+      "summary": "构造函数，根据发射器、粒子寿命、速率、图像、力等大量参数初始化粒子系统实例。",
+      "tags": [
+        "constructor",
+        "particle",
+        "system"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleSystem.js:updateParticlePool",
+      "type": "function",
+      "name": "updateParticlePool",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "lineRange": [
+        509,
+        547
+      ],
+      "summary": "根据当前配置的粒子数量上限动态扩容或回收粒子池，保证池容量与系统参数一致。",
+      "tags": [
+        "particle",
+        "object-pool",
+        "update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleSystem.js:updateBillboard",
+      "type": "function",
+      "name": "updateBillboard",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "lineRange": [
+        586,
+        628
+      ],
+      "summary": "将单个粒子的位置、颜色、尺寸与旋转同步到其对应的 Billboard，完成渲染状态更新。",
+      "tags": [
+        "particle",
+        "billboard",
+        "rendering",
+        "update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleSystem.js:addParticle",
+      "type": "function",
+      "name": "addParticle",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "lineRange": [
+        630,
+        664
+      ],
+      "summary": "从池中取出空闲粒子并按发射器规则初始化其位置、速度与生命周期，加入活动集合。",
+      "tags": [
+        "particle",
+        "emitter",
+        "update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ParticleSystem.js:calculateNumberToEmit",
+      "type": "function",
+      "name": "calculateNumberToEmit",
+      "filePath": "packages/engine/Source/Scene/ParticleSystem.js",
+      "lineRange": [
+        666,
+        697
+      ],
+      "summary": "根据发射速率与帧间隔时间计算本帧应发射的粒子数，并处理欠发射的累积补偿。",
+      "tags": [
+        "particle",
+        "emitter",
+        "calculation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "type": "file",
+      "name": "PerformanceDisplay.js",
+      "filePath": "packages/engine/Source/Scene/PerformanceDisplay.js",
+      "summary": "在场景上叠加显示性能统计信息（帧时间、内存等）的调试显示部件，通过 DOM 元素渲染实时指标。",
+      "tags": [
+        "performance",
+        "debug",
+        "display",
+        "monitoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PerformanceDisplay.js:PerformanceDisplay",
+      "type": "function",
+      "name": "PerformanceDisplay",
+      "filePath": "packages/engine/Source/Scene/PerformanceDisplay.js",
+      "lineRange": [
+        11,
+        48
+      ],
+      "summary": "构造函数，根据容器与文本格式创建性能显示实例，并初始化用于渲染指标的 DOM 元素。",
+      "tags": [
+        "constructor",
+        "performance",
+        "debug"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/QuadtreeTileProvider.js",
+      "type": "file",
+      "name": "QuadtreeTileProvider.js",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTileProvider.js",
+      "summary": "四叉树瓦片 provider 的抽象接口，定义向 QuadtreePrimitive 提供地形或影像瓦片的可见性判断、加载、距离计算等契约。",
+      "tags": [
+        "quadtree",
+        "tile",
+        "provider",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/QuadtreeTileProvider.js:QuadtreeTileProvider",
+      "type": "class",
+      "name": "QuadtreeTileProvider",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTileProvider.js",
+      "lineRange": [
+        22,
+        194
+      ],
+      "summary": "四叉树瓦片 provider 抽象基类，声明 update/loadTile/computeTileVisibility/computeDistanceToTile 等方法，由具体地形/影像 provider 实现。",
+      "tags": [
+        "quadtree",
+        "tile",
+        "provider",
+        "abstract",
+        "interface"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SensorVolumePortionToDisplay.js",
+      "type": "file",
+      "name": "SensorVolumePortionToDisplay.js",
+      "filePath": "packages/engine/Source/Scene/SensorVolumePortionToDisplay.js",
+      "summary": "定义枚举常量，控制传感器体积（如 czml 中的圆锥传感器）在视图中显示哪一部分（前/后/完整）。",
+      "tags": [
+        "sensor",
+        "enum",
+        "constants",
+        "czml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/StyleExpression.js",
+      "type": "file",
+      "name": "StyleExpression.js",
+      "filePath": "packages/engine/Source/Scene/StyleExpression.js",
+      "summary": "3D Tiles 样式表达式的抽象基类接口，由 ConditionsExpression、ExpressionStyle 等具体样式求值器派生。",
+      "tags": [
+        "3d-tiles",
+        "style",
+        "expression",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SupportedImageFormats.js",
+      "type": "file",
+      "name": "SupportedImageFormats.js",
+      "filePath": "packages/engine/Source/Scene/SupportedImageFormats.js",
+      "summary": "记录 3D Tiles / glTF 资源支持的图像格式（如 webp、png）及其可用性，供纹理加载器查询。",
+      "tags": [
+        "image-formats",
+        "3d-tiles",
+        "gltf",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Terrain.js",
+      "type": "file",
+      "name": "Terrain.js",
+      "filePath": "packages/engine/Source/Scene/Terrain.js",
+      "summary": "封装地形 provider 的异步加载与错误处理，提供便捷的 fromWorldTerrain / fromWorldBathymetry 等静态工厂方法。",
+      "tags": [
+        "terrain",
+        "loader",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Terrain.js:Terrain",
+      "type": "function",
+      "name": "Terrain",
+      "filePath": "packages/engine/Source/Scene/Terrain.js",
+      "lineRange": [
+        43,
+        54
+      ],
+      "summary": "构造函数，根据 terrain provider 的 Promise 创建 Terrain 包装实例并触发加载流程。",
+      "tags": [
+        "constructor",
+        "terrain",
+        "loader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Terrain.js:handlePromise",
+      "type": "function",
+      "name": "handlePromise",
+      "filePath": "packages/engine/Source/Scene/Terrain.js",
+      "lineRange": [
+        217,
+        227
+      ],
+      "summary": "等待 terrain provider Promise 完成，成功时绑定 provider，失败时通过 errorEvent 上报错误。",
+      "tags": [
+        "terrain",
+        "async",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileBoundingVolume.js",
+      "type": "file",
+      "name": "TileBoundingVolume.js",
+      "filePath": "packages/engine/Source/Scene/TileBoundingVolume.js",
+      "summary": "瓦片包围盒抽象接口，统一封装 Box、Region、Sphere 等几何体的相交与距离计算契约，用于瓦片剔除与排序。",
+      "tags": [
+        "bounding-volume",
+        "tile",
+        "interface",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "type": "file",
+      "name": "TileCoordinatesImageryProvider.js",
+      "filePath": "packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "summary": "在每个影像瓦片上绘制其层级与行列号文字，用于调试影像瓦片划分与层级关系。",
+      "tags": [
+        "imagery",
+        "provider",
+        "debug",
+        "tile-coordinates"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js:TileCoordinatesImageryProvider",
+      "type": "function",
+      "name": "TileCoordinatesImageryProvider",
+      "filePath": "packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "lineRange": [
+        31,
+        52
+      ],
+      "summary": "构造函数，根据瓦片划分方案与文字颜色创建可绘制瓦片坐标的影像 provider。",
+      "tags": [
+        "constructor",
+        "imagery",
+        "debug"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileDiscardPolicy.js",
+      "type": "file",
+      "name": "TileDiscardPolicy.js",
+      "filePath": "packages/engine/Source/Scene/TileDiscardPolicy.js",
+      "summary": "瓦片丢弃策略的抽象接口，定义在影像瓦片加载完成后判断是否丢弃（如透明瓦片）的契约。",
+      "tags": [
+        "imagery",
+        "discard-policy",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelProvider.js",
+      "type": "file",
+      "name": "VoxelProvider.js",
+      "filePath": "packages/engine/Source/Scene/VoxelProvider.js",
+      "summary": "体素（voxel）数据 provider 的抽象接口，定义按形状与边界请求数据的契约，由自定义体素数据源派生以渲染三维场数据。",
+      "tags": [
+        "voxel",
+        "provider",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/VoxelProvider.js:VoxelProvider",
+      "type": "class",
+      "name": "VoxelProvider",
+      "filePath": "packages/engine/Source/Scene/VoxelProvider.js",
+      "lineRange": [
+        23,
+        206
+      ],
+      "summary": "体素 provider 抽象基类，声明 requestData 等方法供 VoxelPrimitive 调用以获取三维体素网格数据。",
+      "tags": [
+        "voxel",
+        "provider",
+        "abstract",
+        "interface"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelShape.js",
+      "type": "file",
+      "name": "VoxelShape.js",
+      "filePath": "packages/engine/Source/Scene/VoxelShape.js",
+      "summary": "定义体素形状类型的枚举常量（如 BOX、ELLIPSOID、CYLINDER），决定体素数据的采样空间与裁剪方式。",
+      "tags": [
+        "voxel",
+        "shape",
+        "enum",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "type": "file",
+      "name": "createWorldImageryAsync.js",
+      "filePath": "packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "summary": "异步工厂函数，基于 Cesium Ion 创建全球影像 provider 的便捷方法，封装 IonImageryProvider 的实例化与样式配置。",
+      "tags": [
+        "imagery",
+        "factory",
+        "ion",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/createWorldImageryAsync.js:createWorldImageryAsync",
+      "type": "function",
+      "name": "createWorldImageryAsync",
+      "filePath": "packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "lineRange": [
+        34,
+        38
+      ],
+      "summary": "根据影像样式与 ion access token 异步创建全球影像 provider 实例。",
+      "tags": [
+        "factory",
+        "imagery",
+        "ion",
+        "async"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Particle.js",
+      "target": "function:packages/engine/Source/Scene/Particle.js:Particle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleBurst.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleBurst.js",
+      "target": "function:packages/engine/Source/Scene/ParticleBurst.js:ParticleBurst",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleEmitter.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Scene/CircleEmitter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "file:packages/engine/Source/Scene/Particle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "function:packages/engine/Source/Scene/ParticleSystem.js:ParticleSystem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "function:packages/engine/Source/Scene/ParticleSystem.js:updateParticlePool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "function:packages/engine/Source/Scene/ParticleSystem.js:updateBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "function:packages/engine/Source/Scene/ParticleSystem.js:addParticle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ParticleSystem.js",
+      "target": "function:packages/engine/Source/Scene/ParticleSystem.js:calculateNumberToEmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/getElement.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+      "target": "function:packages/engine/Source/Scene/PerformanceDisplay.js:PerformanceDisplay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTileProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTileProvider.js",
+      "target": "class:packages/engine/Source/Scene/QuadtreeTileProvider.js:QuadtreeTileProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SensorVolumePortionToDisplay.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StyleExpression.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SupportedImageFormats.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "file:packages/engine/Source/Core/createWorldBathymetryAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "file:packages/engine/Source/Core/createWorldTerrainAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "function:packages/engine/Source/Scene/Terrain.js:Terrain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Terrain.js",
+      "target": "function:packages/engine/Source/Scene/Terrain.js:handlePromise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileBoundingVolume.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/TileCoordinatesImageryProvider.js:TileCoordinatesImageryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileDiscardPolicy.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelProvider.js",
+      "target": "class:packages/engine/Source/Scene/VoxelProvider.js:VoxelProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelShape.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "target": "file:packages/engine/Source/Scene/IonImageryProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "target": "file:packages/engine/Source/Scene/IonWorldImageryStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "target": "function:packages/engine/Source/Scene/createWorldImageryAsync.js:createWorldImageryAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

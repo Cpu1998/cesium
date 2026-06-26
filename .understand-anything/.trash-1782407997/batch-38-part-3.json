@@ -1,0 +1,920 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "file",
+   "name": "Appearance.js",
+   "filePath": "packages/engine/Source/Scene/Appearance.js",
+   "summary": "定义所有 Appearance 的基类，封装 GLSL vertex/fragment shader、render state 与材质以决定 Primitive 的绘制方式。",
+   "tags": [
+    "appearance",
+    "shader",
+    "base-class",
+    "scene",
+    "render-state"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "type": "file",
+   "name": "DebugModelMatrixPrimitive.js",
+   "filePath": "packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "summary": "渲染用于调试的坐标轴指示线，可视化给定 modelMatrix 的位置与朝向。",
+   "tags": [
+    "primitive",
+    "debug",
+    "model-matrix",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "type": "file",
+   "name": "EllipsoidSurfaceAppearance.js",
+   "filePath": "packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "summary": "专为椭球面（贴地）几何设计的 Appearance，假设几何位于椭球表面以简化纹理坐标计算。",
+   "tags": [
+    "appearance",
+    "ellipsoid-surface",
+    "material",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "type": "file",
+   "name": "GroundPrimitive.js",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "summary": "贴地 Primitive，将几何体贴合到地形与 3D Tiles 上进行分类渲染，处理地形高度采样、包围盒与渲染命令队列。",
+   "tags": [
+    "primitive",
+    "ground",
+    "classification",
+    "terrain",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "file",
+   "name": "HeightReference.js",
+   "filePath": "packages/engine/Source/Scene/HeightReference.js",
+   "summary": "枚举，定义高度参考方式：绝对高度、贴地、相对地面，影响 Entity 与几何体相对地形的定位行为。",
+   "tags": [
+    "enum",
+    "height-reference",
+    "constants",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "type": "file",
+   "name": "MaterialAppearance.js",
+   "filePath": "packages/engine/Source/Scene/MaterialAppearance.js",
+   "summary": "通用 Appearance，支持任意 Material（纹理、网格、水波等）用于基于材质渲染的几何体。",
+   "tags": [
+    "appearance",
+    "material",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "file",
+   "name": "PerInstanceColorAppearance.js",
+   "filePath": "packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "summary": "针对每个 GeometryInstance 提供独立颜色的 Appearance，常用于静态批量着色几何体。",
+   "tags": [
+    "appearance",
+    "per-instance-color",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "type": "file",
+   "name": "PolylineColorAppearance.js",
+   "filePath": "packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "summary": "为折线提供逐顶点颜色渲染的 Appearance。",
+   "tags": [
+    "appearance",
+    "polyline",
+    "color",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Appearance.js:Appearance",
+   "type": "function",
+   "name": "Appearance",
+   "filePath": "packages/engine/Source/Scene/Appearance.js",
+   "lineRange": [
+    33,
+    59
+   ],
+   "summary": "基类构造函数，根据 translucent/closed/material/shader 选项配置 renderState 与默认 GLSL 源。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "base-class",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js:DebugModelMatrixPrimitive",
+   "type": "function",
+   "name": "DebugModelMatrixPrimitive",
+   "filePath": "packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "lineRange": [
+    41,
+    91
+   ],
+   "summary": "构造调试坐标轴 Primitive，渲染代表 modelMatrix 的彩色坐标线。",
+   "tags": [
+    "constructor",
+    "primitive",
+    "debug",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js:EllipsoidSurfaceAppearance",
+   "type": "function",
+   "name": "EllipsoidSurfaceAppearance",
+   "filePath": "packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "lineRange": [
+    44,
+    89
+   ],
+   "summary": "构造椭球面 Appearance，为位于椭球表面的几何体提供优化的纹理坐标计算。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "ellipsoid-surface",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:GroundPrimitive",
+   "type": "function",
+   "name": "GroundPrimitive",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    114,
+    237
+   ],
+   "summary": "构造贴地 Primitive，配置分类类型、异步准备与地形高度采样回调。",
+   "tags": [
+    "constructor",
+    "primitive",
+    "ground",
+    "classification"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueCommands",
+   "type": "function",
+   "name": "updateAndQueueCommands",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    544,
+    662
+   ],
+   "summary": "核心渲染命令入队逻辑：根据帧状态、地形高度与可见性生成并提交颜色/拾取命令。",
+   "tags": [
+    "render",
+    "command-queue",
+    "ground",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:getRectangle",
+   "type": "function",
+   "name": "getRectangle",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    382,
+    443
+   ],
+   "summary": "计算贴地几何在地形高度约束下的可见矩形范围。",
+   "tags": [
+    "utility",
+    "rectangle",
+    "culling",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:createBoundingVolume",
+   "type": "function",
+   "name": "createBoundingVolume",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    455,
+    484
+   ],
+   "summary": "为贴地几何基于地形高度采样构造包围盒。",
+   "tags": [
+    "utility",
+    "bounding-volume",
+    "ground",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueRenderCommand",
+   "type": "function",
+   "name": "updateAndQueueRenderCommand",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    490,
+    516
+   ],
+   "summary": "将单个渲染命令按帧状态入队并更新其与地形相关的参数。",
+   "tags": [
+    "render",
+    "command-queue",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueuePickCommand",
+   "type": "function",
+   "name": "updateAndQueuePickCommand",
+   "filePath": "packages/engine/Source/Scene/GroundPrimitive.js",
+   "lineRange": [
+    518,
+    542
+   ],
+   "summary": "将单个拾取命令按帧状态入队。",
+   "tags": [
+    "render",
+    "pick-command",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceClamp",
+   "type": "function",
+   "name": "isHeightReferenceClamp",
+   "filePath": "packages/engine/Source/Scene/HeightReference.js",
+   "lineRange": [
+    69,
+    75
+   ],
+   "summary": "判断给定高度参考是否为贴地类型。",
+   "tags": [
+    "utility",
+    "height-reference",
+    "predicate"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceRelative",
+   "type": "function",
+   "name": "isHeightReferenceRelative",
+   "filePath": "packages/engine/Source/Scene/HeightReference.js",
+   "lineRange": [
+    83,
+    89
+   ],
+   "summary": "判断给定高度参考是否为相对地面类型。",
+   "tags": [
+    "utility",
+    "height-reference",
+    "predicate"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/MaterialAppearance.js:MaterialAppearance",
+   "type": "function",
+   "name": "MaterialAppearance",
+   "filePath": "packages/engine/Source/Scene/MaterialAppearance.js",
+   "lineRange": [
+    49,
+    97
+   ],
+   "summary": "构造通用材质 Appearance，绑定 Material 与 VertexFormat 并提供 GLSL 源。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "material",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PerInstanceColorAppearance.js:PerInstanceColorAppearance",
+   "type": "function",
+   "name": "PerInstanceColorAppearance",
+   "filePath": "packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "lineRange": [
+    70,
+    120
+   ],
+   "summary": "构造按实例颜色渲染的 Appearance，提供扁平/逐顶点着色的 GLSL 源。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "per-instance-color",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PolylineColorAppearance.js:PolylineColorAppearance",
+   "type": "function",
+   "name": "PolylineColorAppearance",
+   "filePath": "packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "lineRange": [
+    47,
+    88
+   ],
+   "summary": "构造折线颜色 Appearance，提供逐顶点颜色折线渲染的 GLSL 源。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "polyline",
+    "color",
+    "scene"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "function:packages/engine/Source/Scene/Appearance.js:Appearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "function:packages/engine/Source/Scene/Appearance.js:Appearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js:DebugModelMatrixPrimitive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js:DebugModelMatrixPrimitive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "function:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js:EllipsoidSurfaceAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "function:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js:EllipsoidSurfaceAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:GroundPrimitive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:GroundPrimitive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:getRectangle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:getRectangle",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:createBoundingVolume",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:createBoundingVolume",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueRenderCommand",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueueRenderCommand",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueuePickCommand",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/GroundPrimitive.js:updateAndQueuePickCommand",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/HeightReference.js",
+   "target": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceClamp",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/HeightReference.js",
+   "target": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceClamp",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/HeightReference.js",
+   "target": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceRelative",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/HeightReference.js",
+   "target": "function:packages/engine/Source/Scene/HeightReference.js:isHeightReferenceRelative",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "function:packages/engine/Source/Scene/MaterialAppearance.js:MaterialAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "function:packages/engine/Source/Scene/MaterialAppearance.js:MaterialAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PerInstanceColorAppearance.js:PerInstanceColorAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PerInstanceColorAppearance.js:PerInstanceColorAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PolylineColorAppearance.js:PolylineColorAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PolylineColorAppearance.js:PolylineColorAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Core/clone.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Core/combine.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Scene/BlendingState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Appearance.js",
+   "target": "file:packages/engine/Source/Scene/CullFace.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/ArcType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Core/PolylineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/EllipsoidSurfaceAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Material.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/ClassificationPrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Material.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

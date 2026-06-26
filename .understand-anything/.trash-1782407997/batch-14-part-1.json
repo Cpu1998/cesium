@@ -1,0 +1,1894 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/MetadataSemantic.js",
+   "type": "file",
+   "name": "MetadataSemantic.js",
+   "filePath": "packages/engine/Source/Scene/MetadataSemantic.js",
+   "summary": "定义 3D Tiles 的 EXT_structural_metadata 与 EXT_mesh_features 语义辅助工具，用于解析 metadata 属性。",
+   "tags": [
+    "3d-tiles",
+    "metadata",
+    "utility"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/Model/CartesianRectangle.js",
+   "type": "file",
+   "name": "CartesianRectangle.js",
+   "filePath": "packages/engine/Source/Scene/Model/CartesianRectangle.js",
+   "summary": "提供基于经纬度矩形的轻量数学工具类 CartesianRectangle，用于影像覆盖范围的几何计算。",
+   "tags": [
+    "utility",
+    "geometry",
+    "data-model"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "type": "file",
+   "name": "ImageryCoverage.js",
+   "filePath": "packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "summary": "管理 Model 上叠加影像图层的覆盖范围与瓦片划分，跟踪每个影像瓦片的矩形和几何误差。",
+   "tags": [
+    "imagery",
+    "coverage",
+    "data-model"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "type": "file",
+   "name": "NodeStatisticsPipelineStage.js",
+   "filePath": "packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "summary": "Model 加载管线阶段：统计 instancing 属性与运行时生成缓冲区的数量，用于性能分析。",
+   "tags": [
+    "model",
+    "pipeline-stage",
+    "statistics"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "type": "file",
+   "name": "Multiple3DTileContent.js",
+   "filePath": "packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "summary": "实现 3D Tiles MULTIPLE_CONTENTS 扩展的容器内容类型，调度多个内部内容（如 b3dm、i3dm）的加载与请求调度。",
+   "tags": [
+    "3d-tiles",
+    "tile-content",
+    "multiple-contents"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "type": "file",
+   "name": "OpenStreetMapImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "summary": "基于 UrlTemplateImageryProvider 封装的 OpenStreetMap 影像图层 provider，预设 OSM 瓦片 URL 模板与版权信息。",
+   "tags": [
+    "imagery",
+    "provider",
+    "osm"
+   ],
+   "complexity": "simple",
+   "languageNotes": "通过对 UrlTemplateImageryProvider 进行 Frozen 包装，复用通用模板影像机制。"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "type": "file",
+   "name": "ResourceCacheKey.js",
+   "filePath": "packages/engine/Source/Scene/ResourceCacheKey.js",
+   "summary": "为 glTF/3D Tiles 资源（buffer、accessor、image、Draco、Spz、meshopt 等）生成稳定缓存键的工厂函数集合。",
+   "tags": [
+    "utility",
+    "cache",
+    "factory"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "type": "file",
+   "name": "SingleTileImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "summary": "从单个图片 URL 加载整张影像并作为单一瓦片提供的 imagery provider，支持地理范围裁剪与失败重试。",
+   "tags": [
+    "imagery",
+    "provider",
+    "single-tile"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "type": "file",
+   "name": "TileMapServiceImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "summary": "加载符合 Tile Map Service (TMS) 规范的瓦片金字塔影像的 provider，基于 UrlTemplateImageryProvider 并处理 Y 轴反转与边界裁剪。",
+   "tags": [
+    "imagery",
+    "provider",
+    "tms"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TileReplacementQueue.js",
+   "type": "file",
+   "name": "TileReplacementQueue.js",
+   "filePath": "packages/engine/Source/Scene/TileReplacementQueue.js",
+   "summary": "用于影像/地形瓦片 LRU 替换策略的队列实现，跟踪瓦片使用顺序以释放最旧瓦片。",
+   "tags": [
+    "tile-queue",
+    "utility",
+    "lru"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/Tileset3DTileContent.js",
+   "type": "file",
+   "name": "Tileset3DTileContent.js",
+   "filePath": "packages/engine/Source/Scene/Tileset3DTileContent.js",
+   "summary": "3D Tiles 外部 tileset（引用另一 tileset.json）的内容类型实现，递归挂载子 tileset。",
+   "tags": [
+    "3d-tiles",
+    "tile-content",
+    "external-tileset"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "type": "file",
+   "name": "TimeDynamicImagery.js",
+   "filePath": "packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "summary": "支持时间动态影像图层的辅助类，管理时间区间缓存并在临近区间时预请求下一帧影像。",
+   "tags": [
+    "imagery",
+    "time-dynamic",
+    "cache"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "type": "file",
+   "name": "UrlTemplate3DTilesDataProvider.js",
+   "filePath": "packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "summary": "通过 URL 模板（含 {z}/{x}/{y} 等变量）按需构造 3D Tiles 层级并生成 runtime tileset JSON 的数据 provider。",
+   "tags": [
+    "3d-tiles",
+    "provider",
+    "url-template"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "type": "file",
+   "name": "UrlTemplateImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "summary": "通用 URL 模板影像 provider，支持子域、反向坐标、自定义标签、要素拾取等，是大多数标准瓦片影像 provider 的基类。",
+   "tags": [
+    "imagery",
+    "provider",
+    "url-template"
+   ],
+   "complexity": "complex",
+   "languageNotes": "作为 OSM、TMS、WMS、WMTS 等多个 provider 的共同基类，通过模板插值生成瓦片 URL。"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "type": "file",
+   "name": "WebMapServiceImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "summary": "支持 OGC Web Map Service (WMS) GetMap/GetFeatureInfo 的影像 provider，基于 UrlTemplateImageryProvider 构造请求。",
+   "tags": [
+    "imagery",
+    "provider",
+    "wms"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "type": "file",
+   "name": "WebMapTileServiceImageryProvider.js",
+   "filePath": "packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "summary": "支持 OGC Web Map Tile Service (WMTS) 包括 KVP 与 RESTful 编码、自定义维度与样式标签的影像 provider。",
+   "tags": [
+    "imagery",
+    "provider",
+    "wmts"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "type": "file",
+   "name": "buildVectorGltfFromMVT.js",
+   "filePath": "packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "summary": "将 Mapbox Vector Tile (MVT) 解码后的几何要素转换为内存中 glTF 二进制结构（含 glb 编码），用于 MVT 数据 provider。",
+   "tags": [
+    "mvt",
+    "gltf",
+    "vector-tiles"
+   ],
+   "complexity": "complex",
+   "languageNotes": "实现多边形环方向修正、本地坐标变换与 glTF buffer 手工打包。"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js:countInstancingAttributes",
+   "type": "function",
+   "name": "countInstancingAttributes",
+   "filePath": "packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "lineRange": [
+    36,
+    51
+   ],
+   "summary": "统计 Model 节点上 instancing 属性的数量，用于管线性能统计。",
+   "tags": [
+    "statistics",
+    "instancing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js:countGeneratedBuffers",
+   "type": "function",
+   "name": "countGeneratedBuffers",
+   "filePath": "packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "lineRange": [
+    53,
+    73
+   ],
+   "summary": "统计运行时为该节点生成的缓冲区（顶点/索引/属性）数量。",
+   "tags": [
+    "statistics",
+    "buffers"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:requestInnerContent",
+   "type": "function",
+   "name": "requestInnerContent",
+   "filePath": "packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "lineRange": [
+    499,
+    567
+   ],
+   "summary": "调度子内容瓦片的请求，处理请求状态、优先级与失败回调。",
+   "tags": [
+    "3d-tiles",
+    "scheduling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:createInnerContent",
+   "type": "function",
+   "name": "createInnerContent",
+   "filePath": "packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "lineRange": [
+    599,
+    662
+   ],
+   "summary": "依据内容类型与工厂为单个内部内容创建对应的 Cesium3DTileContent 实例。",
+   "tags": [
+    "3d-tiles",
+    "factory"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:canScheduleAllRequests",
+   "type": "function",
+   "name": "canScheduleAllRequests",
+   "filePath": "packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "lineRange": [
+    477,
+    497
+   ],
+   "summary": "判断是否所有挂起的内部内容请求都满足调度条件（请求预算、依赖等）。",
+   "tags": [
+    "3d-tiles",
+    "scheduling"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getImageCacheKey",
+   "type": "function",
+   "name": "getImageCacheKey",
+   "filePath": "packages/engine/Source/Scene/ResourceCacheKey.js",
+   "lineRange": [
+    92,
+    118
+   ],
+   "summary": "为图片资源生成缓存键，涵盖 URI、缓冲区视图引用与 KTX2 扩展信息。",
+   "tags": [
+    "cache",
+    "image"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getDracoCacheKey",
+   "type": "function",
+   "name": "getDracoCacheKey",
+   "filePath": "packages/engine/Source/Scene/ResourceCacheKey.js",
+   "lineRange": [
+    56,
+    72
+   ],
+   "summary": "为 Draco 压缩几何生成缓存键，包含 primitive 索引与属性映射。",
+   "tags": [
+    "cache",
+    "draco"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getSpzCacheKey",
+   "type": "function",
+   "name": "getSpzCacheKey",
+   "filePath": "packages/engine/Source/Scene/ResourceCacheKey.js",
+   "lineRange": [
+    74,
+    90
+   ],
+   "summary": "为 Spz 格式（粒子/gaussian splatting）资源生成缓存键。",
+   "tags": [
+    "cache",
+    "spz"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SingleTileImageryProvider.js:SingleTileImageryProvider",
+   "type": "function",
+   "name": "SingleTileImageryProvider",
+   "filePath": "packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "lineRange": [
+    45,
+    93
+   ],
+   "summary": "SingleTileImageryProvider 构造器，校验 URL/矩形并初始化单瓦片影像状态。",
+   "tags": [
+    "imagery",
+    "provider"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SingleTileImageryProvider.js:failure",
+   "type": "function",
+   "name": "failure",
+   "filePath": "packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "lineRange": [
+    250,
+    274
+   ],
+   "summary": "处理单瓦片影像请求失败，触发错误事件并按重试策略调度。",
+   "tags": [
+    "imagery",
+    "error-handling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileMapServiceImageryProvider.js:calculateSafeMinimumDetailLevel",
+   "type": "function",
+   "name": "calculateSafeMinimumDetailLevel",
+   "filePath": "packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "lineRange": [
+    180,
+    202
+   ],
+   "summary": "根据可用范围与 tiling scheme 计算安全的最低 detail level，避免请求超出可用瓦片范围。",
+   "tags": [
+    "imagery",
+    "tiling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileMapServiceImageryProvider.js:confineRectangleToTilingScheme",
+   "type": "function",
+   "name": "confineRectangleToTilingScheme",
+   "filePath": "packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "lineRange": [
+    164,
+    178
+   ],
+   "summary": "将影像矩形裁剪到给定 tiling scheme 的有效范围内。",
+   "tags": [
+    "imagery",
+    "geometry"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TimeDynamicImagery.js:getApproachingInterval",
+   "type": "function",
+   "name": "getApproachingInterval",
+   "filePath": "packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "lineRange": [
+    234,
+    268
+   ],
+   "summary": "根据当前时间查找临近的时间区间，用于决定是否预取下一帧影像。",
+   "tags": [
+    "imagery",
+    "time-dynamic"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TimeDynamicImagery.js:addToCache",
+   "type": "function",
+   "name": "addToCache",
+   "filePath": "packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "lineRange": [
+    270,
+    307
+   ],
+   "summary": "将解析到的时间区间影像键加入缓存并淘汰过期项。",
+   "tags": [
+    "imagery",
+    "cache"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:buildTileNode",
+   "type": "function",
+   "name": "buildTileNode",
+   "filePath": "packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "lineRange": [
+    339,
+    398
+   ],
+   "summary": "递归构造一个 3D Tiles 节点（含 bounding volume、geometric error、子节点），生成 runtime tileset 层级。",
+   "tags": [
+    "3d-tiles",
+    "tree-builder"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:buildRuntimeTilesetJson",
+   "type": "function",
+   "name": "buildRuntimeTilesetJson",
+   "filePath": "packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "lineRange": [
+    279,
+    327
+   ],
+   "summary": "根据 extent、tiling scheme 与 URL 模板生成顶层 tileset.json 结构。",
+   "tags": [
+    "3d-tiles",
+    "builder"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:computeTileRangeForExtent",
+   "type": "function",
+   "name": "computeTileRangeForExtent",
+   "filePath": "packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "lineRange": [
+    447,
+    467
+   ],
+   "summary": "给定地理范围计算覆盖该范围的瓦片（层级 + xy 区间）。",
+   "tags": [
+    "3d-tiles",
+    "tiling"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:UrlTemplateImageryProvider",
+   "type": "function",
+   "name": "UrlTemplateImageryProvider",
+   "filePath": "packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "lineRange": [
+    189,
+    266
+   ],
+   "summary": "通用 URL 模板影像 provider 构造器，解析模板、子域、tiling scheme 与自定义标签。",
+   "tags": [
+    "imagery",
+    "provider"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:buildImageResource",
+   "type": "function",
+   "name": "buildImageResource",
+   "filePath": "packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "lineRange": [
+    613,
+    636
+   ],
+   "summary": "根据模板变量（{x}/{y}/{z}/reverseX/自定义标签/子域）构造影像瓦片请求 Resource。",
+   "tags": [
+    "imagery",
+    "url-builder"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:buildPickFeaturesResource",
+   "type": "function",
+   "name": "buildPickFeaturesResource",
+   "filePath": "packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "lineRange": [
+    642,
+    681
+   ],
+   "summary": "构造要素拾取（GetFeatureInfo / pick）请求 URL，附加查询参数。",
+   "tags": [
+    "imagery",
+    "feature-picking"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/WebMapServiceImageryProvider.js:WebMapServiceImageryProvider",
+   "type": "function",
+   "name": "WebMapServiceImageryProvider",
+   "filePath": "packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "lineRange": [
+    104,
+    262
+   ],
+   "summary": "WMS 影像 provider 构造器，组装 GetMap URL 模板并解析图层/样式/CRS。",
+   "tags": [
+    "imagery",
+    "wms",
+    "provider"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/WebMapServiceImageryProvider.js:pickFeatures",
+   "type": "function",
+   "name": "pickFeatures",
+   "filePath": "packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "lineRange": [
+    275,
+    292
+   ],
+   "summary": "执行 WMS GetFeatureInfo 请求并返回 ImageryLayerFeatureInfo 列表。",
+   "tags": [
+    "imagery",
+    "feature-picking"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:WebMapTileServiceImageryProvider",
+   "type": "function",
+   "name": "WebMapTileServiceImageryProvider",
+   "filePath": "packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "lineRange": [
+    180,
+    341
+   ],
+   "summary": "WMTS 影像 provider 构造器，支持 KVP 与 RESTful 编码、维度矩阵与样式。",
+   "tags": [
+    "imagery",
+    "wmts",
+    "provider"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:applyDimensions",
+   "type": "function",
+   "name": "applyDimensions",
+   "filePath": "packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "lineRange": [
+    737,
+    763
+   ],
+   "summary": "将 WMTS 维度（如时间、高度层）应用到 URL 模板与请求参数。",
+   "tags": [
+    "imagery",
+    "wmts"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:createCustomTags",
+   "type": "function",
+   "name": "createCustomTags",
+   "filePath": "packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "lineRange": [
+    765,
+    798
+   ],
+   "summary": "将用户自定义 WMTS 标签注入到模板替换上下文中。",
+   "tags": [
+    "imagery",
+    "wmts"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:buildVectorGltfFromMVT",
+   "type": "function",
+   "name": "buildVectorGltfFromMVT",
+   "filePath": "packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "lineRange": [
+    78,
+    840
+   ],
+   "summary": "主入口：将解码后的 MVT 图层组装为内存 glTF 场景（节点、mesh、accessor、buffer），含 feature ID 映射与多边形 triangulation。",
+   "tags": [
+    "mvt",
+    "gltf",
+    "builder"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:buildGlb",
+   "type": "function",
+   "name": "buildGlb",
+   "filePath": "packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "lineRange": [
+    988,
+    1041
+   ],
+   "summary": "将内存中 glTF JSON 与二进制缓冲区打包成 GLB 二进制（含 header 与 chunk）。",
+   "tags": [
+    "gltf",
+    "glb",
+    "serialization"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:mapFeatureIdFromProperty",
+   "type": "function",
+   "name": "mapFeatureIdFromProperty",
+   "filePath": "packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "lineRange": [
+    866,
+    893
+   ],
+   "summary": "从 MVT 要素属性映射/分配 glTF EXT_mesh_features 的 feature ID。",
+   "tags": [
+    "mvt",
+    "feature-id"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:groupPolygonRings",
+   "type": "function",
+   "name": "groupPolygonRings",
+   "filePath": "packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "lineRange": [
+    900,
+    916
+   ],
+   "summary": "按外环/内环方向对多边形环分组，用于构建带孔洞的多边形几何。",
+   "tags": [
+    "geometry",
+    "polygon"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/Model/CartesianRectangle.js:CartesianRectangle",
+   "type": "class",
+   "name": "CartesianRectangle",
+   "filePath": "packages/engine/Source/Scene/Model/CartesianRectangle.js",
+   "lineRange": [
+    6,
+    106
+   ],
+   "summary": "轻量矩形工具类，提供 contains/intersect/计算宽高之类几何运算，不依赖完整 Rectangle。",
+   "tags": [
+    "utility",
+    "geometry"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/Model/ImageryCoverage.js:ImageryCoverage",
+   "type": "class",
+   "name": "ImageryCoverage",
+   "filePath": "packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "lineRange": [
+    38,
+    486
+   ],
+   "summary": "管理 Model 上每个影像图层的覆盖矩形与瓦片网格，负责确定哪些瓦片需要为给定 model 区域加载。",
+   "tags": [
+    "imagery",
+    "coverage",
+    "data-model"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/Multiple3DTileContent.js:Multiple3DTileContent",
+   "type": "class",
+   "name": "Multiple3DTileContent",
+   "filePath": "packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "lineRange": [
+    28,
+    446
+   ],
+   "summary": "3D Tiles MULTIPLE_CONTENTS 扩展的容器内容，调度多个内部子内容的请求、创建与销毁。",
+   "tags": [
+    "3d-tiles",
+    "tile-content",
+    "container"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/Tileset3DTileContent.js:Tileset3DTileContent",
+   "type": "class",
+   "name": "Tileset3DTileContent",
+   "filePath": "packages/engine/Source/Scene/Tileset3DTileContent.js",
+   "lineRange": [
+    14,
+    147
+   ],
+   "summary": "外部 tileset 内容实现，挂载并代理到子 Cesium3DTileset 的根 tile。",
+   "tags": [
+    "3d-tiles",
+    "tile-content",
+    "external-tileset"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:UrlTemplate3DTilesDataProvider",
+   "type": "class",
+   "name": "UrlTemplate3DTilesDataProvider",
+   "filePath": "packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "lineRange": [
+    46,
+    268
+   ],
+   "summary": "基于 URL 模板按需生成 3D Tiles 层级的 3D Tiles 数据 provider，维护 runtime tileset 树。",
+   "tags": [
+    "3d-tiles",
+    "provider"
+   ],
+   "complexity": "complex"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "target": "function:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js:countInstancingAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "target": "function:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js:countGeneratedBuffers",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:requestInnerContent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:createInnerContent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "function:packages/engine/Source/Scene/Multiple3DTileContent.js:canScheduleAllRequests",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getImageCacheKey",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getDracoCacheKey",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "function:packages/engine/Source/Scene/ResourceCacheKey.js:getSpzCacheKey",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/SingleTileImageryProvider.js:SingleTileImageryProvider",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/SingleTileImageryProvider.js:failure",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/TileMapServiceImageryProvider.js:calculateSafeMinimumDetailLevel",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/TileMapServiceImageryProvider.js:confineRectangleToTilingScheme",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "function:packages/engine/Source/Scene/TimeDynamicImagery.js:getApproachingInterval",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "function:packages/engine/Source/Scene/TimeDynamicImagery.js:addToCache",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:buildTileNode",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:buildRuntimeTilesetJson",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:computeTileRangeForExtent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:UrlTemplateImageryProvider",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:buildImageResource",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/UrlTemplateImageryProvider.js:buildPickFeaturesResource",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/WebMapServiceImageryProvider.js:WebMapServiceImageryProvider",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/WebMapServiceImageryProvider.js:pickFeatures",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:WebMapTileServiceImageryProvider",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:applyDimensions",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "function:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js:createCustomTags",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:buildVectorGltfFromMVT",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:buildGlb",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:mapFeatureIdFromProperty",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "function:packages/engine/Source/Scene/buildVectorGltfFromMVT.js:groupPolygonRings",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/CartesianRectangle.js",
+   "target": "class:packages/engine/Source/Scene/Model/CartesianRectangle.js:CartesianRectangle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "target": "class:packages/engine/Source/Scene/Model/ImageryCoverage.js:ImageryCoverage",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "class:packages/engine/Source/Scene/Multiple3DTileContent.js:Multiple3DTileContent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Tileset3DTileContent.js",
+   "target": "class:packages/engine/Source/Scene/Tileset3DTileContent.js:Tileset3DTileContent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "class:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js:UrlTemplate3DTilesDataProvider",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/ImageryCoverage.js",
+   "target": "file:packages/engine/Source/Scene/Model/CartesianRectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Model/NodeStatisticsPipelineStage.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/Request.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/RequestScheduler.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/RequestState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/RequestType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DContentGroup.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileContentFactory.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileContentType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/findContentMetadata.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/findGroupMetadata.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Credit.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/OpenStreetMapImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Core/getAbsoluteUri.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Scene/findMeshoptExtension.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+   "target": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Credit.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/TileProviderError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SingleTileImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/ImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/RequestErrorEvent.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/RuntimeError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/TileProviderError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileReplacementQueue.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Tileset3DTileContent.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/JulianDate.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/Request.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "target": "file:packages/engine/Source/Core/RequestType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/getAbsoluteUri.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplate3DTilesDataProvider.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/combine.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Credit.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/ImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/combine.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/Resource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/TimeDynamicImagery.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/WebMapTileServiceImageryProvider.js",
+   "target": "file:packages/engine/Source/Scene/UrlTemplateImageryProvider.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/PolygonPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Scene/MetadataType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Multiple3DTileContent.js",
+   "target": "file:packages/engine/Source/Scene/preprocess3DTileContent.js",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/buildVectorGltfFromMVT.js",
+   "target": "file:packages/engine/Source/Scene/decodeMVT.js",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  }
+ ]
+}

@@ -1,0 +1,1060 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "file",
+   "name": "OrthographicOffCenterFrustum.js",
+   "filePath": "packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "summary": "带边界（left/right/top/bottom）的正交投影视锥体，计算投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "camera",
+    "projection",
+    "orthographic"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "type": "file",
+   "name": "PerspectiveFrustum.js",
+   "filePath": "packages/engine/Source/Core/PerspectiveFrustum.js",
+   "summary": "透视投影视锥体，基于 fov/aspectRatio 委托 PerspectiveOffCenterFrustum 计算投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "camera",
+    "projection",
+    "perspective"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "type": "file",
+   "name": "PerspectiveOffCenterFrustum.js",
+   "filePath": "packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "summary": "带边界（left/right/top/bottom）的透视投影视锥体，计算投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "camera",
+    "projection",
+    "perspective"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Plane.js",
+   "type": "file",
+   "name": "Plane.js",
+   "filePath": "packages/engine/Source/Core/Plane.js",
+   "summary": "Hessian normal 形式的平面（法线 + 距离），提供点到平面距离、投影与变换。",
+   "tags": [
+    "geometry",
+    "plane",
+    "math"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "type": "file",
+   "name": "PlaneGeometry.js",
+   "filePath": "packages/engine/Source/Core/PlaneGeometry.js",
+   "summary": "在 XY 平面上生成矩形平面几何体，支持顶点格式（法线/切线/纹理坐标）配置。",
+   "tags": [
+    "geometry",
+    "primitive",
+    "plane",
+    "webgl"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "type": "file",
+   "name": "PlaneOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "summary": "生成单位矩形平面的线框轮廓几何体。",
+   "tags": [
+    "geometry",
+    "outline",
+    "plane",
+    "debug"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "type": "file",
+   "name": "PolygonGeometry.js",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "summary": "多边形几何体生成器，支持内外环、拉伸、贴地高度与纹理坐标，是绘制多边形 primitive 的核心。",
+   "tags": [
+    "geometry",
+    "polygon",
+    "primitive",
+    "tessellation"
+   ],
+   "complexity": "complex",
+   "languageNotes": "包含三角化、extruded 体积、splitPolygon 与 bounding rectangle 等大量计算逻辑。"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:OrthographicOffCenterFrustum",
+   "type": "function",
+   "name": "OrthographicOffCenterFrustum",
+   "filePath": "packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "lineRange": [
+    38,
+    91
+   ],
+   "summary": "带边界的正交视锥构造函数。",
+   "tags": [
+    "frustum",
+    "orthographic",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:update",
+   "type": "function",
+   "name": "update",
+   "filePath": "packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "lineRange": [
+    93,
+    147
+   ],
+   "summary": "刷新带边界正交视锥的投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "orthographic",
+    "projection"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PerspectiveFrustum.js:PerspectiveFrustum",
+   "type": "function",
+   "name": "PerspectiveFrustum",
+   "filePath": "packages/engine/Source/Core/PerspectiveFrustum.js",
+   "lineRange": [
+    35,
+    92
+   ],
+   "summary": "PerspectiveFrustum 构造函数，定义 fov/aspectRatio/near/far。",
+   "tags": [
+    "frustum",
+    "perspective",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PerspectiveFrustum.js:update",
+   "type": "function",
+   "name": "update",
+   "filePath": "packages/engine/Source/Core/PerspectiveFrustum.js",
+   "lineRange": [
+    156,
+    223
+   ],
+   "summary": "根据 fov/纵横比刷新透视视锥的投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "perspective",
+    "projection"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:PerspectiveOffCenterFrustum",
+   "type": "function",
+   "name": "PerspectiveOffCenterFrustum",
+   "filePath": "packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "lineRange": [
+    39,
+    93
+   ],
+   "summary": "带边界的透视视锥构造函数。",
+   "tags": [
+    "frustum",
+    "perspective",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:update",
+   "type": "function",
+   "name": "update",
+   "filePath": "packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "lineRange": [
+    95,
+    155
+   ],
+   "summary": "刷新带边界透视视锥的投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "perspective",
+    "projection"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/Plane.js:Plane",
+   "type": "function",
+   "name": "Plane",
+   "filePath": "packages/engine/Source/Core/Plane.js",
+   "lineRange": [
+    34,
+    66
+   ],
+   "summary": "Plane 构造函数，由法线与距离（Hessian normal 形式）定义平面。",
+   "tags": [
+    "geometry",
+    "plane",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PlaneGeometry.js:PlaneGeometry",
+   "type": "function",
+   "name": "PlaneGeometry",
+   "filePath": "packages/engine/Source/Core/PlaneGeometry.js",
+   "lineRange": [
+    27,
+    34
+   ],
+   "summary": "PlaneGeometry 构造函数，创建单位矩形平面几何体。",
+   "tags": [
+    "geometry",
+    "plane",
+    "constructor"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PolygonGeometry.js:computeAttributes",
+   "type": "function",
+   "name": "computeAttributes",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "lineRange": [
+    62,
+    424
+   ],
+   "summary": "根据三角化结果与顶点格式计算多边形的法线/切线/纹理坐标等顶点属性。",
+   "tags": [
+    "polygon",
+    "geometry",
+    "attributes"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PolygonGeometry.js:createGeometryFromPositionsExtruded",
+   "type": "function",
+   "name": "createGeometryFromPositionsExtruded",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "lineRange": [
+    428,
+    574
+   ],
+   "summary": "为拉伸（extruded）多边形生成侧壁、顶底面几何体。",
+   "tags": [
+    "polygon",
+    "extruded",
+    "geometry"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PolygonGeometry.js:PolygonGeometry",
+   "type": "function",
+   "name": "PolygonGeometry",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "lineRange": [
+    668,
+    748
+   ],
+   "summary": "PolygonGeometry 构造函数，封装内外环、拉伸高度与纹理坐标配置。",
+   "tags": [
+    "polygon",
+    "geometry",
+    "constructor"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PolygonGeometry.js:expandRectangle",
+   "type": "function",
+   "name": "expandRectangle",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "lineRange": [
+    961,
+    1026
+   ],
+   "summary": "扩展多边形覆盖的地理矩形，处理极点与 arcType 分支。",
+   "tags": [
+    "polygon",
+    "rectangle",
+    "bounding"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/PolygonGeometry.js:createProjectTo2d",
+   "type": "function",
+   "name": "createProjectTo2d",
+   "filePath": "packages/engine/Source/Core/PolygonGeometry.js",
+   "lineRange": [
+    1161,
+    1196
+   ],
+   "summary": "创建将多边形位置投影到 2D 切平面坐标系的函数。",
+   "tags": [
+    "polygon",
+    "projection",
+    "2d"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/CullingVolume.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/CullingVolume.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/ArcType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/PolygonGeometryLibrary.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/PolygonPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/Stereographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/WindingOrder.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:OrthographicOffCenterFrustum",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:OrthographicOffCenterFrustum",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:update",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:update",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveFrustum.js:PerspectiveFrustum",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveFrustum.js:PerspectiveFrustum",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveFrustum.js:update",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveFrustum.js:update",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:PerspectiveOffCenterFrustum",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:PerspectiveOffCenterFrustum",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:update",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:update",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "function:packages/engine/Source/Core/Plane.js:Plane",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Plane.js",
+   "target": "function:packages/engine/Source/Core/Plane.js:Plane",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "function:packages/engine/Source/Core/PlaneGeometry.js:PlaneGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PlaneGeometry.js",
+   "target": "function:packages/engine/Source/Core/PlaneGeometry.js:PlaneGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:computeAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:computeAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:createGeometryFromPositionsExtruded",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:createGeometryFromPositionsExtruded",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:PolygonGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:PolygonGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:expandRectangle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:expandRectangle",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:createProjectTo2d",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/PolygonGeometry.js:createProjectTo2d",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PolygonGeometry.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeTriangles",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "target": "function:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js:PerspectiveOffCenterFrustum",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  }
+ ]
+}

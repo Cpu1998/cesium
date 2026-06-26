@@ -1,0 +1,755 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 233,
+      "nonEmptyLines": 204,
+      "functions": [
+        {
+          "name": "getCurrentMinorVersion",
+          "startLine": 22,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "getIMSToken",
+          "startLine": 55,
+          "endLine": 75,
+          "params": [
+            "clientId",
+            "clientSecret"
+          ]
+        },
+        {
+          "name": "getShares",
+          "startLine": 82,
+          "endLine": 101,
+          "params": [
+            "itwinId",
+            "accessToken"
+          ]
+        },
+        {
+          "name": "mapSharesToVersion",
+          "startLine": 112,
+          "endLine": 137,
+          "params": [
+            "shares",
+            "currentMajorVersion"
+          ]
+        },
+        {
+          "name": "createShare",
+          "startLine": 146,
+          "endLine": 173,
+          "params": [
+            "itwinId",
+            "contractName",
+            "expiration",
+            "accessToken"
+          ]
+        },
+        {
+          "name": "getNewKeyForItwin",
+          "startLine": 186,
+          "endLine": 233,
+          "params": [
+            "itwinId"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getNewKeyForItwin",
+          "line": 186,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getCurrentMinorVersion",
+          "callee": "readFile",
+          "lineNumber": 23
+        },
+        {
+          "caller": "getCurrentMinorVersion",
+          "callee": "JSON.parse",
+          "lineNumber": 24
+        },
+        {
+          "caller": "getCurrentMinorVersion",
+          "callee": "version.match",
+          "lineNumber": 25
+        },
+        {
+          "caller": "getCurrentMinorVersion",
+          "callee": "Number",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getIMSToken",
+          "callee": "fetch",
+          "lineNumber": 56
+        },
+        {
+          "caller": "getIMSToken",
+          "callee": "resp.json",
+          "lineNumber": 67
+        },
+        {
+          "caller": "getIMSToken",
+          "callee": "resp.json",
+          "lineNumber": 73
+        },
+        {
+          "caller": "getShares",
+          "callee": "fetch",
+          "lineNumber": 83
+        },
+        {
+          "caller": "getShares",
+          "callee": "resp.json",
+          "lineNumber": 99
+        },
+        {
+          "caller": "mapSharesToVersion",
+          "callee": "getMonth",
+          "lineNumber": 126
+        },
+        {
+          "caller": "mapSharesToVersion",
+          "callee": "getMonth",
+          "lineNumber": 126
+        },
+        {
+          "caller": "createShare",
+          "callee": "fetch",
+          "lineNumber": 147
+        },
+        {
+          "caller": "createShare",
+          "callee": "JSON.stringify",
+          "lineNumber": 156
+        },
+        {
+          "caller": "createShare",
+          "callee": "resp.json",
+          "lineNumber": 170
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "console.log",
+          "lineNumber": 188
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "getIMSToken",
+          "lineNumber": 194
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "getShares",
+          "lineNumber": 197
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "getCurrentMinorVersion",
+          "lineNumber": 198
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "mapSharesToVersion",
+          "lineNumber": 200
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "console.log",
+          "lineNumber": 202
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "console.log",
+          "lineNumber": 210
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "console.log",
+          "lineNumber": 216
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "setDate",
+          "lineNumber": 222
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "add",
+          "lineNumber": 222
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "createShare",
+          "lineNumber": 223
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "expiration.toISOString",
+          "lineNumber": 226
+        },
+        {
+          "caller": "getNewKeyForItwin",
+          "callee": "console.log",
+          "lineNumber": 230
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/actions/update-tokens/index.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 131,
+      "nonEmptyLines": 115,
+      "functions": [
+        {
+          "name": "replaceVariableValue",
+          "startLine": 34,
+          "endLine": 89,
+          "params": [
+            "ast",
+            "selector",
+            "newValue"
+          ]
+        },
+        {
+          "name": "formatCode",
+          "startLine": 96,
+          "endLine": 102,
+          "params": [
+            "code"
+          ]
+        },
+        {
+          "name": "processReplacement",
+          "startLine": 109,
+          "endLine": 127,
+          "params": [
+            "replacement"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "replaceVariableValue",
+          "callee": "esquery.query",
+          "lineNumber": 45
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.error",
+          "lineNumber": 50
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.error",
+          "lineNumber": 57
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.log",
+          "lineNumber": 64
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "newValue",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.log",
+          "lineNumber": 78
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.error",
+          "lineNumber": 84
+        },
+        {
+          "caller": "replaceVariableValue",
+          "callee": "console.error",
+          "lineNumber": 85
+        },
+        {
+          "caller": "formatCode",
+          "callee": "prettier.format",
+          "lineNumber": 97
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "console.log",
+          "lineNumber": 111
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "readFileSync",
+          "lineNumber": 112
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "parse",
+          "lineNumber": 114
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "espree.parse",
+          "lineNumber": 116
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "espree.tokenize",
+          "lineNumber": 118
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "replaceVariableValue",
+          "lineNumber": 122
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "print",
+          "lineNumber": 124
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "writeFileSync",
+          "lineNumber": 126
+        },
+        {
+          "caller": "processReplacement",
+          "callee": "formatCode",
+          "lineNumber": 126
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/actions/update-tokens/ionTokenDeleter.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 37,
+      "functions": [
+        {
+          "name": "deleteOldTokens",
+          "startLine": 14,
+          "endLine": 42,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "deleteOldTokens",
+          "callee": "getKnownTokens",
+          "lineNumber": 15
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "console.log",
+          "lineNumber": 17
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "setDate",
+          "lineNumber": 21
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "format",
+          "lineNumber": 22
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "token.name.includes",
+          "lineNumber": 24
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "console.log",
+          "lineNumber": 25
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "fetch",
+          "lineNumber": 27
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "console.error",
+          "lineNumber": 37
+        },
+        {
+          "caller": "deleteOldTokens",
+          "callee": "exit",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/actions/update-tokens/ionTokenUpdater.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 116,
+      "nonEmptyLines": 103,
+      "functions": [
+        {
+          "name": "getNextVersion",
+          "startLine": 20,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "getTokens",
+          "startLine": 32,
+          "endLine": 39,
+          "params": []
+        },
+        {
+          "name": "getKnownTokens",
+          "startLine": 68,
+          "endLine": 77,
+          "params": []
+        },
+        {
+          "name": "createNewToken",
+          "startLine": 83,
+          "endLine": 116,
+          "params": [
+            "version"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getNextVersion",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "getKnownTokens",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "createNewToken",
+          "line": 83,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getNextVersion",
+          "callee": "readFile",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getNextVersion",
+          "callee": "JSON.parse",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getNextVersion",
+          "callee": "version.match",
+          "lineNumber": 23
+        },
+        {
+          "caller": "getNextVersion",
+          "callee": "Number",
+          "lineNumber": 25
+        },
+        {
+          "caller": "getTokens",
+          "callee": "fetch",
+          "lineNumber": 33
+        },
+        {
+          "caller": "getTokens",
+          "callee": "resp.json",
+          "lineNumber": 38
+        },
+        {
+          "caller": "getKnownTokens",
+          "callee": "getTokens",
+          "lineNumber": 69
+        },
+        {
+          "caller": "getKnownTokens",
+          "callee": "tokens.items.filter",
+          "lineNumber": 73
+        },
+        {
+          "caller": "getKnownTokens",
+          "callee": "namePattern.test",
+          "lineNumber": 74
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "console.log",
+          "lineNumber": 84
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "getKnownTokens",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "existingTokens.find",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "token.name.includes",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "console.log",
+          "lineNumber": 90
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "setDate",
+          "lineNumber": 97
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "add",
+          "lineNumber": 97
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "format",
+          "lineNumber": 98
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "fetch",
+          "lineNumber": 100
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "JSON.stringify",
+          "lineNumber": 106
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "console.log",
+          "lineNumber": 114
+        },
+        {
+          "caller": "createNewToken",
+          "callee": "resp.json",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/actions/update-tokens/replacements.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 146,
+      "nonEmptyLines": 138,
+      "functions": [
+        {
+          "name": "variableDeclaration",
+          "startLine": 11,
+          "endLine": 13,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "propertySelector",
+          "startLine": 18,
+          "endLine": 20,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "getReplacements",
+          "startLine": 50,
+          "endLine": 146,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getReplacements",
+          "line": 50,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "propertySelector",
+          "callee": "name.split(\".\").at",
+          "lineNumber": 19
+        },
+        {
+          "caller": "propertySelector",
+          "callee": "name.split",
+          "lineNumber": 19
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "replacements.push",
+          "lineNumber": 55
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "join",
+          "lineNumber": 56
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "variableDeclaration",
+          "lineNumber": 57
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "createNewToken",
+          "lineNumber": 61
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "getNextVersion",
+          "lineNumber": 61
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "console.error",
+          "lineNumber": 64
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "replacements.push",
+          "lineNumber": 75
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "join",
+          "lineNumber": 77
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "propertySelector",
+          "lineNumber": 81
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "getNewKeyForItwin",
+          "lineNumber": 84
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "console.error",
+          "lineNumber": 87
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "join",
+          "lineNumber": 94
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "propertySelector",
+          "lineNumber": 98
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "getNewKeyForItwin",
+          "lineNumber": 101
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "console.error",
+          "lineNumber": 104
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "join",
+          "lineNumber": 111
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "propertySelector",
+          "lineNumber": 115
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "getNewKeyForItwin",
+          "lineNumber": 118
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "console.error",
+          "lineNumber": 121
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "join",
+          "lineNumber": 128
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "propertySelector",
+          "lineNumber": 132
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "getNewKeyForItwin",
+          "lineNumber": 135
+        },
+        {
+          "caller": "getReplacements",
+          "callee": "console.error",
+          "lineNumber": 138
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,1503 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "type": "file",
+   "name": "SceneTransitioner.js",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "负责在 SCENE3D、SCENE2D、COLUMBUS_VIEW 三种模式之间进行带动画的平滑 morph 过渡，操控相机与投影。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "animation",
+    "camera"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/SphereEmitter.js",
+   "type": "file",
+   "name": "SphereEmitter.js",
+   "filePath": "packages/engine/Source/Scene/SphereEmitter.js",
+   "summary": "粒子系统的球形发射器，在球面上随机生成粒子初始位置，被 ParticleSystem 使用。",
+   "tags": [
+    "particle-system",
+    "emitter",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/SunLight.js",
+   "type": "file",
+   "name": "SunLight.js",
+   "filePath": "packages/engine/Source/Scene/SunLight.js",
+   "summary": "表示太阳方向的平行光源，封装颜色与方向，为场景 PBR 光照和阴影提供主光源参数。",
+   "tags": [
+    "lighting",
+    "sun",
+    "scene",
+    "data-model"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "type": "file",
+   "name": "TerrainFillMesh.js",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "地形填充网格生成器，在已渲染邻居瓦片的基础上为缺失或低精度地形瓦片插值构造填充网格，消除地形边缘裂缝（skirt/edge stitching）。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "fill",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "type": "file",
+   "name": "TweenCollection.js",
+   "filePath": "packages/engine/Source/Scene/TweenCollection.js",
+   "summary": "补间动画集合，基于 Tween.js 管理一组 tween 的添加、更新、取消与完成回调，被相机过渡和 UI 动画使用。",
+   "tags": [
+    "animation",
+    "tween",
+    "utility",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:SceneTransitioner",
+   "type": "function",
+   "name": "SceneTransitioner",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "场景过渡器构造函数，绑定所属 scene。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "constructor"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    22,
+    33
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:createMorphHandler",
+   "type": "function",
+   "name": "createMorphHandler",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "创建 morph 过渡期间的事件处理器。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    323,
+    352
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:getColumbusViewTo3DCamera",
+   "type": "function",
+   "name": "getColumbusViewTo3DCamera",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 getColumbusViewTo3DCamera，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    368,
+    397
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo3D",
+   "type": "function",
+   "name": "morphFromColumbusViewTo3D",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 morphFromColumbusViewTo3D，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    406,
+    460
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DTo3D",
+   "type": "function",
+   "name": "morphFrom2DTo3D",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "从 SCENE2D 平滑过渡到 SCENE3D。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    470,
+    548
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphPerspectiveToOrthographic",
+   "type": "function",
+   "name": "morphPerspectiveToOrthographic",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 morphPerspectiveToOrthographic，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    555,
+    595
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo2D",
+   "type": "function",
+   "name": "morphFromColumbusViewTo2D",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "从 Columbus 视图过渡到 SCENE2D。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    613,
+    707
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DTo2D",
+   "type": "function",
+   "name": "morphFrom3DTo2D",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "从 SCENE3D 平滑过渡到 SCENE2D。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    730,
+    838
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphOrthographicToPerspective",
+   "type": "function",
+   "name": "morphOrthographicToPerspective",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 morphOrthographicToPerspective，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    840,
+    877
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DToColumbusView",
+   "type": "function",
+   "name": "morphFrom2DToColumbusView",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 morphFrom2DToColumbusView，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    879,
+    928
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DToColumbusView",
+   "type": "function",
+   "name": "morphFrom3DToColumbusView",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "从 SCENE3D 过渡到 Columbus 视图。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    930,
+    970
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:addMorphTimeAnimations",
+   "type": "function",
+   "name": "addMorphTimeAnimations",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 addMorphTimeAnimations，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    972,
+    998
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete3DCallback",
+   "type": "function",
+   "name": "complete3DCallback",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 complete3DCallback，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1000,
+    1040
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete2DCallback",
+   "type": "function",
+   "name": "complete2DCallback",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 complete2DCallback，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1042,
+    1070
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransitioner.js:completeColumbusViewCallback",
+   "type": "function",
+   "name": "completeColumbusViewCallback",
+   "filePath": "packages/engine/Source/Scene/SceneTransitioner.js",
+   "summary": "内部辅助函数 completeColumbusViewCallback，服务于 SceneTransitioner.js 的实现细节。",
+   "tags": [
+    "scene-mode",
+    "morph",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1072,
+    1110
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SunLight.js:SunLight",
+   "type": "function",
+   "name": "SunLight",
+   "filePath": "packages/engine/Source/Scene/SunLight.js",
+   "summary": "太阳光构造函数，设置颜色、方向与强度。",
+   "tags": [
+    "utility",
+    "constructor",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    14,
+    29
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:TerrainFillMesh",
+   "type": "function",
+   "name": "TerrainFillMesh",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "地形填充网格构造函数，记录所属瓦片并初始化空缓冲。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "constructor"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    22,
+    48
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitRenderedTiles",
+   "type": "function",
+   "name": "visitRenderedTiles",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "遍历已渲染瓦片以收集当前瓦片各边的邻居高度信息。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    228,
+    464
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitTile",
+   "type": "function",
+   "name": "visitTile",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "四叉树瓦片遍历核心，递归判定 SSE、可见性与细化，决定渲染或继续下钻。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    466,
+    500
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:propagateEdge",
+   "type": "function",
+   "name": "propagateEdge",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "沿一条边传播邻居高度以填充目标瓦片边缘。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    502,
+    745
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:fillMissingCorner",
+   "type": "function",
+   "name": "fillMissingCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 fillMissingCorner，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    760,
+    799
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:createFillMesh",
+   "type": "function",
+   "name": "createFillMesh",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "为给定瓦片构造填充网格，采样相邻已渲染瓦片的边缘顶点高度。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    822,
+    1336
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addVertexWithComputedPosition",
+   "type": "function",
+   "name": "addVertexWithComputedPosition",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 addVertexWithComputedPosition，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1338,
+    1387
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:transformTextureCoordinates",
+   "type": "function",
+   "name": "transformTextureCoordinates",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 transformTextureCoordinates，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1391,
+    1454
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexFromTileAtCorner",
+   "type": "function",
+   "name": "getVertexFromTileAtCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 getVertexFromTileAtCorner，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1458,
+    1475
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getInterpolatedVertexAtCorner",
+   "type": "function",
+   "name": "getInterpolatedVertexAtCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "在角落处对相邻顶点高度进行插值。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1480,
+    1575
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexWithHeightAtCorner",
+   "type": "function",
+   "name": "getVertexWithHeightAtCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 getVertexWithHeightAtCorner，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1577,
+    1591
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCorner",
+   "type": "function",
+   "name": "getCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "计算瓦片角落处的高度，融合多条相邻边的采样。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    1593,
+    1726
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getClosestHeightToCorner",
+   "type": "function",
+   "name": "getClosestHeightToCorner",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 getClosestHeightToCorner，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1728,
+    1762
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdge",
+   "type": "function",
+   "name": "addEdge",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 addEdge，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1764,
+    1789
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdgeMesh",
+   "type": "function",
+   "name": "addEdgeMesh",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 addEdgeMesh，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    1791,
+    1970
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getNearestHeightOnEdge",
+   "type": "function",
+   "name": "getNearestHeightOnEdge",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 getNearestHeightOnEdge，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1972,
+    2021
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCornerFromEdge",
+   "type": "function",
+   "name": "getCornerFromEdge",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 getCornerFromEdge，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    2030,
+    2165
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TerrainFillMesh.js:computeOccludeePoint",
+   "type": "function",
+   "name": "computeOccludeePoint",
+   "filePath": "packages/engine/Source/Scene/TerrainFillMesh.js",
+   "summary": "内部辅助函数 computeOccludeePoint，服务于 TerrainFillMesh.js 的实现细节。",
+   "tags": [
+    "terrain",
+    "mesh",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2174,
+    2221
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TweenCollection.js:Tween",
+   "type": "function",
+   "name": "Tween",
+   "filePath": "packages/engine/Source/Scene/TweenCollection.js",
+   "summary": "单个补间对象，封装起止值、时长、缓动与回调。",
+   "tags": [
+    "animation",
+    "tween",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    19,
+    56
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:SceneTransitioner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:SceneTransitioner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:createMorphHandler",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:createMorphHandler",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:getColumbusViewTo3DCamera",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:getColumbusViewTo3DCamera",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DTo3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DTo3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphPerspectiveToOrthographic",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphPerspectiveToOrthographic",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFromColumbusViewTo2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DTo2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DTo2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphOrthographicToPerspective",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphOrthographicToPerspective",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DToColumbusView",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom2DToColumbusView",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DToColumbusView",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:morphFrom3DToColumbusView",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:addMorphTimeAnimations",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:addMorphTimeAnimations",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete3DCallback",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete3DCallback",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete2DCallback",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:complete2DCallback",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:completeColumbusViewCallback",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransitioner.js:completeColumbusViewCallback",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SunLight.js",
+   "target": "function:packages/engine/Source/Scene/SunLight.js:SunLight",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SunLight.js",
+   "target": "function:packages/engine/Source/Scene/SunLight.js:SunLight",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:TerrainFillMesh",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:TerrainFillMesh",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitRenderedTiles",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitRenderedTiles",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitTile",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:visitTile",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:propagateEdge",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:propagateEdge",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:fillMissingCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:fillMissingCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:createFillMesh",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:createFillMesh",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addVertexWithComputedPosition",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addVertexWithComputedPosition",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:transformTextureCoordinates",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:transformTextureCoordinates",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexFromTileAtCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexFromTileAtCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getInterpolatedVertexAtCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getInterpolatedVertexAtCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexWithHeightAtCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getVertexWithHeightAtCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getClosestHeightToCorner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getClosestHeightToCorner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdge",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdge",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdgeMesh",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:addEdgeMesh",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getNearestHeightOnEdge",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getNearestHeightOnEdge",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCornerFromEdge",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:getCornerFromEdge",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:computeOccludeePoint",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "function:packages/engine/Source/Scene/TerrainFillMesh.js:computeOccludeePoint",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "function:packages/engine/Source/Scene/TweenCollection.js:Tween",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "function:packages/engine/Source/Scene/TweenCollection.js:Tween",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/EasingFunction.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Ray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/ScreenSpaceEventHandler.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/ScreenSpaceEventType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Scene/Camera.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SphereEmitter.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SphereEmitter.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SphereEmitter.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SunLight.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SunLight.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/binarySearch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Queue.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/TerrainMesh.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/TileEdge.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+   "target": "file:packages/engine/Source/Scene/TileSelectionResult.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/clone.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/EasingFunction.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/getTimestamp.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "target": "file:packages/engine/Source/Core/TimeConstants.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

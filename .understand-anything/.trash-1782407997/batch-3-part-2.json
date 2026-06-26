@@ -1,0 +1,1682 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "file",
+      "name": "Buffer.js",
+      "filePath": "packages/engine/Source/Renderer/Buffer.js",
+      "summary": "封装 WebGL 顶点/索引缓冲对象的创建、上传与销毁，支持 WebGL2 新特性与上下文丢失恢复。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "buffer",
+        "vbo"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "file",
+      "name": "BufferUsage.js",
+      "filePath": "packages/engine/Source/Renderer/BufferUsage.js",
+      "summary": "WebGL 缓冲区使用模式（STATIC/DYNAMIC/STREAM）的冻结枚举。",
+      "tags": [
+        "data-model",
+        "enumeration",
+        "webgl",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "file",
+      "name": "ClearCommand.js",
+      "filePath": "packages/engine/Source/Renderer/ClearCommand.js",
+      "summary": "封装清屏指令（颜色/深度/模板），由渲染器执行以清除当前帧缓冲。",
+      "tags": [
+        "rendering",
+        "command",
+        "clear",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "file",
+      "name": "ComputeCommand.js",
+      "filePath": "packages/engine/Source/Renderer/ComputeCommand.js",
+      "summary": "描述 GPU 通用计算任务的指令对象，封装着色器、输出纹理与执行参数，由 ComputeEngine 调度执行。",
+      "tags": [
+        "rendering",
+        "command",
+        "gpu-compute",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "type": "file",
+      "name": "ComputeEngine.js",
+      "filePath": "packages/engine/Source/Renderer/ComputeEngine.js",
+      "summary": "执行 ComputeCommand 的引擎：为目标输出纹理创建 framebuffer、视口四边形着色器与渲染状态，并在屏幕外 framebuffer 中运行计算 pass。",
+      "tags": [
+        "rendering",
+        "gpu-compute",
+        "engine",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Context.js",
+      "type": "file",
+      "name": "Context.js",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "summary": "WebGL 渲染上下文的核心封装层，管理 shader/buffer/texture 缓存、渲染状态、draw 调用、扩展检测与错误处理，是整个渲染器的中枢。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "context",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "file",
+      "name": "ContextLimits.js",
+      "filePath": "packages/engine/Source/Renderer/ContextLimits.js",
+      "summary": "在运行时探测并缓存 WebGL 实现的各项限制（纹理尺寸、属性数、uniform 向量数等），供渲染管线做能力协商。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "limits",
+        "capabilities"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "file",
+      "name": "CubeMap.js",
+      "filePath": "packages/engine/Source/Renderer/CubeMap.js",
+      "summary": "封装 WebGL 立方体贴图的创建、采样器配置、6 面图像加载与销毁，用于天空盒与环境贴图。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "cube-map",
+        "texture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "type": "file",
+      "name": "CubeMapFace.js",
+      "filePath": "packages/engine/Source/Renderer/CubeMapFace.js",
+      "summary": "表示立方体贴图的单个面，负责该面的像素格式校验、子图像上传与拷贝操作。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "cube-map",
+        "texture"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "file",
+      "name": "DrawCommand.js",
+      "filePath": "packages/engine/Source/Renderer/DrawCommand.js",
+      "summary": "渲染管线中最核心的绘制指令对象，聚合顶点数组、shader、uniform、渲染状态、包围盒与渲染 pass，描述一次完整 draw call。",
+      "tags": [
+        "rendering",
+        "command",
+        "draw-call",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "file",
+      "name": "Framebuffer.js",
+      "filePath": "packages/engine/Source/Renderer/Framebuffer.js",
+      "summary": "封装 WebGL 帧缓冲对象，管理颜色/深度附件（texture 或 renderbuffer）的绑定、状态校验与销毁。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "framebuffer",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "file",
+      "name": "FramebufferManager.js",
+      "filePath": "packages/engine/Source/Renderer/FramebufferManager.js",
+      "summary": "管理主/辅 framebuffer 的分配与复用，按像素格式与多重采样需求选择或创建合适的 framebuffer，避免重复分配。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "framebuffer",
+        "manager"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "type": "file",
+      "name": "MipmapHint.js",
+      "filePath": "packages/engine/Source/Renderer/MipmapHint.js",
+      "summary": "WebGL mipmap 生成质量提示（FASTEST/NICEST）的冻结枚举。",
+      "tags": [
+        "data-model",
+        "enumeration",
+        "webgl",
+        "mipmap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "type": "file",
+      "name": "MultisampleFramebuffer.js",
+      "filePath": "packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "summary": "创建并管理多重采样 framebuffer 与其解析 framebuffer，把 MSAA 渲染结果 blit 到普通 framebuffer。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "msaa",
+        "framebuffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "file",
+      "name": "Pass.js",
+      "filePath": "packages/engine/Source/Renderer/Pass.js",
+      "summary": "定义渲染 pass 的枚举（不透明、半透明、叠加等），决定场景中各绘制指令的执行顺序与分组。",
+      "tags": [
+        "data-model",
+        "enumeration",
+        "rendering",
+        "pass"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "file",
+      "name": "PassState.js",
+      "filePath": "packages/engine/Source/Renderer/PassState.js",
+      "summary": "描述单个渲染 pass 所需的上下文状态（视口、剪刀、framebuffer、渲染状态），供渲染器应用与恢复。",
+      "tags": [
+        "rendering",
+        "state",
+        "webgl",
+        "pass"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/PickId.js",
+      "type": "file",
+      "name": "PickId.js",
+      "filePath": "packages/engine/Source/Renderer/PickId.js",
+      "summary": "把场景对象关联到用于拾取的独一无二的 RGBA 颜色编码，支持鼠标点选反查实体。",
+      "tags": [
+        "rendering",
+        "picking",
+        "webgl",
+        "encoding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Buffer.js:Buffer",
+      "type": "function",
+      "name": "Buffer",
+      "filePath": "packages/engine/Source/Renderer/Buffer.js",
+      "lineRange": [
+        14,
+        73
+      ],
+      "summary": "WebGL 顶点/索引缓冲封装构造器，处理选项规范化与初始状态。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ClearCommand.js:ClearCommand",
+      "type": "function",
+      "name": "ClearCommand",
+      "filePath": "packages/engine/Source/Renderer/ClearCommand.js",
+      "lineRange": [
+        10,
+        82
+      ],
+      "summary": "清屏指令对象构造器，封装颜色/深度/模板清除值与执行接口。",
+      "tags": [
+        "rendering",
+        "command",
+        "clear"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ComputeCommand.js:ComputeCommand",
+      "type": "function",
+      "name": "ComputeCommand",
+      "filePath": "packages/engine/Source/Renderer/ComputeCommand.js",
+      "lineRange": [
+        10,
+        109
+      ],
+      "summary": "GPU 通用计算指令构造器，封装 shader、uniform、输出纹理与持久性标志。",
+      "tags": [
+        "rendering",
+        "command",
+        "gpu-compute"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ComputeEngine.js:ComputeEngine",
+      "type": "function",
+      "name": "ComputeEngine",
+      "filePath": "packages/engine/Source/Renderer/ComputeEngine.js",
+      "lineRange": [
+        18,
+        20
+      ],
+      "summary": "GPU 计算引擎构造器，持有执行 ComputeCommand 所需的共享资源。",
+      "tags": [
+        "rendering",
+        "gpu-compute",
+        "engine"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ComputeEngine.js:createFramebuffer",
+      "type": "function",
+      "name": "createFramebuffer",
+      "filePath": "packages/engine/Source/Renderer/ComputeEngine.js",
+      "lineRange": [
+        30,
+        36
+      ],
+      "summary": "为计算 pass 创建屏幕外 framebuffer 并绑定输出纹理。",
+      "tags": [
+        "rendering",
+        "framebuffer",
+        "gpu-compute"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ComputeEngine.js:createViewportQuadShader",
+      "type": "function",
+      "name": "createViewportQuadShader",
+      "filePath": "packages/engine/Source/Renderer/ComputeEngine.js",
+      "lineRange": [
+        38,
+        48
+      ],
+      "summary": "为计算 pass 编译覆盖视口的全屏四边形 shader。",
+      "tags": [
+        "rendering",
+        "shader",
+        "gpu-compute"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ComputeEngine.js:createRenderState",
+      "type": "function",
+      "name": "createRenderState",
+      "filePath": "packages/engine/Source/Renderer/ComputeEngine.js",
+      "lineRange": [
+        50,
+        61
+      ],
+      "summary": "为计算 pass 创建合适的渲染状态（视口、深度测试等）。",
+      "tags": [
+        "rendering",
+        "render-state",
+        "gpu-compute"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Context.js:Context",
+      "type": "function",
+      "name": "Context",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "lineRange": [
+        42,
+        389
+      ],
+      "summary": "WebGL 渲染上下文封装构造器，初始化缓存、扩展、uniform state 与各资源工厂。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "context",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Context.js:getWebGLContext",
+      "type": "function",
+      "name": "getWebGLContext",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "lineRange": [
+        415,
+        438
+      ],
+      "summary": "在 canvas 上获取 WebGL2 或 WebGL1 上下文并处理回退。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "context"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Context.js:wrapGL",
+      "type": "function",
+      "name": "wrapGL",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "lineRange": [
+        526,
+        562
+      ],
+      "summary": "包装 WebGL 函数以提供错误检查与日志。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Context.js:beginDraw",
+      "type": "function",
+      "name": "beginDraw",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "lineRange": [
+        1288,
+        1313
+      ],
+      "summary": "开始一次绘制：应用渲染状态、绑定 framebuffer 与 shader。",
+      "tags": [
+        "rendering",
+        "draw-call",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Context.js:continueDraw",
+      "type": "function",
+      "name": "continueDraw",
+      "filePath": "packages/engine/Source/Renderer/Context.js",
+      "lineRange": [
+        1315,
+        1397
+      ],
+      "summary": "执行实际 draw call，绑定顶点数组并提交绘制（含实例化）。",
+      "tags": [
+        "rendering",
+        "draw-call",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/CubeMap.js:CubeMap",
+      "type": "function",
+      "name": "CubeMap",
+      "filePath": "packages/engine/Source/Renderer/CubeMap.js",
+      "lineRange": [
+        71,
+        246
+      ],
+      "summary": "立方体贴图构造器，初始化 6 个 CubeMapFace、采样器与尺寸校验。",
+      "tags": [
+        "rendering",
+        "cube-map",
+        "texture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/CubeMap.js:loadFace",
+      "type": "function",
+      "name": "loadFace",
+      "filePath": "packages/engine/Source/Renderer/CubeMap.js",
+      "lineRange": [
+        316,
+        391
+      ],
+      "summary": "异步加载并上传立方体贴图单个面的图像数据。",
+      "tags": [
+        "rendering",
+        "cube-map",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/CubeMap.js:setupSampler",
+      "type": "function",
+      "name": "setupSampler",
+      "filePath": "packages/engine/Source/Renderer/CubeMap.js",
+      "lineRange": [
+        510,
+        553
+      ],
+      "summary": "根据 CubeMap 选项配置采样器过滤与包裹模式。",
+      "tags": [
+        "rendering",
+        "cube-map",
+        "sampler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/CubeMapFace.js:CubeMapFace",
+      "type": "function",
+      "name": "CubeMapFace",
+      "filePath": "packages/engine/Source/Renderer/CubeMapFace.js",
+      "lineRange": [
+        10,
+        34
+      ],
+      "summary": "立方体贴图单面封装构造器，绑定纹理目标与像素格式。",
+      "tags": [
+        "rendering",
+        "cube-map",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/DrawCommand.js:hasFlag",
+      "type": "function",
+      "name": "hasFlag",
+      "filePath": "packages/engine/Source/Renderer/DrawCommand.js",
+      "lineRange": [
+        658,
+        660
+      ],
+      "summary": "读取 DrawCommand 上的标志位。",
+      "tags": [
+        "rendering",
+        "command",
+        "flag"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/DrawCommand.js:setFlag",
+      "type": "function",
+      "name": "setFlag",
+      "filePath": "packages/engine/Source/Renderer/DrawCommand.js",
+      "lineRange": [
+        668,
+        674
+      ],
+      "summary": "设置 DrawCommand 上的标志位。",
+      "tags": [
+        "rendering",
+        "command",
+        "flag"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/DrawCommand.js:DrawCommand",
+      "type": "class",
+      "name": "DrawCommand",
+      "filePath": "packages/engine/Source/Renderer/DrawCommand.js",
+      "lineRange": [
+        68,
+        650
+      ],
+      "summary": "核心绘制指令类，聚合顶点数组、shader、uniform、渲染状态、包围盒与 pass，描述一次 draw call。",
+      "tags": [
+        "rendering",
+        "command",
+        "draw-call",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Framebuffer.js:attachTexture",
+      "type": "function",
+      "name": "attachTexture",
+      "filePath": "packages/engine/Source/Renderer/Framebuffer.js",
+      "lineRange": [
+        10,
+        19
+      ],
+      "summary": "把纹理绑定到 framebuffer 的指定 attachment。",
+      "tags": [
+        "rendering",
+        "framebuffer",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Framebuffer.js:attachRenderbuffer",
+      "type": "function",
+      "name": "attachRenderbuffer",
+      "filePath": "packages/engine/Source/Renderer/Framebuffer.js",
+      "lineRange": [
+        21,
+        29
+      ],
+      "summary": "把 renderbuffer 绑定到 framebuffer 的指定 attachment。",
+      "tags": [
+        "rendering",
+        "framebuffer",
+        "renderbuffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/Framebuffer.js:Framebuffer",
+      "type": "function",
+      "name": "Framebuffer",
+      "filePath": "packages/engine/Source/Renderer/Framebuffer.js",
+      "lineRange": [
+        84,
+        290
+      ],
+      "summary": "WebGL 帧缓冲封装构造器，管理颜色/深度附件绑定与状态。",
+      "tags": [
+        "rendering",
+        "webgl",
+        "framebuffer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/FramebufferManager.js:FramebufferManager",
+      "type": "function",
+      "name": "FramebufferManager",
+      "filePath": "packages/engine/Source/Renderer/FramebufferManager.js",
+      "lineRange": [
+        34,
+        79
+      ],
+      "summary": "framebuffer 管理器构造器，按像素格式与多重采样需求复用 framebuffer。",
+      "tags": [
+        "rendering",
+        "framebuffer",
+        "manager"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/MultisampleFramebuffer.js:MultisampleFramebuffer",
+      "type": "function",
+      "name": "MultisampleFramebuffer",
+      "filePath": "packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "lineRange": [
+        31,
+        78
+      ],
+      "summary": "多重采样 framebuffer 构造器，创建 MSAA framebuffer 及其解析 framebuffer。",
+      "tags": [
+        "rendering",
+        "msaa",
+        "framebuffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/PassState.js:PassState",
+      "type": "function",
+      "name": "PassState",
+      "filePath": "packages/engine/Source/Renderer/PassState.js",
+      "lineRange": [
+        8,
+        56
+      ],
+      "summary": "渲染 pass 状态构造器，封装视口、剪刀、framebuffer 与渲染状态。",
+      "tags": [
+        "rendering",
+        "state",
+        "pass"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/PickId.js:PickId",
+      "type": "class",
+      "name": "PickId",
+      "filePath": "packages/engine/Source/Renderer/PickId.js",
+      "lineRange": [
+        12,
+        42
+      ],
+      "summary": "把场景对象关联到独一无二的拾取颜色编码，支持点选反查。",
+      "tags": [
+        "rendering",
+        "picking",
+        "encoding"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "function:packages/engine/Source/Renderer/Buffer.js:Buffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "target": "function:packages/engine/Source/Renderer/ClearCommand.js:ClearCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "target": "function:packages/engine/Source/Renderer/ComputeCommand.js:ComputeCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "function:packages/engine/Source/Renderer/ComputeEngine.js:ComputeEngine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "function:packages/engine/Source/Renderer/ComputeEngine.js:createFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "function:packages/engine/Source/Renderer/ComputeEngine.js:createViewportQuadShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "function:packages/engine/Source/Renderer/ComputeEngine.js:createRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "function:packages/engine/Source/Renderer/Context.js:Context",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "function:packages/engine/Source/Renderer/Context.js:getWebGLContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "function:packages/engine/Source/Renderer/Context.js:wrapGL",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "function:packages/engine/Source/Renderer/Context.js:beginDraw",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "function:packages/engine/Source/Renderer/Context.js:continueDraw",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "function:packages/engine/Source/Renderer/CubeMap.js:CubeMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "function:packages/engine/Source/Renderer/CubeMap.js:loadFace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "function:packages/engine/Source/Renderer/CubeMap.js:setupSampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "function:packages/engine/Source/Renderer/CubeMapFace.js:CubeMapFace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "function:packages/engine/Source/Renderer/DrawCommand.js:hasFlag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "function:packages/engine/Source/Renderer/DrawCommand.js:setFlag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "class:packages/engine/Source/Renderer/DrawCommand.js:DrawCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "function:packages/engine/Source/Renderer/Framebuffer.js:attachTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "function:packages/engine/Source/Renderer/Framebuffer.js:attachRenderbuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "function:packages/engine/Source/Renderer/Framebuffer.js:Framebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "function:packages/engine/Source/Renderer/FramebufferManager.js:FramebufferManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "function:packages/engine/Source/Renderer/MultisampleFramebuffer.js:MultisampleFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/PassState.js",
+      "target": "function:packages/engine/Source/Renderer/PassState.js:PassState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/PickId.js",
+      "target": "class:packages/engine/Source/Renderer/PickId.js:PickId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Buffer.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/loadKTX2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/PickId.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/TextureCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/UniformState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Context.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/CubeMapFace.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/MultisampleFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/Renderer/DrawCommand.js:DrawCommand",
+      "target": "function:packages/engine/Source/Renderer/DrawCommand.js:hasFlag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:packages/engine/Source/Renderer/DrawCommand.js:DrawCommand",
+      "target": "function:packages/engine/Source/Renderer/DrawCommand.js:setFlag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Renderer/ComputeEngine.js:createFramebuffer",
+      "target": "file:packages/engine/Source/Renderer/Framebuffer.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "nodes": [
+    {
+      "id": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "type": "file",
+      "name": "iTwinShareUpdater.js",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "summary": "通过 iTwin 平台 REST API 获取 IMS 访问令牌、查询现有 share 并为指定 iTwin 创建新的 share 以签发 Cesium ion 共享密钥，供 token 自动更新流程调用。",
+      "tags": ["service", "api-client", "token-management", "itwin", "rest-api"],
+      "complexity": "complex",
+      "languageNotes": "纯 Node.js fetch + fs/promises 实现，无第三方依赖；导出 getNewKeyForItwin 作为编排入口。"
+    },
+    {
+      "id": "file:.github/actions/update-tokens/index.js",
+      "type": "file",
+      "name": "index.js",
+      "filePath": ".github/actions/update-tokens/index.js",
+      "summary": "GitHub Action 的入口脚本：读取 replacements 配置，使用 espree + esquery 在源码 AST 中定位变量并替换其值，再用 prettier 格式化后写回文件。",
+      "tags": ["entry-point", "ci-cd", "ast-transformation", "codegen", "github-action"],
+      "complexity": "moderate",
+      "languageNotes": "组合 espree（解析）、esquery（CSS 选择器式 AST 查询）、prettier（格式化）三套工具完成安全的源码级变量替换。"
+    },
+    {
+      "id": "file:.github/actions/update-tokens/ionTokenDeleter.js",
+      "type": "file",
+      "name": "ionTokenDeleter.js",
+      "filePath": ".github/actions/update-tokens/ionTokenDeleter.js",
+      "summary": "清理 Cesium ion 上超过 30 天的旧 token，通过名称模式匹配筛选由本流程生成的 token 并调用 ion API 删除。",
+      "tags": ["utility", "token-management", "cleanup", "ci-cd", "rest-api"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "type": "file",
+      "name": "ionTokenUpdater.js",
+      "filePath": ".github/actions/update-tokens/ionTokenUpdater.js",
+      "summary": "封装 Cesium ion token 的管理操作：解析下一个版本号、列出已知 token、按版本号创建带过期时间的新 token，供 replacements 与 deleter 复用。",
+      "tags": ["service", "token-management", "api-client", "ion", "rest-api"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.github/actions/update-tokens/replacements.js",
+      "type": "file",
+      "name": "replacements.js",
+      "filePath": ".github/actions/update-tokens/replacements.js",
+      "summary": "定义所有需要在源码中替换的 token 变量配置：组合 ion 新 token 与 iTwin 共享密钥，生成带 AST 选择器的替换描述列表供 index.js 消费。",
+      "tags": ["config", "token-management", "barrel", "data-model", "ci-cd"],
+      "complexity": "moderate",
+      "languageNotes": "用 variableDeclaration / propertySelector 辅助函数生成 esquery 选择器字符串，将业务配置与 AST 查询解耦。"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getIMSToken",
+      "type": "function",
+      "name": "getIMSToken",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "lineRange": [55, 75],
+      "summary": "使用 clientId/clientSecret 向 Bentley IMS OAuth 端点请求访问令牌，返回后续 iTwin API 调用所需的 Bearer token。",
+      "tags": ["api-client", "authentication", "oauth", "token-management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getShares",
+      "type": "function",
+      "name": "getShares",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "lineRange": [82, 101],
+      "summary": "调用 iTwin 平台 API 列出指定 iTwin 下所有 share，返回 share 数组用于版本映射。",
+      "tags": ["api-client", "itwin", "rest-api"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/iTwinShareUpdater.js:mapSharesToVersion",
+      "type": "function",
+      "name": "mapSharesToVersion",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "lineRange": [112, 137],
+      "summary": "将现有 share 按主版本号分组，识别对应当前次版本号的 share，判断是否需要创建新 share。",
+      "tags": ["utility", "data-processing", "versioning"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/iTwinShareUpdater.js:createShare",
+      "type": "function",
+      "name": "createShare",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "lineRange": [146, 173],
+      "summary": "向 iTwin API POST 创建一个带合同名与过期时间的 share，并返回其共享密钥。",
+      "tags": ["api-client", "itwin", "rest-api", "mutation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "type": "function",
+      "name": "getNewKeyForItwin",
+      "filePath": ".github/actions/update-tokens/iTwinShareUpdater.js",
+      "lineRange": [186, 233],
+      "summary": "编排入口：依次获取 IMS token、现有 share、当前版本，按需创建新 share 并返回新的 iTwin 共享密钥。",
+      "tags": ["orchestrator", "api-client", "itwin", "token-management"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/index.js:replaceVariableValue",
+      "type": "function",
+      "name": "replaceVariableValue",
+      "filePath": ".github/actions/update-tokens/index.js",
+      "lineRange": [34, 89],
+      "summary": "用 esquery 在 AST 中按选择器定位变量节点，将其值替换为新值，并处理多种节点类型与错误情况。",
+      "tags": ["ast-transformation", "codegen", "utility"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/index.js:processReplacement",
+      "type": "function",
+      "name": "processReplacement",
+      "filePath": ".github/actions/update-tokens/index.js",
+      "lineRange": [109, 127],
+      "summary": "读取目标源文件、解析为 AST、应用单条替换规则、格式化并写回磁盘的完整流水线。",
+      "tags": ["orchestrator", "ast-transformation", "codegen"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/ionTokenDeleter.js:deleteOldTokens",
+      "type": "function",
+      "name": "deleteOldTokens",
+      "filePath": ".github/actions/update-tokens/ionTokenDeleter.js",
+      "lineRange": [14, 42],
+      "summary": "列出已知 token，删除超过 30 天且名称匹配本流程命名规则的旧 token，失败时终止进程。",
+      "tags": ["utility", "token-management", "cleanup", "rest-api"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/ionTokenUpdater.js:getKnownTokens",
+      "type": "function",
+      "name": "getKnownTokens",
+      "filePath": ".github/actions/update-tokens/ionTokenUpdater.js",
+      "lineRange": [68, 77],
+      "summary": "调用 ion API 获取全部 token，按命名正则过滤出由本流程管理的 token 子集。",
+      "tags": ["api-client", "token-management", "ion", "filtering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/ionTokenUpdater.js:createNewToken",
+      "type": "function",
+      "name": "createNewToken",
+      "filePath": ".github/actions/update-tokens/ionTokenUpdater.js",
+      "lineRange": [83, 116],
+      "summary": "按版本号在 ion 上创建带一年过期时间的新 token，若同名 token 已存在则跳过。",
+      "tags": ["api-client", "token-management", "ion", "mutation", "rest-api"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/actions/update-tokens/replacements.js:getReplacements",
+      "type": "function",
+      "name": "getReplacements",
+      "filePath": ".github/actions/update-tokens/replacements.js",
+      "lineRange": [50, 146],
+      "summary": "汇总所有需替换的 token 配置：异步获取 ion 新 token 与多个 iTwin 共享密钥，组装成带选择器的替换描述数组。",
+      "tags": ["config", "orchestrator", "token-management", "data-model"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.github/actions/update-tokens/index.js",
+      "target": "file:.github/actions/update-tokens/replacements.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenDeleter.js",
+      "target": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:.github/actions/update-tokens/replacements.js",
+      "target": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:.github/actions/update-tokens/replacements.js",
+      "target": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getIMSToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getShares",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:mapSharesToVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:createShare",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/iTwinShareUpdater.js",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/actions/update-tokens/index.js",
+      "target": "function:.github/actions/update-tokens/index.js:replaceVariableValue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/index.js",
+      "target": "function:.github/actions/update-tokens/index.js:processReplacement",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenDeleter.js",
+      "target": "function:.github/actions/update-tokens/ionTokenDeleter.js:deleteOldTokens",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:getKnownTokens",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:createNewToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:getKnownTokens",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/actions/update-tokens/ionTokenUpdater.js",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:createNewToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.github/actions/update-tokens/replacements.js",
+      "target": "function:.github/actions/update-tokens/replacements.js:getReplacements",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/update-tokens/replacements.js",
+      "target": "function:.github/actions/update-tokens/replacements.js:getReplacements",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getIMSToken",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getShares",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:mapSharesToVersion",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:createShare",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/ionTokenDeleter.js:deleteOldTokens",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:getKnownTokens",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/replacements.js:getReplacements",
+      "target": "function:.github/actions/update-tokens/ionTokenUpdater.js:createNewToken",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/replacements.js:getReplacements",
+      "target": "function:.github/actions/update-tokens/iTwinShareUpdater.js:getNewKeyForItwin",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/update-tokens/index.js:processReplacement",
+      "target": "function:.github/actions/update-tokens/index.js:replaceVariableValue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

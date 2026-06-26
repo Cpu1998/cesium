@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {
+      "id": "document:packages/sandcastle/public/fonts/JetBrains_Mono/OFL.txt",
+      "type": "document",
+      "name": "OFL.txt",
+      "filePath": "packages/sandcastle/public/fonts/JetBrains_Mono/OFL.txt",
+      "summary": "SIL Open Font License (OFL) 1.1 许可证全文，规定 JetBrains Mono 字体文件的使用、再分发与修改条款。",
+      "tags": ["documentation", "license", "open-font-license", "legal", "fonts"],
+      "complexity": "moderate",
+      "languageNotes": "纯文本法律条款文件，无代码结构。"
+    },
+    {
+      "id": "document:packages/sandcastle/public/fonts/JetBrains_Mono/README.txt",
+      "type": "document",
+      "name": "README.txt",
+      "filePath": "packages/sandcastle/public/fonts/JetBrains_Mono/README.txt",
+      "summary": "JetBrains Mono 字体说明文档，介绍字体的设计来源、版本、作者信息及许可说明。",
+      "tags": ["documentation", "readme", "fonts", "metadata", "attribution"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/public/fonts/JetBrains_Mono/jetbrains_mono.css",
+      "type": "file",
+      "name": "jetbrains_mono.css",
+      "filePath": "packages/sandcastle/public/fonts/JetBrains_Mono/jetbrains_mono.css",
+      "summary": "JetBrains Mono 等宽字体的 @font-face 声明样式表，加载 Light、Regular、Medium、SemiBold、Bold 五种字重的 TTF 文件供 Sandcastle 站点使用。",
+      "tags": ["stylesheet", "fonts", "font-face", "markup", "assets"],
+      "complexity": "simple",
+      "languageNotes": "使用五个 @font-face 规则通过 url() 引用 static/ 目录下的 TTF 字体文件，按 font-weight 区分各字重。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:packages/sandcastle/public/fonts/JetBrains_Mono/OFL.txt",
+      "target": "file:packages/sandcastle/public/fonts/JetBrains_Mono/jetbrains_mono.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:packages/sandcastle/public/fonts/JetBrains_Mono/README.txt",
+      "target": "file:packages/sandcastle/public/fonts/JetBrains_Mono/jetbrains_mono.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:packages/sandcastle/public/fonts/JetBrains_Mono/OFL.txt",
+      "target": "document:packages/sandcastle/public/fonts/JetBrains_Mono/README.txt",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

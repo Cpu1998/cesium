@@ -1,0 +1,475 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "summary": "场景渲染性能示例：演示 requestRenderMode 按需渲染机制，通过加载 3D Tiles、glTF 模型、CZML 等多种场景对比 CPU 占用，并提供拾取、场景属性调节等交互按钮。",
+      "tags": ["sandcastle", "demo", "performance", "request-render-mode", "scene"],
+      "complexity": "complex",
+      "languageNotes": "通过 Cesium.Sandcastle 的 addDefaultToolbarButton 注册按钮回调，使用 Cesium.knockout 绑定 viewModel 到工具栏 UI。"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/scene-rendering-performance/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/sandcastle.yaml",
+      "summary": "Scene Rendering Performance 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 ion Assets 标签，用于在画廊索引中注册该示例。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sentinel-2/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/sentinel-2/index.html",
+      "summary": "Sentinel-2 示例的 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器，由 Sandcastle 引导加载对应 main.js。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sentinel-2/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/sentinel-2/main.js",
+      "summary": "Sentinel-2 示例：使用 IonImageryProvider.fromAssetId(3954) 加载 Cesium ion 托管的无云全球影像作为基础图层。",
+      "tags": ["sandcastle", "demo", "imagery", "ion-asset"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sentinel-2/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/sentinel-2/sandcastle.yaml",
+      "summary": "Sentinel-2 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、来源说明（EOX IT Services / Copernicus Sentinel 数据）与 ion Assets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/index.html",
+      "summary": "阴影高级（dev）示例的 HTML 外壳，内嵌大量 CSS 与基于 knockout data-bind 的工具栏表格，提供光照角度、距离、阴影偏置等可视化调节控件。",
+      "tags": ["sandcastle", "markup", "toolbar-ui", "knockout", "demo"],
+      "complexity": "complex",
+      "languageNotes": "工具栏控件通过 data-bind 与 viewModel 双向绑定，配合 bucket.css 复用通用 Sandcastle 容器样式。"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "summary": "阴影高级示例：构建带丰富 UI 的阴影调试工具，实时调节光源方向、阴影距离、深度偏置（polygonOffset/normalOffset）等参数，并在场景中切换加载 3D Tiles、glTF 模型、RTC/普通盒体与球体以验证阴影效果。",
+      "tags": ["sandcastle", "demo", "shadows", "shadow-map", "debug-tool"],
+      "complexity": "complex",
+      "languageNotes": "使用 Cesium.knockout 管理 viewModel 与 UI 双向绑定，BiasOptions 构造器以 observable 包裹各项偏置参数，便于实时反馈到 ShadowMap。"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/sandcastle.yaml",
+      "summary": "Shadows (Development) 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签，用于在画廊中注册该调试示例。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/shadows/index.html",
+      "summary": "Shadows 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/shadows/main.js",
+      "summary": "Shadows 示例：启用 Viewer 阴影与地形阴影，添加 CesiumAir、GroundVehicle 等模型并随时间驱动太阳位置，演示实体投射的动态阴影；提供位置与实体下拉选择。",
+      "tags": ["sandcastle", "demo", "shadows", "shadow-map", "entity"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/shadows/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/shadows/sandcastle.yaml",
+      "summary": "Shadows 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/show-or-hide-entities/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/show-or-hide-entities/index.html",
+      "summary": "Show or Hide Entities 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/show-or-hide-entities/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/show-or-hide-entities/main.js",
+      "summary": "Show or Hide Entities 示例：演示通过 Entity 的 parent 关系建立“球体/盒体/椭球体”分组文件夹，并利用 show 属性按组批量显示或隐藏实体。",
+      "tags": ["sandcastle", "demo", "entity", "visibility", "parent-grouping"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/show-or-hide-entities/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/show-or-hide-entities/sandcastle.yaml",
+      "summary": "Show or Hide Entities 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/simple-polyline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/simple-polyline-dev/index.html",
+      "summary": "Simple Polyline (Development) 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/simple-polyline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/simple-polyline-dev/main.js",
+      "summary": "Simple Polyline 开发示例：使用底层 SimplePolylineGeometry 与 GeometryInstance/Primitive 直接绘制贴地黄色折线、按段着色折线及按顶点着色折线，演示 primitive 层级折线构造。",
+      "tags": ["sandcastle", "demo", "polyline", "primitive", "geometry-instance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/simple-polyline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/simple-polyline-dev/sandcastle.yaml",
+      "summary": "Simple Polyline (Development) 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/sphere-dev/index.html",
+      "summary": "Sphere (Development) 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/sphere-dev/main.js",
+      "summary": "Sphere 开发示例：通过 SphereGeometry、GeometryInstance 与 modelMatrix（基于 eastNorthUpToFixedFrame 平移）将红色球体定位到地表，并以 primitive 形式添加到场景。",
+      "tags": ["sandcastle", "demo", "sphere", "primitive", "geometry-instance"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/sphere-dev/sandcastle.yaml",
+      "summary": "Sphere (Development) 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-outline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/sphere-outline-dev/index.html",
+      "summary": "Sphere Outline (Development) 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-outline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/sphere-outline-dev/main.js",
+      "summary": "Sphere Outline 开发示例：同时构造带填充的球体几何与独立的球体轮廓几何，分别以不同颜色属性创建 GeometryInstance 并添加为 primitive，演示填充与轮廓分离绘制。",
+      "tags": ["sandcastle", "demo", "sphere", "outline", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/sphere-outline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/sphere-outline-dev/sandcastle.yaml",
+      "summary": "Sphere Outline (Development) 示例的 Sandcastle 画廊元数据，声明 legacyId、标题、描述与 Cesium.Widgets 标签。",
+      "tags": ["configuration", "sandcastle", "gallery-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/spheres-and-ellipsoids/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/spheres-and-ellipsoids/index.html",
+      "summary": "Spheres and Ellipsoids 示例的标准 HTML 外壳，引入 bucket.css 模板并提供 cesiumContainer、loadingOverlay 与 toolbar 容器。",
+      "tags": ["sandcastle", "markup", "html-shell", "demo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/spheres-and-ellipsoids/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/spheres-and-ellipsoids/main.js",
+      "summary": "Spheres and Ellipsoids 示例：通过 Entity API 添加蓝色椭球体、带黑色轮廓的红色球体与纯黄色椭球体轮廓，演示 ellipsoid 图形的 radii、材质、轮廓等常见属性配置。",
+      "tags": ["sandcastle", "demo", "entity", "ellipsoid", "sphere"],
+      "complexity": "simple"
+    },
+
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:resetScene",
+      "type": "function",
+      "name": "resetScene",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [31, 45],
+      "summary": "清除当前场景中的 3D Tiles 数据并重置相机到默认视角，作为切换渲染场景前的清理步骤。",
+      "tags": ["sandcastle", "scene-reset", "demo-callback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadTilesetScenario",
+      "type": "function",
+      "name": "loadTilesetScenario",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [49, 64],
+      "summary": "重置场景后加载并缩放至一个 3D Tiles 数据集，用于在按需渲染模式下评估 Tiles 加载的性能开销。",
+      "tags": ["sandcastle", "3d-tiles", "demo-callback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadModelScenario",
+      "type": "function",
+      "name": "loadModelScenario",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [70, 87],
+      "summary": "重置场景后从 SampleData 加载 glTF 模型实体并飞至模型位置，演示 glTF 模型在按需渲染模式下的表现。",
+      "tags": ["sandcastle", "gltf", "model", "demo-callback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadCzmlScenario",
+      "type": "function",
+      "name": "loadCzmlScenario",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [93, 103],
+      "summary": "重置场景后从 SampleData 加载 CZML 数据源，用于演示 CZML 驱动的动态场景在按需渲染模式下的刷新行为。",
+      "tags": ["sandcastle", "czml", "datasource", "demo-callback"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:pickingScenario",
+      "type": "function",
+      "name": "pickingScenario",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [106, 142],
+      "summary": "加载 3D Tiles 并注册屏幕空间事件处理器，演示拾取操作如何触发 requestRender 以驱动按需重绘。",
+      "tags": ["sandcastle", "picking", "screen-space-event", "demo-callback"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:setScenePropertiesScenario",
+      "type": "function",
+      "name": "setScenePropertiesScenario",
+      "filePath": "packages/sandcastle/gallery/scene-rendering-performance/main.js",
+      "lineRange": [146, 152],
+      "summary": "切换 requestRenderMode 与 maximumRenderTimeChange 等场景属性，演示按需渲染参数对帧率与 CPU 占用的影响。",
+      "tags": ["sandcastle", "request-render-mode", "scene-properties", "demo-callback"],
+      "complexity": "simple"
+    },
+
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:BiasOptions",
+      "type": "function",
+      "name": "BiasOptions",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [3, 21],
+      "summary": "阴影偏置参数的 viewModel 构造器，将 polygonOffset、normalOffset、normalShading、depthBias 等选项用 Cesium.knockout.observable 包裹，以支持工具栏双向绑定。",
+      "tags": ["sandcastle", "knockout", "viewmodel", "shadow-bias"],
+      "complexity": "moderate",
+      "languageNotes": "使用构造器函数模式配合 knockout.observable 实现 MVVM 风格的属性绑定。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateLightDirection",
+      "type": "function",
+      "name": "updateLightDirection",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [270, 284],
+      "summary": "根据工具栏中的 lightAngle、lightHorizon、distance 等参数计算并更新场景光源方向，驱动阴影朝向变化。",
+      "tags": ["sandcastle", "light-direction", "shadow-map"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateSettings",
+      "type": "function",
+      "name": "updateSettings",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [291, 332],
+      "summary": "读取工具栏中的各项偏置与阴影设置，更新 BiasOptions viewModel 并触发阴影参数重新生效。",
+      "tags": ["sandcastle", "knockout", "shadow-settings"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateShadows",
+      "type": "function",
+      "name": "updateShadows",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [339, 392],
+      "summary": "将当前工具栏中的偏置参数（polygonOffsetFactor、normalOffsetScale、depthBias 等）应用到场景 ShadowMap 与各 primitive 的外观，实现实时阴影质量调节。",
+      "tags": ["sandcastle", "shadow-map", "shadow-bias", "appearance"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createScene",
+      "type": "function",
+      "name": "createScene",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [458, 493],
+      "summary": "初始化 Viewer、地形、阴影映射并配置 viewModel 与 knockout 绑定，搭建整个阴影调试示例的运行环境。",
+      "tags": ["sandcastle", "viewer-init", "scene-setup"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateModels",
+      "type": "function",
+      "name": "updateModels",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [495, 550],
+      "summary": "清除并按当前 viewModel 选择重新加载 3D Tiles、glTF 模型、RTC/普通盒体或球体等几何体，便于在不同几何类型上验证阴影效果。",
+      "tags": ["sandcastle", "model-loading", "geometry-swap"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createTileset",
+      "type": "function",
+      "name": "createTileset",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [552, 564],
+      "summary": "从给定 url 加载 3D Tiles 数据集并添加到场景，飞至其位置用于阴影调试。",
+      "tags": ["sandcastle", "3d-tiles", "model-factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [566, 592],
+      "summary": "根据给定 url 与 origin 在场景中添加 glTF 模型实体并飞至模型位置，用于阴影调试。",
+      "tags": ["sandcastle", "gltf", "model-factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createBoxRTC",
+      "type": "function",
+      "name": "createBoxRTC",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [594, 641],
+      "summary": "使用 BoxGeometry 与相对于相机（RTC）的 modelMatrix 构造盒体 primitive，演示 RTC 模式下盒体阴影的渲染。",
+      "tags": ["sandcastle", "box", "rtc", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createBox",
+      "type": "function",
+      "name": "createBox",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [643, 671],
+      "summary": "基于 BoxGeometry 与 PerInstanceColorAppearance 构造普通盒体 primitive 并添加到场景，用于验证盒体几何的阴影投射。",
+      "tags": ["sandcastle", "box", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows-dev/main.js:createSphere",
+      "type": "function",
+      "name": "createSphere",
+      "filePath": "packages/sandcastle/gallery/shadows-dev/main.js",
+      "lineRange": [673, 701],
+      "summary": "基于 SphereGeometry 与 modelMatrix 构造球体 primitive 并添加到场景，用于验证球体几何的阴影投射。",
+      "tags": ["sandcastle", "sphere", "primitive"],
+      "complexity": "moderate"
+    },
+
+    {
+      "id": "function:packages/sandcastle/gallery/shadows/main.js:setLocation",
+      "type": "function",
+      "name": "setLocation",
+      "filePath": "packages/sandcastle/gallery/shadows/main.js",
+      "lineRange": [143, 159],
+      "summary": "根据下拉选择切换示例位置，清除现有实体并重新加载该位置对应的模型与相机视角。",
+      "tags": ["sandcastle", "location-switch", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/shadows/main.js:setEntity",
+      "type": "function",
+      "name": "setEntity",
+      "filePath": "packages/sandcastle/gallery/shadows/main.js",
+      "lineRange": [180, 186],
+      "summary": "根据下拉选择切换当前演示实体类型，重新加载对应的模型实体以展示不同几何体的阴影效果。",
+      "tags": ["sandcastle", "entity-switch", "model"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:resetScene", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadTilesetScenario", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadModelScenario", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:loadCzmlScenario", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:pickingScenario", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "function:packages/sandcastle/gallery/scene-rendering-performance/main.js:setScenePropertiesScenario", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:BiasOptions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateLightDirection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateSettings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateShadows", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createScene", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:updateModels", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createTileset", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createModel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createBoxRTC", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createBox", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "function:packages/sandcastle/gallery/shadows-dev/main.js:createSphere", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/shadows/main.js", "target": "function:packages/sandcastle/gallery/shadows/main.js:setLocation", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/gallery/shadows/main.js", "target": "function:packages/sandcastle/gallery/shadows/main.js:setEntity", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/scene-rendering-performance/main.js", "target": "file:packages/sandcastle/gallery/scene-rendering-performance/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/sentinel-2/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/sentinel-2/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/sentinel-2/main.js", "target": "file:packages/sandcastle/gallery/sentinel-2/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/shadows-dev/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/shadows-dev/main.js", "target": "file:packages/sandcastle/gallery/shadows-dev/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/shadows/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/shadows/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/shadows/main.js", "target": "file:packages/sandcastle/gallery/shadows/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/show-or-hide-entities/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/show-or-hide-entities/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/show-or-hide-entities/main.js", "target": "file:packages/sandcastle/gallery/show-or-hide-entities/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/simple-polyline-dev/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/simple-polyline-dev/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/simple-polyline-dev/main.js", "target": "file:packages/sandcastle/gallery/simple-polyline-dev/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/sphere-dev/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/sphere-dev/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/sphere-dev/main.js", "target": "file:packages/sandcastle/gallery/sphere-dev/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/sphere-outline-dev/sandcastle.yaml", "target": "file:packages/sandcastle/gallery/sphere-outline-dev/main.js", "type": "related", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/sandcastle/gallery/sphere-outline-dev/main.js", "target": "file:packages/sandcastle/gallery/sphere-outline-dev/index.html", "type": "related", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/sandcastle/gallery/spheres-and-ellipsoids/main.js", "target": "file:packages/sandcastle/gallery/spheres-and-ellipsoids/index.html", "type": "related", "direction": "forward", "weight": 0.5}
+  ]
+}

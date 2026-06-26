@@ -1,0 +1,4430 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 33,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 118,
+      "nonEmptyLines": 107,
+      "functions": [
+        {
+          "name": "createWireframeIndexBuffer",
+          "startLine": 76,
+          "endLine": 116,
+          "params": [
+            "primitive",
+            "indices",
+            "frameState"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 77
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "defined",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "defined",
+          "lineNumber": 88
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "IndexDatatype.createTypedArray",
+          "lineNumber": 92
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "indicesBuffer.getBufferData",
+          "lineNumber": 94
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "WireframeIndexGenerator.createWireframeIndices",
+          "lineNumber": 101
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "IndexDatatype.fromSizeInBytes",
+          "lineNumber": 106
+        },
+        {
+          "caller": "createWireframeIndexBuffer",
+          "callee": "Buffer.createIndexBuffer",
+          "lineNumber": 110
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/pickModel.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 220,
+      "nonEmptyLines": 197,
+      "functions": [
+        {
+          "name": "readPosition",
+          "startLine": 36,
+          "endLine": 42,
+          "params": [
+            "vertices",
+            "index",
+            "elementStride",
+            "result"
+          ]
+        },
+        {
+          "name": "pickModel",
+          "startLine": 58,
+          "endLine": 220,
+          "params": [
+            "model",
+            "ray",
+            "frameState",
+            "verticalExaggeration",
+            "relativeHeight",
+            "ellipsoid",
+            "result"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "pickModel",
+          "line": 58,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pickModel",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 68
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 69
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 70
+        },
+        {
+          "caller": "pickModel",
+          "callee": "ModelReader.forEachPrimitive",
+          "lineNumber": 88
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 93
+        },
+        {
+          "caller": "pickModel",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 94
+        },
+        {
+          "caller": "pickModel",
+          "callee": "IntersectionTests.raySphere",
+          "lineNumber": 99
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 103
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 108
+        },
+        {
+          "caller": "pickModel",
+          "callee": "ModelUtility.getAttributeBySemantic",
+          "lineNumber": 115
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 119
+        },
+        {
+          "caller": "pickModel",
+          "callee": "AttributeType.getNumberOfComponents",
+          "lineNumber": 120
+        },
+        {
+          "caller": "pickModel",
+          "callee": "ModelReader.readAttributeAsTypedArray",
+          "lineNumber": 123
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 127
+        },
+        {
+          "caller": "pickModel",
+          "callee": "ModelReader.readIndicesAsTypedArray",
+          "lineNumber": 128
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 131
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 131
+        },
+        {
+          "caller": "pickModel",
+          "callee": "readPosition",
+          "lineNumber": 141
+        },
+        {
+          "caller": "pickModel",
+          "callee": "readPosition",
+          "lineNumber": 142
+        },
+        {
+          "caller": "pickModel",
+          "callee": "readPosition",
+          "lineNumber": 143
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 146
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 156
+        },
+        {
+          "caller": "pickModel",
+          "callee": "VerticalExaggeration.getPosition",
+          "lineNumber": 163
+        },
+        {
+          "caller": "pickModel",
+          "callee": "VerticalExaggeration.getPosition",
+          "lineNumber": 170
+        },
+        {
+          "caller": "pickModel",
+          "callee": "VerticalExaggeration.getPosition",
+          "lineNumber": 177
+        },
+        {
+          "caller": "pickModel",
+          "callee": "IntersectionTests.rayTriangleParametric",
+          "lineNumber": 186
+        },
+        {
+          "caller": "pickModel",
+          "callee": "defined",
+          "lineNumber": 194
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Ray.getPoint",
+          "lineNumber": 208
+        },
+        {
+          "caller": "pickModel",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 210
+        },
+        {
+          "caller": "pickModel",
+          "callee": "projection.unproject",
+          "lineNumber": 215
+        },
+        {
+          "caller": "pickModel",
+          "callee": "ellipsoid.cartographicToCartesian",
+          "lineNumber": 216
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ModelComponents.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1807,
+      "nonEmptyLines": 1621,
+      "classes": [
+        {
+          "name": "Quantization",
+          "startLine": 42,
+          "endLine": 127,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Attribute",
+          "startLine": 134,
+          "endLine": 297,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Indices",
+          "startLine": 304,
+          "endLine": 338,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureIdAttribute",
+          "startLine": 346,
+          "endLine": 401,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureIdImplicitRange",
+          "startLine": 410,
+          "endLine": 473,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "FeatureIdTexture",
+          "startLine": 480,
+          "endLine": 534,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MorphTarget",
+          "startLine": 541,
+          "endLine": 551,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Primitive",
+          "startLine": 558,
+          "endLine": 671,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Instances",
+          "startLine": 678,
+          "endLine": 707,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Skin",
+          "startLine": 714,
+          "endLine": 741,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Node",
+          "startLine": 748,
+          "endLine": 859,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Scene",
+          "startLine": 866,
+          "endLine": 876,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AnimationSampler",
+          "startLine": 899,
+          "endLine": 925,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AnimationTarget",
+          "startLine": 932,
+          "endLine": 950,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AnimationChannel",
+          "startLine": 957,
+          "endLine": 975,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Animation",
+          "startLine": 982,
+          "endLine": 1008,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ArticulationStage",
+          "startLine": 1016,
+          "endLine": 1058,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Articulation",
+          "startLine": 1065,
+          "endLine": 1084,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Asset",
+          "startLine": 1091,
+          "endLine": 1101,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Components",
+          "startLine": 1108,
+          "endLine": 1196,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "TextureReader",
+          "startLine": 1203,
+          "endLine": 1264,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "MetallicRoughness",
+          "startLine": 1271,
+          "endLine": 1333,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SpecularGlossiness",
+          "startLine": 1340,
+          "endLine": 1404,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Specular",
+          "startLine": 1406,
+          "endLine": 1454,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Anisotropy",
+          "startLine": 1456,
+          "endLine": 1495,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Clearcoat",
+          "startLine": 1497,
+          "endLine": 1552,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "LineStyle",
+          "startLine": 1562,
+          "endLine": 1579,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Material",
+          "startLine": 1586,
+          "endLine": 1720,
+          "methods": [
+            "constructor"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Polygon",
+          "startLine": 1727,
+          "endLine": 1747,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Vector",
+          "startLine": 1755,
+          "endLine": 1773,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Quantization",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "Attribute",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "Indices",
+          "line": 304,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureIdAttribute",
+          "line": 346,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureIdImplicitRange",
+          "line": 410,
+          "isDefault": false
+        },
+        {
+          "name": "FeatureIdTexture",
+          "line": 480,
+          "isDefault": false
+        },
+        {
+          "name": "MorphTarget",
+          "line": 541,
+          "isDefault": false
+        },
+        {
+          "name": "Primitive",
+          "line": 558,
+          "isDefault": false
+        },
+        {
+          "name": "Instances",
+          "line": 678,
+          "isDefault": false
+        },
+        {
+          "name": "Skin",
+          "line": 714,
+          "isDefault": false
+        },
+        {
+          "name": "Node",
+          "line": 748,
+          "isDefault": false
+        },
+        {
+          "name": "Scene",
+          "line": 866,
+          "isDefault": false
+        },
+        {
+          "name": "AnimatedPropertyType",
+          "line": 886,
+          "isDefault": false
+        },
+        {
+          "name": "AnimationSampler",
+          "line": 899,
+          "isDefault": false
+        },
+        {
+          "name": "AnimationTarget",
+          "line": 932,
+          "isDefault": false
+        },
+        {
+          "name": "AnimationChannel",
+          "line": 957,
+          "isDefault": false
+        },
+        {
+          "name": "Animation",
+          "line": 982,
+          "isDefault": false
+        },
+        {
+          "name": "ArticulationStage",
+          "line": 1016,
+          "isDefault": false
+        },
+        {
+          "name": "Articulation",
+          "line": 1065,
+          "isDefault": false
+        },
+        {
+          "name": "Asset",
+          "line": 1091,
+          "isDefault": false
+        },
+        {
+          "name": "Components",
+          "line": 1108,
+          "isDefault": false
+        },
+        {
+          "name": "TextureReader",
+          "line": 1203,
+          "isDefault": false
+        },
+        {
+          "name": "MetallicRoughness",
+          "line": 1271,
+          "isDefault": false
+        },
+        {
+          "name": "SpecularGlossiness",
+          "line": 1340,
+          "isDefault": false
+        },
+        {
+          "name": "Specular",
+          "line": 1406,
+          "isDefault": false
+        },
+        {
+          "name": "Anisotropy",
+          "line": 1456,
+          "isDefault": false
+        },
+        {
+          "name": "Clearcoat",
+          "line": 1497,
+          "isDefault": false
+        },
+        {
+          "name": "LineStyle",
+          "line": 1562,
+          "isDefault": false
+        },
+        {
+          "name": "Material",
+          "line": 1586,
+          "isDefault": false
+        },
+        {
+          "name": "Polygon",
+          "line": 1727,
+          "isDefault": false
+        },
+        {
+          "name": "Vector",
+          "line": 1755,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "constructor",
+          "callee": "Matrix3.clone",
+          "lineNumber": 1238
+        },
+        {
+          "caller": "constructor",
+          "callee": "Cartesian4.clone",
+          "lineNumber": 1311
+        },
+        {
+          "caller": "constructor",
+          "callee": "Cartesian4.clone",
+          "lineNumber": 1380
+        },
+        {
+          "caller": "constructor",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1391
+        },
+        {
+          "caller": "constructor",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1442
+        },
+        {
+          "caller": "constructor",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1664
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 31,
+        "functionCount": 0,
+        "classCount": 30
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PntsParser.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 547,
+      "nonEmptyLines": 495,
+      "functions": [
+        {
+          "name": "removeInvalidBinaryBodyReferences",
+          "startLine": 218,
+          "endLine": 254,
+          "params": [
+            "parsedContent"
+          ]
+        },
+        {
+          "name": "parseDracoProperties",
+          "startLine": 256,
+          "endLine": 327,
+          "params": [
+            "featureTable",
+            "batchTableJson"
+          ]
+        },
+        {
+          "name": "parsePositions",
+          "startLine": 329,
+          "endLine": 392,
+          "params": [
+            "featureTable"
+          ]
+        },
+        {
+          "name": "parseColors",
+          "startLine": 394,
+          "endLine": 482,
+          "params": [
+            "featureTable"
+          ]
+        },
+        {
+          "name": "parseNormals",
+          "startLine": 484,
+          "endLine": 524,
+          "params": [
+            "featureTable"
+          ]
+        },
+        {
+          "name": "parseBatchIds",
+          "startLine": 526,
+          "endLine": 545,
+          "params": [
+            "featureTable"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "defined",
+          "lineNumber": 220
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "defined",
+          "lineNumber": 224
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "Object.keys",
+          "lineNumber": 227
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "Object.keys",
+          "lineNumber": 235
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "defined",
+          "lineNumber": 238
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "dracoBatchTablePropertyNames.includes",
+          "lineNumber": 239
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "invalidBinaryBodyReferenceNames.push",
+          "lineNumber": 240
+        },
+        {
+          "caller": "removeInvalidBinaryBodyReferences",
+          "callee": "oneTimeWarning",
+          "lineNumber": 248
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 262
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 266
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 266
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 270
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 279
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 284
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 285
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 286
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "featureTable.buffer.slice",
+          "lineNumber": 292
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 296
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 298
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 299
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 300
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 301
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 302
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "defined",
+          "lineNumber": 306
+        },
+        {
+          "caller": "parseDracoProperties",
+          "callee": "combine",
+          "lineNumber": 311
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "defined",
+          "lineNumber": 333
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 334
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "defined",
+          "lineNumber": 348
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 349
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "featureTable.getGlobalProperty",
+          "lineNumber": 355
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "defined",
+          "lineNumber": 360
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "featureTable.getGlobalProperty",
+          "lineNumber": 367
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "defined",
+          "lineNumber": 372
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 386
+        },
+        {
+          "caller": "parsePositions",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 387
+        },
+        {
+          "caller": "parseColors",
+          "callee": "defined",
+          "lineNumber": 398
+        },
+        {
+          "caller": "parseColors",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 399
+        },
+        {
+          "caller": "parseColors",
+          "callee": "defined",
+          "lineNumber": 415
+        },
+        {
+          "caller": "parseColors",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 416
+        },
+        {
+          "caller": "parseColors",
+          "callee": "defined",
+          "lineNumber": 432
+        },
+        {
+          "caller": "parseColors",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 433
+        },
+        {
+          "caller": "parseColors",
+          "callee": "defined",
+          "lineNumber": 453
+        },
+        {
+          "caller": "parseColors",
+          "callee": "featureTable.getGlobalProperty",
+          "lineNumber": 454
+        },
+        {
+          "caller": "parseColors",
+          "callee": "Color.fromBytes",
+          "lineNumber": 461
+        },
+        {
+          "caller": "parseNormals",
+          "callee": "defined",
+          "lineNumber": 487
+        },
+        {
+          "caller": "parseNormals",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 488
+        },
+        {
+          "caller": "parseNormals",
+          "callee": "defined",
+          "lineNumber": 502
+        },
+        {
+          "caller": "parseNormals",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 503
+        },
+        {
+          "caller": "parseBatchIds",
+          "callee": "defined",
+          "lineNumber": 528
+        },
+        {
+          "caller": "parseBatchIds",
+          "callee": "featureTable.getPropertyArray",
+          "lineNumber": 529
+        },
+        {
+          "caller": "parseBatchIds",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 539
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 303,
+      "nonEmptyLines": 269,
+      "functions": [
+        {
+          "name": "AttributeLoadPlan",
+          "startLine": 22,
+          "endLine": 53,
+          "params": [
+            "attribute"
+          ]
+        },
+        {
+          "name": "IndicesLoadPlan",
+          "startLine": 66,
+          "endLine": 97,
+          "params": [
+            "indices"
+          ]
+        },
+        {
+          "name": "PrimitiveLoadPlan",
+          "startLine": 112,
+          "endLine": 169,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "generateOutlines",
+          "startLine": 192,
+          "endLine": 228,
+          "params": [
+            "loadPlan"
+          ]
+        },
+        {
+          "name": "makeOutlineCoordinatesAttribute",
+          "startLine": 230,
+          "endLine": 240,
+          "params": [
+            "outlineCoordinatesTypedArray"
+          ]
+        },
+        {
+          "name": "setupGaussianSplatBuffers",
+          "startLine": 242,
+          "endLine": 250,
+          "params": [
+            "loadPlan",
+            "context"
+          ]
+        },
+        {
+          "name": "generateBuffers",
+          "startLine": 252,
+          "endLine": 258,
+          "params": [
+            "loadPlan",
+            "context"
+          ]
+        },
+        {
+          "name": "generateAttributeBuffers",
+          "startLine": 260,
+          "endLine": 281,
+          "params": [
+            "attributePlans",
+            "context"
+          ]
+        },
+        {
+          "name": "generateIndexBuffers",
+          "startLine": 283,
+          "endLine": 299,
+          "params": [
+            "indicesPlan",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AttributeLoadPlan",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 24
+        },
+        {
+          "caller": "IndicesLoadPlan",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 68
+        },
+        {
+          "caller": "PrimitiveLoadPlan",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 114
+        },
+        {
+          "caller": "generateOutlines",
+          "callee": "IndexDatatype.fromTypedArray",
+          "lineNumber": 207
+        },
+        {
+          "caller": "generateOutlines",
+          "callee": "makeOutlineCoordinatesAttribute",
+          "lineNumber": 211
+        },
+        {
+          "caller": "generateOutlines",
+          "callee": "loadPlan.attributePlans.push",
+          "lineNumber": 217
+        },
+        {
+          "caller": "generateOutlines",
+          "callee": "generator.updateAttribute",
+          "lineNumber": 226
+        },
+        {
+          "caller": "generateBuffers",
+          "callee": "generateAttributeBuffers",
+          "lineNumber": 253
+        },
+        {
+          "caller": "generateBuffers",
+          "callee": "defined",
+          "lineNumber": 255
+        },
+        {
+          "caller": "generateBuffers",
+          "callee": "generateIndexBuffers",
+          "lineNumber": 256
+        },
+        {
+          "caller": "generateAttributeBuffers",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 268
+        },
+        {
+          "caller": "generateIndexBuffers",
+          "callee": "Buffer.createIndexBuffer",
+          "lineNumber": 286
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PropertyAttribute.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 149,
+      "functions": [
+        {
+          "name": "PropertyAttribute",
+          "startLine": 25,
+          "endLine": 53,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PropertyAttribute",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 31
+        },
+        {
+          "caller": "PropertyAttribute",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 32
+        },
+        {
+          "caller": "PropertyAttribute",
+          "callee": "defined",
+          "lineNumber": 36
+        },
+        {
+          "caller": "PropertyAttribute",
+          "callee": "propertyAttribute.properties.hasOwnProperty",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 177,
+      "nonEmptyLines": 160,
+      "functions": [
+        {
+          "name": "PropertyAttributeProperty",
+          "startLine": 22,
+          "endLine": 62,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 28
+        },
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 29
+        },
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "classProperty.unpackVectorAndMatrixTypes",
+          "lineNumber": 53
+        },
+        {
+          "caller": "PropertyAttributeProperty",
+          "callee": "classProperty.unpackVectorAndMatrixTypes",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PropertyTable.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 579,
+      "nonEmptyLines": 514,
+      "functions": [
+        {
+          "name": "PropertyTable",
+          "startLine": 42,
+          "endLine": 58,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "checkFeatureId",
+          "startLine": 524,
+          "endLine": 531,
+          "params": [
+            "featureId",
+            "featuresLength"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PropertyTable",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 46
+        },
+        {
+          "caller": "checkFeatureId",
+          "callee": "defined",
+          "lineNumber": 525
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PropertyTexture.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 162,
+      "nonEmptyLines": 150,
+      "functions": [
+        {
+          "name": "PropertyTexture",
+          "startLine": 26,
+          "endLine": 60,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PropertyTexture",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 33
+        },
+        {
+          "caller": "PropertyTexture",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 34
+        },
+        {
+          "caller": "PropertyTexture",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 35
+        },
+        {
+          "caller": "PropertyTexture",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "PropertyTexture",
+          "callee": "propertyTexture.properties.hasOwnProperty",
+          "lineNumber": 44
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 207,
+      "nonEmptyLines": 188,
+      "functions": [
+        {
+          "name": "PropertyTextureProperty",
+          "startLine": 25,
+          "endLine": 76,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "reformatChannels",
+          "startLine": 199,
+          "endLine": 205,
+          "params": [
+            "channels"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 32
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 33
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 34
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "defined",
+          "lineNumber": 38
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "GltfLoaderUtil.createModelTextureReader",
+          "lineNumber": 40
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "reformatChannels",
+          "lineNumber": 42
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "defined",
+          "lineNumber": 54
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "defined",
+          "lineNumber": 54
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "classProperty.unpackVectorAndMatrixTypes",
+          "lineNumber": 65
+        },
+        {
+          "caller": "PropertyTextureProperty",
+          "callee": "classProperty.unpackVectorAndMatrixTypes",
+          "lineNumber": 66
+        },
+        {
+          "caller": "reformatChannels",
+          "callee": "channels\n    .map(function (channelIndex) {\n      return \"rgba\".charAt(channelIndex);\n    })\n    .join",
+          "lineNumber": 200
+        },
+        {
+          "caller": "reformatChannels",
+          "callee": "channels\n    .map",
+          "lineNumber": 200
+        },
+        {
+          "caller": "reformatChannels",
+          "callee": "\"rgba\".charAt",
+          "lineNumber": 202
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ResourceCache.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 824,
+      "nonEmptyLines": 724,
+      "functions": [
+        {
+          "name": "ResourceCache",
+          "startLine": 25,
+          "endLine": 25,
+          "params": []
+        },
+        {
+          "name": "CacheEntry",
+          "startLine": 42,
+          "endLine": 48,
+          "params": [
+            "resourceLoader"
+          ]
+        },
+        {
+          "name": "hasDracoCompression",
+          "startLine": 578,
+          "endLine": 584,
+          "params": [
+            "draco",
+            "semantic"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hasDracoCompression",
+          "callee": "defined",
+          "lineNumber": 580
+        },
+        {
+          "caller": "hasDracoCompression",
+          "callee": "defined",
+          "lineNumber": 581
+        },
+        {
+          "caller": "hasDracoCompression",
+          "callee": "defined",
+          "lineNumber": 582
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 125,
+      "functions": [
+        {
+          "name": "ResourceCacheStatistics",
+          "startLine": 13,
+          "endLine": 34,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ResourceLoader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 118,
+      "nonEmptyLines": 107,
+      "classes": [
+        {
+          "name": "ResourceLoader",
+          "startLine": 16,
+          "endLine": 116,
+          "methods": [
+            "cacheKey",
+            "load",
+            "unload",
+            "process",
+            "getError",
+            "isDestroyed",
+            "destroy"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "cacheKey",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 27
+        },
+        {
+          "caller": "load",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getError",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 67
+        },
+        {
+          "caller": "getError",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "getError",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "getError",
+          "callee": "defined",
+          "lineNumber": 75
+        },
+        {
+          "caller": "destroy",
+          "callee": "this.unload",
+          "lineNumber": 113
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 114
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ResourceLoaderState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 62,
+      "nonEmptyLines": 59,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/StructuralMetadata.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 258,
+      "nonEmptyLines": 236,
+      "functions": [
+        {
+          "name": "StructuralMetadata",
+          "startLine": 28,
+          "endLine": 45,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "StructuralMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 31
+        },
+        {
+          "caller": "StructuralMetadata",
+          "callee": "defined",
+          "lineNumber": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/TileMetadata.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 184,
+      "nonEmptyLines": 170,
+      "functions": [
+        {
+          "name": "TileMetadata",
+          "startLine": 21,
+          "endLine": 35,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TileMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 27
+        },
+        {
+          "caller": "TileMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/TilesetMetadata.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 186,
+      "nonEmptyLines": 171,
+      "functions": [
+        {
+          "name": "TilesetMetadata",
+          "startLine": 21,
+          "endLine": 37,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TilesetMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 27
+        },
+        {
+          "caller": "TilesetMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 28
+        },
+        {
+          "caller": "TilesetMetadata",
+          "callee": "defined",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 321,
+      "nonEmptyLines": 297,
+      "functions": [
+        {
+          "name": "semanticToVariableName",
+          "startLine": 99,
+          "endLine": 128,
+          "params": [
+            "semantic"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelBoxShape.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 601,
+      "nonEmptyLines": 540,
+      "functions": [
+        {
+          "name": "VoxelBoxShape",
+          "startLine": 24,
+          "endLine": 96,
+          "params": []
+        },
+        {
+          "name": "boundScale",
+          "startLine": 344,
+          "endLine": 348,
+          "params": [
+            "minBound",
+            "maxBound"
+          ]
+        },
+        {
+          "name": "getBoxChunkObb",
+          "startLine": 569,
+          "endLine": 599,
+          "params": [
+            "minimumBounds",
+            "maximumBounds",
+            "matrix",
+            "result"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "VoxelBoxShape.DefaultMinBounds.clone",
+          "lineNumber": 35
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "VoxelBoxShape.DefaultMaxBounds.clone",
+          "lineNumber": 42
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "VoxelBoxShape.DefaultMinBounds.clone",
+          "lineNumber": 49
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "VoxelBoxShape.DefaultMaxBounds.clone",
+          "lineNumber": 56
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 61
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 65
+        },
+        {
+          "caller": "VoxelBoxShape",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 69
+        },
+        {
+          "caller": "boundScale",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 345
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 574
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 575
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix4.getTranslation",
+          "lineNumber": 578
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix4.getMatrix3",
+          "lineNumber": 579
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix4.getScale",
+          "lineNumber": 581
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Cartesian3.midpoint",
+          "lineNumber": 582
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 587
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 588
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix4.getRotation",
+          "lineNumber": 594
+        },
+        {
+          "caller": "getBoxChunkObb",
+          "callee": "Matrix3.setScale",
+          "lineNumber": 595
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 233,
+      "nonEmptyLines": 209,
+      "functions": [
+        {
+          "name": "VoxelContent",
+          "startLine": 28,
+          "endLine": 47,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "processAttributes",
+          "startLine": 176,
+          "endLine": 206,
+          "params": [
+            "attributes",
+            "structuralMetadata",
+            "primitive"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VoxelContent",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 30
+        },
+        {
+          "caller": "VoxelContent",
+          "callee": "defined",
+          "lineNumber": 31
+        },
+        {
+          "caller": "VoxelContent",
+          "callee": "defined",
+          "lineNumber": 32
+        },
+        {
+          "caller": "VoxelContent",
+          "callee": "Array.isArray",
+          "lineNumber": 35
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "structuralMetadata.propertyAttributes.find",
+          "lineNumber": 178
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "attributes.find",
+          "lineNumber": 187
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "defined",
+          "lineNumber": 188
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "MetadataComponentType.toComponentDatatype",
+          "lineNumber": 192
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "MetadataType.getComponentCount",
+          "lineNumber": 195
+        },
+        {
+          "caller": "processAttributes",
+          "callee": "ComponentDatatype.createArrayBufferView",
+          "lineNumber": 197
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 869,
+      "nonEmptyLines": 764,
+      "functions": [
+        {
+          "name": "VoxelCylinderShape",
+          "startLine": 26,
+          "endLine": 88,
+          "params": []
+        },
+        {
+          "name": "orthogonal",
+          "startLine": 718,
+          "endLine": 720,
+          "params": [
+            "a",
+            "b",
+            "epsilon"
+          ]
+        },
+        {
+          "name": "isValidOrientedBoundingBoxTransformation",
+          "startLine": 722,
+          "endLine": 733,
+          "params": [
+            "matrix"
+          ]
+        },
+        {
+          "name": "computeLooseOrientedBoundingBox",
+          "startLine": 735,
+          "endLine": 751,
+          "params": [
+            "matrix",
+            "result"
+          ]
+        },
+        {
+          "name": "getCylinderChunkObb",
+          "startLine": 767,
+          "endLine": 867,
+          "params": [
+            "chunkMinBounds",
+            "chunkMaxBounds",
+            "matrix",
+            "result"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VoxelCylinderShape",
+          "callee": "VoxelCylinderShape.DefaultMinBounds.clone",
+          "lineNumber": 37
+        },
+        {
+          "caller": "VoxelCylinderShape",
+          "callee": "VoxelCylinderShape.DefaultMaxBounds.clone",
+          "lineNumber": 44
+        },
+        {
+          "caller": "VoxelCylinderShape",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 49
+        },
+        {
+          "caller": "orthogonal",
+          "callee": "Math.abs",
+          "lineNumber": 719
+        },
+        {
+          "caller": "orthogonal",
+          "callee": "Cartesian4.dot",
+          "lineNumber": 719
+        },
+        {
+          "caller": "isValidOrientedBoundingBoxTransformation",
+          "callee": "Matrix4.getColumn",
+          "lineNumber": 723
+        },
+        {
+          "caller": "isValidOrientedBoundingBoxTransformation",
+          "callee": "Matrix4.getColumn",
+          "lineNumber": 724
+        },
+        {
+          "caller": "isValidOrientedBoundingBoxTransformation",
+          "callee": "Matrix4.getColumn",
+          "lineNumber": 725
+        },
+        {
+          "caller": "isValidOrientedBoundingBoxTransformation",
+          "callee": "orthogonal",
+          "lineNumber": 730
+        },
+        {
+          "caller": "isValidOrientedBoundingBoxTransformation",
+          "callee": "orthogonal",
+          "lineNumber": 731
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 737
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 738
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 739
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 740
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 741
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 742
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 743
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 744
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 747
+        },
+        {
+          "caller": "computeLooseOrientedBoundingBox",
+          "callee": "OrientedBoundingBox.fromPoints",
+          "lineNumber": 750
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.cos",
+          "lineNumber": 801
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.sin",
+          "lineNumber": 802
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.min",
+          "lineNumber": 808
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.min",
+          "lineNumber": 809
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.max",
+          "lineNumber": 810
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Math.max",
+          "lineNumber": 811
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 822
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix3.fromRotationZ",
+          "lineNumber": 829
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 831
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.fromScale",
+          "lineNumber": 838
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.fromRotation",
+          "lineNumber": 839
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.fromTranslation",
+          "lineNumber": 840
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 846
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 848
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 856
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "isValidOrientedBoundingBoxTransformation",
+          "lineNumber": 862
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "computeLooseOrientedBoundingBox",
+          "lineNumber": 863
+        },
+        {
+          "caller": "getCylinderChunkObb",
+          "callee": "OrientedBoundingBox.fromTransformation",
+          "lineNumber": 866
+        }
+      ],
+      "metrics": {
+        "importCount": 11,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelMetadataOrder.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 26,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelPrimitive.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 2136,
+      "nonEmptyLines": 1925,
+      "functions": [
+        {
+          "name": "VoxelPrimitive",
+          "startLine": 53,
+          "endLine": 575,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "computeInputDimensions",
+          "startLine": 587,
+          "endLine": 605,
+          "params": [
+            "dimensions",
+            "paddingBefore",
+            "paddingAfter",
+            "metadataOrder"
+          ]
+        },
+        {
+          "name": "setupShapeUniformsAndDefines",
+          "startLine": 616,
+          "endLine": 637,
+          "params": [
+            "primitive",
+            "shape"
+          ]
+        },
+        {
+          "name": "updateNearestSampling",
+          "startLine": 1343,
+          "endLine": 1348,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "updateRenderBoundPlanes",
+          "startLine": 1350,
+          "endLine": 1358,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "getTileCoordinates",
+          "startLine": 1369,
+          "endLine": 1385,
+          "params": [
+            "primitive",
+            "positionLocal",
+            "result"
+          ]
+        },
+        {
+          "name": "updateVerticalExaggeration",
+          "startLine": 1398,
+          "endLine": 1414,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "initializeFromContext",
+          "startLine": 1423,
+          "endLine": 1435,
+          "params": [
+            "primitive",
+            "provider",
+            "context"
+          ]
+        },
+        {
+          "name": "checkTransformAndBounds",
+          "startLine": 1443,
+          "endLine": 1451,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "updateBound",
+          "startLine": 1462,
+          "endLine": 1471,
+          "params": [
+            "primitive",
+            "newBoundKey",
+            "oldBoundKey"
+          ]
+        },
+        {
+          "name": "updateShapeAndTransforms",
+          "startLine": 1486,
+          "endLine": 1595,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "computeBoxExaggerationTranslation",
+          "startLine": 1606,
+          "endLine": 1659,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "setTraversalUniforms",
+          "startLine": 1667,
+          "endLine": 1685,
+          "params": [
+            "traversal",
+            "uniforms"
+          ]
+        },
+        {
+          "name": "checkShapeDefines",
+          "startLine": 1693,
+          "endLine": 1702,
+          "params": [
+            "primitive"
+          ]
+        },
+        {
+          "name": "getKeyframeLocation",
+          "startLine": 1712,
+          "endLine": 1747,
+          "params": [
+            "timeIntervalCollection",
+            "clock"
+          ]
+        },
+        {
+          "name": "updateClippingPlanes",
+          "startLine": 1757,
+          "endLine": 1801,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "orientedBoundingBoxToNdcAabb",
+          "startLine": 1916,
+          "endLine": 1998,
+          "params": [
+            "orientedBoundingBox",
+            "worldToProjection",
+            "result"
+          ]
+        },
+        {
+          "name": "debugDraw",
+          "startLine": 2015,
+          "endLine": 2093,
+          "params": [
+            "that",
+            "frameState"
+          ]
+        },
+        {
+          "name": "DefaultVoxelProvider",
+          "startLine": 2115,
+          "endLine": 2122,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "buildVoxelCustomShader",
+          "lineNumber": 58
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "VoxelShapeType.getMinBounds",
+          "lineNumber": 97
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "VoxelShapeType.getMaxBounds",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 112
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 118
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 124
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "computeInputDimensions",
+          "lineNumber": 130
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "minBounds.clone",
+          "lineNumber": 147
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "maxBounds.clone",
+          "lineNumber": 161
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "minBounds.clone",
+          "lineNumber": 175
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "maxBounds.clone",
+          "lineNumber": 189
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "Matrix4.clone",
+          "lineNumber": 245
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "Matrix4.clone",
+          "lineNumber": 253
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "VoxelShapeType.getShapeConstructor",
+          "lineNumber": 385
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "checkTransformAndBounds",
+          "lineNumber": 393
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "updateShapeAndTransforms",
+          "lineNumber": 399
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "uniforms.hasOwnProperty",
+          "lineNumber": 449
+        },
+        {
+          "caller": "VoxelPrimitive",
+          "callee": "setupShapeUniformsAndDefines",
+          "lineNumber": 457
+        },
+        {
+          "caller": "computeInputDimensions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 593
+        },
+        {
+          "caller": "computeInputDimensions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 598
+        },
+        {
+          "caller": "setupShapeUniformsAndDefines",
+          "callee": "shaderUniforms.hasOwnProperty",
+          "lineNumber": 620
+        },
+        {
+          "caller": "setupShapeUniformsAndDefines",
+          "callee": "defined",
+          "lineNumber": 624
+        },
+        {
+          "caller": "setupShapeUniformsAndDefines",
+          "callee": "oneTimeWarning",
+          "lineNumber": 625
+        },
+        {
+          "caller": "setupShapeUniformsAndDefines",
+          "callee": "clone",
+          "lineNumber": 636
+        },
+        {
+          "caller": "updateRenderBoundPlanes",
+          "callee": "defined",
+          "lineNumber": 1353
+        },
+        {
+          "caller": "updateRenderBoundPlanes",
+          "callee": "renderBoundPlanes.update",
+          "lineNumber": 1356
+        },
+        {
+          "caller": "getTileCoordinates",
+          "callee": "primitive._shape.convertLocalToShapeUvSpace",
+          "lineNumber": 1370
+        },
+        {
+          "caller": "getTileCoordinates",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 1378
+        },
+        {
+          "caller": "initializeFromContext",
+          "callee": "context.createPickId",
+          "lineNumber": 1426
+        },
+        {
+          "caller": "initializeFromContext",
+          "callee": "Color.clone",
+          "lineNumber": 1427
+        },
+        {
+          "caller": "initializeFromContext",
+          "callee": "setTraversalUniforms",
+          "lineNumber": 1434
+        },
+        {
+          "caller": "checkTransformAndBounds",
+          "callee": "updateBound",
+          "lineNumber": 1445
+        },
+        {
+          "caller": "checkTransformAndBounds",
+          "callee": "updateBound",
+          "lineNumber": 1446
+        },
+        {
+          "caller": "checkTransformAndBounds",
+          "callee": "updateBound",
+          "lineNumber": 1447
+        },
+        {
+          "caller": "checkTransformAndBounds",
+          "callee": "updateBound",
+          "lineNumber": 1448
+        },
+        {
+          "caller": "checkTransformAndBounds",
+          "callee": "updateBound",
+          "lineNumber": 1449
+        },
+        {
+          "caller": "updateBound",
+          "callee": "newBound.equals",
+          "lineNumber": 1466
+        },
+        {
+          "caller": "updateBound",
+          "callee": "newBound.clone",
+          "lineNumber": 1468
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1490
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1494
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1498
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1502
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1506
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "VerticalExaggeration.getHeight",
+          "lineNumber": 1513
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "VerticalExaggeration.getHeight",
+          "lineNumber": 1518
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "VerticalExaggeration.getHeight",
+          "lineNumber": 1523
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "VerticalExaggeration.getHeight",
+          "lineNumber": 1528
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1535
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.multiplyByScale",
+          "lineNumber": 1541
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.multiplyByTranslation",
+          "lineNumber": 1546
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "computeBoxExaggerationTranslation",
+          "lineNumber": 1548
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 1558
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 1563
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "shape.update",
+          "lineNumber": 1570
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1581
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1585
+        },
+        {
+          "caller": "updateShapeAndTransforms",
+          "callee": "Matrix4.getMatrix3",
+          "lineNumber": 1589
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "Matrix4.getTranslation",
+          "lineNumber": 1618
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1622
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1627
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1635
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "defined",
+          "lineNumber": 1641
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "VerticalExaggeration.getHeight",
+          "lineNumber": 1647
+        },
+        {
+          "caller": "computeBoxExaggerationTranslation",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1653
+        },
+        {
+          "caller": "setTraversalUniforms",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 1669
+        },
+        {
+          "caller": "setTraversalUniforms",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1681
+        },
+        {
+          "caller": "checkShapeDefines",
+          "callee": "Object.keys(shaderDefines).some",
+          "lineNumber": 1695
+        },
+        {
+          "caller": "checkShapeDefines",
+          "callee": "Object.keys",
+          "lineNumber": 1695
+        },
+        {
+          "caller": "checkShapeDefines",
+          "callee": "clone",
+          "lineNumber": 1699
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "defined",
+          "lineNumber": 1713
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "defined",
+          "lineNumber": 1713
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "timeIntervalCollection.indexOf",
+          "lineNumber": 1718
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "timeIntervalCollection.get",
+          "lineNumber": 1720
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "timeIntervalCollection.get",
+          "lineNumber": 1727
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "timeIntervalCollection.get",
+          "lineNumber": 1731
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "JulianDate.secondsDifference",
+          "lineNumber": 1736
+        },
+        {
+          "caller": "getKeyframeLocation",
+          "callee": "JulianDate.secondsDifference",
+          "lineNumber": 1740
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "defined",
+          "lineNumber": 1759
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "clippingPlanes.update",
+          "lineNumber": 1763
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "Matrix4.transpose",
+          "lineNumber": 1778
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 1779
+        },
+        {
+          "caller": "updateClippingPlanes",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1780
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Matrix4.fromRotationTranslation",
+          "lineNumber": 1921
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1926
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Matrix4.multiplyByVector",
+          "lineNumber": 1942
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.min",
+          "lineNumber": 1955
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.max",
+          "lineNumber": 1956
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.min",
+          "lineNumber": 1957
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.max",
+          "lineNumber": 1958
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Cartesian4.lerp",
+          "lineNumber": 1973
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.min",
+          "lineNumber": 1981
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.max",
+          "lineNumber": 1982
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.min",
+          "lineNumber": 1983
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Math.max",
+          "lineNumber": 1984
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1991
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1992
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1993
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1994
+        },
+        {
+          "caller": "orientedBoundingBoxToNdcAabb",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 1995
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "polylines.removeAll",
+          "lineNumber": 2018
+        },
+        {
+          "caller": "makePolylineLineSegment",
+          "callee": "polylines.add",
+          "lineNumber": 2021
+        },
+        {
+          "caller": "makePolylineLineSegment",
+          "callee": "Material.fromType",
+          "lineNumber": 2024
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "orientedBoundingBox.computeCorners",
+          "lineNumber": 2033
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2034
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2035
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2036
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2037
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2038
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2039
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2040
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2041
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2042
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2043
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2044
+        },
+        {
+          "caller": "makePolylineBox",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2045
+        },
+        {
+          "caller": "drawTile",
+          "callee": "traversal.isRenderable",
+          "lineNumber": 2049
+        },
+        {
+          "caller": "drawTile",
+          "callee": "Math.max",
+          "lineNumber": 2055
+        },
+        {
+          "caller": "drawTile",
+          "callee": "Math.pow",
+          "lineNumber": 2055
+        },
+        {
+          "caller": "drawTile",
+          "callee": "makePolylineBox",
+          "lineNumber": 2059
+        },
+        {
+          "caller": "drawTile",
+          "callee": "defined",
+          "lineNumber": 2061
+        },
+        {
+          "caller": "drawTile",
+          "callee": "drawTile",
+          "lineNumber": 2063
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "makePolylineBox",
+          "lineNumber": 2068
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "drawTile",
+          "lineNumber": 2070
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2073
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2079
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "makePolylineLineSegment",
+          "lineNumber": 2085
+        },
+        {
+          "caller": "debugDraw",
+          "callee": "polylines.update",
+          "lineNumber": 2092
+        }
+      ],
+      "metrics": {
+        "importCount": 31,
+        "exportCount": 0,
+        "functionCount": 19,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/VoxelShapeType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 107,
+      "nonEmptyLines": 101,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/buildVoxelCustomShader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 199,
+      "nonEmptyLines": 186,
+      "functions": [
+        {
+          "name": "buildVoxelCustomShader",
+          "startLine": 27,
+          "endLine": 48,
+          "params": [
+            "provider"
+          ]
+        },
+        {
+          "name": "rangeIsValid",
+          "startLine": 59,
+          "endLine": 66,
+          "params": [
+            "minimumValue",
+            "maximumValue"
+          ]
+        },
+        {
+          "name": "constructMetadataShader",
+          "startLine": 80,
+          "endLine": 98,
+          "params": [
+            "name",
+            "type",
+            "componentType",
+            "minimumValue",
+            "maximumValue"
+          ]
+        },
+        {
+          "name": "buildColorShader",
+          "startLine": 110,
+          "endLine": 126,
+          "params": [
+            "name",
+            "minimumValue",
+            "maximumValue"
+          ]
+        },
+        {
+          "name": "buildColorMapShader",
+          "startLine": 138,
+          "endLine": 197,
+          "params": [
+            "name",
+            "minimumValue",
+            "maximumValue"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "buildVoxelCustomShader",
+          "callee": "rangeIsValid",
+          "lineNumber": 34
+        },
+        {
+          "caller": "buildVoxelCustomShader",
+          "callee": "constructMetadataShader",
+          "lineNumber": 37
+        },
+        {
+          "caller": "buildVoxelCustomShader",
+          "callee": "defined",
+          "lineNumber": 44
+        },
+        {
+          "caller": "rangeIsValid",
+          "callee": "Array.isArray",
+          "lineNumber": 60
+        },
+        {
+          "caller": "rangeIsValid",
+          "callee": "Array.isArray",
+          "lineNumber": 60
+        },
+        {
+          "caller": "rangeIsValid",
+          "callee": "Math.min",
+          "lineNumber": 63
+        },
+        {
+          "caller": "rangeIsValid",
+          "callee": "Math.max",
+          "lineNumber": 64
+        },
+        {
+          "caller": "constructMetadataShader",
+          "callee": "buildColorShader",
+          "lineNumber": 91
+        },
+        {
+          "caller": "constructMetadataShader",
+          "callee": "buildColorMapShader",
+          "lineNumber": 96
+        },
+        {
+          "caller": "buildColorShader",
+          "callee": "Math.min",
+          "lineNumber": 112
+        },
+        {
+          "caller": "buildColorShader",
+          "callee": "Math.max",
+          "lineNumber": 113
+        },
+        {
+          "caller": "buildColorMapShader",
+          "callee": "createColorRamp",
+          "lineNumber": 141
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/getBinaryAccessor.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 52,
+      "functions": [
+        {
+          "name": "getBinaryAccessor",
+          "startLine": 32,
+          "endLine": 55,
+          "params": [
+            "accessor"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getBinaryAccessor",
+          "callee": "ComponentDatatype.fromName",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getBinaryAccessor",
+          "callee": "ComponentDatatype.createArrayBufferView",
+          "lineNumber": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/getMeshPrimitives.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 72,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "getMeshPrimitives",
+          "startLine": 13,
+          "endLine": 71,
+          "params": [
+            "mesh"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getMeshPrimitives",
+          "callee": "defined",
+          "lineNumber": 18
+        },
+        {
+          "caller": "getMeshPrimitives",
+          "callee": "addAllToArray",
+          "lineNumber": 28
+        },
+        {
+          "caller": "getMeshPrimitives",
+          "callee": "defined",
+          "lineNumber": 32
+        },
+        {
+          "caller": "getMeshPrimitives",
+          "callee": "defined",
+          "lineNumber": 58
+        },
+        {
+          "caller": "getMeshPrimitives",
+          "callee": "primitives.filter",
+          "lineNumber": 70
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/parseBatchTable.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 448,
+      "nonEmptyLines": 401,
+      "functions": [
+        {
+          "name": "parseBatchTable",
+          "startLine": 38,
+          "endLine": 142,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "partitionProperties",
+          "startLine": 153,
+          "endLine": 201,
+          "params": [
+            "batchTable"
+          ]
+        },
+        {
+          "name": "transcodeBinaryProperties",
+          "startLine": 215,
+          "endLine": 276,
+          "params": [
+            "featureCount",
+            "className",
+            "binaryProperties",
+            "binaryBody"
+          ]
+        },
+        {
+          "name": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "startLine": 278,
+          "endLine": 395,
+          "params": [
+            "featureCount",
+            "className",
+            "binaryProperties",
+            "binaryBody",
+            "customAttributeOutput"
+          ]
+        },
+        {
+          "name": "transcodePropertyType",
+          "startLine": 405,
+          "endLine": 412,
+          "params": [
+            "property"
+          ]
+        },
+        {
+          "name": "transcodeComponentType",
+          "startLine": 423,
+          "endLine": 442,
+          "params": [
+            "componentType"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseBatchTable",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 40
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 41
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "partitionProperties",
+          "lineNumber": 59
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 62
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "lineNumber": 84
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "transcodeBinaryProperties",
+          "lineNumber": 99
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "defined",
+          "lineNumber": 120
+        },
+        {
+          "caller": "parseBatchTable",
+          "callee": "propertyTables.push",
+          "lineNumber": 130
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "defined",
+          "lineNumber": 159
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "parseBatchTable._deprecationWarning",
+          "lineNumber": 160
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "defined",
+          "lineNumber": 165
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "batchTable.hasOwnProperty",
+          "lineNumber": 176
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "Array.isArray",
+          "lineNumber": 186
+        },
+        {
+          "caller": "partitionProperties",
+          "callee": "defined",
+          "lineNumber": 187
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "binaryProperties.hasOwnProperty",
+          "lineNumber": 226
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "defined",
+          "lineNumber": 230
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "getBinaryAccessor",
+          "lineNumber": 237
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "transcodePropertyType",
+          "lineNumber": 243
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "binaryAccessor.createArrayBufferView",
+          "lineNumber": 246
+        },
+        {
+          "caller": "transcodeBinaryProperties",
+          "callee": "MetadataSchema.fromJson",
+          "lineNumber": 262
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "binaryProperties.hasOwnProperty",
+          "lineNumber": 290
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "defined",
+          "lineNumber": 298
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "defined",
+          "lineNumber": 298
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "ModelUtility.sanitizeGlslIdentifier",
+          "lineNumber": 304
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "classProperties.hasOwnProperty",
+          "lineNumber": 314
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "transcodePropertyType",
+          "lineNumber": 320
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "sanitizedPropertyId.toUpperCase",
+          "lineNumber": 331
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "customAttributeName.startsWith",
+          "lineNumber": 332
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "defined",
+          "lineNumber": 339
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "getBinaryAccessor",
+          "lineNumber": 340
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "binaryAccessor.createArrayBufferView",
+          "lineNumber": 341
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 353
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "parseBatchTable._oneTimeWarning",
+          "lineNumber": 359
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 366
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "customAttributeOutput.push",
+          "lineNumber": 368
+        },
+        {
+          "caller": "transcodeBinaryPropertiesAsPropertyAttributes",
+          "callee": "MetadataSchema.fromJson",
+          "lineNumber": 383
+        },
+        {
+          "caller": "transcodePropertyType",
+          "callee": "transcodeComponentType",
+          "lineNumber": 406
+        }
+      ],
+      "metrics": {
+        "importCount": 18,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 139,
+      "nonEmptyLines": 125,
+      "functions": [
+        {
+          "name": "parseFeatureMetadataLegacy",
+          "startLine": 23,
+          "endLine": 96,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "transcodeToPropertyTexture",
+          "startLine": 98,
+          "endLine": 128,
+          "params": [
+            "featureTexture"
+          ]
+        },
+        {
+          "name": "reformatChannels",
+          "startLine": 130,
+          "endLine": 137,
+          "params": [
+            "channelsString"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 32
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 33
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "defined",
+          "lineNumber": 39
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Object.keys(extension.featureTables).sort",
+          "lineNumber": 43
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Object.keys",
+          "lineNumber": 43
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "propertyTables.push",
+          "lineNumber": 56
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "defined",
+          "lineNumber": 69
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Object.keys(extension.featureTextures).sort",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "Object.keys",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "propertyTextures.push",
+          "lineNumber": 77
+        },
+        {
+          "caller": "parseFeatureMetadataLegacy",
+          "callee": "transcodeToPropertyTexture",
+          "lineNumber": 80
+        },
+        {
+          "caller": "transcodeToPropertyTexture",
+          "callee": "properties.hasOwnProperty",
+          "lineNumber": 106
+        },
+        {
+          "caller": "transcodeToPropertyTexture",
+          "callee": "reformatChannels",
+          "lineNumber": 111
+        },
+        {
+          "caller": "transcodeToPropertyTexture",
+          "callee": "combine",
+          "lineNumber": 119
+        },
+        {
+          "caller": "reformatChannels",
+          "callee": "\"rgba\".indexOf",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 406,
+      "nonEmptyLines": 359,
+      "functions": [
+        {
+          "name": "parseStructuralMetadata",
+          "startLine": 36,
+          "endLine": 122,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "createTextureForPropertyTable",
+          "startLine": 139,
+          "endLine": 210,
+          "params": [
+            "propertyTable",
+            "bufferViews",
+            "classDefinition",
+            "context"
+          ]
+        },
+        {
+          "name": "collectGpuCompatiblePropertyInfo",
+          "startLine": 212,
+          "endLine": 252,
+          "params": [
+            "properties",
+            "bufferViews",
+            "classDefinition",
+            "numFeatures"
+          ]
+        },
+        {
+          "name": "createNoDataBufferView",
+          "startLine": 265,
+          "endLine": 314,
+          "params": [
+            "classProperty",
+            "numFeatures"
+          ]
+        },
+        {
+          "name": "packPropertyTablePropertiesIntoRGBA8",
+          "startLine": 319,
+          "endLine": 351,
+          "params": [
+            "propertyInfos",
+            "numFeatures"
+          ]
+        },
+        {
+          "name": "packProperty",
+          "startLine": 353,
+          "endLine": 367,
+          "params": [
+            "propertyInfo",
+            "packedBufferView",
+            "rowOffset"
+          ]
+        },
+        {
+          "name": "downcastAndPackProperty",
+          "startLine": 372,
+          "endLine": 404,
+          "params": [
+            "propertyInfo",
+            "packedDataView",
+            "rowOffset"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 45
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "defined",
+          "lineNumber": 50
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "createTextureForPropertyTable",
+          "lineNumber": 54
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "propertyTables.push",
+          "lineNumber": 68
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "defined",
+          "lineNumber": 83
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "propertyTextures.push",
+          "lineNumber": 86
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "defined",
+          "lineNumber": 99
+        },
+        {
+          "caller": "parseStructuralMetadata",
+          "callee": "propertyAttributes.push",
+          "lineNumber": 102
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "defined",
+          "lineNumber": 146
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "collectGpuCompatiblePropertyInfo",
+          "lineNumber": 154
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "console.warn",
+          "lineNumber": 161
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "oneTimeWarning",
+          "lineNumber": 178
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "packPropertyTablePropertiesIntoRGBA8",
+          "lineNumber": 185
+        },
+        {
+          "caller": "createTextureForPropertyTable",
+          "callee": "Texture.create",
+          "lineNumber": 198
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "Object.entries",
+          "lineNumber": 225
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "classProperty.isGpuCompatible",
+          "lineNumber": 227
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "defined",
+          "lineNumber": 232
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "createNoDataBufferView",
+          "lineNumber": 234
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "classProperty.cpuBytesPerElement",
+          "lineNumber": 237
+        },
+        {
+          "caller": "collectGpuCompatiblePropertyInfo",
+          "callee": "propertyInfos.push",
+          "lineNumber": 245
+        },
+        {
+          "caller": "createNoDataBufferView",
+          "callee": "MetadataType.getComponentCount",
+          "lineNumber": 268
+        },
+        {
+          "caller": "createNoDataBufferView",
+          "callee": "classProperty.cpuBytesPerElement",
+          "lineNumber": 290
+        },
+        {
+          "caller": "createNoDataBufferView",
+          "callee": "MetadataComponentType.getSizeInBytes",
+          "lineNumber": 291
+        },
+        {
+          "caller": "createNoDataBufferView",
+          "callee": "MetadataComponentType.getDataViewAccessors",
+          "lineNumber": 296
+        },
+        {
+          "caller": "createNoDataBufferView",
+          "callee": "accessors.set",
+          "lineNumber": 305
+        },
+        {
+          "caller": "packPropertyTablePropertiesIntoRGBA8",
+          "callee": "MetadataComponentType.gpuComponentType",
+          "lineNumber": 339
+        },
+        {
+          "caller": "packPropertyTablePropertiesIntoRGBA8",
+          "callee": "downcastAndPackProperty",
+          "lineNumber": 343
+        },
+        {
+          "caller": "packPropertyTablePropertiesIntoRGBA8",
+          "callee": "packProperty",
+          "lineNumber": 347
+        },
+        {
+          "caller": "packProperty",
+          "callee": "propertyInfo.classProperty.cpuBytesPerElement",
+          "lineNumber": 355
+        },
+        {
+          "caller": "packProperty",
+          "callee": "packedBufferView.set",
+          "lineNumber": 362
+        },
+        {
+          "caller": "packProperty",
+          "callee": "bufferView.subarray",
+          "lineNumber": 363
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "MetadataComponentType.gpuComponentType",
+          "lineNumber": 376
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "classProperty.cpuBytesPerElement",
+          "lineNumber": 378
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "MetadataComponentType.getDataViewAccessors",
+          "lineNumber": 386
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "MetadataComponentType.getDataViewAccessors",
+          "lineNumber": 390
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "MetadataComponentType.downcastFunction",
+          "lineNumber": 395
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "sourceAccessors.get",
+          "lineNumber": 401
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "packedAccessors.set",
+          "lineNumber": 402
+        },
+        {
+          "caller": "downcastAndPackProperty",
+          "callee": "downcastFunction",
+          "lineNumber": 402
+        }
+      ],
+      "metrics": {
+        "importCount": 20,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/processVoxelProperties.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 398,
+      "nonEmptyLines": 373,
+      "functions": [
+        {
+          "name": "processVoxelProperties",
+          "startLine": 15,
+          "endLine": 315,
+          "params": [
+            "renderResources",
+            "primitive"
+          ]
+        },
+        {
+          "name": "getGlslType",
+          "startLine": 327,
+          "endLine": 337,
+          "params": [
+            "type"
+          ]
+        },
+        {
+          "name": "getGlslTextureSwizzle",
+          "startLine": 349,
+          "endLine": 359,
+          "params": [
+            "type"
+          ]
+        },
+        {
+          "name": "getGlslNumberAsFloat",
+          "startLine": 372,
+          "endLine": 378,
+          "params": [
+            "number"
+          ]
+        },
+        {
+          "name": "getGlslField",
+          "startLine": 391,
+          "endLine": 396,
+          "params": [
+            "type",
+            "index"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "processVoxelProperties",
+          "callee": "defined",
+          "lineNumber": 22
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "defined",
+          "lineNumber": 22
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addDefine",
+          "lineNumber": 24
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addDefine",
+          "lineNumber": 31
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslType",
+          "lineNumber": 41
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 44
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 49
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 50
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 57
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 66
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 77
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslType",
+          "lineNumber": 83
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 84
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 91
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 96
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 97
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 103
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 108
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 109
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 110
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 111
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 112
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 113
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 118
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 123
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 128
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 133
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 138
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStruct",
+          "lineNumber": 148
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslType",
+          "lineNumber": 154
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addStructField",
+          "lineNumber": 155
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 163
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 168
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslType",
+          "lineNumber": 172
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 173
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 177
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 185
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 190
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 195
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 199
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 207
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 212
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 216
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 220
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 226
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 231
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 236
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 240
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 248
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 255
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 264
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "MetadataType.getComponentCount",
+          "lineNumber": 272
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslField",
+          "lineNumber": 274
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "defined",
+          "lineNumber": 277
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "defined",
+          "lineNumber": 277
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 280
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslNumberAsFloat",
+          "lineNumber": 281
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslNumberAsFloat",
+          "lineNumber": 284
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunction",
+          "lineNumber": 295
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 300
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "getGlslTextureSwizzle",
+          "lineNumber": 306
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 307
+        },
+        {
+          "caller": "processVoxelProperties",
+          "callee": "shaderBuilder.addFunctionLines",
+          "lineNumber": 311
+        },
+        {
+          "caller": "getGlslNumberAsFloat",
+          "callee": "number.toString",
+          "lineNumber": 373
+        },
+        {
+          "caller": "getGlslNumberAsFloat",
+          "callee": "numberString.indexOf",
+          "lineNumber": 374
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Scene/GltfSpzLoaderSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 38,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Scene/MetadataComponentTypeSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 602,
+      "nonEmptyLines": 548,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

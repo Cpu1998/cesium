@@ -1,0 +1,472 @@
+{
+  "nodes": [
+    {
+      "id": "file:.externalToolBuilders/automaticBuild.launch",
+      "type": "file",
+      "name": "automaticBuild.launch",
+      "filePath": ".externalToolBuilders/automaticBuild.launch",
+      "summary": "Eclipse 外部工具构建器配置,定义自动构建任务的启动方式。",
+      "tags": ["configuration", "ide", "eclipse", "build-system"],
+      "complexity": "simple",
+      "languageNotes": "Eclipse .launch 文件为 XML 格式的外部工具配置。"
+    },
+    {
+      "id": "file:.git-blame-ignore-revs",
+      "type": "file",
+      "name": ".git-blame-ignore-revs",
+      "filePath": ".git-blame-ignore-revs",
+      "summary": "列出应从 git blame 中排除的 commit hash(如格式化类提交),使 blame 结果更聚焦于实质性改动。",
+      "tags": ["configuration", "git", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.gitattributes",
+      "type": "file",
+      "name": ".gitattributes",
+      "filePath": ".gitattributes",
+      "summary": "定义 Git 仓库的路径属性,通常用于统一行尾、二进制文件处理等跨平台行为。",
+      "tags": ["configuration", "git", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/actions/check-for-CLA/index.js",
+      "type": "file",
+      "name": "index.js",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "summary": "GitHub Action 入口脚本,查询 Google Sheets 中的个人/企业 CLA 签署记录,根据 PR 作者是否签署 CLA 在 PR 上评论并添加标签。",
+      "tags": ["entry-point", "ci-cd", "automation", "github-action", "validation"],
+      "complexity": "moderate",
+      "languageNotes": "ESM 模块,使用 googleapis 读取 Google Sheets,通过 @octokit/core 操作 GitHub。"
+    },
+    {
+      "id": "config:.github/actions/check-for-CLA/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": ".github/actions/check-for-CLA/package.json",
+      "summary": "check-for-CLA 自定义 GitHub Action 的包配置,声明 ESM 类型及 googleapis、handlebars 等依赖。",
+      "tags": ["configuration", "package-manifest", "github-action", "dependencies"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/actions/check-for-CLA/templates/pullRequestComment.hbs",
+      "type": "file",
+      "name": "pullRequestComment.hbs",
+      "filePath": ".github/actions/check-for-CLA/templates/pullRequestComment.hbs",
+      "summary": "Handlebars 模板,根据 CLA 签署状态渲染发布在 PR 上的提示评论。",
+      "tags": ["template", "handlebars", "github-action", "automation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.github/actions/verify-package/action.yml",
+      "type": "config",
+      "name": "action.yml",
+      "filePath": ".github/actions/verify-package/action.yml",
+      "summary": "verify-package 复合 GitHub Action 的元数据定义,声明该 action 调用 script.sh 进行包验证。",
+      "tags": ["configuration", "github-action", "ci-cd", "automation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/actions/verify-package/script.sh",
+      "type": "file",
+      "name": "script.sh",
+      "filePath": ".github/actions/verify-package/script.sh",
+      "summary": "verify-package action 执行的 shell 脚本,验证构建产物/发布包的正确性。",
+      "tags": ["script", "ci-cd", "github-action", "validation", "shell"],
+      "complexity": "simple",
+      "languageNotes": "Bash 脚本,由 action.yml 中的 composite step 调用。"
+    },
+    {
+      "id": "config:.github/dependabot.yml",
+      "type": "config",
+      "name": "dependabot.yml",
+      "filePath": ".github/dependabot.yml",
+      "summary": "Dependabot 配置,定义 GitHub Actions 与 npm 依赖的自动更新计划。",
+      "tags": ["configuration", "dependabot", "ci-cd", "dependencies", "automation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.github/pull_request_template.md",
+      "type": "document",
+      "name": "pull_request_template.md",
+      "filePath": ".github/pull_request_template.md",
+      "summary": "PR 模板文档,包含 Description、Issue 链接、测试计划、作者清单及 AI 使用声明等小节,引导贡献者规范提交。",
+      "tags": ["documentation", "github", "contribution", "template"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.husky/pre-commit",
+      "type": "file",
+      "name": "pre-commit",
+      "filePath": ".husky/pre-commit",
+      "summary": "Husky 预提交 git hook,执行 npx lint-staged 对暂存文件运行 lint。",
+      "tags": ["configuration", "git-hook", "linting", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.markdownlintignore",
+      "type": "file",
+      "name": ".markdownlintignore",
+      "filePath": ".markdownlintignore",
+      "summary": "markdownlint 忽略列表,指定不参与 markdown 文档校验的文件/目录。",
+      "tags": ["configuration", "linting", "tooling", "markdown"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.npmignore",
+      "type": "file",
+      "name": ".npmignore",
+      "filePath": ".npmignore",
+      "summary": "npm 发布忽略列表,定义发布到 npm 时不应包含在 tarball 中的源码与配置文件。",
+      "tags": ["configuration", "npm", "publishing", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.npmrc",
+      "type": "file",
+      "name": ".npmrc",
+      "filePath": ".npmrc",
+      "summary": "npm 配置,设置 package-lock=false 以禁止生成 package-lock.json。",
+      "tags": ["configuration", "npm", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.prettierignore",
+      "type": "file",
+      "name": ".prettierignore",
+      "filePath": ".prettierignore",
+      "summary": "Prettier 忽略列表,指定不参与代码格式化的文件与目录(如生成的代码、第三方库)。",
+      "tags": ["configuration", "linting", "formatting", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.project",
+      "type": "file",
+      "name": ".project",
+      "filePath": ".project",
+      "summary": "Eclipse 项目描述文件,声明该仓库作为 Eclipse 项目的名称、构建器与 natures。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "moderate",
+      "languageNotes": "Eclipse .project 文件为 XML,描述项目元数据;属于遗留 IDE 配置。"
+    },
+    {
+      "id": "file:.settings/.jsdtscope",
+      "type": "file",
+      "name": ".jsdtscope",
+      "filePath": ".settings/.jsdtscope",
+      "summary": "Eclipse JSDT 项目作用域配置,定义 JavaScript 开发工具的资源过滤范围。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/com.eclipsesource.jshint.ui.prefs",
+      "type": "file",
+      "name": "com.eclipsesource.jshint.ui.prefs",
+      "filePath": ".settings/com.eclipsesource.jshint.ui.prefs",
+      "summary": "Eclipse JSHint 插件的 UI 偏好配置文件。",
+      "tags": ["configuration", "ide", "eclipse", "linting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/org.eclipse.core.resources.prefs",
+      "type": "file",
+      "name": "org.eclipse.core.resources.prefs",
+      "filePath": ".settings/org.eclipse.core.resources.prefs",
+      "summary": "Eclipse 核心资源插件偏好,配置项目字符编码等资源相关设置。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.jsdt.core.prefs",
+      "type": "file",
+      "name": "org.eclipse.wst.jsdt.core.prefs",
+      "filePath": ".settings/org.eclipse.wst.jsdt.core.prefs",
+      "summary": "Eclipse WTP JavaScript 开发工具的核心校验/编译偏好,条目较多。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.jsdt.ui.prefs",
+      "type": "file",
+      "name": "org.eclipse.wst.jsdt.ui.prefs",
+      "filePath": ".settings/org.eclipse.wst.jsdt.ui.prefs",
+      "summary": "Eclipse WTP JavaScript 开发工具的 UI 偏好,配置编辑器显示与格式化行为。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.jsdt.ui.superType.container",
+      "type": "file",
+      "name": "org.eclipse.wst.jsdt.ui.superType.container",
+      "filePath": ".settings/org.eclipse.wst.jsdt.ui.superType.container",
+      "summary": "Eclipse JSDT 超类型容器引用,指向 JavaScript 全局类型库的容器路径。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.jsdt.ui.superType.name",
+      "type": "file",
+      "name": "org.eclipse.wst.jsdt.ui.superType.name",
+      "filePath": ".settings/org.eclipse.wst.jsdt.ui.superType.name",
+      "summary": "Eclipse JSDT 超类型名称,声明 JavaScript 全局超类型的名称。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.json.core.prefs",
+      "type": "file",
+      "name": "org.eclipse.wst.json.core.prefs",
+      "filePath": ".settings/org.eclipse.wst.json.core.prefs",
+      "summary": "Eclipse WTP JSON 核心偏好,配置 JSON 文件校验相关设置。",
+      "tags": ["configuration", "ide", "eclipse", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.settings/org.eclipse.wst.validation.prefs",
+      "type": "file",
+      "name": "org.eclipse.wst.validation.prefs",
+      "filePath": ".settings/org.eclipse.wst.validation.prefs",
+      "summary": "Eclipse WTP 验证框架偏好,配置各类验证器(校验器)的启用状态。",
+      "tags": ["configuration", "ide", "eclipse", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:getGoogleSheetsApiClient",
+      "type": "function",
+      "name": "getGoogleSheetsApiClient",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [25, 36],
+      "summary": "使用环境变量中的 Google API 密钥创建并返回一个已认证的 Google Sheets API 客户端。",
+      "tags": ["api-client", "google-sheets", "authentication"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:getValuesFromGoogleSheet",
+      "type": "function",
+      "name": "getValuesFromGoogleSheet",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [38, 45],
+      "summary": "从指定 Google Sheet 的单元格范围读取数据行。",
+      "tags": ["google-sheets", "data-access", "read"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:checkIfIndividualCLAFound",
+      "type": "function",
+      "name": "checkIfIndividualCLAFound",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [47, 66],
+      "summary": "查询个人 CLA 表,判断 PR 作者是否签署了个人 CLA。",
+      "tags": ["cla", "validation", "github-action"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:checkIfCorporateCLAFound",
+      "type": "function",
+      "name": "checkIfCorporateCLAFound",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [68, 94],
+      "summary": "查询企业 CLA 表的 Schedule A,判断 PR 作者所属公司是否在企业 CLA 覆盖名单中。",
+      "tags": ["cla", "validation", "github-action", "corporate"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:checkIfUserHasSignedAnyCLA",
+      "type": "function",
+      "name": "checkIfUserHasSignedAnyCLA",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [96, 104],
+      "summary": "综合判断用户是否签署了个人或企业 CLA。",
+      "tags": ["cla", "validation", "aggregation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:getCommentBody",
+      "type": "function",
+      "name": "getCommentBody",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [106, 124],
+      "summary": "使用 Handlebars 模板根据 CLA 签署状态与错误情况生成 PR 评论正文。",
+      "tags": ["template", "handlebars", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:postCommentOnPullRequest",
+      "type": "function",
+      "name": "postCommentOnPullRequest",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [126, 143],
+      "summary": "通过 GitHub API 在 PR 上发布 CLA 检查结果评论。",
+      "tags": ["github-api", "octokit", "pull-request"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:addLabelToPullRequest",
+      "type": "function",
+      "name": "addLabelToPullRequest",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [145, 159],
+      "summary": "通过 GitHub API 在 PR 上添加表示 CLA 已签署状态的标签。",
+      "tags": ["github-api", "octokit", "labeling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.github/actions/check-for-CLA/index.js:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".github/actions/check-for-CLA/index.js",
+      "lineRange": [161, 175],
+      "summary": "Action 主入口,编排 CLA 检查流程:检查签署情况并在 PR 上评论与打标。",
+      "tags": ["entry-point", "cla", "orchestration"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:getGoogleSheetsApiClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:getValuesFromGoogleSheet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfIndividualCLAFound",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfCorporateCLAFound",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfUserHasSignedAnyCLA",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:getCommentBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:postCommentOnPullRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:addLabelToPullRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "function:.github/actions/check-for-CLA/index.js:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:.github/actions/check-for-CLA/package.json",
+      "target": "file:.github/actions/check-for-CLA/index.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:.github/actions/check-for-CLA/index.js",
+      "target": "file:.github/actions/check-for-CLA/templates/pullRequestComment.hbs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.github/actions/verify-package/action.yml",
+      "target": "file:.github/actions/verify-package/script.sh",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:checkIfUserHasSignedAnyCLA",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfIndividualCLAFound",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:checkIfUserHasSignedAnyCLA",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfCorporateCLAFound",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:checkIfIndividualCLAFound",
+      "target": "function:.github/actions/check-for-CLA/index.js:getValuesFromGoogleSheet",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:checkIfCorporateCLAFound",
+      "target": "function:.github/actions/check-for-CLA/index.js:getValuesFromGoogleSheet",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:getValuesFromGoogleSheet",
+      "target": "function:.github/actions/check-for-CLA/index.js:getGoogleSheetsApiClient",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:postCommentOnPullRequest",
+      "target": "function:.github/actions/check-for-CLA/index.js:getCommentBody",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:main",
+      "target": "function:.github/actions/check-for-CLA/index.js:checkIfUserHasSignedAnyCLA",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:main",
+      "target": "function:.github/actions/check-for-CLA/index.js:postCommentOnPullRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:.github/actions/check-for-CLA/index.js:main",
+      "target": "function:.github/actions/check-for-CLA/index.js:addLabelToPullRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,511 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "type": "file",
+      "name": "PointGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/PointGraphics.js",
+      "summary": "定义点（point）图形的描述属性，封装为可绑定到 entity 上的 property 对象，供 billboard/point visualizer 使用。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "type": "file",
+      "name": "PolygonGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/PolygonGraphics.js",
+      "summary": "描述多边形图形的可视化属性（层级、高度、拉伸、材质等），并将值包装为响应式的 Property，支持与 CZML/GEOJSON/KML 数据源协作。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "polygon"
+      ],
+      "complexity": "complex",
+      "languageNotes": "含 createPolygonHierarchyProperty 内部工具函数，用于将数组层级规范化为 PolygonHierarchy。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "type": "file",
+      "name": "PolylineArrowMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "summary": "实现带箭头材质的 polyline property，单一 color 参数，将常量颜色包装为可随时间求值的 MaterialProperty。",
+      "tags": [
+        "material-property",
+        "entity",
+        "polyline",
+        "datasources"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "type": "file",
+      "name": "PolylineDashMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "summary": "虚线（dash）样式 polyline 材质的 property 实现，包含 color、dashPattern、gapColor 等可配置字段。",
+      "tags": [
+        "material-property",
+        "entity",
+        "polyline",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "type": "file",
+      "name": "PolylineGlowMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "summary": "发光（glow）样式 polyline 材质的 property，封装 color、glowPower、taperPower 等参数。",
+      "tags": [
+        "material-property",
+        "entity",
+        "polyline",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "file",
+      "name": "PolylineGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineGraphics.js",
+      "summary": "描述 polyline 图形的可视化属性（位置、宽度、材质、裁剪等），使用 createPropertyDescriptor 包装为响应式 Property。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "polyline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "type": "file",
+      "name": "PolylineOutlineMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "summary": "带轮廓（outline）的 polyline 材质 property 实现，包含 color 与 outlineColor/outlineWidth 字段。",
+      "tags": [
+        "material-property",
+        "entity",
+        "polyline",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "type": "file",
+      "name": "PolylineVolumeGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "summary": "描述 polyline 体积（带形状挤出）图形的属性，组合 positions 与 shape 属性，供 entity 渲染管线使用。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "polyline-volume"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/PolygonGraphics.js:createPolygonHierarchyProperty",
+      "type": "function",
+      "name": "createPolygonHierarchyProperty",
+      "filePath": "packages/engine/Source/DataSources/PolygonGraphics.js",
+      "lineRange": [
+        10,
+        16
+      ],
+      "summary": "将传入的数组形式的 polygon hierarchy 规范化为 PolygonHierarchy 实例，用于 Property 内部存储。",
+      "tags": [
+        "utility",
+        "polygon-hierarchy",
+        "factory"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/Core/PolygonHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/PolygonGraphics.js:createPolygonHierarchyProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

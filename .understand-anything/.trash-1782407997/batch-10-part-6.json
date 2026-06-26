@@ -1,0 +1,595 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "type": "file",
+      "name": "GltfLoaderUtil.js",
+      "filePath": "packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "summary": "glTF 加载工具函数集合：解析纹理坐标集、采样器、纹理包装与 alpha 模式等辅助逻辑。",
+      "tags": [
+        "gltf",
+        "utility",
+        "loader",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "type": "file",
+      "name": "GroundPolylinePrimitive.js",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "summary": "贴地折线 primitive：沿地形绘制折线，处理几何投影、shader program、render state 与 color/pick 命令创建。",
+      "tags": [
+        "primitive",
+        "polyline",
+        "ground",
+        "shader",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "file",
+      "name": "HorizontalOrigin.js",
+      "filePath": "packages/engine/Source/Scene/HorizontalOrigin.js",
+      "summary": "枚举：指定 billboard/label 等元素相对于锚点的水平原点 (LEFT/CENTER/RIGHT)。",
+      "tags": [
+        "enum",
+        "billboard",
+        "type-definition",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "type": "file",
+      "name": "ImageBasedLighting.js",
+      "filePath": "packages/engine/Source/Scene/ImageBasedLighting.js",
+      "summary": "场景级基于图像的光照 (IBL) 配置：管理镜面环境立方体贴图、球谐系数、辐照度及大气融合等参数。",
+      "tags": [
+        "pbr",
+        "ibl",
+        "environment-map",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:GroundPolylinePrimitive",
+      "type": "function",
+      "name": "GroundPolylinePrimitive",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        96,
+        204
+      ],
+      "summary": "构造贴地折线 primitive，配置几何、外观与分类参数。",
+      "tags": [
+        "primitive",
+        "polyline",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createShaderProgram",
+      "type": "function",
+      "name": "createShaderProgram",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        317,
+        457
+      ],
+      "summary": "为贴地折线编译着色器程序（含投影与 batching）。",
+      "tags": [
+        "shader",
+        "polyline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:getRenderState",
+      "type": "function",
+      "name": "getRenderState",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        459,
+        484
+      ],
+      "summary": "返回贴地折线渲染状态（含 3D Tiles 掩码）。",
+      "tags": [
+        "render-state",
+        "polyline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createCommands",
+      "type": "function",
+      "name": "createCommands",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        486,
+        558
+      ],
+      "summary": "生成贴地折线的颜色与拾取命令。",
+      "tags": [
+        "command",
+        "polyline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommand",
+      "type": "function",
+      "name": "updateAndQueueCommand",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        560,
+        581
+      ],
+      "summary": "将单条命令加入帧渲染队列。",
+      "tags": [
+        "command",
+        "polyline",
+        "render-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommands",
+      "type": "function",
+      "name": "updateAndQueueCommands",
+      "filePath": "packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "lineRange": [
+        583,
+        649
+      ],
+      "summary": "批量更新并将命令加入帧渲染队列。",
+      "tags": [
+        "command",
+        "polyline",
+        "render-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageBasedLighting.js:ImageBasedLighting",
+      "type": "function",
+      "name": "ImageBasedLighting",
+      "filePath": "packages/engine/Source/Scene/ImageBasedLighting.js",
+      "lineRange": [
+        26,
+        97
+      ],
+      "summary": "构造场景级 IBL 配置对象，初始化镜面环境贴图、球谐系数与大气参数。",
+      "tags": [
+        "pbr",
+        "ibl",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageBasedLighting.js:createSpecularEnvironmentCubeMap",
+      "type": "function",
+      "name": "createSpecularEnvironmentCubeMap",
+      "filePath": "packages/engine/Source/Scene/ImageBasedLighting.js",
+      "lineRange": [
+        302,
+        326
+      ],
+      "summary": "按 IBL 配置创建/刷新镜面环境立方体贴图。",
+      "tags": [
+        "pbr",
+        "ibl",
+        "environment-map"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:GroundPolylinePrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:GroundPolylinePrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:getRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:getRenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:createCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/GroundPolylinePrimitive.js:updateAndQueueCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "function:packages/engine/Source/Scene/ImageBasedLighting.js:ImageBasedLighting",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "function:packages/engine/Source/Scene/ImageBasedLighting.js:ImageBasedLighting",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "function:packages/engine/Source/Scene/ImageBasedLighting.js:createSpecularEnvironmentCubeMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "function:packages/engine/Source/Scene/ImageBasedLighting.js:createSpecularEnvironmentCubeMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "target": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

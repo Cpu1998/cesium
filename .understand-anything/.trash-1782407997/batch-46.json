@@ -1,0 +1,578 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts",
+      "type": "file",
+      "name": "textNormalization.ts",
+      "filePath": "packages/sandcastle/src/copilot/ai/utils/textNormalization.ts",
+      "summary": "文本归一化工具，提供字符串清洗与格式化能力，供 diff 匹配与 prompt 构建使用。",
+      "tags": ["utility", "text-normalization", "copilot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts:normalizeString",
+      "type": "function",
+      "name": "normalizeString",
+      "filePath": "packages/sandcastle/src/copilot/ai/utils/textNormalization.ts",
+      "lineRange": [71, 99],
+      "summary": "对输入字符串进行归一化处理（去空白、统一换行、大小写规范等），返回可用于 diff 对比的标准化文本。",
+      "tags": ["utility", "text-normalization", "pure-function"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx",
+      "type": "file",
+      "name": "ModelContext.tsx",
+      "filePath": "packages/sandcastle/src/copilot/contexts/ModelContext.tsx",
+      "summary": "Copilot 模型选择的全局 Context 与 Provider，负责持久化首选模型、校验模型可用性并暴露 ModelProvider 组件。",
+      "tags": ["context", "provider", "copilot", "state-management"],
+      "complexity": "complex",
+      "languageNotes": "通过 React Context + localStorage 实现模型选择的跨组件共享与持久化。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/contexts/ModelContext.tsx:getStoredPreferredModelSelection",
+      "type": "function",
+      "name": "getStoredPreferredModelSelection",
+      "filePath": "packages/sandcastle/src/copilot/contexts/ModelContext.tsx",
+      "lineRange": [69, 108],
+      "summary": "从 localStorage 读取用户上次选择的 AI 模型配置，带容错解析。",
+      "tags": ["utility", "persistence", "localStorage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/contexts/ModelContext.tsx:ModelProvider",
+      "type": "function",
+      "name": "ModelProvider",
+      "filePath": "packages/sandcastle/src/copilot/contexts/ModelContext.tsx",
+      "lineRange": [155, 215],
+      "summary": "React Context Provider 组件，向子树注入当前模型选择、变更方法以及可用模型列表。",
+      "tags": ["provider", "context", "component", "copilot"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/contexts/useModel.ts",
+      "type": "file",
+      "name": "useModel.ts",
+      "filePath": "packages/sandcastle/src/copilot/contexts/useModel.ts",
+      "summary": "封装 ModelContext 的消费 hook，向组件提供当前模型选择与更新方法。",
+      "tags": ["hook", "context", "copilot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/contexts/useModel.ts:useModel",
+      "type": "function",
+      "name": "useModel",
+      "filePath": "packages/sandcastle/src/copilot/contexts/useModel.ts",
+      "lineRange": [5, 11],
+      "summary": "从 ModelContext 读取当前模型状态与更新函数的便捷 hook。",
+      "tags": ["hook", "context", "copilot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx",
+      "type": "file",
+      "name": "SimpleDiffPreview.tsx",
+      "filePath": "packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx",
+      "summary": "轻量 diff 预览组件，计算并渲染代码变更的逐行对比与统计信息。",
+      "tags": ["component", "diff-preview", "copilot", "ui"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx:calculateSimpleDiff",
+      "type": "function",
+      "name": "calculateSimpleDiff",
+      "filePath": "packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx",
+      "lineRange": [27, 85],
+      "summary": "基于行比对算法计算两段文本的简单 diff，输出增删改的行级变更。",
+      "tags": ["diff", "algorithm", "pure-function"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx:SimpleDiffPreview",
+      "type": "function",
+      "name": "SimpleDiffPreview",
+      "filePath": "packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx",
+      "lineRange": [103, 207],
+      "summary": "React 组件，渲染带高亮与统计的代码 diff 预览界面。",
+      "tags": ["component", "diff-preview", "ui"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts",
+      "type": "file",
+      "name": "useAutoFix.ts",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useAutoFix.ts",
+      "summary": "AutoFix hook，基于 diff 指纹与 prompt 构建自动修复运行时错误或代码缺陷。",
+      "tags": ["hook", "auto-fix", "copilot"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/hooks/useAutoFix.ts:useAutoFix",
+      "type": "function",
+      "name": "useAutoFix",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useAutoFix.ts",
+      "lineRange": [47, 132],
+      "summary": "协调自动修复流程的 hook：计算 diff 指纹、构建 prompt 并触发模型生成修复补丁。",
+      "tags": ["hook", "auto-fix", "copilot", "orchestration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/hooks/useChatMessages.ts",
+      "type": "file",
+      "name": "useChatMessages.ts",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useChatMessages.ts",
+      "summary": "聊天消息状态管理 hook，维护消息列表与增删改逻辑。",
+      "tags": ["hook", "chat", "state-management", "copilot"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/hooks/useChatMessages.ts:useChatMessages",
+      "type": "function",
+      "name": "useChatMessages",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useChatMessages.ts",
+      "lineRange": [4, 136],
+      "summary": "管理 Copilot 对话消息列表的 hook，提供添加、更新与清理消息的接口。",
+      "tags": ["hook", "chat", "state-management"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts",
+      "type": "file",
+      "name": "useToolChainExecution.ts",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts",
+      "summary": "工具链执行编排 hook，驱动多轮工具调用与 Gemini 思考签名的循环执行。",
+      "tags": ["hook", "tool-chain", "orchestration", "copilot"],
+      "complexity": "complex",
+      "languageNotes": "处理 Vertex/Gemini 特有的 thoughtSignature 与 function call part 协议。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts:useToolChainExecution",
+      "type": "function",
+      "name": "useToolChainExecution",
+      "filePath": "packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts",
+      "lineRange": [48, 462],
+      "summary": "核心编排 hook：循环调用 AI 客户端、解析工具调用、执行注册工具并将结果回灌至对话，直到模型结束或达到上限。",
+      "tags": ["hook", "tool-chain", "orchestration", "agent-loop"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "packages/sandcastle/src/copilot/index.ts",
+      "summary": "Copilot 模块的 barrel 导出文件，统一暴露 ChatPanel、Provider、ErrorBoundary 等公共组件。",
+      "tags": ["barrel", "entry-point", "copilot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx",
+      "type": "file",
+      "name": "ConsoleChatAction.tsx",
+      "filePath": "packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx",
+      "summary": "在控制台输出旁注入一键让 Copilot 解释/修复的快捷操作组件。",
+      "tags": ["component", "integration", "copilot", "console"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx:ConsoleChatAction",
+      "type": "function",
+      "name": "ConsoleChatAction",
+      "filePath": "packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx",
+      "lineRange": [14, 48],
+      "summary": "渲染控制台条目上的聊天操作按钮，点击后将日志内容作为上下文发送给 Copilot。",
+      "tags": ["component", "integration", "console"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx",
+      "type": "file",
+      "name": "AdvancedSettings.tsx",
+      "filePath": "packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx",
+      "summary": "Copilot 高级设置面板，编辑超时、最大轮数等高级参数。",
+      "tags": ["component", "settings", "copilot", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx:AdvancedSettings",
+      "type": "function",
+      "name": "AdvancedSettings",
+      "filePath": "packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx",
+      "lineRange": [5, 65],
+      "summary": "渲染 Copilot 高级配置项表单的 React 组件。",
+      "tags": ["component", "settings", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts",
+      "type": "file",
+      "name": "CopilotSettingsContext.ts",
+      "filePath": "packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts",
+      "summary": "定义 Copilot 设置的 React Context 与初始默认值，供 Provider 与消费方共享。",
+      "tags": ["context", "settings", "copilot", "state-management"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx",
+      "type": "file",
+      "name": "CopilotSettingsProvider.tsx",
+      "filePath": "packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx",
+      "summary": "Copilot 设置的 Provider 实现，负责加载、序列化并持久化用户设置到 localStorage。",
+      "tags": ["provider", "settings", "persistence", "copilot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx:loadSettings",
+      "type": "function",
+      "name": "loadSettings",
+      "filePath": "packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx",
+      "lineRange": [41, 55],
+      "summary": "从 localStorage 反序列化加载 Copilot 设置，失败时回退到默认值。",
+      "tags": ["persistence", "settings", "localStorage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx:CopilotSettingsProvider",
+      "type": "function",
+      "name": "CopilotSettingsProvider",
+      "filePath": "packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx",
+      "lineRange": [57, 102],
+      "summary": "向子树提供 Copilot 设置状态与更新方法的 React Provider 组件。",
+      "tags": ["provider", "settings", "component"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx",
+      "type": "file",
+      "name": "FeatureSettings.tsx",
+      "filePath": "packages/sandcastle/src/copilot/settings/FeatureSettings.tsx",
+      "summary": "Copilot 功能开关设置面板，启用或关闭各项特性。",
+      "tags": ["component", "settings", "feature-flag", "copilot"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx:FeatureSettings",
+      "type": "function",
+      "name": "FeatureSettings",
+      "filePath": "packages/sandcastle/src/copilot/settings/FeatureSettings.tsx",
+      "lineRange": [5, 55],
+      "summary": "渲染功能开关列表的 React 组件。",
+      "tags": ["component", "settings", "feature-flag"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx",
+      "type": "file",
+      "name": "SettingsPanel.tsx",
+      "filePath": "packages/sandcastle/src/copilot/settings/SettingsPanel.tsx",
+      "summary": "Copilot 设置面板容器，聚合高级设置与功能设置子面板。",
+      "tags": ["component", "settings", "panel", "copilot"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx:SettingsPanel",
+      "type": "function",
+      "name": "SettingsPanel",
+      "filePath": "packages/sandcastle/src/copilot/settings/SettingsPanel.tsx",
+      "lineRange": [11, 29],
+      "summary": "组合 AdvancedSettings 与 FeatureSettings 的设置面板容器组件。",
+      "tags": ["component", "settings", "panel"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/icons.ts",
+      "type": "file",
+      "name": "icons.ts",
+      "filePath": "packages/sandcastle/src/icons.ts",
+      "summary": "集中导出 Sandcastle 应用所有 SVG 图标资源（约 30 个），供全站 UI 复用。",
+      "tags": ["assets", "icons", "barrel", "ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/main.tsx",
+      "type": "file",
+      "name": "main.tsx",
+      "filePath": "packages/sandcastle/src/main.tsx",
+      "summary": "Sandcastle 应用入口，挂载根 App 组件并注入 Copilot 与设置 Provider。",
+      "tags": ["entry-point", "bootstrap", "react-root"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/setupSandcastleSnippets.ts",
+      "type": "file",
+      "name": "setupSandcastleSnippets.ts",
+      "filePath": "packages/sandcastle/src/setupSandcastleSnippets.ts",
+      "summary": "初始化 Sandcastle 代码示例集合，为编辑器提供预置 snippet 列表。",
+      "tags": ["setup", "snippets", "editor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/setupSandcastleSnippets.ts:createSandcastleSnippets",
+      "type": "function",
+      "name": "createSandcastleSnippets",
+      "filePath": "packages/sandcastle/src/setupSandcastleSnippets.ts",
+      "lineRange": [4, 61],
+      "summary": "构造并返回 Sandcastle 预置代码 snippet 的数据结构。",
+      "tags": ["factory", "snippets", "data-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/setupSandcastleSnippets.ts:setupSandcastleSnippets",
+      "type": "function",
+      "name": "setupSandcastleSnippets",
+      "filePath": "packages/sandcastle/src/setupSandcastleSnippets.ts",
+      "lineRange": [65, 80],
+      "summary": "向 Sandcastle 运行时注册预置 snippet 集合。",
+      "tags": ["setup", "snippets", "registration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/ConsoleWrapper.ts",
+      "type": "file",
+      "name": "ConsoleWrapper.ts",
+      "filePath": "packages/sandcastle/src/util/ConsoleWrapper.ts",
+      "summary": "劫持 console 方法与全局错误处理器，将日志与错误转发至 iframe 桥以便主应用捕获展示。",
+      "tags": ["utility", "console", "interceptor", "iframe"],
+      "complexity": "complex",
+      "languageNotes": "通过替换 window.console 的 log/warn/error/clear 实现方法级劫持，并保留原始引用。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:simpleStringify",
+      "type": "function",
+      "name": "simpleStringify",
+      "filePath": "packages/sandcastle/src/util/ConsoleWrapper.ts",
+      "lineRange": [17, 51],
+      "summary": "递归将任意对象转换为可序列化字符串，处理循环引用与函数/错误对象。",
+      "tags": ["utility", "serialization", "stringify"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:setupWindowErrorHandler",
+      "type": "function",
+      "name": "setupWindowErrorHandler",
+      "filePath": "packages/sandcastle/src/util/ConsoleWrapper.ts",
+      "lineRange": [219, 283],
+      "summary": "注册 window.onerror 与 unhandledrejection 处理器，捕获运行时异常并转发到主应用。",
+      "tags": ["error-handling", "interceptor", "event-handler"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:wrapConsoleFunctions",
+      "type": "function",
+      "name": "wrapConsoleFunctions",
+      "filePath": "packages/sandcastle/src/util/ConsoleWrapper.ts",
+      "lineRange": [291, 332],
+      "summary": "用转发版本替换 console.log/warn/error/clear，将原始方法保留供内部调用。",
+      "tags": ["interceptor", "console", "wrapper"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/IframeBridge.ts",
+      "type": "file",
+      "name": "IframeBridge.ts",
+      "filePath": "packages/sandcastle/src/util/IframeBridge.ts",
+      "summary": "封装 iframe 与父窗口间的 postMessage 通信桥，提供消息发送与监听 API。",
+      "tags": ["utility", "iframe", "messaging", "postmessage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/sandcastle/src/util/IframeBridge.ts:IframeBridge",
+      "type": "class",
+      "name": "IframeBridge",
+      "filePath": "packages/sandcastle/src/util/IframeBridge.ts",
+      "lineRange": [28, 85],
+      "summary": "跨 iframe 通信桥类，管理消息监听器列表并通过 postMessage 双向收发结构化消息。",
+      "tags": ["class", "messaging", "iframe", "postmessage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/bucket-client.ts",
+      "type": "file",
+      "name": "bucket-client.ts",
+      "filePath": "packages/sandcastle/src/util/bucket-client.ts",
+      "summary": "Sandcastle bucket 客户端，负责从远程 bucket 加载代码示例并初始化页面状态。",
+      "tags": ["client", "data-loading", "bucket"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/bucket-client.ts:loadSandcastle",
+      "type": "function",
+      "name": "loadSandcastle",
+      "filePath": "packages/sandcastle/src/util/bucket-client.ts",
+      "lineRange": [25, 76],
+      "summary": "从 URL 参数或存储加载 Sandcastle 代码内容，填充到编辑器与运行环境。",
+      "tags": ["data-loading", "bucket", "client"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/getBaseUrl.ts",
+      "type": "file",
+      "name": "getBaseUrl.ts",
+      "filePath": "packages/sandcastle/src/util/getBaseUrl.ts",
+      "summary": "返回当前页面的 base URL，供全站链接与资源路径拼接使用。",
+      "tags": ["utility", "url", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/getBaseUrl.ts:getBaseUrl",
+      "type": "function",
+      "name": "getBaseUrl",
+      "filePath": "packages/sandcastle/src/util/getBaseUrl.ts",
+      "lineRange": [1, 4],
+      "summary": "计算并返回当前部署的 base URL 字符串。",
+      "tags": ["utility", "url"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/sleep.ts",
+      "type": "file",
+      "name": "sleep.ts",
+      "filePath": "packages/sandcastle/src/util/sleep.ts",
+      "summary": "提供基于 Promise 的延时工具函数。",
+      "tags": ["utility", "promise", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/sleep.ts:sleep",
+      "type": "function",
+      "name": "sleep",
+      "filePath": "packages/sandcastle/src/util/sleep.ts",
+      "lineRange": [6, 8],
+      "summary": "返回在指定毫秒后 resolve 的 Promise，用于异步流程暂停。",
+      "tags": ["utility", "promise", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/useCodeState.ts",
+      "type": "file",
+      "name": "useCodeState.ts",
+      "filePath": "packages/sandcastle/src/util/useCodeState.ts",
+      "summary": "管理 Sandcastle JS/HTML 源码状态的 hook，提供默认代码与读写接口。",
+      "tags": ["hook", "state-management", "code-editor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/useCodeState.ts:useCodeState",
+      "type": "function",
+      "name": "useCodeState",
+      "filePath": "packages/sandcastle/src/util/useCodeState.ts",
+      "lineRange": [32, 95],
+      "summary": "维护 JS 与 HTML 代码状态并同步到 URL/bucket 的 React hook。",
+      "tags": ["hook", "state-management", "code-editor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/util/usePageTitle.ts",
+      "type": "file",
+      "name": "usePageTitle.ts",
+      "filePath": "packages/sandcastle/src/util/usePageTitle.ts",
+      "summary": "根据当前 Sandcastle 状态动态设置浏览器页面标题的 hook。",
+      "tags": ["hook", "dom", "page-title"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/util/usePageTitle.ts:usePageTitle",
+      "type": "function",
+      "name": "usePageTitle",
+      "filePath": "packages/sandcastle/src/util/usePageTitle.ts",
+      "lineRange": [7, 29],
+      "summary": "根据传入标题更新 document.title 的副作用 hook。",
+      "tags": ["hook", "dom", "side-effect"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts", "target": "function:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts:normalizeString", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts", "target": "function:packages/sandcastle/src/copilot/ai/utils/textNormalization.ts:normalizeString", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "target": "function:packages/sandcastle/src/copilot/contexts/ModelContext.tsx:getStoredPreferredModelSelection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "target": "function:packages/sandcastle/src/copilot/contexts/ModelContext.tsx:ModelProvider", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "target": "function:packages/sandcastle/src/copilot/contexts/ModelContext.tsx:ModelProvider", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "target": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/contexts/useModel.ts", "target": "function:packages/sandcastle/src/copilot/contexts/useModel.ts:useModel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/useModel.ts", "target": "function:packages/sandcastle/src/copilot/contexts/useModel.ts:useModel", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/contexts/useModel.ts", "target": "file:packages/sandcastle/src/copilot/contexts/ModelContext.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx", "target": "function:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx:calculateSimpleDiff", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx", "target": "function:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx:SimpleDiffPreview", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx", "target": "function:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx:SimpleDiffPreview", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.tsx", "target": "file:packages/sandcastle/src/copilot/diff-preview/SimpleDiffPreview.css", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useAutoFix.ts:useAutoFix", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useAutoFix.ts:useAutoFix", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts", "target": "file:packages/sandcastle/src/copilot/ai/prompts/PromptBuilder.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useAutoFix.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useChatMessages.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useChatMessages.ts:useChatMessages", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useChatMessages.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useChatMessages.ts:useChatMessages", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useChatMessages.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts:useToolChainExecution", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "function:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts:useToolChainExecution", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/AIClientFactory.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "file:packages/sandcastle/src/copilot/ai/clients/geminiShared.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "file:packages/sandcastle/src/copilot/ai/tools/toolRegistry.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/hooks/useToolChainExecution.ts", "target": "file:packages/sandcastle/src/copilot/ai/types.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx", "target": "function:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx:ConsoleChatAction", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx", "target": "function:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx:ConsoleChatAction", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx", "target": "file:packages/sandcastle/src/ConsoleMirror.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx", "target": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/integrations/ConsoleChatAction.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx", "target": "function:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx:AdvancedSettings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx", "target": "function:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx:AdvancedSettings", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx", "target": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx", "target": "function:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx:loadSettings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx", "target": "function:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx:CopilotSettingsProvider", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx", "target": "function:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx:CopilotSettingsProvider", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsProvider.tsx", "target": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx", "target": "function:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx:FeatureSettings", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx", "target": "function:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx:FeatureSettings", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx", "target": "file:packages/sandcastle/src/copilot/settings/CopilotSettingsContext.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "function:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx:SettingsPanel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "function:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx:SettingsPanel", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "file:packages/sandcastle/src/copilot/settings/AdvancedSettings.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "file:packages/sandcastle/src/copilot/settings/FeatureSettings.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.css", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/copilot/settings/SettingsPanel.tsx", "target": "file:packages/sandcastle/src/icons.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/main.tsx", "target": "file:packages/sandcastle/src/App.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/main.tsx", "target": "file:packages/sandcastle/src/copilot/index.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/main.tsx", "target": "file:packages/sandcastle/src/SettingsProvider.tsx", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/setupSandcastleSnippets.ts", "target": "function:packages/sandcastle/src/setupSandcastleSnippets.ts:createSandcastleSnippets", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/setupSandcastleSnippets.ts", "target": "function:packages/sandcastle/src/setupSandcastleSnippets.ts:setupSandcastleSnippets", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/setupSandcastleSnippets.ts", "target": "function:packages/sandcastle/src/setupSandcastleSnippets.ts:setupSandcastleSnippets", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "target": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:simpleStringify", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "target": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:setupWindowErrorHandler", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "target": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:wrapConsoleFunctions", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "target": "function:packages/sandcastle/src/util/ConsoleWrapper.ts:wrapConsoleFunctions", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "target": "file:packages/sandcastle/src/util/IframeBridge.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/util/IframeBridge.ts", "target": "class:packages/sandcastle/src/util/IframeBridge.ts:IframeBridge", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/IframeBridge.ts", "target": "class:packages/sandcastle/src/util/IframeBridge.ts:IframeBridge", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/sandcastle/src/util/IframeBridge.ts", "target": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/util/bucket-client.ts", "target": "function:packages/sandcastle/src/util/bucket-client.ts:loadSandcastle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/bucket-client.ts", "target": "file:packages/sandcastle/src/util/ConsoleWrapper.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/sandcastle/src/util/bucket-client.ts", "target": "file:packages/sandcastle/src/util/IframeBridge.ts", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/sandcastle/src/util/getBaseUrl.ts", "target": "function:packages/sandcastle/src/util/getBaseUrl.ts:getBaseUrl", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/getBaseUrl.ts", "target": "function:packages/sandcastle/src/util/getBaseUrl.ts:getBaseUrl", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/util/sleep.ts", "target": "function:packages/sandcastle/src/util/sleep.ts:sleep", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/sleep.ts", "target": "function:packages/sandcastle/src/util/sleep.ts:sleep", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/util/useCodeState.ts", "target": "function:packages/sandcastle/src/util/useCodeState.ts:useCodeState", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/useCodeState.ts", "target": "function:packages/sandcastle/src/util/useCodeState.ts:useCodeState", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/sandcastle/src/util/usePageTitle.ts", "target": "function:packages/sandcastle/src/util/usePageTitle.ts:usePageTitle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/sandcastle/src/util/usePageTitle.ts", "target": "function:packages/sandcastle/src/util/usePageTitle.ts:usePageTitle", "type": "exports", "direction": "forward", "weight": 0.8}
+  ]
+}

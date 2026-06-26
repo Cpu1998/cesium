@@ -1,0 +1,1379 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "type": "file",
+   "name": "TileBoundingS2Cell.js",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "基于 S2 几何单元的瓦片包围体，计算 S2 cell 的顶点、包围平面与到点/相机的最近距离，用于 Google 3D Tiles 的 S2 瓦片剔除。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "tile",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "type": "file",
+   "name": "TileOrientedBoundingBox.js",
+   "filePath": "packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "summary": "面向包围盒（OBB）形式的瓦片包围体，封装 OrientedBoundingBox 的相交/距离检测并支持 debug 绘制，用于 3D Tiles 瓦片剔除。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "tile",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "type": "file",
+   "name": "VoxelCell.js",
+   "filePath": "packages/engine/Source/Scene/VoxelCell.js",
+   "summary": "Voxel primitive 的单个渲染单元，持有 sample 索引、元数据与 OBB，提供体数据采样查询接口。",
+   "tags": [
+    "voxel",
+    "bounding-volume",
+    "scene",
+    "shape"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "type": "file",
+   "name": "VoxelEllipsoidShape.js",
+   "filePath": "packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "summary": "椭球形状的 voxel 采样器，将经纬度/高度映射到椭球体素网格，提供射线求交、最近点与分块 OBB 计算。",
+   "tags": [
+    "voxel",
+    "bounding-volume",
+    "scene",
+    "shape"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createBoxOutlineGeometry.js",
+   "type": "file",
+   "name": "createBoxOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createBoxOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 BoxOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "type": "file",
+   "name": "createCircleGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCircleGeometry.js",
+   "summary": "Web Worker 入口，构造 CircleGeometry 几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "type": "file",
+   "name": "createCircleOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 CircleOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCoplanarPolygonGeometry.js",
+   "type": "file",
+   "name": "createCoplanarPolygonGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCoplanarPolygonGeometry.js",
+   "summary": "Web Worker 入口，构造 CoplanarPolygonGeometry 几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "type": "file",
+   "name": "createCoplanarPolygonOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 CoplanarPolygonOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCorridorGeometry.js",
+   "type": "file",
+   "name": "createCorridorGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCorridorGeometry.js",
+   "summary": "Web Worker 入口，构造 CorridorGeometry 走廊几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "type": "file",
+   "name": "createCorridorOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 CorridorOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCylinderGeometry.js",
+   "type": "file",
+   "name": "createCylinderGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCylinderGeometry.js",
+   "summary": "Web Worker 入口，构造 CylinderGeometry 圆柱几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createCylinderOutlineGeometry.js",
+   "type": "file",
+   "name": "createCylinderOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createCylinderOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 CylinderOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createEllipseGeometry.js",
+   "type": "file",
+   "name": "createEllipseGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createEllipseGeometry.js",
+   "summary": "Web Worker 入口，构造 EllipseGeometry 椭圆几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "type": "file",
+   "name": "createEllipseOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 EllipseOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createEllipsoidGeometry.js",
+   "type": "file",
+   "name": "createEllipsoidGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createEllipsoidGeometry.js",
+   "summary": "Web Worker 入口，构造 EllipsoidGeometry 椭球几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createEllipsoidOutlineGeometry.js",
+   "type": "file",
+   "name": "createEllipsoidOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createEllipsoidOutlineGeometry.js",
+   "summary": "Web Worker 入口，构造 EllipsoidOutlineGeometry 线框几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:TileBoundingS2Cell",
+   "type": "function",
+   "name": "TileBoundingS2Cell",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "S2 cell 包围体构造函数。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    35,
+    120
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeBoundingPlanes",
+   "type": "function",
+   "name": "computeBoundingPlanes",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "为 S2 cell 计算 6 个包围平面。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    134,
+    214
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeIntersection",
+   "type": "function",
+   "name": "computeIntersection",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "内部辅助函数 computeIntersection，服务于 TileBoundingS2Cell.js 的实现细节。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    234,
+    276
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeVertices",
+   "type": "function",
+   "name": "computeVertices",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "内部辅助函数 computeVertices，服务于 TileBoundingS2Cell.js 的实现细节。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    281,
+    298
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeEdgeNormals",
+   "type": "function",
+   "name": "computeEdgeNormals",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "内部辅助函数 computeEdgeNormals，服务于 TileBoundingS2Cell.js 的实现细节。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    306,
+    326
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointLineSegment",
+   "type": "function",
+   "name": "closestPointLineSegment",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "内部辅助函数 closestPointLineSegment，服务于 TileBoundingS2Cell.js 的实现细节。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    517,
+    537
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointPolygon",
+   "type": "function",
+   "name": "closestPointPolygon",
+   "filePath": "packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "summary": "求点到多边形（带边法线）的最近点。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    545,
+    582
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:findOrthogonalVector",
+   "type": "function",
+   "name": "findOrthogonalVector",
+   "filePath": "packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "summary": "内部辅助函数 findOrthogonalVector，服务于 TileOrientedBoundingBox.js 的实现细节。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    29,
+    39
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:checkHalfAxes",
+   "type": "function",
+   "name": "checkHalfAxes",
+   "filePath": "packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "summary": "校验并修复 halfAxes 矩阵，避免退化情况。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    41,
+    81
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/VoxelCell.js:getMetadataForSample",
+   "type": "function",
+   "name": "getMetadataForSample",
+   "filePath": "packages/engine/Source/Scene/VoxelCell.js",
+   "summary": "内部辅助函数 getMetadataForSample，服务于 VoxelCell.js 的实现细节。",
+   "tags": [
+    "voxel",
+    "shape",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    92,
+    109
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/VoxelCell.js:getOrientedBoundingBox",
+   "type": "function",
+   "name": "getOrientedBoundingBox",
+   "filePath": "packages/engine/Source/Scene/VoxelCell.js",
+   "summary": "计算该 voxel 单元的 OBB。",
+   "tags": [
+    "voxel",
+    "shape",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    121,
+    156
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:VoxelEllipsoidShape",
+   "type": "function",
+   "name": "VoxelEllipsoidShape",
+   "filePath": "packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "summary": "椭球 voxel 形状构造函数，初始化半径与缓存。",
+   "tags": [
+    "voxel",
+    "shape",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    28,
+    115
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:nearestPointAndRadiusOnEllipse",
+   "type": "function",
+   "name": "nearestPointAndRadiusOnEllipse",
+   "filePath": "packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "summary": "计算空间点到椭球表面的最近点与半径。",
+   "tags": [
+    "voxel",
+    "shape",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    806,
+    871
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:getEllipsoidChunkObb",
+   "type": "function",
+   "name": "getEllipsoidChunkObb",
+   "filePath": "packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "summary": "为指定经纬度分块计算 OBB。",
+   "tags": [
+    "voxel",
+    "shape",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1069,
+    1092
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createCircleGeometry.js:createCircleGeometry",
+   "type": "function",
+   "name": "createCircleGeometry",
+   "filePath": "packages/engine/Source/Workers/createCircleGeometry.js",
+   "summary": "内部辅助函数 createCircleGeometry，服务于 createCircleGeometry.js 的实现细节。",
+   "tags": [
+    "utility",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    6,
+    17
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createCircleOutlineGeometry.js:createCircleOutlineGeometry",
+   "type": "function",
+   "name": "createCircleOutlineGeometry",
+   "filePath": "packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "summary": "内部辅助函数 createCircleOutlineGeometry，服务于 createCircleOutlineGeometry.js 的实现细节。",
+   "tags": [
+    "utility",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    6,
+    17
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js:createCoplanarPolygonOutlineGeometry",
+   "type": "function",
+   "name": "createCoplanarPolygonOutlineGeometry",
+   "filePath": "packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "summary": "内部辅助函数 createCoplanarPolygonOutlineGeometry，服务于 createCoplanarPolygonOutlineGeometry.js 的实现细节。",
+   "tags": [
+    "utility",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    5,
+    14
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createCorridorOutlineGeometry.js:createCorridorOutlineGeometry",
+   "type": "function",
+   "name": "createCorridorOutlineGeometry",
+   "filePath": "packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "summary": "内部辅助函数 createCorridorOutlineGeometry，服务于 createCorridorOutlineGeometry.js 的实现细节。",
+   "tags": [
+    "utility",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    5,
+    16
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:TileBoundingS2Cell",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:TileBoundingS2Cell",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeBoundingPlanes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeBoundingPlanes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeIntersection",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeIntersection",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeVertices",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeVertices",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeEdgeNormals",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:computeEdgeNormals",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointLineSegment",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointLineSegment",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointPolygon",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingS2Cell.js:closestPointPolygon",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:findOrthogonalVector",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:findOrthogonalVector",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:checkHalfAxes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Scene/TileOrientedBoundingBox.js:checkHalfAxes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "function:packages/engine/Source/Scene/VoxelCell.js:getMetadataForSample",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "function:packages/engine/Source/Scene/VoxelCell.js:getMetadataForSample",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "function:packages/engine/Source/Scene/VoxelCell.js:getOrientedBoundingBox",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "function:packages/engine/Source/Scene/VoxelCell.js:getOrientedBoundingBox",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:VoxelEllipsoidShape",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:VoxelEllipsoidShape",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:nearestPointAndRadiusOnEllipse",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:nearestPointAndRadiusOnEllipse",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:getEllipsoidChunkObb",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "function:packages/engine/Source/Scene/VoxelEllipsoidShape.js:getEllipsoidChunkObb",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCircleGeometry.js:createCircleGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCircleGeometry.js:createCircleGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCircleOutlineGeometry.js:createCircleOutlineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCircleOutlineGeometry.js:createCircleOutlineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js:createCoplanarPolygonOutlineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js:createCoplanarPolygonOutlineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCorridorOutlineGeometry.js:createCorridorOutlineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createCorridorOutlineGeometry.js:createCorridorOutlineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/CoplanarPolygonOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Intersect.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Core/S2Cell.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingS2Cell.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "target": "file:packages/engine/Source/Scene/MetadataType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/VoxelEllipsoidShape.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createBoxOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createBoxOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "file:packages/engine/Source/Core/CircleGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/CircleOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCircleOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/CoplanarPolygonGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/CoplanarPolygonOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCoplanarPolygonOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorGeometry.js",
+   "target": "file:packages/engine/Source/Core/CorridorGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/CorridorOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCorridorOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCylinderGeometry.js",
+   "target": "file:packages/engine/Source/Core/CylinderGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCylinderGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCylinderOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/CylinderOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createCylinderOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipseGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipseOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipsoidGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipsoidGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipsoidOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createEllipsoidOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

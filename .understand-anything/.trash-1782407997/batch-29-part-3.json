@@ -1,0 +1,771 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "type": "file",
+      "name": "PickingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "summary": "渲染管线阶段,负责为模型生成拾取(picking)所需的数据:构建 pick 对象、处理实例化 pick ID 缓冲区,并注入 pick texture/uniform 到 shader。",
+      "tags": [
+        "pipeline-stage",
+        "picking",
+        "shader",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "type": "file",
+      "name": "PntsLoader.js",
+      "filePath": "packages/engine/Source/Scene/Model/PntsLoader.js",
+      "summary": "加载 .pnts(3D Tiles 点云)资源的 ResourceLoader 实现:解析点云属性(可选 Draco 解压)、估计算法误差、生成 primitive 组件与结构化元数据。",
+      "tags": [
+        "loader",
+        "point-cloud",
+        "3d-tiles",
+        "data-pipeline"
+      ],
+      "complexity": "complex",
+      "languageNotes": "继承 ResourceLoader,具备 cacheKey/load/process/unload 完整生命周期。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "type": "file",
+      "name": "PointCloudStylingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "summary": "渲染管线阶段,为点云应用 PointCloudShading(衰减、基于几何误差的 点大小)和 3D Tiles style(自定义着色)生成 shader 函数、define 与属性名表。",
+      "tags": [
+        "pipeline-stage",
+        "point-cloud",
+        "styling",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PrimitiveOutlinePipelineStage.js",
+      "type": "file",
+      "name": "PrimitiveOutlinePipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlinePipelineStage.js",
+      "summary": "渲染管线阶段,为支持 glTF CESIUM_primitive_outline 扩展的模型注入轮廓线 outline 索引与 shader,配合 PrimitiveOutlineGenerator 使用。",
+      "tags": [
+        "pipeline-stage",
+        "outline",
+        "shader",
+        "gltf"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "type": "file",
+      "name": "PrimitiveRenderResources.js",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "summary": "primitive 级渲染资源容器,从 NodeRenderResources 派生并叠加 primitive 属性、shaderBuilder 副本、光照选项与边界球,作为 primitive 维度管线阶段的统一输入。",
+      "tags": [
+        "render-resources",
+        "primitive",
+        "pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "type": "file",
+      "name": "PrimitiveStatisticsPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "summary": "渲染管线阶段,遍历 primitive 的几何、morph target、材质纹理、feature id 纹理与结构化元数据,累加内存与几何统计到 ModelStatistics。",
+      "tags": [
+        "pipeline-stage",
+        "statistics",
+        "memory",
+        "primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "type": "file",
+      "name": "SceneMode2DPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "summary": "渲染管线阶段,在 2D 场景模式下把模型顶点位置重投影到 2D 投影平面并生成专用位置缓冲区与 2D 边界球,保证模型在二维视图中正确呈现。",
+      "tags": [
+        "pipeline-stage",
+        "2d-mode",
+        "projection",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "type": "file",
+      "name": "SelectedFeatureIdPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "summary": "渲染管线阶段,把当前选中的 feature id 集合通过 shader define 与 feature struct 字段注入,支持按特征 ID 高亮/选中。",
+      "tags": [
+        "pipeline-stage",
+        "feature-id",
+        "shader",
+        "selection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/SkinningPipelineStage.js",
+      "type": "file",
+      "name": "SkinningPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/SkinningPipelineStage.js",
+      "summary": "渲染管线阶段,为蒙皮 primitive 添加关节矩阵 uniform 与 getSkinningMatrix shader 函数,把 skinning 计算注入顶点着色器。",
+      "tags": [
+        "pipeline-stage",
+        "skinning",
+        "shader",
+        "gltf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/UniformType.js",
+      "type": "file",
+      "name": "UniformType.js",
+      "filePath": "packages/engine/Source/Scene/Model/UniformType.js",
+      "summary": "枚举模块,定义 Custom Shader 体系中各 uniform 的类型标识(FLOAT / VEC2 / SAMPLER_2D 等),供自定义 shader 与 voxel shader 引用。",
+      "tags": [
+        "type-definition",
+        "enum",
+        "custom-shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/VerticalExaggerationPipelineStage.js",
+      "type": "file",
+      "name": "VerticalExaggerationPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/VerticalExaggerationPipelineStage.js",
+      "summary": "渲染管线阶段,把垂直夸张(vertical exaggeration)系数作为 uniform 注入 shader,使地形/模型可在垂直方向被放大显示。",
+      "tags": [
+        "pipeline-stage",
+        "exaggeration",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/PntsLoader.js:PntsLoader",
+      "type": "class",
+      "name": "PntsLoader",
+      "filePath": "packages/engine/Source/Scene/Model/PntsLoader.js",
+      "lineRange": [
+        42,
+        165
+      ],
+      "summary": ".pnts 资源加载器,协调 PntsParser 与 DracoLoader 解析点云,经 load/process 状态机后产出可渲染 components。",
+      "tags": [
+        "loader",
+        "point-cloud",
+        "lifecycle",
+        "3d-tiles"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/AlphaMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/parseBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/PntsParser.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/PntsLoader.js:PntsLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "target": "class:packages/engine/Source/Scene/Model/PntsLoader.js:PntsLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PointCloudStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlinePipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlinePipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlinePipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelLightingOptions.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveStatisticsPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SceneMode2DPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SelectedFeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SkinningPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SkinningPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/SkinningPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/VerticalExaggerationPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/VerticalExaggerationPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,1550 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "type": "file",
+      "name": "ModelDrawCommand.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "summary": "Model 单次绘制命令的核心封装：管理 modelMatrix、阴影、背面剔除、轮廓（silhouette/edge）、skip-LOD stencil 与 2D 投影下的派生命令。",
+      "tags": [
+        "scene",
+        "model",
+        "draw-command",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "大量 derive* 工厂函数通过 shallowClone + RenderState 缓存派生子命令。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "type": "file",
+      "name": "ModelDrawCommands.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "summary": "协调 Model 的 shader program 构建与 DrawCommand 组装（buildDrawCommandForModel），处理 index buffer 与渲染状态缓存。",
+      "tags": [
+        "scene",
+        "model",
+        "draw-command",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelFeature.js",
+      "type": "file",
+      "name": "ModelFeature.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelFeature.js",
+      "summary": "Model 内单个 feature（基于 batch table 的可拾取/可样式化要素）的运行时表示。",
+      "tags": [
+        "scene",
+        "model",
+        "feature",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "type": "file",
+      "name": "ModelFeatureTable.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "summary": "Model 的 feature 表管理器：基于 batch table + BatchTexture 构建 ModelFeature 集合，支持 feature 属性查询与样式应用。",
+      "tags": [
+        "scene",
+        "model",
+        "feature",
+        "batch-table"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "type": "file",
+      "name": "ModelRenderResources.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "summary": "Model 渲染管线中聚合各 PipelineStage 输出的资源容器（shader builder、render state、uniform 等）。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline",
+        "render-resources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "type": "file",
+      "name": "PrimitiveOutlineGenerator.js",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "summary": "为 glTF primitive 生成坐标压缩的轮廓线（outline）数据，匹配共享边并计算 6-bit order mask，支持 KHRS_materials 与 EXT_mesh_gpu_instancing 轮廓。",
+      "tags": [
+        "scene",
+        "model",
+        "outline",
+        "geometry"
+      ],
+      "complexity": "complex",
+      "languageNotes": "matchAndStoreCoordinates + computeOrderMask 实现经典的 glTF outline 坐标压缩算法。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "file",
+      "name": "StyleCommandsNeeded.js",
+      "filePath": "packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "summary": "冻结的枚举，描述 Model 在某种样式下需要派生哪些绘制命令（如 translucent、silhouette 等）。",
+      "tags": [
+        "type-definition",
+        "model",
+        "style",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "type": "file",
+      "name": "TextureManager.js",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "summary": "Model 的纹理资源管理器：按 textureId 异步加载、生成 mipmap、处理 WebGL1 兼容与 typed array 纹理，并统一缓存。",
+      "tags": [
+        "scene",
+        "model",
+        "texture",
+        "resource-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "type": "file",
+      "name": "TextureUniform.js",
+      "filePath": "packages/engine/Source/Scene/Model/TextureUniform.js",
+      "summary": "封装 Model shader 中单个纹理 uniform 的描述（resource、sampler、wrap、pixel format 等），供 TextureManager 加载。",
+      "tags": [
+        "scene",
+        "model",
+        "texture",
+        "uniform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:ModelDrawCommand",
+      "type": "function",
+      "name": "ModelDrawCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        37,
+        121
+      ],
+      "summary": "构造 Model 单次绘制命令并持有 modelMatrix、派生命令等状态。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:ModelDerivedCommand",
+      "type": "function",
+      "name": "ModelDerivedCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        123,
+        139
+      ],
+      "summary": "派生命令数据结构，缓存基础命令的 shallow clone。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        153,
+        239
+      ],
+      "summary": "从基础 DrawCommand 初始化派生命令结构。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "init",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateModelMatrix2D",
+      "type": "function",
+      "name": "updateModelMatrix2D",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        433,
+        453
+      ],
+      "summary": "updateModelMatrix2D 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateShadows",
+      "type": "function",
+      "name": "updateShadows",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        455,
+        470
+      ],
+      "summary": "updateShadows 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateBackFaceCulling",
+      "type": "function",
+      "name": "updateBackFaceCulling",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        472,
+        485
+      ],
+      "summary": "updateBackFaceCulling 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateCullFace",
+      "type": "function",
+      "name": "updateCullFace",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        487,
+        500
+      ],
+      "summary": "updateCullFace 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateDebugShowBoundingVolume",
+      "type": "function",
+      "name": "updateDebugShowBoundingVolume",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        502,
+        513
+      ],
+      "summary": "updateDebugShowBoundingVolume 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:shouldUse2DCommands",
+      "type": "function",
+      "name": "shouldUse2DCommands",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        669,
+        686
+      ],
+      "summary": "shouldUse2DCommands 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:derive2DCommand",
+      "type": "function",
+      "name": "derive2DCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        688,
+        711
+      ],
+      "summary": "derive2DCommand 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveTranslucentCommand",
+      "type": "function",
+      "name": "deriveTranslucentCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        723,
+        733
+      ],
+      "summary": "派生半透明 pass 的命令。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSilhouetteModelCommand",
+      "type": "function",
+      "name": "deriveSilhouetteModelCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        735,
+        773
+      ],
+      "summary": "为轮廓效果派生模型级命令。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSilhouetteColorCommand",
+      "type": "function",
+      "name": "deriveSilhouetteColorCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        775,
+        827
+      ],
+      "summary": "为轮廓（silhouette）效果派生带 stencil 的颜色命令。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveEdgeCommand",
+      "type": "function",
+      "name": "deriveEdgeCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        829,
+        856
+      ],
+      "summary": "为边缘（edge）显示派生命令。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateSkipLodStencilCommand",
+      "type": "function",
+      "name": "updateSkipLodStencilCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        858,
+        875
+      ],
+      "summary": "updateSkipLodStencilCommand 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSkipLodBackfaceCommand",
+      "type": "function",
+      "name": "deriveSkipLodBackfaceCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        895,
+        932
+      ],
+      "summary": "deriveSkipLodBackfaceCommand 函数：ModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSkipLodStencilCommand",
+      "type": "function",
+      "name": "deriveSkipLodStencilCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "lineRange": [
+        934,
+        954
+      ],
+      "summary": "派生 skip-LOD 模式的 stencil 命令。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:createShaderProgram",
+      "type": "function",
+      "name": "createShaderProgram",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "lineRange": [
+        73,
+        85
+      ],
+      "summary": "由渲染资源与 ShaderBuilder 构建并缓存 shader program。",
+      "tags": [
+        "draw-command",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:buildDrawCommandForModel",
+      "type": "function",
+      "name": "buildDrawCommandForModel",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "lineRange": [
+        100,
+        193
+      ],
+      "summary": "为 primitive 组装完整的 DrawCommand（含 renderState、uniformMap、pass）。",
+      "tags": [
+        "draw-command",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:getIndexBuffer",
+      "type": "function",
+      "name": "getIndexBuffer",
+      "filePath": "packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "lineRange": [
+        198,
+        216
+      ],
+      "summary": "从渲染资源解析 index buffer（处理 wireframe 等变体）。",
+      "tags": [
+        "draw-command",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelFeatureTable.js:ModelFeatureTable",
+      "type": "function",
+      "name": "ModelFeatureTable",
+      "filePath": "packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "lineRange": [
+        25,
+        46
+      ],
+      "summary": "构造 Model feature 表，关联 batch table 与 BatchTexture。",
+      "tags": [
+        "feature",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelFeatureTable.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "lineRange": [
+        119,
+        153
+      ],
+      "summary": "依据 batch table 行数构建 ModelFeature 数组与 feature 纹理。",
+      "tags": [
+        "feature",
+        "init",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelRenderResources.js:ModelRenderResources",
+      "type": "function",
+      "name": "ModelRenderResources",
+      "filePath": "packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "lineRange": [
+        16,
+        117
+      ],
+      "summary": "构造 Model 渲染资源容器，初始化 ShaderBuilder 与 render state。",
+      "tags": [
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:PrimitiveOutlineGenerator",
+      "type": "function",
+      "name": "PrimitiveOutlineGenerator",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        67,
+        130
+      ],
+      "summary": "构造轮廓生成器，配置坐标纹理与 index buffer 参数。",
+      "tags": [
+        "outline",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        178,
+        290
+      ],
+      "summary": "匹配 primitive 边、生成压缩的 outline 坐标纹理与 index buffer。",
+      "tags": [
+        "outline",
+        "init",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:matchAndStoreCoordinates",
+      "type": "function",
+      "name": "matchAndStoreCoordinates",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        308,
+        414
+      ],
+      "summary": "对三角形的边进行匹配去重并存储 outline 坐标。",
+      "tags": [
+        "outline",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:computeOrderMask",
+      "type": "function",
+      "name": "computeOrderMask",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        460,
+        480
+      ],
+      "summary": "根据顶点边关系计算 6-bit order mask 用于 shader 解码。",
+      "tags": [
+        "outline",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:createMipLevel",
+      "type": "function",
+      "name": "createMipLevel",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        609,
+        628
+      ],
+      "summary": "createMipLevel 函数：PrimitiveOutlineGenerator.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "outline",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:EdgeSet",
+      "type": "function",
+      "name": "EdgeSet",
+      "filePath": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "lineRange": [
+        642,
+        671
+      ],
+      "summary": "基于哈希的边集合，用于边的去重与查询。",
+      "tags": [
+        "outline",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureManager.js:fetchTexture2D",
+      "type": "function",
+      "name": "fetchTexture2D",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "lineRange": [
+        39,
+        57
+      ],
+      "summary": "按 textureId 异步加载 2D 纹理并注册到管理器。",
+      "tags": [
+        "texture",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureManager.js:createTexture",
+      "type": "function",
+      "name": "createTexture",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "lineRange": [
+        79,
+        95
+      ],
+      "summary": "createTexture 函数：TextureManager.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "texture",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureManager.js:getTextureAndMips",
+      "type": "function",
+      "name": "getTextureAndMips",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "lineRange": [
+        97,
+        109
+      ],
+      "summary": "getTextureAndMips 函数：TextureManager.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "texture",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureManager.js:getWebGL1Texture",
+      "type": "function",
+      "name": "getWebGL1Texture",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "lineRange": [
+        111,
+        149
+      ],
+      "summary": "在 WebGL1 环境下构造纹理（含 mipmap/格式兼容处理）。",
+      "tags": [
+        "texture",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureManager.js:getTextureFromTypedArray",
+      "type": "function",
+      "name": "getTextureFromTypedArray",
+      "filePath": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "lineRange": [
+        160,
+        178
+      ],
+      "summary": "getTextureFromTypedArray 函数：TextureManager.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "texture",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/TextureUniform.js:TextureUniform",
+      "type": "function",
+      "name": "TextureUniform",
+      "filePath": "packages/engine/Source/Scene/Model/TextureUniform.js",
+      "lineRange": [
+        31,
+        69
+      ],
+      "summary": "构造纹理 uniform 描述对象（resource/sampler/wrap 等）。",
+      "tags": [
+        "texture",
+        "scene"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:ModelDrawCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:ModelDerivedCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateModelMatrix2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateShadows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateBackFaceCulling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateCullFace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateDebugShowBoundingVolume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:shouldUse2DCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:derive2DCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveTranslucentCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSilhouetteModelCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSilhouetteColorCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveEdgeCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:updateSkipLodStencilCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSkipLodBackfaceCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommand.js:deriveSkipLodStencilCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:createShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:buildDrawCommandForModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelDrawCommands.js:getIndexBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelFeatureTable.js:ModelFeatureTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelFeatureTable.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelRenderResources.js:ModelRenderResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:PrimitiveOutlineGenerator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:matchAndStoreCoordinates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:computeOrderMask",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:createMipLevel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "function:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js:EdgeSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureManager.js:fetchTexture2D",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureManager.js:createTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureManager.js:getTextureAndMips",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureManager.js:getWebGL1Texture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureManager.js:getTextureFromTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "function:packages/engine/Source/Scene/Model/TextureUniform.js:TextureUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeature.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeature.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/BatchTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Core/getImageFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Core/resizeImageToNextPowerOfTwo.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureManager.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/TextureUniform.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "target": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelFeature.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "target": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

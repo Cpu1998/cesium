@@ -1,0 +1,49 @@
+{
+  "nodes": [
+    {
+      "id": "config:Tools/jsdoc/conf.json",
+      "type": "config",
+      "name": "conf.json",
+      "filePath": "Tools/jsdoc/conf.json",
+      "summary": "JSDoc 主配置文件，指定源码扫描范围（engine 与 widgets 的 Source 目录）、自定义标签插件 cesiumTags、cesium_template 模板，并将文档输出到 Build/Documentation。",
+      "tags": ["configuration", "jsdoc", "documentation", "build-system"],
+      "complexity": "simple",
+      "languageNotes": "JSDoc 配置使用顶层 sections（tags/source/plugins/templates/opts）控制文档生成行为。"
+    },
+    {
+      "id": "config:Tools/jsdoc/ts-conf.json",
+      "type": "config",
+      "name": "ts-conf.json",
+      "filePath": "Tools/jsdoc/ts-conf.json",
+      "summary": "面向 TypeScript 声明文件的 JSDoc 配置，结构与 conf.json 类似，用于基于 Cesium.d.ts 生成类型文档。",
+      "tags": ["configuration", "jsdoc", "documentation", "typescript"],
+      "complexity": "simple",
+      "languageNotes": "与 conf.json 的差异主要体现在 templates 配置（多一项），用于针对 .d.ts 的文档生成。"
+    },
+    {
+      "id": "config:Tools/jsdoc/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "Tools/jsdoc/tsconfig.json",
+      "summary": "TypeScript 编译器配置，启用 noEmit、lib ES2020+DOM，仅对 Source/Cesium.d.ts 进行类型检查，配合 JSDoc 工具链使用。",
+      "tags": ["configuration", "typescript", "build-system", "documentation"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Tools/jsdoc/ts-conf.json",
+      "target": "config:Tools/jsdoc/conf.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Tools/jsdoc/tsconfig.json",
+      "target": "config:Tools/jsdoc/ts-conf.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

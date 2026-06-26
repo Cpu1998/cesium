@@ -1,0 +1,735 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "type": "file",
+   "name": "PolylineMaterialAppearance.js",
+   "filePath": "packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "summary": "为折线提供基于材质渲染的 Appearance。",
+   "tags": [
+    "appearance",
+    "polyline",
+    "material",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "type": "file",
+   "name": "ShadowVolumeAppearance.js",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "summary": "基于阴影体（shadow volume）的贴地渲染 Appearance，将几何投影到地形上，包含球面纹理坐标与矩形边界计算。",
+   "tags": [
+    "appearance",
+    "shadow-volume",
+    "ground",
+    "projection",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "type": "file",
+   "name": "TileBoundingSphere.js",
+   "filePath": "packages/engine/Source/Scene/TileBoundingSphere.js",
+   "summary": "基于包围球的瓦片可见性边界，支持距离剔除、绘制调试包围球及与视锥/平面求交检测。",
+   "tags": [
+    "tile",
+    "bounding-sphere",
+    "culling",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "type": "file",
+   "name": "createBillboardPointCallback.js",
+   "filePath": "packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "summary": "返回用于按需生成点状 Billboard 纹理的回调工厂，支持颜色、外描边与尺寸配置。",
+   "tags": [
+    "factory",
+    "billboard",
+    "texture",
+    "callback",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "type": "file",
+   "name": "createTangentSpaceDebugPrimitive.js",
+   "filePath": "packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "summary": "基于几何的切线与副切线属性生成用于调试法线空间的线段 Primitive。",
+   "tags": [
+    "factory",
+    "debug",
+    "tangent-space",
+    "primitive",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "type": "file",
+   "name": "createGroundPolylineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "summary": "Web Worker 入口，异步初始化 ApproximateTerrainHeights 并构造贴地折线几何。",
+   "tags": [
+    "worker",
+    "ground-polyline",
+    "geometry",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PolylineMaterialAppearance.js:PolylineMaterialAppearance",
+   "type": "function",
+   "name": "PolylineMaterialAppearance",
+   "filePath": "packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "lineRange": [
+    45,
+    90
+   ],
+   "summary": "构造折线材质 Appearance，提供基于材质的折线渲染 GLSL 源。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "polyline",
+    "material",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:ShadowVolumeAppearance",
+   "type": "function",
+   "name": "ShadowVolumeAppearance",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    25,
+    70
+   ],
+   "summary": "构造阴影体 Appearance，封装贴地投影所需的顶点/片元 shader 与渲染状态。",
+   "tags": [
+    "constructor",
+    "appearance",
+    "shadow-volume",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:createShadowVolumeAppearanceVS",
+   "type": "function",
+   "name": "createShadowVolumeAppearanceVS",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    246,
+    322
+   ],
+   "summary": "生成阴影体贴地投影所需的顶点 shader，处理哥伦布视图与球面投影坐标。",
+   "tags": [
+    "shader",
+    "vertex-shader",
+    "shadow-volume",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:computeRectangleBounds",
+   "type": "function",
+   "name": "computeRectangleBounds",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    566,
+    659
+   ],
+   "summary": "基于椭球计算贴地矩形的边界向量（东南角与东北向基向量）。",
+   "tags": [
+    "utility",
+    "rectangle",
+    "projection",
+    "shadow-volume"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:add2DTextureCoordinateAttributes",
+   "type": "function",
+   "name": "add2DTextureCoordinateAttributes",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    485,
+    541
+   ],
+   "summary": "为几何体附加球面纹理坐标属性，支持贴地材质贴图。",
+   "tags": [
+    "utility",
+    "texture-coordinates",
+    "shadow-volume"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:addTextureCoordinateRotationAttributes",
+   "type": "function",
+   "name": "addTextureCoordinateRotationAttributes",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    438,
+    478
+   ],
+   "summary": "为几何体附加纹理坐标旋转属性。",
+   "tags": [
+    "utility",
+    "texture-coordinates",
+    "rotation",
+    "shadow-volume"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:latLongToSpherical",
+   "type": "function",
+   "name": "latLongToSpherical",
+   "filePath": "packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "lineRange": [
+    750,
+    778
+   ],
+   "summary": "将经纬度转换为球面纹理坐标。",
+   "tags": [
+    "utility",
+    "projection",
+    "spherical",
+    "shadow-volume"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingSphere.js:TileBoundingSphere",
+   "type": "function",
+   "name": "TileBoundingSphere",
+   "filePath": "packages/engine/Source/Scene/TileBoundingSphere.js",
+   "lineRange": [
+    22,
+    27
+   ],
+   "summary": "构造瓦片包围球边界，封装中心、半径与变换以用于视锥剔除。",
+   "tags": [
+    "constructor",
+    "tile",
+    "bounding-sphere",
+    "culling",
+    "scene"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/createBillboardPointCallback.js:createBillboardPointCallback",
+   "type": "function",
+   "name": "createBillboardPointCallback",
+   "filePath": "packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "lineRange": [
+    13,
+    63
+   ],
+   "summary": "工厂：返回按需生成带描边圆形点纹理的回调，支持颜色与尺寸参数。",
+   "tags": [
+    "factory",
+    "billboard",
+    "texture",
+    "callback",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js:createTangentSpaceDebugPrimitive",
+   "type": "function",
+   "name": "createTangentSpaceDebugPrimitive",
+   "filePath": "packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "lineRange": [
+    32,
+    113
+   ],
+   "summary": "工厂：基于几何切线/副切线属性生成用于调试法线空间的线段 Primitive。",
+   "tags": [
+    "factory",
+    "debug",
+    "tangent-space",
+    "primitive",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Workers/createGroundPolylineGeometry.js:createGroundPolylineGeometry",
+   "type": "function",
+   "name": "createGroundPolylineGeometry",
+   "filePath": "packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "lineRange": [
+    5,
+    15
+   ],
+   "summary": "Worker 入口：异步初始化地形高度并构造贴地折线几何。",
+   "tags": [
+    "worker",
+    "ground-polyline",
+    "geometry",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PolylineMaterialAppearance.js:PolylineMaterialAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "function:packages/engine/Source/Scene/PolylineMaterialAppearance.js:PolylineMaterialAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:ShadowVolumeAppearance",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:ShadowVolumeAppearance",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:createShadowVolumeAppearanceVS",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:createShadowVolumeAppearanceVS",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:computeRectangleBounds",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:computeRectangleBounds",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:add2DTextureCoordinateAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:add2DTextureCoordinateAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:addTextureCoordinateRotationAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:addTextureCoordinateRotationAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:latLongToSpherical",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "function:packages/engine/Source/Scene/ShadowVolumeAppearance.js:latLongToSpherical",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingSphere.js:TileBoundingSphere",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingSphere.js:TileBoundingSphere",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "target": "function:packages/engine/Source/Scene/createBillboardPointCallback.js:createBillboardPointCallback",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createBillboardPointCallback.js",
+   "target": "function:packages/engine/Source/Scene/createBillboardPointCallback.js:createBillboardPointCallback",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js:createTangentSpaceDebugPrimitive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "function:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js:createTangentSpaceDebugPrimitive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createGroundPolylineGeometry.js:createGroundPolylineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "target": "function:packages/engine/Source/Workers/createGroundPolylineGeometry.js:createGroundPolylineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Appearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "target": "file:packages/engine/Source/Scene/Material.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/createTangentSpaceDebugPrimitive.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createGroundPolylineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GroundPolylineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

@@ -1,0 +1,6620 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Scene/PointCloud.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1412,
+      "nonEmptyLines": 1239,
+      "functions": [
+        {
+          "name": "PointCloud",
+          "startLine": 57,
+          "endLine": 157,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 200,
+          "endLine": 276,
+          "params": [
+            "pointCloud",
+            "options"
+          ]
+        },
+        {
+          "name": "getRandomValues",
+          "startLine": 287,
+          "endLine": 299,
+          "params": [
+            "samplesLength"
+          ]
+        },
+        {
+          "name": "computeApproximateBoundingSphereFromPositions",
+          "startLine": 301,
+          "endLine": 320,
+          "params": [
+            "positions"
+          ]
+        },
+        {
+          "name": "prepareVertexAttribute",
+          "startLine": 322,
+          "endLine": 337,
+          "params": [
+            "typedArray",
+            "name"
+          ]
+        },
+        {
+          "name": "createResources",
+          "startLine": 353,
+          "endLine": 611,
+          "params": [
+            "pointCloud",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createUniformMap",
+          "startLine": 613,
+          "endLine": 722,
+          "params": [
+            "pointCloud",
+            "frameState"
+          ]
+        },
+        {
+          "name": "getStyleablePropertyIds",
+          "startLine": 724,
+          "endLine": 735,
+          "params": [
+            "source",
+            "propertyIds"
+          ]
+        },
+        {
+          "name": "getBuiltinPropertyNames",
+          "startLine": 737,
+          "endLine": 749,
+          "params": [
+            "source",
+            "propertyNames"
+          ]
+        },
+        {
+          "name": "getVertexAttribute",
+          "startLine": 751,
+          "endLine": 759,
+          "params": [
+            "vertexArray",
+            "index"
+          ]
+        },
+        {
+          "name": "createShaders",
+          "startLine": 768,
+          "endLine": 1164,
+          "params": [
+            "pointCloud",
+            "frameState",
+            "style"
+          ]
+        },
+        {
+          "name": "decodeDraco",
+          "startLine": 1166,
+          "endLine": 1268,
+          "params": [
+            "pointCloud",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PointCloud",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 59
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 60
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "Color.clone",
+          "lineNumber": 69
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "Color.clone",
+          "lineNumber": 70
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "Matrix4.clone",
+          "lineNumber": 123
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "Matrix4.clone",
+          "lineNumber": 124
+        },
+        {
+          "caller": "PointCloud",
+          "callee": "initialize",
+          "lineNumber": 156
+        },
+        {
+          "caller": "initialize",
+          "callee": "PntsParser.parse",
+          "lineNumber": 201
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 214
+        },
+        {
+          "caller": "initialize",
+          "callee": "Cesium3DTileBatchTable.getBinaryProperties",
+          "lineNumber": 216
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 223
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 230
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 238
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 243
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 244
+        },
+        {
+          "caller": "initialize",
+          "callee": "Color.clone",
+          "lineNumber": 245
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 261
+        },
+        {
+          "caller": "initialize",
+          "callee": "pointCloud._batchTableLoaded",
+          "lineNumber": 268
+        },
+        {
+          "caller": "getRandomValues",
+          "callee": "defined",
+          "lineNumber": 289
+        },
+        {
+          "caller": "getRandomValues",
+          "callee": "randomNumberGenerator.random",
+          "lineNumber": 295
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Math.min",
+          "lineNumber": 304
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "getRandomValues",
+          "lineNumber": 305
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 308
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 309
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Math.floor",
+          "lineNumber": 311
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 312
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Cartesian3.minimumByComponent",
+          "lineNumber": 313
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "Cartesian3.maximumByComponent",
+          "lineNumber": 314
+        },
+        {
+          "caller": "computeApproximateBoundingSphereFromPositions",
+          "callee": "BoundingSphere.fromCornerPoints",
+          "lineNumber": 317
+        },
+        {
+          "caller": "prepareVertexAttribute",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 324
+        },
+        {
+          "caller": "prepareVertexAttribute",
+          "callee": "oneTimeWarning",
+          "lineNumber": 330
+        },
+        {
+          "caller": "createResources",
+          "callee": "defined",
+          "lineNumber": 362
+        },
+        {
+          "caller": "createResources",
+          "callee": "styleableProperties.hasOwnProperty",
+          "lineNumber": 386
+        },
+        {
+          "caller": "createResources",
+          "callee": "prepareVertexAttribute",
+          "lineNumber": 388
+        },
+        {
+          "caller": "createResources",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 390
+        },
+        {
+          "caller": "createResources",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 392
+        },
+        {
+          "caller": "createResources",
+          "callee": "styleableVertexAttributes.push",
+          "lineNumber": 410
+        },
+        {
+          "caller": "createResources",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 420
+        },
+        {
+          "caller": "createResources",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 429
+        },
+        {
+          "caller": "createResources",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 439
+        },
+        {
+          "caller": "createResources",
+          "callee": "prepareVertexAttribute",
+          "lineNumber": 449
+        },
+        {
+          "caller": "createResources",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 453
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.push",
+          "lineNumber": 474
+        },
+        {
+          "caller": "createResources",
+          "callee": "BoundingSphere.fromCornerPoints",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createResources",
+          "callee": "computeApproximateBoundingSphereFromPositions",
+          "lineNumber": 492
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.push",
+          "lineNumber": 498
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.push",
+          "lineNumber": 509
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.push",
+          "lineNumber": 535
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.push",
+          "lineNumber": 547
+        },
+        {
+          "caller": "createResources",
+          "callee": "ComponentDatatype.fromTypedArray",
+          "lineNumber": 551
+        },
+        {
+          "caller": "createResources",
+          "callee": "attributes.concat",
+          "lineNumber": 559
+        },
+        {
+          "caller": "createResources",
+          "callee": "StencilConstants.setCesium3DTileBit",
+          "lineNumber": 582
+        },
+        {
+          "caller": "createResources",
+          "callee": "StencilConstants.setCesium3DTileBit",
+          "lineNumber": 584
+        },
+        {
+          "caller": "createResources",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 588
+        },
+        {
+          "caller": "createResources",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 589
+        },
+        {
+          "caller": "createResources",
+          "callee": "pointCloud._pickIdLoaded",
+          "lineNumber": 609
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "defined",
+          "lineNumber": 664
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Color.clone",
+          "lineNumber": 668
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "defined",
+          "lineNumber": 674
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 680
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 685
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Matrix4.inverseTranspose",
+          "lineNumber": 691
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Splitter.addUniforms",
+          "lineNumber": 698
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "combine",
+          "lineNumber": 701
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "defined",
+          "lineNumber": 704
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 705
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Cartesian3.divideByScalar",
+          "lineNumber": 709
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "defined",
+          "lineNumber": 717
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "pointCloud._uniformMapLoaded",
+          "lineNumber": 718
+        },
+        {
+          "caller": "getStyleablePropertyIds",
+          "callee": "regex.exec",
+          "lineNumber": 727
+        },
+        {
+          "caller": "getStyleablePropertyIds",
+          "callee": "parseInt",
+          "lineNumber": 729
+        },
+        {
+          "caller": "getStyleablePropertyIds",
+          "callee": "propertyIds.indexOf",
+          "lineNumber": 730
+        },
+        {
+          "caller": "getStyleablePropertyIds",
+          "callee": "propertyIds.push",
+          "lineNumber": 731
+        },
+        {
+          "caller": "getStyleablePropertyIds",
+          "callee": "regex.exec",
+          "lineNumber": 733
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "source.slice",
+          "lineNumber": 739
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "source.indexOf",
+          "lineNumber": 739
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "regex.exec",
+          "lineNumber": 741
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "propertyNames.indexOf",
+          "lineNumber": 744
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "propertyNames.push",
+          "lineNumber": 745
+        },
+        {
+          "caller": "getBuiltinPropertyNames",
+          "callee": "regex.exec",
+          "lineNumber": 747
+        },
+        {
+          "caller": "getVertexAttribute",
+          "callee": "vertexArray.getAttribute",
+          "lineNumber": 754
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 774
+        },
+        {
+          "caller": "createShaders",
+          "callee": "clone",
+          "lineNumber": 795
+        },
+        {
+          "caller": "createShaders",
+          "callee": "styleableShaderAttributes.hasOwnProperty",
+          "lineNumber": 799
+        },
+        {
+          "caller": "createShaders",
+          "callee": "style.getColorShaderFunction",
+          "lineNumber": 818
+        },
+        {
+          "caller": "createShaders",
+          "callee": "style.getShowShaderFunction",
+          "lineNumber": 823
+        },
+        {
+          "caller": "createShaders",
+          "callee": "style.getPointSizeShaderFunction",
+          "lineNumber": 828
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 833
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 840
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 841
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 842
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getStyleablePropertyIds",
+          "lineNumber": 850
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getBuiltinPropertyNames",
+          "lineNumber": 851
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getStyleablePropertyIds",
+          "lineNumber": 854
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getBuiltinPropertyNames",
+          "lineNumber": 855
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getStyleablePropertyIds",
+          "lineNumber": 858
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getBuiltinPropertyNames",
+          "lineNumber": 859
+        },
+        {
+          "caller": "createShaders",
+          "callee": "builtinPropertyNames.indexOf",
+          "lineNumber": 862
+        },
+        {
+          "caller": "createShaders",
+          "callee": "builtinPropertyNames.indexOf",
+          "lineNumber": 863
+        },
+        {
+          "caller": "createShaders",
+          "callee": "styleableShaderAttributes.hasOwnProperty",
+          "lineNumber": 873
+        },
+        {
+          "caller": "createShaders",
+          "callee": "styleablePropertyIds.indexOf",
+          "lineNumber": 875
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getVertexAttribute",
+          "lineNumber": 876
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getVertexAttribute",
+          "lineNumber": 887
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getVertexAttribute",
+          "lineNumber": 895
+        },
+        {
+          "caller": "createShaders",
+          "callee": "createUniformMap",
+          "lineNumber": 934
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getClippingFunction",
+          "lineNumber": 1112
+        },
+        {
+          "caller": "createShaders",
+          "callee": "getClipAndStyleCode",
+          "lineNumber": 1122
+        },
+        {
+          "caller": "createShaders",
+          "callee": "Splitter.modifyFragmentShader",
+          "lineNumber": 1132
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 1135
+        },
+        {
+          "caller": "createShaders",
+          "callee": "pointCloud._vertexShaderLoaded",
+          "lineNumber": 1136
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 1139
+        },
+        {
+          "caller": "createShaders",
+          "callee": "pointCloud._fragmentShaderLoaded",
+          "lineNumber": 1140
+        },
+        {
+          "caller": "createShaders",
+          "callee": "defined",
+          "lineNumber": 1144
+        },
+        {
+          "caller": "createShaders",
+          "callee": "drawCommand.shaderProgram.destroy",
+          "lineNumber": 1146
+        },
+        {
+          "caller": "createShaders",
+          "callee": "ShaderProgram.fromCache",
+          "lineNumber": 1148
+        },
+        {
+          "caller": "createShaders",
+          "callee": "drawCommand.shaderProgram._bind",
+          "lineNumber": 1157
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "DracoLoader.decodePointCloud",
+          "lineNumber": 1173
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1174
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "decodePromise\n        .then(function (result) {\n          pointCloud._decodingState = DecodingState.READY;\n          const decodedPositions = defined(result.POSITION)\n            ? result.POSITION.array\n            : undefined;\n          const decodedRgb = defined(result.RGB) ? result.RGB.array : undefined;\n          const decodedRgba = defined(result.RGBA)\n            ? result.RGBA.array\n            : undefined;\n          const decodedNormals = defined(result.NORMAL)\n            ? result.NORMAL.array\n            : undefined;\n          const decodedBatchIds = defined(result.BATCH_ID)\n            ? result.BATCH_ID.array\n            : undefined;\n          const isQuantizedDraco =\n            defined(decodedPositions) &&\n            defined(result.POSITION.data.quantization);\n          const isOctEncodedDraco =\n            defined(decodedNormals) && defined(result.NORMAL.data.quantization);\n          if (isQuantizedDraco) {\n            // Draco quantization range == quantized volume scale - size in meters of the quantized volume\n            // Internal quantized range is the range of values of the quantized data, e.g. 255 for 8-bit, 1023 for 10-bit, etc\n            const quantization = result.POSITION.data.quantization;\n            const range = quantization.range;\n            pointCloud._quantizedVolumeScale = Cartesian3.fromElements(\n              range,\n              range,\n              range,\n            );\n            pointCloud._quantizedVolumeOffset = Cartesian3.unpack(\n              quantization.minValues,\n            );\n            pointCloud._quantizedRange =\n              (1 << quantization.quantizationBits) - 1.0;\n            pointCloud._isQuantizedDraco = true;\n          }\n          if (isOctEncodedDraco) {\n            pointCloud._octEncodedRange =\n              (1 << result.NORMAL.data.quantization.quantizationBits) - 1.0;\n            pointCloud._isOctEncodedDraco = true;\n          }\n          let styleableProperties = parsedContent.styleableProperties;\n          const batchTableProperties = draco.batchTableProperties;\n          for (const name in batchTableProperties) {\n            if (batchTableProperties.hasOwnProperty(name)) {\n              const property = result[name];\n              if (!defined(styleableProperties)) {\n                styleableProperties = {};\n              }\n              styleableProperties[name] = {\n                typedArray: property.array,\n                componentCount: property.data.componentsPerAttribute,\n              };\n            }\n          }\n\n          if (defined(decodedPositions)) {\n            parsedContent.positions = {\n              typedArray: decodedPositions,\n            };\n          }\n\n          const decodedColors = decodedRgba ?? decodedRgb;\n          if (defined(decodedColors)) {\n            parsedContent.colors = {\n              typedArray: decodedColors,\n            };\n          }\n\n          if (defined(decodedNormals)) {\n            parsedContent.normals = {\n              typedArray: decodedNormals,\n            };\n          }\n\n          if (defined(decodedBatchIds)) {\n            parsedContent.batchIds = {\n              typedArray: decodedBatchIds,\n            };\n          }\n\n          parsedContent.styleableProperties = styleableProperties;\n        })\n        .catch",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "decodePromise\n        .then",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1179
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1182
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1183
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1186
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1189
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1193
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1194
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1196
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1196
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1202
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 1207
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "batchTableProperties.hasOwnProperty",
+          "lineNumber": 1222
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1224
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1234
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1241
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1247
+        },
+        {
+          "caller": "decodeDraco",
+          "callee": "defined",
+          "lineNumber": 1253
+        }
+      ],
+      "metrics": {
+        "importCount": 35,
+        "exportCount": 0,
+        "functionCount": 12,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 284,
+      "nonEmptyLines": 247,
+      "functions": [
+        {
+          "name": "PointCloudEyeDomeLighting",
+          "startLine": 22,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "destroyFramebuffer",
+          "startLine": 54,
+          "endLine": 58,
+          "params": [
+            "processor"
+          ]
+        },
+        {
+          "name": "createCommands",
+          "startLine": 62,
+          "endLine": 107,
+          "params": [
+            "processor",
+            "context"
+          ]
+        },
+        {
+          "name": "createResources",
+          "startLine": 109,
+          "endLine": 114,
+          "params": [
+            "processor",
+            "context"
+          ]
+        },
+        {
+          "name": "isSupported",
+          "startLine": 116,
+          "endLine": 118,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "getECShaderProgram",
+          "startLine": 122,
+          "endLine": 169,
+          "params": [
+            "context",
+            "shaderProgram"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "processor._framebuffer.destroy",
+          "lineNumber": 55
+        },
+        {
+          "caller": "createCommands",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 82
+        },
+        {
+          "caller": "createCommands",
+          "callee": "StencilConstants.setCesium3DTileBit",
+          "lineNumber": 88
+        },
+        {
+          "caller": "createCommands",
+          "callee": "context.createViewportQuadCommand",
+          "lineNumber": 92
+        },
+        {
+          "caller": "createCommands",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 103
+        },
+        {
+          "caller": "createResources",
+          "callee": "processor._framebuffer.update",
+          "lineNumber": 112
+        },
+        {
+          "caller": "createResources",
+          "callee": "createCommands",
+          "lineNumber": 113
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "context.shaderCache.getDerivedShaderProgram",
+          "lineNumber": 123
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "defined",
+          "lineNumber": 124
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "shaderProgram.fragmentShaderSource.clone",
+          "lineNumber": 127
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "fs.sources.splice",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "fs.sources.map",
+          "lineNumber": 135
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 136
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "source.replaceAll",
+          "lineNumber": 140
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "fs.sources.push",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getECShaderProgram",
+          "callee": "context.shaderCache.createDerivedShaderProgram",
+          "lineNumber": 157
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PointCloudShading.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 104,
+      "nonEmptyLines": 93,
+      "functions": [
+        {
+          "name": "PointCloudShading",
+          "startLine": 21,
+          "endLine": 93,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PointPrimitive.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 690,
+      "nonEmptyLines": 639,
+      "functions": [
+        {
+          "name": "PointPrimitive",
+          "startLine": 44,
+          "endLine": 116,
+          "params": [
+            "options",
+            "pointPrimitiveCollection"
+          ]
+        },
+        {
+          "name": "makeDirty",
+          "startLine": 134,
+          "endLine": 143,
+          "params": [
+            "pointPrimitive",
+            "propertyChanged"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PointPrimitive",
+          "callee": "defined",
+          "lineNumber": 49
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "defined",
+          "lineNumber": 61
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "NearFarScalar.clone",
+          "lineNumber": 69
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "defined",
+          "lineNumber": 71
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "NearFarScalar.clone",
+          "lineNumber": 79
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "defined",
+          "lineNumber": 81
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "DistanceDisplayCondition.clone",
+          "lineNumber": 89
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 95
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 96
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "Color.clone",
+          "lineNumber": 97
+        },
+        {
+          "caller": "PointPrimitive",
+          "callee": "Color.clone",
+          "lineNumber": 98
+        },
+        {
+          "caller": "makeDirty",
+          "callee": "defined",
+          "lineNumber": 136
+        },
+        {
+          "caller": "makeDirty",
+          "callee": "pointPrimitiveCollection._updatePointPrimitive",
+          "lineNumber": 137
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PointPrimitiveCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1215,
+      "nonEmptyLines": 1075,
+      "functions": [
+        {
+          "name": "PointPrimitiveCollection",
+          "startLine": 94,
+          "endLine": 221,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "destroyPointPrimitives",
+          "startLine": 239,
+          "endLine": 246,
+          "params": [
+            "pointPrimitives"
+          ]
+        },
+        {
+          "name": "removePointPrimitives",
+          "startLine": 355,
+          "endLine": 372,
+          "params": [
+            "pointPrimitiveCollection"
+          ]
+        },
+        {
+          "name": "createVAF",
+          "startLine": 453,
+          "endLine": 497,
+          "params": [
+            "context",
+            "numberOfPointPrimitives",
+            "buffersUsage"
+          ]
+        },
+        {
+          "name": "writePositionSizeAndOutline",
+          "startLine": 507,
+          "endLine": 542,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "writeCompressedAttrib0",
+          "startLine": 546,
+          "endLine": 571,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "writeCompressedAttrib1",
+          "startLine": 573,
+          "endLine": 621,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "writeScaleByDistance",
+          "startLine": 623,
+          "endLine": 651,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "writeDistanceDisplayConditionAndDepthDisableAndSplitDirection",
+          "startLine": 653,
+          "endLine": 694,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "writePointPrimitive",
+          "startLine": 696,
+          "endLine": 732,
+          "params": [
+            "pointPrimitiveCollection",
+            "context",
+            "vafWriters",
+            "pointPrimitive"
+          ]
+        },
+        {
+          "name": "recomputeActualPositions",
+          "startLine": 734,
+          "endLine": 773,
+          "params": [
+            "pointPrimitiveCollection",
+            "pointPrimitives",
+            "length",
+            "frameState",
+            "modelMatrix",
+            "recomputeBoundingVolume"
+          ]
+        },
+        {
+          "name": "updateMode",
+          "startLine": 775,
+          "endLine": 826,
+          "params": [
+            "pointPrimitiveCollection",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateBoundingVolume",
+          "startLine": 828,
+          "endLine": 836,
+          "params": [
+            "collection",
+            "frameState",
+            "boundingVolume"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PointPrimitiveCollection",
+          "callee": "Matrix4.clone",
+          "lineNumber": 173
+        },
+        {
+          "caller": "PointPrimitiveCollection",
+          "callee": "Matrix4.clone",
+          "lineNumber": 174
+        },
+        {
+          "caller": "destroyPointPrimitives",
+          "callee": "pointPrimitives[i]._destroy",
+          "lineNumber": 243
+        },
+        {
+          "caller": "removePointPrimitives",
+          "callee": "newPointPrimitives.push",
+          "lineNumber": 366
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "pointPrimitive._getActualPosition",
+          "lineNumber": 514
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "BoundingSphere.expand",
+          "lineNumber": 517
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 525
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "Math.max",
+          "lineNumber": 529
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "positionHighWriter",
+          "lineNumber": 536
+        },
+        {
+          "caller": "writePositionSizeAndOutline",
+          "callee": "positionLowWriter",
+          "lineNumber": 541
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "pointPrimitive.getPickId",
+          "lineNumber": 556
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "writer",
+          "lineNumber": 564
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "AttributeCompression.encodeRGB8",
+          "lineNumber": 566
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "AttributeCompression.encodeRGB8",
+          "lineNumber": 567
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "AttributeCompression.encodeRGB8",
+          "lineNumber": 568
+        },
+        {
+          "caller": "writeCompressedAttrib0",
+          "callee": "AttributeCompression.encodeRGB8",
+          "lineNumber": 569
+        },
+        {
+          "caller": "writeCompressedAttrib1",
+          "callee": "defined",
+          "lineNumber": 587
+        },
+        {
+          "caller": "writeCompressedAttrib1",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 611
+        },
+        {
+          "caller": "writeCompressedAttrib1",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 615
+        },
+        {
+          "caller": "writeCompressedAttrib1",
+          "callee": "writer",
+          "lineNumber": 620
+        },
+        {
+          "caller": "writeScaleByDistance",
+          "callee": "defined",
+          "lineNumber": 637
+        },
+        {
+          "caller": "writeScaleByDistance",
+          "callee": "writer",
+          "lineNumber": 650
+        },
+        {
+          "caller": "writeDistanceDisplayConditionAndDepthDisableAndSplitDirection",
+          "callee": "defined",
+          "lineNumber": 669
+        },
+        {
+          "caller": "writeDistanceDisplayConditionAndDepthDisableAndSplitDirection",
+          "callee": "defined",
+          "lineNumber": 690
+        },
+        {
+          "caller": "writeDistanceDisplayConditionAndDepthDisableAndSplitDirection",
+          "callee": "writer",
+          "lineNumber": 693
+        },
+        {
+          "caller": "writePointPrimitive",
+          "callee": "writePositionSizeAndOutline",
+          "lineNumber": 702
+        },
+        {
+          "caller": "writePointPrimitive",
+          "callee": "writeCompressedAttrib0",
+          "lineNumber": 708
+        },
+        {
+          "caller": "writePointPrimitive",
+          "callee": "writeCompressedAttrib1",
+          "lineNumber": 714
+        },
+        {
+          "caller": "writePointPrimitive",
+          "callee": "writeScaleByDistance",
+          "lineNumber": 720
+        },
+        {
+          "caller": "writePointPrimitive",
+          "callee": "writeDistanceDisplayConditionAndDepthDisableAndSplitDirection",
+          "lineNumber": 726
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "PointPrimitive._computeActualPosition",
+          "lineNumber": 754
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "defined",
+          "lineNumber": 759
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "pointPrimitive._setActualPosition",
+          "lineNumber": 760
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "positions.push",
+          "lineNumber": 763
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "BoundingSphere.expand",
+          "lineNumber": 765
+        },
+        {
+          "caller": "recomputeActualPositions",
+          "callee": "BoundingSphere.fromPoints",
+          "lineNumber": 771
+        },
+        {
+          "caller": "updateMode",
+          "callee": "Matrix4.equals",
+          "lineNumber": 787
+        },
+        {
+          "caller": "updateMode",
+          "callee": "Matrix4.clone",
+          "lineNumber": 790
+        },
+        {
+          "caller": "updateMode",
+          "callee": "recomputeActualPositions",
+          "lineNumber": 798
+        },
+        {
+          "caller": "updateMode",
+          "callee": "recomputeActualPositions",
+          "lineNumber": 808
+        },
+        {
+          "caller": "updateMode",
+          "callee": "recomputeActualPositions",
+          "lineNumber": 817
+        },
+        {
+          "caller": "updateBoundingVolume",
+          "callee": "frameState.camera.getPixelSize",
+          "lineNumber": 829
+        }
+      ],
+      "metrics": {
+        "importCount": 25,
+        "exportCount": 0,
+        "functionCount": 13,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PolylineCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1947,
+      "nonEmptyLines": 1740,
+      "functions": [
+        {
+          "name": "PolylineCollection",
+          "startLine": 116,
+          "endLine": 189,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "createBatchTable",
+          "startLine": 362,
+          "endLine": 401,
+          "params": [
+            "collection",
+            "context"
+          ]
+        },
+        {
+          "name": "createCommandLists",
+          "startLine": 591,
+          "endLine": 775,
+          "params": [
+            "polylineCollection",
+            "frameState",
+            "commands",
+            "modelMatrix"
+          ]
+        },
+        {
+          "name": "computeNewBuffersUsage",
+          "startLine": 815,
+          "endLine": 837,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "createVertexArrays",
+          "startLine": 841,
+          "endLine": 1121,
+          "params": [
+            "collection",
+            "context",
+            "projection"
+          ]
+        },
+        {
+          "name": "replacer",
+          "startLine": 1123,
+          "endLine": 1129,
+          "params": [
+            "key",
+            "value"
+          ]
+        },
+        {
+          "name": "createMaterialId",
+          "startLine": 1132,
+          "endLine": 1146,
+          "params": [
+            "material"
+          ]
+        },
+        {
+          "name": "sortPolylinesIntoBuckets",
+          "startLine": 1148,
+          "endLine": 1171,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "updateMode",
+          "startLine": 1173,
+          "endLine": 1184,
+          "params": [
+            "collection",
+            "frameState"
+          ]
+        },
+        {
+          "name": "removePolylines",
+          "startLine": 1186,
+          "endLine": 1207,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "releaseShaders",
+          "startLine": 1209,
+          "endLine": 1221,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "destroyVertexArrays",
+          "startLine": 1223,
+          "endLine": 1229,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "destroyPolylines",
+          "startLine": 1242,
+          "endLine": 1250,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "VertexArrayBucketLocator",
+          "startLine": 1252,
+          "endLine": 1256,
+          "params": [
+            "count",
+            "offset",
+            "bucket"
+          ]
+        },
+        {
+          "name": "PolylineBucket",
+          "startLine": 1258,
+          "endLine": 1265,
+          "params": [
+            "material",
+            "mode",
+            "modelMatrix"
+          ]
+        },
+        {
+          "name": "intersectsIDL",
+          "startLine": 1317,
+          "endLine": 1323,
+          "params": [
+            "polyline"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PolylineCollection",
+          "callee": "Matrix4.clone",
+          "lineNumber": 136
+        },
+        {
+          "caller": "PolylineCollection",
+          "callee": "Matrix4.clone",
+          "lineNumber": 137
+        },
+        {
+          "caller": "PolylineCollection",
+          "callee": "Color.clone",
+          "lineNumber": 181
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "defined",
+          "lineNumber": 363
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "collection._batchTable.destroy",
+          "lineNumber": 364
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "batchTable.getUniformMapCallback",
+          "lineNumber": 608
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "createMaterialId",
+          "lineNumber": 632
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "defined",
+          "lineNumber": 634
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "currentMaterial.isTranslucent",
+          "lineNumber": 635
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "commands.push",
+          "lineNumber": 641
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "combine",
+          "lineNumber": 648
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "uniformCallback",
+          "lineNumber": 649
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 653
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "commandList.push",
+          "lineNumber": 675
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "currentMaterial.update",
+          "lineNumber": 679
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "defined",
+          "lineNumber": 698
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 699
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "defined",
+          "lineNumber": 706
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "defined",
+          "lineNumber": 707
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 709
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 718
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 720
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "defined",
+          "lineNumber": 728
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "commands.push",
+          "lineNumber": 733
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "combine",
+          "lineNumber": 740
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "uniformCallback",
+          "lineNumber": 741
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 745
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "currentMaterial.isTranslucent",
+          "lineNumber": 752
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "currentMaterial.isTranslucent",
+          "lineNumber": 755
+        },
+        {
+          "caller": "createCommandLists",
+          "callee": "commandList.push",
+          "lineNumber": 767
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "releaseShaders",
+          "lineNumber": 843
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "destroyVertexArrays",
+          "lineNumber": 844
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "sortPolylinesIntoBuckets",
+          "lineNumber": 845
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "polylineBuckets.hasOwnProperty",
+          "lineNumber": 866
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "bucket.updateShader",
+          "lineNumber": 868
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "polylineBuckets.hasOwnProperty",
+          "lineNumber": 884
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "bucket.write",
+          "lineNumber": 886
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "defined",
+          "lineNumber": 898
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "bucket.writeForMorph",
+          "lineNumber": 901
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "bucket.updateIndices",
+          "lineNumber": 908
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 920
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "defined",
+          "lineNumber": 926
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 927
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 933
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "Buffer.createIndexBuffer",
+          "lineNumber": 950
+        },
+        {
+          "caller": "createVertexArrays",
+          "callee": "collection._vertexArrays.push",
+          "lineNumber": 1114
+        },
+        {
+          "caller": "createMaterialId",
+          "callee": "material._uniforms[uniform]",
+          "lineNumber": 1141
+        },
+        {
+          "caller": "createMaterialId",
+          "callee": "JSON.stringify",
+          "lineNumber": 1145
+        },
+        {
+          "caller": "sortPolylinesIntoBuckets",
+          "callee": "p.update",
+          "lineNumber": 1158
+        },
+        {
+          "caller": "sortPolylinesIntoBuckets",
+          "callee": "defined",
+          "lineNumber": 1161
+        },
+        {
+          "caller": "sortPolylinesIntoBuckets",
+          "callee": "value.addPolyline",
+          "lineNumber": 1168
+        },
+        {
+          "caller": "updateMode",
+          "callee": "Matrix4.equals",
+          "lineNumber": 1178
+        },
+        {
+          "caller": "updateMode",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "removePolylines",
+          "callee": "definedPolylinesToUpdate.push",
+          "lineNumber": 1199
+        },
+        {
+          "caller": "removePolylines",
+          "callee": "definedPolylines.push",
+          "lineNumber": 1200
+        },
+        {
+          "caller": "releaseShaders",
+          "callee": "defined",
+          "lineNumber": 1215
+        },
+        {
+          "caller": "releaseShaders",
+          "callee": "bucket.shaderProgram.destroy",
+          "lineNumber": 1217
+        },
+        {
+          "caller": "destroyVertexArrays",
+          "callee": "collection._vertexArrays[t].va.destroy",
+          "lineNumber": 1226
+        },
+        {
+          "caller": "destroyPolylines",
+          "callee": "polylines[i]._destroy",
+          "lineNumber": 1247
+        },
+        {
+          "caller": "intersectsIDL",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 1319
+        },
+        {
+          "caller": "intersectsIDL",
+          "callee": "polyline._boundingVolume.intersectPlane",
+          "lineNumber": 1320
+        }
+      ],
+      "metrics": {
+        "importCount": 34,
+        "exportCount": 0,
+        "functionCount": 16,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1000,
+      "nonEmptyLines": 918,
+      "functions": [
+        {
+          "name": "PostProcessStage",
+          "startLine": 94,
+          "endLine": 182,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getUniformValueGetterAndSetter",
+          "startLine": 404,
+          "endLine": 454,
+          "params": [
+            "stage",
+            "uniforms",
+            "name"
+          ]
+        },
+        {
+          "name": "getUniformMapFunction",
+          "startLine": 456,
+          "endLine": 464,
+          "params": [
+            "stage",
+            "name"
+          ]
+        },
+        {
+          "name": "getUniformMapDimensionsFunction",
+          "startLine": 466,
+          "endLine": 474,
+          "params": [
+            "uniformMap",
+            "name"
+          ]
+        },
+        {
+          "name": "createUniformMap",
+          "startLine": 476,
+          "endLine": 540,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "addSelectedIdToShader",
+          "startLine": 542,
+          "endLine": 569,
+          "params": [
+            "shaderSource",
+            "idTextureWidth"
+          ]
+        },
+        {
+          "name": "createDrawCommand",
+          "startLine": 571,
+          "endLine": 594,
+          "params": [
+            "stage",
+            "context"
+          ]
+        },
+        {
+          "name": "createSampler",
+          "startLine": 596,
+          "endLine": 623,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "createLoadImageFunction",
+          "startLine": 625,
+          "endLine": 632,
+          "params": [
+            "stage",
+            "name"
+          ]
+        },
+        {
+          "name": "createStageOutputTextureFunction",
+          "startLine": 634,
+          "endLine": 638,
+          "params": [
+            "stage",
+            "name"
+          ]
+        },
+        {
+          "name": "updateUniformTextures",
+          "startLine": 640,
+          "endLine": 707,
+          "params": [
+            "stage",
+            "context"
+          ]
+        },
+        {
+          "name": "releaseResources",
+          "startLine": 709,
+          "endLine": 738,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "isSelectedTextureDirty",
+          "startLine": 740,
+          "endLine": 771,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "createSelectedTexture",
+          "startLine": 773,
+          "endLine": 850,
+          "params": [
+            "stage",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PostProcessStage",
+          "callee": "createGuid",
+          "lineNumber": 97
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 110
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "Check.typeOf.number.greaterThan",
+          "lineNumber": 111
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "Check.typeOf.number.lessThanOrEquals",
+          "lineNumber": 112
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "PixelFormat.isColorFormat",
+          "lineNumber": 117
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "defined",
+          "lineNumber": 147
+        },
+        {
+          "caller": "PostProcessStage",
+          "callee": "BoundingRectangle.clone",
+          "lineNumber": 148
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "stage._dirtyUniforms.push",
+          "lineNumber": 413
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "defined",
+          "lineNumber": 427
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "defined",
+          "lineNumber": 430
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "stage._textureCache.getStageByName",
+          "lineNumber": 430
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "stage._texturesToRelease.push",
+          "lineNumber": 432
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "stage._texturesToRelease.push",
+          "lineNumber": 438
+        },
+        {
+          "caller": "getUniformValueGetterAndSetter",
+          "callee": "stage._dirtyUniforms.push",
+          "lineNumber": 448
+        },
+        {
+          "caller": "getUniformMapFunction",
+          "callee": "value",
+          "lineNumber": 460
+        },
+        {
+          "caller": "getUniformMapDimensionsFunction",
+          "callee": "uniformMap[name]",
+          "lineNumber": 468
+        },
+        {
+          "caller": "getUniformMapDimensionsFunction",
+          "callee": "defined",
+          "lineNumber": 469
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "defined",
+          "lineNumber": 477
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "uniforms.hasOwnProperty",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "getUniformMapFunction",
+          "lineNumber": 490
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "getUniformValueGetterAndSetter",
+          "lineNumber": 491
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "uniformMap[name]",
+          "lineNumber": 499
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "getUniformMapDimensionsFunction",
+          "lineNumber": 507
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "Object.defineProperties",
+          "lineNumber": 515
+        },
+        {
+          "caller": "createUniformMap",
+          "callee": "combine",
+          "lineNumber": 517
+        },
+        {
+          "caller": "addSelectedIdToShader",
+          "callee": "shaderSource.replace",
+          "lineNumber": 543
+        },
+        {
+          "caller": "createDrawCommand",
+          "callee": "defined",
+          "lineNumber": 573
+        },
+        {
+          "caller": "createDrawCommand",
+          "callee": "defined",
+          "lineNumber": 581
+        },
+        {
+          "caller": "createDrawCommand",
+          "callee": "addSelectedIdToShader",
+          "lineNumber": 583
+        },
+        {
+          "caller": "createDrawCommand",
+          "callee": "context.createViewportQuadCommand",
+          "lineNumber": 590
+        },
+        {
+          "caller": "createSampler",
+          "callee": "defined",
+          "lineNumber": 612
+        },
+        {
+          "caller": "createLoadImageFunction",
+          "callee": "stage._texturesToCreate.push",
+          "lineNumber": 627
+        },
+        {
+          "caller": "createStageOutputTextureFunction",
+          "callee": "stage._textureCache.getOutputTexture",
+          "lineNumber": 636
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "texture.destroy",
+          "lineNumber": 644
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "defined",
+          "lineNumber": 659
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "defined",
+          "lineNumber": 664
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "stage._textureCache.getStageByName",
+          "lineNumber": 674
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "defined",
+          "lineNumber": 675
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "createStageOutputTextureFunction",
+          "lineNumber": 676
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "promises.push",
+          "lineNumber": 685
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "resource.fetchImage().then",
+          "lineNumber": 686
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "resource.fetchImage",
+          "lineNumber": 686
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "createLoadImageFunction",
+          "lineNumber": 686
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "stage._texturesToCreate.push",
+          "lineNumber": 689
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "Promise.all(promises).then",
+          "lineNumber": 700
+        },
+        {
+          "caller": "updateUniformTextures",
+          "callee": "Promise.all",
+          "lineNumber": 700
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "defined",
+          "lineNumber": 710
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "stage._command.shaderProgram.destroy",
+          "lineNumber": 712
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "stage._selectedIdTexture.destroy",
+          "lineNumber": 717
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "defined",
+          "lineNumber": 720
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "actualUniforms.hasOwnProperty",
+          "lineNumber": 727
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "defined",
+          "lineNumber": 732
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "textureCache.getStageByName",
+          "lineNumber": 732
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "actualUniform.destroy",
+          "lineNumber": 733
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "stage._dirtyUniforms.push",
+          "lineNumber": 735
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 741
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 742
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 751
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 751
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "stage._selected.concat",
+          "lineNumber": 752
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 753
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 759
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 760
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "stage._selectedIdTexture.destroy",
+          "lineNumber": 779
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "defined",
+          "lineNumber": 783
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "defined",
+          "lineNumber": 790
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "defined",
+          "lineNumber": 792
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "defined",
+          "lineNumber": 818
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 823
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 824
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 825
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 826
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "defined",
+          "lineNumber": 829
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 831
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 832
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 833
+        },
+        {
+          "caller": "createSelectedTexture",
+          "callee": "Color.floatToByte",
+          "lineNumber": 834
+        }
+      ],
+      "metrics": {
+        "importCount": 21,
+        "exportCount": 0,
+        "functionCount": 14,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStageCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 900,
+      "nonEmptyLines": 813,
+      "functions": [
+        {
+          "name": "PostProcessStageCollection",
+          "startLine": 35,
+          "endLine": 102,
+          "params": []
+        },
+        {
+          "name": "removeStages",
+          "startLine": 408,
+          "endLine": 426,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "getOutputTexture",
+          "startLine": 711,
+          "endLine": 716,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "execute",
+          "startLine": 734,
+          "endLine": 756,
+          "params": [
+            "stage",
+            "context",
+            "colorTexture",
+            "depthTexture",
+            "idTexture"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "PostProcessStageLibrary.createFXAAStage",
+          "lineNumber": 36
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "PostProcessStageLibrary.createAmbientOcclusionStage",
+          "lineNumber": 37
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "PostProcessStageLibrary.createBloomStage",
+          "lineNumber": 38
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "PostProcessStageLibrary.createAutoExposureStage",
+          "lineNumber": 43
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "stack.push",
+          "lineNumber": 62
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "stack.pop",
+          "lineNumber": 64
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "defined",
+          "lineNumber": 69
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "stack.push",
+          "lineNumber": 71
+        },
+        {
+          "caller": "PostProcessStageCollection",
+          "callee": "stage.get",
+          "lineNumber": 71
+        },
+        {
+          "caller": "removeStages",
+          "callee": "newStages.push",
+          "lineNumber": 421
+        },
+        {
+          "caller": "getOutputTexture",
+          "callee": "defined",
+          "lineNumber": 712
+        },
+        {
+          "caller": "getOutputTexture",
+          "callee": "stage.get",
+          "lineNumber": 713
+        },
+        {
+          "caller": "execute",
+          "callee": "defined",
+          "lineNumber": 735
+        },
+        {
+          "caller": "execute",
+          "callee": "stage.execute",
+          "lineNumber": 736
+        },
+        {
+          "caller": "execute",
+          "callee": "execute",
+          "lineNumber": 741
+        },
+        {
+          "caller": "execute",
+          "callee": "stage.get",
+          "lineNumber": 741
+        },
+        {
+          "caller": "execute",
+          "callee": "execute",
+          "lineNumber": 743
+        },
+        {
+          "caller": "execute",
+          "callee": "stage.get",
+          "lineNumber": 744
+        },
+        {
+          "caller": "execute",
+          "callee": "getOutputTexture",
+          "lineNumber": 746
+        },
+        {
+          "caller": "execute",
+          "callee": "stage.get",
+          "lineNumber": 746
+        },
+        {
+          "caller": "execute",
+          "callee": "execute",
+          "lineNumber": 753
+        },
+        {
+          "caller": "execute",
+          "callee": "stage.get",
+          "lineNumber": 753
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 359,
+      "nonEmptyLines": 340,
+      "functions": [
+        {
+          "name": "PostProcessStageComposite",
+          "startLine": 76,
+          "endLine": 112,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "isSelectedTextureDirty",
+          "startLine": 259,
+          "endLine": 293,
+          "params": [
+            "stage"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PostProcessStageComposite",
+          "callee": "Check.defined",
+          "lineNumber": 80
+        },
+        {
+          "caller": "PostProcessStageComposite",
+          "callee": "Check.typeOf.number.greaterThan",
+          "lineNumber": 81
+        },
+        {
+          "caller": "PostProcessStageComposite",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "PostProcessStageComposite",
+          "callee": "createGuid",
+          "lineNumber": 93
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 260
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 261
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 272
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 272
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "stage._selected.concat",
+          "lineNumber": 273
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 274
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 280
+        },
+        {
+          "caller": "isSelectedTextureDirty",
+          "callee": "defined",
+          "lineNumber": 281
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStageLibrary.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 826,
+      "nonEmptyLines": 786,
+      "functions": [
+        {
+          "name": "createBlur",
+          "startLine": 38,
+          "endLine": 105,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "getSilhouetteEdgeDetection",
+          "startLine": 270,
+          "endLine": 314,
+          "params": [
+            "edgeDetectionStages"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createBlur",
+          "callee": "Object.defineProperties",
+          "lineNumber": 68
+        },
+        {
+          "caller": "getSilhouetteEdgeDetection",
+          "callee": "defined",
+          "lineNumber": 271
+        },
+        {
+          "caller": "getSilhouetteEdgeDetection",
+          "callee": "PostProcessStageLibrary.createEdgeDetectionStage",
+          "lineNumber": 272
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 22,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 454,
+      "nonEmptyLines": 410,
+      "functions": [
+        {
+          "name": "PostProcessStageTextureCache",
+          "startLine": 18,
+          "endLine": 27,
+          "params": [
+            "postProcessStageCollection"
+          ]
+        },
+        {
+          "name": "getLastStageName",
+          "startLine": 29,
+          "endLine": 34,
+          "params": [
+            "stage"
+          ]
+        },
+        {
+          "name": "getStageDependencies",
+          "startLine": 36,
+          "endLine": 68,
+          "params": [
+            "collection",
+            "context",
+            "dependencies",
+            "stage",
+            "previousName"
+          ]
+        },
+        {
+          "name": "getCompositeDependencies",
+          "startLine": 70,
+          "endLine": 140,
+          "params": [
+            "collection",
+            "context",
+            "dependencies",
+            "composite",
+            "previousName"
+          ]
+        },
+        {
+          "name": "getDependencies",
+          "startLine": 142,
+          "endLine": 191,
+          "params": [
+            "collection",
+            "context"
+          ]
+        },
+        {
+          "name": "getFramebuffer",
+          "startLine": 193,
+          "endLine": 256,
+          "params": [
+            "cache",
+            "stageName",
+            "dependencies"
+          ]
+        },
+        {
+          "name": "createFramebuffers",
+          "startLine": 258,
+          "endLine": 269,
+          "params": [
+            "cache",
+            "context"
+          ]
+        },
+        {
+          "name": "releaseResources",
+          "startLine": 271,
+          "endLine": 278,
+          "params": [
+            "cache"
+          ]
+        },
+        {
+          "name": "updateFramebuffers",
+          "startLine": 280,
+          "endLine": 308,
+          "params": [
+            "cache",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getLastStageName",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getLastStageName",
+          "callee": "stage.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "stage._isSupported",
+          "lineNumber": 43
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "defined",
+          "lineNumber": 48
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "collection.getStageByName",
+          "lineNumber": 49
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "getLastStageName",
+          "lineNumber": 50
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "defined",
+          "lineNumber": 53
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "Object.getOwnPropertyNames",
+          "lineNumber": 54
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "collection.getStageByName",
+          "lineNumber": 59
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "getStageDependencies",
+          "callee": "getLastStageName",
+          "lineNumber": 61
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "defined",
+          "lineNumber": 78
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "defined",
+          "lineNumber": 79
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "composite._isSupported",
+          "lineNumber": 79
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "defined",
+          "lineNumber": 87
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "composite.get",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "defined",
+          "lineNumber": 93
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "getCompositeDependencies",
+          "lineNumber": 94
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "getStageDependencies",
+          "lineNumber": 102
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "getLastStageName",
+          "lineNumber": 123
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "composite.get",
+          "lineNumber": 123
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "getLastStageName",
+          "lineNumber": 126
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "composite.get",
+          "lineNumber": 126
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "getLastStageName",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "composite.get",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getCompositeDependencies",
+          "callee": "defined",
+          "lineNumber": 132
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "defined",
+          "lineNumber": 145
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getCompositeDependencies",
+          "lineNumber": 151
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getCompositeDependencies",
+          "lineNumber": 158
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getStageDependencies",
+          "lineNumber": 165
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getCompositeDependencies",
+          "lineNumber": 172
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getStageDependencies",
+          "lineNumber": 179
+        },
+        {
+          "caller": "getDependencies",
+          "callee": "getCompositeDependencies",
+          "lineNumber": 181
+        },
+        {
+          "caller": "getFramebuffer",
+          "callee": "collection.getStageByName",
+          "lineNumber": 195
+        },
+        {
+          "caller": "getFramebuffer",
+          "callee": "Color.equals",
+          "lineNumber": 215
+        },
+        {
+          "caller": "getFramebuffer",
+          "callee": "defined",
+          "lineNumber": 235
+        },
+        {
+          "caller": "getFramebuffer",
+          "callee": "framebuffer.stages.push",
+          "lineNumber": 236
+        },
+        {
+          "caller": "getFramebuffer",
+          "callee": "framebuffers.push",
+          "lineNumber": 254
+        },
+        {
+          "caller": "createFramebuffers",
+          "callee": "getDependencies",
+          "lineNumber": 259
+        },
+        {
+          "caller": "createFramebuffers",
+          "callee": "dependencies.hasOwnProperty",
+          "lineNumber": 261
+        },
+        {
+          "caller": "createFramebuffers",
+          "callee": "getFramebuffer",
+          "lineNumber": 262
+        },
+        {
+          "caller": "releaseResources",
+          "callee": "framebuffer.buffer.destroy",
+          "lineNumber": 276
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "Math.ceil",
+          "lineNumber": 290
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "Math.ceil",
+          "lineNumber": 291
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "Math.min",
+          "lineNumber": 293
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "CesiumMath.isPowerOfTwo",
+          "lineNumber": 295
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "CesiumMath.nextPowerOfTwo",
+          "lineNumber": 296
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "framebuffer.buffer.update",
+          "lineNumber": 302
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Primitive.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 2504,
+      "nonEmptyLines": 2230,
+      "functions": [
+        {
+          "name": "Primitive",
+          "startLine": 154,
+          "endLine": 355,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getCommonPerInstanceAttributeNames",
+          "startLine": 484,
+          "endLine": 519,
+          "params": [
+            "instances"
+          ]
+        },
+        {
+          "name": "getAttributeValue",
+          "startLine": 525,
+          "endLine": 536,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "createBatchTable",
+          "startLine": 538,
+          "endLine": 668,
+          "params": [
+            "primitive",
+            "context"
+          ]
+        },
+        {
+          "name": "cloneAttribute",
+          "startLine": 670,
+          "endLine": 683,
+          "params": [
+            "attribute"
+          ]
+        },
+        {
+          "name": "cloneGeometry",
+          "startLine": 685,
+          "endLine": 710,
+          "params": [
+            "geometry"
+          ]
+        },
+        {
+          "name": "cloneInstance",
+          "startLine": 712,
+          "endLine": 720,
+          "params": [
+            "instance",
+            "geometry"
+          ]
+        },
+        {
+          "name": "appendPickToVertexShader",
+          "startLine": 880,
+          "endLine": 891,
+          "params": [
+            "source"
+          ]
+        },
+        {
+          "name": "appendPickToFragmentShader",
+          "startLine": 893,
+          "endLine": 895,
+          "params": [
+            "source"
+          ]
+        },
+        {
+          "name": "modifyForEncodedNormals",
+          "startLine": 1005,
+          "endLine": 1079,
+          "params": [
+            "primitive",
+            "vertexShaderSource"
+          ]
+        },
+        {
+          "name": "depthClampVS",
+          "startLine": 1081,
+          "endLine": 1092,
+          "params": [
+            "vertexShaderSource"
+          ]
+        },
+        {
+          "name": "depthClampFS",
+          "startLine": 1094,
+          "endLine": 1109,
+          "params": [
+            "fragmentShaderSource"
+          ]
+        },
+        {
+          "name": "validateShaderMatching",
+          "startLine": 1111,
+          "endLine": 1134,
+          "params": [
+            "shaderProgram",
+            "attributeLocations"
+          ]
+        },
+        {
+          "name": "getUniformFunction",
+          "startLine": 1136,
+          "endLine": 1140,
+          "params": [
+            "uniforms",
+            "name"
+          ]
+        },
+        {
+          "name": "loadAsynchronous",
+          "startLine": 1149,
+          "endLine": 1307,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "loadSynchronous",
+          "startLine": 1309,
+          "endLine": 1370,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "recomputeBoundingSpheres",
+          "startLine": 1372,
+          "endLine": 1462,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateBatchTableBoundingSpheres",
+          "startLine": 1469,
+          "endLine": 1540,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateBatchTableOffsets",
+          "startLine": 1544,
+          "endLine": 1620,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createVertexArray",
+          "startLine": 1622,
+          "endLine": 1678,
+          "params": [
+            "primitive",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createRenderStates",
+          "startLine": 1680,
+          "endLine": 1722,
+          "params": [
+            "primitive",
+            "context",
+            "appearance",
+            "twoPasses"
+          ]
+        },
+        {
+          "name": "createShaderProgram",
+          "startLine": 1724,
+          "endLine": 1784,
+          "params": [
+            "primitive",
+            "frameState",
+            "appearance"
+          ]
+        },
+        {
+          "name": "getUniforms",
+          "startLine": 1789,
+          "endLine": 1840,
+          "params": [
+            "primitive",
+            "appearance",
+            "material",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createCommands",
+          "startLine": 1842,
+          "endLine": 1941,
+          "params": [
+            "primitive",
+            "appearance",
+            "material",
+            "translucent",
+            "twoPasses",
+            "colorCommands",
+            "pickCommands",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateAndQueueCommands",
+          "startLine": 1997,
+          "endLine": 2064,
+          "params": [
+            "primitive",
+            "frameState",
+            "colorCommands",
+            "pickCommands",
+            "modelMatrix",
+            "cull",
+            "debugShowBoundingVolume",
+            "twoPasses"
+          ]
+        },
+        {
+          "name": "transformBoundingSphere",
+          "startLine": 2232,
+          "endLine": 2253,
+          "params": [
+            "boundingSphere",
+            "offset",
+            "offsetAttribute"
+          ]
+        },
+        {
+          "name": "createGetFunction",
+          "startLine": 2255,
+          "endLine": 2274,
+          "params": [
+            "batchTable",
+            "instanceIndex",
+            "attributeIndex"
+          ]
+        },
+        {
+          "name": "createSetFunction",
+          "startLine": 2276,
+          "endLine": 2307,
+          "params": [
+            "batchTable",
+            "instanceIndex",
+            "attributeIndex",
+            "primitive",
+            "name"
+          ]
+        },
+        {
+          "name": "createBoundingSphereProperties",
+          "startLine": 2311,
+          "endLine": 2342,
+          "params": [
+            "primitive",
+            "properties",
+            "index"
+          ]
+        },
+        {
+          "name": "createPickIdProperty",
+          "startLine": 2344,
+          "endLine": 2350,
+          "params": [
+            "primitive",
+            "properties",
+            "index"
+          ]
+        },
+        {
+          "name": "setReady",
+          "startLine": 2489,
+          "endLine": 2503,
+          "params": [
+            "primitive",
+            "frameState",
+            "state",
+            "error"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Primitive",
+          "callee": "Matrix4.clone",
+          "lineNumber": 227
+        },
+        {
+          "caller": "Primitive",
+          "callee": "defined",
+          "lineNumber": 277
+        },
+        {
+          "caller": "Primitive",
+          "callee": "defined",
+          "lineNumber": 278
+        },
+        {
+          "caller": "Primitive",
+          "callee": "Array.isArray",
+          "lineNumber": 279
+        },
+        {
+          "caller": "getCommonPerInstanceAttributeNames",
+          "callee": "attributes0.hasOwnProperty",
+          "lineNumber": 492
+        },
+        {
+          "caller": "getCommonPerInstanceAttributeNames",
+          "callee": "defined",
+          "lineNumber": 492
+        },
+        {
+          "caller": "getCommonPerInstanceAttributeNames",
+          "callee": "defined",
+          "lineNumber": 501
+        },
+        {
+          "caller": "getCommonPerInstanceAttributeNames",
+          "callee": "attributesInAllInstances.push",
+          "lineNumber": 513
+        },
+        {
+          "caller": "getAttributeValue",
+          "callee": "Cartesian2.unpack",
+          "lineNumber": 530
+        },
+        {
+          "caller": "getAttributeValue",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 532
+        },
+        {
+          "caller": "getAttributeValue",
+          "callee": "Cartesian4.unpack",
+          "lineNumber": 534
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "Array.isArray",
+          "lineNumber": 540
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "getCommonPerInstanceAttributeNames",
+          "lineNumber": 548
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "attributes.push",
+          "lineNumber": 568
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "names.indexOf",
+          "lineNumber": 576
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "attributes.push",
+          "lineNumber": 577
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "names.indexOf",
+          "lineNumber": 611
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "attributes.push",
+          "lineNumber": 612
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "attributes.push",
+          "lineNumber": 620
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "getAttributeValue",
+          "lineNumber": 637
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 639
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "defined",
+          "lineNumber": 646
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "context.createPickId",
+          "lineNumber": 650
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "primitive._pickIds.push",
+          "lineNumber": 651
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "Color.floatToByte",
+          "lineNumber": 655
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "Color.floatToByte",
+          "lineNumber": 656
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "Color.floatToByte",
+          "lineNumber": 657
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "Color.floatToByte",
+          "lineNumber": 658
+        },
+        {
+          "caller": "createBatchTable",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 660
+        },
+        {
+          "caller": "cloneAttribute",
+          "callee": "Array.isArray",
+          "lineNumber": 672
+        },
+        {
+          "caller": "cloneAttribute",
+          "callee": "attribute.values.slice",
+          "lineNumber": 673
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "attributes.hasOwnProperty",
+          "lineNumber": 689
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "defined",
+          "lineNumber": 689
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "cloneAttribute",
+          "lineNumber": 690
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "defined",
+          "lineNumber": 695
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "Array.isArray",
+          "lineNumber": 697
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "sourceValues.slice",
+          "lineNumber": 698
+        },
+        {
+          "caller": "cloneGeometry",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 708
+        },
+        {
+          "caller": "cloneInstance",
+          "callee": "Matrix4.clone",
+          "lineNumber": 716
+        },
+        {
+          "caller": "appendPickToVertexShader",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 881
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "vertexShaderSource.search",
+          "lineNumber": 1011
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "vertexShaderSource.search",
+          "lineNumber": 1012
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "vertexShaderSource.search",
+          "lineNumber": 1018
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "vertexShaderSource.search",
+          "lineNumber": 1020
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "modifiedVS.replace",
+          "lineNumber": 1069
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "modifiedVS.replace",
+          "lineNumber": 1070
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "modifiedVS.replace",
+          "lineNumber": 1071
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "modifiedVS.replace",
+          "lineNumber": 1072
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 1073
+        },
+        {
+          "caller": "modifyForEncodedNormals",
+          "callee": "[attributeDecl, globalDecl, modifiedVS, compressedMain].join",
+          "lineNumber": 1078
+        },
+        {
+          "caller": "depthClampVS",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 1082
+        },
+        {
+          "caller": "depthClampFS",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 1095
+        },
+        {
+          "caller": "validateShaderMatching",
+          "callee": "shaderAttributes.hasOwnProperty",
+          "lineNumber": 1125
+        },
+        {
+          "caller": "validateShaderMatching",
+          "callee": "defined",
+          "lineNumber": 1126
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Array.isArray",
+          "lineNumber": 1158
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "instanceIds.push",
+          "lineNumber": 1167
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1171
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1171
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1172
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1172
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "subTasks.push",
+          "lineNumber": 1180
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1187
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "subdivideArray",
+          "lineNumber": 1195
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1204
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1220
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "geometry.constructor.pack",
+          "lineNumber": 1221
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "promises.push",
+          "lineNumber": 1227
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "createGeometryTaskProcessors[i].scheduleTask",
+          "lineNumber": 1228
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.all(promises)\n      .then(function (results) {\n        primitive._createGeometryResults = results;\n        primitive._state = PrimitiveState.CREATED;\n      })\n      .catch",
+          "lineNumber": 1239
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.all(promises)\n      .then",
+          "lineNumber": 1239
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.all",
+          "lineNumber": 1239
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "setReady",
+          "lineNumber": 1245
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Array.isArray",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "combineGeometryTaskProcessor.scheduleTask",
+          "lineNumber": 1256
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "PrimitivePipeline.packCombineGeometryParameters",
+          "lineNumber": 1257
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.resolve(promise)\n      .then(function (packedResult) {\n        const result =\n          PrimitivePipeline.unpackCombineGeometryResults(packedResult);\n        primitive._geometries = result.geometries;\n        primitive._attributeLocations = result.attributeLocations;\n        primitive.modelMatrix = Matrix4.clone(\n          result.modelMatrix,\n          primitive.modelMatrix,\n        );\n        primitive._pickOffsets = result.pickOffsets;\n        primitive._offsetInstanceExtend = result.offsetInstanceExtend;\n        primitive._instanceBoundingSpheres = result.boundingSpheres;\n        primitive._instanceBoundingSpheresCV = result.boundingSpheresCV;\n\n        if (\n          defined(primitive._geometries) &&\n          primitive._geometries.length > 0\n        ) {\n          primitive._recomputeBoundingSpheres = true;\n          primitive._state = PrimitiveState.COMBINED;\n        } else {\n          setReady(primitive, frameState, PrimitiveState.FAILED, undefined);\n        }\n      })\n      .catch",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.resolve(promise)\n      .then",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Promise.resolve",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "PrimitivePipeline.unpackCombineGeometryResults",
+          "lineNumber": 1281
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1284
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "defined",
+          "lineNumber": 1294
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "setReady",
+          "lineNumber": 1300
+        },
+        {
+          "caller": "loadAsynchronous",
+          "callee": "setReady",
+          "lineNumber": 1304
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "Array.isArray",
+          "lineNumber": 1310
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "defined",
+          "lineNumber": 1326
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "defined",
+          "lineNumber": 1326
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "cloneGeometry",
+          "lineNumber": 1327
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "geometry.constructor.createGeometry",
+          "lineNumber": 1329
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "cloneInstance",
+          "lineNumber": 1332
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "instanceIds.push",
+          "lineNumber": 1333
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "PrimitivePipeline.combineGeometry",
+          "lineNumber": 1341
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1355
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "defined",
+          "lineNumber": 1364
+        },
+        {
+          "caller": "loadSynchronous",
+          "callee": "setReady",
+          "lineNumber": 1368
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1374
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1384
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "primitive._batchTable.getBatchedAttribute",
+          "lineNumber": 1393
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "boundingSpheres[i].clone",
+          "lineNumber": 1398
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "transformBoundingSphere",
+          "lineNumber": 1399
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "BoundingSphere.intersectPlane",
+          "lineNumber": 1411
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "combinedBS.push",
+          "lineNumber": 1414
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "combinedWestBS.push",
+          "lineNumber": 1416
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "combinedEastBS.push",
+          "lineNumber": 1417
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 1426
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 1429
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 1432
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1435
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "result.push",
+          "lineNumber": 1436
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1438
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "result.push",
+          "lineNumber": 1439
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1441
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "result.push",
+          "lineNumber": 1442
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "result[i].clone",
+          "lineNumber": 1446
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "BoundingSphere.projectTo2D",
+          "lineNumber": 1448
+        },
+        {
+          "caller": "recomputeBoundingSpheres",
+          "callee": "Primitive._updateBoundingVolumes",
+          "lineNumber": 1455
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1470
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1496
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "defined",
+          "lineNumber": 1501
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 1502
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 1512
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1516
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1517
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1520
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "projection.project",
+          "lineNumber": 1524
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 1528
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1532
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1533
+        },
+        {
+          "caller": "updateBatchTableBoundingSpheres",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1536
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "defined",
+          "lineNumber": 1545
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "defined",
+          "lineNumber": 1565
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "batchTable.getBatchedAttribute",
+          "lineNumber": 1568
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "Cartesian3.equals",
+          "lineNumber": 1572
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1573
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "defined",
+          "lineNumber": 1578
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 1579
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "ellipsoid.scaleToGeodeticSurface",
+          "lineNumber": 1587
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1588
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "projection.project",
+          "lineNumber": 1592
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1597
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "ellipsoid.cartesianToCartographic",
+          "lineNumber": 1598
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "projection.project",
+          "lineNumber": 1600
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1605
+        },
+        {
+          "caller": "updateBatchTableOffsets",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 1616
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "va.push",
+          "lineNumber": 1633
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "VertexArray.fromGeometry",
+          "lineNumber": 1634
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "defined",
+          "lineNumber": 1643
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._createBoundingVolumeFunction",
+          "lineNumber": 1644
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._boundingSpheres.push",
+          "lineNumber": 1646
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 1647
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._boundingSphereWC.push",
+          "lineNumber": 1649
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._boundingSphereCV.push",
+          "lineNumber": 1660
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 1661
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._boundingSphere2D.push",
+          "lineNumber": 1663
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "primitive._boundingSphereMorph.push",
+          "lineNumber": 1664
+        },
+        {
+          "caller": "createVertexArray",
+          "callee": "setReady",
+          "lineNumber": 1677
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "appearance.getRenderState",
+          "lineNumber": 1681
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "clone",
+          "lineNumber": 1685
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1690
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1693
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1695
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "clone",
+          "lineNumber": 1699
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "defined",
+          "lineNumber": 1700
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "defined",
+          "lineNumber": 1704
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "primitive._depthFailAppearance.getRenderState",
+          "lineNumber": 1705
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "clone",
+          "lineNumber": 1706
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1713
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1716
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1718
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "primitive._batchTable.getVertexShaderCallback()",
+          "lineNumber": 1729
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "primitive._batchTable.getVertexShaderCallback",
+          "lineNumber": 1729
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._appendOffsetToShader",
+          "lineNumber": 1732
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._appendShowToShader",
+          "lineNumber": 1733
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._appendDistanceDisplayConditionToShader",
+          "lineNumber": 1734
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "appendPickToVertexShader",
+          "lineNumber": 1739
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._updateColorAttribute",
+          "lineNumber": 1740
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "modifyForEncodedNormals",
+          "lineNumber": 1741
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._modifyShaderPosition",
+          "lineNumber": 1742
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "appearance.getFragmentShaderSource",
+          "lineNumber": 1743
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "appendPickToFragmentShader",
+          "lineNumber": 1744
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "ShaderProgram.replaceCache",
+          "lineNumber": 1746
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "validateShaderMatching",
+          "lineNumber": 1753
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "defined",
+          "lineNumber": 1755
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "primitive._batchTable.getVertexShaderCallback()",
+          "lineNumber": 1756
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "primitive._batchTable.getVertexShaderCallback",
+          "lineNumber": 1756
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._appendShowToShader",
+          "lineNumber": 1759
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._appendDistanceDisplayConditionToShader",
+          "lineNumber": 1760
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "appendPickToVertexShader",
+          "lineNumber": 1765
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._updateColorAttribute",
+          "lineNumber": 1766
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "modifyForEncodedNormals",
+          "lineNumber": 1767
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "Primitive._modifyShaderPosition",
+          "lineNumber": 1768
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "depthClampVS",
+          "lineNumber": 1769
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "primitive._depthFailAppearance.getFragmentShaderSource",
+          "lineNumber": 1771
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "appendPickToFragmentShader",
+          "lineNumber": 1772
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "depthClampFS",
+          "lineNumber": 1773
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "ShaderProgram.replaceCache",
+          "lineNumber": 1775
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "validateShaderMatching",
+          "lineNumber": 1782
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "defined",
+          "lineNumber": 1791
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "defined",
+          "lineNumber": 1794
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "appearanceUniforms.hasOwnProperty",
+          "lineNumber": 1797
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "defined",
+          "lineNumber": 1799
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "defined",
+          "lineNumber": 1799
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "getUniformFunction",
+          "lineNumber": 1807
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "combine",
+          "lineNumber": 1814
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "primitive._batchTable.getUniformMapCallback()",
+          "lineNumber": 1815
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "primitive._batchTable.getUniformMapCallback",
+          "lineNumber": 1815
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "defined",
+          "lineNumber": 1817
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1820
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1825
+        },
+        {
+          "caller": "getUniforms",
+          "callee": "Matrix4.setTranslation",
+          "lineNumber": 1830
+        },
+        {
+          "caller": "createCommands",
+          "callee": "getUniforms",
+          "lineNumber": 1852
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1855
+        },
+        {
+          "caller": "createCommands",
+          "callee": "getUniforms",
+          "lineNumber": 1856
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1867
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1877
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1893
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1905
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1910
+        },
+        {
+          "caller": "createCommands",
+          "callee": "defined",
+          "lineNumber": 1926
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "Matrix4.equals",
+          "lineNumber": 2010
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "Primitive._updateBoundingVolumes",
+          "lineNumber": 2018
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "defined",
+          "lineNumber": 2027
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "defined",
+          "lineNumber": 2030
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "ShadowMode.castShadows",
+          "lineNumber": 2038
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "ShadowMode.receiveShadows",
+          "lineNumber": 2039
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "defined",
+          "lineNumber": 2043
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "Math.floor",
+          "lineNumber": 2046
+        },
+        {
+          "caller": "updateAndQueueCommands",
+          "callee": "commandList.push",
+          "lineNumber": 2061
+        },
+        {
+          "caller": "transformBoundingSphere",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 2234
+        },
+        {
+          "caller": "transformBoundingSphere",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 2238
+        },
+        {
+          "caller": "transformBoundingSphere",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2242
+        },
+        {
+          "caller": "transformBoundingSphere",
+          "callee": "BoundingSphere.union",
+          "lineNumber": 2243
+        },
+        {
+          "caller": "transformBoundingSphere",
+          "callee": "Cartesian3.add",
+          "lineNumber": 2245
+        },
+        {
+          "caller": "createGetFunction",
+          "callee": "batchTable.getBatchedAttribute",
+          "lineNumber": 2257
+        },
+        {
+          "caller": "createGetFunction",
+          "callee": "ComponentDatatype.createTypedArray",
+          "lineNumber": 2263
+        },
+        {
+          "caller": "createGetFunction",
+          "callee": "defined",
+          "lineNumber": 2267
+        },
+        {
+          "caller": "createGetFunction",
+          "callee": "attributeValue.constructor.pack",
+          "lineNumber": 2268
+        },
+        {
+          "caller": "createSetFunction",
+          "callee": "defined",
+          "lineNumber": 2286
+        },
+        {
+          "caller": "createSetFunction",
+          "callee": "defined",
+          "lineNumber": 2287
+        },
+        {
+          "caller": "createSetFunction",
+          "callee": "getAttributeValue",
+          "lineNumber": 2296
+        },
+        {
+          "caller": "createSetFunction",
+          "callee": "batchTable.setBatchedAttribute",
+          "lineNumber": 2297
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "defined",
+          "lineNumber": 2315
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "boundingSphere.clone",
+          "lineNumber": 2316
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "defined",
+          "lineNumber": 2319
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "transformBoundingSphere",
+          "lineNumber": 2320
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "Cartesian3.fromArray",
+          "lineNumber": 2322
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "offset.get",
+          "lineNumber": 2322
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "defined",
+          "lineNumber": 2326
+        },
+        {
+          "caller": "createBoundingSphereProperties",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 2327
+        },
+        {
+          "caller": "setReady",
+          "callee": "frameState.afterRender.push",
+          "lineNumber": 2493
+        }
+      ],
+      "metrics": {
+        "importCount": 40,
+        "exportCount": 0,
+        "functionCount": 31,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PrimitiveCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 532,
+      "nonEmptyLines": 486,
+      "functions": [
+        {
+          "name": "PrimitiveCollection",
+          "startLine": 33,
+          "endLine": 79,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getPrimitiveIndex",
+          "startLine": 285,
+          "endLine": 293,
+          "params": [
+            "compositePrimitive",
+            "primitive"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PrimitiveCollection",
+          "callee": "createGuid",
+          "lineNumber": 37
+        },
+        {
+          "caller": "getPrimitiveIndex",
+          "callee": "compositePrimitive.contains",
+          "lineNumber": 287
+        },
+        {
+          "caller": "getPrimitiveIndex",
+          "callee": "compositePrimitive._primitives.indexOf",
+          "lineNumber": 292
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PrimitiveState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 133,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 735,
+      "nonEmptyLines": 659,
+      "functions": [
+        {
+          "name": "createSpatialHashKey",
+          "startLine": 677,
+          "endLine": 689,
+          "params": [
+            "longitude",
+            "latitude",
+            "rectangle",
+            "maximumScreenSpaceError"
+          ]
+        },
+        {
+          "name": "childTileAtPosition",
+          "startLine": 701,
+          "endLine": 723,
+          "params": [
+            "tile",
+            "positionCartographic"
+          ]
+        },
+        {
+          "name": "freeTile",
+          "startLine": 729,
+          "endLine": 733,
+          "params": [
+            "tile"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "LRUCache",
+          "startLine": 17,
+          "endLine": 65,
+          "methods": [
+            "constructor",
+            "get",
+            "set",
+            "size",
+            "clear"
+          ],
+          "properties": []
+        },
+        {
+          "name": "QuadtreeTile",
+          "startLine": 75,
+          "endLine": 632,
+          "methods": [
+            "constructor",
+            "createLevelZeroTiles",
+            "_getCacheKey",
+            "getPositionCacheEntry",
+            "setPositionCacheEntry",
+            "clearPositionCache",
+            "updateCustomData",
+            "tilingScheme",
+            "x",
+            "y",
+            "level",
+            "parent",
+            "rectangle",
+            "children",
+            "southwestChild",
+            "southeastChild",
+            "northwestChild",
+            "northeastChild",
+            "customData",
+            "needsLoading",
+            "eligibleForUnloading",
+            "findLevelZeroTile",
+            "findTileToWest",
+            "findTileToEast",
+            "findTileToSouth",
+            "findTileToNorth",
+            "freeResources"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get",
+          "callee": "this.cache.has",
+          "lineNumber": 29
+        },
+        {
+          "caller": "get",
+          "callee": "this.cache.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "get",
+          "callee": "this.cache.delete",
+          "lineNumber": 34
+        },
+        {
+          "caller": "get",
+          "callee": "this.cache.set",
+          "lineNumber": 35
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.has",
+          "lineNumber": 44
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.delete",
+          "lineNumber": 45
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.keys().next",
+          "lineNumber": 48
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.keys",
+          "lineNumber": 48
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.delete",
+          "lineNumber": 49
+        },
+        {
+          "caller": "set",
+          "callee": "this.cache.set",
+          "lineNumber": 51
+        },
+        {
+          "caller": "clear",
+          "callee": "this.cache.clear",
+          "lineNumber": 63
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 89
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 91
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 103
+        },
+        {
+          "caller": "constructor",
+          "callee": "this._tilingScheme.tileXYToRectangle",
+          "lineNumber": 115
+        },
+        {
+          "caller": "createLevelZeroTiles",
+          "callee": "defined",
+          "lineNumber": 193
+        },
+        {
+          "caller": "createLevelZeroTiles",
+          "callee": "tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 198
+        },
+        {
+          "caller": "createLevelZeroTiles",
+          "callee": "tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_getCacheKey",
+          "callee": "createSpatialHashKey",
+          "lineNumber": 228
+        },
+        {
+          "caller": "getPositionCacheEntry",
+          "callee": "this._positionCache.get",
+          "lineNumber": 247
+        },
+        {
+          "caller": "getPositionCacheEntry",
+          "callee": "this._getCacheKey",
+          "lineNumber": 248
+        },
+        {
+          "caller": "setPositionCacheEntry",
+          "callee": "this._positionCache.set",
+          "lineNumber": 264
+        },
+        {
+          "caller": "setPositionCacheEntry",
+          "callee": "this._getCacheKey",
+          "lineNumber": 265
+        },
+        {
+          "caller": "clearPositionCache",
+          "callee": "this._positionCache.clear",
+          "lineNumber": 278
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "customData.add",
+          "lineNumber": 292
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "childTileAtPosition",
+          "lineNumber": 294
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "child._addedCustomData.push",
+          "lineNumber": 295
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "customData.has",
+          "lineNumber": 301
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "customData.delete",
+          "lineNumber": 302
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "childTileAtPosition",
+          "lineNumber": 305
+        },
+        {
+          "caller": "updateCustomData",
+          "callee": "child._removedCustomData.push",
+          "lineNumber": 306
+        },
+        {
+          "caller": "southwestChild",
+          "callee": "defined",
+          "lineNumber": 378
+        },
+        {
+          "caller": "southeastChild",
+          "callee": "defined",
+          "lineNumber": 395
+        },
+        {
+          "caller": "northwestChild",
+          "callee": "defined",
+          "lineNumber": 412
+        },
+        {
+          "caller": "northeastChild",
+          "callee": "defined",
+          "lineNumber": 429
+        },
+        {
+          "caller": "eligibleForUnloading",
+          "callee": "defined",
+          "lineNumber": 472
+        },
+        {
+          "caller": "eligibleForUnloading",
+          "callee": "defined",
+          "lineNumber": 474
+        },
+        {
+          "caller": "findLevelZeroTile",
+          "callee": "this.tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 489
+        },
+        {
+          "caller": "findLevelZeroTile",
+          "callee": "this.tilingScheme.getNumberOfYTilesAtLevel",
+          "lineNumber": 496
+        },
+        {
+          "caller": "findLevelZeroTile",
+          "callee": "levelZeroTiles.filter",
+          "lineNumber": 500
+        },
+        {
+          "caller": "findTileToWest",
+          "callee": "this.findLevelZeroTile",
+          "lineNumber": 512
+        },
+        {
+          "caller": "findTileToWest",
+          "callee": "parent.findTileToWest",
+          "lineNumber": 521
+        },
+        {
+          "caller": "findTileToEast",
+          "callee": "this.findLevelZeroTile",
+          "lineNumber": 537
+        },
+        {
+          "caller": "findTileToEast",
+          "callee": "parent.findTileToEast",
+          "lineNumber": 546
+        },
+        {
+          "caller": "findTileToSouth",
+          "callee": "this.findLevelZeroTile",
+          "lineNumber": 562
+        },
+        {
+          "caller": "findTileToSouth",
+          "callee": "parent.findTileToSouth",
+          "lineNumber": 571
+        },
+        {
+          "caller": "findTileToNorth",
+          "callee": "this.findLevelZeroTile",
+          "lineNumber": 587
+        },
+        {
+          "caller": "findTileToNorth",
+          "callee": "parent.findTileToNorth",
+          "lineNumber": 596
+        },
+        {
+          "caller": "freeResources",
+          "callee": "this.clearPositionCache",
+          "lineNumber": 613
+        },
+        {
+          "caller": "freeResources",
+          "callee": "defined",
+          "lineNumber": 619
+        },
+        {
+          "caller": "freeResources",
+          "callee": "defined",
+          "lineNumber": 619
+        },
+        {
+          "caller": "freeResources",
+          "callee": "data.freeResources",
+          "lineNumber": 620
+        },
+        {
+          "caller": "freeResources",
+          "callee": "freeTile",
+          "lineNumber": 623
+        },
+        {
+          "caller": "freeResources",
+          "callee": "freeTile",
+          "lineNumber": 625
+        },
+        {
+          "caller": "freeResources",
+          "callee": "freeTile",
+          "lineNumber": 627
+        },
+        {
+          "caller": "freeResources",
+          "callee": "freeTile",
+          "lineNumber": 629
+        },
+        {
+          "caller": "createSpatialHashKey",
+          "callee": "Math.floor",
+          "lineNumber": 686
+        },
+        {
+          "caller": "createSpatialHashKey",
+          "callee": "Math.floor",
+          "lineNumber": 687
+        },
+        {
+          "caller": "createSpatialHashKey",
+          "callee": "lonGrid.toFixed",
+          "lineNumber": 688
+        },
+        {
+          "caller": "createSpatialHashKey",
+          "callee": "latGrid.toFixed",
+          "lineNumber": 688
+        },
+        {
+          "caller": "childTileAtPosition",
+          "callee": "Rectangle.southeast",
+          "lineNumber": 705
+        },
+        {
+          "caller": "freeTile",
+          "callee": "defined",
+          "lineNumber": 730
+        },
+        {
+          "caller": "freeTile",
+          "callee": "tile.freeResources",
+          "lineNumber": 731
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 38,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SDFSettings.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 36,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SceneFramebuffer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 106,
+      "nonEmptyLines": 94,
+      "functions": [
+        {
+          "name": "SceneFramebuffer",
+          "startLine": 10,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "destroyResources",
+          "startLine": 30,
+          "endLine": 33,
+          "params": [
+            "post"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "destroyResources",
+          "callee": "post._colorFramebuffer.destroy",
+          "lineNumber": 31
+        },
+        {
+          "caller": "destroyResources",
+          "callee": "post._idFramebuffer.destroy",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SceneMode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 59,
+      "nonEmptyLines": 53,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ShadowMap.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1956,
+      "nonEmptyLines": 1758,
+      "functions": [
+        {
+          "name": "ShadowMap",
+          "startLine": 81,
+          "endLine": 285,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "ShadowPass",
+          "startLine": 295,
+          "endLine": 302,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "createRenderState",
+          "startLine": 304,
+          "endLine": 326,
+          "params": [
+            "colorMask",
+            "bias"
+          ]
+        },
+        {
+          "name": "createRenderStates",
+          "startLine": 328,
+          "endLine": 343,
+          "params": [
+            "shadowMap"
+          ]
+        },
+        {
+          "name": "destroyFramebuffer",
+          "startLine": 498,
+          "endLine": 514,
+          "params": [
+            "shadowMap"
+          ]
+        },
+        {
+          "name": "createFramebufferColor",
+          "startLine": 516,
+          "endLine": 550,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "createFramebufferDepth",
+          "startLine": 552,
+          "endLine": 577,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "createFramebufferCube",
+          "startLine": 579,
+          "endLine": 620,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "createFramebuffer",
+          "startLine": 622,
+          "endLine": 630,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "checkFramebuffer",
+          "startLine": 632,
+          "endLine": 644,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "updateFramebuffer",
+          "startLine": 646,
+          "endLine": 656,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "clearFramebuffer",
+          "startLine": 658,
+          "endLine": 665,
+          "params": [
+            "shadowMap",
+            "context",
+            "shadowPass"
+          ]
+        },
+        {
+          "name": "resize",
+          "startLine": 667,
+          "endLine": 756,
+          "params": [
+            "shadowMap",
+            "size"
+          ]
+        },
+        {
+          "name": "createDebugShadowViewCommand",
+          "startLine": 760,
+          "endLine": 843,
+          "params": [
+            "shadowMap",
+            "context"
+          ]
+        },
+        {
+          "name": "updateDebugShadowViewCommand",
+          "startLine": 845,
+          "endLine": 875,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "createDebugPointLight",
+          "startLine": 893,
+          "endLine": 922,
+          "params": [
+            "modelMatrix",
+            "color"
+          ]
+        },
+        {
+          "name": "applyDebugSettings",
+          "startLine": 927,
+          "endLine": 1017,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "ShadowMapCamera",
+          "startLine": 1019,
+          "endLine": 1029,
+          "params": []
+        },
+        {
+          "name": "computeCascades",
+          "startLine": 1080,
+          "endLine": 1233,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "fitShadowMapToScene",
+          "startLine": 1240,
+          "endLine": 1347,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "computeOmnidirectional",
+          "startLine": 1376,
+          "endLine": 1407,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "checkVisibility",
+          "startLine": 1414,
+          "endLine": 1495,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateCameras",
+          "startLine": 1497,
+          "endLine": 1559,
+          "params": [
+            "shadowMap",
+            "frameState"
+          ]
+        },
+        {
+          "name": "combineUniforms",
+          "startLine": 1627,
+          "endLine": 1687,
+          "params": [
+            "shadowMap",
+            "uniforms",
+            "isTerrain"
+          ]
+        },
+        {
+          "name": "createCastDerivedCommand",
+          "startLine": 1689,
+          "endLine": 1783,
+          "params": [
+            "shadowMap",
+            "shadowsDirty",
+            "command",
+            "context",
+            "oldShaderId",
+            "result"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ShadowMap",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "defined",
+          "lineNumber": 89
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "defined",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "FeatureDetection.isEdge",
+          "lineNumber": 148
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "FeatureDetection.isChrome",
+          "lineNumber": 149
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "FeatureDetection.isFirefox",
+          "lineNumber": 149
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "FeatureDetection.isWindows",
+          "lineNumber": 150
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "defined",
+          "lineNumber": 225
+        },
+        {
+          "caller": "ShadowMap",
+          "callee": "createRenderStates",
+          "lineNumber": 273
+        },
+        {
+          "caller": "createRenderState",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 305
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "createRenderState",
+          "lineNumber": 331
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "createRenderState",
+          "lineNumber": 335
+        },
+        {
+          "caller": "createRenderStates",
+          "callee": "createRenderState",
+          "lineNumber": 339
+        },
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "defined",
+          "lineNumber": 503
+        },
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "framebuffer.isDestroyed",
+          "lineNumber": 503
+        },
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "framebuffer.destroy",
+          "lineNumber": 504
+        },
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "shadowMap._depthAttachment.destroy",
+          "lineNumber": 511
+        },
+        {
+          "caller": "destroyFramebuffer",
+          "callee": "shadowMap._colorAttachment.destroy",
+          "lineNumber": 513
+        },
+        {
+          "caller": "createFramebuffer",
+          "callee": "createFramebufferCube",
+          "lineNumber": 624
+        },
+        {
+          "caller": "createFramebuffer",
+          "callee": "createFramebufferDepth",
+          "lineNumber": 626
+        },
+        {
+          "caller": "createFramebuffer",
+          "callee": "createFramebufferColor",
+          "lineNumber": 628
+        },
+        {
+          "caller": "checkFramebuffer",
+          "callee": "createRenderStates",
+          "lineNumber": 640
+        },
+        {
+          "caller": "checkFramebuffer",
+          "callee": "destroyFramebuffer",
+          "lineNumber": 641
+        },
+        {
+          "caller": "checkFramebuffer",
+          "callee": "createFramebuffer",
+          "lineNumber": 642
+        },
+        {
+          "caller": "updateFramebuffer",
+          "callee": "defined",
+          "lineNumber": 648
+        },
+        {
+          "caller": "updateFramebuffer",
+          "callee": "destroyFramebuffer",
+          "lineNumber": 651
+        },
+        {
+          "caller": "updateFramebuffer",
+          "callee": "createFramebuffer",
+          "lineNumber": 652
+        },
+        {
+          "caller": "updateFramebuffer",
+          "callee": "checkFramebuffer",
+          "lineNumber": 653
+        },
+        {
+          "caller": "updateFramebuffer",
+          "callee": "clearFramebuffer",
+          "lineNumber": 654
+        },
+        {
+          "caller": "clearFramebuffer",
+          "callee": "shadowMap._clearCommand.execute",
+          "lineNumber": 663
+        },
+        {
+          "caller": "createDebugShadowViewCommand",
+          "callee": "context.createViewportQuadCommand",
+          "lineNumber": 831
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "Math.min",
+          "lineNumber": 850
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "defined",
+          "lineNumber": 859
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "createDebugShadowViewCommand",
+          "lineNumber": 860
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "defined",
+          "lineNumber": 866
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "BoundingRectangle.equals",
+          "lineNumber": 867
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 869
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "BoundingRectangle.clone",
+          "lineNumber": 870
+        },
+        {
+          "caller": "updateDebugShadowViewCommand",
+          "callee": "frameState.commandList.push",
+          "lineNumber": 874
+        },
+        {
+          "caller": "createDebugPointLight",
+          "callee": "ColorGeometryInstanceAttribute.fromColor",
+          "lineNumber": 900
+        },
+        {
+          "caller": "createDebugPointLight",
+          "callee": "ColorGeometryInstanceAttribute.fromColor",
+          "lineNumber": 909
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "updateDebugShadowViewCommand",
+          "lineNumber": 928
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugCameraFrustum.destroy",
+          "lineNumber": 940
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugCameraFrustum.update",
+          "lineNumber": 947
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugLightFrustum.destroy",
+          "lineNumber": 957
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugLightFrustum.update",
+          "lineNumber": 964
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugCascadeFrustums[i].destroy",
+          "lineNumber": 971
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugCascadeFrustums[i].update",
+          "lineNumber": 978
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 982
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 986
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "Matrix4.fromTranslationQuaternionRotationScale",
+          "lineNumber": 992
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugLightFrustum.destroy",
+          "lineNumber": 1000
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "createDebugPointLight",
+          "lineNumber": 1001
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugLightFrustum.update",
+          "lineNumber": 1006
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 1008
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "shadowMap._debugLightFrustum.update",
+          "lineNumber": 1015
+        },
+        {
+          "caller": "ShadowMapCamera",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1025
+        },
+        {
+          "caller": "ShadowMapCamera",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1026
+        },
+        {
+          "caller": "ShadowMapCamera",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1027
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.pow",
+          "lineNumber": 1111
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 1113
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.min",
+          "lineNumber": 1121
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian4.unpack",
+          "lineNumber": 1135
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian4.unpack",
+          "lineNumber": 1136
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian4.unpack",
+          "lineNumber": 1137
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "sceneCamera.frustum.clone",
+          "lineNumber": 1151
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "shadowMapCamera.getViewProjection",
+          "lineNumber": 1152
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1158
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1163
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1167
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1174
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1180
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian4.clone",
+          "lineNumber": 1188
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.multiplyByVector",
+          "lineNumber": 1192
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian3.divideByScalar",
+          "lineNumber": 1193
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian3.minimumByComponent",
+          "lineNumber": 1194
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Cartesian3.maximumByComponent",
+          "lineNumber": 1195
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.max",
+          "lineNumber": 1199
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.max",
+          "lineNumber": 1200
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.min",
+          "lineNumber": 1202
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.min",
+          "lineNumber": 1203
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Math.min",
+          "lineNumber": 1204
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "cascadeCamera.clone",
+          "lineNumber": 1208
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "cascadeCamera.frustum.computeCullingVolume",
+          "lineNumber": 1218
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1226
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "cascadeCamera.getViewProjection",
+          "lineNumber": 1227
+        },
+        {
+          "caller": "computeCascades",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1231
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1245
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1250
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.equalsEpsilon",
+          "lineNumber": 1255
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 1258
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 1259
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1260
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1261
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1262
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.computeView",
+          "lineNumber": 1269
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1276
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1283
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 1289
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian4.clone",
+          "lineNumber": 1297
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.multiplyByVector",
+          "lineNumber": 1301
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.divideByScalar",
+          "lineNumber": 1302
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.minimumByComponent",
+          "lineNumber": 1303
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.maximumByComponent",
+          "lineNumber": 1304
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.fromTranslation",
+          "lineNumber": 1317
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.multiply",
+          "lineNumber": 1318
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.clone",
+          "lineNumber": 1334
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1335
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Matrix4.getTranslation",
+          "lineNumber": 1336
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "frameState.mapProjection.ellipsoid.cartesianToCartographic",
+          "lineNumber": 1340
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1344
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1345
+        },
+        {
+          "caller": "fitShadowMapToScene",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1346
+        },
+        {
+          "caller": "computeOmnidirectional",
+          "callee": "frameState.mapProjection.ellipsoid.cartesianToCartographic",
+          "lineNumber": 1388
+        },
+        {
+          "caller": "computeOmnidirectional",
+          "callee": "Matrix4.computeView",
+          "lineNumber": 1396
+        },
+        {
+          "caller": "computeOmnidirectional",
+          "callee": "Matrix4.inverse",
+          "lineNumber": 1403
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "frameState.mapProjection.ellipsoid.geodeticSurfaceNormal",
+          "lineNumber": 1431
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 1435
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 1439
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 1443
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 1444
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "frameState.cullingVolume.computeVisibility",
+          "lineNumber": 1467
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "shadowMap._boundingSphere.equals",
+          "lineNumber": 1471
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 1472
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "Cartesian3.add",
+          "lineNumber": 1476
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 1478
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "frameState.cullingVolume.computeVisibility",
+          "lineNumber": 1488
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "shadowMap._boundingSphere.equals",
+          "lineNumber": 1492
+        },
+        {
+          "caller": "checkVisibility",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 1493
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1505
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 1507
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "shadowMapCamera.clone",
+          "lineNumber": 1509
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Matrix4.multiplyByPointAsVector",
+          "lineNumber": 1514
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 1519
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Cartesian3.negate",
+          "lineNumber": 1520
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 1523
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Math.min",
+          "lineNumber": 1536
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Math.min",
+          "lineNumber": 1540
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Math.max",
+          "lineNumber": 1541
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "Camera.clone",
+          "lineNumber": 1547
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "camera.frustum.clone",
+          "lineNumber": 1548
+        },
+        {
+          "caller": "updateCameras",
+          "callee": "checkVisibility",
+          "lineNumber": 1553
+        },
+        {
+          "caller": "combineUniforms",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 1664
+        },
+        {
+          "caller": "combineUniforms",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 1673
+        },
+        {
+          "caller": "combineUniforms",
+          "callee": "combine",
+          "lineNumber": 1686
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "defined",
+          "lineNumber": 1700
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 1706
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "defined",
+          "lineNumber": 1711
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "ShadowMapShader.getShadowCastShaderKeyword",
+          "lineNumber": 1722
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "context.shaderCache.getDerivedShaderProgram",
+          "lineNumber": 1728
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "defined",
+          "lineNumber": 1732
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "ShadowMapShader.createShadowCastVertexShader",
+          "lineNumber": 1736
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "ShadowMapShader.createShadowCastFragmentShader",
+          "lineNumber": 1741
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "context.shaderCache.createDerivedShaderProgram",
+          "lineNumber": 1748
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "clone",
+          "lineNumber": 1769
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "clone",
+          "lineNumber": 1770
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 1772
+        },
+        {
+          "caller": "createCastDerivedCommand",
+          "callee": "combineUniforms",
+          "lineNumber": 1775
+        }
+      ],
+      "metrics": {
+        "importCount": 46,
+        "exportCount": 0,
+        "functionCount": 25,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ShadowMapShader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 395,
+      "nonEmptyLines": 349,
+      "functions": [
+        {
+          "name": "ShadowMapShader",
+          "startLine": 7,
+          "endLine": 7,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ShadowMode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 71,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SkyAtmosphere.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 400,
+      "nonEmptyLines": 352,
+      "functions": [
+        {
+          "name": "SkyAtmosphere",
+          "startLine": 42,
+          "endLine": 201,
+          "params": [
+            "ellipsoid"
+          ]
+        },
+        {
+          "name": "hasColorCorrection",
+          "startLine": 343,
+          "endLine": 361,
+          "params": [
+            "skyAtmosphere"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SkyAtmosphere",
+          "callee": "Cartesian3.multiplyByScalar",
+          "lineNumber": 65
+        },
+        {
+          "caller": "SkyAtmosphere",
+          "callee": "Matrix4.fromScale",
+          "lineNumber": 70
+        },
+        {
+          "caller": "hasColorCorrection",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 345
+        },
+        {
+          "caller": "hasColorCorrection",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 350
+        },
+        {
+          "caller": "hasColorCorrection",
+          "callee": "CesiumMath.equalsEpsilon",
+          "lineNumber": 355
+        }
+      ],
+      "metrics": {
+        "importCount": 19,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SkyBox.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 163,
+      "nonEmptyLines": 150,
+      "functions": [
+        {
+          "name": "SkyBox",
+          "startLine": 36,
+          "endLine": 44,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getDefaultSkyBoxUrl",
+          "startLine": 139,
+          "endLine": 141,
+          "params": [
+            "suffix"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getDefaultSkyBoxUrl",
+          "callee": "buildModuleUrl",
+          "lineNumber": 140
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 240,
+      "nonEmptyLines": 217,
+      "functions": [
+        {
+          "name": "SpecularEnvironmentCubeMap",
+          "startLine": 20,
+          "endLine": 32,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "cleanupResources",
+          "startLine": 103,
+          "endLine": 105,
+          "params": [
+            "map"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SplitDirection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 34,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Splitter.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 49,
+      "nonEmptyLines": 45,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/StencilConstants.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 35,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/StencilFunction.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 67,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/StencilOperation.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 67,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Sun.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 363,
+      "nonEmptyLines": 319,
+      "functions": [
+        {
+          "name": "Sun",
+          "startLine": 42,
+          "endLine": 83,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 24,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/SunPostProcess.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 288,
+      "nonEmptyLines": 248,
+      "functions": [
+        {
+          "name": "SunPostProcess",
+          "startLine": 19,
+          "endLine": 123,
+          "params": []
+        },
+        {
+          "name": "updateSunPosition",
+          "startLine": 145,
+          "endLine": 229,
+          "params": [
+            "postProcess",
+            "context",
+            "viewport"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SunPostProcess",
+          "callee": "that._sceneFramebuffer.framebuffer.getColorTexture",
+          "lineNumber": 106
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Matrix4.computeViewportTransformation",
+          "lineNumber": 153
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 159
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Transforms.pointToGLWindowCoordinates",
+          "lineNumber": 164
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Transforms.pointToGLWindowCoordinates",
+          "lineNumber": 172
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Cartesian2.magnitude",
+          "lineNumber": 179
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Cartesian2.subtract",
+          "lineNumber": 179
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 187
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Math.max",
+          "lineNumber": 188
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "stages.get",
+          "lineNumber": 194
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Matrix4.computeViewportTransformation",
+          "lineNumber": 204
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Transforms.pointToGLWindowCoordinates",
+          "lineNumber": 210
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Math.max",
+          "lineNumber": 221
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Math.max",
+          "lineNumber": 222
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Math.min",
+          "lineNumber": 223
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "Math.min",
+          "lineNumber": 224
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "BoundingRectangle.clone",
+          "lineNumber": 227
+        },
+        {
+          "caller": "updateSunPosition",
+          "callee": "stages.get",
+          "lineNumber": 227
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/TerrainState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 16,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

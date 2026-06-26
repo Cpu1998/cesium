@@ -1,0 +1,4955 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Scene/Imagery.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 120,
+      "nonEmptyLines": 101,
+      "functions": [
+        {
+          "name": "Imagery",
+          "startLine": 11,
+          "endLine": 43,
+          "params": [
+            "imageryLayer",
+            "x",
+            "y",
+            "level",
+            "rectangle"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Imagery",
+          "callee": "imageryLayer.getImageryFromCache",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Imagery",
+          "callee": "defined",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Imagery",
+          "callee": "tilingScheme.tileXYToRectangle",
+          "lineNumber": 39
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ImageryLayer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1747,
+      "nonEmptyLines": 1588,
+      "functions": [
+        {
+          "name": "ImageryLayer",
+          "startLine": 174,
+          "endLine": 360,
+          "params": [
+            "imageryProvider",
+            "options"
+          ]
+        },
+        {
+          "name": "getSamplerKey",
+          "startLine": 1278,
+          "endLine": 1284,
+          "params": [
+            "minificationFilter",
+            "magnificationFilter",
+            "maximumAnisotropy"
+          ]
+        },
+        {
+          "name": "getImageryCacheKey",
+          "startLine": 1470,
+          "endLine": 1472,
+          "params": [
+            "x",
+            "y",
+            "level"
+          ]
+        },
+        {
+          "name": "reprojectToGeographic",
+          "startLine": 1490,
+          "endLine": 1671,
+          "params": [
+            "command",
+            "context",
+            "texture",
+            "rectangle"
+          ]
+        },
+        {
+          "name": "getLevelWithMaximumTexelSpacing",
+          "startLine": 1682,
+          "endLine": 1706,
+          "params": [
+            "layer",
+            "texelSpacing",
+            "latitudeClosestToEquator"
+          ]
+        },
+        {
+          "name": "handleError",
+          "startLine": 1708,
+          "endLine": 1715,
+          "params": [
+            "errorEvent",
+            "error"
+          ]
+        },
+        {
+          "name": "handlePromise",
+          "startLine": 1717,
+          "endLine": 1729,
+          "params": [
+            "instance",
+            "promise"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ImageryLayer",
+          "callee": "Imagery.createPlaceholder",
+          "lineNumber": 323
+        },
+        {
+          "caller": "success",
+          "callee": "defined",
+          "lineNumber": 1109
+        },
+        {
+          "caller": "success",
+          "callee": "failure",
+          "lineNumber": 1110
+        },
+        {
+          "caller": "success",
+          "callee": "TileProviderError.reportSuccess",
+          "lineNumber": 1117
+        },
+        {
+          "caller": "failure",
+          "callee": "TileProviderError.reportError",
+          "lineNumber": 1134
+        },
+        {
+          "caller": "failure",
+          "callee": "doRequest",
+          "lineNumber": 1145
+        },
+        {
+          "caller": "doRequest",
+          "callee": "imageryProvider.requestImage",
+          "lineNumber": 1157
+        },
+        {
+          "caller": "doRequest",
+          "callee": "defined",
+          "lineNumber": 1164
+        },
+        {
+          "caller": "doRequest",
+          "callee": "defined",
+          "lineNumber": 1171
+        },
+        {
+          "caller": "doRequest",
+          "callee": "imageryProvider.getTileCredits",
+          "lineNumber": 1172
+        },
+        {
+          "caller": "doRequest",
+          "callee": "imagePromise\n      .then(function (image) {\n        success(image);\n      })\n      .catch",
+          "lineNumber": 1179
+        },
+        {
+          "caller": "doRequest",
+          "callee": "imagePromise\n      .then",
+          "lineNumber": 1179
+        },
+        {
+          "caller": "doRequest",
+          "callee": "success",
+          "lineNumber": 1181
+        },
+        {
+          "caller": "doRequest",
+          "callee": "failure",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "getImageryCacheKey",
+          "callee": "JSON.stringify",
+          "lineNumber": 1471
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "defined",
+          "lineNumber": 1528
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "defined",
+          "lineNumber": 1534
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "this.framebuffer.destroy",
+          "lineNumber": 1535
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "defined",
+          "lineNumber": 1537
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "this.vertexArray.destroy",
+          "lineNumber": 1538
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "defined",
+          "lineNumber": 1540
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "this.shaderProgram.destroy",
+          "lineNumber": 1541
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "TerrainProvider.getRegularGridIndices",
+          "lineNumber": 1561
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Buffer.createIndexBuffer",
+          "lineNumber": 1562
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 1574
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Buffer.createVertexBuffer",
+          "lineNumber": 1583
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "ShaderProgram.fromCache",
+          "lineNumber": 1598
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.sin",
+          "lineNumber": 1622
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.log",
+          "lineNumber": 1623
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.sin",
+          "lineNumber": 1625
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.log",
+          "lineNumber": 1626
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "CesiumMath.isPowerOfTwo",
+          "lineNumber": 1642
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "CesiumMath.isPowerOfTwo",
+          "lineNumber": 1642
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "outputTexture.generateMipmap",
+          "lineNumber": 1643
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 1654
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.sin",
+          "lineNumber": 1655
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "Math.log",
+          "lineNumber": 1656
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "reproject.vertexArray\n    .getAttribute(1)\n    .vertexBuffer.copyFromArrayView",
+          "lineNumber": 1663
+        },
+        {
+          "caller": "reprojectToGeographic",
+          "callee": "reproject.vertexArray\n    .getAttribute",
+          "lineNumber": 1663
+        },
+        {
+          "caller": "getLevelWithMaximumTexelSpacing",
+          "callee": "Math.cos",
+          "lineNumber": 1695
+        },
+        {
+          "caller": "getLevelWithMaximumTexelSpacing",
+          "callee": "tilingScheme.getNumberOfXTilesAtLevel",
+          "lineNumber": 1700
+        },
+        {
+          "caller": "getLevelWithMaximumTexelSpacing",
+          "callee": "Math.log",
+          "lineNumber": 1703
+        },
+        {
+          "caller": "getLevelWithMaximumTexelSpacing",
+          "callee": "Math.log",
+          "lineNumber": 1703
+        },
+        {
+          "caller": "getLevelWithMaximumTexelSpacing",
+          "callee": "Math.round",
+          "lineNumber": 1704
+        },
+        {
+          "caller": "handleError",
+          "callee": "errorEvent.raiseEvent",
+          "lineNumber": 1710
+        },
+        {
+          "caller": "handleError",
+          "callee": "console.error",
+          "lineNumber": 1713
+        },
+        {
+          "caller": "handlePromise",
+          "callee": "Promise.resolve",
+          "lineNumber": 1720
+        },
+        {
+          "caller": "handlePromise",
+          "callee": "instance.isDestroyed",
+          "lineNumber": 1721
+        },
+        {
+          "caller": "handlePromise",
+          "callee": "instance._readyEvent.raiseEvent",
+          "lineNumber": 1725
+        },
+        {
+          "caller": "handlePromise",
+          "callee": "handleError",
+          "lineNumber": 1727
+        }
+      ],
+      "metrics": {
+        "importCount": 38,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 645,
+      "nonEmptyLines": 571,
+      "functions": [
+        {
+          "name": "ImageryLayerCollection",
+          "startLine": 19,
+          "endLine": 56,
+          "params": []
+        },
+        {
+          "name": "getLayerIndex",
+          "startLine": 241,
+          "endLine": 257,
+          "params": [
+            "layers",
+            "layer"
+          ]
+        },
+        {
+          "name": "swapLayers",
+          "startLine": 259,
+          "endLine": 275,
+          "params": [
+            "collection",
+            "i",
+            "j"
+          ]
+        },
+        {
+          "name": "pickImageryHelper",
+          "startLine": 347,
+          "endLine": 419,
+          "params": [
+            "scene",
+            "pickedLocation",
+            "pickFeatures",
+            "callback"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getLayerIndex",
+          "callee": "defined",
+          "lineNumber": 243
+        },
+        {
+          "caller": "getLayerIndex",
+          "callee": "layers.indexOf",
+          "lineNumber": 248
+        },
+        {
+          "caller": "swapLayers",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 261
+        },
+        {
+          "caller": "swapLayers",
+          "callee": "CesiumMath.clamp",
+          "lineNumber": 262
+        },
+        {
+          "caller": "swapLayers",
+          "callee": "collection._update",
+          "lineNumber": 272
+        },
+        {
+          "caller": "swapLayers",
+          "callee": "collection.layerMoved.raiseEvent",
+          "lineNumber": 274
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "defined",
+          "lineNumber": 354
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "Rectangle.contains",
+          "lineNumber": 358
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "defined",
+          "lineNumber": 363
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "defined",
+          "lineNumber": 373
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "defined",
+          "lineNumber": 380
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "Rectangle.contains",
+          "lineNumber": 384
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 393
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 398
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 403
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "CesiumMath.lerp",
+          "lineNumber": 408
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "Rectangle.contains",
+          "lineNumber": 413
+        },
+        {
+          "caller": "pickImageryHelper",
+          "callee": "callback",
+          "lineNumber": 417
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ImageryState.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 16,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/InvertClassification.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 381,
+      "nonEmptyLines": 346,
+      "functions": [
+        {
+          "name": "InvertClassification",
+          "startLine": 22,
+          "endLine": 67,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "InvertClassification",
+          "callee": "that._fbo.getColorTexture",
+          "lineNumber": 58
+        },
+        {
+          "caller": "InvertClassification",
+          "callee": "that._fboClassified.getColorTexture",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/KeyframeNode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "KeyframeNode",
+          "startLine": 19,
+          "endLine": 27,
+          "params": [
+            "spatialNode",
+            "keyframe"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Label.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1652,
+      "nonEmptyLines": 1527,
+      "functions": [
+        {
+          "name": "rebindAllGlyphs",
+          "startLine": 30,
+          "endLine": 36,
+          "params": [
+            "label"
+          ]
+        },
+        {
+          "name": "repositionAllGlyphs",
+          "startLine": 38,
+          "endLine": 44,
+          "params": [
+            "label"
+          ]
+        },
+        {
+          "name": "getCSSValue",
+          "startLine": 46,
+          "endLine": 50,
+          "params": [
+            "element",
+            "property"
+          ]
+        },
+        {
+          "name": "parseFont",
+          "startLine": 52,
+          "endLine": 86,
+          "params": [
+            "label"
+          ]
+        },
+        {
+          "name": "Label",
+          "startLine": 139,
+          "endLine": 252,
+          "params": [
+            "options",
+            "labelCollection"
+          ]
+        },
+        {
+          "name": "convertTextToTypes",
+          "startLine": 1469,
+          "endLine": 1505,
+          "params": [
+            "text",
+            "rtlChars"
+          ]
+        },
+        {
+          "name": "reverseWord",
+          "startLine": 1507,
+          "endLine": 1509,
+          "params": [
+            "word"
+          ]
+        },
+        {
+          "name": "spliceWord",
+          "startLine": 1511,
+          "endLine": 1513,
+          "params": [
+            "result",
+            "pointer",
+            "word"
+          ]
+        },
+        {
+          "name": "reverseBrackets",
+          "startLine": 1515,
+          "endLine": 1534,
+          "params": [
+            "bracket"
+          ]
+        },
+        {
+          "name": "reverseRtl",
+          "startLine": 1547,
+          "endLine": 1651,
+          "params": [
+            "value"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "label._labelCollection._labelsToUpdate.push",
+          "lineNumber": 33
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "label._labelCollection._labelsToUpdate.push",
+          "lineNumber": 41
+        },
+        {
+          "caller": "getCSSValue",
+          "callee": "document.defaultView\n    .getComputedStyle(element, null)\n    .getPropertyValue",
+          "lineNumber": 47
+        },
+        {
+          "caller": "getCSSValue",
+          "callee": "document.defaultView\n    .getComputedStyle",
+          "lineNumber": 47
+        },
+        {
+          "caller": "parseFont",
+          "callee": "defined",
+          "lineNumber": 54
+        },
+        {
+          "caller": "parseFont",
+          "callee": "document.createElement",
+          "lineNumber": 55
+        },
+        {
+          "caller": "parseFont",
+          "callee": "document.body.appendChild",
+          "lineNumber": 59
+        },
+        {
+          "caller": "parseFont",
+          "callee": "parseFloat",
+          "lineNumber": 61
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue",
+          "lineNumber": 61
+        },
+        {
+          "caller": "parseFont",
+          "callee": "isNaN",
+          "lineNumber": 62
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue",
+          "lineNumber": 68
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue(div, \"font-size\").replace",
+          "lineNumber": 69
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue",
+          "lineNumber": 69
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue",
+          "lineNumber": 70
+        },
+        {
+          "caller": "parseFont",
+          "callee": "getCSSValue",
+          "lineNumber": 71
+        },
+        {
+          "caller": "parseFont",
+          "callee": "document.body.removeChild",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Label",
+          "callee": "defined",
+          "lineNumber": 144
+        },
+        {
+          "caller": "Label",
+          "callee": "defined",
+          "lineNumber": 157
+        },
+        {
+          "caller": "Label",
+          "callee": "NearFarScalar.clone",
+          "lineNumber": 165
+        },
+        {
+          "caller": "Label",
+          "callee": "defined",
+          "lineNumber": 167
+        },
+        {
+          "caller": "Label",
+          "callee": "NearFarScalar.clone",
+          "lineNumber": 175
+        },
+        {
+          "caller": "Label",
+          "callee": "defined",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Label",
+          "callee": "NearFarScalar.clone",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Label",
+          "callee": "defined",
+          "lineNumber": 189
+        },
+        {
+          "caller": "Label",
+          "callee": "DistanceDisplayCondition.clone",
+          "lineNumber": 197
+        },
+        {
+          "caller": "Label",
+          "callee": "Color.clone",
+          "lineNumber": 206
+        },
+        {
+          "caller": "Label",
+          "callee": "Color.clone",
+          "lineNumber": 207
+        },
+        {
+          "caller": "Label",
+          "callee": "Color.clone",
+          "lineNumber": 210
+        },
+        {
+          "caller": "Label",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 213
+        },
+        {
+          "caller": "Label",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 219
+        },
+        {
+          "caller": "Label",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Label",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 221
+        },
+        {
+          "caller": "Label",
+          "callee": "parseFont",
+          "lineNumber": 249
+        },
+        {
+          "caller": "Label",
+          "callee": "this._updateClamping",
+          "lineNumber": 251
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "text.charAt",
+          "lineNumber": 1478
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "rtlChars.test",
+          "lineNumber": 1479
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "ltrChars.test",
+          "lineNumber": 1481
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "bracketsChars.test",
+          "lineNumber": 1483
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "parsedText.push",
+          "lineNumber": 1497
+        },
+        {
+          "caller": "convertTextToTypes",
+          "callee": "parsedText.push",
+          "lineNumber": 1503
+        },
+        {
+          "caller": "reverseWord",
+          "callee": "word.split(\"\").reverse().join",
+          "lineNumber": 1508
+        },
+        {
+          "caller": "reverseWord",
+          "callee": "word.split(\"\").reverse",
+          "lineNumber": 1508
+        },
+        {
+          "caller": "reverseWord",
+          "callee": "word.split",
+          "lineNumber": 1508
+        },
+        {
+          "caller": "spliceWord",
+          "callee": "result.slice",
+          "lineNumber": 1512
+        },
+        {
+          "caller": "spliceWord",
+          "callee": "result.slice",
+          "lineNumber": 1512
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "value.split",
+          "lineNumber": 1548
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "rtlChars.test",
+          "lineNumber": 1553
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "text.charAt",
+          "lineNumber": 1553
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "convertTextToTypes",
+          "lineNumber": 1554
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "reverseBrackets",
+          "lineNumber": 1562
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "reverseWord",
+          "lineNumber": 1563
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "spliceWord",
+          "lineNumber": 1569
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "spliceWord",
+          "lineNumber": 1594
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "spliceWord",
+          "lineNumber": 1600
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "spliceWord",
+          "lineNumber": 1606
+        },
+        {
+          "caller": "reverseRtl",
+          "callee": "spliceWord",
+          "lineNumber": 1626
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/LabelCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1091,
+      "nonEmptyLines": 989,
+      "functions": [
+        {
+          "name": "Glyph",
+          "startLine": 28,
+          "endLine": 50,
+          "params": []
+        },
+        {
+          "name": "getWhitePixelBillboard",
+          "startLine": 65,
+          "endLine": 92,
+          "params": [
+            "billboardCollection",
+            "labelCollection"
+          ]
+        },
+        {
+          "name": "createGlyphCanvas",
+          "startLine": 96,
+          "endLine": 118,
+          "params": [
+            "character",
+            "font",
+            "fillColor",
+            "outlineColor",
+            "outlineWidth",
+            "style"
+          ]
+        },
+        {
+          "name": "unbindGlyphBillboard",
+          "startLine": 120,
+          "endLine": 132,
+          "params": [
+            "labelCollection",
+            "glyph"
+          ]
+        },
+        {
+          "name": "rebindAllGlyphs",
+          "startLine": 137,
+          "endLine": 321,
+          "params": [
+            "labelCollection",
+            "label"
+          ]
+        },
+        {
+          "name": "updateBackgroundBillboard",
+          "startLine": 323,
+          "endLine": 365,
+          "params": [
+            "backgroundBillboardCollection",
+            "label",
+            "backgroundBillboard"
+          ]
+        },
+        {
+          "name": "calculateWidthOffset",
+          "startLine": 367,
+          "endLine": 374,
+          "params": [
+            "lineWidth",
+            "horizontalOrigin",
+            "backgroundPadding"
+          ]
+        },
+        {
+          "name": "repositionAllGlyphs",
+          "startLine": 380,
+          "endLine": 553,
+          "params": [
+            "label"
+          ]
+        },
+        {
+          "name": "destroyLabel",
+          "startLine": 555,
+          "endLine": 573,
+          "params": [
+            "labelCollection",
+            "label"
+          ]
+        },
+        {
+          "name": "LabelCollection",
+          "startLine": 624,
+          "endLine": 719,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "document.createElement",
+          "lineNumber": 68
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "canvas.getContext",
+          "lineNumber": 72
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "context2D.fillRect",
+          "lineNumber": 74
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "billboardTexture.loadImage",
+          "lineNumber": 76
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "billboardTexture.addImageSubRegion",
+          "lineNumber": 77
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "billboardCollection.add",
+          "lineNumber": 83
+        },
+        {
+          "caller": "getWhitePixelBillboard",
+          "callee": "billboard.setImageTexture",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createGlyphCanvas",
+          "callee": "writeTextToCanvas",
+          "lineNumber": 117
+        },
+        {
+          "caller": "unbindGlyphBillboard",
+          "callee": "defined",
+          "lineNumber": 122
+        },
+        {
+          "caller": "unbindGlyphBillboard",
+          "callee": "defined",
+          "lineNumber": 125
+        },
+        {
+          "caller": "unbindGlyphBillboard",
+          "callee": "billboard._removeCallbackFunc",
+          "lineNumber": 126
+        },
+        {
+          "caller": "unbindGlyphBillboard",
+          "callee": "labelCollection._spareBillboards.push",
+          "lineNumber": 129
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "splitter.splitGraphemes",
+          "lineNumber": 139
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "unbindGlyphBillboard",
+          "lineNumber": 150
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 162
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "getWhitePixelBillboard",
+          "lineNumber": 163
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "updateBackgroundBillboard",
+          "lineNumber": 170
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "JSON.stringify",
+          "lineNumber": 186
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "glyphTextureCache.get",
+          "lineNumber": 195
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 196
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 196
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "glyphTextureCache.set",
+          "lineNumber": 198
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "createGlyphCanvas",
+          "lineNumber": 202
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "whitespaceRegex.test",
+          "lineNumber": 217
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "bitmapSDF",
+          "lineNumber": 219
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "canvas.getContext",
+          "lineNumber": 225
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "ctx.getImageData",
+          "lineNumber": 228
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "ctx.putImageData",
+          "lineNumber": 240
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "glyphBillboardTexture.loadImage",
+          "lineNumber": 241
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 246
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "unbindGlyphBillboard",
+          "lineNumber": 263
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 270
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "spareBillboards.pop",
+          "lineNumber": 272
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "glyphBillboardCollection.add",
+          "lineNumber": 274
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "billboard.setImageTexture",
+          "lineNumber": 284
+        },
+        {
+          "caller": "rebindAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 293
+        },
+        {
+          "caller": "updateBackgroundBillboard",
+          "callee": "defined",
+          "lineNumber": 328
+        },
+        {
+          "caller": "updateBackgroundBillboard",
+          "callee": "label._renderedText.split(\"\\n\").join",
+          "lineNumber": 334
+        },
+        {
+          "caller": "updateBackgroundBillboard",
+          "callee": "label._renderedText.split",
+          "lineNumber": 334
+        },
+        {
+          "caller": "updateBackgroundBillboard",
+          "callee": "backgroundBillboardCollection.remove",
+          "lineNumber": 337
+        },
+        {
+          "caller": "updateBackgroundBillboard",
+          "callee": "defined",
+          "lineNumber": 350
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 392
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 393
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "text.charAt",
+          "lineNumber": 402
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "lineWidths.push",
+          "lineNumber": 403
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 411
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Math.max",
+          "lineNumber": 412
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Math.max",
+          "lineNumber": 413
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Math.max",
+          "lineNumber": 420
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "lineWidths.push",
+          "lineNumber": 423
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "calculateWidthOffset",
+          "lineNumber": 431
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 437
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 444
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "text.charAt",
+          "lineNumber": 457
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "calculateWidthOffset",
+          "lineNumber": 461
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 473
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 499
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "glyph.billboard._setTranslate",
+          "lineNumber": 500
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "isHeightReferenceClamp",
+          "lineNumber": 504
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 505
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "defined",
+          "lineNumber": 524
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "text.split(\"\\n\").join",
+          "lineNumber": 524
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "text.split",
+          "lineNumber": 524
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "backgroundBillboard._setTranslate",
+          "lineNumber": 547
+        },
+        {
+          "caller": "repositionAllGlyphs",
+          "callee": "Cartesian2.clone",
+          "lineNumber": 548
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "unbindGlyphBillboard",
+          "lineNumber": 558
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "defined",
+          "lineNumber": 560
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "labelCollection._backgroundBillboardCollection.remove",
+          "lineNumber": 561
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "defined",
+          "lineNumber": 568
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "label._removeCallbackFunc",
+          "lineNumber": 569
+        },
+        {
+          "caller": "destroyLabel",
+          "callee": "destroyObject",
+          "lineNumber": 572
+        },
+        {
+          "caller": "LabelCollection",
+          "callee": "Color.clone",
+          "lineNumber": 657
+        },
+        {
+          "caller": "LabelCollection",
+          "callee": "Matrix4.clone",
+          "lineNumber": 696
+        }
+      ],
+      "metrics": {
+        "importCount": 19,
+        "exportCount": 0,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/LabelStyle.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 33,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Material.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1931,
+      "nonEmptyLines": 1781,
+      "functions": [
+        {
+          "name": "Material",
+          "startLine": 273,
+          "endLine": 389,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getInitializationPromises",
+          "startLine": 486,
+          "endLine": 495,
+          "params": [
+            "material",
+            "initializationPromises"
+          ]
+        },
+        {
+          "name": "initializeMaterial",
+          "startLine": 694,
+          "endLine": 754,
+          "params": [
+            "options",
+            "result"
+          ]
+        },
+        {
+          "name": "checkForValidProperties",
+          "startLine": 756,
+          "endLine": 770,
+          "params": [
+            "object",
+            "properties",
+            "result",
+            "throwNotFound"
+          ]
+        },
+        {
+          "name": "invalidNameError",
+          "startLine": 772,
+          "endLine": 782,
+          "params": [
+            "property",
+            "properties"
+          ]
+        },
+        {
+          "name": "duplicateNameError",
+          "startLine": 784,
+          "endLine": 789,
+          "params": [
+            "property",
+            "properties"
+          ]
+        },
+        {
+          "name": "checkForTemplateErrors",
+          "startLine": 807,
+          "endLine": 839,
+          "params": [
+            "material"
+          ]
+        },
+        {
+          "name": "isMaterialFused",
+          "startLine": 841,
+          "endLine": 852,
+          "params": [
+            "shaderComponent",
+            "material"
+          ]
+        },
+        {
+          "name": "createMethodDefinition",
+          "startLine": 855,
+          "endLine": 888,
+          "params": [
+            "material"
+          ]
+        },
+        {
+          "name": "createTexture2DUpdateFunction",
+          "startLine": 898,
+          "endLine": 1009,
+          "params": [
+            "uniformId"
+          ]
+        },
+        {
+          "name": "loadTexture2DImageForUniform",
+          "startLine": 1021,
+          "endLine": 1072,
+          "params": [
+            "material",
+            "uniformId"
+          ]
+        },
+        {
+          "name": "createCubeMapUpdateFunction",
+          "startLine": 1074,
+          "endLine": 1094,
+          "params": [
+            "uniformId"
+          ]
+        },
+        {
+          "name": "loadCubeMapImagesForUniform",
+          "startLine": 1103,
+          "endLine": 1147,
+          "params": [
+            "material",
+            "uniformId"
+          ]
+        },
+        {
+          "name": "createUniforms",
+          "startLine": 1149,
+          "endLine": 1156,
+          "params": [
+            "material"
+          ]
+        },
+        {
+          "name": "createUniform",
+          "startLine": 1160,
+          "endLine": 1251,
+          "params": [
+            "material",
+            "uniformId"
+          ]
+        },
+        {
+          "name": "getUniformType",
+          "startLine": 1254,
+          "endLine": 1302,
+          "params": [
+            "uniformValue"
+          ]
+        },
+        {
+          "name": "createSubMaterials",
+          "startLine": 1305,
+          "endLine": 1350,
+          "params": [
+            "material"
+          ]
+        },
+        {
+          "name": "replaceToken",
+          "startLine": 1355,
+          "endLine": 1372,
+          "params": [
+            "material",
+            "token",
+            "newToken",
+            "excludePeriod"
+          ]
+        },
+        {
+          "name": "getNumberOfTokens",
+          "startLine": 1374,
+          "endLine": 1376,
+          "params": [
+            "material",
+            "token",
+            "excludePeriod"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Material",
+          "callee": "initializeMaterial",
+          "lineNumber": 348
+        },
+        {
+          "caller": "Material",
+          "callee": "Object.defineProperties",
+          "lineNumber": 349
+        },
+        {
+          "caller": "Material",
+          "callee": "defined",
+          "lineNumber": 386
+        },
+        {
+          "caller": "Material",
+          "callee": "Object.keys",
+          "lineNumber": 387
+        },
+        {
+          "caller": "getInitializationPromises",
+          "callee": "initializationPromises.push",
+          "lineNumber": 487
+        },
+        {
+          "caller": "getInitializationPromises",
+          "callee": "submaterials.hasOwnProperty",
+          "lineNumber": 490
+        },
+        {
+          "caller": "getInitializationPromises",
+          "callee": "getInitializationPromises",
+          "lineNumber": 492
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "clone",
+          "lineNumber": 698
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "clone",
+          "lineNumber": 699
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "clone",
+          "lineNumber": 700
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "clone",
+          "lineNumber": 703
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "defined",
+          "lineNumber": 707
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "createGuid",
+          "lineNumber": 709
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "Material._materialCache.getMaterial",
+          "lineNumber": 720
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "defined",
+          "lineNumber": 721
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "clone",
+          "lineNumber": 722
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "combine",
+          "lineNumber": 723
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "checkForTemplateErrors",
+          "lineNumber": 728
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "createMethodDefinition",
+          "lineNumber": 730
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "createUniforms",
+          "lineNumber": 731
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "createSubMaterials",
+          "lineNumber": 732
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "defined",
+          "lineNumber": 735
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "Material._materialCache.addMaterial",
+          "lineNumber": 736
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "defined",
+          "lineNumber": 744
+        },
+        {
+          "caller": "wrappedTranslucent",
+          "callee": "translucent",
+          "lineNumber": 747
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "result._translucentFunctions.push",
+          "lineNumber": 749
+        },
+        {
+          "caller": "initializeMaterial",
+          "callee": "result._translucentFunctions.push",
+          "lineNumber": 751
+        },
+        {
+          "caller": "checkForValidProperties",
+          "callee": "defined",
+          "lineNumber": 757
+        },
+        {
+          "caller": "checkForValidProperties",
+          "callee": "object.hasOwnProperty",
+          "lineNumber": 759
+        },
+        {
+          "caller": "checkForValidProperties",
+          "callee": "properties.indexOf",
+          "lineNumber": 760
+        },
+        {
+          "caller": "checkForValidProperties",
+          "callee": "result",
+          "lineNumber": 765
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "defined",
+          "lineNumber": 815
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "defined",
+          "lineNumber": 815
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "checkForValidProperties",
+          "lineNumber": 823
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "checkForValidProperties",
+          "lineNumber": 824
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "materials.hasOwnProperty",
+          "lineNumber": 834
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "materialNames.push",
+          "lineNumber": 835
+        },
+        {
+          "caller": "checkForTemplateErrors",
+          "callee": "checkForValidProperties",
+          "lineNumber": 838
+        },
+        {
+          "caller": "isMaterialFused",
+          "callee": "materials.hasOwnProperty",
+          "lineNumber": 844
+        },
+        {
+          "caller": "isMaterialFused",
+          "callee": "shaderComponent.indexOf",
+          "lineNumber": 845
+        },
+        {
+          "caller": "createMethodDefinition",
+          "callee": "defined",
+          "lineNumber": 858
+        },
+        {
+          "caller": "createMethodDefinition",
+          "callee": "defined",
+          "lineNumber": 865
+        },
+        {
+          "caller": "createMethodDefinition",
+          "callee": "Object.keys",
+          "lineNumber": 867
+        },
+        {
+          "caller": "createMethodDefinition",
+          "callee": "components.hasOwnProperty",
+          "lineNumber": 869
+        },
+        {
+          "caller": "createMethodDefinition",
+          "callee": "isMaterialFused",
+          "lineNumber": 873
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 905
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 916
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "texture.destroy",
+          "lineNumber": 918
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 923
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "texture.copyFrom",
+          "lineNumber": 937
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 940
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 949
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "tmp.destroy",
+          "lineNumber": 950
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "uniforms.hasOwnProperty",
+          "lineNumber": 955
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 964
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "texture.destroy",
+          "lineNumber": 969
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 975
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "uniforms.hasOwnProperty",
+          "lineNumber": 979
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "material._loadedImages.push",
+          "lineNumber": 997
+        },
+        {
+          "caller": "createTexture2DUpdateFunction",
+          "callee": "loadTexture2DImageForUniform",
+          "lineNumber": 1007
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1025
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1029
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1031
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1038
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "defined",
+          "lineNumber": 1042
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1044
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "ktx2Regex.test",
+          "lineNumber": 1048
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "loadKTX2",
+          "lineNumber": 1049
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "resource.fetchImage",
+          "lineNumber": 1051
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve(promise)\n    .then(function (image) {\n      material._loadedImages.push({\n        id: uniformId,\n        image: image,\n      });\n    })\n    .catch",
+          "lineNumber": 1054
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve(promise)\n    .then",
+          "lineNumber": 1054
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1054
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "material._loadedImages.push",
+          "lineNumber": 1056
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "defined",
+          "lineNumber": 1064
+        },
+        {
+          "caller": "loadTexture2DImageForUniform",
+          "callee": "texture.destroy",
+          "lineNumber": 1065
+        },
+        {
+          "caller": "createCubeMapUpdateFunction",
+          "callee": "tmp.destroy",
+          "lineNumber": 1081
+        },
+        {
+          "caller": "createCubeMapUpdateFunction",
+          "callee": "defined",
+          "lineNumber": 1088
+        },
+        {
+          "caller": "createCubeMapUpdateFunction",
+          "callee": "loadCubeMapImagesForUniform",
+          "lineNumber": 1092
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1107
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Promise.resolve",
+          "lineNumber": 1120
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.positiveX).fetchImage",
+          "lineNumber": 1124
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1124
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.negativeX).fetchImage",
+          "lineNumber": 1125
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1125
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.positiveY).fetchImage",
+          "lineNumber": 1126
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1126
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.negativeY).fetchImage",
+          "lineNumber": 1127
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1127
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.positiveZ).fetchImage",
+          "lineNumber": 1128
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1128
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded(uniformValue.negativeZ).fetchImage",
+          "lineNumber": 1129
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 1129
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "Promise.all",
+          "lineNumber": 1132
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "allPromise\n    .then(function (images) {\n      material._loadedCubeMaps.push({\n        id: uniformId,\n        images: images,\n      });\n    })\n    .catch",
+          "lineNumber": 1133
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "allPromise\n    .then",
+          "lineNumber": 1133
+        },
+        {
+          "caller": "loadCubeMapImagesForUniform",
+          "callee": "material._loadedCubeMaps.push",
+          "lineNumber": 1135
+        },
+        {
+          "caller": "createUniforms",
+          "callee": "uniforms.hasOwnProperty",
+          "lineNumber": 1152
+        },
+        {
+          "caller": "createUniforms",
+          "callee": "createUniform",
+          "lineNumber": 1153
+        },
+        {
+          "caller": "createUniform",
+          "callee": "getUniformType",
+          "lineNumber": 1164
+        },
+        {
+          "caller": "createUniform",
+          "callee": "defined",
+          "lineNumber": 1167
+        },
+        {
+          "caller": "createUniform",
+          "callee": "replaceToken",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "createUniform",
+          "callee": "getNumberOfTokens",
+          "lineNumber": 1189
+        },
+        {
+          "caller": "createUniform",
+          "callee": "createUniform",
+          "lineNumber": 1195
+        },
+        {
+          "caller": "createUniform",
+          "callee": "uniformDeclarationRegex.test",
+          "lineNumber": 1203
+        },
+        {
+          "caller": "createUniform",
+          "callee": "replaceToken",
+          "lineNumber": 1209
+        },
+        {
+          "caller": "createUniform",
+          "callee": "material._updateFunctions.push",
+          "lineNumber": 1225
+        },
+        {
+          "caller": "createUniform",
+          "callee": "createTexture2DUpdateFunction",
+          "lineNumber": 1225
+        },
+        {
+          "caller": "createUniform",
+          "callee": "material._initializationPromises.push",
+          "lineNumber": 1226
+        },
+        {
+          "caller": "createUniform",
+          "callee": "loadTexture2DImageForUniform",
+          "lineNumber": 1227
+        },
+        {
+          "caller": "createUniform",
+          "callee": "material._updateFunctions.push",
+          "lineNumber": 1233
+        },
+        {
+          "caller": "createUniform",
+          "callee": "createCubeMapUpdateFunction",
+          "lineNumber": 1233
+        },
+        {
+          "caller": "createUniform",
+          "callee": "material._initializationPromises.push",
+          "lineNumber": 1234
+        },
+        {
+          "caller": "createUniform",
+          "callee": "loadCubeMapImagesForUniform",
+          "lineNumber": 1235
+        },
+        {
+          "caller": "createUniform",
+          "callee": "uniformType.indexOf",
+          "lineNumber": 1237
+        },
+        {
+          "caller": "createUniform",
+          "callee": "matrixMap[uniformType].fromColumnMajorArray",
+          "lineNumber": 1240
+        },
+        {
+          "caller": "getUniformType",
+          "callee": "defined",
+          "lineNumber": 1256
+        },
+        {
+          "caller": "getUniformType",
+          "callee": "/^([rgba]){1,4}$/i.test",
+          "lineNumber": 1270
+        },
+        {
+          "caller": "getUniformType",
+          "callee": "Array.isArray",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "getUniformType",
+          "callee": "Math.sqrt",
+          "lineNumber": 1284
+        },
+        {
+          "caller": "getUniformType",
+          "callee": "uniformValue.hasOwnProperty",
+          "lineNumber": 1289
+        },
+        {
+          "caller": "createSubMaterials",
+          "callee": "subMaterialTemplates.hasOwnProperty",
+          "lineNumber": 1309
+        },
+        {
+          "caller": "createSubMaterials",
+          "callee": "combine",
+          "lineNumber": 1318
+        },
+        {
+          "caller": "createSubMaterials",
+          "callee": "material._translucentFunctions.concat",
+          "lineNumber": 1324
+        },
+        {
+          "caller": "createSubMaterials",
+          "callee": "replaceToken",
+          "lineNumber": 1331
+        },
+        {
+          "caller": "createSubMaterials",
+          "callee": "replaceToken",
+          "lineNumber": 1336
+        },
+        {
+          "caller": "replaceToken",
+          "callee": "material.shaderSource.replace",
+          "lineNumber": 1361
+        },
+        {
+          "caller": "getNumberOfTokens",
+          "callee": "replaceToken",
+          "lineNumber": 1375
+        }
+      ],
+      "metrics": {
+        "importCount": 19,
+        "exportCount": 0,
+        "functionCount": 19,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Megatexture.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 483,
+      "nonEmptyLines": 435,
+      "functions": [
+        {
+          "name": "Megatexture",
+          "startLine": 32,
+          "endLine": 156,
+          "params": [
+            "context",
+            "dimensions",
+            "channelCount",
+            "componentType",
+            "tileCount"
+          ]
+        },
+        {
+          "name": "getPixelDataType",
+          "startLine": 200,
+          "endLine": 209,
+          "params": [
+            "componentType"
+          ]
+        },
+        {
+          "name": "getPixelFormat",
+          "startLine": 219,
+          "endLine": 230,
+          "params": [
+            "channelCount"
+          ]
+        },
+        {
+          "name": "MegatextureNode",
+          "startLine": 240,
+          "endLine": 255,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "getVolume",
+          "startLine": 414,
+          "endLine": 416,
+          "params": [
+            "dimensionsArray"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Megatexture",
+          "callee": "getPixelDataType",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "getPixelFormat",
+          "lineNumber": 42
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "MetadataComponentType.getSizeInBytes",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "Megatexture.get3DTextureDimension",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "Cartesian3.divideComponents",
+          "lineNumber": 53
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Megatexture",
+          "callee": "Cartesian3.clone",
+          "lineNumber": 91
+        },
+        {
+          "caller": "getVolume",
+          "callee": "dimensionsArray.reduce",
+          "lineNumber": 415
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 51,
+      "nonEmptyLines": 44,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/BatchTexturePipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 61,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 534,
+      "nonEmptyLines": 467,
+      "functions": [
+        {
+          "name": "ClassificationModelDrawCommand",
+          "startLine": 31,
+          "endLine": 73,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "getStencilDepthRenderState",
+          "startLine": 75,
+          "endLine": 107,
+          "params": [
+            "stencilFunction"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 162,
+          "endLine": 242,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "createBatchCommands",
+          "startLine": 244,
+          "endLine": 266,
+          "params": [
+            "drawCommand",
+            "derivedCommands",
+            "result"
+          ]
+        },
+        {
+          "name": "deriveStencilDepthCommand",
+          "startLine": 268,
+          "endLine": 281,
+          "params": [
+            "command",
+            "pass"
+          ]
+        },
+        {
+          "name": "deriveColorCommand",
+          "startLine": 283,
+          "endLine": 291,
+          "params": [
+            "command",
+            "pass"
+          ]
+        },
+        {
+          "name": "createPickCommands",
+          "startLine": 295,
+          "endLine": 315,
+          "params": [
+            "drawCommand",
+            "derivedCommands",
+            "commandList"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ClassificationModelDrawCommand",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ClassificationModelDrawCommand",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 39
+        },
+        {
+          "caller": "ClassificationModelDrawCommand",
+          "callee": "initialize",
+          "lineNumber": 72
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 172
+        },
+        {
+          "caller": "initialize",
+          "callee": "createBatchCommands",
+          "lineNumber": 174
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveStencilDepthCommand",
+          "lineNumber": 199
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveColorCommand",
+          "lineNumber": 200
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 203
+        },
+        {
+          "caller": "initialize",
+          "callee": "createBatchCommands",
+          "lineNumber": 205
+        },
+        {
+          "caller": "initialize",
+          "callee": "createPickCommands",
+          "lineNumber": 212
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveStencilDepthCommand",
+          "lineNumber": 222
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveColorCommand",
+          "lineNumber": 223
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 226
+        },
+        {
+          "caller": "initialize",
+          "callee": "createBatchCommands",
+          "lineNumber": 228
+        },
+        {
+          "caller": "initialize",
+          "callee": "createPickCommands",
+          "lineNumber": 235
+        },
+        {
+          "caller": "createBatchCommands",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 258
+        },
+        {
+          "caller": "createBatchCommands",
+          "callee": "result.push",
+          "lineNumber": 261
+        },
+        {
+          "caller": "deriveStencilDepthCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 269
+        },
+        {
+          "caller": "deriveStencilDepthCommand",
+          "callee": "getStencilDepthRenderState",
+          "lineNumber": 277
+        },
+        {
+          "caller": "deriveStencilDepthCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 278
+        },
+        {
+          "caller": "deriveColorCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 284
+        },
+        {
+          "caller": "deriveColorCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 288
+        },
+        {
+          "caller": "createPickCommands",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 296
+        },
+        {
+          "caller": "createPickCommands",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 300
+        },
+        {
+          "caller": "createPickCommands",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 304
+        },
+        {
+          "caller": "createPickCommands",
+          "callee": "pickCommands.push",
+          "lineNumber": 312
+        },
+        {
+          "caller": "createPickCommands",
+          "callee": "createBatchCommands",
+          "lineNumber": 314
+        }
+      ],
+      "metrics": {
+        "importCount": 14,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 168,
+      "nonEmptyLines": 154,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 517,
+      "nonEmptyLines": 437,
+      "functions": [
+        {
+          "name": "makeModelOptions",
+          "startLine": 482,
+          "endLine": 515,
+          "params": [
+            "tileset",
+            "tile",
+            "content",
+            "additionalOptions"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Model3DTileContent",
+          "startLine": 30,
+          "endLine": 480,
+          "methods": [
+            "constructor",
+            "featuresLength",
+            "pointsLength",
+            "trianglesLength",
+            "geometryByteLength",
+            "texturesByteLength",
+            "batchTableByteLength",
+            "innerContents",
+            "ready",
+            "tileset",
+            "tile",
+            "url",
+            "batchTable",
+            "metadata",
+            "metadata",
+            "group",
+            "group",
+            "getTextureIds",
+            "getTextureByteLengthById",
+            "getExtension",
+            "getFeature",
+            "hasProperty",
+            "applyDebugSettings",
+            "applyStyle",
+            "update",
+            "isDestroyed",
+            "destroy",
+            "fromGltf",
+            "fromB3dm",
+            "fromI3dm",
+            "fromPnts",
+            "fromGeoJson",
+            "pick"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "featuresLength",
+          "callee": "defined",
+          "lineNumber": 56
+        },
+        {
+          "caller": "featuresLength",
+          "callee": "defined",
+          "lineNumber": 56
+        },
+        {
+          "caller": "url",
+          "callee": "this._resource.getUrlComponent",
+          "lineNumber": 111
+        },
+        {
+          "caller": "batchTable",
+          "callee": "defined",
+          "lineNumber": 119
+        },
+        {
+          "caller": "batchTable",
+          "callee": "defined",
+          "lineNumber": 119
+        },
+        {
+          "caller": "getTextureIds",
+          "callee": "this._model.statistics.getTextureIds",
+          "lineNumber": 149
+        },
+        {
+          "caller": "getTextureByteLengthById",
+          "callee": "this._model.statistics.getTextureByteLengthById",
+          "lineNumber": 161
+        },
+        {
+          "caller": "getExtension",
+          "callee": "model.getExtension",
+          "lineNumber": 179
+        },
+        {
+          "caller": "getFeature",
+          "callee": "defined",
+          "lineNumber": 188
+        },
+        {
+          "caller": "getFeature",
+          "callee": "defined",
+          "lineNumber": 198
+        },
+        {
+          "caller": "getFeature",
+          "callee": "defined",
+          "lineNumber": 207
+        },
+        {
+          "caller": "getFeature",
+          "callee": "featureTable.getFeature",
+          "lineNumber": 215
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "defined",
+          "lineNumber": 221
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "featureTable.hasProperty",
+          "lineNumber": 226
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 233
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "this.batchTable.setAllColor",
+          "lineNumber": 234
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 268
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 284
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 285
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 294
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 305
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 306
+        },
+        {
+          "caller": "update",
+          "callee": "model.update",
+          "lineNumber": 313
+        },
+        {
+          "caller": "update",
+          "callee": "model.activeAnimations.addAll",
+          "lineNumber": 317
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._model.destroy",
+          "lineNumber": 330
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 331
+        },
+        {
+          "caller": "fromGltf",
+          "callee": "makeModelOptions",
+          "lineNumber": 342
+        },
+        {
+          "caller": "fromGltf",
+          "callee": "Model.fromGltfAsync",
+          "lineNumber": 355
+        },
+        {
+          "caller": "fromB3dm",
+          "callee": "makeModelOptions",
+          "lineNumber": 370
+        },
+        {
+          "caller": "fromB3dm",
+          "callee": "Model.fromB3dm",
+          "lineNumber": 383
+        },
+        {
+          "caller": "fromI3dm",
+          "callee": "makeModelOptions",
+          "lineNumber": 398
+        },
+        {
+          "caller": "fromI3dm",
+          "callee": "Model.fromI3dm",
+          "lineNumber": 405
+        },
+        {
+          "caller": "fromPnts",
+          "callee": "makeModelOptions",
+          "lineNumber": 420
+        },
+        {
+          "caller": "fromPnts",
+          "callee": "Model.fromPnts",
+          "lineNumber": 426
+        },
+        {
+          "caller": "fromGeoJson",
+          "callee": "makeModelOptions",
+          "lineNumber": 440
+        },
+        {
+          "caller": "fromGeoJson",
+          "callee": "Model.fromGeoJson",
+          "lineNumber": 446
+        },
+        {
+          "caller": "pick",
+          "callee": "defined",
+          "lineNumber": 463
+        },
+        {
+          "caller": "pick",
+          "callee": "this._model.pick",
+          "lineNumber": 471
+        },
+        {
+          "caller": "makeModelOptions",
+          "callee": "combine",
+          "lineNumber": 514
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 26,
+      "nonEmptyLines": 25,
+      "functions": [
+        {
+          "name": "ModelAlphaOptions",
+          "startLine": 9,
+          "endLine": 24,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 126,
+      "nonEmptyLines": 112,
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelDrawCommand.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 956,
+      "nonEmptyLines": 824,
+      "functions": [
+        {
+          "name": "ModelDrawCommand",
+          "startLine": 37,
+          "endLine": 121,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "ModelDerivedCommand",
+          "startLine": 123,
+          "endLine": 139,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 153,
+          "endLine": 239,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "updateModelMatrix2D",
+          "startLine": 433,
+          "endLine": 453,
+          "params": [
+            "drawCommand",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateShadows",
+          "startLine": 455,
+          "endLine": 470,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "updateBackFaceCulling",
+          "startLine": 472,
+          "endLine": 485,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "updateCullFace",
+          "startLine": 487,
+          "endLine": 500,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "updateDebugShowBoundingVolume",
+          "startLine": 502,
+          "endLine": 513,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "pushCommand",
+          "startLine": 662,
+          "endLine": 667,
+          "params": [
+            "commandList",
+            "derivedCommand",
+            "use2D"
+          ]
+        },
+        {
+          "name": "shouldUse2DCommands",
+          "startLine": 669,
+          "endLine": 686,
+          "params": [
+            "drawCommand",
+            "frameState"
+          ]
+        },
+        {
+          "name": "derive2DCommand",
+          "startLine": 688,
+          "endLine": 711,
+          "params": [
+            "drawCommand",
+            "derivedCommand"
+          ]
+        },
+        {
+          "name": "derive2DCommands",
+          "startLine": 713,
+          "endLine": 721,
+          "params": [
+            "drawCommand"
+          ]
+        },
+        {
+          "name": "deriveTranslucentCommand",
+          "startLine": 723,
+          "endLine": 733,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "deriveSilhouetteModelCommand",
+          "startLine": 735,
+          "endLine": 773,
+          "params": [
+            "command",
+            "model"
+          ]
+        },
+        {
+          "name": "deriveSilhouetteColorCommand",
+          "startLine": 775,
+          "endLine": 827,
+          "params": [
+            "command",
+            "model"
+          ]
+        },
+        {
+          "name": "deriveEdgeCommand",
+          "startLine": 829,
+          "endLine": 856,
+          "params": [
+            "command",
+            "renderResources"
+          ]
+        },
+        {
+          "name": "updateSkipLodStencilCommand",
+          "startLine": 858,
+          "endLine": 875,
+          "params": [
+            "drawCommand",
+            "tile",
+            "use2D"
+          ]
+        },
+        {
+          "name": "getLastSelectionDepth",
+          "startLine": 877,
+          "endLine": 884,
+          "params": [
+            "stencilCommand"
+          ]
+        },
+        {
+          "name": "getStencilReference",
+          "startLine": 886,
+          "endLine": 893,
+          "params": [
+            "selectionDepth"
+          ]
+        },
+        {
+          "name": "deriveSkipLodBackfaceCommand",
+          "startLine": 895,
+          "endLine": 932,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "deriveSkipLodStencilCommand",
+          "startLine": 934,
+          "endLine": 954,
+          "params": [
+            "command"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 44
+        },
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 45
+        },
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "defined",
+          "lineNumber": 80
+        },
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "Matrix4.clone",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "BoundingSphere.clone",
+          "lineNumber": 88
+        },
+        {
+          "caller": "ModelDrawCommand",
+          "callee": "initialize",
+          "lineNumber": 120
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 171
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveTranslucentCommand",
+          "lineNumber": 175
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 182
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveSkipLodBackfaceCommand",
+          "lineNumber": 187
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveSkipLodStencilCommand",
+          "lineNumber": 195
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 202
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 203
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveSilhouetteModelCommand",
+          "lineNumber": 208
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveSilhouetteColorCommand",
+          "lineNumber": 216
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 223
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 224
+        },
+        {
+          "caller": "initialize",
+          "callee": "deriveEdgeCommand",
+          "lineNumber": 230
+        },
+        {
+          "caller": "initialize",
+          "callee": "derivedCommands.push",
+          "lineNumber": 237
+        },
+        {
+          "caller": "updateModelMatrix2D",
+          "callee": "Matrix4.clone",
+          "lineNumber": 435
+        },
+        {
+          "caller": "updateModelMatrix2D",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 443
+        },
+        {
+          "caller": "updateModelMatrix2D",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 448
+        },
+        {
+          "caller": "updateShadows",
+          "callee": "ShadowMode.castShadows",
+          "lineNumber": 457
+        },
+        {
+          "caller": "updateShadows",
+          "callee": "ShadowMode.receiveShadows",
+          "lineNumber": 458
+        },
+        {
+          "caller": "updateBackFaceCulling",
+          "callee": "clone",
+          "lineNumber": 480
+        },
+        {
+          "caller": "updateBackFaceCulling",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 482
+        },
+        {
+          "caller": "updateCullFace",
+          "callee": "clone",
+          "lineNumber": 495
+        },
+        {
+          "caller": "updateCullFace",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 497
+        },
+        {
+          "caller": "pushCommand",
+          "callee": "commandList.push",
+          "lineNumber": 663
+        },
+        {
+          "caller": "pushCommand",
+          "callee": "commandList.push",
+          "lineNumber": 665
+        },
+        {
+          "caller": "derive2DCommand",
+          "callee": "defined",
+          "lineNumber": 689
+        },
+        {
+          "caller": "derive2DCommand",
+          "callee": "ModelDerivedCommand.clone",
+          "lineNumber": 697
+        },
+        {
+          "caller": "derive2DCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 699
+        },
+        {
+          "caller": "derive2DCommand",
+          "callee": "drawCommand._derivedCommands.push",
+          "lineNumber": 708
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 714
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 715
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 716
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 717
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 718
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 719
+        },
+        {
+          "caller": "derive2DCommands",
+          "callee": "derive2DCommand",
+          "lineNumber": 720
+        },
+        {
+          "caller": "deriveTranslucentCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 724
+        },
+        {
+          "caller": "deriveTranslucentCommand",
+          "callee": "clone",
+          "lineNumber": 726
+        },
+        {
+          "caller": "deriveTranslucentCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 730
+        },
+        {
+          "caller": "deriveSilhouetteModelCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 739
+        },
+        {
+          "caller": "deriveSilhouetteModelCommand",
+          "callee": "clone",
+          "lineNumber": 740
+        },
+        {
+          "caller": "deriveSilhouetteModelCommand",
+          "callee": "model.isInvisible",
+          "lineNumber": 761
+        },
+        {
+          "caller": "deriveSilhouetteModelCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 770
+        },
+        {
+          "caller": "deriveSilhouetteColorCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 779
+        },
+        {
+          "caller": "deriveSilhouetteColorCommand",
+          "callee": "clone",
+          "lineNumber": 780
+        },
+        {
+          "caller": "deriveSilhouetteColorCommand",
+          "callee": "clone",
+          "lineNumber": 816
+        },
+        {
+          "caller": "deriveSilhouetteColorCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 821
+        },
+        {
+          "caller": "deriveEdgeCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 831
+        },
+        {
+          "caller": "deriveEdgeCommand",
+          "callee": "defined",
+          "lineNumber": 839
+        },
+        {
+          "caller": "deriveEdgeCommand",
+          "callee": "clone",
+          "lineNumber": 847
+        },
+        {
+          "caller": "updateSkipLodStencilCommand",
+          "callee": "getLastSelectionDepth",
+          "lineNumber": 863
+        },
+        {
+          "caller": "updateSkipLodStencilCommand",
+          "callee": "getStencilReference",
+          "lineNumber": 866
+        },
+        {
+          "caller": "updateSkipLodStencilCommand",
+          "callee": "clone",
+          "lineNumber": 867
+        },
+        {
+          "caller": "updateSkipLodStencilCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 869
+        },
+        {
+          "caller": "deriveSkipLodBackfaceCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 898
+        },
+        {
+          "caller": "deriveSkipLodBackfaceCommand",
+          "callee": "clone",
+          "lineNumber": 899
+        },
+        {
+          "caller": "deriveSkipLodBackfaceCommand",
+          "callee": "clone",
+          "lineNumber": 919
+        },
+        {
+          "caller": "deriveSkipLodBackfaceCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 926
+        },
+        {
+          "caller": "deriveSkipLodStencilCommand",
+          "callee": "DrawCommand.shallowClone",
+          "lineNumber": 937
+        },
+        {
+          "caller": "deriveSkipLodStencilCommand",
+          "callee": "clone",
+          "lineNumber": 938
+        },
+        {
+          "caller": "deriveSkipLodStencilCommand",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 951
+        }
+      ],
+      "metrics": {
+        "importCount": 21,
+        "exportCount": 0,
+        "functionCount": 21,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelDrawCommands.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 218,
+      "nonEmptyLines": 193,
+      "functions": [
+        {
+          "name": "ModelDrawCommands",
+          "startLine": 25,
+          "endLine": 25,
+          "params": []
+        },
+        {
+          "name": "createShaderProgram",
+          "startLine": 73,
+          "endLine": 85,
+          "params": [
+            "primitiveRenderResources",
+            "shaderBuilder",
+            "frameState"
+          ]
+        },
+        {
+          "name": "buildDrawCommandForModel",
+          "startLine": 100,
+          "endLine": 193,
+          "params": [
+            "primitiveRenderResources",
+            "shaderProgram",
+            "frameState"
+          ]
+        },
+        {
+          "name": "getIndexBuffer",
+          "startLine": 198,
+          "endLine": 216,
+          "params": [
+            "primitiveRenderResources"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createShaderProgram",
+          "callee": "shaderBuilder.addVertexLines",
+          "lineNumber": 78
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "shaderBuilder.addFragmentLines",
+          "lineNumber": 79
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "shaderBuilder.buildShaderProgram",
+          "lineNumber": 82
+        },
+        {
+          "caller": "createShaderProgram",
+          "callee": "model._pipelineResources.push",
+          "lineNumber": 83
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "getIndexBuffer",
+          "lineNumber": 105
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "model._pipelineResources.push",
+          "lineNumber": 114
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 123
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "Matrix4.multiplyTransformation",
+          "lineNumber": 136
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "BoundingSphere.transform",
+          "lineNumber": 142
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "clone",
+          "lineNumber": 149
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 150
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "ModelUtility.getCullFace",
+          "lineNumber": 154
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 158
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "defined",
+          "lineNumber": 160
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "ShadowMode.castShadows",
+          "lineNumber": 163
+        },
+        {
+          "caller": "buildDrawCommandForModel",
+          "callee": "ShadowMode.receiveShadows",
+          "lineNumber": 166
+        },
+        {
+          "caller": "getIndexBuffer",
+          "callee": "defined",
+          "lineNumber": 200
+        },
+        {
+          "caller": "getIndexBuffer",
+          "callee": "defined",
+          "lineNumber": 205
+        },
+        {
+          "caller": "getIndexBuffer",
+          "callee": "defined",
+          "lineNumber": 210
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelFeature.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 229,
+      "nonEmptyLines": 215,
+      "functions": [
+        {
+          "name": "ModelFeature",
+          "startLine": 33,
+          "endLine": 42,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 316,
+      "nonEmptyLines": 273,
+      "functions": [
+        {
+          "name": "ModelFeatureTable",
+          "startLine": 25,
+          "endLine": 46,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 119,
+          "endLine": 153,
+          "params": [
+            "modelFeatureTable"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ModelFeatureTable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 30
+        },
+        {
+          "caller": "ModelFeatureTable",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 31
+        },
+        {
+          "caller": "ModelFeatureTable",
+          "callee": "initialize",
+          "lineNumber": 45
+        },
+        {
+          "caller": "initialize",
+          "callee": "ModelType.is3DTiles",
+          "lineNumber": 121
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/ModelRenderResources.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 119,
+      "nonEmptyLines": 109,
+      "functions": [
+        {
+          "name": "ModelRenderResources",
+          "startLine": 16,
+          "endLine": 117,
+          "params": [
+            "model"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ModelRenderResources",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 18
+        },
+        {
+          "caller": "ModelRenderResources",
+          "callee": "RenderState.getState",
+          "lineNumber": 73
+        },
+        {
+          "caller": "ModelRenderResources",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 74
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 689,
+      "nonEmptyLines": 623,
+      "functions": [
+        {
+          "name": "PrimitiveOutlineGenerator",
+          "startLine": 67,
+          "endLine": 130,
+          "params": [
+            "options"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 178,
+          "endLine": 290,
+          "params": [
+            "outlineGenerator"
+          ]
+        },
+        {
+          "name": "matchAndStoreCoordinates",
+          "startLine": 308,
+          "endLine": 414,
+          "params": [
+            "outlineCoordinates",
+            "i0",
+            "i1",
+            "i2",
+            "hasEdge01",
+            "hasEdge12",
+            "hasEdge20"
+          ]
+        },
+        {
+          "name": "computeOrderMask",
+          "startLine": 460,
+          "endLine": 480,
+          "params": [
+            "outlineCoordinates",
+            "vertexIndex",
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        {
+          "name": "popcount6Bit",
+          "startLine": 491,
+          "endLine": 500,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "createMipLevel",
+          "startLine": 609,
+          "endLine": 628,
+          "params": [
+            "size"
+          ]
+        },
+        {
+          "name": "EdgeSet",
+          "startLine": 642,
+          "endLine": 671,
+          "params": [
+            "edgeIndices",
+            "originalVertexCount"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PrimitiveOutlineGenerator",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 74
+        },
+        {
+          "caller": "PrimitiveOutlineGenerator",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 75
+        },
+        {
+          "caller": "PrimitiveOutlineGenerator",
+          "callee": "Check.typeOf.number",
+          "lineNumber": 76
+        },
+        {
+          "caller": "PrimitiveOutlineGenerator",
+          "callee": "initialize",
+          "lineNumber": 129
+        },
+        {
+          "caller": "initialize",
+          "callee": "edges.hasEdge",
+          "lineNumber": 200
+        },
+        {
+          "caller": "initialize",
+          "callee": "edges.hasEdge",
+          "lineNumber": 201
+        },
+        {
+          "caller": "initialize",
+          "callee": "edges.hasEdge",
+          "lineNumber": 202
+        },
+        {
+          "caller": "initialize",
+          "callee": "matchAndStoreCoordinates",
+          "lineNumber": 209
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 218
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 223
+        },
+        {
+          "caller": "initialize",
+          "callee": "extraVertices.push",
+          "lineNumber": 235
+        },
+        {
+          "caller": "initialize",
+          "callee": "matchAndStoreCoordinates",
+          "lineNumber": 273
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "computeOrderMask",
+          "lineNumber": 321
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "computeOrderMask",
+          "lineNumber": 330
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "computeOrderMask",
+          "lineNumber": 339
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "popcount6Bit",
+          "lineNumber": 381
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "popcount6Bit",
+          "lineNumber": 382
+        },
+        {
+          "caller": "matchAndStoreCoordinates",
+          "callee": "popcount6Bit",
+          "lineNumber": 383
+        },
+        {
+          "caller": "computeOrderMask",
+          "callee": "defined",
+          "lineNumber": 468
+        },
+        {
+          "caller": "EdgeSet",
+          "callee": "Math.min",
+          "lineNumber": 666
+        },
+        {
+          "caller": "EdgeSet",
+          "callee": "Math.max",
+          "lineNumber": 667
+        },
+        {
+          "caller": "EdgeSet",
+          "callee": "this._edges.add",
+          "lineNumber": 669
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 31,
+      "nonEmptyLines": 28,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/TextureManager.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 244,
+      "nonEmptyLines": 216,
+      "functions": [
+        {
+          "name": "TextureManager",
+          "startLine": 20,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "fetchTexture2D",
+          "startLine": 39,
+          "endLine": 57,
+          "params": [
+            "textureManager",
+            "textureId",
+            "textureUniform"
+          ]
+        },
+        {
+          "name": "createTexture",
+          "startLine": 79,
+          "endLine": 95,
+          "params": [
+            "textureManager",
+            "loadedImage",
+            "context"
+          ]
+        },
+        {
+          "name": "getTextureAndMips",
+          "startLine": 97,
+          "endLine": 109,
+          "params": [
+            "textureUniform",
+            "image",
+            "context"
+          ]
+        },
+        {
+          "name": "getWebGL1Texture",
+          "startLine": 111,
+          "endLine": 149,
+          "params": [
+            "textureUniform",
+            "image",
+            "context"
+          ]
+        },
+        {
+          "name": "samplerRequiresMipmap",
+          "startLine": 151,
+          "endLine": 158,
+          "params": [
+            "sampler"
+          ]
+        },
+        {
+          "name": "getTextureFromTypedArray",
+          "startLine": 160,
+          "endLine": 178,
+          "params": [
+            "textureUniform",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "fetchTexture2D",
+          "callee": "textureUniform.resource\n    .fetchImage()\n    .then(function (image) {\n      textureManager._loadedImages.push({\n        id: textureId,\n        image: image,\n        textureUniform: textureUniform,\n      });\n    })\n    .catch",
+          "lineNumber": 40
+        },
+        {
+          "caller": "fetchTexture2D",
+          "callee": "textureUniform.resource\n    .fetchImage()\n    .then",
+          "lineNumber": 40
+        },
+        {
+          "caller": "fetchTexture2D",
+          "callee": "textureUniform.resource\n    .fetchImage",
+          "lineNumber": 40
+        },
+        {
+          "caller": "fetchTexture2D",
+          "callee": "textureManager._loadedImages.push",
+          "lineNumber": 43
+        },
+        {
+          "caller": "fetchTexture2D",
+          "callee": "defined",
+          "lineNumber": 51
+        },
+        {
+          "caller": "fetchTexture2D",
+          "callee": "texture.destroy",
+          "lineNumber": 52
+        },
+        {
+          "caller": "createTexture",
+          "callee": "getTextureAndMips",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createTexture",
+          "callee": "getWebGL1Texture",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createTexture",
+          "callee": "defined",
+          "lineNumber": 91
+        },
+        {
+          "caller": "createTexture",
+          "callee": "oldTexture.destroy",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getTextureAndMips",
+          "callee": "defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "getTextureAndMips",
+          "callee": "getTextureFromTypedArray",
+          "lineNumber": 101
+        },
+        {
+          "caller": "getTextureAndMips",
+          "callee": "samplerRequiresMipmap",
+          "lineNumber": 104
+        },
+        {
+          "caller": "getTextureAndMips",
+          "callee": "texture.generateMipmap",
+          "lineNumber": 105
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "samplerRequiresMipmap",
+          "lineNumber": 115
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "defined",
+          "lineNumber": 123
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "[width, height].every",
+          "lineNumber": 124
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "getTextureAndMips",
+          "lineNumber": 128
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "defined",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "resizeImageToNextPowerOfTwo",
+          "lineNumber": 130
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "getTextureAndMips",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "getImageFromTypedArray",
+          "lineNumber": 133
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "resizeImageToNextPowerOfTwo",
+          "lineNumber": 134
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "getTextureAndMips",
+          "lineNumber": 135
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "console.warn",
+          "lineNumber": 140
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "console.warn",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getWebGL1Texture",
+          "callee": "getTextureFromTypedArray",
+          "lineNumber": 148
+        },
+        {
+          "caller": "samplerRequiresMipmap",
+          "callee": "[\n    TextureMinificationFilter.NEAREST_MIPMAP_NEAREST,\n    TextureMinificationFilter.NEAREST_MIPMAP_LINEAR,\n    TextureMinificationFilter.LINEAR_MIPMAP_NEAREST,\n    TextureMinificationFilter.LINEAR_MIPMAP_LINEAR,\n  ].includes",
+          "lineNumber": 152
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/TextureUniform.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 66,
+      "functions": [
+        {
+          "name": "TextureUniform",
+          "startLine": 31,
+          "endLine": 69,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TextureUniform",
+          "callee": "defined",
+          "lineNumber": 34
+        },
+        {
+          "caller": "TextureUniform",
+          "callee": "defined",
+          "lineNumber": 35
+        },
+        {
+          "caller": "TextureUniform",
+          "callee": "defined",
+          "lineNumber": 41
+        },
+        {
+          "caller": "TextureUniform",
+          "callee": "defined",
+          "lineNumber": 41
+        },
+        {
+          "caller": "TextureUniform",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Model/TilesetPipelineStage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 67,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/OIT.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 946,
+      "nonEmptyLines": 829,
+      "functions": [
+        {
+          "name": "OIT",
+          "startLine": 24,
+          "endLine": 93,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "destroyTextures",
+          "startLine": 99,
+          "endLine": 108,
+          "params": [
+            "oit"
+          ]
+        },
+        {
+          "name": "destroyFramebuffers",
+          "startLine": 114,
+          "endLine": 119,
+          "params": [
+            "oit"
+          ]
+        },
+        {
+          "name": "destroyResources",
+          "startLine": 125,
+          "endLine": 128,
+          "params": [
+            "oit"
+          ]
+        },
+        {
+          "name": "updateTextures",
+          "startLine": 137,
+          "endLine": 156,
+          "params": [
+            "oit",
+            "context",
+            "width",
+            "height"
+          ]
+        },
+        {
+          "name": "updateFramebuffers",
+          "startLine": 164,
+          "endLine": 226,
+          "params": [
+            "oit",
+            "context"
+          ]
+        },
+        {
+          "name": "getTranslucentRenderState",
+          "startLine": 441,
+          "endLine": 458,
+          "params": [
+            "context",
+            "translucentBlending",
+            "cache",
+            "renderState"
+          ]
+        },
+        {
+          "name": "getTranslucentMRTRenderState",
+          "startLine": 460,
+          "endLine": 467,
+          "params": [
+            "oit",
+            "context",
+            "renderState"
+          ]
+        },
+        {
+          "name": "getTranslucentColorRenderState",
+          "startLine": 469,
+          "endLine": 476,
+          "params": [
+            "oit",
+            "context",
+            "renderState"
+          ]
+        },
+        {
+          "name": "getTranslucentAlphaRenderState",
+          "startLine": 478,
+          "endLine": 485,
+          "params": [
+            "oit",
+            "context",
+            "renderState"
+          ]
+        },
+        {
+          "name": "getTranslucentShaderProgram",
+          "startLine": 511,
+          "endLine": 575,
+          "params": [
+            "context",
+            "shaderProgram",
+            "keyword",
+            "source"
+          ]
+        },
+        {
+          "name": "getTranslucentMRTShaderProgram",
+          "startLine": 577,
+          "endLine": 584,
+          "params": [
+            "context",
+            "shaderProgram"
+          ]
+        },
+        {
+          "name": "getTranslucentColorShaderProgram",
+          "startLine": 586,
+          "endLine": 593,
+          "params": [
+            "context",
+            "shaderProgram"
+          ]
+        },
+        {
+          "name": "getTranslucentAlphaShaderProgram",
+          "startLine": 595,
+          "endLine": 602,
+          "params": [
+            "context",
+            "shaderProgram"
+          ]
+        },
+        {
+          "name": "executeTranslucentCommandsSortedMultipass",
+          "startLine": 709,
+          "endLine": 775,
+          "params": [
+            "oit",
+            "scene",
+            "executeFunction",
+            "passState",
+            "commands",
+            "invertClassification"
+          ]
+        },
+        {
+          "name": "executeTranslucentCommandsSortedMRT",
+          "startLine": 786,
+          "endLine": 828,
+          "params": [
+            "oit",
+            "scene",
+            "executeFunction",
+            "passState",
+            "commands",
+            "invertClassification"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "destroyTextures",
+          "callee": "oit._accumulationTexture.isDestroyed",
+          "lineNumber": 102
+        },
+        {
+          "caller": "destroyTextures",
+          "callee": "oit._accumulationTexture.destroy",
+          "lineNumber": 103
+        },
+        {
+          "caller": "destroyTextures",
+          "callee": "oit._revealageTexture.isDestroyed",
+          "lineNumber": 106
+        },
+        {
+          "caller": "destroyTextures",
+          "callee": "oit._revealageTexture.destroy",
+          "lineNumber": 107
+        },
+        {
+          "caller": "destroyFramebuffers",
+          "callee": "oit._translucentFBO.destroy",
+          "lineNumber": 115
+        },
+        {
+          "caller": "destroyFramebuffers",
+          "callee": "oit._alphaFBO.destroy",
+          "lineNumber": 116
+        },
+        {
+          "caller": "destroyFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.destroy",
+          "lineNumber": 117
+        },
+        {
+          "caller": "destroyFramebuffers",
+          "callee": "oit._adjustAlphaFBO.destroy",
+          "lineNumber": 118
+        },
+        {
+          "caller": "destroyResources",
+          "callee": "destroyTextures",
+          "lineNumber": 126
+        },
+        {
+          "caller": "destroyResources",
+          "callee": "destroyFramebuffers",
+          "lineNumber": 127
+        },
+        {
+          "caller": "updateTextures",
+          "callee": "destroyTextures",
+          "lineNumber": 138
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "destroyFramebuffers",
+          "lineNumber": 165
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.setColorTexture",
+          "lineNumber": 174
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.setColorTexture",
+          "lineNumber": 175
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.setDepthStencilTexture",
+          "lineNumber": 176
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.update",
+          "lineNumber": 177
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.setColorTexture",
+          "lineNumber": 179
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.setColorTexture",
+          "lineNumber": 180
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.update",
+          "lineNumber": 181
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "destroyFramebuffers",
+          "lineNumber": 187
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.setColorTexture",
+          "lineNumber": 194
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.setDepthStencilTexture",
+          "lineNumber": 195
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._translucentFBO.update",
+          "lineNumber": 196
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._alphaFBO.setColorTexture",
+          "lineNumber": 198
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._alphaFBO.setDepthStencilTexture",
+          "lineNumber": 199
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._alphaFBO.update",
+          "lineNumber": 200
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.setColorTexture",
+          "lineNumber": 202
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustTranslucentFBO.update",
+          "lineNumber": 203
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustAlphaFBO.setColorTexture",
+          "lineNumber": 205
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "oit._adjustAlphaFBO.update",
+          "lineNumber": 206
+        },
+        {
+          "caller": "updateFramebuffers",
+          "callee": "destroyResources",
+          "lineNumber": 219
+        },
+        {
+          "caller": "getTranslucentRenderState",
+          "callee": "defined",
+          "lineNumber": 448
+        },
+        {
+          "caller": "getTranslucentRenderState",
+          "callee": "RenderState.getState",
+          "lineNumber": 449
+        },
+        {
+          "caller": "getTranslucentRenderState",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 453
+        },
+        {
+          "caller": "getTranslucentMRTRenderState",
+          "callee": "getTranslucentRenderState",
+          "lineNumber": 461
+        },
+        {
+          "caller": "getTranslucentColorRenderState",
+          "callee": "getTranslucentRenderState",
+          "lineNumber": 470
+        },
+        {
+          "caller": "getTranslucentAlphaRenderState",
+          "callee": "getTranslucentRenderState",
+          "lineNumber": 479
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "shaderCache.getDerivedShaderProgram",
+          "lineNumber": 513
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "defined",
+          "lineNumber": 514
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "shaderProgram.fragmentShaderSource.clone",
+          "lineNumber": 519
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "fs.sources.map",
+          "lineNumber": 521
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "ShaderSource.replaceMain(fsSource, \"czm_translucent_main\")\n      .replace(/out_FragColor/g, \"czm_out_FragColor\")\n      .replace(\n        /layout\\s*\\(location\\s*=\\s*0\\)\\s*out\\s+vec4\\s+out_FragColor;/g,\n        \"\",\n      )\n      .replace(/\\bdiscard\\b/g, \"czm_discard = true\")\n      .replace",
+          "lineNumber": 522
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "ShaderSource.replaceMain(fsSource, \"czm_translucent_main\")\n      .replace(/out_FragColor/g, \"czm_out_FragColor\")\n      .replace(\n        /layout\\s*\\(location\\s*=\\s*0\\)\\s*out\\s+vec4\\s+out_FragColor;/g,\n        \"\",\n      )\n      .replace",
+          "lineNumber": 522
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "ShaderSource.replaceMain(fsSource, \"czm_translucent_main\")\n      .replace(/out_FragColor/g, \"czm_out_FragColor\")\n      .replace",
+          "lineNumber": 522
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "ShaderSource.replaceMain(fsSource, \"czm_translucent_main\")\n      .replace",
+          "lineNumber": 522
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "ShaderSource.replaceMain",
+          "lineNumber": 522
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "fs.sources.splice",
+          "lineNumber": 542
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "source.matchAll",
+          "lineNumber": 550
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "fs.sources.push",
+          "lineNumber": 556
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "fs.sources.push",
+          "lineNumber": 558
+        },
+        {
+          "caller": "getTranslucentShaderProgram",
+          "callee": "shaderCache.createDerivedShaderProgram",
+          "lineNumber": 570
+        },
+        {
+          "caller": "getTranslucentMRTShaderProgram",
+          "callee": "getTranslucentShaderProgram",
+          "lineNumber": 578
+        },
+        {
+          "caller": "getTranslucentColorShaderProgram",
+          "callee": "getTranslucentShaderProgram",
+          "lineNumber": 587
+        },
+        {
+          "caller": "getTranslucentAlphaShaderProgram",
+          "callee": "getTranslucentShaderProgram",
+          "lineNumber": 596
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "oit._adjustTranslucentCommand.execute",
+          "lineNumber": 725
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "oit._adjustAlphaCommand.execute",
+          "lineNumber": 727
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "executeFunction",
+          "lineNumber": 740
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "defined",
+          "lineNumber": 743
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "executeFunction",
+          "lineNumber": 749
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "executeFunction",
+          "lineNumber": 762
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "defined",
+          "lineNumber": 765
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMultipass",
+          "callee": "executeFunction",
+          "lineNumber": 771
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMRT",
+          "callee": "oit._adjustTranslucentCommand.execute",
+          "lineNumber": 802
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMRT",
+          "callee": "executeFunction",
+          "lineNumber": 815
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMRT",
+          "callee": "defined",
+          "lineNumber": 818
+        },
+        {
+          "caller": "executeTranslucentCommandsSortedMRT",
+          "callee": "executeFunction",
+          "lineNumber": 824
+        }
+      ],
+      "metrics": {
+        "importCount": 15,
+        "exportCount": 0,
+        "functionCount": 16,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 218,
+      "nonEmptyLines": 195,
+      "functions": [
+        {
+          "name": "OrderedGroundPrimitiveCollection",
+          "startLine": 11,
+          "endLine": 17,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Panorama.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "Panorama",
+          "startLine": 17,
+          "endLine": 19,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Panorama",
+          "callee": "DeveloperError.throwInstantiationError",
+          "lineNumber": 18
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PickDepth.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 125,
+      "nonEmptyLines": 108,
+      "functions": [
+        {
+          "name": "PickDepth",
+          "startLine": 13,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "updateFramebuffers",
+          "startLine": 28,
+          "endLine": 31,
+          "params": [
+            "pickDepth",
+            "context",
+            "depthTexture"
+          ]
+        },
+        {
+          "name": "updateCopyCommands",
+          "startLine": 33,
+          "endLine": 63,
+          "params": [
+            "pickDepth",
+            "context",
+            "depthTexture"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "updateFramebuffers",
+          "callee": "pickDepth._framebuffer.update",
+          "lineNumber": 30
+        },
+        {
+          "caller": "updateCopyCommands",
+          "callee": "defined",
+          "lineNumber": 34
+        },
+        {
+          "caller": "updateCopyCommands",
+          "callee": "context.createViewportQuadCommand",
+          "lineNumber": 35
+        },
+        {
+          "caller": "updateCopyCommands",
+          "callee": "RenderState.fromCache",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PickDepthFramebuffer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "PickDepthFramebuffer",
+          "startLine": 9,
+          "endLine": 16,
+          "params": []
+        },
+        {
+          "name": "destroyResources",
+          "startLine": 26,
+          "endLine": 28,
+          "params": [
+            "pickDepth"
+          ]
+        },
+        {
+          "name": "createResources",
+          "startLine": 30,
+          "endLine": 44,
+          "params": [
+            "pickDepth",
+            "context"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "destroyResources",
+          "callee": "pickDepth._framebuffer.destroy",
+          "lineNumber": 27
+        },
+        {
+          "caller": "createResources",
+          "callee": "pickDepth._framebuffer.update",
+          "lineNumber": 34
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/PickFramebuffer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 255,
+      "nonEmptyLines": 223,
+      "functions": [
+        {
+          "name": "PickFramebuffer",
+          "startLine": 15,
+          "endLine": 32,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "pickObjectsFromPixels",
+          "startLine": 45,
+          "endLine": 99,
+          "params": [
+            "context",
+            "pixels",
+            "width",
+            "height"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "Math.max",
+          "lineNumber": 46
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "Math.floor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "Math.floor",
+          "lineNumber": 49
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "Color.bytesToRgba",
+          "lineNumber": 71
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "context.getObjectByPickColor",
+          "lineNumber": 78
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "defined",
+          "lineNumber": 79
+        },
+        {
+          "caller": "pickObjectsFromPixels",
+          "callee": "objects.add",
+          "lineNumber": 80
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    }
+  ]
+}

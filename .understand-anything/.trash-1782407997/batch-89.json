@@ -1,0 +1,353 @@
+{
+  "nodes": [
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudWithPerPointProperties/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudWithPerPointProperties/tileset.json",
+      "summary": "Cesium 3D Tiles 1.0 tileset 描述文件，定义带有逐点属性(per-point properties)的点云数据集的根 tile、geometricError 与 bounding volume。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "point-cloud", "schema-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Tilesets/Tileset/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Tilesets/Tileset/tileset.json",
+      "summary": "标准 3D Tiles 示例 tileset，定义了多层 b3dm tile 的 bounding region、refine 策略(ADD)与 children 层级结构，常用于测试基础瓦片加载。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "tileset", "b3dm"],
+      "complexity": "moderate",
+      "languageNotes": "使用 region bounding volume 与 ADD refine 策略，properties 块声明了 per-tile 属性的最小/最大值范围。"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Tilesets/TilesetWithViewerRequestVolume/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Tilesets/TilesetWithViewerRequestVolume/tileset.json",
+      "summary": "带 viewer request volume 的 3D Tiles 示例 tileset，通过 content 的 viewerRequestVolume 控制瓦片在接近相机时才被请求加载。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "tileset", "request-volume"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/subtrees/0/0/0/0.json",
+      "type": "config",
+      "name": "0.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/subtrees/0/0/0/0.json",
+      "summary": "VoxelBox3DTiles 的 implicit tiling subtree 元数据，声明 tileAvailability、contentAvailability 与 childSubtreeAvailability 的可用性常量。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "voxel", "implicit-tiling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/0.gltf",
+      "summary": "Box 体素瓦片的 glTF 内容文件，使用 EXT_primitive_voxels 与 EXT_structural_metadata 扩展，引用 a.bin 作为 voxel 数据缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0，mode 设为最大整数表示 voxel primitive，数据通过 _DATA 自定义 attribute 传入。"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/a.bin",
+      "type": "file",
+      "name": "a.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/a.bin",
+      "summary": "VoxelBox3DTiles 根瓦片 (0/0/0) 的二进制缓冲文件，存放 384 字节的 VEC4 voxel 属性数据，由同目录 0.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tileset.json",
+      "summary": "VoxelBox3DTiles 根 tileset (3D Tiles 1.1)，定义 box bounding volume、3DTILES_content_voxels 扩展、voxel schema/statistics 与 OCTREE implicit tiling 布局。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "voxel", "schema-definition"],
+      "complexity": "moderate",
+      "languageNotes": "使用 3DTILES_content_voxels 扩展与 OCTREE implicit tiling；content/tile URI 采用 {level}/{x}/{y}/{z} 模板。"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/subtrees/0/0/0/0.json",
+      "type": "config",
+      "name": "0.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/subtrees/0/0/0/0.json",
+      "summary": "VoxelCylinder3DTiles 的 implicit tiling subtree 元数据，声明 tileAvailability、contentAvailability 与 childSubtreeAvailability 的可用性常量。",
+      "tags": ["configuration", "3d-tiles", "sample-data", "voxel", "implicit-tiling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/0.gltf",
+      "summary": "圆柱体素瓦片根节点 (0/0/0) 的 glTF 内容，使用 EXT_primitive_voxels 与 EXT_structural_metadata 扩展，引用 a.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/a.bin",
+      "type": "file",
+      "name": "a.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/a.bin",
+      "summary": "圆柱体素瓦片根节点 (0/0/0) 的二进制缓冲文件，存放 voxel 属性数据，由同目录 0.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/0.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/0/0) 之一的 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a0.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/1.gltf",
+      "type": "file",
+      "name": "1.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/1.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/0/0) 的第二组 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a1.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a0.bin",
+      "type": "file",
+      "name": "a0.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a0.bin",
+      "summary": "圆柱体素瓦片 (1/0/0) 第一组 voxel 数据缓冲文件，由同目录 0.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a1.bin",
+      "type": "file",
+      "name": "a1.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a1.bin",
+      "summary": "圆柱体素瓦片 (1/0/0) 第二组 voxel 数据缓冲文件，由同目录 1.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/0.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/0/1) 之一的 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a0.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/1.gltf",
+      "type": "file",
+      "name": "1.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/1.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/0/1) 的第二组 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a1.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a0.bin",
+      "type": "file",
+      "name": "a0.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a0.bin",
+      "summary": "圆柱体素瓦片 (1/0/1) 第一组 voxel 数据缓冲文件，由同目录 0.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a1.bin",
+      "type": "file",
+      "name": "a1.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a1.bin",
+      "summary": "圆柱体素瓦片 (1/0/1) 第二组 voxel 数据缓冲文件，由同目录 1.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/0.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/1/0) 之一的 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a0.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/1.gltf",
+      "type": "file",
+      "name": "1.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/1.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/1/0) 的第二组 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a1.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a0.bin",
+      "type": "file",
+      "name": "a0.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a0.bin",
+      "summary": "圆柱体素瓦片 (1/1/0) 第一组 voxel 数据缓冲文件，由同目录 0.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a1.bin",
+      "type": "file",
+      "name": "a1.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a1.bin",
+      "summary": "圆柱体素瓦片 (1/1/0) 第二组 voxel 数据缓冲文件，由同目录 1.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/0.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/1/1) 之一的 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a0.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/1.gltf",
+      "type": "file",
+      "name": "1.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/1.gltf",
+      "summary": "圆柱体素瓦片子节点 (1/1/1) 的第二组 glTF 内容，使用 EXT_primitive_voxels 扩展，引用同目录 a0.bin 缓冲。",
+      "tags": ["sample-data", "voxel", "gltf", "3d-tiles", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a0.bin",
+      "type": "file",
+      "name": "a0.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a0.bin",
+      "summary": "圆柱体素瓦片 (1/1/1) 的 voxel 数据缓冲文件，由同目录 0.gltf 与 1.gltf 引用。",
+      "tags": ["sample-data", "voxel", "binary-buffer", "3d-tiles"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tileset.json",
+      "target": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/subtrees/0/0/0/0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/0.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/0.gltf",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelBox3DTiles/tiles/0/0/0/a.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "target": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/subtrees/0/0/0/0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/0.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/0.gltf",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/0/0/0/a.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/1.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/0/a1.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/1.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/0/1/a1.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/1.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/0/a1.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/1.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/PointCloud/PointCloudWithPerPointProperties/tileset.json",
+      "target": "config:Apps/SampleData/Cesium3DTiles/Tilesets/Tileset/tileset.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

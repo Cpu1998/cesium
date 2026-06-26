@@ -1,0 +1,640 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "type": "file",
+      "name": "EdgeFramebuffer.js",
+      "filePath": "packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "summary": "为模型边缘高亮渲染 (edge silhouette) 创建专用 framebuffer 与纹理资源。",
+      "tags": [
+        "framebuffer",
+        "edge-detection",
+        "model",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "type": "file",
+      "name": "EllipsoidPrimitive.js",
+      "filePath": "packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "summary": "椭球体 primitive：在场景中绘制一个完整三轴椭球，支持 fill/wireframe 材质、显示与调试。",
+      "tags": [
+        "primitive",
+        "ellipsoid",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "type": "file",
+      "name": "EquirectangularPanorama.js",
+      "filePath": "packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "summary": "从等距矩形 (equirectangular) 全景图纹理构建用于天空盒/背景渲染的资源。",
+      "tags": [
+        "panorama",
+        "texture",
+        "background",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/FrameState.js",
+      "type": "file",
+      "name": "FrameState.js",
+      "filePath": "packages/engine/Source/Scene/FrameState.js",
+      "summary": "每帧状态容器：携带相机、mode、frustum、光照、遮挡点、命令列表等渲染上下文，贯穿整个 scene 更新与渲染管线。",
+      "tags": [
+        "render-pipeline",
+        "frame-state",
+        "core",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/FrustumCommands.js",
+      "type": "file",
+      "name": "FrustumCommands.js",
+      "filePath": "packages/engine/Source/Scene/FrustumCommands.js",
+      "summary": "按 near/far 范围对渲染命令进行分组的私有容器，用于对数深度分桶渲染。",
+      "tags": [
+        "render-pipeline",
+        "command",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "type": "file",
+      "name": "GaussianSplatRenderResources.js",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "summary": "为 Gaussian Splatting primitive 构建 shader、render state、uniform map 等渲染资源的工厂构造函数。",
+      "tags": [
+        "gaussian-splatting",
+        "render-resources",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/EdgeFramebuffer.js:EdgeFramebuffer",
+      "type": "function",
+      "name": "EdgeFramebuffer",
+      "filePath": "packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "lineRange": [
+        19,
+        46
+      ],
+      "summary": "为边缘高亮渲染创建 framebuffer 与颜色/深度纹理资源。",
+      "tags": [
+        "framebuffer",
+        "edge-detection",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:EllipsoidPrimitive",
+      "type": "function",
+      "name": "EllipsoidPrimitive",
+      "filePath": "packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "lineRange": [
+        49,
+        205
+      ],
+      "summary": "构造椭球 primitive，配置 radii、材质、显示与调试参数。",
+      "tags": [
+        "primitive",
+        "ellipsoid",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:getVertexArray",
+      "type": "function",
+      "name": "getVertexArray",
+      "filePath": "packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "lineRange": [
+        207,
+        231
+      ],
+      "summary": "返回椭球几何的顶点数组。",
+      "tags": [
+        "primitive",
+        "vertex-array"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/EquirectangularPanorama.js:EquirectangularPanorama",
+      "type": "function",
+      "name": "EquirectangularPanorama",
+      "filePath": "packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "lineRange": [
+        70,
+        141
+      ],
+      "summary": "从等距矩形全景图创建用于背景渲染的纹理资源工厂。",
+      "tags": [
+        "panorama",
+        "texture",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/FrameState.js:FrameState",
+      "type": "function",
+      "name": "FrameState",
+      "filePath": "packages/engine/Source/Scene/FrameState.js",
+      "lineRange": [
+        16,
+        476
+      ],
+      "summary": "构造帧状态对象，聚合相机、模式、光照、frustum 与各类命令列表，贯穿渲染管线。",
+      "tags": [
+        "frame-state",
+        "render-pipeline",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/FrustumCommands.js:FrustumCommands",
+      "type": "function",
+      "name": "FrustumCommands",
+      "filePath": "packages/engine/Source/Scene/FrustumCommands.js",
+      "lineRange": [
+        13,
+        28
+      ],
+      "summary": "按 near/far 范围对渲染命令进行分组的私有构造函数。",
+      "tags": [
+        "command",
+        "frustum",
+        "render-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GaussianSplatRenderResources.js:GaussianSplatRenderResources",
+      "type": "function",
+      "name": "GaussianSplatRenderResources",
+      "filePath": "packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "lineRange": [
+        7,
+        79
+      ],
+      "summary": "为 Gaussian Splatting primitive 构建渲染资源（shader、state、uniforms）的工厂。",
+      "tags": [
+        "gaussian-splatting",
+        "render-resources",
+        "factory"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/EdgeFramebuffer.js:EdgeFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/EdgeFramebuffer.js:EdgeFramebuffer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:EllipsoidPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:EllipsoidPrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:getVertexArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/EllipsoidPrimitive.js:getVertexArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "function:packages/engine/Source/Scene/EquirectangularPanorama.js:EquirectangularPanorama",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "function:packages/engine/Source/Scene/EquirectangularPanorama.js:EquirectangularPanorama",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameState.js",
+      "target": "function:packages/engine/Source/Scene/FrameState.js:FrameState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameState.js",
+      "target": "function:packages/engine/Source/Scene/FrameState.js:FrameState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrustumCommands.js",
+      "target": "function:packages/engine/Source/Scene/FrustumCommands.js:FrustumCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrustumCommands.js",
+      "target": "function:packages/engine/Source/Scene/FrustumCommands.js:FrustumCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatRenderResources.js:GaussianSplatRenderResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatRenderResources.js:GaussianSplatRenderResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EdgeFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EllipsoidPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/SphereGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Core/VertexFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameState.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrustumCommands.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplatRenderResources.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,990 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Specs/Scene/MapboxStyleImageryProviderSpec.js",
+      "type": "file",
+      "name": "MapboxStyleImageryProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MapboxStyleImageryProviderSpec.js",
+      "summary": "针对 MapboxStyleImageryProvider 的测试用例，验证 Mapbox 卫星影像图层 provider 的 URL 拼接、瓦片加载与异步请求行为。",
+      "tags": [
+        "test",
+        "imagery",
+        "mapbox",
+        "provider"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MaterialAppearanceSpec.js",
+      "type": "file",
+      "name": "MaterialAppearanceSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MaterialAppearanceSpec.js",
+      "summary": "MaterialAppearance（材质外观）的单元测试，验证外观配置如何映射到 shader 与顶点属性。",
+      "tags": [
+        "test",
+        "material",
+        "appearance",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MaterialSpec.js",
+      "type": "file",
+      "name": "MaterialSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MaterialSpec.js",
+      "summary": "Material 类的测试套件，覆盖内置材质类型、fabric 描述、uniform 与 shader 缓存等行为。",
+      "tags": [
+        "test",
+        "material",
+        "fabric",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MegatextureSpec.js",
+      "type": "file",
+      "name": "MegatextureSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MegatextureSpec.js",
+      "summary": "Megatexture（超大纹理分页系统）测试，验证纹理页切割、上传与裁剪逻辑。",
+      "tags": [
+        "test",
+        "megatexture",
+        "gpu-texture",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataTablePropertySpec.js",
+      "type": "file",
+      "name": "MetadataTablePropertySpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataTablePropertySpec.js",
+      "summary": "针对 3D Tiles 结构化元数据中 MetadataTableProperty 的测试，验证各类属性类型读写与默认值。",
+      "tags": [
+        "test",
+        "metadata",
+        "3d-tiles",
+        "property-table"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataTableSpec.js",
+      "type": "file",
+      "name": "MetadataTableSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataTableSpec.js",
+      "summary": "MetadataTable 测试套件，验证 3D Tiles EXT_structural_metadata 表格的 schema、行/列访问与类型转换。",
+      "tags": [
+        "test",
+        "metadata",
+        "3d-tiles",
+        "property-table"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/AlphaPipelineStageSpec.js",
+      "type": "file",
+      "name": "AlphaPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/AlphaPipelineStageSpec.js",
+      "summary": "AlphaPipelineStage 测试，验证 alpha 混合阶段对 shader 输出的注入与 uniform 处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "alpha",
+        "model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/AtmospherePipelineStageSpec.js",
+      "type": "file",
+      "name": "AtmospherePipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/AtmospherePipelineStageSpec.js",
+      "summary": "AtmospherePipelineStage 测试，验证大气渲染阶段对 model shader 的贡献与加载流程。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "atmosphere",
+        "model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/B3dmLoaderSpec.js",
+      "type": "file",
+      "name": "B3dmLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/B3dmLoaderSpec.js",
+      "summary": "B3dmLoader 测试套件，验证加载 3D Tiles b3dm（Batched 3D Model）瓦片内容的解析与渲染管线。",
+      "tags": [
+        "test",
+        "loader",
+        "b3dm",
+        "3d-tiles"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/BatchTexturePipelineStageSpec.js",
+      "type": "file",
+      "name": "BatchTexturePipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/BatchTexturePipelineStageSpec.js",
+      "summary": "BatchTexturePipelineStage 测试，验证批纹理阶段将 feature ID 映射到 batch texture 的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "batch-texture",
+        "model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/CPUStylingPipelineStageSpec.js",
+      "type": "file",
+      "name": "CPUStylingPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/CPUStylingPipelineStageSpec.js",
+      "summary": "CPUStylingPipelineStage 测试，验证 CPU 侧按 feature 属性进行样式计算并向 shader 注入的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "styling",
+        "cpu"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ClassificationPipelineStageSpec.js",
+      "type": "file",
+      "name": "ClassificationPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ClassificationPipelineStageSpec.js",
+      "summary": "ClassificationPipelineStage 测试，验证 model 分类（向量/瓦片分类）阶段的 shader 集成。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "classification",
+        "model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/CustomShaderPipelineStageSpec.js",
+      "type": "file",
+      "name": "CustomShaderPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/CustomShaderPipelineStageSpec.js",
+      "summary": "CustomShaderPipelineStage 的大型测试套件，覆盖自定义 shader 注入、uniform、varying 与 hook 函数。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "custom-shader",
+        "glsl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/CustomShaderSpec.js",
+      "type": "file",
+      "name": "CustomShaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/CustomShaderSpec.js",
+      "summary": "CustomShader 类的集成测试，验证自定义 shader 在 Model 上的应用与运行时行为。",
+      "tags": [
+        "test",
+        "custom-shader",
+        "model",
+        "shader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/DequantizationPipelineStageSpec.js",
+      "type": "file",
+      "name": "DequantizationPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/DequantizationPipelineStageSpec.js",
+      "summary": "DequantizationPipelineStage 测试，验证对量化顶点属性（POSITION/normal 等）的反量化阶段处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "dequantization",
+        "gltf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityPipelineStageDecodingSpec.js",
+      "type": "file",
+      "name": "EdgeVisibilityPipelineStageDecodingSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/EdgeVisibilityPipelineStageDecodingSpec.js",
+      "summary": "EdgeVisibilityPipelineStage 解码测试，验证边缘可见性属性的 GPU 解码管线。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "edge-visibility",
+        "decoding"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityRenderingSpec.js",
+      "type": "file",
+      "name": "EdgeVisibilityRenderingSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/EdgeVisibilityRenderingSpec.js",
+      "summary": "边缘可见性渲染测试，验证按 edge visibility 渲染 model 的视觉效果与场景集成。",
+      "tags": [
+        "test",
+        "edge-visibility",
+        "rendering",
+        "model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "type": "file",
+      "name": "GltfMeshPrimitiveGpmLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "summary": "GltfMeshPrimitiveGpmLoader 测试套件，验证 NGA_gpm_local 扩展下 mesh primitive 与 PPE 纹理的加载流程。包含一个内嵌 glTF 构造辅助函数。",
+      "tags": [
+        "test",
+        "gpm",
+        "gltf-extension",
+        "loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/FeatureIdPipelineStageSpec.js",
+      "type": "file",
+      "name": "FeatureIdPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/FeatureIdPipelineStageSpec.js",
+      "summary": "FeatureIdPipelineStage 测试，验证 feature ID 属性在 model pipeline 中的解析与 shader 注入。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "feature-id",
+        "model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/GeoJsonLoaderSpec.js",
+      "type": "file",
+      "name": "GeoJsonLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/GeoJsonLoaderSpec.js",
+      "summary": "GeoJsonLoader 测试套件，验证将 GeoJSON 几何加载为 model primitive 的管线行为。",
+      "tags": [
+        "test",
+        "loader",
+        "geojson",
+        "model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/GeometryPipelineStageSpec.js",
+      "type": "file",
+      "name": "GeometryPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/GeometryPipelineStageSpec.js",
+      "summary": "GeometryPipelineStage 的大型测试套件，验证几何阶段对顶点属性、压缩属性、tangent/normal 等的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "geometry",
+        "vertex-attributes"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/I3dmLoaderSpec.js",
+      "type": "file",
+      "name": "I3dmLoaderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/I3dmLoaderSpec.js",
+      "summary": "I3dmLoader 测试套件，验证 3D Tiles i3dm（Instanced 3D Model）瓦片的实例化加载与渲染。",
+      "tags": [
+        "test",
+        "loader",
+        "i3dm",
+        "instancing"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ImageBasedLightingPipelineStageSpec.js",
+      "type": "file",
+      "name": "ImageBasedLightingPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ImageBasedLightingPipelineStageSpec.js",
+      "summary": "ImageBasedLightingPipelineStage 测试，验证基于图像的光照（IBL）阶段 shader 注入。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "ibl",
+        "lighting"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ImageryPipelineStageSpec.js",
+      "type": "file",
+      "name": "ImageryPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ImageryPipelineStageSpec.js",
+      "summary": "ImageryPipelineStage 测试，验证 model 上叠加影像图层（model 影像叠加）阶段的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "imagery",
+        "model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/InstancingPipelineStageSpec.js",
+      "type": "file",
+      "name": "InstancingPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/InstancingPipelineStageSpec.js",
+      "summary": "InstancingPipelineStage 测试套件，验证 GPU 实例化阶段对 instance 属性矩阵的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "instancing",
+        "gpu"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/LightingPipelineStageSpec.js",
+      "type": "file",
+      "name": "LightingPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/LightingPipelineStageSpec.js",
+      "summary": "LightingPipelineStage 测试，验证光照阶段对 PBR/非 PBR 光照模型 shader 的注入。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "lighting",
+        "pbr"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/MaterialPipelineStageSpec.js",
+      "type": "file",
+      "name": "MaterialPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/MaterialPipelineStageSpec.js",
+      "summary": "MaterialPipelineStage 测试套件，验证 glTF 材质（PBR/fabric）阶段对纹理、KTX2、shader 的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "material",
+        "pbr"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "type": "file",
+      "name": "MetadataPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "summary": "MetadataPipelineStage 测试套件，验证结构化元数据阶段对 property table/attribute 的处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "metadata",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/Model3DTileContentSpec.js",
+      "type": "file",
+      "name": "Model3DTileContentSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/Model3DTileContentSpec.js",
+      "summary": "Model3DTileContent 大型测试套件，验证作为 3D Tiles 内容加载 Model 时的端到端行为（含批纹理、feature、点云等）。",
+      "tags": [
+        "test",
+        "model",
+        "3d-tiles",
+        "tile-content"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelAnimationCollectionSpec.js",
+      "type": "file",
+      "name": "ModelAnimationCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelAnimationCollectionSpec.js",
+      "summary": "ModelAnimationCollection 测试套件，验证 glTF 动画的播放、混合与时序控制。",
+      "tags": [
+        "test",
+        "animation",
+        "gltf",
+        "model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelClippingPlanesPipelineStageSpec.js",
+      "type": "file",
+      "name": "ModelClippingPlanesPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelClippingPlanesPipelineStageSpec.js",
+      "summary": "ModelClippingPlanesPipelineStage 测试，验证裁剪平面阶段对 model 的 shader 贡献。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "clipping-planes",
+        "model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelClippingPolygonsPipelineStageSpec.js",
+      "type": "file",
+      "name": "ModelClippingPolygonsPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelClippingPolygonsPipelineStageSpec.js",
+      "summary": "ModelClippingPolygonsPipelineStage 测试，验证裁剪多边形阶段的 shader 注入。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "clipping-polygons",
+        "model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelColorPipelineStageSpec.js",
+      "type": "file",
+      "name": "ModelColorPipelineStageSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelColorPipelineStageSpec.js",
+      "summary": "ModelColorPipelineStage 测试，验证 model 颜色着色阶段的 uniform 与 shader 处理。",
+      "tags": [
+        "test",
+        "pipeline-stage",
+        "color",
+        "model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Model/ModelFeatureSpec.js",
+      "type": "file",
+      "name": "ModelFeatureSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Model/ModelFeatureSpec.js",
+      "summary": "ModelFeature 测试，验证 model feature 的属性访问、批表查找与样式集成。",
+      "tags": [
+        "test",
+        "feature",
+        "model",
+        "property-table"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js:createEmbeddedGltf",
+      "type": "function",
+      "name": "createEmbeddedGltf",
+      "filePath": "packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "lineRange": [
+        51,
+        176
+      ],
+      "summary": "测试辅助函数：构造一个内嵌 16x16 PNG 纹理的单位四边形 glTF，可选择挂载 NGA_gpm_local 扩展，用于驱动 GPM loader 的测试用例。",
+      "tags": [
+        "test-helper",
+        "gltf",
+        "fixture",
+        "gpm"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "target": "function:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js:createEmbeddedGltf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MapboxStyleImageryProviderSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MaterialAppearanceSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MaterialSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MaterialSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MegatextureSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MetadataTablePropertySpec.js",
+      "target": "file:Specs/MetadataTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/MetadataTableSpec.js",
+      "target": "file:Specs/MetadataTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/AlphaPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/AtmospherePipelineStageSpec.js",
+      "target": "file:packages/engine/Specs/Scene/Model/loadAndZoomToModelAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/AtmospherePipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/AtmospherePipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/B3dmLoaderSpec.js",
+      "target": "file:Specs/Cesium3DTilesTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/B3dmLoaderSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/B3dmLoaderSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/BatchTexturePipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/CPUStylingPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ClassificationPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/CustomShaderPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/CustomShaderSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/CustomShaderSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/DequantizationPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/DequantizationPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/DequantizationPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityPipelineStageDecodingSpec.js",
+      "target": "file:packages/engine/Source/Scene/Model/EdgeVisibilityPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityPipelineStageDecodingSpec.js",
+      "target": "file:Specs/createContext.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityPipelineStageDecodingSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityRenderingSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/EdgeVisibilityRenderingSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "target": "file:packages/engine/Specs/Scene/Model/loadAndZoomToModelAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "target": "file:Specs/loaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoaderSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/FeatureIdPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/FeatureIdPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/FeatureIdPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/GeoJsonLoaderSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/GeoJsonLoaderSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/GeometryPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/GeometryPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/GeometryPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/I3dmLoaderSpec.js",
+      "target": "file:Specs/Cesium3DTilesTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/I3dmLoaderSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/I3dmLoaderSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ImageBasedLightingPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ImageryPipelineStageSpec.js",
+      "target": "file:packages/engine/Specs/Scene/Model/loadTilesetWithImagery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ImageryPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/InstancingPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/InstancingPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/InstancingPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/LightingPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MaterialPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MaterialPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MaterialPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "target": "file:Specs/Cesium3DTilesTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "target": "file:Specs/createContext.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/MetadataPipelineStageSpec.js",
+      "target": "file:Specs/waitForLoaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Model3DTileContentSpec.js",
+      "target": "file:Specs/Cesium3DTilesTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Model3DTileContentSpec.js",
+      "target": "file:Specs/createCanvas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/Model3DTileContentSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelAnimationCollectionSpec.js",
+      "target": "file:packages/engine/Specs/Scene/Model/loadAndZoomToModelAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelAnimationCollectionSpec.js",
+      "target": "file:Specs/createScene.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelAnimationCollectionSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelClippingPlanesPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelClippingPolygonsPipelineStageSpec.js",
+      "target": "file:Specs/createContext.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelClippingPolygonsPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelColorPipelineStageSpec.js",
+      "target": "file:Specs/ShaderBuilderTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/Model/ModelFeatureSpec.js",
+      "target": "file:Specs/MetadataTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

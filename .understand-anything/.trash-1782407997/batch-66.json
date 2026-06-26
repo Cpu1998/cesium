@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0.json",
+      "summary": "3D Tiles 1.0 测试 fixture，演示通过 3DTILES_multiple_contents 扩展的 contents 字段在根瓦片中同时引用 batched.b3dm 与 instanced.i3dm 两份内容。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset", "extensions"],
+      "complexity": "simple",
+      "languageNotes": "声明 extensionsRequired/extensionsUsed 以启用 3DTILES_multiple_contents 扩展，root.extensions 下挂载 contents 数组。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0_content.json",
+      "type": "config",
+      "name": "tileset_1.0_content.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0_content.json",
+      "summary": "3D Tiles 1.0 测试 fixture 变体，与 tileset_1.0.json 几乎一致，但将多内容数组置于 3DTILES_multiple_contents.content（而非 contents）键下，用于校验加载器对该字段的容错。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset", "edge-case"],
+      "complexity": "simple",
+      "languageNotes": "区别于标准 fixture：root.extensions.3DTILES_multiple_contents.content（单数）替代 contents（复数）。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.1.json",
+      "summary": "3D Tiles 1.1 测试 fixture，使用 1.1 规范原生的 root.contents 数组直接引用 batched.b3dm 与 instanced.i3dm，无需 3DTILES_multiple_contents 扩展。",
+      "tags": ["configuration", "3d-tiles", "test-fixture", "tileset", "spec-1.1"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 内建 contents 多内容支持，省略 extensionsRequired/extensionsUsed。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.1.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0_content.json",
+      "target": "config:Specs/Data/Cesium3DTiles/MultipleContents/MultipleContents/tileset_1.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

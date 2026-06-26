@@ -1,0 +1,1111 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "type": "file",
+      "name": "PointCloudShading.js",
+      "filePath": "packages/engine/Source/Scene/PointCloudShading.js",
+      "summary": "定义 PointCloudShading 选项对象，封装点云的着色属性（attenuation、eye dome lighting、最大屏幕空间误差等）。",
+      "tags": [
+        "point-cloud",
+        "shading",
+        "config",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "type": "file",
+      "name": "PostProcessStageSampleMode.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "summary": "后处理采样模式枚举，定义纹理采样时的线性/最近邻模式常量。",
+      "tags": [
+        "enum",
+        "post-process",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "file",
+      "name": "Primitive.js",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "核心 primitive 实现，将 Geometry + Appearance 异步或同步编译为可渲染的 DrawCommand，支持 batchTable、实例化属性、拾取、阴影与裁剪。",
+      "tags": [
+        "primitive",
+        "geometry",
+        "appearance",
+        "batching",
+        "webgl"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用大量模块级函数对 prototype 进行扩展；异步加载通过 TaskProcessor 走 Web Worker。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "type": "file",
+      "name": "QuadtreeTileLoadState.js",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "summary": "四叉树瓦片加载状态枚举，定义 START、LOADING、DONE、FAILED 等状态常量。",
+      "tags": [
+        "enum",
+        "quadtree",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "type": "file",
+      "name": "SceneFramebuffer.js",
+      "filePath": "packages/engine/Source/Scene/SceneFramebuffer.js",
+      "summary": "场景帧缓冲管理器，封装场景主 color/depth/id framebuffer 的创建、尺寸调整与销毁。",
+      "tags": [
+        "framebuffer",
+        "scene",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "type": "file",
+      "name": "SpecularEnvironmentCubeMap.js",
+      "filePath": "packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "summary": "镜面反射环境立方体贴图，从 KTX2 资源加载预过滤的环境贴图，用于 PBR 材质镜面反射 IBL。",
+      "tags": [
+        "cubemap",
+        "pbr",
+        "ibl",
+        "ktx2"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "file",
+      "name": "SplitDirection.js",
+      "filePath": "packages/engine/Source/Scene/SplitDirection.js",
+      "summary": "分屏方向枚举，定义 NONE、LEFT、RIGHT 三种卷帘对比方向常量。",
+      "tags": [
+        "enum",
+        "split",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Sun.js",
+      "type": "file",
+      "name": "Sun.js",
+      "filePath": "packages/engine/Source/Scene/Sun.js",
+      "summary": "太阳 primitive，通过 ComputeCommand 异步生成太阳辉光纹理并以 DrawCommand 绘制到屏幕。",
+      "tags": [
+        "sun",
+        "primitive",
+        "compute",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "type": "file",
+      "name": "SunPostProcess.js",
+      "filePath": "packages/engine/Source/Scene/SunPostProcess.js",
+      "summary": "太阳后处理辉光效果，使用 PostProcessStage 链对太阳位置应用镜头光斑式辉光并按视口更新位置。",
+      "tags": [
+        "sun",
+        "post-process",
+        "glow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloudShading.js:PointCloudShading",
+      "type": "function",
+      "name": "PointCloudShading",
+      "filePath": "packages/engine/Source/Scene/PointCloudShading.js",
+      "summary": "PointCloudShading 构造函数，初始化 attenuation、EDL、最大 SSE 等字段。",
+      "tags": [
+        "point-cloud",
+        "shading",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        21,
+        93
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:Primitive",
+      "type": "function",
+      "name": "Primitive",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "Primitive 构造函数，解析 geometry/appearance/compression 等大量选项。",
+      "tags": [
+        "primitive",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        154,
+        355
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:createBatchTable",
+      "type": "function",
+      "name": "createBatchTable",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "为实例化属性与拾取构建 batchTable。",
+      "tags": [
+        "primitive",
+        "batch-table",
+        "picking"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        538,
+        668
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:modifyForEncodedNormals",
+      "type": "function",
+      "name": "modifyForEncodedNormals",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "向顶点 shader 注入法线编码/解码逻辑。",
+      "tags": [
+        "primitive",
+        "shader",
+        "normal"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1005,
+        1079
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:loadAsynchronous",
+      "type": "function",
+      "name": "loadAsynchronous",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "异步加载路径：通过 TaskProcessor 在 worker 中分包几何。",
+      "tags": [
+        "primitive",
+        "worker",
+        "async"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1149,
+        1307
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:loadSynchronous",
+      "type": "function",
+      "name": "loadSynchronous",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "同步加载路径：在主线程完成几何打包。",
+      "tags": [
+        "primitive",
+        "sync",
+        "loading"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1309,
+        1370
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:recomputeBoundingSpheres",
+      "type": "function",
+      "name": "recomputeBoundingSpheres",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "重新计算每个实例的包围球。",
+      "tags": [
+        "primitive",
+        "bounding-sphere"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1372,
+        1462
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:createShaderProgram",
+      "type": "function",
+      "name": "createShaderProgram",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "根据 appearance 与 batchTable 编译 shader 程序。",
+      "tags": [
+        "primitive",
+        "shader",
+        "webgl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1724,
+        1784
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:createCommands",
+      "type": "function",
+      "name": "createCommands",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "组装 color/pick 的 DrawCommand（含双 pass 处理半透明）。",
+      "tags": [
+        "primitive",
+        "draw-command",
+        "translucent"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1842,
+        1941
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Primitive.js:updateAndQueueCommands",
+      "type": "function",
+      "name": "updateAndQueueCommands",
+      "filePath": "packages/engine/Source/Scene/Primitive.js",
+      "summary": "把 primitive 的命令加入帧的可见命令队列。",
+      "tags": [
+        "primitive",
+        "update",
+        "culling"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1997,
+        2064
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Sun.js:Sun",
+      "type": "function",
+      "name": "Sun",
+      "filePath": "packages/engine/Source/Scene/Sun.js",
+      "summary": "Sun 构造函数，初始化太阳辉光纹理的 ComputeCommand。",
+      "tags": [
+        "sun",
+        "constructor",
+        "compute"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        42,
+        83
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/SunPostProcess.js:SunPostProcess",
+      "type": "function",
+      "name": "SunPostProcess",
+      "filePath": "packages/engine/Source/Scene/SunPostProcess.js",
+      "summary": "SunPostProcess 构造函数，建立太阳辉光后处理 stage 链。",
+      "tags": [
+        "sun",
+        "post-process",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        19,
+        123
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/SunPostProcess.js:updateSunPosition",
+      "type": "function",
+      "name": "updateSunPosition",
+      "filePath": "packages/engine/Source/Scene/SunPostProcess.js",
+      "summary": "按视口与相机方向更新太阳辉光在屏幕的位置。",
+      "tags": [
+        "sun",
+        "post-process",
+        "update"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        145,
+        229
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "target": "function:packages/engine/Source/Scene/PointCloudShading.js:PointCloudShading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:Primitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:createBatchTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:modifyForEncodedNormals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:loadAsynchronous",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:loadSynchronous",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:recomputeBoundingSpheres",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:createShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:createCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:updateAndQueueCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "function:packages/engine/Source/Scene/Sun.js:Sun",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "function:packages/engine/Source/Scene/SunPostProcess.js:SunPostProcess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "function:packages/engine/Source/Scene/SunPostProcess.js:updateSunPosition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Geometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/Plane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/subdivideArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/BatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/PrimitiveState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Core/loadKTX2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageComposite.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageTextureCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "file:packages/engine/Source/Scene/SceneFramebuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "target": "function:packages/engine/Source/Scene/PointCloudShading.js:PointCloudShading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Sun.js",
+      "target": "function:packages/engine/Source/Scene/Sun.js:Sun",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/SunPostProcess.js",
+      "target": "function:packages/engine/Source/Scene/SunPostProcess.js:SunPostProcess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Primitive.js",
+      "target": "function:packages/engine/Source/Scene/Primitive.js:Primitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

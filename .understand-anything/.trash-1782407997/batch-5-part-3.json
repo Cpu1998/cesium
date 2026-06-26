@@ -1,0 +1,1746 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "file",
+      "name": "Cesium3DTileRefine.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "summary": "3D Tiles 细化策略枚举（ADD / REPLACE），决定子瓦片是与父瓦片叠加还是替换。",
+      "tags": [
+        "enum",
+        "3d-tiles",
+        "refine",
+        "traversal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "type": "file",
+      "name": "Cesium3DTileStyle.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "summary": "解析并应用 3D Tiles 1.0 样式规范：将 style JSON 编译为 show/color/pointSize 等 Expression/ConditionsExpression，支持外部 style URL 加载。",
+      "tags": [
+        "3d-tiles",
+        "styling",
+        "expression",
+        "dsl"
+      ],
+      "complexity": "complex",
+      "languageNotes": "样式 DSL 基于表达式编译；条件表达式按数组顺序短路求值。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "type": "file",
+      "name": "Cesium3DTileStyleEngine.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "summary": "Tileset 级别的样式应用引擎：在每帧检测样式变更并触发各瓦片批表重新求值。",
+      "tags": [
+        "3d-tiles",
+        "styling",
+        "engine",
+        "frame-update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "type": "file",
+      "name": "Cesium3DTileset.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "summary": "3D Tiles tileset 的核心管理类（~4000 行）：负责加载 tileset.json、隐式分割、每帧遍历/调度/缓存、屏幕空间误差控制、裁剪、阴影、调试与事件，是 Cesium 3D Tiles 功能的主入口。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "core",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "构造函数即初始化所有运行时子系统；以一组模块级函数（update/requestTiles/processTiles 等）驱动每帧管线。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "type": "file",
+      "name": "Cesium3DTilesetBaseTraversal.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "summary": "Tileset 基础遍历策略：基于屏幕空间误差选择可见瓦片并压栈子节点，处理空 tileset 与普通遍历两种路径。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "sse",
+        "strategy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "type": "file",
+      "name": "Cesium3DTilesetCache.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "summary": "Tileset 的 LRU 缓存：基于 DoublyLinkedList 跟踪可卸载瓦片并按内存上限淘汰。",
+      "tags": [
+        "3d-tiles",
+        "cache",
+        "lru",
+        "memory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "type": "file",
+      "name": "Cesium3DTilesetHeatmap.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "summary": "Tileset 调试热力图：为每个瓦片属性（几何/纹理内存、加载时间等）维护 min/max 并映射到颜色，用于可视化性能分布。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "heatmap",
+        "visualization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "type": "file",
+      "name": "Cesium3DTilesetMostDetailedTraversal.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "summary": "最高精度遍历策略：强制下钻到叶子节点加载全部所需瓦片，用于 sampleTerrainMostDetailed 等精确查询场景。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "most-detailed",
+        "strategy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "type": "file",
+      "name": "Cesium3DTilesetSkipTraversal.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "summary": "Skip-level 跳跃遍历策略：当父瓦片 SSE 已足够时跳过整棵子树以省带宽，并通过 ancestor content links 维持可见性，是默认的瓦片加载策略。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip",
+        "strategy"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "type": "file",
+      "name": "Cesium3DTilesetStatistics.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "summary": "Tileset 每帧统计数据结构：累计加载/处理/渲染瓦片数、内存占用与请求/失败计数，供调试 UI 与热力图使用。",
+      "tags": [
+        "3d-tiles",
+        "statistics",
+        "debug",
+        "metrics"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileStyle.js:Cesium3DTileStyle",
+      "type": "function",
+      "name": "Cesium3DTileStyle",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "lineRange": [
+        45,
+        90
+      ],
+      "summary": "3D Tiles 样式对象构造器：加载并编译 style JSON 为表达式。",
+      "tags": [
+        "3d-tiles",
+        "styling",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileStyle.js:setup",
+      "type": "function",
+      "name": "setup",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "lineRange": [
+        92,
+        140
+      ],
+      "summary": "解析 style JSON 各字段（show/color/pointSize/meta 等）并生成对应 Expression/ConditionsExpression。",
+      "tags": [
+        "3d-tiles",
+        "styling",
+        "expression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:Cesium3DTileset",
+      "type": "function",
+      "name": "Cesium3DTileset",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        205,
+        1120
+      ],
+      "summary": "3D Tiles tileset 构造函数（~900 行）：加载 tileset.json、初始化所有子系统（遍历、缓存、样式、裁剪、IBL、调试）。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "constructor",
+        "entry-point"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:makeTile",
+      "type": "function",
+      "name": "makeTile",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2418,
+        2470
+      ],
+      "summary": "实例化一个 Cesium3DTile 并挂接到 tileset 与父瓦片。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateDynamicScreenSpaceError",
+      "type": "function",
+      "name": "updateDynamicScreenSpaceError",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2527,
+        2624
+      ],
+      "summary": "根据帧的 FPS/相机参数动态调整屏幕空间误差容差，保持稳定帧率。",
+      "tags": [
+        "3d-tiles",
+        "sse",
+        "dynamic",
+        "frame-update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:requestContent",
+      "type": "function",
+      "name": "requestContent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2631,
+        2667
+      ],
+      "summary": "请求并处理单个瓦片内容，调度过期/重试并更新统计。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "request"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:cancelOutOfViewRequests",
+      "type": "function",
+      "name": "cancelOutOfViewRequests",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2743,
+        2768
+      ],
+      "summary": "取消已离开视锥的瓦片请求以释放调度配额。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "request",
+        "culling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:handleTileFailure",
+      "type": "function",
+      "name": "handleTileFailure",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2790,
+        2811
+      ],
+      "summary": "瓦片加载失败处理：记录错误、抛出 tileLoadError 事件并标记瓦片状态。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processUpdateHeight",
+      "type": "function",
+      "name": "processUpdateHeight",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2841,
+        2890
+      ],
+      "summary": "在瓦片更新过程中处理地形跟随（updateHeight）回调，使 tileset 贴附地形。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "terrain-following"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processTiles",
+      "type": "function",
+      "name": "processTiles",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2898,
+        2931
+      ],
+      "summary": "遍历处理队列，过滤已就绪瓦片并触发后续 update。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "frame-update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:addTileDebugLabel",
+      "type": "function",
+      "name": "addTileDebugLabel",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3009,
+        3072
+      ],
+      "summary": "为瓦片添加调试文字标签（URL/几何内存/状态等）。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "label"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateTileDebugLabels",
+      "type": "function",
+      "name": "updateTileDebugLabels",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3079,
+        3111
+      ],
+      "summary": "每帧刷新调试标签的位置与文本内容。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "frame-update"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateTiles",
+      "type": "function",
+      "name": "updateTiles",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3119,
+        3252
+      ],
+      "summary": "每帧主更新：对选中瓦片执行 update、裁剪、阴影、pass 选择与统计累计。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "frame-update",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:raiseLoadProgressEvent",
+      "type": "function",
+      "name": "raiseLoadProgressEvent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3319,
+        3366
+      ],
+      "summary": "比较加载进度并在变化时触发 tileset.loadProgress 事件。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "event"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:detectModelMatrixChanged",
+      "type": "function",
+      "name": "detectModelMatrixChanged",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3389,
+        3408
+      ],
+      "summary": "检测 tileset 模型矩阵是否变化以触发重新定位。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "transform"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:update",
+      "type": "function",
+      "name": "update",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3418,
+        3464
+      ],
+      "summary": "Tileset 每帧入口：更新模型矩阵、执行遍历、请求与更新瓦片并累计统计。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "frame-update",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:createCredits",
+      "type": "function",
+      "name": "createCredits",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        3466,
+        3499
+      ],
+      "summary": "解析 tileset.json 的 credits 字段并创建 Credit 对象。",
+      "tags": [
+        "3d-tiles",
+        "tileset",
+        "attribution"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processMetadataExtension",
+      "type": "function",
+      "name": "processMetadataExtension",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileset.js",
+      "lineRange": [
+        2481,
+        2512
+      ],
+      "summary": "处理 tileset 的 3DTILES_metadata 扩展（名称、 attribution 等）。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:Cesium3DTilesetBaseTraversal",
+      "type": "function",
+      "name": "Cesium3DTilesetBaseTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "lineRange": [
+        16,
+        16
+      ],
+      "summary": "基础遍历器构造，复用 Cesium3DTilesetTraversal 基类。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "strategy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:updateAndPushChildren",
+      "type": "function",
+      "name": "updateAndPushChildren",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "lineRange": [
+        94,
+        178
+      ],
+      "summary": "在基础遍历中决定是否下钻子节点并压入遍历栈。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "sse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:executeTraversal",
+      "type": "function",
+      "name": "executeTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "lineRange": [
+        189,
+        236
+      ],
+      "summary": "对可见 tileset 执行基础 SSE 遍历并选中目标瓦片。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "sse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:executeEmptyTraversal",
+      "type": "function",
+      "name": "executeEmptyTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "lineRange": [
+        247,
+        289
+      ],
+      "summary": "对空 tileset 的退化遍历路径。",
+      "tags": [
+        "3d-tiles",
+        "traversal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetCache.js:Cesium3DTilesetCache",
+      "type": "function",
+      "name": "Cesium3DTilesetCache",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "lineRange": [
+        9,
+        15
+      ],
+      "summary": "Tileset LRU 缓存构造器：基于 DoublyLinkedList 跟踪瓦片使用并按内存上限卸载。",
+      "tags": [
+        "3d-tiles",
+        "cache",
+        "lru"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js:Cesium3DTilesetHeatmap",
+      "type": "function",
+      "name": "Cesium3DTilesetHeatmap",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "lineRange": [
+        13,
+        34
+      ],
+      "summary": "调试热力图构造器：为指定瓦片属性维护 min/max 并提供颜色映射。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "heatmap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js:getHeatmapValueAndUpdateMinimumMaximum",
+      "type": "function",
+      "name": "getHeatmapValueAndUpdateMinimumMaximum",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "lineRange": [
+        72,
+        87
+      ],
+      "summary": "取热力值并按需更新该属性的 min/max 区间。",
+      "tags": [
+        "3d-tiles",
+        "debug",
+        "heatmap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js:Cesium3DTilesetMostDetailedTraversal",
+      "type": "function",
+      "name": "Cesium3DTilesetMostDetailedTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "lineRange": [
+        15,
+        15
+      ],
+      "summary": "最高精度遍历器构造，复用基类。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "strategy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js:canTraverse",
+      "type": "function",
+      "name": "canTraverse",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "lineRange": [
+        85,
+        101
+      ],
+      "summary": "判断瓦片是否仍需下钻（最高精度模式下的判定）。",
+      "tags": [
+        "3d-tiles",
+        "traversal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:Cesium3DTilesetSkipTraversal",
+      "type": "function",
+      "name": "Cesium3DTilesetSkipTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        15,
+        15
+      ],
+      "summary": "Skip 跳跃遍历器构造，复用基类。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "strategy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:executeTraversal",
+      "type": "function",
+      "name": "executeTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        266,
+        331
+      ],
+      "summary": "Skip 遍历主入口：在父瓦片 SSE 足够时跳过子树，否则下钻。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:traverseAndSelect",
+      "type": "function",
+      "name": "traverseAndSelect",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        353,
+        418
+      ],
+      "summary": "Skip 遍历的第二阶段：遍历已标记瓦片并最终选定渲染集合。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:selectDescendants",
+      "type": "function",
+      "name": "selectDescendants",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        94,
+        119
+      ],
+      "summary": "在跳过策略下选中被跳过父节点的后代以维持可见性。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:updateTileAncestorContentLinks",
+      "type": "function",
+      "name": "updateTileAncestorContentLinks",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        152,
+        174
+      ],
+      "summary": "维护瓦片到祖先 content 的链接，支撑 skip 渲染时的代理显示。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:updateAndPushChildren",
+      "type": "function",
+      "name": "updateAndPushChildren",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        204,
+        229
+      ],
+      "summary": "Skip 策略下决定子节点压栈与下钻。",
+      "tags": [
+        "3d-tiles",
+        "traversal",
+        "skip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:inBaseTraversal",
+      "type": "function",
+      "name": "inBaseTraversal",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "lineRange": [
+        240,
+        254
+      ],
+      "summary": "判断瓦片当前是否处于基础（非跳跃）遍历分支。",
+      "tags": [
+        "3d-tiles",
+        "traversal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js:Cesium3DTilesetStatistics",
+      "type": "function",
+      "name": "Cesium3DTilesetStatistics",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "lineRange": [
+        7,
+        35
+      ],
+      "summary": "每帧统计对象构造：初始化加载/渲染/内存/请求各类计数器。",
+      "tags": [
+        "3d-tiles",
+        "statistics",
+        "metrics"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileStyle.js:Cesium3DTileStyle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileStyle.js:setup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:Cesium3DTileset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:makeTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateDynamicScreenSpaceError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:requestContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:cancelOutOfViewRequests",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:handleTileFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processUpdateHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processTiles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:addTileDebugLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateTileDebugLabels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:updateTiles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:raiseLoadProgressEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:detectModelMatrixChanged",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:update",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:createCredits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTileset.js:processMetadataExtension",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:Cesium3DTilesetBaseTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:updateAndPushChildren",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:executeTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js:executeEmptyTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetCache.js:Cesium3DTilesetCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js:Cesium3DTilesetHeatmap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js:getHeatmapValueAndUpdateMinimumMaximum",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js:Cesium3DTilesetMostDetailedTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js:canTraverse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:Cesium3DTilesetSkipTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:executeTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:traverseAndSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:selectDescendants",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:updateTileAncestorContentLinks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:updateAndPushChildren",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js:inBaseTraversal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "target": "function:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js:Cesium3DTilesetStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Scene/ConditionsExpression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "target": "file:packages/engine/Source/Scene/Expression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Interval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/IonResource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/ManagedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Ray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileContentState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileOptimizations.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilePass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/hasExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileCoordinates.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileset.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudEyeDomeLighting.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/TileOrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "file:packages/engine/Source/Core/ManagedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "target": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "file:packages/engine/Source/Core/ManagedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "file:packages/engine/Source/Core/ManagedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "target": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetCache.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTilesetStatistics.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTile.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileStyleEngine.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileStyle.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileRefine.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileColorBlendMode.js",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

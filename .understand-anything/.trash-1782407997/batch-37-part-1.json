@@ -1,0 +1,1162 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "file",
+      "name": "ApproximateTerrainHeights.js",
+      "filePath": "packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "summary": "提供地形高度的近似估算：根据给定地理矩形返回最小/最大地形高度范围，供贴地几何体（ground geometry）在不需要精确地形数据时进行高度计算使用。",
+      "tags": [
+        "utility",
+        "terrain",
+        "geometry",
+        "height-estimation"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 prototype 方式定义静态单例对象，模块加载时异步拉取地形高度数据。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ApproximateTerrainHeights.js:getTileXYLevel",
+      "type": "function",
+      "name": "getTileXYLevel",
+      "filePath": "packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "lineRange": [
+        169,
+        233
+      ],
+      "summary": "根据给定的地理矩形在内部高度金字塔中查找匹配的瓦片 (x, y, level)，用于检索近似地形高度数据。",
+      "tags": [
+        "tile",
+        "lookup",
+        "internal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "file",
+      "name": "AssociativeArray.js",
+      "filePath": "packages/engine/Source/Core/AssociativeArray.js",
+      "summary": "通用键值关联数组实现，提供 O(1) 的 set/get/remove 操作，被多个 visualizer 和 datasource 用于按 key 高效管理对象集合。",
+      "tags": [
+        "data-structure",
+        "utility",
+        "collection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/AssociativeArray.js:AssociativeArray",
+      "type": "class",
+      "name": "AssociativeArray",
+      "filePath": "packages/engine/Source/Core/AssociativeArray.js",
+      "lineRange": [
+        12,
+        131
+      ],
+      "summary": "基于内部对象哈希与数组双向索引的关联数组类，支持 contains、set、get、remove、removeAll 等操作。",
+      "tags": [
+        "data-structure",
+        "collection",
+        "hash-map"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "file",
+      "name": "ColorGeometryInstanceAttribute.js",
+      "filePath": "packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "summary": "定义 per-instance 颜色属性的几何体属性包装器，将 Color 对象转换为 primitive 可消费的 typed array 形式。",
+      "tags": [
+        "geometry",
+        "attribute",
+        "color",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js:ColorGeometryInstanceAttribute",
+      "type": "function",
+      "name": "ColorGeometryInstanceAttribute",
+      "filePath": "packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "lineRange": [
+        34,
+        53
+      ],
+      "summary": "构造器：将 RGBA 颜色分量封装为可用于 GeometryInstance 的属性对象，包含 toValue 转换方法。",
+      "tags": [
+        "constructor",
+        "attribute",
+        "color"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "file",
+      "name": "DistanceDisplayCondition.js",
+      "filePath": "packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "summary": "定义基于相机距离的显示条件（near/far 范围），用于控制 billboard、label、primitive 等对象在不同视距下的可见性。",
+      "tags": [
+        "data-model",
+        "visibility",
+        "camera-distance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DistanceDisplayCondition.js:DistanceDisplayCondition",
+      "type": "function",
+      "name": "DistanceDisplayCondition",
+      "filePath": "packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "lineRange": [
+        17,
+        23
+      ],
+      "summary": "构造器：根据 near/far 距离区间创建显示条件对象，提供相等性比较与克隆方法。",
+      "tags": [
+        "constructor",
+        "visibility",
+        "camera-distance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "file",
+      "name": "DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "filePath": "packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "summary": "将 DistanceDisplayCondition 包装为 GeometryInstance 可消费的 typed array 属性，供 primitive 在着色阶段按视距裁剪。",
+      "tags": [
+        "geometry",
+        "attribute",
+        "visibility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js:DistanceDisplayConditionGeometryInstanceAttribute",
+      "type": "function",
+      "name": "DistanceDisplayConditionGeometryInstanceAttribute",
+      "filePath": "packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "lineRange": [
+        34,
+        54
+      ],
+      "summary": "构造器：将近远裁剪距离封装为 per-instance 几何体属性，附带 toValue 方法用于序列化到 typed array。",
+      "tags": [
+        "constructor",
+        "attribute",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "file",
+      "name": "GeometryInstance.js",
+      "filePath": "packages/engine/Source/Core/GeometryInstance.js",
+      "summary": "代表一个具体几何体实例：将 Geometry 与模型变换矩阵 (modelMatrix) 及 per-instance 属性 (attributes) 绑定，作为 primitive 渲染管线的基本输入单元。",
+      "tags": [
+        "geometry",
+        "data-model",
+        "primitive",
+        "rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GeometryInstance.js:GeometryInstance",
+      "type": "function",
+      "name": "GeometryInstance",
+      "filePath": "packages/engine/Source/Core/GeometryInstance.js",
+      "lineRange": [
+        51,
+        117
+      ],
+      "summary": "构造器：组装 geometry、modelMatrix、id 与 attributes 等字段，提供 volume 计算与克隆接口。",
+      "tags": [
+        "constructor",
+        "geometry",
+        "primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "file",
+      "name": "Iso8601.js",
+      "filePath": "packages/engine/Source/Core/Iso8601.js",
+      "summary": "ISO 8601 日期时间格式的解析与格式化常量集合，被 JulianDate 与 TimeInterval 用于解析时间字符串。",
+      "tags": [
+        "utility",
+        "date",
+        "iso8601",
+        "parser"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "file",
+      "name": "OffsetGeometryInstanceAttribute.js",
+      "filePath": "packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "summary": "定义几何体实例的位置偏移属性 (x/y/z)，常用于贴地几何体根据地形高度进行相对偏移渲染。",
+      "tags": [
+        "geometry",
+        "attribute",
+        "offset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js:OffsetGeometryInstanceAttribute",
+      "type": "function",
+      "name": "OffsetGeometryInstanceAttribute",
+      "filePath": "packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "lineRange": [
+        20,
+        31
+      ],
+      "summary": "构造器：将三维偏移向量封装为 per-instance 几何体属性，附带 toValue 方法。",
+      "tags": [
+        "constructor",
+        "attribute",
+        "offset"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/RectangleCollisionChecker.js",
+      "type": "file",
+      "name": "RectangleCollisionChecker.js",
+      "filePath": "packages/engine/Source/Core/RectangleCollisionChecker.js",
+      "summary": "维护一组地理矩形的冲突检测数据结构，支持插入、删除与查询重叠矩形，被贴地几何体批处理用于判断矩形是否相交。",
+      "tags": [
+        "utility",
+        "collision",
+        "spatial",
+        "rectangle"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/RectangleCollisionChecker.js:RectangleCollisionChecker",
+      "type": "function",
+      "name": "RectangleCollisionChecker",
+      "filePath": "packages/engine/Source/Core/RectangleCollisionChecker.js",
+      "lineRange": [
+        8,
+        10
+      ],
+      "summary": "创建一个空的矩形冲突检测器实例，内部维护带 id 的矩形数组及插入/删除/冲突查询方法。",
+      "tags": [
+        "constructor",
+        "collision",
+        "rectangle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "file",
+      "name": "ShowGeometryInstanceAttribute.js",
+      "filePath": "packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "summary": "定义几何体实例的可见性 (show) 属性包装器，将布尔值转换为 primitive 着色器可消费的 typed array 值。",
+      "tags": [
+        "geometry",
+        "attribute",
+        "visibility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js:ShowGeometryInstanceAttribute",
+      "type": "function",
+      "name": "ShowGeometryInstanceAttribute",
+      "filePath": "packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "lineRange": [
+        32,
+        43
+      ],
+      "summary": "构造器：将布尔可见性标志封装为 per-instance 几何体属性，附带 toValue 方法。",
+      "tags": [
+        "constructor",
+        "attribute",
+        "visibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "type": "file",
+      "name": "BillboardVisualizer.js",
+      "filePath": "packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "summary": "实体到 Billboard 的可视化器：监听 EntityCollection 变化，将实体的 billboard 属性同步到 BillboardCollection，支持集群与样式属性更新。",
+      "tags": [
+        "visualizer",
+        "entity",
+        "billboard",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "prototype 模式实现 isSupported/update/destroy 接口，是 Cesium Visualizer 标准模式。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/BillboardVisualizer.js:BillboardVisualizer",
+      "type": "class",
+      "name": "BillboardVisualizer",
+      "filePath": "packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "lineRange": [
+        54,
+        73
+      ],
+      "summary": "构造器：绑定 entityCluster 与 entityCollection，注册变更事件回调，实现 billboard 图标的同步渲染与生命周期管理。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "billboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "file",
+      "name": "BoundingSphereState.js",
+      "filePath": "packages/engine/Source/DataSources/BoundingSphereState.js",
+      "summary": "枚举常量集合：表示包围球（BoundingSphere）计算的异步状态（DONE/PENDING/FAILED），被各 visualizer 跟踪几何体裁剪状态。",
+      "tags": [
+        "enum",
+        "constant",
+        "bounding-sphere"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "type": "file",
+      "name": "BoxGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "summary": "Box（盒体）实体的几何体更新器：将 Entity 的 box 属性转换为 GeometryInstance 并管理静态/动态渲染，支持 outline、材质与高度参考。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "box",
+        "primitive"
+      ],
+      "complexity": "complex",
+      "languageNotes": "继承 GeometryUpdater 并提供 DynamicBoxGeometryUpdater 内部类用于时间动画。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/BoxGeometryUpdater.js:BoxGeometryUpdater",
+      "type": "class",
+      "name": "BoxGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "lineRange": [
+        46,
+        56
+      ],
+      "summary": "构造器：扩展 GeometryUpdater，针对 box 几何体实现 createGeometryInstance 与 createFill/outline 实例构建逻辑。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "box"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "type": "file",
+      "name": "Cesium3DTilesetVisualizer.js",
+      "filePath": "packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "summary": "实体到 3D Tileset 的可视化器：将 Entity 的 tileset 属性映射到 Cesium3DTileset 实例，管理资源加载、矩阵同步与移除。",
+      "tags": [
+        "visualizer",
+        "entity",
+        "3d-tiles",
+        "rendering"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js:Cesium3DTilesetVisualizer",
+      "type": "class",
+      "name": "Cesium3DTilesetVisualizer",
+      "filePath": "packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "lineRange": [
+        22,
+        43
+      ],
+      "summary": "构造器：绑定 scene 与 entityCollection，监听实体变更以创建/更新/移除 Cesium3DTileset primitive。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "file",
+      "name": "ColorMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "summary": "表示纯色材质的 Property：在给定时间返回一个固定 Color 值，作为 entity 材质的最简单形式，支持 CZML 反序列化。",
+      "tags": [
+        "property",
+        "material",
+        "color",
+        "entity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ColorMaterialProperty.js:ColorMaterialProperty",
+      "type": "function",
+      "name": "ColorMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "lineRange": [
+        16,
+        22
+      ],
+      "summary": "构造器：包装一个颜色属性，实现 Property 接口的 getTime、equals、definitionChanged 等方法。",
+      "tags": [
+        "constructor",
+        "property",
+        "material"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "function:packages/engine/Source/Core/ApproximateTerrainHeights.js:getTileXYLevel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "target": "class:packages/engine/Source/Core/AssociativeArray.js:AssociativeArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "target": "function:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js:ColorGeometryInstanceAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "target": "function:packages/engine/Source/Core/DistanceDisplayCondition.js:DistanceDisplayCondition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "target": "function:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js:DistanceDisplayConditionGeometryInstanceAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "target": "function:packages/engine/Source/Core/GeometryInstance.js:GeometryInstance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iso8601.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iso8601.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "target": "function:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js:OffsetGeometryInstanceAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/RectangleCollisionChecker.js",
+      "target": "function:packages/engine/Source/Core/RectangleCollisionChecker.js:RectangleCollisionChecker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/RectangleCollisionChecker.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "target": "function:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js:ShowGeometryInstanceAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "class:packages/engine/Source/DataSources/BillboardVisualizer.js:BillboardVisualizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/BoxGeometryUpdater.js:BoxGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/BoxGeometryUpdater.js:BoxGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "class:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js:Cesium3DTilesetVisualizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ColorMaterialProperty.js:ColorMaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

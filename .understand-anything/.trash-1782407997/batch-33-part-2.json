@@ -1,0 +1,476 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/VideoSynchronizer.js",
+      "type": "file",
+      "name": "VideoSynchronizer.js",
+      "filePath": "packages/engine/Source/Core/VideoSynchronizer.js",
+      "summary": "将 HTML video 元素的播放与 Cesium Clock 同步,根据时钟时间自动调整视频 seek 与播放速率。",
+      "tags": ["video", "clock", "synchronization", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/VideoSynchronizer.js:VideoSynchronizer",
+      "type": "function",
+      "name": "VideoSynchronizer",
+      "filePath": "packages/engine/Source/Core/VideoSynchronizer.js",
+      "lineRange": [21, 54],
+      "summary": "VideoSynchronizer 构造函数,绑定 clock、video 元素与时钟事件监听以驱动视频同步。",
+      "tags": ["constructor", "synchronization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/binarySearch.js",
+      "type": "file",
+      "name": "binarySearch.js",
+      "filePath": "packages/engine/Source/Core/binarySearch.js",
+      "summary": "通用二分查找工具,基于自定义 comparator 在有序数组中定位元素索引,被时间区间与瓦片可用性等模块复用。",
+      "tags": ["utility", "search", "algorithm", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/binarySearch.js:binarySearch",
+      "type": "function",
+      "name": "binarySearch",
+      "filePath": "packages/engine/Source/Core/binarySearch.js",
+      "lineRange": [24, 50],
+      "summary": "对已排序数组执行二分查找,返回元素应插入的位置或匹配索引。",
+      "tags": ["utility", "search", "algorithm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/createWorldBathymetryAsync.js",
+      "type": "file",
+      "name": "createWorldBathymetryAsync.js",
+      "filePath": "packages/engine/Source/Core/createWorldBathymetryAsync.js",
+      "summary": "便捷工厂函数,异步加载 Cesium Ion 上的全球水下地形(bathymetry)资产。",
+      "tags": ["factory", "terrain", "ion", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/createWorldBathymetryAsync.js:createWorldBathymetryAsync",
+      "type": "function",
+      "name": "createWorldBathymetryAsync",
+      "filePath": "packages/engine/Source/Core/createWorldBathymetryAsync.js",
+      "lineRange": [38, 44],
+      "summary": "通过 CesiumTerrainProvider.fromIonAssetId 异步加载 Ion 全球水下地形资产。",
+      "tags": ["factory", "terrain", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/createWorldTerrainAsync.js",
+      "type": "file",
+      "name": "createWorldTerrainAsync.js",
+      "filePath": "packages/engine/Source/Core/createWorldTerrainAsync.js",
+      "summary": "便捷工厂函数,异步加载 Cesium Ion 上的全球地形资产(可选用地形光照与水面效果)。",
+      "tags": ["factory", "terrain", "ion", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/createWorldTerrainAsync.js:createWorldTerrainAsync",
+      "type": "function",
+      "name": "createWorldTerrainAsync",
+      "filePath": "packages/engine/Source/Core/createWorldTerrainAsync.js",
+      "lineRange": [41, 49],
+      "summary": "通过 CesiumTerrainProvider.fromIonAssetId 异步加载全球地形资产。",
+      "tags": ["factory", "terrain", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/getFilenameFromUri.js",
+      "type": "file",
+      "name": "getFilenameFromUri.js",
+      "filePath": "packages/engine/Source/Core/getFilenameFromUri.js",
+      "summary": "从 URI 中提取纯文件名(剥离路径与查询字符串)的字符串工具函数。",
+      "tags": ["utility", "string", "uri", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/getFilenameFromUri.js:getFilenameFromUri",
+      "type": "function",
+      "name": "getFilenameFromUri",
+      "filePath": "packages/engine/Source/Core/getFilenameFromUri.js",
+      "lineRange": [16, 31],
+      "summary": "规范化 URI 并返回最后一段路径作为文件名。",
+      "tags": ["utility", "uri"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "file",
+      "name": "getTimestamp.js",
+      "filePath": "packages/engine/Source/Core/getTimestamp.js",
+      "summary": "返回高精度当前时间戳(performance.now 优先),被渲染循环、时钟与帧率监控广泛复用。",
+      "tags": ["utility", "time", "performance", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/isLeapYear.js",
+      "type": "file",
+      "name": "isLeapYear.js",
+      "filePath": "packages/engine/Source/Core/isLeapYear.js",
+      "summary": "判断给定年份是否为闰年的小型工具函数,服务于 Gregorian/Julian 日期算术。",
+      "tags": ["utility", "calendar", "time", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/isLeapYear.js:isLeapYear",
+      "type": "function",
+      "name": "isLeapYear",
+      "filePath": "packages/engine/Source/Core/isLeapYear.js",
+      "lineRange": [14, 22],
+      "summary": "按公历闰年规则(4/100/400)判断年份是否为闰年。",
+      "tags": ["utility", "calendar"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/mergeSort.js",
+      "type": "file",
+      "name": "mergeSort.js",
+      "filePath": "packages/engine/Source/Core/mergeSort.js",
+      "summary": "稳定归并排序实现,支持自定义 comparator 与用户数据,被场景渲染排序等模块使用。",
+      "tags": ["utility", "sort", "algorithm", "core"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/mergeSort.js:mergeSort",
+      "type": "function",
+      "name": "mergeSort",
+      "filePath": "packages/engine/Source/Core/mergeSort.js",
+      "lineRange": [71, 93],
+      "summary": "对外稳定归并排序入口,校验输入后调用内部递归 sort 完成排序。",
+      "tags": ["utility", "sort"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/subdivideArray.js",
+      "type": "file",
+      "name": "subdivideArray.js",
+      "filePath": "packages/engine/Source/Core/subdivideArray.js",
+      "summary": "将一维数组按指定数量尽量均匀切分为多个子数组的小工具,用于 primitive 实例分批。",
+      "tags": ["utility", "array", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/subdivideArray.js:subdivideArray",
+      "type": "function",
+      "name": "subdivideArray",
+      "filePath": "packages/engine/Source/Core/subdivideArray.js",
+      "lineRange": [14, 34],
+      "summary": "将输入数组划分为 numberOfArrays 个近似等长的子数组。",
+      "tags": ["utility", "array"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/wrapFunction.js",
+      "type": "file",
+      "name": "wrapFunction.js",
+      "filePath": "packages/engine/Source/Core/wrapFunction.js",
+      "summary": "包装对象上已存在的方法,使新函数在调用原方法前后插入额外逻辑。",
+      "tags": ["utility", "aop", "function", "core"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/wrapFunction.js:wrapFunction",
+      "type": "function",
+      "name": "wrapFunction",
+      "filePath": "packages/engine/Source/Core/wrapFunction.js",
+      "lineRange": [10, 25],
+      "summary": "在对象方法上叠加包装层,先执行 newFunction 再调用 oldFunction。",
+      "tags": ["utility", "aop"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "file",
+      "name": "BillboardGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/BillboardGraphics.js",
+      "summary": "描述 entity 的广告牌(图标/精灵)图形属性集合,含图像、像素偏移、缩放、颜色等可绑定属性。",
+      "tags": ["graphics", "billboard", "entity", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/BillboardGraphics.js:BillboardGraphics",
+      "type": "function",
+      "name": "BillboardGraphics",
+      "filePath": "packages/engine/Source/DataSources/BillboardGraphics.js",
+      "lineRange": [51, 97],
+      "summary": "BillboardGraphics 构造函数,通过 createPropertyDescriptor 注册可订阅属性并合并传入选项。",
+      "tags": ["constructor", "graphics", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/BoxGraphics.js",
+      "type": "file",
+      "name": "BoxGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/BoxGraphics.js",
+      "summary": "描述 entity 的盒体(box)图形属性,含 dimensions、material、outline、heightReference 等。",
+      "tags": ["graphics", "box", "entity", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/BoxGraphics.js:BoxGraphics",
+      "type": "function",
+      "name": "BoxGraphics",
+      "filePath": "packages/engine/Source/DataSources/BoxGraphics.js",
+      "lineRange": [36, 60],
+      "summary": "BoxGraphics 构造函数,注册盒体属性并合并默认与传入选项。",
+      "tags": ["constructor", "graphics", "entity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js",
+      "type": "file",
+      "name": "CallbackPositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/CallbackPositionProperty.js",
+      "summary": "以用户回调函数动态求值的位置属性,继承 PositionProperty 并支持参考系切换,常用于实时追踪场景。",
+      "tags": ["property", "position", "callback", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CallbackPositionProperty.js:CallbackPositionProperty",
+      "type": "function",
+      "name": "CallbackPositionProperty",
+      "filePath": "packages/engine/Source/DataSources/CallbackPositionProperty.js",
+      "lineRange": [20, 26],
+      "summary": "CallbackPositionProperty 构造函数,绑定回调、常量标志与参考系。",
+      "tags": ["constructor", "property"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CallbackProperty.js",
+      "type": "file",
+      "name": "CallbackProperty.js",
+      "filePath": "packages/engine/Source/DataSources/CallbackProperty.js",
+      "summary": "以用户回调函数动态求值的通用属性,支持声明是否为常量以供属性系统优化缓存。",
+      "tags": ["property", "callback", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CallbackProperty.js:CallbackProperty",
+      "type": "function",
+      "name": "CallbackProperty",
+      "filePath": "packages/engine/Source/DataSources/CallbackProperty.js",
+      "lineRange": [15, 20],
+      "summary": "CallbackProperty 构造函数,绑定求值回调与 isConstant 标志。",
+      "tags": ["constructor", "property"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js",
+      "type": "file",
+      "name": "Cesium3DTilesetGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js",
+      "summary": "描述 entity 关联的 3D Tiles 图形属性,含显示、点云着色、阴影等可绑定字段。",
+      "tags": ["graphics", "3d-tiles", "entity", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js:Cesium3DTilesetGraphics",
+      "type": "function",
+      "name": "Cesium3DTilesetGraphics",
+      "filePath": "packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js",
+      "lineRange": [27, 37],
+      "summary": "Cesium3DTilesetGraphics 构造函数,注册 3D Tiles 相关属性并合并选项。",
+      "tags": ["constructor", "graphics", "3d-tiles"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js",
+      "type": "file",
+      "name": "CheckerboardMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/CheckerboardMaterialProperty.js",
+      "summary": "棋盘格材质属性,基于两种颜色与重复次数生成程序化棋盘纹理,供 entity 材质使用。",
+      "tags": ["material", "property", "checkerboard", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js:CheckerboardMaterialProperty",
+      "type": "function",
+      "name": "CheckerboardMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/CheckerboardMaterialProperty.js",
+      "lineRange": [24, 38],
+      "summary": "CheckerboardMaterialProperty 构造函数,设置 light/dark 颜色与 repeat 参数。",
+      "tags": ["constructor", "material"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js",
+      "type": "file",
+      "name": "CompositeEntityCollection.js",
+      "filePath": "packages/engine/Source/DataSources/CompositeEntityCollection.js",
+      "summary": "组合多个 EntityCollection 的实体集合,按优先级顺序合并 entity 定义并传播 definitionChanged 事件。",
+      "tags": ["entity", "collection", "composite", "datasources"],
+      "complexity": "complex",
+      "languageNotes": "通过事件订阅与 recomposite 重组机制,实现多层集合的实体合并与覆盖。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CompositeEntityCollection.js:CompositeEntityCollection",
+      "type": "function",
+      "name": "CompositeEntityCollection",
+      "filePath": "packages/engine/Source/DataSources/CompositeEntityCollection.js",
+      "lineRange": [130, 140],
+      "summary": "CompositeEntityCollection 构造函数,持有子集合列表并触发首次 recomposite 合并。",
+      "tags": ["constructor", "collection"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CompositeEntityCollection.js:recomposite",
+      "type": "function",
+      "name": "recomposite",
+      "filePath": "packages/engine/Source/DataSources/CompositeEntityCollection.js",
+      "lineRange": [41, 114],
+      "summary": "按子集合优先级重新订阅事件、合并各层 entity 定义,重建组合实体的最终视图。",
+      "tags": ["composite", "merge", "events"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js",
+      "type": "file",
+      "name": "CompositeMaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/CompositeMaterialProperty.js",
+      "summary": "按时间区间组合多种材质的属性,在不同 TimeInterval 内返回对应子材质,实现材质随时间切换。",
+      "tags": ["material", "property", "composite", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CompositeMaterialProperty.js:CompositeMaterialProperty",
+      "type": "function",
+      "name": "CompositeMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/CompositeMaterialProperty.js",
+      "lineRange": [14, 21],
+      "summary": "CompositeMaterialProperty 构造函数,初始化内部 composite 区间集合并订阅变更事件。",
+      "tags": ["constructor", "material", "composite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "type": "file",
+      "name": "CompositePositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "summary": "按时间区间组合多种位置属性的属性,在不同 TimeInterval 内返回对应子位置与参考系。",
+      "tags": ["position", "property", "composite", "datasources"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CompositePositionProperty.js:CompositePositionProperty",
+      "type": "function",
+      "name": "CompositePositionProperty",
+      "filePath": "packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "lineRange": [17, 25],
+      "summary": "CompositePositionProperty 构造函数,初始化 composite 区间集合与参考系并订阅变更事件。",
+      "tags": ["constructor", "position", "composite"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "file:packages/engine/Source/Core/destroyObject.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "file:packages/engine/Source/Core/Iso8601.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/VideoSynchronizer.js", "target": "function:packages/engine/Source/Core/VideoSynchronizer.js:VideoSynchronizer", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/binarySearch.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/binarySearch.js", "target": "function:packages/engine/Source/Core/binarySearch.js:binarySearch", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/createWorldBathymetryAsync.js", "target": "file:packages/engine/Source/Core/CesiumTerrainProvider.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/createWorldBathymetryAsync.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/createWorldBathymetryAsync.js", "target": "function:packages/engine/Source/Core/createWorldBathymetryAsync.js:createWorldBathymetryAsync", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/createWorldTerrainAsync.js", "target": "file:packages/engine/Source/Core/CesiumTerrainProvider.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/createWorldTerrainAsync.js", "target": "file:packages/engine/Source/Core/Ellipsoid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/createWorldTerrainAsync.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/createWorldTerrainAsync.js", "target": "function:packages/engine/Source/Core/createWorldTerrainAsync.js:createWorldTerrainAsync", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/getFilenameFromUri.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/getFilenameFromUri.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/getFilenameFromUri.js", "target": "function:packages/engine/Source/Core/getFilenameFromUri.js:getFilenameFromUri", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/isLeapYear.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/isLeapYear.js", "target": "function:packages/engine/Source/Core/isLeapYear.js:isLeapYear", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/mergeSort.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/mergeSort.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/mergeSort.js", "target": "function:packages/engine/Source/Core/mergeSort.js:mergeSort", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/subdivideArray.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/subdivideArray.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/subdivideArray.js", "target": "function:packages/engine/Source/Core/subdivideArray.js:subdivideArray", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Core/wrapFunction.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Core/wrapFunction.js", "target": "function:packages/engine/Source/Core/wrapFunction.js:wrapFunction", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BillboardGraphics.js", "target": "function:packages/engine/Source/DataSources/BillboardGraphics.js:BillboardGraphics", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/BoxGraphics.js", "target": "function:packages/engine/Source/DataSources/BoxGraphics.js:BoxGraphics", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/Core/ReferenceFrame.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "file:packages/engine/Source/DataSources/PositionProperty.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackPositionProperty.js", "target": "function:packages/engine/Source/DataSources/CallbackPositionProperty.js:CallbackPositionProperty", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CallbackProperty.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackProperty.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackProperty.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackProperty.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CallbackProperty.js", "target": "function:packages/engine/Source/DataSources/CallbackProperty.js:CallbackProperty", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js", "target": "function:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js:Cesium3DTilesetGraphics", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/Cartesian2.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/Color.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "file:packages/engine/Source/DataSources/Property.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js", "target": "function:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js:CheckerboardMaterialProperty", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/Core/createGuid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/Core/Math.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/DataSources/Entity.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "file:packages/engine/Source/DataSources/EntityCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "function:packages/engine/Source/DataSources/CompositeEntityCollection.js:CompositeEntityCollection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/DataSources/CompositeEntityCollection.js", "target": "function:packages/engine/Source/DataSources/CompositeEntityCollection.js:recomposite", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/DataSources/CompositeProperty.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "file:packages/engine/Source/DataSources/Property.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js", "target": "function:packages/engine/Source/DataSources/CompositeMaterialProperty.js:CompositeMaterialProperty", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/Core/Event.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/Core/JulianDate.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/Core/ReferenceFrame.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/DataSources/CompositeProperty.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "file:packages/engine/Source/DataSources/Property.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/DataSources/CompositePositionProperty.js", "target": "function:packages/engine/Source/DataSources/CompositePositionProperty.js:CompositePositionProperty", "type": "contains", "direction": "forward", "weight": 1.0}
+  ]
+}

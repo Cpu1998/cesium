@@ -1,0 +1,965 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/BadGeometry.js",
+      "type": "file",
+      "name": "BadGeometry.js",
+      "filePath": "Specs/BadGeometry.js",
+      "summary": "提供一个抛出 DeveloperError 的简单几何体构造器,用于测试错误处理与异常分支。",
+      "tags": [
+        "test",
+        "mock",
+        "geometry",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Cesium3DTilesTester.js",
+      "type": "file",
+      "name": "Cesium3DTilesTester.js",
+      "filePath": "Specs/Cesium3DTilesTester.js",
+      "summary": "3D Tiles 测试工具集,封装 tileset 加载、轮询、结果校验流程,供 3D Tiles 相关测试套件复用。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "mock"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/DomEventSimulator.js",
+      "type": "file",
+      "name": "DomEventSimulator.js",
+      "filePath": "Specs/DomEventSimulator.js",
+      "summary": "构造鼠标、滚轮、触摸、指针、设备方向等 DOM 事件对象的测试模拟器,供交互类组件单测使用。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/ImplicitTilingTester.js",
+      "type": "file",
+      "name": "ImplicitTilingTester.js",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "summary": "构造隐式瓦片(implicit tiling)测试数据的工具集,生成 buffer views、subtree 头、属性表等结构。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "mock",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/MetadataTester.js",
+      "type": "file",
+      "name": "MetadataTester.js",
+      "filePath": "Specs/MetadataTester.js",
+      "summary": "构造 3D Tiles metadata 属性表、buffer、属性视图等测试数据的工具集。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "metadata",
+        "mock"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/MockDataSource.js",
+      "type": "file",
+      "name": "MockDataSource.js",
+      "filePath": "Specs/MockDataSource.js",
+      "summary": "轻量 MockDataSource 实现,用于 Entity 集合相关测试的桩对象。",
+      "tags": [
+        "test",
+        "mock",
+        "entity",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/MockImageryProvider.js",
+      "type": "file",
+      "name": "MockImageryProvider.js",
+      "filePath": "Specs/MockImageryProvider.js",
+      "summary": "实现最小化 ImageryProvider 接口的 mock,供影像图层相关测试使用。",
+      "tags": [
+        "test",
+        "mock",
+        "imagery",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/MockTerrainProvider.js",
+      "type": "file",
+      "name": "MockTerrainProvider.js",
+      "filePath": "Specs/MockTerrainProvider.js",
+      "summary": "实现 TerrainProvider 接口并构造可定制 TerrainData 的 mock,供地形测试使用。",
+      "tags": [
+        "test",
+        "mock",
+        "terrain",
+        "provider"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/ShaderBuilderTester.js",
+      "type": "file",
+      "name": "ShaderBuilderTester.js",
+      "filePath": "Specs/ShaderBuilderTester.js",
+      "summary": "ShaderBuilder 单测工具,提供 shader 源码片段比较与断言辅助方法。",
+      "tags": [
+        "test",
+        "utility",
+        "shader",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/TerrainTileProcessor.js",
+      "type": "file",
+      "name": "TerrainTileProcessor.js",
+      "filePath": "Specs/TerrainTileProcessor.js",
+      "summary": "处理地形瓦片加载/请求流程的测试辅助器,封装地形 provider 请求队列与结果收集。",
+      "tags": [
+        "test",
+        "utility",
+        "terrain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/ViewportPrimitive.js",
+      "type": "file",
+      "name": "ViewportPrimitive.js",
+      "filePath": "Specs/ViewportPrimitive.js",
+      "summary": "覆盖整个视口的简单 primitive,用于在渲染测试中强制触发绘制命令。",
+      "tags": [
+        "test",
+        "mock",
+        "primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/concatTypedArrays.js",
+      "type": "file",
+      "name": "concatTypedArrays.js",
+      "filePath": "Specs/concatTypedArrays.js",
+      "summary": "将多个同类型 TypedArray 拼接为一个的通用工具,供二进制 buffer 测试构造数据。",
+      "tags": [
+        "utility",
+        "serialization",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createCamera.js",
+      "type": "file",
+      "name": "createCamera.js",
+      "filePath": "Specs/createCamera.js",
+      "summary": "构造带有典型参数的 Camera 对象(或轻量 mock Scene)的工厂函数,供渲染测试使用。",
+      "tags": [
+        "test",
+        "factory",
+        "camera"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createCanvas.js",
+      "type": "file",
+      "name": "createCanvas.js",
+      "filePath": "Specs/createCanvas.js",
+      "summary": "创建并配置用于测试的 HTMLCanvasElement 桩,避免真实 DOM 依赖。",
+      "tags": [
+        "test",
+        "factory",
+        "dom",
+        "canvas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createContext.js",
+      "type": "file",
+      "name": "createContext.js",
+      "filePath": "Specs/createContext.js",
+      "summary": "构造带 WebGL stub 的测试上下文(Context),是大部分非渲染测试的核心入口。",
+      "tags": [
+        "test",
+        "factory",
+        "webgl",
+        "context"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createDynamicGeometryUpdaterSpecs.js",
+      "type": "file",
+      "name": "createDynamicGeometryUpdaterSpecs.js",
+      "filePath": "Specs/createDynamicGeometryUpdaterSpecs.js",
+      "summary": "为动态几何体 updater 生成的通用测试套件模板,统一执行公共断言。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry",
+        "entity"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/createDynamicProperty.js",
+      "type": "file",
+      "name": "createDynamicProperty.js",
+      "filePath": "Specs/createDynamicProperty.js",
+      "summary": "创建随时间返回不同值的动态 Property 桩,用于时间相关测试。",
+      "tags": [
+        "test",
+        "mock",
+        "property",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/BadGeometry.js:BadGeometry",
+      "type": "function",
+      "name": "BadGeometry",
+      "filePath": "Specs/BadGeometry.js",
+      "lineRange": [
+        3,
+        17
+      ],
+      "summary": "构造一个抛出 DeveloperError 的几何体对象,用于测试异常处理路径。",
+      "tags": [
+        "test",
+        "mock",
+        "geometry",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/Cesium3DTilesTester.js:padStringToByteAlignment",
+      "type": "function",
+      "name": "padStringToByteAlignment",
+      "filePath": "Specs/Cesium3DTilesTester.js",
+      "lineRange": [
+        30,
+        39
+      ],
+      "summary": "将字符串填充至字节对齐边界,用于 3D Tiles 二进制缓冲区构造。",
+      "tags": [
+        "utility",
+        "serialization",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/DomEventSimulator.js:createMouseEvent",
+      "type": "function",
+      "name": "createMouseEvent",
+      "filePath": "Specs/DomEventSimulator.js",
+      "lineRange": [
+        3,
+        39
+      ],
+      "summary": "构造模拟鼠标事件对象及其修饰键列表。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/DomEventSimulator.js:createWheelEvent",
+      "type": "function",
+      "name": "createWheelEvent",
+      "filePath": "Specs/DomEventSimulator.js",
+      "lineRange": [
+        97,
+        165
+      ],
+      "summary": "构造标准 WheelEvent 模拟对象,用于滚轮交互测试。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/DomEventSimulator.js:createMouseWheelEvent",
+      "type": "function",
+      "name": "createMouseWheelEvent",
+      "filePath": "Specs/DomEventSimulator.js",
+      "lineRange": [
+        59,
+        95
+      ],
+      "summary": "构造遗留 mousewheel 事件模拟对象。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/DomEventSimulator.js:createPointerEvent",
+      "type": "function",
+      "name": "createPointerEvent",
+      "filePath": "Specs/DomEventSimulator.js",
+      "lineRange": [
+        184,
+        215
+      ],
+      "summary": "构造 PointerEvent 模拟对象。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/DomEventSimulator.js:createDeviceOrientationEvent",
+      "type": "function",
+      "name": "createDeviceOrientationEvent",
+      "filePath": "Specs/DomEventSimulator.js",
+      "lineRange": [
+        217,
+        247
+      ],
+      "summary": "构造 DeviceOrientationEvent 模拟对象。",
+      "tags": [
+        "test",
+        "mock",
+        "dom",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:makeBufferViews",
+      "type": "function",
+      "name": "makeBufferViews",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        122,
+        229
+      ],
+      "summary": "构造隐式瓦片 subtree 所需的 buffer views 集合。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "serialization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:gatherBufferViews",
+      "type": "function",
+      "name": "gatherBufferViews",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        231,
+        293
+      ],
+      "summary": "收集并拼接所有 buffer views 为最终二进制缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:addMetadata",
+      "type": "function",
+      "name": "addMetadata",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        394,
+        495
+      ],
+      "summary": "为隐式瓦片测试数据添加 metadata 属性表与属性条目。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:parseAvailabilityDescriptor",
+      "type": "function",
+      "name": "parseAvailabilityDescriptor",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        355,
+        392
+      ],
+      "summary": "解析 availability 描述符,生成可用性位流。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:getPropertiesObjectFromPropertyTable",
+      "type": "function",
+      "name": "getPropertiesObjectFromPropertyTable",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        497,
+        536
+      ],
+      "summary": "从属性表构造可读属性对象用于断言。",
+      "tags": [
+        "test",
+        "utility",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/ImplicitTilingTester.js:makeBuffers",
+      "type": "function",
+      "name": "makeBuffers",
+      "filePath": "Specs/ImplicitTilingTester.js",
+      "lineRange": [
+        549,
+        600
+      ],
+      "summary": "组装隐式瓦片测试所需的全部二进制缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "3d-tiles",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/MetadataTester.js:createProperties",
+      "type": "function",
+      "name": "createProperties",
+      "filePath": "Specs/MetadataTester.js",
+      "lineRange": [
+        50,
+        143
+      ],
+      "summary": "构造完整的 metadata schema 与属性表集合。",
+      "tags": [
+        "test",
+        "utility",
+        "metadata",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/MetadataTester.js:createBuffer",
+      "type": "function",
+      "name": "createBuffer",
+      "filePath": "Specs/MetadataTester.js",
+      "lineRange": [
+        382,
+        424
+      ],
+      "summary": "根据元素大小与长度创建填充测试值的缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "buffer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/MetadataTester.js:createValuesBuffer",
+      "type": "function",
+      "name": "createValuesBuffer",
+      "filePath": "Specs/MetadataTester.js",
+      "lineRange": [
+        448,
+        470
+      ],
+      "summary": "创建承载属性值的二进制缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/MetadataTester.js:createStringOffsetBuffer",
+      "type": "function",
+      "name": "createStringOffsetBuffer",
+      "filePath": "Specs/MetadataTester.js",
+      "lineRange": [
+        472,
+        485
+      ],
+      "summary": "创建字符串偏移缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/MetadataTester.js:createArrayOffsetBuffer",
+      "type": "function",
+      "name": "createArrayOffsetBuffer",
+      "filePath": "Specs/MetadataTester.js",
+      "lineRange": [
+        487,
+        499
+      ],
+      "summary": "创建数组偏移缓冲区。",
+      "tags": [
+        "test",
+        "utility",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/MockDataSource.js:MockDataSource",
+      "type": "function",
+      "name": "MockDataSource",
+      "filePath": "Specs/MockDataSource.js",
+      "lineRange": [
+        3,
+        15
+      ],
+      "summary": "最小化 DataSource 桩实现,仅暴露 name 等基本字段。",
+      "tags": [
+        "test",
+        "mock",
+        "entity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/MockTerrainProvider.js:MockTerrainProvider",
+      "type": "function",
+      "name": "MockTerrainProvider",
+      "filePath": "Specs/MockTerrainProvider.js",
+      "lineRange": [
+        12,
+        30
+      ],
+      "summary": "实现 TerrainProvider 接口的最小桩对象。",
+      "tags": [
+        "test",
+        "mock",
+        "terrain",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/MockTerrainProvider.js:createTerrainData",
+      "type": "function",
+      "name": "createTerrainData",
+      "filePath": "Specs/MockTerrainProvider.js",
+      "lineRange": [
+        214,
+        305
+      ],
+      "summary": "构造可定制的 TerrainData 对象用于地形测试。",
+      "tags": [
+        "test",
+        "mock",
+        "terrain"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/concatTypedArrays.js:concatTypedArrays",
+      "type": "function",
+      "name": "concatTypedArrays",
+      "filePath": "Specs/concatTypedArrays.js",
+      "lineRange": [
+        1,
+        23
+      ],
+      "summary": "将多个同类型 TypedArray 拼接为单个数组。",
+      "tags": [
+        "utility",
+        "buffer",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createCamera.js:createCamera",
+      "type": "function",
+      "name": "createCamera",
+      "filePath": "Specs/createCamera.js",
+      "lineRange": [
+        22,
+        41
+      ],
+      "summary": "构造典型 Camera 对象的工厂函数。",
+      "tags": [
+        "test",
+        "factory",
+        "camera"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createCanvas.js:createCanvas",
+      "type": "function",
+      "name": "createCanvas",
+      "filePath": "Specs/createCanvas.js",
+      "lineRange": [
+        3,
+        18
+      ],
+      "summary": "创建并配置用于测试的 canvas 桩。",
+      "tags": [
+        "test",
+        "factory",
+        "dom",
+        "canvas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createContext.js:createContext",
+      "type": "function",
+      "name": "createContext",
+      "filePath": "Specs/createContext.js",
+      "lineRange": [
+        7,
+        36
+      ],
+      "summary": "构造带 WebGL stub 的测试 Context。",
+      "tags": [
+        "test",
+        "factory",
+        "webgl",
+        "context"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createDynamicGeometryUpdaterSpecs.js:createDynamicGeometryUpdaterSpecs",
+      "type": "function",
+      "name": "createDynamicGeometryUpdaterSpecs",
+      "filePath": "Specs/createDynamicGeometryUpdaterSpecs.js",
+      "lineRange": [
+        13,
+        168
+      ],
+      "summary": "为动态几何体 updater 生成统一测试套件的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/BadGeometry.js",
+      "target": "function:Specs/BadGeometry.js:BadGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Cesium3DTilesTester.js",
+      "target": "function:Specs/Cesium3DTilesTester.js:padStringToByteAlignment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/DomEventSimulator.js",
+      "target": "function:Specs/DomEventSimulator.js:createMouseEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/DomEventSimulator.js",
+      "target": "function:Specs/DomEventSimulator.js:createWheelEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/DomEventSimulator.js",
+      "target": "function:Specs/DomEventSimulator.js:createMouseWheelEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/DomEventSimulator.js",
+      "target": "function:Specs/DomEventSimulator.js:createPointerEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/DomEventSimulator.js",
+      "target": "function:Specs/DomEventSimulator.js:createDeviceOrientationEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:makeBufferViews",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:gatherBufferViews",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:addMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:parseAvailabilityDescriptor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:getPropertiesObjectFromPropertyTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "function:Specs/ImplicitTilingTester.js:makeBuffers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MetadataTester.js",
+      "target": "function:Specs/MetadataTester.js:createProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MetadataTester.js",
+      "target": "function:Specs/MetadataTester.js:createBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MetadataTester.js",
+      "target": "function:Specs/MetadataTester.js:createValuesBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MetadataTester.js",
+      "target": "function:Specs/MetadataTester.js:createStringOffsetBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MetadataTester.js",
+      "target": "function:Specs/MetadataTester.js:createArrayOffsetBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MockDataSource.js",
+      "target": "function:Specs/MockDataSource.js:MockDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MockTerrainProvider.js",
+      "target": "function:Specs/MockTerrainProvider.js:MockTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/MockTerrainProvider.js",
+      "target": "function:Specs/MockTerrainProvider.js:createTerrainData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/concatTypedArrays.js",
+      "target": "function:Specs/concatTypedArrays.js:concatTypedArrays",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createCamera.js",
+      "target": "function:Specs/createCamera.js:createCamera",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createCanvas.js",
+      "target": "function:Specs/createCanvas.js:createCanvas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createContext.js",
+      "target": "function:Specs/createContext.js:createContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createDynamicGeometryUpdaterSpecs.js",
+      "target": "function:Specs/createDynamicGeometryUpdaterSpecs.js:createDynamicGeometryUpdaterSpecs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Cesium3DTilesTester.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "file:Specs/concatTypedArrays.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/ImplicitTilingTester.js",
+      "target": "file:Specs/MetadataTester.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/MockImageryProvider.js",
+      "target": "file:Specs/createTileKey.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/MockImageryProvider.js",
+      "target": "file:Specs/runLater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/MockTerrainProvider.js",
+      "target": "file:Specs/createTileKey.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/MockTerrainProvider.js",
+      "target": "file:Specs/runLater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createContext.js",
+      "target": "file:Specs/createCanvas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createContext.js",
+      "target": "file:Specs/createFrameState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createContext.js",
+      "target": "file:Specs/getWebGLStub.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createDynamicGeometryUpdaterSpecs.js",
+      "target": "file:Specs/createDynamicProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createDynamicGeometryUpdaterSpecs.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

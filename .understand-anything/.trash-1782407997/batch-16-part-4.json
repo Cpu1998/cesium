@@ -1,0 +1,1514 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "type": "file",
+   "name": "ScreenSpaceCameraController.js",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "屏幕空间相机控制器，将鼠标/触摸/键盘输入映射为 2D、Columbus、3D 模式下的平移、缩放、旋转、倾斜、惯性等相机操作。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "interaction",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "type": "file",
+   "name": "TileBoundingRegion.js",
+   "filePath": "packages/engine/Source/Scene/TileBoundingRegion.js",
+   "summary": "基于地理 Rectangle + 最小/最大高度的瓦片包围体，提供与相机、射线、平面的相交及距离检测，用于 3D Tiles 与地形瓦片剔除。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "tile",
+    "scene"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/combineGeometry.js",
+   "type": "file",
+   "name": "combineGeometry.js",
+   "filePath": "packages/engine/Source/Workers/combineGeometry.js",
+   "summary": "Web Worker 入口，调用 PrimitivePipeline 将多个 geometry 实例合并为单个可渲染几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Workers/createBoxGeometry.js",
+   "type": "file",
+   "name": "createBoxGeometry.js",
+   "filePath": "packages/engine/Source/Workers/createBoxGeometry.js",
+   "summary": "Web Worker 入口，构造 BoxGeometry 几何体。",
+   "tags": [
+    "worker",
+    "geometry",
+    "factory",
+    "background-processing"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:ScreenSpaceCameraController",
+   "type": "function",
+   "name": "ScreenSpaceCameraController",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "屏幕空间相机控制器构造函数，注册鼠标/触摸事件并初始化各模式交互参数。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "constructor"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    35,
+    354
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:maintainInertia",
+   "type": "function",
+   "name": "maintainInertia",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "维持输入释放后的相机惯性运动。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    379,
+    456
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:activateInertia",
+   "type": "function",
+   "name": "activateInertia",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 activateInertia，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    458,
+    477
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:reactToInput",
+   "type": "function",
+   "name": "reactToInput",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "统一处理输入事件、惯性衰减与动作分派。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    481,
+    528
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:handleZoom",
+   "type": "function",
+   "name": "handleZoom",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "处理缩放输入，包含地下、地形、惯性等大量边界情形。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    559,
+    983
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translate2D",
+   "type": "function",
+   "name": "translate2D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 translate2D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    989,
+    1008
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom2D",
+   "type": "function",
+   "name": "zoom2D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 zoom2D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1010,
+    1025
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:twist2D",
+   "type": "function",
+   "name": "twist2D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 twist2D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1030,
+    1063
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:singleAxisTwist2D",
+   "type": "function",
+   "name": "singleAxisTwist2D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 singleAxisTwist2D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1065,
+    1088
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update2D",
+   "type": "function",
+   "name": "update2D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 update2D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1090,
+    1139
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pickPosition",
+   "type": "function",
+   "name": "pickPosition",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 pickPosition，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1145,
+    1183
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getDistanceFromSurface",
+   "type": "function",
+   "name": "getDistanceFromSurface",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 getDistanceFromSurface，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1187,
+    1208
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getZoomDistanceUnderground",
+   "type": "function",
+   "name": "getZoomDistanceUnderground",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 getZoomDistanceUnderground，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1212,
+    1223
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getTiltCenterUnderground",
+   "type": "function",
+   "name": "getTiltCenterUnderground",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 getTiltCenterUnderground，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1225,
+    1242
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getStrafeStartPositionUnderground",
+   "type": "function",
+   "name": "getStrafeStartPositionUnderground",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 getStrafeStartPositionUnderground，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1244,
+    1263
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:continueStrafing",
+   "type": "function",
+   "name": "continueStrafing",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 continueStrafing，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1267,
+    1280
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translateCV",
+   "type": "function",
+   "name": "translateCV",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 translateCV，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1292,
+    1391
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCV",
+   "type": "function",
+   "name": "rotateCV",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 rotateCV，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1408,
+    1436
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnPlane",
+   "type": "function",
+   "name": "rotateCVOnPlane",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 rotateCVOnPlane，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1438,
+    1499
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnTerrain",
+   "type": "function",
+   "name": "rotateCVOnTerrain",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "Columbus 模式下基于地形法线的相机旋转。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    1501,
+    1715
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoomCV",
+   "type": "function",
+   "name": "zoomCV",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 zoomCV，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1721,
+    1783
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:updateCV",
+   "type": "function",
+   "name": "updateCV",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "Columbus 视图每帧相机状态更新。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1785,
+    1858
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:strafe",
+   "type": "function",
+   "name": "strafe",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 strafe，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1865,
+    1896
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:spin3D",
+   "type": "function",
+   "name": "spin3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 spin3D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    1906,
+    2023
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotate3D",
+   "type": "function",
+   "name": "rotate3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 rotate3D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2025,
+    2088
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pan3D",
+   "type": "function",
+   "name": "pan3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "3D 模式下通过屏幕拖拽对地球进行平移/旋转。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    2102,
+    2311
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom3D",
+   "type": "function",
+   "name": "zoom3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 zoom3D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2318,
+    2408
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3D",
+   "type": "function",
+   "name": "tilt3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 tilt3D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2422,
+    2463
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnEllipsoid",
+   "type": "function",
+   "name": "tilt3DOnEllipsoid",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 tilt3DOnEllipsoid，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2467,
+    2547
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnTerrain",
+   "type": "function",
+   "name": "tilt3DOnTerrain",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "3D 模式下基于地形高度的相机倾斜。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    2549,
+    2741
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:look3D",
+   "type": "function",
+   "name": "look3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "3D 模式下相机的 look 操作（绕任意轴旋转）。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    2750,
+    2872
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update3D",
+   "type": "function",
+   "name": "update3D",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "内部辅助函数 update3D，服务于 ScreenSpaceCameraController.js 的实现细节。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2874,
+    2905
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:adjustHeightForTerrain",
+   "type": "function",
+   "name": "adjustHeightForTerrain",
+   "filePath": "packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "summary": "在地下时自动抬高相机以避免穿入地形。",
+   "tags": [
+    "camera-controller",
+    "input",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2910,
+    2985
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingRegion.js:TileBoundingRegion",
+   "type": "function",
+   "name": "TileBoundingRegion",
+   "filePath": "packages/engine/Source/Scene/TileBoundingRegion.js",
+   "summary": "矩形区域包围体构造函数，计算 OBB 与包围球。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    35,
+    110
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingRegion.js:computeBox",
+   "type": "function",
+   "name": "computeBox",
+   "filePath": "packages/engine/Source/Scene/TileBoundingRegion.js",
+   "summary": "根据地理矩形与高度区间计算 OrientedBoundingBox。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    166,
+    304
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/TileBoundingRegion.js:distanceToCameraRegion",
+   "type": "function",
+   "name": "distanceToCameraRegion",
+   "filePath": "packages/engine/Source/Scene/TileBoundingRegion.js",
+   "summary": "计算区域包围体到相机的最近距离。",
+   "tags": [
+    "bounding-volume",
+    "culling",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    312,
+    410
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:ScreenSpaceCameraController",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:ScreenSpaceCameraController",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:maintainInertia",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:maintainInertia",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:activateInertia",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:activateInertia",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:reactToInput",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:reactToInput",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:handleZoom",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:handleZoom",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translate2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translate2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:twist2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:twist2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:singleAxisTwist2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:singleAxisTwist2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pickPosition",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pickPosition",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getDistanceFromSurface",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getDistanceFromSurface",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getZoomDistanceUnderground",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getZoomDistanceUnderground",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getTiltCenterUnderground",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getTiltCenterUnderground",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getStrafeStartPositionUnderground",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:getStrafeStartPositionUnderground",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:continueStrafing",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:continueStrafing",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translateCV",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:translateCV",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCV",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCV",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnPlane",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnPlane",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnTerrain",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotateCVOnTerrain",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoomCV",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoomCV",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:updateCV",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:updateCV",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:strafe",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:strafe",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:spin3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:spin3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotate3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:rotate3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pan3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:pan3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:zoom3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnEllipsoid",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnEllipsoid",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnTerrain",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:tilt3DOnTerrain",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:look3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:look3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update3D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:update3D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:adjustHeightForTerrain",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "function:packages/engine/Source/Scene/ScreenSpaceCameraController.js:adjustHeightForTerrain",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:TileBoundingRegion",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:TileBoundingRegion",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:computeBox",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:computeBox",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:distanceToCameraRegion",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "function:packages/engine/Source/Scene/TileBoundingRegion.js:distanceToCameraRegion",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/HeadingPitchRoll.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/KeyboardEventModifier.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Ray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/CameraEventAggregator.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/CameraEventType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/MapMode2D.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "target": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Ray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Core/RectangleOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/combineGeometry.js",
+   "target": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/combineGeometry.js",
+   "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createBoxGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Workers/createBoxGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

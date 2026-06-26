@@ -1,0 +1,1143 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/PointCloud.js",
+      "type": "file",
+      "name": "PointCloud.js",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "3D Tiles 中点云（pnts）primitive 的核心实现，负责解析点云数据、构建 shader、处理 Draco 压缩以及生成渲染命令，支持裁剪、样式化与阴影。",
+      "tags": [
+        "primitive",
+        "point-cloud",
+        "3d-tiles",
+        "webgl",
+        "shader"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用大量模块级函数对 prototype 进行扩展，类似静态辅助函数模式；异步解码通过 DracoLoader 走 Web Worker。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "type": "file",
+      "name": "PointPrimitive.js",
+      "filePath": "packages/engine/Source/Scene/PointPrimitive.js",
+      "summary": "点图元（PointPrimitive）的单点对象，管理单个点的位置、颜色、大小、轮廓等属性，由 PointPrimitiveCollection 统一批量渲染。",
+      "tags": [
+        "primitive",
+        "point",
+        "data-model",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "type": "file",
+      "name": "PostProcessStage.js",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "单个后处理阶段（PostProcessStage）实现，基于片段着色器对场景纹理做滤镜处理，支持 uniform 纹理更新与 pick 选中纹理。",
+      "tags": [
+        "post-process",
+        "webgl",
+        "shader",
+        "filter"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "type": "file",
+      "name": "PrimitiveCollection.js",
+      "filePath": "packages/engine/Source/Scene/PrimitiveCollection.js",
+      "summary": "primitive 集合容器，统一管理多个 primitive 的添加、移除、更新与销毁，支持事件回调。",
+      "tags": [
+        "primitive",
+        "collection",
+        "container"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PrimitiveState.js",
+      "type": "file",
+      "name": "PrimitiveState.js",
+      "filePath": "packages/engine/Source/Scene/PrimitiveState.js",
+      "summary": "primitive 状态枚举，定义 NEVER_READY、READY、FAILED 等加载状态常量。",
+      "tags": [
+        "enum",
+        "primitive",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "type": "file",
+      "name": "QuadtreeTile.js",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "summary": "四叉树瓦片节点与 LRU 缓存，构建全球影像/地形瓦片的四叉树层级，负责选择、细分、加载与空间哈希定位。",
+      "tags": [
+        "quadtree",
+        "tile",
+        "terrain",
+        "imagery",
+        "lru-cache"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/SDFSettings.js",
+      "type": "file",
+      "name": "SDFSettings.js",
+      "filePath": "packages/engine/Source/Scene/SDFSettings.js",
+      "summary": "Signed Distance Field 相关全局常量设置，定义 SDF 字形纹理的字形尺寸等。",
+      "tags": [
+        "config",
+        "sdf",
+        "text"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Splitter.js",
+      "type": "file",
+      "name": "Splitter.js",
+      "filePath": "packages/engine/Source/Scene/Splitter.js",
+      "summary": "分屏卷帘 shader 工具，向片段着色器注入基于 splitPosition 与 splitDirection 裁剪左右两侧的 GLSL 代码片段。",
+      "tags": [
+        "shader",
+        "split",
+        "glsl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TerrainState.js",
+      "type": "file",
+      "name": "TerrainState.js",
+      "filePath": "packages/engine/Source/Scene/TerrainState.js",
+      "summary": "地形状态枚举，定义地形提供者的 UNKNOWN、READY、FAILED 等状态常量。",
+      "tags": [
+        "enum",
+        "terrain",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:PointCloud",
+      "type": "function",
+      "name": "PointCloud",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "PointCloud 构造函数，从 options 解析点云数据源与样式参数。",
+      "tags": [
+        "point-cloud",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        57,
+        157
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "初始化点云：解析属性、构造 attribute 与 bounding sphere。",
+      "tags": [
+        "point-cloud",
+        "initialization"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        200,
+        276
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:createResources",
+      "type": "function",
+      "name": "createResources",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "为点云创建 GPU buffer、vertex array 等渲染资源。",
+      "tags": [
+        "point-cloud",
+        "resources",
+        "webgl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        353,
+        611
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:createUniformMap",
+      "type": "function",
+      "name": "createUniformMap",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "构建点云着色器的 uniform 映射（视点矩阵、裁剪平面等）。",
+      "tags": [
+        "point-cloud",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        613,
+        722
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:createShaders",
+      "type": "function",
+      "name": "createShaders",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "组装点云的顶点/片段着色器源码，注入裁剪、样式、EDL 等代码段。",
+      "tags": [
+        "point-cloud",
+        "shader",
+        "glsl"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        768,
+        1164
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointCloud.js:decodeDraco",
+      "type": "function",
+      "name": "decodeDraco",
+      "filePath": "packages/engine/Source/Scene/PointCloud.js",
+      "summary": "调用 DracoLoader 异步解码点云的压缩属性。",
+      "tags": [
+        "point-cloud",
+        "draco",
+        "decoding"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        1166,
+        1268
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PointPrimitive.js:PointPrimitive",
+      "type": "function",
+      "name": "PointPrimitive",
+      "filePath": "packages/engine/Source/Scene/PointPrimitive.js",
+      "summary": "PointPrimitive 构造函数，初始化单个点的位置、颜色、大小等属性。",
+      "tags": [
+        "point",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        44,
+        116
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStage.js:PostProcessStage",
+      "type": "function",
+      "name": "PostProcessStage",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "PostProcessStage 构造函数，封装 shader、uniform 与输入纹理。",
+      "tags": [
+        "post-process",
+        "constructor",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        94,
+        182
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStage.js:getUniformValueGetterAndSetter",
+      "type": "function",
+      "name": "getUniformValueGetterAndSetter",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "为 stage uniform 生成 getter/setter，追踪 dirty 状态。",
+      "tags": [
+        "post-process",
+        "uniform",
+        "accessor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        404,
+        454
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStage.js:createUniformMap",
+      "type": "function",
+      "name": "createUniformMap",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "构建 stage 的 uniform 映射，桥接 JS 值与 GLSL uniform。",
+      "tags": [
+        "post-process",
+        "uniform",
+        "shader"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        476,
+        540
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStage.js:updateUniformTextures",
+      "type": "function",
+      "name": "updateUniformTextures",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "将 stage 持有的纹理 uniform 同步到 GPU。",
+      "tags": [
+        "post-process",
+        "texture",
+        "update"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        640,
+        707
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PostProcessStage.js:createSelectedTexture",
+      "type": "function",
+      "name": "createSelectedTexture",
+      "filePath": "packages/engine/Source/Scene/PostProcessStage.js",
+      "summary": "创建用于拾取高亮选中的 ID 纹理。",
+      "tags": [
+        "post-process",
+        "picking",
+        "texture"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        773,
+        850
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PrimitiveCollection.js:PrimitiveCollection",
+      "type": "function",
+      "name": "PrimitiveCollection",
+      "filePath": "packages/engine/Source/Scene/PrimitiveCollection.js",
+      "summary": "PrimitiveCollection 构造函数，初始化内部 primitive 列表与事件。",
+      "tags": [
+        "primitive",
+        "collection",
+        "constructor"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        33,
+        79
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/QuadtreeTile.js:QuadtreeTile",
+      "type": "function",
+      "name": "QuadtreeTile",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "summary": "四叉树瓦片构造函数，初始化矩形、层级、状态与子节点。",
+      "tags": [
+        "quadtree",
+        "tile",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/QuadtreeTile.js:createSpatialHashKey",
+      "type": "function",
+      "name": "createSpatialHashKey",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "summary": "根据经纬度/矩形/SSE 生成空间哈希键用于瓦片去重。",
+      "tags": [
+        "quadtree",
+        "hash",
+        "spatial"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        677,
+        689
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/QuadtreeTile.js:childTileAtPosition",
+      "type": "function",
+      "name": "childTileAtPosition",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "summary": "判断给定位置落在瓦片的哪个子节点上。",
+      "tags": [
+        "quadtree",
+        "spatial",
+        "traversal"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        701,
+        723
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/QuadtreeTile.js:LRUCache",
+      "type": "class",
+      "name": "LRUCache",
+      "filePath": "packages/engine/Source/Scene/QuadtreeTile.js",
+      "summary": "简易 LRU 缓存，用于在四叉树瓦片选择过程中复用已加载瓦片以控制内存。",
+      "tags": [
+        "lru-cache",
+        "quadtree",
+        "cache"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:PointCloud",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:createResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:createUniformMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:createShaders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:decodeDraco",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitive.js:PointPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:PostProcessStage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:getUniformValueGetterAndSetter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:createUniformMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:updateUniformTextures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:createSelectedTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PrimitiveCollection.js:PrimitiveCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "function:packages/engine/Source/Scene/QuadtreeTile.js:QuadtreeTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "function:packages/engine/Source/Scene/QuadtreeTile.js:createSpatialHashKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "function:packages/engine/Source/Scene/QuadtreeTile.js:childTileAtPosition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "class:packages/engine/Source/Scene/QuadtreeTile.js:LRUCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/DracoLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/getClipAndStyleCode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/PntsParser.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/Splitter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/PassState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "file:packages/engine/Source/Scene/PostProcessStageSampleMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "file:packages/engine/Source/Scene/TileSelectionResult.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Splitter.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointCloud.js",
+      "target": "function:packages/engine/Source/Scene/PointCloud.js:PointCloud",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PointPrimitive.js",
+      "target": "function:packages/engine/Source/Scene/PointPrimitive.js:PointPrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PostProcessStage.js",
+      "target": "function:packages/engine/Source/Scene/PostProcessStage.js:PostProcessStage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+      "target": "function:packages/engine/Source/Scene/QuadtreeTile.js:QuadtreeTile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "target": "function:packages/engine/Source/Scene/PrimitiveCollection.js:PrimitiveCollection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

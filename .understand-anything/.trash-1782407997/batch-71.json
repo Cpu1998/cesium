@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/unitSquare/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/unitSquare/README.md",
+      "summary": "unitSquare glTF 2.0 测试模型的说明文档，描述了一个 0-1 单位正方形的几何、法线、纹理坐标约定，并列出 plain/draco/meshopt/quantized/interleaved 等多种压缩与属性编码变体及其生成方式。",
+      "tags": ["documentation", "gltf", "test-data", "3d-tiles", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "文档列出了多种 glTF 属性变体（draco/meshopt 压缩、quantization、interleaved accessors、UNSIGNED_SHORT 归一化纹理坐标），用于覆盖 Cesium 的 glTF 解码与渲染测试矩阵。"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/unitSquare/Sandcastle.txt",
+      "type": "document",
+      "name": "Sandcastle.txt",
+      "filePath": "Specs/Data/Models/glTF-2.0/unitSquare/Sandcastle.txt",
+      "summary": "Sandcastle 示例代码片段，演示如何用 Cesium3DTileset.fromUrl 加载本目录下的 tileset.json，将其放置到地球上指定经纬度并缩放、缩放视角对齐该 tileset。",
+      "tags": ["documentation", "sandcastle", "example", "cesium3dtileset", "gltf"],
+      "complexity": "simple",
+      "languageNotes": "Cesium Sandcastle 风格的内联 JS 示例，使用 Transforms.eastNorthUpToFixedFrame 构造模型矩阵并通过 HeadingPitchRange 调整视角。"
+    },
+    {
+      "id": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Models/glTF-2.0/unitSquare/tileset.json",
+      "summary": "3D Tiles 1.1 tileset 描述文件，根节点下以 REPLACE 细分方式挂载 12 个 unitSquare 变体的 .glb 内容（draco/meshopt/quantized/interleaved/unsignedShortTexCoords 及 triangleStrip/triangleFan 图元模式），用于 Cesium3DTileset 的加载与渲染测试。",
+      "tags": ["configuration", "3d-tiles", "gltf", "test-data", "test-fixture"],
+      "complexity": "complex",
+      "languageNotes": "采用 3D Tiles 1.1 规范，root.transform 含 Y-up 到 Z-up 的轴转换矩阵，boundingVolume.box 给出盒状包围体，每个子节点 content.uri 指向独立的 .glb 资源。"
+    },
+    {
+      "id": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset_unitSquare_fourPrimitives_plain.json",
+      "type": "config",
+      "name": "tileset_unitSquare_fourPrimitives_plain.json",
+      "filePath": "Specs/Data/Models/glTF-2.0/unitSquare/tileset_unitSquare_fourPrimitives_plain.json",
+      "summary": "3D Tiles 1.1 tileset 描述文件，仅包含单个根节点，其 content 指向 unitSquare_fourPrimitives_plain.glb，用于测试单个 mesh 中含多个 primitive 的 glTF 解析与渲染。",
+      "tags": ["configuration", "3d-tiles", "gltf", "test-data", "test-fixture"],
+      "complexity": "simple",
+      "languageNotes": "最小化的 3D Tiles 1.1 tileset：单根节点、REPLACE 细分、Y-up→Z-up 变换矩阵与 box 包围体，geometricError=65536 确保根节点常驻加载。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/unitSquare/README.md",
+      "target": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/unitSquare/README.md",
+      "target": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset_unitSquare_fourPrimitives_plain.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset_unitSquare_fourPrimitives_plain.json",
+      "target": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/unitSquare/Sandcastle.txt",
+      "target": "config:Specs/Data/Models/glTF-2.0/unitSquare/tileset.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

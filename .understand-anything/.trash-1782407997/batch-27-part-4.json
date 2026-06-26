@@ -1,0 +1,911 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "type": "file",
+      "name": "GaussianSplat3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "summary": "3D Tiles 中 Gaussian Splatting 切片内容的核心实现，将 glTF 载荷封装为可被 Cesium3DTileset 加载的高斯泼溅 primitive，并提供 spherical harmonics 数据的打包与拾取支持。",
+      "tags": [
+        "3d-tiles",
+        "gaussian-splatting",
+        "tile-content",
+        "primitive",
+        "scene"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实现 3D Tiles 的 tile content 接口，并通过 float32→float16 半精度转换压缩 SH 系数。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "type": "file",
+      "name": "GltfVertexBufferLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "summary": "glTF 顶点缓冲的 ResourceLoader，统一处理普通 accessor、Draco、Spz 三种来源并产出 GPU Buffer 或 typed array，并附带 quantization 信息。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "vertex-buffer",
+        "draco",
+        "spz"
+      ],
+      "complexity": "complex",
+      "languageNotes": "内嵌 CreateVertexBufferJob 以便走 JobScheduler 异步上传顶点缓冲。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "type": "file",
+      "name": "GroupMetadata.js",
+      "filePath": "packages/engine/Source/Scene/GroupMetadata.js",
+      "summary": "3DTILES_metadata 扩展中分组级别的元数据封装，承接一组 Cesium3DTileContent 共享的属性集合。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "group-metadata",
+        "scene",
+        "private"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "type": "file",
+      "name": "JsonMetadataTable.js",
+      "filePath": "packages/engine/Source/Scene/JsonMetadataTable.js",
+      "summary": "以 JSON 形式存储自由格式元数据的表（用于传统 batch table），按属性键提供按行读写。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "batch-table",
+        "json",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "file",
+      "name": "MetadataEntity.js",
+      "filePath": "packages/engine/Source/Scene/MetadataEntity.js",
+      "summary": "携带元数据的实体接口描述，规定基于 class 进行属性 getProperty/hasProperty 的访问契约。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "entity",
+        "interface",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "type": "file",
+      "name": "MetadataEnum.js",
+      "filePath": "packages/engine/Source/Scene/MetadataEnum.js",
+      "summary": "3D Metadata 中的枚举定义，封装一组 MetadataEnumValue 与默认 valueType。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "enum",
+        "schema",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "type": "file",
+      "name": "MetadataPicking.js",
+      "filePath": "packages/engine/Source/Scene/MetadataPicking.js",
+      "summary": "元数据拾取的工具集，将 frame buffer 中读回的编码值按 MetadataClassProperty 的类型解码为实际属性值。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "picking",
+        "scene",
+        "private"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "依据 componentType 与归一化策略，把 RGBA 像素值反向映射到 SCALAR/VEC/MAT。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "type": "file",
+      "name": "MetadataSchema.js",
+      "filePath": "packages/engine/Source/Scene/MetadataSchema.js",
+      "summary": "3D Metadata 的顶层 schema 容器，由若干 MetadataClass 与 MetadataEnum 构成。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "schema",
+        "scene",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "type": "file",
+      "name": "MetadataTableProperty.js",
+      "filePath": "packages/engine/Source/Scene/MetadataTableProperty.js",
+      "summary": "二进制元数据表中的单列，依据 classProperty 的类型/偏移/步长完成紧凑二进制数据的读写，支持 INT64 BigInt/Number 两种回退与变长数组。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "table-property",
+        "binary",
+        "scene"
+      ],
+      "complexity": "complex",
+      "languageNotes": "内部 BufferView 子对象实现按 componentType 的视图化访问，并通过 requiresUnpackForGet 决定是否解包。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GaussianSplat3DTileContent.js:GaussianSplat3DTileContent",
+      "type": "class",
+      "name": "GaussianSplat3DTileContent",
+      "filePath": "packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "lineRange": [
+        22,
+        631
+      ],
+      "summary": "3D Tiles 高斯泼溅内容的接口实现，封装 glTF→primitive 的加载、SH 处理、拾取与销毁生命周期。",
+      "tags": [
+        "gaussian-splatting",
+        "tile-content",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GaussianSplat3DTileContent.js:packSphericalHarmonicsData",
+      "type": "function",
+      "name": "packSphericalHarmonicsData",
+      "filePath": "packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "lineRange": [
+        727,
+        776
+      ],
+      "summary": "将原始球谐系数按 SH 阶与分量前缀重新打包成 GPU 友好的 typed array。",
+      "tags": [
+        "gaussian-splatting",
+        "spherical-harmonics",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfVertexBufferLoader.js:GltfVertexBufferLoader",
+      "type": "class",
+      "name": "GltfVertexBufferLoader",
+      "filePath": "packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "lineRange": [
+        22,
+        314
+      ],
+      "summary": "ResourceLoader 实现，统一 Draco/Spz/accessor 三种来源的顶点缓冲产出。",
+      "tags": [
+        "gltf",
+        "vertex-buffer",
+        "resource-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfVertexBufferLoader.js:processSpz",
+      "type": "function",
+      "name": "processSpz",
+      "filePath": "packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "lineRange": [
+        422,
+        495
+      ],
+      "summary": "对 SPZ 解码后的球谐系数执行后处理并产出顶点缓冲。",
+      "tags": [
+        "spz",
+        "vertex-buffer",
+        "gaussian-splatting"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfVertexBufferLoader.js:getQuantizationInformation",
+      "type": "function",
+      "name": "getQuantizationInformation",
+      "filePath": "packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "lineRange": [
+        324,
+        373
+      ],
+      "summary": "从 Draco 量化扩展中解析出量化参数与 componentCount。",
+      "tags": [
+        "draco",
+        "quantization",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/MetadataTableProperty.js:MetadataTableProperty",
+      "type": "function",
+      "name": "MetadataTableProperty",
+      "filePath": "packages/engine/Source/Scene/MetadataTableProperty.js",
+      "lineRange": [
+        35,
+        208
+      ],
+      "summary": "二进制元数据表列的构造器，依据 classProperty 计算偏移、步长与视图类型。",
+      "tags": [
+        "metadata",
+        "table-property",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/MetadataTableProperty.js:set",
+      "type": "function",
+      "name": "set",
+      "filePath": "packages/engine/Source/Scene/MetadataTableProperty.js",
+      "lineRange": [
+        464,
+        506
+      ],
+      "summary": "按索引向二进制表中写入标量/向量/矩阵/数组值，含归一化与 INT64 兼容。",
+      "tags": [
+        "metadata",
+        "table-property",
+        "setter"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/MetadataTableProperty.js:requiresUnpackForGet",
+      "type": "function",
+      "name": "requiresUnpackForGet",
+      "filePath": "packages/engine/Source/Scene/MetadataTableProperty.js",
+      "lineRange": [
+        639,
+        670
+      ],
+      "summary": "判断某索引的读取是否需要先把连续二进制解包成 JS 值。",
+      "tags": [
+        "metadata",
+        "table-property",
+        "utility"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/GaussianSplat3DTileContent.js:GaussianSplat3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplat3DTileContent.js:packSphericalHarmonicsData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfVertexBufferLoader.js:GltfVertexBufferLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfVertexBufferLoader.js:processSpz",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfVertexBufferLoader.js:getQuantizationInformation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "function:packages/engine/Source/Scene/MetadataTableProperty.js:MetadataTableProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "function:packages/engine/Source/Scene/MetadataTableProperty.js:set",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "function:packages/engine/Source/Scene/MetadataTableProperty.js:requiresUnpackForGet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/deprecationWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/GaussianSplatPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/JobType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClassProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/getStringFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClassProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfDracoLoader.js:GltfDracoLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "function:packages/engine/Source/Scene/GaussianSplatPrimitive.js:GaussianSplatPrimitive",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GaussianSplat3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/GltfLoader.js:GltfLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "function:packages/engine/Source/Scene/MetadataEnumValue.js:MetadataEnumValue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnum.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "function:packages/engine/Source/Scene/MetadataClass.js:MetadataClass",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "target": "function:packages/engine/Source/Scene/MetadataEnum.js:MetadataEnum",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "function:packages/engine/Source/Scene/MetadataClassProperty.js:MetadataClassProperty",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataTableProperty.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataPicking.js",
+      "target": "function:packages/engine/Source/Scene/MetadataClassProperty.js:MetadataClassProperty",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GroupMetadata.js",
+      "target": "function:packages/engine/Source/Scene/MetadataEntity.js:MetadataEntity",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

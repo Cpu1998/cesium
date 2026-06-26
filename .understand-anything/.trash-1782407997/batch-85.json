@@ -1,0 +1,78 @@
+{
+  "nodes": [
+    {
+      "id": "document:packages/widgets/LICENSE.md",
+      "type": "document",
+      "name": "LICENSE.md",
+      "filePath": "packages/widgets/LICENSE.md",
+      "summary": "@cesium/widgets 包的许可证文件，包含 Apache-2.0 主许可证以及 NoSleep.js、Knockout、Knockout ES5 plugin、Jasmine 等第三方依赖的开源许可声明。",
+      "tags": ["documentation", "license", "legal", "third-party-notices"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:packages/widgets/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "packages/widgets/README.md",
+      "summary": "@cesium/widgets 包的说明文档，涵盖安装、使用示例（如 Viewer、CesiumWidget 的初始化）、社区资源与许可证信息，是包的入口说明。",
+      "tags": ["documentation", "entry-point", "overview", "getting-started"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/widgets/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/widgets/package.json",
+      "summary": "@cesium/widgets 包的 npm 清单配置，定义入口 index.js、ESM module 与类型声明，声明对 @cesium/engine 和 nosleep.js 的依赖，并配置 build、test 等 gulp 脚本。",
+      "tags": ["configuration", "npm", "build-system", "package-manifest"],
+      "complexity": "simple",
+      "languageNotes": "标记为 ESM (\"type\": \"module\")，main 与 module 均指向 index.js；sideEffects 标记 CSS 与测试文件以辅助 tree-shaking。"
+    },
+    {
+      "id": "config:packages/widgets/tsd-conf.json",
+      "type": "config",
+      "name": "tsd-conf.json",
+      "filePath": "packages/widgets/tsd-conf.json",
+      "summary": "TypeDoc 文档生成工具的配置文件，指定源码标签、源文件路径、插件、模板与输出选项，用于从 Source 目录生成 API 参考文档。",
+      "tags": ["configuration", "documentation", "typedoc", "api-docs"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:packages/widgets/README.md",
+      "target": "config:packages/widgets/package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:packages/widgets/package.json",
+      "target": "file:packages/widgets/index.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:packages/widgets/README.md",
+      "target": "file:packages/widgets/index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:packages/widgets/LICENSE.md",
+      "target": "config:packages/widgets/package.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:packages/widgets/tsd-conf.json",
+      "target": "config:packages/widgets/package.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

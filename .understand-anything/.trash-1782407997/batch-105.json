@@ -1,0 +1,235 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/FilmicTonemapping.glsl",
+      "type": "file",
+      "name": "FilmicTonemapping.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/FilmicTonemapping.glsl",
+      "summary": "后处理阶段 fragment shader，实现基于 Hable 曲线的 Filmic 色调映射算法，将 HDR 颜色压缩到 LDR 显示范围。",
+      "tags": ["shader", "post-process", "tonemapping", "fragment", "hdr"],
+      "complexity": "simple",
+      "languageNotes": "GLSL fragment shader，使用 czm_modelToWindowCoordinates 等 Cesium 内建 uniform 与自动 uniform。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/FXAA.glsl",
+      "type": "file",
+      "name": "FXAA.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/FXAA.glsl",
+      "summary": "后处理 fragment shader，实现快速近似抗锯齿 (FXAA) 算法，对场景边缘进行子像素级平滑。",
+      "tags": ["shader", "post-process", "anti-aliasing", "fxaa", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/GaussianBlur1D.glsl",
+      "type": "file",
+      "name": "GaussianBlur1D.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/GaussianBlur1D.glsl",
+      "summary": "后处理阶段的一维高斯模糊 fragment shader，沿单一方向对纹理做加权采样实现可分离高斯模糊。",
+      "tags": ["shader", "post-process", "blur", "gaussian", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/LensFlare.glsl",
+      "type": "file",
+      "name": "LensFlare.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/LensFlare.glsl",
+      "summary": "镜头光晕后处理 fragment shader，依据屏幕空间太阳位置合成光斑、光晕与色散效果。",
+      "tags": ["shader", "post-process", "lens-flare", "fragment", "effect"],
+      "complexity": "complex",
+      "languageNotes": "约 150 行的 fragment shader，含多采样与色散纹理采样逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/ModifiedReinhardTonemapping.glsl",
+      "type": "file",
+      "name": "ModifiedReinhardTonemapping.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/ModifiedReinhardTonemapping.glsl",
+      "summary": "后处理 fragment shader，实现改进版 Reinhard 色调映射，基于场景亮度做白点自适应压缩。",
+      "tags": ["shader", "post-process", "tonemapping", "reinhard", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/NightVision.glsl",
+      "type": "file",
+      "name": "NightVision.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/NightVision.glsl",
+      "summary": "夜视效果后处理 fragment shader，对场景应用亮度和噪声调制以模拟夜视仪观感。",
+      "tags": ["shader", "post-process", "night-vision", "effect", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/PassThrough.glsl",
+      "type": "file",
+      "name": "PassThrough.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/PassThrough.glsl",
+      "summary": "透传后处理 fragment shader，直接采样输入纹理颜色输出，作为后处理链路的基础拷贝阶段。",
+      "tags": ["shader", "post-process", "passthrough", "fragment", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/PassThroughDepth.glsl",
+      "type": "file",
+      "name": "PassThroughDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/PassThroughDepth.glsl",
+      "summary": "透传深度后处理 fragment shader，将深度缓冲纹理作为颜色输出，用于深度可视化与调试。",
+      "tags": ["shader", "post-process", "depth", "passthrough", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/PbrNeutralTonemapping.glsl",
+      "type": "file",
+      "name": "PbrNeutralTonemapping.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/PbrNeutralTonemapping.glsl",
+      "summary": "基于 PBR Neutral 的色调映射 fragment shader，提供中性、低饱和度的高光保护映射曲线。",
+      "tags": ["shader", "post-process", "tonemapping", "pbr", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/PointCloudEyeDomeLighting.glsl",
+      "type": "file",
+      "name": "PointCloudEyeDomeLighting.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/PointCloudEyeDomeLighting.glsl",
+      "summary": "点云 Eye-Dome Lighting 后处理 fragment shader，通过深度差为无结构点云生成伪光照阴影。",
+      "tags": ["shader", "post-process", "point-cloud", "edl", "lighting"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/ReinhardTonemapping.glsl",
+      "type": "file",
+      "name": "ReinhardTonemapping.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/ReinhardTonemapping.glsl",
+      "summary": "经典 Reinhard 全局色调映射 fragment shader，用 L/(1+L) 公式对 HDR 颜色做亮度压缩。",
+      "tags": ["shader", "post-process", "tonemapping", "reinhard", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/Silhouette.glsl",
+      "type": "file",
+      "name": "Silhouette.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/Silhouette.glsl",
+      "summary": "轮廓描边后处理 fragment shader，基于邻域采样检测边缘并渲染剪影轮廓。",
+      "tags": ["shader", "post-process", "silhouette", "edge-detection", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PrimitiveGaussianSplatFS.glsl",
+      "type": "file",
+      "name": "PrimitiveGaussianSplatFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PrimitiveGaussianSplatFS.glsl",
+      "summary": "Gaussian Splatting primitive 的 fragment shader，按高斯椭圆核累积 alpha 混合 splat 颜色。",
+      "tags": ["shader", "gaussian-splatting", "primitive", "fragment", "blending"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PrimitiveGaussianSplatVS.glsl",
+      "type": "file",
+      "name": "PrimitiveGaussianSplatVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PrimitiveGaussianSplatVS.glsl",
+      "summary": "Gaussian Splatting primitive 的顶点 shader，将每个 splat 的协方差、旋转与缩放投影到屏幕空间生成 quad。",
+      "tags": ["shader", "gaussian-splatting", "primitive", "vertex", "projection"],
+      "complexity": "complex",
+      "languageNotes": "约 195 行 vertex shader，含协方差矩阵 EWA 投影与裁剪逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ReprojectWebMercatorFS.glsl",
+      "type": "file",
+      "name": "ReprojectWebMercatorFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ReprojectWebMercatorFS.glsl",
+      "summary": "Web Mercator 重投影 fragment shader，从源纹理采样以将影像重映射到目标投影坐标系。",
+      "tags": ["shader", "reprojection", "web-mercator", "fragment", "imagery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ReprojectWebMercatorVS.glsl",
+      "type": "file",
+      "name": "ReprojectWebMercatorVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ReprojectWebMercatorVS.glsl",
+      "summary": "Web Mercator 重投影顶点 shader，将顶点位置变换到目标投影并输出纹理坐标。",
+      "tags": ["shader", "reprojection", "web-mercator", "vertex", "imagery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ShadowVolumeAppearanceFS.glsl",
+      "type": "file",
+      "name": "ShadowVolumeAppearanceFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ShadowVolumeAppearanceFS.glsl",
+      "summary": "阴影体外观 fragment shader，按 shadow volume 几何深度信息计算逐像素阴影掩码并叠加颜色。",
+      "tags": ["shader", "shadow-volume", "appearance", "fragment", "shadow"],
+      "complexity": "complex",
+      "languageNotes": "约 150 行 fragment shader，包含 silhouette 边缘与 stencil 阴影判定逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ShadowVolumeAppearanceVS.glsl",
+      "type": "file",
+      "name": "ShadowVolumeAppearanceVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ShadowVolumeAppearanceVS.glsl",
+      "summary": "阴影体外观顶点 shader，沿光线方向拉伸顶点生成 shadow volume 几何并传递后续 attribute。",
+      "tags": ["shader", "shadow-volume", "appearance", "vertex", "shadow"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ShadowVolumeFS.glsl",
+      "type": "file",
+      "name": "ShadowVolumeFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ShadowVolumeFS.glsl",
+      "summary": "阴影体基础 fragment shader，输出最小颜色用于 shadow volume 的 stencil 标记 pass。",
+      "tags": ["shader", "shadow-volume", "fragment", "stencil", "shadow"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SkyAtmosphereCommon.glsl",
+      "type": "file",
+      "name": "SkyAtmosphereCommon.glsl",
+      "filePath": "packages/engine/Source/Shaders/SkyAtmosphereCommon.glsl",
+      "summary": "天空大气渲染共享 GLSL 代码片段，定义大气散射计算所需的公共函数与常量，被 SkyAtmosphere 的 VS/FS 复用。",
+      "tags": ["shader", "sky-atmosphere", "atmosphere", "scattering", "shared"],
+      "complexity": "moderate",
+      "languageNotes": "共享 shader 头文件，通过 Cesium 的 shader include 机制被其他 shader 引入。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SkyAtmosphereFS.glsl",
+      "type": "file",
+      "name": "SkyAtmosphereFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SkyAtmosphereFS.glsl",
+      "summary": "天空大气 fragment shader，基于物理光散射模型计算地平线大气辉光与日轮颜色。",
+      "tags": ["shader", "sky-atmosphere", "atmosphere", "fragment", "scattering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SkyAtmosphereVS.glsl",
+      "type": "file",
+      "name": "SkyAtmosphereVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SkyAtmosphereVS.glsl",
+      "summary": "天空大气顶点 shader，将大气层几何顶点变换到屏幕空间并传递视线方向供散射计算。",
+      "tags": ["shader", "sky-atmosphere", "atmosphere", "vertex", "scattering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SkyBoxFS.glsl",
+      "type": "file",
+      "name": "SkyBoxFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SkyBoxFS.glsl",
+      "summary": "天空盒 fragment shader，采样立方体贴图并按旋转矩阵变换视线方向以渲染远景星空背景。",
+      "tags": ["shader", "skybox", "cubemap", "fragment", "background"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SkyBoxVS.glsl",
+      "type": "file",
+      "name": "SkyBoxVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SkyBoxVS.glsl",
+      "summary": "天空盒顶点 shader，将 full-screen quad 顶点变换并输出视线方向向量到立方体贴图采样。",
+      "tags": ["shader", "skybox", "cubemap", "vertex", "background"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SunFS.glsl",
+      "type": "file",
+      "name": "SunFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SunFS.glsl",
+      "summary": "太阳 fragment shader，从太阳纹理采样并按 size 和 glow 参数渲染屏幕空间日轮。",
+      "tags": ["shader", "sun", "fragment", "background", "celestial"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

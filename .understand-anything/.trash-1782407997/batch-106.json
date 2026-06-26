@@ -1,0 +1,236 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/SunTextureFS.glsl",
+      "type": "file",
+      "name": "SunTextureFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SunTextureFS.glsl",
+      "summary": "太阳纹理的片元 shader，通过手解循环生成的辐射状光线爆发与光晕，程序化生成太阳盘面的发光纹理。",
+      "tags": ["shader", "fragment", "procedural-texture", "sun", "glsl"],
+      "complexity": "moderate",
+      "languageNotes": "将 sin/cos 循环手工展开为常量向量以提升 GPU 性能，是典型的 shader 优化手法。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/SunVS.glsl",
+      "type": "file",
+      "name": "SunVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/SunVS.glsl",
+      "summary": "太阳精灵（sun sprite）的顶点 shader，将公告板顶点变换到裁剪空间并传递纹理坐标。",
+      "tags": ["shader", "vertex", "sun", "glsl", "billboard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Vector3DTileClampedPolylinesFS.glsl",
+      "type": "file",
+      "name": "Vector3DTileClampedPolylinesFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Vector3DTileClampedPolylinesFS.glsl",
+      "summary": "Vector 3D Tiles 中贴地（clamped）折线的片元 shader，按距离衰减对折线进行抗锯齿着色。",
+      "tags": ["shader", "fragment", "vector-tiles", "polyline", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Vector3DTileClampedPolylinesVS.glsl",
+      "type": "file",
+      "name": "Vector3DTileClampedPolylinesVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Vector3DTileClampedPolylinesVS.glsl",
+      "summary": "Vector 3D Tiles 贴地折线的顶点 shader，沿地形对折线进行细分并计算屏幕空间宽度与距离衰减。",
+      "tags": ["shader", "vertex", "vector-tiles", "polyline", "terrain-clamping"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Vector3DTilePolylinesVS.glsl",
+      "type": "file",
+      "name": "Vector3DTilePolylinesVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Vector3DTilePolylinesVS.glsl",
+      "summary": "Vector 3D Tiles 折线的顶点 shader，将折线顶点投影到屏幕空间并按宽度方向偏移以渲染可变粗细的线段。",
+      "tags": ["shader", "vertex", "vector-tiles", "polyline", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/VectorTileVS.glsl",
+      "type": "file",
+      "name": "VectorTileVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/VectorTileVS.glsl",
+      "summary": "矢量瓦片（Vector Tile）的顶点 shader，将瓦片几何变换到裁剪空间并传递纹理坐标与属性。",
+      "tags": ["shader", "vertex", "vector-tiles", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ViewportQuadFS.glsl",
+      "type": "file",
+      "name": "ViewportQuadFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ViewportQuadFS.glsl",
+      "summary": "ViewportQuad primitive 的片元 shader，从材质输入采样并通过 czm_material 输出漫反射、自发光与 alpha。",
+      "tags": ["shader", "fragment", "viewport-quad", "material", "glsl"],
+      "complexity": "simple",
+      "languageNotes": "依赖 Cesium 内置的 czm_material 材质抽象，是全屏四边形渲染的标准片元入口。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ViewportQuadVS.glsl",
+      "type": "file",
+      "name": "ViewportQuadVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ViewportQuadVS.glsl",
+      "summary": "ViewportQuad primitive 的顶点 shader，生成覆盖视口的四边形并输出纹理坐标。",
+      "tags": ["shader", "vertex", "viewport-quad", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/convertLocalToBoxUv.glsl",
+      "type": "file",
+      "name": "convertLocalToBoxUv.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/convertLocalToBoxUv.glsl",
+      "summary": "Voxel 体素系统中将盒形（box）局部坐标转换为 UV 坐标的工具 shader，提供盒形 shape 的坐标映射函数。",
+      "tags": ["shader", "voxel", "coordinate-transform", "box", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/convertLocalToCylinderUv.glsl",
+      "type": "file",
+      "name": "convertLocalToCylinderUv.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/convertLocalToCylinderUv.glsl",
+      "summary": "Voxel 系统中将圆柱（cylinder）局部坐标转换为 UV 坐标的工具 shader，处理柱坐标系的导数与瓦片映射。",
+      "tags": ["shader", "voxel", "coordinate-transform", "cylinder", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/convertLocalToEllipsoidUv.glsl",
+      "type": "file",
+      "name": "convertLocalToEllipsoidUv.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/convertLocalToEllipsoidUv.glsl",
+      "summary": "Voxel 系统中将椭球（ellipsoid）局部坐标转换为 UV 坐标的工具 shader，实现经纬高地理坐标与椭球体素空间的复杂双向映射。",
+      "tags": ["shader", "voxel", "coordinate-transform", "ellipsoid", "geospatial"],
+      "complexity": "complex",
+      "languageNotes": "针对椭球 shape 的坐标转换涉及大地坐标（经纬高）与体素 UV 的双向变换，是体素地理数据渲染的核心。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectBox.glsl",
+      "type": "file",
+      "name": "IntersectBox.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectBox.glsl",
+      "summary": "Voxel 系统中射线与盒形（box）相交检测的 shader，计算射线进入/离开盒体的交点与法线。",
+      "tags": ["shader", "voxel", "ray-intersection", "box", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectCylinder.glsl",
+      "type": "file",
+      "name": "IntersectCylinder.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectCylinder.glsl",
+      "summary": "Voxel 系统中射线与圆柱（cylinder）相交检测的 shader，求解射线与圆柱侧面及端面的交点。",
+      "tags": ["shader", "voxel", "ray-intersection", "cylinder", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectDepth.glsl",
+      "type": "file",
+      "name": "IntersectDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectDepth.glsl",
+      "summary": "Voxel 系统中处理深度相交的 shader，将场景深度缓冲区转换为射线步进的终止距离。",
+      "tags": ["shader", "voxel", "ray-intersection", "depth-buffer", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectEllipsoid.glsl",
+      "type": "file",
+      "name": "IntersectEllipsoid.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectEllipsoid.glsl",
+      "summary": "Voxel 系统中射线与椭球（ellipsoid）相交检测的核心 shader，处理经度/纬度/高度边界裁剪与多种渲染范围宏定义组合下的复杂相交逻辑。",
+      "tags": ["shader", "voxel", "ray-intersection", "ellipsoid", "geospatial"],
+      "complexity": "complex",
+      "languageNotes": "通过大量条件编译宏（ELLIPSOID_HAS_RENDER_BOUNDS_*）针对不同经纬度范围生成特化 shader，是体素椭球相交性能优化的关键。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/Intersection.glsl",
+      "type": "file",
+      "name": "Intersection.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/Intersection.glsl",
+      "summary": "Voxel 系统的相交场景调度 shader，根据 shape 类型选择对应的相交函数并聚合所有相交计算结果。",
+      "tags": ["shader", "voxel", "ray-intersection", "dispatcher", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectionUtils.glsl",
+      "type": "file",
+      "name": "IntersectionUtils.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectionUtils.glsl",
+      "summary": "Voxel 系统相交计算的通用工具 shader，定义 Ray、RayShapeIntersection 等结构体以及相交结果取最小/最大、设置交点等基础操作。",
+      "tags": ["shader", "voxel", "ray-intersection", "utility", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectLongitude.glsl",
+      "type": "file",
+      "name": "IntersectLongitude.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectLongitude.glsl",
+      "summary": "Voxel 系统中经度子午面相交检测的 shader，实现半平面、翻转楔形与规则楔形的相交计算，被椭球相交逻辑复用。",
+      "tags": ["shader", "voxel", "ray-intersection", "longitude", "geospatial"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/IntersectPlane.glsl",
+      "type": "file",
+      "name": "IntersectPlane.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/IntersectPlane.glsl",
+      "summary": "Voxel 系统中射线与无限平面相交检测的 shader，计算射线与平面交点的距离与法线。",
+      "tags": ["shader", "voxel", "ray-intersection", "plane", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/Megatexture.glsl",
+      "type": "file",
+      "name": "Megatexture.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/Megatexture.glsl",
+      "summary": "Voxel 系统的 megatexture 采样 shader，将一维瓦片索引转换为三维纹理坐标并从大纹理中累积体素属性数据。",
+      "tags": ["shader", "voxel", "megatexture", "sampling", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/Octree.glsl",
+      "type": "file",
+      "name": "Octree.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/Octree.glsl",
+      "summary": "Voxel 系统的八叉树遍历核心 shader，定义 TraversalData、SampleData 结构体并实现从根节点或现有节点出发的 GPU 八叉树层级遍历与瓦片定位。",
+      "tags": ["shader", "voxel", "octree", "traversal", "gpu-traversal"],
+      "complexity": "complex",
+      "languageNotes": "八叉树节点标志位需与 JS 端 GpuOctreeFlag（VoxelTraversal.js）保持同步，体现 GPU 与 CPU 数据契约。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/VoxelFS.glsl",
+      "type": "file",
+      "name": "VoxelFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/VoxelFS.glsl",
+      "summary": "Voxel primitive 的主片元 shader，沿视线进行体光线步进，调度八叉树遍历与 megatexture 采样，累积体素属性并执行 alpha 合成与拾取。",
+      "tags": ["shader", "fragment", "voxel", "ray-marching", "volume-rendering"],
+      "complexity": "complex",
+      "languageNotes": "通过 #include 风格注释依赖 Intersection/Octree/Megatexture/convertLocalTo* 等多个子 shader，实际由 VoxelRenderResources.js 在运行期按 shape 类型拼接。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/VoxelUtils.glsl",
+      "type": "file",
+      "name": "VoxelUtils.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/VoxelUtils.glsl",
+      "summary": "Voxel 系统的通用工具 shader，提供 shape UV 缩放等跨 shape 共享的小型辅助函数。",
+      "tags": ["shader", "voxel", "utility", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Voxels/VoxelVS.glsl",
+      "type": "file",
+      "name": "VoxelVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Voxels/VoxelVS.glsl",
+      "summary": "Voxel primitive 的顶点 shader，输出覆盖体素 shape 边界盒的全屏四边形顶点，为片元阶段的光线步进提供视口。",
+      "tags": ["shader", "vertex", "voxel", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Widget/CesiumWidget.css",
+      "type": "file",
+      "name": "CesiumWidget.css",
+      "filePath": "packages/engine/Source/Widget/CesiumWidget.css",
+      "summary": "CesiumWidget 主组件的样式表，定义地图容器、致谢栏、错误面板、加载指示器等 widget UI 元素的布局与视觉样式。",
+      "tags": ["markup", "css", "widget", "ui", "styling"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}

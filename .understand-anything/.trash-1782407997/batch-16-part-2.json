@@ -1,0 +1,1810 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/Scene.js",
+   "type": "file",
+   "name": "Scene.js",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "Cesium 的核心 Scene 容器，管理渲染循环、帧缓冲、相机、光照、阴影、后期处理与所有 primitive 的更新和命令执行，是整个 3D 引擎的中枢。",
+   "tags": [
+    "scene",
+    "render-loop",
+    "core",
+    "entry-point"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:Scene",
+   "type": "function",
+   "name": "Scene",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "Scene 构造函数，初始化 canvas、相机、光照、globe、primitive 集合、后期处理等所有子系统。",
+   "tags": [
+    "scene",
+    "render",
+    "constructor"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    130,
+    777
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateGlobeListeners",
+   "type": "function",
+   "name": "updateGlobeListeners",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updateGlobeListeners，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    785,
+    805
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:pickedMetadataInfoChanged",
+   "type": "function",
+   "name": "pickedMetadataInfoChanged",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 pickedMetadataInfoChanged，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1740,
+    1755
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateDerivedCommands",
+   "type": "function",
+   "name": "updateDerivedCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updateDerivedCommands，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1757,
+    1834
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:getOccluder",
+   "type": "function",
+   "name": "getOccluder",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 getOccluder，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1934,
+    1953
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:debugShowBoundingVolume",
+   "type": "function",
+   "name": "debugShowBoundingVolume",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "调试用：为命令绘制其包围球/包围盒。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2121,
+    2201
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeCommand",
+   "type": "function",
+   "name": "executeCommand",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "执行单个渲染命令并维护 frustum 命令列表。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2213,
+    2292
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeIdCommand",
+   "type": "function",
+   "name": "executeIdCommand",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeIdCommand，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2303,
+    2328
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsBackToFront",
+   "type": "function",
+   "name": "executeTranslucentCommandsBackToFront",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeTranslucentCommandsBackToFront，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2363,
+    2379
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsFrontToBack",
+   "type": "function",
+   "name": "executeTranslucentCommandsFrontToBack",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeTranslucentCommandsFrontToBack，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2381,
+    2397
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performVoxelsPass",
+   "type": "function",
+   "name": "performVoxelsPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 performVoxelsPass，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2407,
+    2418
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performGaussianSplatPass",
+   "type": "function",
+   "name": "performGaussianSplatPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 performGaussianSplatPass，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2420,
+    2431
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:createWorkingFrustum",
+   "type": "function",
+   "name": "createWorkingFrustum",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 createWorkingFrustum，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2445,
+    2457
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:obtainTranslucentCommandExecutionFunction",
+   "type": "function",
+   "name": "obtainTranslucentCommandExecutionFunction",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 obtainTranslucentCommandExecutionFunction，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2470,
+    2497
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performTranslucentPass",
+   "type": "function",
+   "name": "performTranslucentPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "执行半透明渲染 pass，按深度排序后调用命令。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2508,
+    2537
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performTranslucent3DTilesClassification",
+   "type": "function",
+   "name": "performTranslucent3DTilesClassification",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 performTranslucent3DTilesClassification，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2548,
+    2577
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesPass",
+   "type": "function",
+   "name": "performCesium3DTileEdgesPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 performCesium3DTileEdgesPass，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    2579,
+    2619
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesDirectPass",
+   "type": "function",
+   "name": "performCesium3DTileEdgesDirectPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 performCesium3DTileEdgesDirectPass，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    2632,
+    2642
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeCommands",
+   "type": "function",
+   "name": "executeCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "Scene 的核心命令执行流程，按 pass 顺序渲染不透明、半透明、3D Tiles、阴影等命令。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    2652,
+    3007
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:renderEnvironment",
+   "type": "function",
+   "name": "renderEnvironment",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 renderEnvironment，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3017,
+    3063
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeComputeCommands",
+   "type": "function",
+   "name": "executeComputeCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeComputeCommands，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    3072,
+    3084
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:insertShadowCastCommands",
+   "type": "function",
+   "name": "insertShadowCastCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 insertShadowCastCommands，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3113,
+    3158
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeShadowMapCastCommands",
+   "type": "function",
+   "name": "executeShadowMapCastCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeShadowMapCastCommands，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3167,
+    3208
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeWebVRCommands",
+   "type": "function",
+   "name": "executeWebVRCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeWebVRCommands，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3246,
+    3299
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:execute2DViewportCommands",
+   "type": "function",
+   "name": "execute2DViewportCommands",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "在 SCENE2D 模式下分视口执行命令以支持大范围平移。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    3321,
+    3482
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:executeCommandsInViewport",
+   "type": "function",
+   "name": "executeCommandsInViewport",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 executeCommandsInViewport，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    3494,
+    3514
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateDebugFrustumPlanes",
+   "type": "function",
+   "name": "updateDebugFrustumPlanes",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updateDebugFrustumPlanes，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    3653,
+    3672
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateShadowMaps",
+   "type": "function",
+   "name": "updateShadowMaps",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "更新阴影贴图状态并触发阴影投射命令。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3674,
+    3724
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateAndRenderPrimitives",
+   "type": "function",
+   "name": "updateAndRenderPrimitives",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updateAndRenderPrimitives，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    3726,
+    3749
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateAndClearFramebuffers",
+   "type": "function",
+   "name": "updateAndClearFramebuffers",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "更新帧状态并清除/渲染帧缓冲，包含环境、大气、雾、拾取等子流程。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    3751,
+    3905
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:callAfterRenderFunctions",
+   "type": "function",
+   "name": "callAfterRenderFunctions",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 callAfterRenderFunctions，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    3969,
+    3982
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:getMaxPrimitiveHeight",
+   "type": "function",
+   "name": "getMaxPrimitiveHeight",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 getMaxPrimitiveHeight，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    3992,
+    4022
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:isCameraUnderground",
+   "type": "function",
+   "name": "isCameraUnderground",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 isCameraUnderground，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    4182,
+    4204
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updateDebugShowFramesPerSecond",
+   "type": "function",
+   "name": "updateDebugShowFramesPerSecond",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updateDebugShowFramesPerSecond，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    4252,
+    4276
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:prePassesUpdate",
+   "type": "function",
+   "name": "prePassesUpdate",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 prePassesUpdate，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    4278,
+    4290
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:render",
+   "type": "function",
+   "name": "render",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "Scene 主渲染入口，按序执行 primitive 更新、帧缓冲清除、命令执行与调试更新。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    4305,
+    4384
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:tryAndCatchError",
+   "type": "function",
+   "name": "tryAndCatchError",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 tryAndCatchError，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    4386,
+    4396
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:updatePreloadFlightPass",
+   "type": "function",
+   "name": "updatePreloadFlightPass",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 updatePreloadFlightPass，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    4823,
+    4836
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/Scene.js:setTerrain",
+   "type": "function",
+   "name": "setTerrain",
+   "filePath": "packages/engine/Source/Scene/Scene.js",
+   "summary": "内部辅助函数 setTerrain，服务于 Scene.js 的实现细节。",
+   "tags": [
+    "scene",
+    "render",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    5168,
+    5191
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:Scene",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:Scene",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateGlobeListeners",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateGlobeListeners",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:pickedMetadataInfoChanged",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:pickedMetadataInfoChanged",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDerivedCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDerivedCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:getOccluder",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:getOccluder",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:debugShowBoundingVolume",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:debugShowBoundingVolume",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommand",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommand",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeIdCommand",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeIdCommand",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsBackToFront",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsBackToFront",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsFrontToBack",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeTranslucentCommandsFrontToBack",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performVoxelsPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performVoxelsPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performGaussianSplatPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performGaussianSplatPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:createWorkingFrustum",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:createWorkingFrustum",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:obtainTranslucentCommandExecutionFunction",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:obtainTranslucentCommandExecutionFunction",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performTranslucentPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performTranslucentPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performTranslucent3DTilesClassification",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performTranslucent3DTilesClassification",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesDirectPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:performCesium3DTileEdgesDirectPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:renderEnvironment",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:renderEnvironment",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeComputeCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeComputeCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:insertShadowCastCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:insertShadowCastCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeShadowMapCastCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeShadowMapCastCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeWebVRCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeWebVRCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:execute2DViewportCommands",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:execute2DViewportCommands",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommandsInViewport",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:executeCommandsInViewport",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDebugFrustumPlanes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDebugFrustumPlanes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateShadowMaps",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateShadowMaps",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateAndRenderPrimitives",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateAndRenderPrimitives",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateAndClearFramebuffers",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateAndClearFramebuffers",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:callAfterRenderFunctions",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:callAfterRenderFunctions",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:getMaxPrimitiveHeight",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:getMaxPrimitiveHeight",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:isCameraUnderground",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:isCameraUnderground",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDebugShowFramesPerSecond",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updateDebugShowFramesPerSecond",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:prePassesUpdate",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:prePassesUpdate",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:render",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:render",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:tryAndCatchError",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:tryAndCatchError",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updatePreloadFlightPass",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:updatePreloadFlightPass",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:setTerrain",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "function:packages/engine/Source/Scene/Scene.js:setTerrain",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/BoxGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/clone.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/createGuid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/CullingVolume.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Intersect.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/JulianDate.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/mergeSort.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Occluder.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/RequestScheduler.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/ComputeEngine.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/Context.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/Pass.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/RenderState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Renderer/SharedContext.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Atmosphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/BrdfLutGenerator.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Camera.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTilePass.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Cesium3DTilePassState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/CreditDisplay.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DebugCameraPrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DebugInspector.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DepthPlane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DerivedCommand.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/DynamicAtmosphereLightingType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Fog.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/FrameState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/getMetadataClassProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/getMetadataProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/InvertClassification.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/JobScheduler.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/MapMode2D.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/PerformanceDisplay.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/PickedMetadataInfo.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Picking.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/PostProcessStageCollection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SceneTransitioner.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/ScreenSpaceCameraController.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/ShadowMap.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SunLight.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/SunPostProcess.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/TweenCollection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/View.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/VoxelCell.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/Scene.js",
+   "target": "file:packages/engine/Source/Scene/VoxelPrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

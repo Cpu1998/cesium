@@ -1,0 +1,725 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "type": "file",
+      "name": "Vector3DTilePrimitive.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "summary": "Vector3DTile 底层通用 primitive：负责顶点/索引缓冲、shader、render state 与按批次的颜色/拾取 draw command 生成。",
+      "tags": [
+        "primitive",
+        "3d-tiles",
+        "draw-command",
+        "batching"
+      ],
+      "complexity": "complex",
+      "languageNotes": "提供 CPU 与 GPU 两条重新分批路径（rebatchCPU/rebatchGPU），通过模板测试支持分类贴附到 3D Tiles 与地形。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Vector3DTilePrimitive.js:Vector3DTilePrimitive",
+      "type": "class",
+      "name": "Vector3DTilePrimitive",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "lineRange": [
+        53,
+        149
+      ],
+      "summary": "Vector3DTile 通用 primitive 构造函数，配置几何、批次数组、分类模式与样式表达式后驱动命令生成。",
+      "tags": [
+        "primitive",
+        "constructor",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Vector3DTilePrimitive.js:createColorCommands",
+      "type": "function",
+      "name": "createColorCommands",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "lineRange": [
+        748,
+        830
+      ],
+      "summary": "基于 batch 颜色与样式表达式生成颜色通道的 draw command 列表。",
+      "tags": [
+        "draw-command",
+        "rendering",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Vector3DTilePrimitive.js:rebatchCommands",
+      "type": "function",
+      "name": "rebatchCommands",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "lineRange": [
+        697,
+        746
+      ],
+      "summary": "按颜色对 batch 命令重排以减少 draw call，并在需要时切换 CPU/GPU 重分批路径。",
+      "tags": [
+        "batching",
+        "draw-command",
+        "3d-tiles"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "type": "file",
+      "name": "Vector3DTilePolylines.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "summary": "Vector3DTile 折线子 primitive，将解码后的折线顶点上传 GPU 并构造 draw command 渲染非地形贴合的折线。",
+      "tags": [
+        "3d-tiles",
+        "polyline",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "type": "file",
+      "name": "VoxelBoundsCollection.js",
+      "filePath": "packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "summary": "Voxel primitive 中体素采样边界盒的集合，负责按形状（盒/柱）与裁剪平面求交并更新可见性纹理。",
+      "tags": [
+        "voxel",
+        "bounds",
+        "shape",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "type": "file",
+      "name": "Vector3DTileGeometry.js",
+      "filePath": "packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "summary": "Vector3DTile 中几何体（如墙体、盒子）的子 primitive，使用 Vector3DTilePrimitive 完成 GPU 顶点/索引与样式渲染。",
+      "tags": [
+        "3d-tiles",
+        "geometry",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "type": "file",
+      "name": "EquirectangularPanoramaSpec.js",
+      "filePath": "packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "summary": "EquirectangularPanorama 的单元测试，验证等距柱状投影全景的方位计算。",
+      "tags": [
+        "test",
+        "panorama",
+        "equirectangular"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/PanoramaSpec.js",
+      "type": "file",
+      "name": "PanoramaSpec.js",
+      "filePath": "packages/engine/Specs/Scene/PanoramaSpec.js",
+      "summary": "Panorama 基类的单元测试，验证公共方向/朝向接口。",
+      "tags": [
+        "test",
+        "panorama"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Expression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "class:packages/engine/Source/Scene/Vector3DTilePrimitive.js:Vector3DTilePrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "class:packages/engine/Source/Scene/Vector3DTilePrimitive.js:Vector3DTilePrimitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/Vector3DTilePrimitive.js:createColorCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "target": "function:packages/engine/Source/Scene/Vector3DTilePrimitive.js:rebatchCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTilePolylines.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Core/Plane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTileBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Vector3DTileGeometry.js",
+      "target": "file:packages/engine/Source/Scene/Vector3DTilePrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/Panorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/EquirectangularPanorama.js",
+      "target": "file:packages/engine/Specs/Scene/EquirectangularPanoramaSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:packages/engine/Specs/Scene/PanoramaSpec.js",
+      "target": "file:packages/engine/Source/Scene/Panorama.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/instancedWithoutNormals.i3dm",
+      "type": "file",
+      "name": "instancedWithoutNormals.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/instancedWithoutNormals.i3dm",
+      "summary": "3D Tiles 实例化模型（i3dm）二进制测试夹具，不含法线属性，用于驱动 Instanced 3D Tiles 的解析与渲染测试。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "binary-data"],
+      "complexity": "simple",
+      "languageNotes": "i3dm 是 3D Tiles 规范的实例化模型瓦片格式，二进制布局包含 header、feature table 与 batch table。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/tileset.json",
+      "summary": "描述无法线实例化瓦片集的 3D Tiles tileset 配置，声明 asset 版本、根瓦片几何误差、包围盒及指向 i3dm 内容的引用。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "instanced-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/instancedWithTransform.i3dm",
+      "type": "file",
+      "name": "instancedWithTransform.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/instancedWithTransform.i3dm",
+      "summary": "带有 RTC（相对中心）变换的 3D Tiles 实例化模型测试夹具，用于验证含变换矩阵的 i3dm 加载与定位。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "transform"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/tileset.json",
+      "summary": "实例化瓦片集 tileset 配置，携带根瓦片 transform 变换，用于测试带变换的 i3dm 内容引用与定位。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "transform"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/instancedZeroRTC.i3dm",
+      "type": "file",
+      "name": "instancedZeroRTC.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/instancedZeroRTC.i3dm",
+      "summary": "RTC 中心为零的 3D Tiles 实例化模型测试夹具，用于验证零 RTC 中心情况下实例的解析与渲染行为。",
+      "tags": ["test-fixture", "3d-tiles", "i3dm", "instanced-model", "rtc-center"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/tileset.json",
+      "summary": "RTC 中心为零的实例化瓦片集 tileset 配置，声明包围盒、几何误差及 i3dm 内容引用。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "rtc-center"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.0.json",
+      "summary": "3D Tiles 1.0 元数据测试夹具，覆盖 tileset、tile、content、group 等全部元数据类型及 schema 定义，用于元数据解析测试。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "test-fixture"],
+      "complexity": "complex",
+      "languageNotes": "3D Tiles 1.0 的 metadata 通过 3DTILES_metadata 扩展表达；包含 schema、properties、class 定义等结构。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.1.json",
+      "summary": "3D Tiles 1.1 元数据测试夹具，使用 1.1 规范的原生 schema 与 metadata 字段覆盖全部元数据类型。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "test-fixture"],
+      "complexity": "complex",
+      "languageNotes": "3D Tiles 1.1 将 metadata 与 schema 内建为核心规范字段，替代 1.0 的扩展机制。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.0.json",
+      "summary": "针对内容级（content）元数据解析的 3D Tiles 1.0 测试夹具，通过 3DTILES_metadata 扩展声明 content 元数据。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.1.json",
+      "summary": "针对内容级元数据解析的 3D Tiles 1.1 测试夹具，使用原生 metadata 字段描述 content 元数据。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalTilesetNoRootSchema/ExternalContentMetadata.json",
+      "type": "config",
+      "name": "ExternalContentMetadata.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ExternalTilesetNoRootSchema/ExternalContentMetadata.json",
+      "summary": "外部引用的内容元数据测试夹具，作为外部 tileset 引入，配合无根 schema 场景验证 content 元数据解析。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "external-tileset"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalTilesetNoRootSchema/ExternalTileMetadata.json",
+      "type": "config",
+      "name": "ExternalTileMetadata.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ExternalTilesetNoRootSchema/ExternalTileMetadata.json",
+      "summary": "外部引用的瓦片元数据测试夹具，作为外部 tileset 被引用，用于验证无根 schema 下 tile 元数据解析。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "external-tileset"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.0.json",
+      "summary": "针对分组（group）元数据解析的 3D Tiles 1.0 测试夹具，通过 3DTILES_metadata 扩展声明 group 元数据。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "group-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.1.json",
+      "summary": "针对分组元数据解析的 3D Tiles 1.1 测试夹具，使用原生 metadata 字段描述 group 元数据。",
+      "tags": ["configuration", "3d-tiles", "tileset", "metadata", "group-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/empty.gltf",
+      "type": "file",
+      "name": "empty.gltf",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/empty.gltf",
+      "summary": "用于隐式瓦片内容包围盒语义测试的空 glTF 模型夹具，作为隐式 tile 的内容占位。",
+      "tags": ["test-fixture", "gltf", "3d-tiles", "implicit-tiling", "empty-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/subtrees/1.1/0.0.0.0.json",
+      "type": "config",
+      "name": "0.0.0.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/subtrees/1.1/0.0.0.0.json",
+      "summary": "隐式瓦片内容包围盒语义测试中的子树（subtree）夹具，定义可用性位与内容引用。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "subtree", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/subtrees/metadata.bin",
+      "type": "file",
+      "name": "metadata.bin",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/subtrees/metadata.bin",
+      "summary": "隐式瓦片内容包围盒语义测试中子树引用的二进制元数据缓冲夹具。",
+      "tags": ["test-fixture", "3d-tiles", "binary-data", "metadata", "implicit-tiling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/tileset_1.1.json",
+      "summary": "验证隐式瓦片内容包围盒语义的 3D Tiles 1.1 tileset 配置，声明 implicit tiling 结构与 subtree 内容引用。",
+      "tags": ["configuration", "3d-tiles", "tileset", "implicit-tiling", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/empty.gltf",
+      "type": "file",
+      "name": "empty.gltf",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/empty.gltf",
+      "summary": "用于隐式瓦片高度+区域（height+region）内容语义测试的空 glTF 模型夹具。",
+      "tags": ["test-fixture", "gltf", "3d-tiles", "implicit-tiling", "empty-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/subtrees/1.1/0.0.0.json",
+      "type": "config",
+      "name": "0.0.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/subtrees/1.1/0.0.0.json",
+      "summary": "隐式瓦片高度+区域语义测试的子树夹具，定义 tile 与内容可用性。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "subtree", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/subtrees/metadata.bin",
+      "type": "file",
+      "name": "metadata.bin",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/subtrees/metadata.bin",
+      "summary": "隐式瓦片高度+区域语义测试中子树引用的二进制元数据缓冲夹具。",
+      "tags": ["test-fixture", "3d-tiles", "binary-data", "metadata", "implicit-tiling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/tileset_1.1.json",
+      "summary": "验证隐式瓦片高度+区域内容语义的 3D Tiles 1.1 tileset 配置，声明 implicit tiling 与 subtree 引用。",
+      "tags": ["configuration", "3d-tiles", "tileset", "implicit-tiling", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/empty.gltf",
+      "type": "file",
+      "name": "empty.gltf",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/empty.gltf",
+      "summary": "用于隐式瓦片高度（height）内容语义测试的空 glTF 模型夹具。",
+      "tags": ["test-fixture", "gltf", "3d-tiles", "implicit-tiling", "empty-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/subtrees/1.1/0.0.0.json",
+      "type": "config",
+      "name": "0.0.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/subtrees/1.1/0.0.0.json",
+      "summary": "隐式瓦片高度语义测试的子树夹具，定义 tile 与内容可用性。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "subtree", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/subtrees/metadata.bin",
+      "type": "file",
+      "name": "metadata.bin",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/subtrees/metadata.bin",
+      "summary": "隐式瓦片高度语义测试中子树引用的二进制元数据缓冲夹具。",
+      "tags": ["test-fixture", "3d-tiles", "binary-data", "metadata", "implicit-tiling"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithoutNormals/instancedWithoutNormals.i3dm",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedWithTransform/instancedWithTransform.i3dm",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Instanced/InstancedZeroRTC/instancedZeroRTC.i3dm",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/tileset_1.1.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/subtrees/1.1/0.0.0.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/tileset_1.1.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentBoundingVolumeSemantics/empty.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/tileset_1.1.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/subtrees/1.1/0.0.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/tileset_1.1.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightAndRegionSemantics/empty.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/tileset_1.1.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/subtrees/1.1/0.0.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/tileset_1.1.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Metadata/ImplicitContentHeightSemantics/empty.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/AllMetadataTypes/tileset_1.1.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ContentMetadata/tileset_1.1.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/GroupMetadata/tileset_1.1.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

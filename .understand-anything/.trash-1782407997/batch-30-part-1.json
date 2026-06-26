@@ -1,0 +1,1126 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "type": "file",
+      "name": "WireframePipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "summary": "Model 渲染管线的一个 stage，负责为模型几何体生成线框（wireframe）渲染所需的 shader 与渲染状态。",
+      "tags": [
+        "model",
+        "wireframe",
+        "shader",
+        "render-pipeline-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "将线框几何展开为 GLSL attribute，属于 Cesium 的 Model 渲染管线架构。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "type": "file",
+      "name": "pickModel.js",
+      "filePath": "packages/engine/Source/Scene/Model/pickModel.js",
+      "summary": "针对已加载的 Model 执行基于 CPU 的射线拾取（ray-mesh 相交）计算，返回交点位置与图元信息。",
+      "tags": [
+        "model",
+        "picking",
+        "ray-intersection",
+        "cpu-calculation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "file",
+      "name": "ModelComponents.js",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "定义 glTF / 3D Tiles 模型加载后的内存数据结构，包含 Attribute、Primitive、Node、Scene、Animation、Material 等三十余个轻量数据类，是 Model 体系的核心 data-model barrel。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "barrel",
+        "model",
+        "type-definition"
+      ],
+      "complexity": "complex",
+      "languageNotes": "大量 1-method 类作为默认值容器（default-constructor 模式），是 Cesium Model 解析后的统一内存表示。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PntsParser.js",
+      "type": "file",
+      "name": "PntsParser.js",
+      "filePath": "packages/engine/Source/Scene/PntsParser.js",
+      "summary": "解析 3D Tiles 的点云（.pnts）格式，提取位置、颜色、法线、batch id，并支持 Draco 压缩与属性的二进制 body 引用清理。",
+      "tags": [
+        "point-cloud",
+        "3d-tiles",
+        "pnts",
+        "parser"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "type": "file",
+      "name": "PrimitiveLoadPlan.js",
+      "filePath": "packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "summary": "为 Primitive 制定缓冲区加载计划，处理 attribute/indices 的解码、Gaussian splat 与轮廓（outline）生成，并在 context 上创建最终 GPU buffer。",
+      "tags": [
+        "primitive",
+        "buffer-loading",
+        "gpu-buffer",
+        "gltf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "type": "file",
+      "name": "PropertyAttribute.js",
+      "filePath": "packages/engine/Source/Scene/PropertyAttribute.js",
+      "summary": "实现 EXT_structural_metadata 的 PropertyAttribute：将元数据属性挂载到模型顶点 attribute 上，提供按 feature id 的属性查询接口。",
+      "tags": [
+        "structural-metadata",
+        "property-attribute",
+        "gltf-extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "type": "file",
+      "name": "PropertyAttributeProperty.js",
+      "filePath": "packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "summary": "表示 PropertyAttribute 中的单个属性，封装其 class property 定义与对应 attribute 的取值/类型转换逻辑。",
+      "tags": [
+        "structural-metadata",
+        "property-attribute",
+        "gltf-extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "type": "file",
+      "name": "PropertyTable.js",
+      "filePath": "packages/engine/Source/Scene/PropertyTable.js",
+      "summary": "实现 EXT_structural_metadata 的 PropertyTable：以表格形式存储 feature 元数据，并提供按 feature id 的属性读写与类型检查。",
+      "tags": [
+        "structural-metadata",
+        "property-table",
+        "gltf-extension",
+        "data-model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "type": "file",
+      "name": "PropertyTexture.js",
+      "filePath": "packages/engine/Source/Scene/PropertyTexture.js",
+      "summary": "实现 EXT_structural_metadata 的 PropertyTexture：将元数据属性编码在纹理中，按 UV 采样读取 feature 属性。",
+      "tags": [
+        "structural-metadata",
+        "property-texture",
+        "gltf-extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "type": "file",
+      "name": "PropertyTextureProperty.js",
+      "filePath": "packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "summary": "表示 PropertyTexture 中的单个属性，封装其 class property 定义、纹理通道与采样器配置。",
+      "tags": [
+        "structural-metadata",
+        "property-texture",
+        "gltf-extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "file",
+      "name": "ResourceCache.js",
+      "filePath": "packages/engine/Source/Scene/ResourceCache.js",
+      "summary": "Scene 层资源加载的统一缓存与去重管理器，按 key 缓存 ResourceLoader，提供 LRU 风格的卸载与统计，避免重复加载 glTF/3D Tiles 资源。",
+      "tags": [
+        "resource-cache",
+        "loader",
+        "deduplication",
+        "memory-management"
+      ],
+      "complexity": "complex",
+      "languageNotes": "采用 key 化的 loader 缓存与引用计数，是 Cesium 内存优化的关键基础设施。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Components",
+      "type": "class",
+      "name": "Components",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "ModelComponents 的顶层聚合对象，持有 asset、scenes/nodes/animations/meshes 等子组件集合。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "container"
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Primitive",
+      "type": "class",
+      "name": "Primitive",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "glTF primitive 的内存表示，关联 attributes、indices、material 与 feature id 集合。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "primitive"
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Node",
+      "type": "class",
+      "name": "Node",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "glTF node 的内存表示，记录 transform、mesh 引用与子节点。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "scene-graph"
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Material",
+      "type": "class",
+      "name": "Material",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "glTF material 的内存表示，聚合 PBR metallic-roughness / specular-glossiness / clearcoat 等子模型。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "material"
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Animation",
+      "type": "class",
+      "name": "Animation",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "glTF animation 的内存表示，包含多个 channel/sampler。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "animation"
+      ]
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ModelComponents.js:Skin",
+      "type": "class",
+      "name": "Skin",
+      "filePath": "packages/engine/Source/Scene/ModelComponents.js",
+      "summary": "glTF skin（骨骼蒙皮）的内存表示。",
+      "tags": [
+        "data-model",
+        "gltf",
+        "skin"
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/pickModel.js:pickModel",
+      "type": "function",
+      "name": "pickModel",
+      "filePath": "packages/engine/Source/Scene/Model/pickModel.js",
+      "summary": "对已加载 Model 执行 CPU 端射线-网格相交计算，返回最近交点的位置、图元与 feature id。",
+      "tags": [
+        "picking",
+        "ray-intersection",
+        "model",
+        "cpu-calculation"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        58,
+        220
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PntsParser.js:parsePositions",
+      "type": "function",
+      "name": "parsePositions",
+      "filePath": "packages/engine/Source/Scene/PntsParser.js",
+      "summary": "从 .pnts feature table 解析点云位置属性，处理常量/量化/RTP 等编码形式。",
+      "tags": [
+        "point-cloud",
+        "parser",
+        "positions"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        329,
+        392
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PntsParser.js:parseColors",
+      "type": "function",
+      "name": "parseColors",
+      "filePath": "packages/engine/Source/Scene/PntsParser.js",
+      "summary": "从 .pnts feature table 解析点云 RGBA 颜色属性，归一化到 [0,1] 浮点。",
+      "tags": [
+        "point-cloud",
+        "parser",
+        "colors"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        394,
+        482
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PntsParser.js:parseDracoProperties",
+      "type": "function",
+      "name": "parseDracoProperties",
+      "filePath": "packages/engine/Source/Scene/PntsParser.js",
+      "summary": "对 Draco 压缩的 .pnts 进行属性解码，提取位置/颜色/法线及 batch 属性。",
+      "tags": [
+        "point-cloud",
+        "draco",
+        "parser",
+        "decompression"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        256,
+        327
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PrimitiveLoadPlan.js:PrimitiveLoadPlan",
+      "type": "function",
+      "name": "PrimitiveLoadPlan",
+      "filePath": "packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "summary": "为单个 primitive 构造加载计划，编排 attribute/indices 解码与 outline/gaussian-splat 处理。",
+      "tags": [
+        "primitive",
+        "buffer-loading",
+        "planning"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        112,
+        169
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PrimitiveLoadPlan.js:generateOutlines",
+      "type": "function",
+      "name": "generateOutlines",
+      "filePath": "packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "summary": "依据 primitive 的索引生成轮廓边，用于线框/边缘渲染。",
+      "tags": [
+        "primitive",
+        "outline",
+        "geometry"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        192,
+        228
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/PropertyTable.js:PropertyTable",
+      "type": "function",
+      "name": "PropertyTable",
+      "filePath": "packages/engine/Source/Scene/PropertyTable.js",
+      "summary": "构造 EXT_structural_metadata PropertyTable，绑定 class 定义与属性数据，提供按 feature 查询。",
+      "tags": [
+        "structural-metadata",
+        "property-table",
+        "gltf-extension"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        42,
+        58
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ResourceCache.js:ResourceCache",
+      "type": "function",
+      "name": "ResourceCache",
+      "filePath": "packages/engine/Source/Scene/ResourceCache.js",
+      "summary": "Scene 资源缓存的单例入口，暴露 get/unload/destroy 与统计接口。",
+      "tags": [
+        "resource-cache",
+        "singleton",
+        "memory-management"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        25,
+        25
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Core/WireframeIndexGenerator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/WireframePipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/Ray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelReader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "file:packages/engine/Source/Scene/AlphaMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Scene/Cesium3DTileFeatureTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Scene/Model/PrimitiveOutlineGenerator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttribute.js",
+      "target": "file:packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyAttributeProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "file:packages/engine/Source/Scene/JsonMetadataTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTexture.js",
+      "target": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTextureProperty.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/BufferLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfBufferViewLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfDracoLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfIndexBufferLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfJsonLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfSpzLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfTextureLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/GltfVertexBufferLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchemaLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCacheKey.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Components",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Primitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Node",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Material",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Animation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Skin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "function:packages/engine/Source/Scene/Model/pickModel.js:pickModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "function:packages/engine/Source/Scene/PntsParser.js:parsePositions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "function:packages/engine/Source/Scene/PntsParser.js:parseColors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PntsParser.js",
+      "target": "function:packages/engine/Source/Scene/PntsParser.js:parseDracoProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "function:packages/engine/Source/Scene/PrimitiveLoadPlan.js:PrimitiveLoadPlan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "target": "function:packages/engine/Source/Scene/PrimitiveLoadPlan.js:generateOutlines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PropertyTable.js",
+      "target": "function:packages/engine/Source/Scene/PropertyTable.js:PropertyTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "target": "function:packages/engine/Source/Scene/ResourceCache.js:ResourceCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "target": "function:packages/engine/Source/Scene/Model/pickModel.js:pickModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Components",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Primitive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Node",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Material",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Animation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "target": "class:packages/engine/Source/Scene/ModelComponents.js:Skin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

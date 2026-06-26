@@ -1,0 +1,1158 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "type": "file",
+      "name": "BingMapsGeocoderService.js",
+      "filePath": "packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "summary": "基于 Bing Maps REST 服务的地理编码实现，将正向/反向地理编码请求转发给 Bing Maps API。",
+      "tags": [
+        "geocoder",
+        "bing-maps",
+        "api-handler",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "type": "file",
+      "name": "Cesium3DTilesTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "summary": "将 3D Tiles 作为地形数据源使用的 Provider，支持 implicit tiling 子树缓存与水面遮罩加载。",
+      "tags": [
+        "terrain-provider",
+        "3d-tiles",
+        "implicit-tiling",
+        "data-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "type": "file",
+      "name": "EllipsoidTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "summary": "以椭球面作为地形几何的简单 Provider，不请求任何外部数据，提供恒定的零高程地形。",
+      "tags": [
+        "terrain-provider",
+        "ellipsoid",
+        "fallback",
+        "simple"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Fullscreen.js",
+      "type": "file",
+      "name": "Fullscreen.js",
+      "filePath": "packages/engine/Source/Core/Fullscreen.js",
+      "summary": "全屏 API 的跨浏览器封装，提供进入/退出全屏及监听全屏状态变化的静态方法。",
+      "tags": [
+        "fullscreen-api",
+        "browser-wrapper",
+        "utility",
+        "event-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "type": "file",
+      "name": "GoogleEarthEnterpriseMetadata.js",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "summary": "解析并缓存 Google Earth Enterprise 服务器 dbRoot 与子树元数据的加载器。",
+      "tags": [
+        "google-earth-enterprise",
+        "metadata-loader",
+        "dbroot",
+        "data-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HilbertOrder.js",
+      "type": "file",
+      "name": "HilbertOrder.js",
+      "filePath": "packages/engine/Source/Core/HilbertOrder.js",
+      "summary": "Hilbert 空间填充曲线编码工具，将二维瓦片坐标映射为一维序列以提升缓存局部性。",
+      "tags": [
+        "data-structure",
+        "space-filling-curve",
+        "hilbert",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Iau2006XysSample.js",
+      "type": "file",
+      "name": "Iau2006XysSample.js",
+      "filePath": "packages/engine/Source/Core/Iau2006XysSample.js",
+      "summary": "IAU2006 单个 XYS 采样点的不可变数据结构（x、y、s 分量）。",
+      "tags": [
+        "data-model",
+        "iau2006",
+        "immutable",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/MortonOrder.js",
+      "type": "file",
+      "name": "MortonOrder.js",
+      "filePath": "packages/engine/Source/Core/MortonOrder.js",
+      "summary": "Morton 序（Z 序）空间填充曲线编码工具，支持二维坐标与一维编码互转及稀疏填充布局。",
+      "tags": [
+        "data-structure",
+        "space-filling-curve",
+        "morton",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:Cesium3DTilesTerrainProvider",
+      "type": "function",
+      "name": "Cesium3DTilesTerrainProvider",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        68,
+        116
+      ],
+      "summary": "以 3D Tiles 作为地形源的 Provider 构造函数，配置 implicit tiling 与水面遮罩加载。",
+      "tags": [
+        "terrain-provider",
+        "constructor",
+        "3d-tiles"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getRootIdFromGeographic",
+      "type": "function",
+      "name": "getRootIdFromGeographic",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        473,
+        482
+      ],
+      "summary": "根据地理瓦片层级与 X 坐标计算 implicit tiling 的根节点 ID。",
+      "tags": [
+        "implicit-tiling",
+        "utility",
+        "tile-coordinates"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getImplicitTileCoordinatesFromGeographicCoordinates",
+      "type": "function",
+      "name": "getImplicitTileCoordinatesFromGeographicCoordinates",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        493,
+        519
+      ],
+      "summary": "将地理瓦片坐标映射到 implicit tiling 子树内的局部坐标。",
+      "tags": [
+        "implicit-tiling",
+        "coordinate-transform",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:loadWaterMask",
+      "type": "function",
+      "name": "loadWaterMask",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        528,
+        587
+      ],
+      "summary": "从 glTF 瓦片中提取水面遮罩数据。",
+      "tags": [
+        "water-mask",
+        "gltf",
+        "data-loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:isChildAvailable",
+      "type": "function",
+      "name": "isChildAvailable",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        599,
+        621
+      ],
+      "summary": "查询 implicit tiling 子树中子节点的可用性。",
+      "tags": [
+        "implicit-tiling",
+        "availability",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCacheNode",
+      "type": "function",
+      "name": "ImplicitSubtreeCacheNode",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        767,
+        771
+      ],
+      "summary": "implicit tiling 子树缓存节点，记录根 ID、子树数据与时间戳。",
+      "tags": [
+        "implicit-tiling",
+        "cache",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCache",
+      "type": "function",
+      "name": "ImplicitSubtreeCache",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        781,
+        790
+      ],
+      "summary": "implicit tiling 子树缓存管理器，按需加载并缓存子树 JSON。",
+      "tags": [
+        "implicit-tiling",
+        "cache",
+        "manager"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:computeDescendantCoordinatesAtUv",
+      "type": "function",
+      "name": "computeDescendantCoordinatesAtUv",
+      "filePath": "packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "lineRange": [
+        1003,
+        1028
+      ],
+      "summary": "根据 UV 坐标在 implicit tiling 子树中计算后代瓦片坐标。",
+      "tags": [
+        "implicit-tiling",
+        "uv-mapping",
+        "coordinate-transform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/EllipsoidTerrainProvider.js:EllipsoidTerrainProvider",
+      "type": "function",
+      "name": "EllipsoidTerrainProvider",
+      "filePath": "packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "lineRange": [
+        26,
+        46
+      ],
+      "summary": "椭球地形 Provider 构造函数，提供无外部请求的恒定地形几何。",
+      "tags": [
+        "constructor",
+        "terrain-provider",
+        "fallback"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:GoogleEarthEnterpriseMetadata",
+      "type": "function",
+      "name": "GoogleEarthEnterpriseMetadata",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "lineRange": [
+        46,
+        99
+      ],
+      "summary": "Google Earth Enterprise 元数据加载器构造函数，初始化 dbRoot 与 quadKey 子树缓存。",
+      "tags": [
+        "constructor",
+        "metadata-loader",
+        "gee"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:populateSubtree",
+      "type": "function",
+      "name": "populateSubtree",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "lineRange": [
+        393,
+        456
+      ],
+      "summary": "按 quadKey 递归填充 GEE 子树元数据，处理缺失瓦片信息。",
+      "tags": [
+        "metadata-loader",
+        "quadkey",
+        "recursive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:getMetadataResource",
+      "type": "function",
+      "name": "getMetadataResource",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "lineRange": [
+        490,
+        495
+      ],
+      "summary": "构造请求指定 quadKey 与版本元数据的 Resource。",
+      "tags": [
+        "resource-builder",
+        "quadkey",
+        "gee"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:requestDbRoot",
+      "type": "function",
+      "name": "requestDbRoot",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "lineRange": [
+        499,
+        583
+      ],
+      "summary": "请求并解析 GEE dbRoot 二进制根元数据。",
+      "tags": [
+        "request",
+        "dbroot",
+        "gee"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HilbertOrder.js:rotate",
+      "type": "function",
+      "name": "rotate",
+      "filePath": "packages/engine/Source/Core/HilbertOrder.js",
+      "lineRange": [
+        97,
+        110
+      ],
+      "summary": "Hilbert 曲线递归构造中的象限旋转辅助函数。",
+      "tags": [
+        "internal",
+        "hilbert",
+        "rotation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Iau2006XysSample.js:Iau2006XysSample",
+      "type": "function",
+      "name": "Iau2006XysSample",
+      "filePath": "packages/engine/Source/Core/Iau2006XysSample.js",
+      "lineRange": [
+        13,
+        31
+      ],
+      "summary": "IAU2006 单采样点不可变构造函数，存储 x、y、s 三个分量。",
+      "tags": [
+        "constructor",
+        "data-model",
+        "iau2006"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/MortonOrder.js:insertOneSpacing",
+      "type": "function",
+      "name": "insertOneSpacing",
+      "filePath": "packages/engine/Source/Core/MortonOrder.js",
+      "lineRange": [
+        30,
+        36
+      ],
+      "summary": "Morton 序稀疏布局中按单位间隔插入值的辅助函数。",
+      "tags": [
+        "internal",
+        "morton",
+        "spacing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/MortonOrder.js:insertTwoSpacing",
+      "type": "function",
+      "name": "insertTwoSpacing",
+      "filePath": "packages/engine/Source/Core/MortonOrder.js",
+      "lineRange": [
+        53,
+        59
+      ],
+      "summary": "Morton 序稀疏布局中按双倍间隔插入值的辅助函数。",
+      "tags": [
+        "internal",
+        "morton",
+        "spacing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/MortonOrder.js:removeOneSpacing",
+      "type": "function",
+      "name": "removeOneSpacing",
+      "filePath": "packages/engine/Source/Core/MortonOrder.js",
+      "lineRange": [
+        76,
+        83
+      ],
+      "summary": "Morton 序稀疏布局中按单位间隔移除值的辅助函数。",
+      "tags": [
+        "internal",
+        "morton",
+        "spacing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/MortonOrder.js:removeTwoSpacing",
+      "type": "function",
+      "name": "removeTwoSpacing",
+      "filePath": "packages/engine/Source/Core/MortonOrder.js",
+      "lineRange": [
+        100,
+        107
+      ],
+      "summary": "Morton 序稀疏布局中按双倍间隔移除值的辅助函数。",
+      "tags": [
+        "internal",
+        "morton",
+        "spacing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/BingMapsGeocoderService.js:BingMapsGeocoderService",
+      "type": "function",
+      "name": "BingMapsGeocoderService",
+      "filePath": "packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "lineRange": [
+        22,
+        50
+      ],
+      "summary": "Bing Maps 地理编码服务构造函数，校验并存储 endpoint 与 API key。",
+      "tags": [
+        "constructor",
+        "geocoder",
+        "bing-maps"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:Cesium3DTilesTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:Cesium3DTilesTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getRootIdFromGeographic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getRootIdFromGeographic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getImplicitTileCoordinatesFromGeographicCoordinates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:getImplicitTileCoordinatesFromGeographicCoordinates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:loadWaterMask",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:loadWaterMask",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:isChildAvailable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:isChildAvailable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCacheNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCacheNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:ImplicitSubtreeCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:computeDescendantCoordinatesAtUv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js:computeDescendantCoordinatesAtUv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidTerrainProvider.js:EllipsoidTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/EllipsoidTerrainProvider.js:EllipsoidTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:GoogleEarthEnterpriseMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:GoogleEarthEnterpriseMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:populateSubtree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:populateSubtree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:getMetadataResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:getMetadataResource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:requestDbRoot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js:requestDbRoot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HilbertOrder.js",
+      "target": "function:packages/engine/Source/Core/HilbertOrder.js:rotate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HilbertOrder.js",
+      "target": "function:packages/engine/Source/Core/HilbertOrder.js:rotate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysSample.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysSample.js:Iau2006XysSample",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysSample.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysSample.js:Iau2006XysSample",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:insertOneSpacing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:insertOneSpacing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:insertTwoSpacing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:insertTwoSpacing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:removeOneSpacing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:removeOneSpacing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:removeTwoSpacing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "function:packages/engine/Source/Core/MortonOrder.js:removeTwoSpacing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/BingMapsGeocoderService.js:BingMapsGeocoderService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/BingMapsGeocoderService.js:BingMapsGeocoderService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/BingMapsGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Cesium3DTilesTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/IonResource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitSubtree.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileCoordinates.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImplicitTileset.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchema.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSchemaLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/MetadataSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Cesium3DTilesTerrainProvider.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/EllipsoidTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Fullscreen.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTileInformation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/isBitSet.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/loadAndExecuteScript.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HilbertOrder.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HilbertOrder.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/MortonOrder.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/BingMapsGeocoderService.js:BingMapsGeocoderService",
+      "target": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

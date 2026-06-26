@@ -1,0 +1,913 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "type": "file",
+      "name": "GltfImageLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfImageLoader.js",
+      "summary": "glTF 图像的 ResourceLoader，支持从 typed array 解码普通图像并兼容 KHR_texture_ktx2 扩展。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "image",
+        "ktx2",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "type": "file",
+      "name": "GltfLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "summary": "Cesium 的核心 glTF 加载器，将 glTF JSON 解析为 ModelComponents（节点、primitive、材质、动画、蒙皮、特征 ID 等），并支持 Draco/Spz、EXT_structural_metadata 等扩展的增量加载。",
+      "tags": [
+        "gltf",
+        "loader",
+        "model-components",
+        "primitive",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "采用 PrimitiveLoadPlan 与 ResourceCache 实现异步、可缓存、可卸载的增量纹理加载。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "type": "file",
+      "name": "GltfStructuralMetadataLoader.js",
+      "filePath": "packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "summary": "glTF EXT_structural_metadata（及遗留 EXT_feature_metadata）的 ResourceLoader，负责收集 bufferView/texture 引用并构建 StructuralMetadata。",
+      "tags": [
+        "gltf",
+        "metadata",
+        "structural-metadata",
+        "resource-loader",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "type": "file",
+      "name": "MetadataClass.js",
+      "filePath": "packages/engine/Source/Scene/MetadataClass.js",
+      "summary": "3D Metadata 规范中的 class 定义，由若干 MetadataClassProperty 组成，描述实体属性集合的结构。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "class",
+        "schema",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "file",
+      "name": "MetadataComponentType.js",
+      "filePath": "packages/engine/Source/Scene/MetadataComponentType.js",
+      "summary": "元数据组件类型枚举（INT8…UINT64、FLOAT32/64），提供与 ComponentDatatype、归一化函数之间的互转。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "enum",
+        "component-type",
+        "schema"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "type": "file",
+      "name": "MetadataEnumValue.js",
+      "filePath": "packages/engine/Source/Scene/MetadataEnumValue.js",
+      "summary": "元数据枚举中的单个取值（名称、整型 value 与可选 description）。",
+      "tags": [
+        "3d-tiles",
+        "metadata",
+        "enum",
+        "value",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "type": "file",
+      "name": "CPUStylingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "summary": "Model 渲染管线中的 CPU 样式阶段，将 feature 颜色与 ColorBlendMode 注入到顶点/片元 shader。",
+      "tags": [
+        "model",
+        "pipeline-stage",
+        "styling",
+        "shader",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfImageLoader.js:GltfImageLoader",
+      "type": "class",
+      "name": "GltfImageLoader",
+      "filePath": "packages/engine/Source/Scene/GltfImageLoader.js",
+      "lineRange": [
+        18,
+        138
+      ],
+      "summary": "ResourceLoader 实现，加载 glTF 图像（含 KTX2）并交由资源缓存管理。",
+      "tags": [
+        "gltf",
+        "resource-loader",
+        "image"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfLoader.js:GltfLoader",
+      "type": "class",
+      "name": "GltfLoader",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        181,
+        533
+      ],
+      "summary": "Cesium 核心 glTF 加载器，将 glTF 解析为 ModelComponents 并支持增量纹理、扩展与卸载。",
+      "tags": [
+        "gltf",
+        "loader",
+        "core",
+        "model-components"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfLoader.js:loadPrimitive",
+      "type": "function",
+      "name": "loadPrimitive",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        2229,
+        2403
+      ],
+      "summary": "解析单个 glTF primitive：组装顶点属性、索引、特征 ID 与材质，构建 ModelComponents.Primitive。",
+      "tags": [
+        "gltf",
+        "primitive",
+        "loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfLoader.js:parse",
+      "type": "function",
+      "name": "parse",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        3101,
+        3222
+      ],
+      "summary": "对加载完成的 glTF 资源执行解析，按节点层级构建场景图与动画。",
+      "tags": [
+        "gltf",
+        "parser",
+        "loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfLoader.js:loadVertexAttribute",
+      "type": "function",
+      "name": "loadVertexAttribute",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        1354,
+        1419
+      ],
+      "summary": "解析单个顶点属性语义，按 Draco/Spz/accessor 路径加载并附加到 primitive。",
+      "tags": [
+        "gltf",
+        "vertex-attribute",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfLoader.js:loadMaterial",
+      "type": "function",
+      "name": "loadMaterial",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        1826,
+        1904
+      ],
+      "summary": "把 glTF 材质转换为 ModelComponents.Material（metallic-roughness / specular-glossiness 等）。",
+      "tags": [
+        "gltf",
+        "material",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfLoader.js:loadIndices",
+      "type": "function",
+      "name": "loadIndices",
+      "filePath": "packages/engine/Source/Scene/GltfLoader.js",
+      "lineRange": [
+        1489,
+        1569
+      ],
+      "summary": "为 primitive 加载并组装索引缓冲，处理特征 ID 与后处理。",
+      "tags": [
+        "gltf",
+        "index-buffer",
+        "loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:GltfStructuralMetadataLoader",
+      "type": "class",
+      "name": "GltfStructuralMetadataLoader",
+      "filePath": "packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "lineRange": [
+        20,
+        218
+      ],
+      "summary": "ResourceLoader 实现，收集 glTF 元数据引用并构建 StructuralMetadata 对象。",
+      "tags": [
+        "gltf",
+        "structural-metadata",
+        "resource-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:loadTextures",
+      "type": "function",
+      "name": "loadTextures",
+      "filePath": "packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "lineRange": [
+        413,
+        450
+      ],
+      "summary": "为元数据引用到的纹理发起异步加载。",
+      "tags": [
+        "structural-metadata",
+        "texture",
+        "loader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:loadBufferViews",
+      "type": "function",
+      "name": "loadBufferViews",
+      "filePath": "packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "lineRange": [
+        325,
+        356
+      ],
+      "summary": "为元数据引用到的 bufferView 发起异步加载。",
+      "tags": [
+        "structural-metadata",
+        "buffer-view",
+        "loader"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfImageLoader.js:GltfImageLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfLoader.js:GltfLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfLoader.js:loadPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfLoader.js:parse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfLoader.js:loadVertexAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfLoader.js:loadMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfLoader.js:loadIndices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:GltfStructuralMetadataLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:loadTextures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "function:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:loadBufferViews",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/loadImageFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/loadKTX2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfImageLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/ArticulationStageType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/InterpolationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/AttributeType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/Axis.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/getMeshPrimitives.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoaderUtil.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/hasExtension.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/InstanceAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfGpmLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/GltfMeshPrimitiveGpmLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/PrimitiveLoadPlan.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/SupportedImageFormats.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Scene/parseFeatureMetadataLegacy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Scene/parseStructuralMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceCache.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js",
+      "target": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "file:packages/engine/Source/Scene/MetadataClassProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataEnumValue.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/CPUStylingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelColorPipelineStage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfStructuralMetadataLoader.js:GltfStructuralMetadataLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfVertexBufferLoader.js:GltfVertexBufferLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfIndexBufferLoader.js:GltfIndexBufferLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfTextureLoader.js:GltfTextureLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfImageLoader.js:GltfImageLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "target": "class:packages/engine/Source/Scene/GltfBufferViewLoader.js:GltfBufferViewLoader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataClass.js",
+      "target": "function:packages/engine/Source/Scene/MetadataClassProperty.js:MetadataClassProperty",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "target": "file:packages/engine/Specs/Scene/MetadataComponentTypeSpec.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

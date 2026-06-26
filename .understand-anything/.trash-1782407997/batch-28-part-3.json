@@ -1,0 +1,542 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/MeshPrimitiveGpmLocal.js",
+      "type": "file",
+      "name": "MeshPrimitiveGpmLocal.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/MeshPrimitiveGpmLocal.js",
+      "summary": "单个 glTF primitive 的 GPM 本地信息容器，持有一组 PpeTexture 引用。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "ppe",
+        "gltf-extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeMetadata.js",
+      "type": "file",
+      "name": "PpeMetadata.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/PpeMetadata.js",
+      "summary": "PPE（Per-Point Error）数据元数据类，记录数据来源、允许的最小/最大值。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "ppe",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "type": "file",
+      "name": "PpeTexture.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "summary": "NGA_gpm_local 中的 PPE 纹理描述类，是一个合法 glTF TextureInfo 加上 noData/offset/scale 等元数据字段。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "ppe",
+        "texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "type": "file",
+      "name": "Spdcf.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "summary": "严格正定相关函数（Strictly Positive-Definite Correlation Function）参数类，用 A/alpha/beta/T 描述点间相关性随距离衰减的数学模型。",
+      "tags": [
+        "gpm",
+        "data-model",
+        "correlation",
+        "gltf-extension"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/StorageType.js",
+      "type": "file",
+      "name": "StorageType.js",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/StorageType.js",
+      "summary": "枚举类型，表示 NGA_gpm_local 中协方差信息的存储方式：Direct（含交叉协方差项）或 Indirect（仅对角协方差，交叉项由相关性函数推断）。",
+      "tags": [
+        "enum",
+        "gpm",
+        "gltf-extension",
+        "covariance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "type": "file",
+      "name": "FeatureIdPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "summary": "feature id 管线阶段，把 primitive/instance 的 feature id（属性、隐式范围或纹理形式）处理为 shader 可用的变量与别名，支撑 per-feature 样式与拾取。",
+      "tags": [
+        "pipeline-stage",
+        "feature-id",
+        "shader-builder",
+        "metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js:PpeTexture",
+      "type": "function",
+      "name": "PpeTexture",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "lineRange": [
+        31,
+        43
+      ],
+      "summary": "PpeTexture 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js:Spdcf",
+      "type": "function",
+      "name": "Spdcf",
+      "filePath": "packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "lineRange": [
+        32,
+        47
+      ],
+      "summary": "Spdcf 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:declareStructsAndFunctions",
+      "type": "function",
+      "name": "declareStructsAndFunctions",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        70,
+        117
+      ],
+      "summary": "向 ShaderBuilder 注入 feature id 相关的 struct 与函数声明。",
+      "tags": [
+        "feature-id",
+        "shader-builder",
+        "struct"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceFeatureIds",
+      "type": "function",
+      "name": "processInstanceFeatureIds",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        119,
+        146
+      ],
+      "summary": "处理实例化 primitive 的 feature id 属性。",
+      "tags": [
+        "feature-id",
+        "instancing",
+        "pipeline-stage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processPrimitiveFeatureIds",
+      "type": "function",
+      "name": "processPrimitiveFeatureIds",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        148,
+        182
+      ],
+      "summary": "处理非实例化 primitive 的 feature id（属性、隐式范围、纹理）。",
+      "tags": [
+        "feature-id",
+        "pipeline-stage",
+        "primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceAttribute",
+      "type": "function",
+      "name": "processInstanceAttribute",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        184,
+        237
+      ],
+      "summary": "把实例化的 feature id 属性处理为 shader 变量并设置实例除数。",
+      "tags": [
+        "feature-id",
+        "instancing",
+        "attribute"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processAttribute",
+      "type": "function",
+      "name": "processAttribute",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        239,
+        277
+      ],
+      "summary": "把单个 feature id 属性处理为 shader 变量与可能的实例化除数。",
+      "tags": [
+        "feature-id",
+        "attribute",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processImplicitRange",
+      "type": "function",
+      "name": "processImplicitRange",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        279,
+        346
+      ],
+      "summary": "把隐式范围的 feature id（起始/步长）处理为 shader 中的 feature id 计算。",
+      "tags": [
+        "feature-id",
+        "implicit-range",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processTexture",
+      "type": "function",
+      "name": "processTexture",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        348,
+        422
+      ],
+      "summary": "把 feature id 纹理处理为 shader 中的 feature id 采样。",
+      "tags": [
+        "feature-id",
+        "texture",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:addAlias",
+      "type": "function",
+      "name": "addAlias",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        424,
+        462
+      ],
+      "summary": "为 feature id 变量添加一个可选别名 define（如选中 feature id）。",
+      "tags": [
+        "feature-id",
+        "alias",
+        "shader-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdAttribute",
+      "type": "function",
+      "name": "generateImplicitFeatureIdAttribute",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        464,
+        505
+      ],
+      "summary": "由隐式范围生成一个显式的 feature id 顶点属性缓冲。",
+      "tags": [
+        "feature-id",
+        "buffer",
+        "implicit-range"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdTypedArray",
+      "type": "function",
+      "name": "generateImplicitFeatureIdTypedArray",
+      "filePath": "packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "lineRange": [
+        511,
+        521
+      ],
+      "summary": "由隐式范围生成 feature id 的 TypedArray。",
+      "tags": [
+        "feature-id",
+        "typed-array",
+        "implicit-range"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js:PpeTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/PpeTexture.js:PpeTexture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js:Spdcf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js",
+      "target": "function:packages/engine/Source/Scene/Model/Extensions/Gpm/Spdcf.js:Spdcf",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:declareStructsAndFunctions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:declareStructsAndFunctions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceFeatureIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceFeatureIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processPrimitiveFeatureIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processPrimitiveFeatureIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processInstanceAttribute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processAttribute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processImplicitRange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processImplicitRange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:processTexture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:addAlias",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:addAlias",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdAttribute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/FeatureIdPipelineStage.js:generateImplicitFeatureIdTypedArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,437 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Specs/Renderer/UniformSpec.js",
+      "type": "file",
+      "name": "UniformSpec.js",
+      "filePath": "packages/engine/Specs/Renderer/UniformSpec.js",
+      "summary": "Jasmine 单元测试，覆盖 Renderer 层 Uniform 对象的各类 setter、浮点/整型/向量/矩阵 uniform 值绑定及 GPU 上传行为。",
+      "tags": ["test", "renderer", "uniform", "webgl", "unit-test"],
+      "complexity": "complex",
+      "languageNotes": "Jasmine describe/it 风格测试，依赖 createContext 创建 WebGL 上下文。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Renderer/VertexArrayFacadeSpec.js",
+      "type": "file",
+      "name": "VertexArrayFacadeSpec.js",
+      "filePath": "packages/engine/Specs/Renderer/VertexArrayFacadeSpec.js",
+      "summary": "测试 VertexArrayFacade 抽象层，验证其在多属性缓冲区封装、批量顶点数组创建与 WebGL 资源回收方面的行为。",
+      "tags": ["test", "renderer", "vertex-array", "webgl", "unit-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Renderer/VertexArrayFactorySpec.js",
+      "type": "file",
+      "name": "VertexArrayFactorySpec.js",
+      "filePath": "packages/engine/Specs/Renderer/VertexArrayFactorySpec.js",
+      "summary": "测试 VertexArrayFactory 工厂方法，验证其按属性布局组装 WebGLVertexArrayObject 的正确性。",
+      "tags": ["test", "renderer", "vertex-array", "factory", "webgl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Renderer/VertexArraySpec.js",
+      "type": "file",
+      "name": "VertexArraySpec.js",
+      "filePath": "packages/engine/Specs/Renderer/VertexArraySpec.js",
+      "summary": "测试 VertexArray 顶点数组封装类，覆盖属性绑定、index buffer、销毁及与 Context 协作的完整路径。",
+      "tags": ["test", "renderer", "vertex-array", "webgl", "unit-test"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Renderer/loadCubeMapSpec.js",
+      "type": "file",
+      "name": "loadCubeMapSpec.js",
+      "filePath": "packages/engine/Specs/Renderer/loadCubeMapSpec.js",
+      "summary": "测试 loadCubeMap 异步加载器，验证从 6 张图片构造立方体贴图（CubeMap）资源及错误处理路径。",
+      "tags": ["test", "renderer", "cubemap", "texture", "async"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Azure2DImageryProviderSpec.js",
+      "type": "file",
+      "name": "Azure2DImageryProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Azure2DImageryProviderSpec.js",
+      "summary": "测试 Azure2DImageryProvider 影像图层提供者，覆盖瓦片加载、URL 构造与异步请求轮询行为。",
+      "tags": ["test", "scene", "imagery-provider", "azure", "tiles"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/B3dmParserSpec.js",
+      "type": "file",
+      "name": "B3dmParserSpec.js",
+      "filePath": "packages/engine/Specs/Scene/B3dmParserSpec.js",
+      "summary": "测试 B3dmParser（Batched 3D Model）解析器，验证 3D Tiles b3dm 二进制瓦片解析为 glTF 模型的流程。",
+      "tags": ["test", "scene", "3d-tiles", "b3dm", "gltf"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/BatchTableSpec.js",
+      "type": "file",
+      "name": "BatchTableSpec.js",
+      "filePath": "packages/engine/Specs/Scene/BatchTableSpec.js",
+      "summary": "测试 BatchTable 批处理属性表，覆盖 per-feature 属性存取、JSON header 解析及二进制属性布局。",
+      "tags": ["test", "scene", "3d-tiles", "batch-table", "per-feature"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/BatchTextureSpec.js",
+      "type": "file",
+      "name": "BatchTextureSpec.js",
+      "filePath": "packages/engine/Specs/Scene/BatchTextureSpec.js",
+      "summary": "测试 BatchTexture 批处理纹理，验证将批量 feature 属性写入纹理以供 shader 拾取的机制。",
+      "tags": ["test", "scene", "3d-tiles", "batch-texture", "texture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/BillboardCollectionSpec.js",
+      "type": "file",
+      "name": "BillboardCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/BillboardCollectionSpec.js",
+      "summary": "BillboardCollection 的大规模单元测试套件（约 2800 行），覆盖图标广告牌的添加/移除、位置、像素偏移、纹理图集、高度参考、视锥剔除等全部行为。",
+      "tags": ["test", "scene", "billboard", "collection", "rendering"],
+      "complexity": "complex",
+      "languageNotes": "CesiumJS 单文件最大的 scene 测试之一，通过 pollToPromise 等待异步纹理上传完成。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/BingMapsImageryProviderSpec.js",
+      "type": "file",
+      "name": "BingMapsImageryProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/BingMapsImageryProviderSpec.js",
+      "summary": "测试 BingMapsImageryProvider 影像提供者，覆盖元数据解析、quadkey 瓦片请求与伪造元数据响应（createFakeBingMapsMetadataResponse）的注入测试。",
+      "tags": ["test", "scene", "imagery-provider", "bing-maps", "tiles"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/CameraEventAggregatorSpec.js",
+      "type": "file",
+      "name": "CameraEventAggregatorSpec.js",
+      "filePath": "packages/engine/Specs/Scene/CameraEventAggregatorSpec.js",
+      "summary": "测试 CameraEventAggregator 事件聚合器，验证鼠标/触摸输入事件在 canvas 上的归并与相机交互映射。依赖 DomEventSimulator 模拟 DOM 事件。",
+      "tags": ["test", "scene", "camera", "input", "event-aggregator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/CameraFlightPathSpec.js",
+      "type": "file",
+      "name": "CameraFlightPathSpec.js",
+      "filePath": "packages/engine/Specs/Scene/CameraFlightPathSpec.js",
+      "summary": "测试 CameraFlightPath 相机飞行动画路径计算，覆盖平滑插值、目的地朝向、持续时间与不同椭球下的行为。",
+      "tags": ["test", "scene", "camera", "flight-path", "animation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js",
+      "type": "file",
+      "name": "Cesium3DTileBatchTableSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js",
+      "summary": "测试 3D Tiles 瓦片批处理表与 Cesium3DTile 的联动，覆盖 feature 属性拾取、颜色着色、批量样式（3D Tiles Styling）及 typed array 拼接。",
+      "tags": ["test", "scene", "3d-tiles", "batch-table", "styling"],
+      "complexity": "complex",
+      "languageNotes": "依赖 concatTypedArrays 辅助拼接二进制 batch table 属性，验证 3D Tiles 1.0 规范合规性。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTileFeatureSpec.js",
+      "type": "file",
+      "name": "Cesium3DTileFeatureSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTileFeatureSpec.js",
+      "summary": "测试 Cesium3DTileFeature 单个瓦片特征对象，覆盖属性读写、颜色设置、显示/隐藏及与 batch table 的关联。",
+      "tags": ["test", "scene", "3d-tiles", "feature", "per-feature"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTileSpec.js",
+      "type": "file",
+      "name": "Cesium3DTileSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTileSpec.js",
+      "summary": "测试 Cesium3DTile 瓦片节点对象，覆盖瓦片细化（refine）、边界体积、子瓦片遍历、内容加载状态机等核心 3D Tiles 调度逻辑。",
+      "tags": ["test", "scene", "3d-tiles", "tile", "lod"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTileVectorFeatureSpec.js",
+      "type": "file",
+      "name": "Cesium3DTileVectorFeatureSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTileVectorFeatureSpec.js",
+      "summary": "测试 3D Tiles 矢量特征（Cesium3DTileVectorFeature），覆盖矢量瓦片内几何与属性的解析和访问。",
+      "tags": ["test", "scene", "3d-tiles", "vector", "feature"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTilesVoxelProviderSpec.js",
+      "type": "file",
+      "name": "Cesium3DTilesVoxelProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTilesVoxelProviderSpec.js",
+      "summary": "测试体素（Voxel）3D Tiles 提供者接口，验证自定义体素数据加载、采样与渲染集成。通过 pollToPromise 等待异步加载完成。",
+      "tags": ["test", "scene", "3d-tiles", "voxel", "volumetric"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTilesetHeatmapSpec.js",
+      "type": "file",
+      "name": "Cesium3DTilesetHeatmapSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTilesetHeatmapSpec.js",
+      "summary": "测试 Cesium3DTileset 的热力图（heatmap）调试可视化，验证瓦片加载耗时与性能热力着色。",
+      "tags": ["test", "scene", "3d-tiles", "heatmap", "debug"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js",
+      "type": "file",
+      "name": "Cesium3DTilesetSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Cesium3DTilesetSpec.js",
+      "summary": "Cesium3DTileset（3D Tiles 数据集主入口）的超大测试套件（约 6845 行），全面覆盖瓦片集加载、LOD 调度、样式化、裁剪、glTF 内容、错误恢复、屏幕空间误差（SSE）等核心功能。",
+      "tags": ["test", "scene", "3d-tiles", "tileset", "lod"],
+      "complexity": "complex",
+      "languageNotes": "CesiumJS 单文件最大的测试之一，依赖 generateJsonBuffer 与 Ellipsoid 构造合成瓦片集，配合 Cesium3DTilesTester 做回归对比。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ClassificationPrimitiveSpec.js",
+      "type": "file",
+      "name": "ClassificationPrimitiveSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ClassificationPrimitiveSpec.js",
+      "summary": "测试 ClassificationPrimitive 分类图元，验证其将几何体作为分类体素化叠加到 3D Tiles / 地形上并参与拾取的行为。",
+      "tags": ["test", "scene", "classification", "primitive", "clipping"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ClippingPlaneCollectionSpec.js",
+      "type": "file",
+      "name": "ClippingPlaneCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ClippingPlaneCollectionSpec.js",
+      "summary": "测试 ClippingPlaneCollection 裁剪平面集合，覆盖裁剪平面的添加/移除、unionClippingRegions、启用/禁用及其对模型/地形裁剪的影响。",
+      "tags": ["test", "scene", "clipping", "plane", "collection"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ClippingPolygonCollectionSpec.js",
+      "type": "file",
+      "name": "ClippingPolygonCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ClippingPolygonCollectionSpec.js",
+      "summary": "测试 ClippingPolygonCollection 裁剪多边形集合，验证按多边形区域对场景内容进行遮罩裁剪的行为。",
+      "tags": ["test", "scene", "clipping", "polygon", "masking"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/CloudCollectionSpec.js",
+      "type": "file",
+      "name": "CloudCollectionSpec.js",
+      "filePath": "packages/engine/Specs/Scene/CloudCollectionSpec.js",
+      "summary": "测试 CloudCollection 云集合，覆盖体积云广告牌的添加、位置、缩放、亮度与噪声纹理演化。依赖 pollToPromise 等待异步资源。",
+      "tags": ["test", "scene", "cloud", "collection", "volumetric"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/Composite3DTileContentSpec.js",
+      "type": "file",
+      "name": "Composite3DTileContentSpec.js",
+      "filePath": "packages/engine/Specs/Scene/Composite3DTileContentSpec.js",
+      "summary": "测试 3D Tiles 复合瓦片内容（Composite tile content，i3dm/pnts/b3dt 复合），验证嵌套瓦片内容的加载与分发。依赖 Cesium3DTilesTester。",
+      "tags": ["test", "scene", "3d-tiles", "composite", "content"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DebugAppearanceSpec.js",
+      "type": "file",
+      "name": "DebugAppearanceSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DebugAppearanceSpec.js",
+      "summary": "测试 DebugAppearance 调试外观，验证其以法线/切线/纹理坐标等可视化方式渲染图元几何属性的能力。",
+      "tags": ["test", "scene", "debug", "appearance", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DebugCameraPrimitiveSpec.js",
+      "type": "file",
+      "name": "DebugCameraPrimitiveSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DebugCameraPrimitiveSpec.js",
+      "summary": "测试 DebugCameraPrimitive 调试图元，验证其在场景中以线框形式可视化相机视锥（frustum）边界。",
+      "tags": ["test", "scene", "debug", "camera", "frustum"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DebugModelMatrixPrimitiveSpec.js",
+      "type": "file",
+      "name": "DebugModelMatrixPrimitiveSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DebugModelMatrixPrimitiveSpec.js",
+      "summary": "测试 DebugModelMatrixPrimitive 调试图元，验证其显示模型坐标系（坐标轴）以辅助变换调试。",
+      "tags": ["test", "scene", "debug", "model-matrix", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DepthPlaneSpec.js",
+      "type": "file",
+      "name": "DepthPlaneSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DepthPlaneSpec.js",
+      "summary": "测试 DepthPlane 深度平面，验证其作为对数深度缓冲区参考平面的渲染更新行为。",
+      "tags": ["test", "scene", "depth", "plane", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js",
+      "type": "file",
+      "name": "DeviceOrientationCameraControllerSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js",
+      "summary": "测试 DeviceOrientationCameraController，验证基于设备方向传感器（alpha/beta/gamma）的相机旋转控制。依赖 DomEventSimulator 模拟事件。",
+      "tags": ["test", "scene", "camera", "device-orientation", "input"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DiscardEmptyTileImagePolicySpec.js",
+      "type": "file",
+      "name": "DiscardEmptyTileImagePolicySpec.js",
+      "filePath": "packages/engine/Specs/Scene/DiscardEmptyTileImagePolicySpec.js",
+      "summary": "测试 DiscardEmptyTileImagePolicy 影像丢弃策略，验证其对空瓦片图片的识别与丢弃判定。",
+      "tags": ["test", "scene", "imagery", "policy", "discard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DiscardMissingTileImagePolicySpec.js",
+      "type": "file",
+      "name": "DiscardMissingTileImagePolicySpec.js",
+      "filePath": "packages/engine/Specs/Scene/DiscardMissingTileImagePolicySpec.js",
+      "summary": "测试 DiscardMissingTileImagePolicy 影像丢弃策略，验证对缺失瓦片（missing tile）特征图片的识别与跳过加载。",
+      "tags": ["test", "scene", "imagery", "policy", "discard"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/DynamicEnvironmentMapManagerSpec.js",
+      "type": "file",
+      "name": "DynamicEnvironmentMapManagerSpec.js",
+      "filePath": "packages/engine/Specs/Scene/DynamicEnvironmentMapManagerSpec.js",
+      "summary": "测试 DynamicEnvironmentMapManager 动态环境贴图管理器，验证其生成动态立方体贴图（用于 PBR 反射）及与大气（Atmosphere）渲染的集成。",
+      "tags": ["test", "scene", "environment-map", "cubemap", "pbr"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/EdgeFramebufferSpec.js",
+      "type": "file",
+      "name": "EdgeFramebufferSpec.js",
+      "filePath": "packages/engine/Specs/Scene/EdgeFramebufferSpec.js",
+      "summary": "测试 EdgeFramebuffer 边缘帧缓冲对象，验证模型边缘描边（silhouette/outline）渲染所需的离屏 framebuffer 配置。",
+      "tags": ["test", "scene", "framebuffer", "edge", "outline"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Specs/Renderer/UniformSpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Renderer/UniformSpec.js", "target": "file:packages/engine/Source/Renderer/Uniform.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Renderer/VertexArrayFacadeSpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Renderer/VertexArrayFacadeSpec.js", "target": "file:packages/engine/Source/Renderer/VertexArrayFacade.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Renderer/VertexArrayFactorySpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Renderer/VertexArrayFactorySpec.js", "target": "file:packages/engine/Source/Renderer/VertexArrayFactory.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Renderer/VertexArraySpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Renderer/VertexArraySpec.js", "target": "file:packages/engine/Source/Renderer/VertexArray.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Renderer/loadCubeMapSpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Renderer/loadCubeMapSpec.js", "target": "file:packages/engine/Source/Renderer/loadCubeMap.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Azure2DImageryProviderSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Azure2DImageryProviderSpec.js", "target": "file:packages/engine/Source/Scene/Azure2DImageryProvider.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/B3dmParserSpec.js", "target": "file:packages/engine/Specs/Cesium3DTilesTester.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/B3dmParserSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/B3dmParserSpec.js", "target": "file:packages/engine/Source/Scene/B3dmParser.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/BatchTableSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BatchTableSpec.js", "target": "file:packages/engine/Source/Scene/BatchTable.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/BatchTextureSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BatchTextureSpec.js", "target": "file:packages/engine/Source/Scene/BatchTexture.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/BillboardCollectionSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BillboardCollectionSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BillboardCollectionSpec.js", "target": "file:packages/engine/Source/Scene/BillboardCollection.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/BingMapsImageryProviderSpec.js", "target": "file:packages/engine/Specs/createFakeBingMapsMetadataResponse.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BingMapsImageryProviderSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/BingMapsImageryProviderSpec.js", "target": "file:packages/engine/Source/Scene/BingMapsImageryProvider.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/CameraEventAggregatorSpec.js", "target": "file:packages/engine/Specs/createCanvas.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/CameraEventAggregatorSpec.js", "target": "file:packages/engine/Specs/DomEventSimulator.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/CameraEventAggregatorSpec.js", "target": "file:packages/engine/Source/Scene/CameraEventAggregator.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/CameraFlightPathSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/CameraFlightPathSpec.js", "target": "file:packages/engine/Source/Scene/CameraFlightPath.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js", "target": "file:packages/engine/Specs/Cesium3DTilesTester.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js", "target": "file:packages/engine/Specs/concatTypedArrays.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileBatchTableSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTileBatchTable.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileFeatureSpec.js", "target": "file:packages/engine/Specs/Cesium3DTilesTester.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileFeatureSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileFeatureSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTileFeature.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTile.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileVectorFeatureSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTileVectorFeatureSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTileVectorFeature.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesVoxelProviderSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesVoxelProviderSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesVoxelProviderSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTilesVoxelProvider.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetHeatmapSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetHeatmapSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTilesetHeatmap.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Source/Core/Ellipsoid.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Specs/Cesium3DTilesTester.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Specs/generateJsonBuffer.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Cesium3DTilesetSpec.js", "target": "file:packages/engine/Source/Scene/Cesium3DTileset.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/ClassificationPrimitiveSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/ClassificationPrimitiveSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/ClassificationPrimitiveSpec.js", "target": "file:packages/engine/Source/Scene/ClassificationPrimitive.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/ClippingPlaneCollectionSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/ClippingPlaneCollectionSpec.js", "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/ClippingPolygonCollectionSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/ClippingPolygonCollectionSpec.js", "target": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/CloudCollectionSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/CloudCollectionSpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/CloudCollectionSpec.js", "target": "file:packages/engine/Source/Scene/CloudCollection.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/Composite3DTileContentSpec.js", "target": "file:packages/engine/Specs/Cesium3DTilesTester.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Composite3DTileContentSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/Composite3DTileContentSpec.js", "target": "file:packages/engine/Source/Scene/Composite3DTileContent.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DebugAppearanceSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DebugAppearanceSpec.js", "target": "file:packages/engine/Source/Scene/DebugAppearance.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DebugCameraPrimitiveSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DebugCameraPrimitiveSpec.js", "target": "file:packages/engine/Source/Scene/DebugCameraPrimitive.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DebugModelMatrixPrimitiveSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DebugModelMatrixPrimitiveSpec.js", "target": "file:packages/engine/Source/Scene/DebugModelMatrixPrimitive.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DepthPlaneSpec.js", "target": "file:packages/engine/Specs/createCamera.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DepthPlaneSpec.js", "target": "file:packages/engine/Specs/createContext.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DepthPlaneSpec.js", "target": "file:packages/engine/Specs/createFrameState.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DepthPlaneSpec.js", "target": "file:packages/engine/Source/Scene/DepthPlane.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js", "target": "file:packages/engine/Specs/createCamera.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js", "target": "file:packages/engine/Specs/createCanvas.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js", "target": "file:packages/engine/Specs/DomEventSimulator.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DeviceOrientationCameraControllerSpec.js", "target": "file:packages/engine/Source/Scene/DeviceOrientationCameraController.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DiscardEmptyTileImagePolicySpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DiscardEmptyTileImagePolicySpec.js", "target": "file:packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DiscardMissingTileImagePolicySpec.js", "target": "file:packages/engine/Specs/pollToPromise.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DiscardMissingTileImagePolicySpec.js", "target": "file:packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/DynamicEnvironmentMapManagerSpec.js", "target": "file:packages/engine/Source/Scene/Atmosphere.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DynamicEnvironmentMapManagerSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/DynamicEnvironmentMapManagerSpec.js", "target": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+
+    {"source": "file:packages/engine/Specs/Scene/EdgeFramebufferSpec.js", "target": "file:packages/engine/Specs/createScene.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Specs/Scene/EdgeFramebufferSpec.js", "target": "file:packages/engine/Source/Scene/EdgeFramebuffer.js", "type": "tested_by", "direction": "forward", "weight": 0.5}
+  ]
+}

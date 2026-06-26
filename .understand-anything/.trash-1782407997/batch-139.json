@@ -1,0 +1,832 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "summary": "Sandcastle 示例：演示如何为地球（globe）应用各种自定义材质，包括等高线、坡度、坡向以及基于色带的着色效果，并提供 UI 切换不同着色模式。",
+      "tags": ["demo", "globe", "material", "shading", "sandcastle"],
+      "complexity": "complex",
+      "languageNotes": "通过 Canvas 2D gradient 生成色带纹理，再用 Cesium.Material.fromType 应用到 globe.material。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-materials/main.js:getElevationContourMaterial",
+      "type": "function",
+      "name": "getElevationContourMaterial",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "lineRange": [10, 31],
+      "summary": "构造一个基于高程的等高线材质对象，返回包含自定义 shader uniform 的 Material 描述。",
+      "tags": ["material", "contour", "elevation", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-materials/main.js:getSlopeContourMaterial",
+      "type": "function",
+      "name": "getSlopeContourMaterial",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "lineRange": [33, 54],
+      "summary": "构造基于坡度的等高线材质，用于在地表按坡度区间渲染等值线。",
+      "tags": ["material", "contour", "slope", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-materials/main.js:getAspectContourMaterial",
+      "type": "function",
+      "name": "getAspectContourMaterial",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "lineRange": [56, 77],
+      "summary": "构造基于坡向（aspect）的等高线材质，按朝向区间渲染等值线。",
+      "tags": ["material", "contour", "aspect", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-materials/main.js:getColorRamp",
+      "type": "function",
+      "name": "getColorRamp",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "lineRange": [82, 110],
+      "summary": "根据所选着色模式使用 Canvas 2D 线性渐变生成色带纹理图，返回可作为 uniform 的 ImageData/canvas。",
+      "tags": ["color-ramp", "canvas", "shading", "texture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-materials/main.js:updateMaterial",
+      "type": "function",
+      "name": "updateMaterial",
+      "filePath": "packages/sandcastle/gallery/globe-materials/main.js",
+      "lineRange": [139, 183],
+      "summary": "根据 UI 控件当前选择的着色类型，切换 globe 的材质（等高线/坡度/坡向/内置类型）并刷新色带。",
+      "tags": ["event-handler", "material", "ui", "shading"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/globe-materials/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/globe-materials/sandcastle.yaml",
+      "summary": "Sandcastle 示例的元数据配置，定义标题、描述、标签和缩略图等用于示例库索引。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/globe-translucency/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/globe-translucency/index.html",
+      "summary": "globe-translucency 示例的 HTML 入口页面，加载 Cesium 与 main.js 并提供 UI 控件容器。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/globe-translucency/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/globe-translucency/main.js",
+      "summary": "Sandcastle 示例：演示地球半透明（translucency）效果，允许水体以下地形可见并可通过 UI 调整不透明度。",
+      "tags": ["demo", "globe", "translucency", "sandcastle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/globe-translucency/main.js:update",
+      "type": "function",
+      "name": "update",
+      "filePath": "packages/sandcastle/gallery/globe-translucency/main.js",
+      "lineRange": [106, 119],
+      "summary": "读取 UI 输入并应用为地球的半透明度数值，进行范围校验与 clamp。",
+      "tags": ["event-handler", "translucency", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/globe-translucency/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/globe-translucency/sandcastle.yaml",
+      "summary": "globe-translucency 示例的元数据配置，用于 Sandcastle 示例库索引。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/gltf-pbr-extensions/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/gltf-pbr-extensions/index.html",
+      "summary": "gltf-pbr-extensions 示例的 HTML 入口页面，加载 Cesium 与 main.js 演示脚本。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "summary": "Sandcastle 示例：加载并展示支持 PBR 扩展（如 specular、transmission、sheen 等）的 glTF 模型，并提供切换模型与缩放视角的 UI。",
+      "tags": ["demo", "gltf", "pbr", "model", "sandcastle"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Cesium.Model.fromGltfAsync 加载并订阅 readyEvent 做相机对齐。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:loadModel",
+      "type": "function",
+      "name": "loadModel",
+      "filePath": "packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "lineRange": [196, 214],
+      "summary": "按 ion asset id 加载 glTF 模型，清空已有 primitive 并在就绪后缩放到该模型。",
+      "tags": ["model", "gltf", "ion", "loader"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:zoomToModel",
+      "type": "function",
+      "name": "zoomToModel",
+      "filePath": "packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "lineRange": [216, 239],
+      "summary": "根据模型边界球与缩放系数计算视角偏移，并将相机 lookAt 到模型。",
+      "tags": ["camera", "model", "zoom"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/gltf-pbr-extensions/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/gltf-pbr-extensions/sandcastle.yaml",
+      "summary": "gltf-pbr-extensions 示例的元数据配置，用于 Sandcastle 示例库索引。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/index.html",
+      "summary": "google-2d-tiles-with-custom-styles 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/main.js",
+      "summary": "Sandcastle 示例：演示使用 Google 2D Tiles API 并应用自定义地图样式加载影像底图。",
+      "tags": ["demo", "google-tiles", "imagery", "styling", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/sandcastle.yaml",
+      "summary": "google-2d-tiles-with-custom-styles 示例的元数据配置。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-2d-tiles/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles/index.html",
+      "summary": "google-2d-tiles 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-2d-tiles/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles/main.js",
+      "summary": "Sandcastle 示例：演示使用 Google Maps Platform 的 2D Tiles 作为影像图层。",
+      "tags": ["demo", "google-tiles", "imagery", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/google-2d-tiles/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/google-2d-tiles/sandcastle.yaml",
+      "summary": "google-2d-tiles 示例的元数据配置。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-earth-enterprise/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-earth-enterprise/index.html",
+      "summary": "google-earth-enterprise 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-earth-enterprise/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-earth-enterprise/main.js",
+      "summary": "Sandcastle 示例：演示连接 Google Earth Enterprise（GEE）服务器以加载影像与地形图层。",
+      "tags": ["demo", "gee", "imagery", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/google-earth-enterprise/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/google-earth-enterprise/sandcastle.yaml",
+      "summary": "google-earth-enterprise 示例的元数据配置。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/index.html",
+      "summary": "google-photorealistic-3d-tiles-with-building-insert 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/main.js",
+      "summary": "Sandcastle 示例：演示在 Google 摄影级 3D Tiles 场景中插入自定义 3D 建筑模型的混合渲染。",
+      "tags": ["demo", "3d-tiles", "google-tiles", "building", "sandcastle"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/sandcastle.yaml",
+      "summary": "google-photorealistic-3d-tiles-with-building-insert 示例的元数据配置。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles/index.html",
+      "summary": "google-photorealistic-3d-tiles 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles/main.js",
+      "summary": "Sandcastle 示例：演示加载 Google 摄影级 3D Tiles（photorealistic 3D Tiles）数据集。",
+      "tags": ["demo", "3d-tiles", "google-tiles", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/google-photorealistic-3d-tiles/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/google-photorealistic-3d-tiles/sandcastle.yaml",
+      "summary": "google-photorealistic-3d-tiles 示例的元数据配置。",
+      "tags": ["configuration", "metadata", "sandcastle"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-streetview-panorama/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/index.html",
+      "summary": "google-streetview-panorama 示例的 HTML 入口页面。",
+      "tags": ["markup", "entry-point", "sandcastle", "html"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "summary": "Sandcastle 示例：演示在 Google 摄影级 3D Tiles 地图上点击拾取位置并切换到街景全景（cubemap panorama）视角，含工具栏、城市下拉选择与模态提示的完整交互流程。",
+      "tags": ["demo", "panorama", "3d-tiles", "interaction", "sandcastle"],
+      "complexity": "complex",
+      "languageNotes": "通过自定义 cubeMapProvider 加载全景，结合 ScreenSpaceEventHandler 实现拾取与 FOV 滚轮调节。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:saveCameraView",
+      "type": "function",
+      "name": "saveCameraView",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [64, 75],
+      "summary": "记录当前相机视角的经纬度与高度，供返回地图时恢复。",
+      "tags": ["camera", "state", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:selectPanoCubeMap",
+      "type": "function",
+      "name": "selectPanoCubeMap",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [77, 109],
+      "summary": "根据点击位置查找最近的全景 panoId，加载立方体贴图并以 SkyBox 形式加入场景，再切换到全景视角。",
+      "tags": ["panorama", "cubemap", "loader", "skybox"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "type": "function",
+      "name": "enablePicking",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [114, 129],
+      "summary": "注册鼠标左键拾取事件，保存当前相机并在点击地表后切换到对应位置的全景视图。",
+      "tags": ["event-handler", "picking", "interaction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disablePicking",
+      "type": "function",
+      "name": "disablePicking",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [132, 134],
+      "summary": "移除已注册的鼠标左键拾取输入事件。",
+      "tags": ["event-handler", "picking", "interaction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enableFieldOfViewAdjustment",
+      "type": "function",
+      "name": "enableFieldOfViewAdjustment",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [141, 162],
+      "summary": "注册滚轮事件，在全景视角下用滚轮调整相机视场角（FOV）以模拟缩放。",
+      "tags": ["event-handler", "fov", "camera", "interaction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disableFieldOfViewAdjustment",
+      "type": "function",
+      "name": "disableFieldOfViewAdjustment",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [165, 167],
+      "summary": "移除已注册的滚轮 FOV 调整输入事件。",
+      "tags": ["event-handler", "fov", "interaction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "type": "function",
+      "name": "goToPanoView",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [169, 191],
+      "summary": "将相机定位到全景位置并切换工具栏状态，启用 FOV 调整、禁用拾取、关闭顶部模态。",
+      "tags": ["camera", "view-transition", "toolbar"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "type": "function",
+      "name": "returnToMap",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [193, 225],
+      "summary": "从全景视角返回地图视图：移除 SkyBox primitive、恢复地形与相机、重置工具栏。",
+      "tags": ["view-transition", "camera", "toolbar"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createButton",
+      "type": "function",
+      "name": "createButton",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [232, 239],
+      "summary": "创建并返回一个附加到工具栏的 HTML 按钮 DOM 元素，绑定点击回调。",
+      "tags": ["ui", "dom", "button", "factory"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "type": "function",
+      "name": "setPanoViewToolBar",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [241, 269],
+      "summary": "切换工具栏到全景视图模式：显示返回地图按钮、关闭摄影级 3D Tiles 开关并恢复地球天空盒。",
+      "tags": ["ui", "toolbar", "view-transition"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setMapViewToolBar",
+      "type": "function",
+      "name": "setMapViewToolBar",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [271, 281],
+      "summary": "切换工具栏到地图视图模式：移除全景相关按钮，恢复摄影级 3D Tiles 显示开关。",
+      "tags": ["ui", "toolbar", "view-transition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:showTopModal",
+      "type": "function",
+      "name": "showTopModal",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [288, 314],
+      "summary": "在容器顶部创建并显示一个模态提示框，用于向用户展示消息。",
+      "tags": ["ui", "modal", "dom"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:removeTopModal",
+      "type": "function",
+      "name": "removeTopModal",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [316, 321],
+      "summary": "移除已显示的顶部模态提示框元素。",
+      "tags": ["ui", "modal", "dom"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createCityDropdown",
+      "type": "function",
+      "name": "createCityDropdown",
+      "filePath": "packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "lineRange": [359, 404],
+      "summary": "创建城市选择下拉框，依据预设城市矩形区域飞行定位并重置地图视图与天空盒。",
+      "tags": ["ui", "dropdown", "navigation", "dom"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-materials/main.js:getElevationContourMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-materials/main.js:getSlopeContourMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-materials/main.js:getAspectContourMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-materials/main.js:getColorRamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-materials/main.js:updateMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/globe-materials/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/globe-materials/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-translucency/index.html",
+      "target": "file:packages/sandcastle/gallery/globe-translucency/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/globe-translucency/main.js",
+      "target": "function:packages/sandcastle/gallery/globe-translucency/main.js:update",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/globe-translucency/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/globe-translucency/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/gltf-pbr-extensions/index.html",
+      "target": "file:packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "target": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:loadModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "target": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:zoomToModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:loadModel",
+      "target": "function:packages/sandcastle/gallery/gltf-pbr-extensions/main.js:zoomToModel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/gltf-pbr-extensions/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/gltf-pbr-extensions/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/index.html",
+      "target": "file:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/google-2d-tiles-with-custom-styles/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-2d-tiles/index.html",
+      "target": "file:packages/sandcastle/gallery/google-2d-tiles/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/google-2d-tiles/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/google-2d-tiles/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-earth-enterprise/index.html",
+      "target": "file:packages/sandcastle/gallery/google-earth-enterprise/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/google-earth-enterprise/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/google-earth-enterprise/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/index.html",
+      "target": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles-with-building-insert/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles/index.html",
+      "target": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/google-photorealistic-3d-tiles/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/google-photorealistic-3d-tiles/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/index.html",
+      "target": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:saveCameraView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:selectPanoCubeMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disablePicking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enableFieldOfViewAdjustment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disableFieldOfViewAdjustment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setMapViewToolBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:showTopModal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:removeTopModal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/google-streetview-panorama/main.js",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createCityDropdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:selectPanoCubeMap",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:saveCameraView",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:selectPanoCubeMap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enableFieldOfViewAdjustment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disablePicking",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:removeTopModal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:goToPanoView",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:disableFieldOfViewAdjustment",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:showTopModal",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setMapViewToolBar",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:setPanoViewToolBar",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createCityDropdown",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:returnToMap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:createCityDropdown",
+      "target": "function:packages/sandcastle/gallery/google-streetview-panorama/main.js:enablePicking",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

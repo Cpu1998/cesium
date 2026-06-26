@@ -1,0 +1,1461 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "type": "file",
+   "name": "PrimitivePipeline.js",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "Primitive 几何处理管线，负责世界坐标变换、batch id 注入、pick offset 计算以及在 Web Worker 间序列化/反序列化 geometry 实例与包围球。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "worker",
+    "serialization"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "type": "file",
+   "name": "QuadtreeOccluders.js",
+   "filePath": "packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "summary": "封装四叉树地形使用的两个 EllipsoidalOccluder（地平线遮挡器），用于 horizon culling 判断。",
+   "tags": [
+    "occlusion",
+    "horizon-culling",
+    "scene",
+    "data-model"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "type": "file",
+   "name": "QuadtreePrimitive.js",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "四叉树 primitive 实现，负责瓦片加载队列、SSE 细化选择、可见性遍历与高度更新，是 Globe 与 3D Tiles 流式渲染的核心调度器。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "lod",
+    "scene"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "type": "file",
+   "name": "SceneTransforms.js",
+   "filePath": "packages/engine/Source/Scene/SceneTransforms.js",
+   "summary": "提供场景坐标系变换工具，将世界坐标、WGS84 经纬度、窗口像素坐标在 3D/Columbus/2D 模式之间互转，被 billboard、model、picking 等广泛复用。",
+   "tags": [
+    "coordinate-transform",
+    "utility",
+    "scene",
+    "projection"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "type": "file",
+   "name": "SpatialNode.js",
+   "filePath": "packages/engine/Source/Scene/SpatialNode.js",
+   "summary": "Voxel primitive 的空间八叉树节点，管理层级、包围盒、keyframe 插值与子节点遍历，支撑体数据的分级流式加载。",
+   "tags": [
+    "voxel",
+    "octree",
+    "spatial",
+    "node"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transformToWorldCoordinates",
+   "type": "function",
+   "name": "transformToWorldCoordinates",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "将一组 geometry 实例从模型坐标变换到世界坐标。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    16,
+    50
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addGeometryBatchId",
+   "type": "function",
+   "name": "addGeometryBatchId",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "内部辅助函数 addGeometryBatchId，服务于 PrimitivePipeline.js 的实现细节。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    52,
+    68
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addBatchIds",
+   "type": "function",
+   "name": "addBatchIds",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "内部辅助函数 addBatchIds，服务于 PrimitivePipeline.js 的实现细节。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    70,
+    85
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:geometryPipeline",
+   "type": "function",
+   "name": "geometryPipeline",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "对 geometry 应用完整管线处理（属性、索引、batch id 等）。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    87,
+    246
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createPickOffsets",
+   "type": "function",
+   "name": "createPickOffsets",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "为每个实例生成拾取偏移量，支持精确逐实例 picking。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    248,
+    287
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createInstancePickOffsets",
+   "type": "function",
+   "name": "createInstancePickOffsets",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "内部辅助函数 createInstancePickOffsets，服务于 PrimitivePipeline.js 的实现细节。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    289,
+    305
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transferGeometry",
+   "type": "function",
+   "name": "transferGeometry",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "将单个 geometry 的 buffer 转移到 transferableObjects。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    391,
+    406
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:countCreateGeometryResults",
+   "type": "function",
+   "name": "countCreateGeometryResults",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "统计 Worker 返回的 geometry 创建结果数量。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    416,
+    446
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packInstancesForCombine",
+   "type": "function",
+   "name": "packInstancesForCombine",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "将 geometry 实例打包为可跨 Worker 传输的数组。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    642,
+    662
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackInstancesForCombine",
+   "type": "function",
+   "name": "unpackInstancesForCombine",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "从传输数据中恢复 geometry 实例。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    664,
+    692
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packBoundingSpheres",
+   "type": "function",
+   "name": "packBoundingSpheres",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "将包围球数组打包为 typed array。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    771,
+    791
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackBoundingSpheres",
+   "type": "function",
+   "name": "unpackBoundingSpheres",
+   "filePath": "packages/engine/Source/Scene/PrimitivePipeline.js",
+   "summary": "从 typed array 恢复包围球数组。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    793,
+    807
+   ]
+  },
+  {
+   "id": "class:packages/engine/Source/Scene/QuadtreeOccluders.js:QuadtreeOccluders",
+   "type": "class",
+   "name": "QuadtreeOccluders",
+   "filePath": "packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "summary": "QuadtreeOccluders 类：封装四叉树地形使用的两个 EllipsoidalOccluder（地平线遮挡器），用于 horizon culling 判断。",
+   "tags": [
+    "occlusion",
+    "horizon-culling",
+    "scene",
+    "data-model"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    13,
+    33
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:QuadtreePrimitive",
+   "type": "function",
+   "name": "QuadtreePrimitive",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "四叉树 primitive 构造函数，初始化瓦片层级、加载队列、tile provider 与选择策略。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "constructor"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    42,
+    162
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:invalidateAllTiles",
+   "type": "function",
+   "name": "invalidateAllTiles",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 invalidateAllTiles，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    205,
+    233
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:clearTileLoadQueue",
+   "type": "function",
+   "name": "clearTileLoadQueue",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 clearTileLoadQueue，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    312,
+    324
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateTileLoadProgress",
+   "type": "function",
+   "name": "updateTileLoadProgress",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "推进瓦片加载队列并触发加载进度事件。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    381,
+    429
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:compareDistanceToPoint",
+   "type": "function",
+   "name": "compareDistanceToPoint",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 compareDistanceToPoint，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    489,
+    499
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:selectTilesForRendering",
+   "type": "function",
+   "name": "selectTilesForRendering",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "根据相机与 SSE 选择当前帧需渲染的瓦片集合。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    504,
+    607
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:queueTileLoad",
+   "type": "function",
+   "name": "queueTileLoad",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 queueTileLoad，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    609,
+    621
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:TraversalDetails",
+   "type": "function",
+   "name": "TraversalDetails",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 TraversalDetails，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    629,
+    661
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitTile",
+   "type": "function",
+   "name": "visitTile",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "四叉树瓦片遍历核心，递归判定 SSE、可见性与细化，决定渲染或继续下钻。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    714,
+    987
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitVisibleChildrenNearToFar",
+   "type": "function",
+   "name": "visitVisibleChildrenNearToFar",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "由近及远遍历可见的四个子瓦片。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    989,
+    1166
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:containsNeededPosition",
+   "type": "function",
+   "name": "containsNeededPosition",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 containsNeededPosition，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1168,
+    1179
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitIfVisible",
+   "type": "function",
+   "name": "visitIfVisible",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 visitIfVisible，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1181,
+    1246
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError",
+   "type": "function",
+   "name": "screenSpaceError",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 screenSpaceError，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1248,
+    1274
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError2D",
+   "type": "function",
+   "name": "screenSpaceError2D",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 screenSpaceError2D，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1276,
+    1304
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processTileLoadQueue",
+   "type": "function",
+   "name": "processTileLoadQueue",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "按优先级处理待加载瓦片队列，受时间预算约束。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    1311,
+    1355
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processSinglePriorityLoadQueue",
+   "type": "function",
+   "name": "processSinglePriorityLoadQueue",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "内部辅助函数 processSinglePriorityLoadQueue，服务于 QuadtreePrimitive.js 的实现细节。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    1361,
+    1385
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateHeights",
+   "type": "function",
+   "name": "updateHeights",
+   "filePath": "packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "summary": "在地形高度变化时批量更新已加载瓦片的高度数据。",
+   "tags": [
+    "quadtree",
+    "tile-loading",
+    "internal"
+   ],
+   "complexity": "complex",
+   "lineRange": [
+    1392,
+    1568
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SceneTransforms.js:worldToClip",
+   "type": "function",
+   "name": "worldToClip",
+   "filePath": "packages/engine/Source/Scene/SceneTransforms.js",
+   "summary": "将世界坐标变换到裁剪空间，考虑 eye offset，用于 billboard/label 渲染。",
+   "tags": [
+    "coordinate-transform",
+    "utility",
+    "internal"
+   ],
+   "complexity": "simple",
+   "lineRange": [
+    58,
+    87
+   ]
+  },
+  {
+   "id": "function:packages/engine/Source/Scene/SpatialNode.js:SpatialNode",
+   "type": "function",
+   "name": "SpatialNode",
+   "filePath": "packages/engine/Source/Scene/SpatialNode.js",
+   "summary": "Voxel 空间节点构造函数，初始化层级、坐标、父节点与 keyframe 列表。",
+   "tags": [
+    "voxel",
+    "spatial",
+    "constructor"
+   ],
+   "complexity": "moderate",
+   "lineRange": [
+    24,
+    65
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transformToWorldCoordinates",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transformToWorldCoordinates",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addGeometryBatchId",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addGeometryBatchId",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addBatchIds",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:addBatchIds",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:geometryPipeline",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:geometryPipeline",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createPickOffsets",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createPickOffsets",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createInstancePickOffsets",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:createInstancePickOffsets",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transferGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:transferGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:countCreateGeometryResults",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:countCreateGeometryResults",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packInstancesForCombine",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packInstancesForCombine",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackInstancesForCombine",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackInstancesForCombine",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packBoundingSpheres",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:packBoundingSpheres",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackBoundingSpheres",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "function:packages/engine/Source/Scene/PrimitivePipeline.js:unpackBoundingSpheres",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "target": "class:packages/engine/Source/Scene/QuadtreeOccluders.js:QuadtreeOccluders",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "target": "class:packages/engine/Source/Scene/QuadtreeOccluders.js:QuadtreeOccluders",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:QuadtreePrimitive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:QuadtreePrimitive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:invalidateAllTiles",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:invalidateAllTiles",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:clearTileLoadQueue",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:clearTileLoadQueue",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateTileLoadProgress",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateTileLoadProgress",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:compareDistanceToPoint",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:compareDistanceToPoint",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:selectTilesForRendering",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:selectTilesForRendering",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:queueTileLoad",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:queueTileLoad",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:TraversalDetails",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:TraversalDetails",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitTile",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitTile",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitVisibleChildrenNearToFar",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitVisibleChildrenNearToFar",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:containsNeededPosition",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:containsNeededPosition",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitIfVisible",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:visitIfVisible",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError2D",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:screenSpaceError2D",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processTileLoadQueue",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processTileLoadQueue",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processSinglePriorityLoadQueue",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:processSinglePriorityLoadQueue",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateHeights",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "function:packages/engine/Source/Scene/QuadtreePrimitive.js:updateHeights",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransforms.js:worldToClip",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "function:packages/engine/Source/Scene/SceneTransforms.js:worldToClip",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "function:packages/engine/Source/Scene/SpatialNode.js:SpatialNode",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "function:packages/engine/Source/Scene/SpatialNode.js:SpatialNode",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+   "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/getTimestamp.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Ray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Core/Visibility.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/QuadtreeOccluders.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/QuadtreeTile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/TileReplacementQueue.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/QuadtreePrimitive.js",
+   "target": "file:packages/engine/Source/Scene/TileSelectionResult.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SceneTransforms.js",
+   "target": "file:packages/engine/Source/Scene/SceneMode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/binarySearch.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Scene/SpatialNode.js",
+   "target": "file:packages/engine/Source/Scene/KeyframeNode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

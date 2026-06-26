@@ -1,0 +1,1235 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "type": "file",
+   "name": "StaticGeometryPerMaterialBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "summary": "将共享相同材质的静态几何体聚合到同一 Primitive，按材质键分组以减少 draw call。",
+   "tags": [
+    "static-batch",
+    "material",
+    "primitive",
+    "batching",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "type": "file",
+   "name": "StaticGroundGeometryColorBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "summary": "将贴地静态几何体按颜色聚合到 GroundPrimitive 上进行分类渲染，支持矩形冲突检测与 zIndex 排序。",
+   "tags": [
+    "static-batch",
+    "ground",
+    "color",
+    "ground-primitive",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "type": "file",
+   "name": "StaticGroundGeometryPerMaterialBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "summary": "将贴地静态几何体按材质聚合到 GroundPrimitive 上使用 ShadowVolumeAppearance 进行渲染。",
+   "tags": [
+    "static-batch",
+    "ground",
+    "material",
+    "shadow-volume",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "type": "file",
+   "name": "StaticGroundPolylinePerMaterialBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "summary": "将贴地折线按材质聚合到 GroundPolylinePrimitive，按顺序维护以保证正确的绘制次序。",
+   "tags": [
+    "static-batch",
+    "ground-polyline",
+    "material",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "type": "file",
+   "name": "StaticOutlineGeometryBatch.js",
+   "filePath": "packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "summary": "将静态几何体的轮廓线按线宽/透明度聚合到同一个 Primitive 进行高效渲染。",
+   "tags": [
+    "static-batch",
+    "outline",
+    "primitive",
+    "batching",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "type": "file",
+   "name": "TerrainOffsetProperty.js",
+   "filePath": "packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "summary": "基于地形高度采样计算偏移量的属性包装器，使贴地/相对地面高度参考的 Entity 能在场景更新时动态调整位置。",
+   "tags": [
+    "property",
+    "terrain-offset",
+    "height-reference",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "type": "file",
+   "name": "WallGeometryUpdater.js",
+   "filePath": "packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "summary": "将 Entity 的墙体图形转换为 GeometryInstance，支持材质与颜色两种外观及挖洞。",
+   "tags": [
+    "geometry-updater",
+    "wall",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "type": "file",
+   "name": "heightReferenceOnEntityPropertyChanged.js",
+   "filePath": "packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "summary": "监听 Entity 属性变化并在高度参考相关字段变化时切换 TerrainOffsetProperty，驱动贴地/相对高度行为的重建。",
+   "tags": [
+    "event-handler",
+    "height-reference",
+    "entity",
+    "datasource"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "lineRange": [
+    21,
+    54
+   ],
+   "summary": "材质批的内部容器，按材质键维护 GeometryInstance 并管理增量更新。",
+   "tags": [
+    "batch",
+    "container",
+    "material"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:StaticGeometryPerMaterialBatch",
+   "type": "function",
+   "name": "StaticGeometryPerMaterialBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "lineRange": [
+    392,
+    405
+   ],
+   "summary": "构造按材质聚合的静态几何批渲染管线。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "material"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "lineRange": [
+    17,
+    35
+   ],
+   "summary": "贴地颜色批的内部容器，按颜色与 zIndex 维护贴地几何实例。",
+   "tags": [
+    "batch",
+    "container",
+    "ground",
+    "color"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:StaticGroundGeometryColorBatch",
+   "type": "function",
+   "name": "StaticGroundGeometryColorBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "lineRange": [
+    284,
+    288
+   ],
+   "summary": "构造按颜色聚合的贴地静态几何批渲染管线。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "ground",
+    "color"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "lineRange": [
+    18,
+    43
+   ],
+   "summary": "贴地材质批的内部容器，使用 ShadowVolumeAppearance 渲染共享材质的贴地几何。",
+   "tags": [
+    "batch",
+    "container",
+    "ground",
+    "material"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:StaticGroundGeometryPerMaterialBatch",
+   "type": "function",
+   "name": "StaticGroundGeometryPerMaterialBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "lineRange": [
+    333,
+    342
+   ],
+   "summary": "构造按材质聚合的贴地静态几何批渲染管线。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "ground",
+    "material"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "lineRange": [
+    21,
+    58
+   ],
+   "summary": "贴地折线批的内部容器，按材质与 zIndex 维护 GroundPolylinePrimitive 的有序渲染。",
+   "tags": [
+    "batch",
+    "container",
+    "ground-polyline",
+    "material"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:StaticGroundPolylinePerMaterialBatch",
+   "type": "function",
+   "name": "StaticGroundPolylinePerMaterialBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "lineRange": [
+    337,
+    346
+   ],
+   "summary": "构造按材质聚合的贴地折线批渲染管线。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "ground-polyline"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:Batch",
+   "type": "function",
+   "name": "Batch",
+   "filePath": "packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "lineRange": [
+    21,
+    37
+   ],
+   "summary": "轮廓批的内部容器，按线宽与透明度维护轮廓几何实例。",
+   "tags": [
+    "batch",
+    "container",
+    "outline"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:StaticOutlineGeometryBatch",
+   "type": "function",
+   "name": "StaticOutlineGeometryBatch",
+   "filePath": "packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "lineRange": [
+    316,
+    322
+   ],
+   "summary": "构造按线宽聚合的静态轮廓批渲染管线。",
+   "tags": [
+    "constructor",
+    "static-batch",
+    "outline"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/TerrainOffsetProperty.js:TerrainOffsetProperty",
+   "type": "function",
+   "name": "TerrainOffsetProperty",
+   "filePath": "packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "lineRange": [
+    20,
+    81
+   ],
+   "summary": "构造地形偏移属性，基于位置属性与高度参考在地形采样变化时计算动态高度偏移并触发 definitionChanged。",
+   "tags": [
+    "property",
+    "terrain-offset",
+    "height-reference",
+    "datasource"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:WallGeometryUpdater",
+   "type": "function",
+   "name": "WallGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "lineRange": [
+    39,
+    49
+   ],
+   "summary": "为墙体 Entity 创建几何更新器，生成墙体表面与可选轮廓的 GeometryInstance。",
+   "tags": [
+    "constructor",
+    "geometry-updater",
+    "wall"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:DynamicWallGeometryUpdater",
+   "type": "function",
+   "name": "DynamicWallGeometryUpdater",
+   "filePath": "packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "lineRange": [
+    225,
+    236
+   ],
+   "summary": "随时间动态重建墙体几何实例的内部更新器。",
+   "tags": [
+    "dynamic-updater",
+    "wall",
+    "datasource"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js:heightReferenceOnEntityPropertyChanged",
+   "type": "function",
+   "name": "heightReferenceOnEntityPropertyChanged",
+   "filePath": "packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "lineRange": [
+    6,
+    46
+   ],
+   "summary": "回调：当 Entity 的位置/高度参考等属性变化时重新设置 TerrainOffsetProperty 以驱动贴地行为。",
+   "tags": [
+    "event-handler",
+    "height-reference",
+    "callback",
+    "datasource"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:StaticGeometryPerMaterialBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js:StaticGeometryPerMaterialBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:StaticGroundGeometryColorBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js:StaticGroundGeometryColorBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:StaticGroundGeometryPerMaterialBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js:StaticGroundGeometryPerMaterialBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:StaticGroundPolylinePerMaterialBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js:StaticGroundPolylinePerMaterialBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:Batch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:Batch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:StaticOutlineGeometryBatch",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "function:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js:StaticOutlineGeometryBatch",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "function:packages/engine/Source/DataSources/TerrainOffsetProperty.js:TerrainOffsetProperty",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "function:packages/engine/Source/DataSources/TerrainOffsetProperty.js:TerrainOffsetProperty",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:WallGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:WallGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:DynamicWallGeometryUpdater",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "function:packages/engine/Source/DataSources/WallGeometryUpdater.js:DynamicWallGeometryUpdater",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "function:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js:heightReferenceOnEntityPropertyChanged",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "function:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js:heightReferenceOnEntityPropertyChanged",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/RectangleCollisionChecker.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+   "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/RectangleCollisionChecker.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/ShadowVolumeAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/PolylineColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticGroundPolylinePerMaterialBatch.js",
+   "target": "file:packages/engine/Source/Scene/PolylineMaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+   "target": "file:packages/engine/Source/Scene/Primitive.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/destroyObject.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Event.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/JulianDate.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "target": "file:packages/engine/Source/Scene/HeightReference.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Color.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/Iso8601.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/WallGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Core/WallOutlineGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/DataSources/Property.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+   "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "file:packages/engine/Source/DataSources/CallbackProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+   "target": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

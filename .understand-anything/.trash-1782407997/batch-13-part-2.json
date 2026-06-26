@@ -1,0 +1,1282 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Material.js",
+      "type": "file",
+      "name": "Material.js",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "summary": "Cesium 场景材质系统核心：基于内置 fabric 材质模板与自定义 shader 组合，提供 uniform（纹理/CubeMap/矩阵/颜色）的动态更新与缓存机制。",
+      "tags": [
+        "scene",
+        "material",
+        "shader",
+        "fabric"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Material._materialCache 维护 fabric 材质模板；createUniform 通过闭包生成按类型的更新函数。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Megatexture.js",
+      "type": "file",
+      "name": "Megatexture.js",
+      "filePath": "packages/engine/Source/Scene/Megatexture.js",
+      "summary": "Megatexture（超大 3D 纹理）抽象：将分块数据写入 GPU 3D 纹理以支持海量体素/分块纹理的流式上传。",
+      "tags": [
+        "scene",
+        "texture",
+        "rendering",
+        "gpu"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "基于 Texture3D + 像素数据分块拷贝实现虚拟化纹理。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "type": "file",
+      "name": "AlphaPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "summary": "Model 渲染管线阶段之一：处理 alpha 混合与透明度（translucent pass）的 shader/uniform 注入。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline-stage",
+        "alpha"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/BatchTexturePipelineStage.js",
+      "type": "file",
+      "name": "BatchTexturePipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/BatchTexturePipelineStage.js",
+      "summary": "Model 渲染管线阶段：将 batch/per-feature 纹理（用于 feature 拾取与样式）注入 shader。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline-stage",
+        "batch-texture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "type": "file",
+      "name": "ClassificationModelDrawCommand.js",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "summary": "将 Model 的 DrawCommand 扩展为分类（classification）绘制命令，派生 stencil/depth/color/pick 子命令以支持 3D Tiles 与 primitive 的分类渲染。",
+      "tags": [
+        "scene",
+        "model",
+        "draw-command",
+        "classification",
+        "stencil"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 RenderState.fromCache + DrawCommand.shallowClone 派生多通道命令。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "type": "file",
+      "name": "ImageBasedLightingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "summary": "Model 渲染管线阶段：注入基于图像的光照（IBL）相关 uniform 与 shader 片段，对接 SpecularEnvironmentCubeMap。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline-stage",
+        "ibl",
+        "lighting"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "type": "file",
+      "name": "Model3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "summary": "3D Tiles 的 Model 类型 tile 内容包装器：根据 b3dm/i3dm/pnts/glTF/GeoJSON 等格式异步构造 Model 实例，并暴露 batchTable、feature、拾取与样式接口。",
+      "tags": [
+        "scene",
+        "model",
+        "3d-tiles",
+        "tile-content"
+      ],
+      "complexity": "complex",
+      "languageNotes": "实现 Cesium3DTileContent 接口；fromGltf/fromB3dm/fromI3dm/fromPnts/fromGeoJson 为静态工厂。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "type": "file",
+      "name": "ModelAlphaOptions.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "summary": "冻结的 alpha 选项常量对象，用于 Model 的 alpha/cutoff 行为配置。",
+      "tags": [
+        "type-definition",
+        "model",
+        "alpha",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "type": "file",
+      "name": "ModelClippingPlanesPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "summary": "Model 渲染管线阶段：注入裁剪平面（clipping planes）的 shader uniform 与 discard 逻辑。",
+      "tags": [
+        "scene",
+        "model",
+        "pipeline-stage",
+        "clipping"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:Material",
+      "type": "function",
+      "name": "Material",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        273,
+        389
+      ],
+      "summary": "Material 构造函数：从 fabric 描述初始化 uniform、shader 与缓存。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:initializeMaterial",
+      "type": "function",
+      "name": "initializeMaterial",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        694,
+        754
+      ],
+      "summary": "根据 options 解析 fabric 名、uniform、子材质并组装 shader 源码。",
+      "tags": [
+        "material",
+        "init",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:checkForValidProperties",
+      "type": "function",
+      "name": "checkForValidProperties",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        756,
+        770
+      ],
+      "summary": "checkForValidProperties 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:invalidNameError",
+      "type": "function",
+      "name": "invalidNameError",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        772,
+        782
+      ],
+      "summary": "invalidNameError 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:checkForTemplateErrors",
+      "type": "function",
+      "name": "checkForTemplateErrors",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        807,
+        839
+      ],
+      "summary": "checkForTemplateErrors 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:isMaterialFused",
+      "type": "function",
+      "name": "isMaterialFused",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        841,
+        852
+      ],
+      "summary": "isMaterialFused 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:createMethodDefinition",
+      "type": "function",
+      "name": "createMethodDefinition",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        855,
+        888
+      ],
+      "summary": "createMethodDefinition 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:createTexture2DUpdateFunction",
+      "type": "function",
+      "name": "createTexture2DUpdateFunction",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        898,
+        1009
+      ],
+      "summary": "为 2D 纹理 uniform 生成异步加载与更新闭包。",
+      "tags": [
+        "material",
+        "factory",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:loadTexture2DImageForUniform",
+      "type": "function",
+      "name": "loadTexture2DImageForUniform",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1021,
+        1072
+      ],
+      "summary": "loadTexture2DImageForUniform 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:createCubeMapUpdateFunction",
+      "type": "function",
+      "name": "createCubeMapUpdateFunction",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1074,
+        1094
+      ],
+      "summary": "为 CubeMap uniform 生成异步加载 6 面图像并更新的闭包。",
+      "tags": [
+        "material",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:loadCubeMapImagesForUniform",
+      "type": "function",
+      "name": "loadCubeMapImagesForUniform",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1103,
+        1147
+      ],
+      "summary": "loadCubeMapImagesForUniform 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:createUniform",
+      "type": "function",
+      "name": "createUniform",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1160,
+        1251
+      ],
+      "summary": "按 uniform 类型创建对应的更新函数（颜色/矩阵/纹理/CubeMap）。",
+      "tags": [
+        "material",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:getUniformType",
+      "type": "function",
+      "name": "getUniformType",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1254,
+        1302
+      ],
+      "summary": "getUniformType 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:createSubMaterials",
+      "type": "function",
+      "name": "createSubMaterials",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1305,
+        1350
+      ],
+      "summary": "createSubMaterials 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "factory",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Material.js:replaceToken",
+      "type": "function",
+      "name": "replaceToken",
+      "filePath": "packages/engine/Source/Scene/Material.js",
+      "lineRange": [
+        1355,
+        1372
+      ],
+      "summary": "replaceToken 函数：Material.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "material",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Megatexture.js:Megatexture",
+      "type": "function",
+      "name": "Megatexture",
+      "filePath": "packages/engine/Source/Scene/Megatexture.js",
+      "lineRange": [
+        32,
+        156
+      ],
+      "summary": "Megatexture 构造函数：创建 3D 纹理、tile 元数据与上传缓冲。",
+      "tags": [
+        "texture",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Megatexture.js:getPixelFormat",
+      "type": "function",
+      "name": "getPixelFormat",
+      "filePath": "packages/engine/Source/Scene/Megatexture.js",
+      "lineRange": [
+        219,
+        230
+      ],
+      "summary": "getPixelFormat 函数：Megatexture.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "texture",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Megatexture.js:MegatextureNode",
+      "type": "function",
+      "name": "MegatextureNode",
+      "filePath": "packages/engine/Source/Scene/Megatexture.js",
+      "lineRange": [
+        240,
+        255
+      ],
+      "summary": "MegatextureNode 函数：Megatexture.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "texture",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:ClassificationModelDrawCommand",
+      "type": "function",
+      "name": "ClassificationModelDrawCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        31,
+        73
+      ],
+      "summary": "构造分类绘制命令，封装原始 DrawCommand 及其派生命令列表。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:getStencilDepthRenderState",
+      "type": "function",
+      "name": "getStencilDepthRenderState",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        75,
+        107
+      ],
+      "summary": "构造分类渲染所需的 stencil+depth RenderState。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        162,
+        242
+      ],
+      "summary": "基于传入 DrawCommand 派生 stencil/depth/color/pick 子命令。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "init",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:createBatchCommands",
+      "type": "function",
+      "name": "createBatchCommands",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        244,
+        266
+      ],
+      "summary": "createBatchCommands 函数：ClassificationModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:deriveStencilDepthCommand",
+      "type": "function",
+      "name": "deriveStencilDepthCommand",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        268,
+        281
+      ],
+      "summary": "deriveStencilDepthCommand 函数：ClassificationModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:createPickCommands",
+      "type": "function",
+      "name": "createPickCommands",
+      "filePath": "packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "lineRange": [
+        295,
+        315
+      ],
+      "summary": "createPickCommands 函数：ClassificationModelDrawCommand.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "draw-command",
+        "classification",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model3DTileContent.js:makeModelOptions",
+      "type": "function",
+      "name": "makeModelOptions",
+      "filePath": "packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "lineRange": [
+        482,
+        515
+      ],
+      "summary": "根据 tileset/tile/content 与附加选项组装 Model 构造参数对象。",
+      "tags": [
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Model/Model3DTileContent.js:Model3DTileContent",
+      "type": "class",
+      "name": "Model3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "lineRange": [
+        30,
+        480
+      ],
+      "summary": "3D Tiles 的 Model 内容包装类，管理 Model 实例与 tile 生命周期。",
+      "tags": [
+        "scene",
+        "model",
+        "3d-tiles",
+        "tile-content"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAlphaOptions.js:ModelAlphaOptions",
+      "type": "function",
+      "name": "ModelAlphaOptions",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "lineRange": [
+        9,
+        24
+      ],
+      "summary": "ModelAlphaOptions 函数：ModelAlphaOptions.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "scene"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:Material",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:initializeMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:checkForValidProperties",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:invalidNameError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:checkForTemplateErrors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:isMaterialFused",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:createMethodDefinition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:createTexture2DUpdateFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:loadTexture2DImageForUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:createCubeMapUpdateFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:loadCubeMapImagesForUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:createUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:getUniformType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:createSubMaterials",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "function:packages/engine/Source/Scene/Material.js:replaceToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "function:packages/engine/Source/Scene/Megatexture.js:Megatexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "function:packages/engine/Source/Scene/Megatexture.js:getPixelFormat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "function:packages/engine/Source/Scene/Megatexture.js:MegatextureNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:ClassificationModelDrawCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:getStencilDepthRenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:createBatchCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:deriveStencilDepthCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "function:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js:createPickCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model3DTileContent.js:makeModelOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Model/Model3DTileContent.js:Model3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAlphaOptions.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAlphaOptions.js:ModelAlphaOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/loadKTX2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Matrix2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Renderer/CubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Material.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/Texture3D.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Megatexture.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/AlphaPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/BatchTexturePipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ClassificationModelDrawCommand.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ImageBasedLightingPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/SpecularEnvironmentCubeMap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/Model/Model.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model3DTileContent.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

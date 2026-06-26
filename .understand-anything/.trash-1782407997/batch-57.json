@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {
+      "id": "document:.github/actions/update-tokens/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": ".github/actions/update-tokens/README.md",
+      "summary": "update-tokens 子项目的说明文档，阐述在 CI 中自动更新 ion 访问令牌与 iTwin share keys 的策略（令牌需维持约两个 CesiumJS 发行版本有效期），并说明 index.js / replacements.js / ionTokenDeleter.js 各自的职责及本地使用 dotenvx 运行所需的环境变量。",
+      "tags": ["documentation", "ci-cd", "access-tokens", "automation"],
+      "complexity": "simple",
+      "languageNotes": "文档引用了 esquery 的 AST selector 机制以及 dotenvx 用于本地注入密钥环境变量。"
+    },
+    {
+      "id": "config:.github/actions/update-tokens/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": ".github/actions/update-tokens/package.json",
+      "summary": "update-keys 子项目的 package 配置，声明入口 index.js 与 ESM 模块类型，并引入 esquery、espree、recast、prettier、yargs、date-fns、dotenvx 等依赖以支撑令牌替换与 AST 操作。",
+      "tags": ["configuration", "npm", "ci-cd", "dependencies"],
+      "complexity": "simple",
+      "languageNotes": "采用 ES module (\"type\": \"module\")，依赖 espree/esquery/recast 组合实现源码 AST 解析与重写。"
+    },
+    {
+      "id": "document:.github/actions/update-tokens/pr-template.md",
+      "type": "document",
+      "name": "pr-template.md",
+      "filePath": ".github/actions/update-tokens/pr-template.md",
+      "summary": "由 update-tokens 自动化创建 PR 时使用的模板，描述 ion 令牌与 iTwin share keys 的月度更新内容，并提供测试清单（运行 npm start、验证 Sandcastle 加载）以及 CI 构建的注意事项。",
+      "tags": ["documentation", "pull-request-template", "ci-cd", "testing"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:.github/actions/update-tokens/README.md",
+      "target": "config:.github/actions/update-tokens/package.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.github/actions/update-tokens/README.md",
+      "target": "document:.github/actions/update-tokens/pr-template.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.github/actions/update-tokens/package.json",
+      "target": "document:.github/actions/update-tokens/pr-template.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

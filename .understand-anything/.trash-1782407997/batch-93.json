@@ -1,0 +1,304 @@
+{
+  "nodes": [
+    {
+      "id": "document:Documentation/Contributors/ReleaseGuide/PatchReleases/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/Contributors/ReleaseGuide/PatchReleases/README.md",
+      "summary": "补丁版本（Patch Release）发布手册，分 9 个步骤详述从创建分支、cherry-pick 提交、版本号 bump、构建验证到发布至 npm/GitHub/官网并回迁 main 的完整流程。",
+      "tags": ["documentation", "release", "workflow", "patch-release"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Documentation/Contributors/ReleaseGuide/Prereleases/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/Contributors/ReleaseGuide/Prereleases/README.md",
+      "summary": "预发布（Prerelease）手册，说明何时需要预发布版本，以及创建分支、cherry-pick、bump 版本、更新 CHANGES.md 并仅发布到 npm 的分步命令流程。",
+      "tags": ["documentation", "release", "workflow", "prerelease"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Documentation/Contributors/ReleaseGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/Contributors/ReleaseGuide/README.md",
+      "summary": "CesiumJS 发布指南主文档，覆盖发布动机、发布前准备、权限要求、打包验证、发布与公告等完整周期，是发布流程的总入口。",
+      "tags": ["documentation", "release", "workflow", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:Documentation/Contributors/ReleaseGuide/ReleaseSchedule.md",
+      "type": "document",
+      "name": "ReleaseSchedule.md",
+      "filePath": "Documentation/Contributors/ReleaseGuide/ReleaseSchedule.md",
+      "summary": "极简的发布日程表页面，列出 CesiumJS 各历史版本的发布日期与对应 npm 版本号。",
+      "tags": ["documentation", "release", "schedule"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Documentation/Contributors/TestingGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/Contributors/TestingGuide/README.md",
+      "summary": "详尽的测试指南（约 1000 行），涵盖用 Karma 在命令行与浏览器中跑测试、WebGL 验证/stub、覆盖率、端到端测试、渲染测试、GLSL/Spy/Mock 等单元测试写法与最佳实践。",
+      "tags": ["documentation", "testing", "karma", "webgl", "best-practices"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:Documentation/Contributors/VSCodeGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/Contributors/VSCodeGuide/README.md",
+      "summary": "VSCode 开发指南，介绍推荐的 shell 集成、扩展、代码片段、任务文件，以及如何在 VSCode 中构建与调试 CesiumJS。",
+      "tags": ["documentation", "tooling", "vscode", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Documentation/CustomShaderGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/CustomShaderGuide/README.md",
+      "summary": "CustomShader 用户文档（约 900 行），详述构造函数、应用方式、uniforms、varyings、shader 模式，以及 VertexInput/FragmentInput/Attributes/Metadata 等 GLSL struct 与 3D Tiles feature ID 处理。",
+      "tags": ["documentation", "shader", "webgl", "glsl", "3d-tiles"],
+      "complexity": "complex",
+      "languageNotes": "围绕 czm_ 前缀的内建 GLSL struct（czm_modelMaterial、czm_modelVertexOutput）与 voxel 渲染扩展展开。"
+    },
+    {
+      "id": "document:Documentation/FabricGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/FabricGuide/README.md",
+      "summary": "Fabric 材质系统指南，介绍内置材质、程序化纹理、Polyline/Misc 材质，以及如何通过 components/source/input 创建新材质并在渲染管线中组合使用，并指向 Fabric JSON schema。",
+      "tags": ["documentation", "material", "fabric", "rendering", "shader"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:Documentation/OfflineGuide/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/OfflineGuide/README.md",
+      "summary": "离线部署指南，说明如何在无网络环境下本地化 imagery provider、geocoder，以及本地托管 3D Tiles、glTF 等静态资源。",
+      "tags": ["documentation", "deployment", "offline", "imagery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Documentation/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Documentation/README.md",
+      "summary": "Documentation 目录的索引文件，列出各子指南（Fabric、CustomShader、Offline、Contributors 等）的入口链接。",
+      "tags": ["documentation", "index", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Documentation/Schemas/Fabric/Material.schema.json",
+      "type": "schema",
+      "name": "Material.schema.json",
+      "filePath": "Documentation/Schemas/Fabric/Material.schema.json",
+      "summary": "Fabric 材质 JSON 的 JSON Schema 定义，描述 type、materials（递归子材质）、uniforms、source、components 等字段及其类型约束，用于校验 Fabric 材质描述。",
+      "tags": ["schema-definition", "json-schema", "fabric", "material", "validation"],
+      "complexity": "moderate",
+      "languageNotes": "materials 字段通过 additionalProperties 递归 $ref 自身以支持材质层级组合。"
+    },
+    {
+      "id": "config:eslint.config.js",
+      "type": "config",
+      "name": "eslint.config.js",
+      "filePath": "eslint.config.js",
+      "summary": "项目根 ESLint flat config，基于 @cesium/eslint-config 与 typescript-eslint，集成 react-hooks、react-refresh、eslint-seatbelt 等插件并声明全局 ignore 规则（Build、ThirdParty、Documentation 等）。",
+      "tags": ["configuration", "linting", "eslint", "build-system", "typescript"],
+      "complexity": "moderate",
+      "languageNotes": "采用 ESLint flat config（数组导出）而非传统 .eslintrc。"
+    },
+    {
+      "id": "file:index.cjs",
+      "type": "file",
+      "name": "index.cjs",
+      "filePath": "index.cjs",
+      "summary": "包的 CommonJS 入口 stub，根据 NODE_ENV 在生产环境加载 Build/Cesium（压缩版），否则加载 Build/CesiumUnminified（未压缩版）。",
+      "tags": ["entry-point", "commonjs", "build", "loader"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/build.launch",
+      "type": "file",
+      "name": "build.launch",
+      "filePath": "launches/build.launch",
+      "summary": "Eclipse 外部工具构建配置，调用 gulp build 任务（node ./node_modules/gulp/bin/gulp.js build）构建 CesiumJS 源码。",
+      "tags": ["build-system", "eclipse", "gulp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/buildApps.launch",
+      "type": "file",
+      "name": "buildApps.launch",
+      "filePath": "launches/buildApps.launch",
+      "summary": "Eclipse 外部工具构建配置，调用 gulp build-apps 任务构建示例 Apps。",
+      "tags": ["build-system", "eclipse", "gulp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/clean.launch",
+      "type": "file",
+      "name": "clean.launch",
+      "filePath": "launches/clean.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp clean 任务清理构建产物。",
+      "tags": ["build-system", "eclipse", "gulp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/combine.launch",
+      "type": "file",
+      "name": "combine.launch",
+      "filePath": "launches/combine.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp combine 任务将分散源码合并为单一可发布文件。",
+      "tags": ["build-system", "eclipse", "gulp", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/generateDocumentation.launch",
+      "type": "file",
+      "name": "generateDocumentation.launch",
+      "filePath": "launches/generateDocumentation.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp 生成 API 参考文档的任务。",
+      "tags": ["build-system", "eclipse", "gulp", "documentation", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/instrumentForCoverage.launch",
+      "type": "file",
+      "name": "instrumentForCoverage.launch",
+      "filePath": "launches/instrumentForCoverage.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp instrumentForCoverage 任务为源码注入覆盖率桩代码。",
+      "tags": ["build-system", "eclipse", "gulp", "test-coverage", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/makeZipFile.launch",
+      "type": "file",
+      "name": "makeZipFile.launch",
+      "filePath": "launches/makeZipFile.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp make-zip-file 任务打包发布压缩包。",
+      "tags": ["build-system", "eclipse", "gulp", "release", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/minify.launch",
+      "type": "file",
+      "name": "minify.launch",
+      "filePath": "launches/minify.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp minify 任务对合并后的源码进行压缩混淆。",
+      "tags": ["build-system", "eclipse", "gulp", "minification", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/release.launch",
+      "type": "file",
+      "name": "release.launch",
+      "filePath": "launches/release.launch",
+      "summary": "Eclipse 外部工具配置，调用 gulp release 任务执行完整的发布构建流程。",
+      "tags": ["build-system", "eclipse", "gulp", "release", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/runPublicServer.launch",
+      "type": "file",
+      "name": "runPublicServer.launch",
+      "filePath": "launches/runPublicServer.launch",
+      "summary": "Eclipse 外部工具配置，启动 gulp 公网开发服务器用于本地预览。",
+      "tags": ["build-system", "eclipse", "gulp", "dev-server", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:launches/runServer.launch",
+      "type": "file",
+      "name": "runServer.launch",
+      "filePath": "launches/runServer.launch",
+      "summary": "Eclipse 外部工具配置，启动 gulp 本地开发服务器（runServer 任务）用于测试与调试。",
+      "tags": ["build-system", "eclipse", "gulp", "dev-server", "tooling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lint-staged.config.js",
+      "type": "file",
+      "name": "lint-staged.config.js",
+      "filePath": "lint-staged.config.js",
+      "summary": "lint-staged 配置，在 git pre-commit 钩子中对暂存的 JS/TS/CSS/HTML 文件运行 eslint + prettier，对 Markdown 运行 markdownlint + prettier。",
+      "tags": ["configuration", "linting", "prettier", "pre-commit", "tooling"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:Documentation/README.md",
+      "target": "document:Documentation/Contributors/ReleaseGuide/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/README.md",
+      "target": "document:Documentation/Contributors/TestingGuide/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/README.md",
+      "target": "document:Documentation/CustomShaderGuide/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/README.md",
+      "target": "document:Documentation/FabricGuide/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/README.md",
+      "target": "document:Documentation/OfflineGuide/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/Contributors/ReleaseGuide/README.md",
+      "target": "document:Documentation/Contributors/ReleaseGuide/ReleaseSchedule.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/Contributors/ReleaseGuide/README.md",
+      "target": "document:Documentation/Contributors/ReleaseGuide/PatchReleases/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/Contributors/ReleaseGuide/README.md",
+      "target": "document:Documentation/Contributors/ReleaseGuide/Prereleases/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:Documentation/FabricGuide/README.md",
+      "target": "schema:Documentation/Schemas/Fabric/Material.schema.json",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:eslint.config.js",
+      "target": "file:lint-staged.config.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,5451 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 34,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "packages/engine/Source/Scene/Cesium3DTilesetTraversal.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 323,
+      "nonEmptyLines": 290,
+      "functions": [
+        {
+          "name": "Cesium3DTilesetTraversal",
+          "startLine": 21,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "isOnScreenLongEnough",
+          "startLine": 162,
+          "endLine": 181,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateTileVisibility",
+          "startLine": 208,
+          "endLine": 243,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "meetsScreenSpaceErrorEarly",
+          "startLine": 251,
+          "endLine": 267,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "anyChildrenVisible",
+          "startLine": 275,
+          "endLine": 284,
+          "params": [
+            "tile",
+            "frameState"
+          ]
+        },
+        {
+          "name": "updateMinimumMaximumPriority",
+          "startLine": 290,
+          "endLine": 321,
+          "params": [
+            "tile"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isOnScreenLongEnough",
+          "callee": "Math.max",
+          "lineNumber": 176
+        },
+        {
+          "caller": "updateTileVisibility",
+          "callee": "tile.updateVisibility",
+          "lineNumber": 209
+        },
+        {
+          "caller": "updateTileVisibility",
+          "callee": "updateTileVisibility",
+          "lineNumber": 221
+        },
+        {
+          "caller": "updateTileVisibility",
+          "callee": "meetsScreenSpaceErrorEarly",
+          "lineNumber": 226
+        },
+        {
+          "caller": "updateTileVisibility",
+          "callee": "anyChildrenVisible",
+          "lineNumber": 237
+        },
+        {
+          "caller": "meetsScreenSpaceErrorEarly",
+          "callee": "defined",
+          "lineNumber": 254
+        },
+        {
+          "caller": "meetsScreenSpaceErrorEarly",
+          "callee": "tile.getScreenSpaceError",
+          "lineNumber": 264
+        },
+        {
+          "caller": "anyChildrenVisible",
+          "callee": "child.updateVisibility",
+          "lineNumber": 280
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.max",
+          "lineNumber": 295
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.min",
+          "lineNumber": 299
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.max",
+          "lineNumber": 303
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.min",
+          "lineNumber": 304
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.max",
+          "lineNumber": 305
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.min",
+          "lineNumber": 309
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.max",
+          "lineNumber": 313
+        },
+        {
+          "caller": "updateMinimumMaximumPriority",
+          "callee": "Math.min",
+          "lineNumber": 317
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Composite3DTileContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 365,
+      "nonEmptyLines": 313,
+      "classes": [
+        {
+          "name": "Composite3DTileContent",
+          "startLine": 18,
+          "endLine": 361,
+          "methods": [
+            "constructor",
+            "featurePropertiesDirty",
+            "featurePropertiesDirty",
+            "featuresLength",
+            "pointsLength",
+            "trianglesLength",
+            "geometryByteLength",
+            "texturesByteLength",
+            "batchTableByteLength",
+            "innerContents",
+            "ready",
+            "tileset",
+            "tile",
+            "url",
+            "metadata",
+            "metadata",
+            "batchTable",
+            "group",
+            "group",
+            "fromTileType",
+            "hasProperty",
+            "getFeature",
+            "applyDebugSettings",
+            "applyStyle",
+            "update",
+            "pick",
+            "isDestroyed",
+            "destroy"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "defined",
+          "lineNumber": 24
+        },
+        {
+          "caller": "url",
+          "callee": "this._resource.getUrlComponent",
+          "lineNumber": 127
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "view.getUint32",
+          "lineNumber": 190
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "view.getUint32",
+          "lineNumber": 201
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "defined",
+          "lineNumber": 210
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "getMagic",
+          "lineNumber": 221
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "view.getUint32",
+          "lineNumber": 224
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "resource.getDerivedResource",
+          "lineNumber": 233
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "defined",
+          "lineNumber": 239
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "Promise.resolve",
+          "lineNumber": 240
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "contentFactory",
+          "lineNumber": 241
+        },
+        {
+          "caller": "fromTileType",
+          "callee": "Promise.all",
+          "lineNumber": 252
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "contents[i].applyDebugSettings",
+          "lineNumber": 282
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "contents[i].applyStyle",
+          "lineNumber": 290
+        },
+        {
+          "caller": "update",
+          "callee": "contents[i].update",
+          "lineNumber": 299
+        },
+        {
+          "caller": "pick",
+          "callee": "contents[i].pick",
+          "lineNumber": 329
+        },
+        {
+          "caller": "pick",
+          "callee": "defined",
+          "lineNumber": 331
+        },
+        {
+          "caller": "pick",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 335
+        },
+        {
+          "caller": "pick",
+          "callee": "defined",
+          "lineNumber": 342
+        },
+        {
+          "caller": "destroy",
+          "callee": "contents[i].destroy",
+          "lineNumber": 357
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 359
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ConditionsExpression.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 219,
+      "nonEmptyLines": 200,
+      "functions": [
+        {
+          "name": "ConditionsExpression",
+          "startLine": 32,
+          "endLine": 38,
+          "params": [
+            "conditionsExpression",
+            "defines"
+          ]
+        },
+        {
+          "name": "Statement",
+          "startLine": 58,
+          "endLine": 61,
+          "params": [
+            "condition",
+            "expression"
+          ]
+        },
+        {
+          "name": "setRuntime",
+          "startLine": 63,
+          "endLine": 82,
+          "params": [
+            "expression",
+            "defines"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ConditionsExpression",
+          "callee": "clone",
+          "lineNumber": 33
+        },
+        {
+          "caller": "ConditionsExpression",
+          "callee": "setRuntime",
+          "lineNumber": 37
+        },
+        {
+          "caller": "setRuntime",
+          "callee": "defined",
+          "lineNumber": 66
+        },
+        {
+          "caller": "setRuntime",
+          "callee": "String",
+          "lineNumber": 72
+        },
+        {
+          "caller": "setRuntime",
+          "callee": "String",
+          "lineNumber": 73
+        },
+        {
+          "caller": "setRuntime",
+          "callee": "runtimeConditions.push",
+          "lineNumber": 74
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/CreditDisplay.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 654,
+      "nonEmptyLines": 577,
+      "functions": [
+        {
+          "name": "CreditDisplayElement",
+          "startLine": 23,
+          "endLine": 26,
+          "params": [
+            "credit",
+            "count"
+          ]
+        },
+        {
+          "name": "contains",
+          "startLine": 28,
+          "endLine": 37,
+          "params": [
+            "credits",
+            "credit"
+          ]
+        },
+        {
+          "name": "swapCesiumCredit",
+          "startLine": 39,
+          "endLine": 57,
+          "params": [
+            "creditDisplay"
+          ]
+        },
+        {
+          "name": "createDelimiterElement",
+          "startLine": 61,
+          "endLine": 66,
+          "params": [
+            "delimiter"
+          ]
+        },
+        {
+          "name": "createCreditElement",
+          "startLine": 68,
+          "endLine": 77,
+          "params": [
+            "element",
+            "elementWrapperTagName"
+          ]
+        },
+        {
+          "name": "displayCredits",
+          "startLine": 79,
+          "endLine": 136,
+          "params": [
+            "container",
+            "credits",
+            "delimiter",
+            "elementWrapperTagName"
+          ]
+        },
+        {
+          "name": "styleLightboxContainer",
+          "startLine": 138,
+          "endLine": 163,
+          "params": [
+            "that"
+          ]
+        },
+        {
+          "name": "appendCss",
+          "startLine": 165,
+          "endLine": 279,
+          "params": [
+            "container"
+          ]
+        },
+        {
+          "name": "CreditDisplay",
+          "startLine": 301,
+          "endLine": 390,
+          "params": [
+            "container",
+            "delimiter",
+            "viewport"
+          ]
+        },
+        {
+          "name": "setCredit",
+          "startLine": 392,
+          "endLine": 411,
+          "params": [
+            "creditDisplay",
+            "credits",
+            "credit",
+            "count"
+          ]
+        },
+        {
+          "name": "getDefaultCredit",
+          "startLine": 607,
+          "endLine": 633,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "contains",
+          "callee": "Credit.equals",
+          "lineNumber": 32
+        },
+        {
+          "caller": "swapCesiumCredit",
+          "callee": "Credit.equals",
+          "lineNumber": 45
+        },
+        {
+          "caller": "swapCesiumCredit",
+          "callee": "defined",
+          "lineNumber": 49
+        },
+        {
+          "caller": "swapCesiumCredit",
+          "callee": "creditDisplay._cesiumCreditContainer.removeChild",
+          "lineNumber": 50
+        },
+        {
+          "caller": "swapCesiumCredit",
+          "callee": "defined",
+          "lineNumber": 52
+        },
+        {
+          "caller": "swapCesiumCredit",
+          "callee": "creditDisplay._cesiumCreditContainer.appendChild",
+          "lineNumber": 53
+        },
+        {
+          "caller": "createDelimiterElement",
+          "callee": "document.createElement",
+          "lineNumber": 62
+        },
+        {
+          "caller": "createCreditElement",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "createCreditElement",
+          "callee": "document.createElement",
+          "lineNumber": 71
+        },
+        {
+          "caller": "createCreditElement",
+          "callee": "wrapper.appendChild",
+          "lineNumber": 73
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "credits.sort",
+          "lineNumber": 84
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "defined",
+          "lineNumber": 90
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "container.appendChild",
+          "lineNumber": 98
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "createDelimiterElement",
+          "lineNumber": 98
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "container.replaceChild",
+          "lineNumber": 102
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "createDelimiterElement",
+          "lineNumber": 103
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "container.appendChild",
+          "lineNumber": 115
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "createCreditElement",
+          "lineNumber": 116
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "container.replaceChild",
+          "lineNumber": 122
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "createCreditElement",
+          "lineNumber": 123
+        },
+        {
+          "caller": "displayCredits",
+          "callee": "container.removeChild",
+          "lineNumber": 134
+        },
+        {
+          "caller": "styleLightboxContainer",
+          "callee": "Math.floor",
+          "lineNumber": 150
+        },
+        {
+          "caller": "styleLightboxContainer",
+          "callee": "Math.floor",
+          "lineNumber": 158
+        },
+        {
+          "caller": "getShadowRoot",
+          "callee": "container.getRootNode",
+          "lineNumber": 267
+        },
+        {
+          "caller": "appendCss",
+          "callee": "getShadowRoot",
+          "lineNumber": 275
+        },
+        {
+          "caller": "appendCss",
+          "callee": "document.createElement",
+          "lineNumber": 276
+        },
+        {
+          "caller": "appendCss",
+          "callee": "shadowRootOrDocumentHead.appendChild",
+          "lineNumber": 278
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "Check.defined",
+          "lineNumber": 303
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 309
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "viewport.appendChild",
+          "lineNumber": 311
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 313
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "lightbox.appendChild",
+          "lineNumber": 315
+        },
+        {
+          "caller": "hideLightbox",
+          "callee": "lightboxCredits.contains",
+          "lineNumber": 318
+        },
+        {
+          "caller": "hideLightbox",
+          "callee": "that.hideLightbox",
+          "lineNumber": 321
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "lightbox.addEventListener",
+          "lineNumber": 323
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 325
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "lightboxCredits.appendChild",
+          "lineNumber": 328
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 330
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "this.hideLightbox.bind",
+          "lineNumber": 331
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "lightboxCredits.appendChild",
+          "lineNumber": 334
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 336
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "lightboxCredits.appendChild",
+          "lineNumber": 337
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 339
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "container.appendChild",
+          "lineNumber": 342
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 344
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "container.appendChild",
+          "lineNumber": 347
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "document.createElement",
+          "lineNumber": 349
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "this.showLightbox.bind",
+          "lineNumber": 351
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "container.appendChild",
+          "lineNumber": 353
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "appendCss",
+          "lineNumber": 355
+        },
+        {
+          "caller": "CreditDisplay",
+          "callee": "Credit.clone",
+          "lineNumber": 356
+        },
+        {
+          "caller": "setCredit",
+          "callee": "credits.get",
+          "lineNumber": 394
+        },
+        {
+          "caller": "setCredit",
+          "callee": "defined",
+          "lineNumber": 395
+        },
+        {
+          "caller": "setCredit",
+          "callee": "pool.push",
+          "lineNumber": 404
+        },
+        {
+          "caller": "setCredit",
+          "callee": "credits.set",
+          "lineNumber": 407
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "defined",
+          "lineNumber": 608
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "buildModuleUrl",
+          "lineNumber": 609
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "logo.indexOf",
+          "lineNumber": 614
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "logo.indexOf",
+          "lineNumber": 615
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "logo.indexOf",
+          "lineNumber": 616
+        },
+        {
+          "caller": "getDefaultCredit",
+          "callee": "logoUrl.path",
+          "lineNumber": 619
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/DiscardEmptyTileImagePolicy.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "DiscardEmptyTileImagePolicy",
+          "startLine": 13,
+          "endLine": 13,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/DiscardMissingTileImagePolicy.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 148,
+      "nonEmptyLines": 126,
+      "functions": [
+        {
+          "name": "DiscardMissingTileImagePolicy",
+          "startLine": 22,
+          "endLine": 94,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "defined",
+          "lineNumber": 26
+        },
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "Resource.createIfNeeded",
+          "lineNumber": 40
+        },
+        {
+          "caller": "success",
+          "callee": "defined",
+          "lineNumber": 45
+        },
+        {
+          "caller": "success",
+          "callee": "getImagePixels",
+          "lineNumber": 49
+        },
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "resource\n    .fetchImage({\n      preferBlob: true,\n      preferImageBitmap: true,\n      flipY: true,\n    })\n    .then(success)\n    .catch",
+          "lineNumber": 86
+        },
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "resource\n    .fetchImage({\n      preferBlob: true,\n      preferImageBitmap: true,\n      flipY: true,\n    })\n    .then",
+          "lineNumber": 86
+        },
+        {
+          "caller": "DiscardMissingTileImagePolicy",
+          "callee": "resource\n    .fetchImage",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/DracoLoader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 100,
+      "nonEmptyLines": 89,
+      "classes": [
+        {
+          "name": "DracoLoader",
+          "startLine": 9,
+          "endLine": 87,
+          "methods": [
+            "_getDecoderTaskProcessor",
+            "decodePointCloud",
+            "decodeBufferView"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_getDecoderTaskProcessor",
+          "callee": "defined",
+          "lineNumber": 11
+        },
+        {
+          "caller": "_getDecoderTaskProcessor",
+          "callee": "processor\n        .initWebAssemblyModule({\n          wasmBinaryFile: \"ThirdParty/draco_decoder.wasm\",\n        })\n        .then(function (result) {\n          if (result) {\n            DracoLoader._taskProcessorReady = true;\n          } else {\n            DracoLoader._error = new RuntimeError(\n              \"Draco decoder could not be initialized.\",\n            );\n          }\n        })\n        .catch",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_getDecoderTaskProcessor",
+          "callee": "processor\n        .initWebAssemblyModule({\n          wasmBinaryFile: \"ThirdParty/draco_decoder.wasm\",\n        })\n        .then",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_getDecoderTaskProcessor",
+          "callee": "processor\n        .initWebAssemblyModule",
+          "lineNumber": 16
+        },
+        {
+          "caller": "decodePointCloud",
+          "callee": "DracoLoader._getDecoderTaskProcessor",
+          "lineNumber": 45
+        },
+        {
+          "caller": "decodePointCloud",
+          "callee": "defined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "decodePointCloud",
+          "callee": "decoderTaskProcessor.scheduleTask",
+          "lineNumber": 54
+        },
+        {
+          "caller": "decodeBufferView",
+          "callee": "DracoLoader._getDecoderTaskProcessor",
+          "lineNumber": 74
+        },
+        {
+          "caller": "decodeBufferView",
+          "callee": "defined",
+          "lineNumber": 76
+        },
+        {
+          "caller": "decodeBufferView",
+          "callee": "decoderTaskProcessor.scheduleTask",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 46,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Empty3DTileContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 132,
+      "nonEmptyLines": 107,
+      "classes": [
+        {
+          "name": "Empty3DTileContent",
+          "startLine": 15,
+          "endLine": 130,
+          "methods": [
+            "constructor",
+            "featuresLength",
+            "pointsLength",
+            "trianglesLength",
+            "geometryByteLength",
+            "texturesByteLength",
+            "batchTableByteLength",
+            "innerContents",
+            "ready",
+            "tileset",
+            "tile",
+            "url",
+            "metadata",
+            "metadata",
+            "batchTable",
+            "group",
+            "group",
+            "hasProperty",
+            "getFeature",
+            "applyDebugSettings",
+            "applyStyle",
+            "update",
+            "pick",
+            "isDestroyed",
+            "destroy"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 128
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Expression.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 2233,
+      "nonEmptyLines": 2046,
+      "functions": [
+        {
+          "name": "Expression",
+          "startLine": 37,
+          "endLine": 58,
+          "params": [
+            "expression",
+            "defines"
+          ]
+        },
+        {
+          "name": "fract",
+          "startLine": 308,
+          "endLine": 310,
+          "params": [
+            "number"
+          ]
+        },
+        {
+          "name": "exp2",
+          "startLine": 312,
+          "endLine": 314,
+          "params": [
+            "exponent"
+          ]
+        },
+        {
+          "name": "log2",
+          "startLine": 316,
+          "endLine": 318,
+          "params": [
+            "number"
+          ]
+        },
+        {
+          "name": "getEvaluateUnaryComponentwise",
+          "startLine": 320,
+          "endLine": 350,
+          "params": [
+            "operation"
+          ]
+        },
+        {
+          "name": "getEvaluateBinaryComponentwise",
+          "startLine": 352,
+          "endLine": 410,
+          "params": [
+            "operation",
+            "allowScalar"
+          ]
+        },
+        {
+          "name": "getEvaluateTernaryComponentwise",
+          "startLine": 412,
+          "endLine": 486,
+          "params": [
+            "operation",
+            "allowScalar"
+          ]
+        },
+        {
+          "name": "length",
+          "startLine": 488,
+          "endLine": 502,
+          "params": [
+            "call",
+            "left"
+          ]
+        },
+        {
+          "name": "normalize",
+          "startLine": 504,
+          "endLine": 518,
+          "params": [
+            "call",
+            "left"
+          ]
+        },
+        {
+          "name": "distance",
+          "startLine": 520,
+          "endLine": 534,
+          "params": [
+            "call",
+            "left",
+            "right"
+          ]
+        },
+        {
+          "name": "dot",
+          "startLine": 536,
+          "endLine": 550,
+          "params": [
+            "call",
+            "left",
+            "right"
+          ]
+        },
+        {
+          "name": "cross",
+          "startLine": 552,
+          "endLine": 560,
+          "params": [
+            "call",
+            "left",
+            "right"
+          ]
+        },
+        {
+          "name": "Node",
+          "startLine": 562,
+          "endLine": 571,
+          "params": [
+            "type",
+            "value",
+            "left",
+            "right",
+            "test"
+          ]
+        },
+        {
+          "name": "replaceDefines",
+          "startLine": 573,
+          "endLine": 587,
+          "params": [
+            "expression",
+            "defines"
+          ]
+        },
+        {
+          "name": "removeBackslashes",
+          "startLine": 589,
+          "endLine": 591,
+          "params": [
+            "expression"
+          ]
+        },
+        {
+          "name": "replaceBackslashes",
+          "startLine": 593,
+          "endLine": 595,
+          "params": [
+            "expression"
+          ]
+        },
+        {
+          "name": "replaceVariables",
+          "startLine": 597,
+          "endLine": 629,
+          "params": [
+            "expression"
+          ]
+        },
+        {
+          "name": "parseLiteral",
+          "startLine": 631,
+          "endLine": 648,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "parseCall",
+          "startLine": 650,
+          "endLine": 786,
+          "params": [
+            "expression",
+            "ast"
+          ]
+        },
+        {
+          "name": "parseRegex",
+          "startLine": 788,
+          "endLine": 825,
+          "params": [
+            "expression",
+            "ast"
+          ]
+        },
+        {
+          "name": "parseKeywordsAndVariables",
+          "startLine": 827,
+          "endLine": 843,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "parseMathConstant",
+          "startLine": 845,
+          "endLine": 852,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "parseNumberConstant",
+          "startLine": 854,
+          "endLine": 862,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "parseMemberExpression",
+          "startLine": 864,
+          "endLine": 880,
+          "params": [
+            "expression",
+            "ast"
+          ]
+        },
+        {
+          "name": "isLiteralType",
+          "startLine": 882,
+          "endLine": 884,
+          "params": [
+            "node"
+          ]
+        },
+        {
+          "name": "isVariable",
+          "startLine": 886,
+          "endLine": 888,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "getPropertyName",
+          "startLine": 890,
+          "endLine": 892,
+          "params": [
+            "variable"
+          ]
+        },
+        {
+          "name": "createRuntimeAst",
+          "startLine": 894,
+          "endLine": 951,
+          "params": [
+            "expression",
+            "ast"
+          ]
+        },
+        {
+          "name": "setEvaluateFunction",
+          "startLine": 953,
+          "endLine": 1053,
+          "params": [
+            "node"
+          ]
+        },
+        {
+          "name": "evaluateTilesetTime",
+          "startLine": 1055,
+          "endLine": 1060,
+          "params": [
+            "feature"
+          ]
+        },
+        {
+          "name": "getEvaluateUnaryFunction",
+          "startLine": 1062,
+          "endLine": 1068,
+          "params": [
+            "call"
+          ]
+        },
+        {
+          "name": "getEvaluateBinaryFunction",
+          "startLine": 1070,
+          "endLine": 1077,
+          "params": [
+            "call"
+          ]
+        },
+        {
+          "name": "getEvaluateTernaryFunction",
+          "startLine": 1079,
+          "endLine": 1087,
+          "params": [
+            "call"
+          ]
+        },
+        {
+          "name": "getFeatureProperty",
+          "startLine": 1089,
+          "endLine": 1094,
+          "params": [
+            "feature",
+            "name"
+          ]
+        },
+        {
+          "name": "checkFeature",
+          "startLine": 1239,
+          "endLine": 1241,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "convertHSLToRGB",
+          "startLine": 1816,
+          "endLine": 1831,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "convertRGBToColor",
+          "startLine": 1833,
+          "endLine": 1849,
+          "params": [
+            "ast"
+          ]
+        },
+        {
+          "name": "numberToString",
+          "startLine": 1851,
+          "endLine": 1858,
+          "params": [
+            "number"
+          ]
+        },
+        {
+          "name": "colorToVec3",
+          "startLine": 1860,
+          "endLine": 1865,
+          "params": [
+            "color"
+          ]
+        },
+        {
+          "name": "colorToVec4",
+          "startLine": 1867,
+          "endLine": 1873,
+          "params": [
+            "color"
+          ]
+        },
+        {
+          "name": "getExpressionArray",
+          "startLine": 1875,
+          "endLine": 1891,
+          "params": [
+            "array",
+            "variableSubstitutionMap",
+            "shaderState",
+            "parent"
+          ]
+        },
+        {
+          "name": "getVariableName",
+          "startLine": 1893,
+          "endLine": 1899,
+          "params": [
+            "variableName",
+            "variableSubstitutionMap"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Expression",
+          "callee": "Check.typeOf.string",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Expression",
+          "callee": "replaceDefines",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Expression",
+          "callee": "replaceVariables",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Expression",
+          "callee": "removeBackslashes",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Expression",
+          "callee": "jsep.addBinaryOp",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Expression",
+          "callee": "jsep.addBinaryOp",
+          "lineNumber": 48
+        },
+        {
+          "caller": "Expression",
+          "callee": "jsep",
+          "lineNumber": 52
+        },
+        {
+          "caller": "Expression",
+          "callee": "createRuntimeAst",
+          "lineNumber": 57
+        },
+        {
+          "caller": "fract",
+          "callee": "Math.floor",
+          "lineNumber": 309
+        },
+        {
+          "caller": "exp2",
+          "callee": "Math.pow",
+          "lineNumber": 313
+        },
+        {
+          "caller": "log2",
+          "callee": "CesiumMath.log2",
+          "lineNumber": 317
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 323
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "Cartesian2.fromElements",
+          "lineNumber": 325
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 326
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 327
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 328
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 331
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 332
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 333
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 334
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 335
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 338
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 339
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 340
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 341
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 342
+        },
+        {
+          "caller": "getEvaluateUnaryComponentwise",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 343
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 356
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian2.fromElements",
+          "lineNumber": 358
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 359
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 360
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 361
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 364
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 365
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 366
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 367
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 368
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 371
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 372
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 373
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 374
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 375
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 376
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 382
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian2.fromElements",
+          "lineNumber": 384
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 385
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 386
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 387
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 390
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 391
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 392
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 393
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 394
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 397
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 398
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 399
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 400
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 401
+        },
+        {
+          "caller": "getEvaluateBinaryComponentwise",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 402
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 416
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian2.fromElements",
+          "lineNumber": 418
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 419
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 420
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 421
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 424
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 425
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 426
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 427
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 428
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 431
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 432
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 433
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 434
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 435
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 436
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 446
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian2.fromElements",
+          "lineNumber": 452
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 453
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 454
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 455
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian3.fromElements",
+          "lineNumber": 462
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 463
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 464
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 465
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 466
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "Cartesian4.fromElements",
+          "lineNumber": 473
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 474
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 475
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 476
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "operation",
+          "lineNumber": 477
+        },
+        {
+          "caller": "getEvaluateTernaryComponentwise",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 478
+        },
+        {
+          "caller": "length",
+          "callee": "Math.abs",
+          "lineNumber": 490
+        },
+        {
+          "caller": "length",
+          "callee": "Cartesian2.magnitude",
+          "lineNumber": 492
+        },
+        {
+          "caller": "length",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 494
+        },
+        {
+          "caller": "length",
+          "callee": "Cartesian4.magnitude",
+          "lineNumber": 496
+        },
+        {
+          "caller": "normalize",
+          "callee": "Cartesian2.normalize",
+          "lineNumber": 508
+        },
+        {
+          "caller": "normalize",
+          "callee": "scratchStorage.getCartesian2",
+          "lineNumber": 508
+        },
+        {
+          "caller": "normalize",
+          "callee": "Cartesian3.normalize",
+          "lineNumber": 510
+        },
+        {
+          "caller": "normalize",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 510
+        },
+        {
+          "caller": "normalize",
+          "callee": "Cartesian4.normalize",
+          "lineNumber": 512
+        },
+        {
+          "caller": "normalize",
+          "callee": "scratchStorage.getCartesian4",
+          "lineNumber": 512
+        },
+        {
+          "caller": "distance",
+          "callee": "Math.abs",
+          "lineNumber": 522
+        },
+        {
+          "caller": "distance",
+          "callee": "Cartesian2.distance",
+          "lineNumber": 524
+        },
+        {
+          "caller": "distance",
+          "callee": "Cartesian3.distance",
+          "lineNumber": 526
+        },
+        {
+          "caller": "distance",
+          "callee": "Cartesian4.distance",
+          "lineNumber": 528
+        },
+        {
+          "caller": "dot",
+          "callee": "Cartesian2.dot",
+          "lineNumber": 540
+        },
+        {
+          "caller": "dot",
+          "callee": "Cartesian3.dot",
+          "lineNumber": 542
+        },
+        {
+          "caller": "dot",
+          "callee": "Cartesian4.dot",
+          "lineNumber": 544
+        },
+        {
+          "caller": "cross",
+          "callee": "Cartesian3.cross",
+          "lineNumber": 554
+        },
+        {
+          "caller": "cross",
+          "callee": "scratchStorage.getCartesian3",
+          "lineNumber": 554
+        },
+        {
+          "caller": "Node",
+          "callee": "setEvaluateFunction",
+          "lineNumber": 570
+        },
+        {
+          "caller": "replaceDefines",
+          "callee": "defined",
+          "lineNumber": 574
+        },
+        {
+          "caller": "replaceDefines",
+          "callee": "defines.hasOwnProperty",
+          "lineNumber": 578
+        },
+        {
+          "caller": "replaceDefines",
+          "callee": "defined",
+          "lineNumber": 581
+        },
+        {
+          "caller": "replaceDefines",
+          "callee": "expression.replace",
+          "lineNumber": 582
+        },
+        {
+          "caller": "removeBackslashes",
+          "callee": "expression.replace",
+          "lineNumber": 590
+        },
+        {
+          "caller": "replaceBackslashes",
+          "callee": "expression.replace",
+          "lineNumber": 594
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 600
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 603
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 604
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 607
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 608
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 609
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 610
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 612
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 613
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 614
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 615
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 617
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 618
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 622
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.substr",
+          "lineNumber": 623
+        },
+        {
+          "caller": "replaceVariables",
+          "callee": "exp.indexOf",
+          "lineNumber": 624
+        },
+        {
+          "caller": "parseLiteral",
+          "callee": "ast.value.indexOf",
+          "lineNumber": 640
+        },
+        {
+          "caller": "parseLiteral",
+          "callee": "replaceBackslashes",
+          "lineNumber": 645
+        },
+        {
+          "caller": "parseCall",
+          "callee": "defined",
+          "lineNumber": 662
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 671
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 672
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 675
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 688
+        },
+        {
+          "caller": "parseCall",
+          "callee": "defined",
+          "lineNumber": 689
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 690
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 699
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 700
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 701
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 709
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 710
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 711
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 712
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 719
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 729
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 735
+        },
+        {
+          "caller": "parseCall",
+          "callee": "defined",
+          "lineNumber": 742
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 746
+        },
+        {
+          "caller": "parseCall",
+          "callee": "defined",
+          "lineNumber": 748
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 752
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 753
+        },
+        {
+          "caller": "parseCall",
+          "callee": "defined",
+          "lineNumber": 755
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 759
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 760
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 761
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 767
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 773
+        },
+        {
+          "caller": "parseCall",
+          "callee": "createRuntimeAst",
+          "lineNumber": 779
+        },
+        {
+          "caller": "parseCall",
+          "callee": "parseRegex",
+          "lineNumber": 782
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "createRuntimeAst",
+          "lineNumber": 795
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "createRuntimeAst",
+          "lineNumber": 800
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "isLiteralType",
+          "lineNumber": 801
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "isLiteralType",
+          "lineNumber": 801
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "replaceBackslashes",
+          "lineNumber": 804
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "String",
+          "lineNumber": 804
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "isLiteralType",
+          "lineNumber": 816
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "replaceBackslashes",
+          "lineNumber": 818
+        },
+        {
+          "caller": "parseRegex",
+          "callee": "String",
+          "lineNumber": 818
+        },
+        {
+          "caller": "parseKeywordsAndVariables",
+          "callee": "isVariable",
+          "lineNumber": 828
+        },
+        {
+          "caller": "parseKeywordsAndVariables",
+          "callee": "getPropertyName",
+          "lineNumber": 829
+        },
+        {
+          "caller": "parseKeywordsAndVariables",
+          "callee": "name.substr",
+          "lineNumber": 830
+        },
+        {
+          "caller": "parseMemberExpression",
+          "callee": "parseMathConstant",
+          "lineNumber": 866
+        },
+        {
+          "caller": "parseMemberExpression",
+          "callee": "parseNumberConstant",
+          "lineNumber": 868
+        },
+        {
+          "caller": "parseMemberExpression",
+          "callee": "createRuntimeAst",
+          "lineNumber": 872
+        },
+        {
+          "caller": "parseMemberExpression",
+          "callee": "createRuntimeAst",
+          "lineNumber": 874
+        },
+        {
+          "caller": "isVariable",
+          "callee": "name.substr",
+          "lineNumber": 887
+        },
+        {
+          "caller": "getPropertyName",
+          "callee": "variable.substr",
+          "lineNumber": 891
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "parseLiteral",
+          "lineNumber": 901
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "parseCall",
+          "lineNumber": 903
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "parseKeywordsAndVariables",
+          "lineNumber": 905
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 908
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "unaryOperators.indexOf",
+          "lineNumber": 909
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 916
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 917
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "binaryOperators.indexOf",
+          "lineNumber": 918
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 925
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 926
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "binaryOperators.indexOf",
+          "lineNumber": 927
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 931
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 932
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 933
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "parseMemberExpression",
+          "lineNumber": 936
+        },
+        {
+          "caller": "createRuntimeAst",
+          "callee": "createRuntimeAst",
+          "lineNumber": 940
+        },
+        {
+          "caller": "setEvaluateFunction",
+          "callee": "defined",
+          "lineNumber": 987
+        },
+        {
+          "caller": "setEvaluateFunction",
+          "callee": "getEvaluateUnaryFunction",
+          "lineNumber": 988
+        },
+        {
+          "caller": "setEvaluateFunction",
+          "callee": "defined",
+          "lineNumber": 1021
+        },
+        {
+          "caller": "setEvaluateFunction",
+          "callee": "getEvaluateBinaryFunction",
+          "lineNumber": 1022
+        },
+        {
+          "caller": "setEvaluateFunction",
+          "callee": "getEvaluateTernaryFunction",
+          "lineNumber": 1025
+        },
+        {
+          "caller": "evaluateTilesetTime",
+          "callee": "defined",
+          "lineNumber": 1056
+        },
+        {
+          "caller": "getEvaluateUnaryFunction",
+          "callee": "this._left.evaluate",
+          "lineNumber": 1065
+        },
+        {
+          "caller": "getEvaluateUnaryFunction",
+          "callee": "evaluate",
+          "lineNumber": 1066
+        },
+        {
+          "caller": "getEvaluateBinaryFunction",
+          "callee": "this._left.evaluate",
+          "lineNumber": 1073
+        },
+        {
+          "caller": "getEvaluateBinaryFunction",
+          "callee": "this._right.evaluate",
+          "lineNumber": 1074
+        },
+        {
+          "caller": "getEvaluateBinaryFunction",
+          "callee": "evaluate",
+          "lineNumber": 1075
+        },
+        {
+          "caller": "getEvaluateTernaryFunction",
+          "callee": "this._left.evaluate",
+          "lineNumber": 1082
+        },
+        {
+          "caller": "getEvaluateTernaryFunction",
+          "callee": "this._right.evaluate",
+          "lineNumber": 1083
+        },
+        {
+          "caller": "getEvaluateTernaryFunction",
+          "callee": "this._test.evaluate",
+          "lineNumber": 1084
+        },
+        {
+          "caller": "getEvaluateTernaryFunction",
+          "callee": "evaluate",
+          "lineNumber": 1085
+        },
+        {
+          "caller": "getFeatureProperty",
+          "callee": "defined",
+          "lineNumber": 1091
+        },
+        {
+          "caller": "getFeatureProperty",
+          "callee": "feature.getPropertyInherited",
+          "lineNumber": 1092
+        },
+        {
+          "caller": "convertHSLToRGB",
+          "callee": "Color.fromHsl",
+          "lineNumber": 1830
+        },
+        {
+          "caller": "numberToString",
+          "callee": "number.toFixed",
+          "lineNumber": 1854
+        },
+        {
+          "caller": "numberToString",
+          "callee": "number.toString",
+          "lineNumber": 1857
+        },
+        {
+          "caller": "colorToVec3",
+          "callee": "numberToString",
+          "lineNumber": 1861
+        },
+        {
+          "caller": "colorToVec3",
+          "callee": "numberToString",
+          "lineNumber": 1862
+        },
+        {
+          "caller": "colorToVec3",
+          "callee": "numberToString",
+          "lineNumber": 1863
+        },
+        {
+          "caller": "colorToVec4",
+          "callee": "numberToString",
+          "lineNumber": 1868
+        },
+        {
+          "caller": "colorToVec4",
+          "callee": "numberToString",
+          "lineNumber": 1869
+        },
+        {
+          "caller": "colorToVec4",
+          "callee": "numberToString",
+          "lineNumber": 1870
+        },
+        {
+          "caller": "colorToVec4",
+          "callee": "numberToString",
+          "lineNumber": 1871
+        },
+        {
+          "caller": "getExpressionArray",
+          "callee": "array[i].getShaderExpression",
+          "lineNumber": 1884
+        },
+        {
+          "caller": "getVariableName",
+          "callee": "defined",
+          "lineNumber": 1894
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 0,
+        "functionCount": 42,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/ExpressionNodeType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 27,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GaussianSplatSorter.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 66,
+      "functions": [
+        {
+          "name": "GaussianSplatSorter",
+          "startLine": 11,
+          "endLine": 11,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GaussianSplatTextureGenerator.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 56,
+      "functions": [
+        {
+          "name": "GaussianSplatTextureGenerator",
+          "startLine": 6,
+          "endLine": 6,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/Geometry3DTileContent.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 500,
+      "nonEmptyLines": 427,
+      "functions": [
+        {
+          "name": "createColorChangedCallback",
+          "startLine": 183,
+          "endLine": 189,
+          "params": [
+            "content"
+          ]
+        },
+        {
+          "name": "getBatchIds",
+          "startLine": 191,
+          "endLine": 302,
+          "params": [
+            "featureTableJson",
+            "featureTableBinary"
+          ]
+        },
+        {
+          "name": "initialize",
+          "startLine": 306,
+          "endLine": 487,
+          "params": [
+            "content",
+            "arrayBuffer",
+            "byteOffset"
+          ]
+        },
+        {
+          "name": "createFeatures",
+          "startLine": 489,
+          "endLine": 498,
+          "params": [
+            "content"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Geometry3DTileContent",
+          "startLine": 19,
+          "endLine": 181,
+          "methods": [
+            "constructor",
+            "featuresLength",
+            "pointsLength",
+            "trianglesLength",
+            "geometryByteLength",
+            "texturesByteLength",
+            "batchTableByteLength",
+            "innerContents",
+            "ready",
+            "tileset",
+            "tile",
+            "url",
+            "metadata",
+            "metadata",
+            "batchTable",
+            "group",
+            "group",
+            "hasProperty",
+            "getFeature",
+            "applyDebugSettings",
+            "applyStyle",
+            "update",
+            "pick",
+            "isDestroyed",
+            "destroy"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "initialize",
+          "lineNumber": 39
+        },
+        {
+          "caller": "featuresLength",
+          "callee": "defined",
+          "lineNumber": 43
+        },
+        {
+          "caller": "trianglesLength",
+          "callee": "defined",
+          "lineNumber": 51
+        },
+        {
+          "caller": "geometryByteLength",
+          "callee": "defined",
+          "lineNumber": 58
+        },
+        {
+          "caller": "batchTableByteLength",
+          "callee": "defined",
+          "lineNumber": 69
+        },
+        {
+          "caller": "url",
+          "callee": "this._resource.getUrlComponent",
+          "lineNumber": 99
+        },
+        {
+          "caller": "hasProperty",
+          "callee": "this._batchTable.hasProperty",
+          "lineNumber": 123
+        },
+        {
+          "caller": "getFeature",
+          "callee": "defined",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getFeature",
+          "callee": "createFeatures",
+          "lineNumber": 138
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "defined",
+          "lineNumber": 143
+        },
+        {
+          "caller": "applyDebugSettings",
+          "callee": "this._geometries.applyDebugSettings",
+          "lineNumber": 144
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "createFeatures",
+          "lineNumber": 149
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "defined",
+          "lineNumber": 150
+        },
+        {
+          "caller": "applyStyle",
+          "callee": "this._geometries.applyStyle",
+          "lineNumber": 151
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 156
+        },
+        {
+          "caller": "update",
+          "callee": "this._geometries.update",
+          "lineNumber": 159
+        },
+        {
+          "caller": "update",
+          "callee": "defined",
+          "lineNumber": 162
+        },
+        {
+          "caller": "update",
+          "callee": "this._batchTable.update",
+          "lineNumber": 163
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._geometries.destroy",
+          "lineNumber": 177
+        },
+        {
+          "caller": "destroy",
+          "callee": "this._batchTable.destroy",
+          "lineNumber": 178
+        },
+        {
+          "caller": "destroy",
+          "callee": "destroyObject",
+          "lineNumber": 179
+        },
+        {
+          "caller": "createColorChangedCallback",
+          "callee": "defined",
+          "lineNumber": 185
+        },
+        {
+          "caller": "createColorChangedCallback",
+          "callee": "content._geometries.updateCommands",
+          "lineNumber": 186
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 203
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 213
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 224
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 235
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 247
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 248
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 249
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 250
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 252
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 253
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 254
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 255
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 264
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 265
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 266
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 267
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 270
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 276
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 282
+        },
+        {
+          "caller": "getBatchIds",
+          "callee": "defined",
+          "lineNumber": 288
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 313
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 321
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 329
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 338
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 340
+        },
+        {
+          "caller": "initialize",
+          "callee": "view.getUint32",
+          "lineNumber": 342
+        },
+        {
+          "caller": "initialize",
+          "callee": "getJsonFromTypedArray",
+          "lineNumber": 345
+        },
+        {
+          "caller": "initialize",
+          "callee": "getJsonFromTypedArray",
+          "lineNumber": 367
+        },
+        {
+          "caller": "initialize",
+          "callee": "createColorChangedCallback",
+          "lineNumber": 399
+        },
+        {
+          "caller": "initialize",
+          "callee": "defined",
+          "lineNumber": 410
+        },
+        {
+          "caller": "initialize",
+          "callee": "Cartesian3.unpack",
+          "lineNumber": 411
+        },
+        {
+          "caller": "initialize",
+          "callee": "Matrix4.multiplyByPoint",
+          "lineNumber": 412
+        },
+        {
+          "caller": "initialize",
+          "callee": "getBatchIds",
+          "lineNumber": 415
+        },
+        {
+          "caller": "initialize",
+          "callee": "Promise.resolve",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createFeatures",
+          "callee": "defined",
+          "lineNumber": 491
+        },
+        {
+          "caller": "createFeatures",
+          "callee": "defined",
+          "lineNumber": 493
+        },
+        {
+          "caller": "createFeatures",
+          "callee": "content._geometries.createFeatures",
+          "lineNumber": 494
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GetFeatureInfoFormat.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 396,
+      "nonEmptyLines": 342,
+      "functions": [
+        {
+          "name": "GetFeatureInfoFormat",
+          "startLine": 22,
+          "endLine": 72,
+          "params": [
+            "type",
+            "format",
+            "callback"
+          ]
+        },
+        {
+          "name": "geoJsonToFeatureInfo",
+          "startLine": 74,
+          "endLine": 98,
+          "params": [
+            "json"
+          ]
+        },
+        {
+          "name": "xmlToFeatureInfo",
+          "startLine": 105,
+          "endLine": 136,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "mapInfoXmlToFeatureInfo",
+          "startLine": 138,
+          "endLine": 178,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "esriXmlToFeatureInfo",
+          "startLine": 180,
+          "endLine": 245,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "gmlToFeatureInfo",
+          "startLine": 247,
+          "endLine": 271,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "msGmlToFeatureInfo",
+          "startLine": 276,
+          "endLine": 311,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "getGmlPropertiesRecursively",
+          "startLine": 313,
+          "endLine": 341,
+          "params": [
+            "gmlNode",
+            "properties"
+          ]
+        },
+        {
+          "name": "imageryLayerFeatureInfoFromDataAndProperties",
+          "startLine": 343,
+          "endLine": 350,
+          "params": [
+            "data",
+            "properties"
+          ]
+        },
+        {
+          "name": "unknownXmlToFeatureInfo",
+          "startLine": 352,
+          "endLine": 364,
+          "params": [
+            "xml"
+          ]
+        },
+        {
+          "name": "textToFeatureInfo",
+          "startLine": 371,
+          "endLine": 395,
+          "params": [
+            "text"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GetFeatureInfoFormat",
+          "callee": "defined",
+          "lineNumber": 24
+        },
+        {
+          "caller": "GetFeatureInfoFormat",
+          "callee": "defined",
+          "lineNumber": 31
+        },
+        {
+          "caller": "GetFeatureInfoFormat",
+          "callee": "defined",
+          "lineNumber": 52
+        },
+        {
+          "caller": "geoJsonToFeatureInfo",
+          "callee": "featureInfo.configureNameFromProperties",
+          "lineNumber": 84
+        },
+        {
+          "caller": "geoJsonToFeatureInfo",
+          "callee": "featureInfo.configureDescriptionFromProperties",
+          "lineNumber": 85
+        },
+        {
+          "caller": "geoJsonToFeatureInfo",
+          "callee": "defined",
+          "lineNumber": 88
+        },
+        {
+          "caller": "geoJsonToFeatureInfo",
+          "callee": "Cartographic.fromDegrees",
+          "lineNumber": 91
+        },
+        {
+          "caller": "geoJsonToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 94
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "mapInfoXmlToFeatureInfo",
+          "lineNumber": 112
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "esriXmlToFeatureInfo",
+          "lineNumber": 118
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "gmlToFeatureInfo",
+          "lineNumber": 124
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "new XMLSerializer().serializeToString",
+          "lineNumber": 128
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "msGmlToFeatureInfo",
+          "lineNumber": 131
+        },
+        {
+          "caller": "xmlToFeatureInfo",
+          "callee": "unknownXmlToFeatureInfo",
+          "lineNumber": 134
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "multiFeatureCollection.getElementsByTagNameNS",
+          "lineNumber": 143
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "feature.getElementsByTagNameNS",
+          "lineNumber": 152
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "propertyElement.hasAttribute",
+          "lineNumber": 162
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "propertyElement.getAttribute",
+          "lineNumber": 163
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "propertyElement.textContent.trim",
+          "lineNumber": 164
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "featureInfo.configureNameFromProperties",
+          "lineNumber": 172
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "featureInfo.configureDescriptionFromProperties",
+          "lineNumber": 173
+        },
+        {
+          "caller": "mapInfoXmlToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 174
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "featureInfoResponse.getElementsByTagNameNS",
+          "lineNumber": 185
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 203
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "imageryLayerFeatureInfoFromDataAndProperties",
+          "lineNumber": 204
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "featureInfoResponse.getElementsByTagNameNS",
+          "lineNumber": 209
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 235
+        },
+        {
+          "caller": "esriXmlToFeatureInfo",
+          "callee": "imageryLayerFeatureInfoFromDataAndProperties",
+          "lineNumber": 236
+        },
+        {
+          "caller": "gmlToFeatureInfo",
+          "callee": "featureCollection.getElementsByTagNameNS",
+          "lineNumber": 252
+        },
+        {
+          "caller": "gmlToFeatureInfo",
+          "callee": "getGmlPropertiesRecursively",
+          "lineNumber": 264
+        },
+        {
+          "caller": "gmlToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 265
+        },
+        {
+          "caller": "gmlToFeatureInfo",
+          "callee": "imageryLayerFeatureInfoFromDataAndProperties",
+          "lineNumber": 266
+        },
+        {
+          "caller": "msGmlToFeatureInfo",
+          "callee": "defined",
+          "lineNumber": 289
+        },
+        {
+          "caller": "msGmlToFeatureInfo",
+          "callee": "getGmlPropertiesRecursively",
+          "lineNumber": 303
+        },
+        {
+          "caller": "msGmlToFeatureInfo",
+          "callee": "result.push",
+          "lineNumber": 304
+        },
+        {
+          "caller": "msGmlToFeatureInfo",
+          "callee": "imageryLayerFeatureInfoFromDataAndProperties",
+          "lineNumber": 305
+        },
+        {
+          "caller": "getGmlPropertiesRecursively",
+          "callee": "child.hasChildNodes",
+          "lineNumber": 333
+        },
+        {
+          "caller": "getGmlPropertiesRecursively",
+          "callee": "getGmlPropertiesRecursively",
+          "lineNumber": 334
+        },
+        {
+          "caller": "imageryLayerFeatureInfoFromDataAndProperties",
+          "callee": "featureInfo.configureNameFromProperties",
+          "lineNumber": 347
+        },
+        {
+          "caller": "imageryLayerFeatureInfoFromDataAndProperties",
+          "callee": "featureInfo.configureDescriptionFromProperties",
+          "lineNumber": 348
+        },
+        {
+          "caller": "unknownXmlToFeatureInfo",
+          "callee": "new XMLSerializer().serializeToString",
+          "lineNumber": 353
+        },
+        {
+          "caller": "unknownXmlToFeatureInfo",
+          "callee": "document.createElement",
+          "lineNumber": 355
+        },
+        {
+          "caller": "unknownXmlToFeatureInfo",
+          "callee": "document.createElement",
+          "lineNumber": 356
+        },
+        {
+          "caller": "unknownXmlToFeatureInfo",
+          "callee": "element.appendChild",
+          "lineNumber": 358
+        },
+        {
+          "caller": "textToFeatureInfo",
+          "callee": "emptyBodyRegex.test",
+          "lineNumber": 373
+        },
+        {
+          "caller": "textToFeatureInfo",
+          "callee": "wmsServiceExceptionReportRegex.test",
+          "lineNumber": 379
+        },
+        {
+          "caller": "textToFeatureInfo",
+          "callee": "titleRegex.exec",
+          "lineNumber": 385
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GlobeTranslucency.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 239,
+      "nonEmptyLines": 233,
+      "functions": [
+        {
+          "name": "GlobeTranslucency",
+          "startLine": 13,
+          "endLine": 20,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GlobeTranslucency",
+          "callee": "Rectangle.clone",
+          "lineNumber": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfJsonLoader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 303,
+      "nonEmptyLines": 267,
+      "functions": [
+        {
+          "name": "loadFromUri",
+          "startLine": 144,
+          "endLine": 162,
+          "params": [
+            "gltfJsonLoader"
+          ]
+        },
+        {
+          "name": "handleError",
+          "startLine": 164,
+          "endLine": 169,
+          "params": [
+            "gltfJsonLoader",
+            "error"
+          ]
+        },
+        {
+          "name": "upgradeVersion",
+          "startLine": 171,
+          "endLine": 212,
+          "params": [
+            "gltfJsonLoader",
+            "gltf"
+          ]
+        },
+        {
+          "name": "decodeDataUris",
+          "startLine": 214,
+          "endLine": 232,
+          "params": [
+            "gltf"
+          ]
+        },
+        {
+          "name": "loadEmbeddedBuffers",
+          "startLine": 234,
+          "endLine": 250,
+          "params": [
+            "gltfJsonLoader",
+            "gltf"
+          ]
+        },
+        {
+          "name": "processGltfJson",
+          "startLine": 252,
+          "endLine": 282,
+          "params": [
+            "gltfJsonLoader",
+            "gltf"
+          ]
+        },
+        {
+          "name": "processGltfTypedArray",
+          "startLine": 284,
+          "endLine": 301,
+          "params": [
+            "gltfJsonLoader",
+            "typedArray"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GltfJsonLoader",
+          "startLine": 28,
+          "endLine": 142,
+          "methods": [
+            "constructor",
+            "cacheKey",
+            "gltf",
+            "load",
+            "unload",
+            "_fetchGltf"
+          ],
+          "properties": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 39
+        },
+        {
+          "caller": "constructor",
+          "callee": "Check.typeOf.func",
+          "lineNumber": 50
+        },
+        {
+          "caller": "constructor",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 51
+        },
+        {
+          "caller": "constructor",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 52
+        },
+        {
+          "caller": "load",
+          "callee": "defined",
+          "lineNumber": 97
+        },
+        {
+          "caller": "load",
+          "callee": "defined",
+          "lineNumber": 103
+        },
+        {
+          "caller": "load",
+          "callee": "processGltfJson",
+          "lineNumber": 104
+        },
+        {
+          "caller": "load",
+          "callee": "defined",
+          "lineNumber": 108
+        },
+        {
+          "caller": "load",
+          "callee": "processGltfTypedArray",
+          "lineNumber": 109
+        },
+        {
+          "caller": "load",
+          "callee": "loadFromUri",
+          "lineNumber": 113
+        },
+        {
+          "caller": "unload",
+          "callee": "bufferLoaders[i].isDestroyed",
+          "lineNumber": 126
+        },
+        {
+          "caller": "unload",
+          "callee": "this._resourceCache.unload",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_fetchGltf",
+          "callee": "this._gltfResource.fetchArrayBuffer",
+          "lineNumber": 140
+        },
+        {
+          "caller": "loadFromUri",
+          "callee": "gltfJsonLoader._fetchGltf",
+          "lineNumber": 147
+        },
+        {
+          "caller": "loadFromUri",
+          "callee": "gltfJsonLoader.isDestroyed",
+          "lineNumber": 148
+        },
+        {
+          "caller": "loadFromUri",
+          "callee": "gltfJsonLoader.isDestroyed",
+          "lineNumber": 154
+        },
+        {
+          "caller": "loadFromUri",
+          "callee": "handleError",
+          "lineNumber": 158
+        },
+        {
+          "caller": "loadFromUri",
+          "callee": "processGltfTypedArray",
+          "lineNumber": 161
+        },
+        {
+          "caller": "handleError",
+          "callee": "gltfJsonLoader.unload",
+          "lineNumber": 165
+        },
+        {
+          "caller": "handleError",
+          "callee": "gltfJsonLoader.getError",
+          "lineNumber": 168
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "defined",
+          "lineNumber": 173
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "usesExtension",
+          "lineNumber": 175
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "usesExtension",
+          "lineNumber": 176
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "Promise.resolve",
+          "lineNumber": 178
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "ForEach.buffer",
+          "lineNumber": 184
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "defined",
+          "lineNumber": 186
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "defined",
+          "lineNumber": 187
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "gltfJsonLoader._baseResource.getDerivedResource",
+          "lineNumber": 189
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "resourceCache.getExternalBufferLoader",
+          "lineNumber": 193
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "gltfJsonLoader._bufferLoaders.push",
+          "lineNumber": 196
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "promises.push",
+          "lineNumber": 198
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "bufferLoader.load().then",
+          "lineNumber": 199
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "bufferLoader.load",
+          "lineNumber": 199
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "bufferLoader.isDestroyed",
+          "lineNumber": 200
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "Promise.all",
+          "lineNumber": 210
+        },
+        {
+          "caller": "upgradeVersion",
+          "callee": "updateVersion",
+          "lineNumber": 211
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "ForEach.buffer",
+          "lineNumber": 216
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "defined",
+          "lineNumber": 219
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "defined",
+          "lineNumber": 220
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "isDataUri",
+          "lineNumber": 221
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "promises.push",
+          "lineNumber": 224
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "Resource.fetchArrayBuffer(bufferUri).then",
+          "lineNumber": 225
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "Resource.fetchArrayBuffer",
+          "lineNumber": 225
+        },
+        {
+          "caller": "decodeDataUris",
+          "callee": "Promise.all",
+          "lineNumber": 231
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "ForEach.buffer",
+          "lineNumber": 236
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "defined",
+          "lineNumber": 238
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "defined",
+          "lineNumber": 238
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "resourceCache.getEmbeddedBufferLoader",
+          "lineNumber": 240
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "gltfJsonLoader._bufferLoaders.push",
+          "lineNumber": 245
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "promises.push",
+          "lineNumber": 246
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "bufferLoader.load",
+          "lineNumber": 246
+        },
+        {
+          "caller": "loadEmbeddedBuffers",
+          "callee": "Promise.all",
+          "lineNumber": 249
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "addPipelineExtras",
+          "lineNumber": 254
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "decodeDataUris",
+          "lineNumber": 256
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "upgradeVersion",
+          "lineNumber": 257
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "addDefaults",
+          "lineNumber": 258
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "loadEmbeddedBuffers",
+          "lineNumber": 259
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "removePipelineExtras",
+          "lineNumber": 260
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "defined",
+          "lineNumber": 268
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "ModelUtility.checkSupportedExtensions",
+          "lineNumber": 269
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "gltfJsonLoader.isDestroyed",
+          "lineNumber": 276
+        },
+        {
+          "caller": "processGltfJson",
+          "callee": "handleError",
+          "lineNumber": 280
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "getMagic",
+          "lineNumber": 287
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "parseGlb",
+          "lineNumber": 288
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "getJsonFromTypedArray",
+          "lineNumber": 290
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "gltfJsonLoader.isDestroyed",
+          "lineNumber": 293
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "handleError",
+          "lineNumber": 297
+        },
+        {
+          "caller": "processGltfTypedArray",
+          "callee": "processGltfJson",
+          "lineNumber": 300
+        }
+      ],
+      "metrics": {
+        "importCount": 18,
+        "exportCount": 0,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/ForEach.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 424,
+      "nonEmptyLines": 359,
+      "functions": [
+        {
+          "name": "ForEach",
+          "startLine": 10,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addBuffer.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 28,
+      "functions": [
+        {
+          "name": "addBuffer",
+          "startLine": 12,
+          "endLine": 28,
+          "params": [
+            "gltf",
+            "buffer"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addBuffer",
+          "callee": "addToArray",
+          "lineNumber": 21
+        },
+        {
+          "caller": "addBuffer",
+          "callee": "addToArray",
+          "lineNumber": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addDefaults.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 208,
+      "nonEmptyLines": 183,
+      "functions": [
+        {
+          "name": "addDefaults",
+          "startLine": 15,
+          "endLine": 184,
+          "params": [
+            "gltf"
+          ]
+        },
+        {
+          "name": "getAnimatedNodes",
+          "startLine": 186,
+          "endLine": 200,
+          "params": [
+            "gltf"
+          ]
+        },
+        {
+          "name": "addTextureDefaults",
+          "startLine": 202,
+          "endLine": 206,
+          "params": [
+            "texture"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.accessor",
+          "lineNumber": 16
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 17
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.bufferView",
+          "lineNumber": 22
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 23
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.mesh",
+          "lineNumber": 28
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.meshPrimitive",
+          "lineNumber": 29
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 31
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 32
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addToArray",
+          "lineNumber": 38
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.accessorContainingVertexAttributeData",
+          "lineNumber": 43
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 47
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "getAccessorByteStride",
+          "lineNumber": 49
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.accessorContainingIndexData",
+          "lineNumber": 54
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 57
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.material",
+          "lineNumber": 63
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 66
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 68
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 73
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 76
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 83
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 87
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 110
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.materialValue",
+          "lineNumber": 111
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 113
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 114
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 119
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 120
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 121
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 124
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 131
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 132
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 137
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "addTextureDefaults",
+          "lineNumber": 144
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.animation",
+          "lineNumber": 148
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.animationSampler",
+          "lineNumber": 149
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "getAnimatedNodes",
+          "lineNumber": 154
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.node",
+          "lineNumber": 155
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 156
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 159
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 160
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 161
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "ForEach.sampler",
+          "lineNumber": 174
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 179
+        },
+        {
+          "caller": "addDefaults",
+          "callee": "defined",
+          "lineNumber": 179
+        },
+        {
+          "caller": "getAnimatedNodes",
+          "callee": "ForEach.animation",
+          "lineNumber": 188
+        },
+        {
+          "caller": "getAnimatedNodes",
+          "callee": "ForEach.animationChannel",
+          "lineNumber": 189
+        },
+        {
+          "caller": "addTextureDefaults",
+          "callee": "defined",
+          "lineNumber": 203
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addExtensionsRequired.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "addExtensionsRequired",
+          "startLine": 14,
+          "endLine": 22,
+          "params": [
+            "gltf",
+            "extension"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addExtensionsRequired",
+          "callee": "defined",
+          "lineNumber": 16
+        },
+        {
+          "caller": "addExtensionsRequired",
+          "callee": "addToArray",
+          "lineNumber": 20
+        },
+        {
+          "caller": "addExtensionsRequired",
+          "callee": "addExtensionsUsed",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addExtensionsUsed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "addExtensionsUsed",
+          "startLine": 13,
+          "endLine": 20,
+          "params": [
+            "gltf",
+            "extension"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addExtensionsUsed",
+          "callee": "defined",
+          "lineNumber": 15
+        },
+        {
+          "caller": "addExtensionsUsed",
+          "callee": "addToArray",
+          "lineNumber": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addPipelineExtras.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 36,
+      "nonEmptyLines": 31,
+      "functions": [
+        {
+          "name": "addPipelineExtras",
+          "startLine": 13,
+          "endLine": 27,
+          "params": [
+            "gltf"
+          ]
+        },
+        {
+          "name": "addExtras",
+          "startLine": 29,
+          "endLine": 34,
+          "params": [
+            "object"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addPipelineExtras",
+          "callee": "ForEach.shader",
+          "lineNumber": 14
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "addExtras",
+          "lineNumber": 15
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "ForEach.buffer",
+          "lineNumber": 17
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "addExtras",
+          "lineNumber": 18
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "ForEach.image",
+          "lineNumber": 20
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "addExtras",
+          "lineNumber": 21
+        },
+        {
+          "caller": "addPipelineExtras",
+          "callee": "addExtras",
+          "lineNumber": 24
+        },
+        {
+          "caller": "addExtras",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "addExtras",
+          "callee": "defined",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/addToArray.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 21,
+      "functions": [
+        {
+          "name": "addToArray",
+          "startLine": 12,
+          "endLine": 23,
+          "params": [
+            "array",
+            "element",
+            "checkDuplicates"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addToArray",
+          "callee": "array.indexOf",
+          "lineNumber": 15
+        },
+        {
+          "caller": "addToArray",
+          "callee": "array.push",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/findAccessorMinMax.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 63,
+      "functions": [
+        {
+          "name": "findAccessorMinMax",
+          "startLine": 16,
+          "endLine": 69,
+          "params": [
+            "gltf",
+            "accessor"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "numberOfComponentsForType",
+          "lineNumber": 20
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "defined",
+          "lineNumber": 23
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "new Array(numberOfComponents).fill",
+          "lineNumber": 25
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "new Array(numberOfComponents).fill",
+          "lineNumber": 26
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "new Array(numberOfComponents).fill",
+          "lineNumber": 30
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "new Array(numberOfComponents).fill",
+          "lineNumber": 31
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "getAccessorByteStride",
+          "lineNumber": 39
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "ComponentDatatype.getSizeInBytes",
+          "lineNumber": 44
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "getComponentReader",
+          "lineNumber": 47
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "componentReader",
+          "lineNumber": 50
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "Math.min",
+          "lineNumber": 59
+        },
+        {
+          "caller": "findAccessorMinMax",
+          "callee": "Math.max",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/forEachTextureInMaterial.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 155,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "forEachTextureInMaterial",
+          "startLine": 13,
+          "endLine": 144,
+          "params": [
+            "material",
+            "handler"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "Check.typeOf.object",
+          "lineNumber": 14
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "Check.defined",
+          "lineNumber": 15
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 19
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 20
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 22
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 23
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 27
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 29
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 30
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 37
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 41
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 42
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 44
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 45
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 49
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 51
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 52
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 60
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 62
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 63
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 64
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 68
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 69
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 78
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 78
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 80
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 80
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 81
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 82
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 86
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 87
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 88
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 92
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 93
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 94
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 98
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 99
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "ForEach.materialValue",
+          "lineNumber": 108
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 109
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 111
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 116
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 121
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 123
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 124
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 129
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 131
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 132
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 137
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "handler",
+          "lineNumber": 139
+        },
+        {
+          "caller": "forEachTextureInMaterial",
+          "callee": "defined",
+          "lineNumber": 140
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/getAccessorByteStride.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "getAccessorByteStride",
+          "startLine": 15,
+          "endLine": 27,
+          "params": [
+            "gltf",
+            "accessor"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getAccessorByteStride",
+          "callee": "defined",
+          "lineNumber": 17
+        },
+        {
+          "caller": "getAccessorByteStride",
+          "callee": "defined",
+          "lineNumber": 19
+        },
+        {
+          "caller": "getAccessorByteStride",
+          "callee": "ComponentDatatype.getSizeInBytes",
+          "lineNumber": 24
+        },
+        {
+          "caller": "getAccessorByteStride",
+          "callee": "numberOfComponentsForType",
+          "lineNumber": 25
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/getComponentReader.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 147,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "getComponentReader",
+          "startLine": 11,
+          "endLine": 132,
+          "params": [
+            "componentType"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getInt8",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getUint8",
+          "lineNumber": 36
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getInt16",
+          "lineNumber": 50
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getUint16",
+          "lineNumber": 65
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getInt32",
+          "lineNumber": 80
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getUint32",
+          "lineNumber": 95
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getFloat32",
+          "lineNumber": 110
+        },
+        {
+          "caller": "getComponentReader",
+          "callee": "dataView.getFloat64",
+          "lineNumber": 125
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/moveTechniqueRenderStates.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 135,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "isStateEnabled",
+          "startLine": 15,
+          "endLine": 22,
+          "params": [
+            "renderStates",
+            "state"
+          ]
+        },
+        {
+          "name": "getSupportedBlendFactors",
+          "startLine": 38,
+          "endLine": 50,
+          "params": [
+            "value",
+            "defaultValue"
+          ]
+        },
+        {
+          "name": "moveTechniqueRenderStates",
+          "startLine": 60,
+          "endLine": 133,
+          "params": [
+            "gltf"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isStateEnabled",
+          "callee": "defined",
+          "lineNumber": 17
+        },
+        {
+          "caller": "isStateEnabled",
+          "callee": "enabled.indexOf",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getSupportedBlendFactors",
+          "callee": "defined",
+          "lineNumber": 39
+        },
+        {
+          "caller": "getSupportedBlendFactors",
+          "callee": "supportedBlendFactors.indexOf",
+          "lineNumber": 44
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 64
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "ForEach.technique",
+          "lineNumber": 68
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "isStateEnabled",
+          "lineNumber": 76
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 81
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 82
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 83
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "getSupportedBlendFactors",
+          "lineNumber": 88
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "isStateEnabled",
+          "lineNumber": 97
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "Object.keys",
+          "lineNumber": 105
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 106
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "addExtensionsUsed",
+          "lineNumber": 110
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "ForEach.material",
+          "lineNumber": 113
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 114
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "ForEach.objectLegacy",
+          "lineNumber": 117
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 122
+        },
+        {
+          "caller": "moveTechniqueRenderStates",
+          "callee": "defined",
+          "lineNumber": 123
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/moveTechniquesToExtension.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 145,
+      "nonEmptyLines": 122,
+      "functions": [
+        {
+          "name": "moveTechniquesToExtension",
+          "startLine": 15,
+          "endLine": 143,
+          "params": [
+            "gltf"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 20
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "ForEach.technique",
+          "lineNumber": 31
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "ForEach.techniqueAttribute",
+          "lineNumber": 40
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "ForEach.techniqueUniform",
+          "lineNumber": 50
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 63
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 70
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addToArray",
+          "lineNumber": 81
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addToArray",
+          "lineNumber": 84
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addToArray",
+          "lineNumber": 86
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addToArray",
+          "lineNumber": 93
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 100
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addExtensionsUsed",
+          "lineNumber": 105
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "addExtensionsRequired",
+          "lineNumber": 106
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "ForEach.material",
+          "lineNumber": 110
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 111
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "ForEach.objectLegacy",
+          "lineNumber": 116
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 117
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 122
+        },
+        {
+          "caller": "moveTechniquesToExtension",
+          "callee": "defined",
+          "lineNumber": 127
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/numberOfComponentsForType.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 26,
+      "functions": [
+        {
+          "name": "numberOfComponentsForType",
+          "startLine": 11,
+          "endLine": 27,
+          "params": [
+            "type"
+          ]
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/parseGlb.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 118,
+      "nonEmptyLines": 104,
+      "functions": [
+        {
+          "name": "parseGlb",
+          "startLine": 20,
+          "endLine": 38,
+          "params": [
+            "glb"
+          ]
+        },
+        {
+          "name": "readHeader",
+          "startLine": 40,
+          "endLine": 50,
+          "params": [
+            "glb",
+            "byteOffset",
+            "count"
+          ]
+        },
+        {
+          "name": "parseGlbVersion1",
+          "startLine": 52,
+          "endLine": 83,
+          "params": [
+            "glb",
+            "header"
+          ]
+        },
+        {
+          "name": "parseGlbVersion2",
+          "startLine": 85,
+          "endLine": 116,
+          "params": [
+            "glb",
+            "header"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseGlb",
+          "callee": "getMagic",
+          "lineNumber": 22
+        },
+        {
+          "caller": "parseGlb",
+          "callee": "readHeader",
+          "lineNumber": 27
+        },
+        {
+          "caller": "parseGlb",
+          "callee": "parseGlbVersion1",
+          "lineNumber": 34
+        },
+        {
+          "caller": "parseGlb",
+          "callee": "parseGlbVersion2",
+          "lineNumber": 37
+        },
+        {
+          "caller": "readHeader",
+          "callee": "dataView.getUint32",
+          "lineNumber": 44
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "getStringFromTypedArray",
+          "lineNumber": 65
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "JSON.parse",
+          "lineNumber": 66
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "addPipelineExtras",
+          "lineNumber": 67
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "glb.subarray",
+          "lineNumber": 69
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "defined",
+          "lineNumber": 72
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "Object.keys",
+          "lineNumber": 72
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "defined",
+          "lineNumber": 75
+        },
+        {
+          "caller": "parseGlbVersion1",
+          "callee": "removeExtensionsUsed",
+          "lineNumber": 81
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "readHeader",
+          "lineNumber": 91
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "glb.subarray",
+          "lineNumber": 95
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "getStringFromTypedArray",
+          "lineNumber": 99
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "JSON.parse",
+          "lineNumber": 100
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "addPipelineExtras",
+          "lineNumber": 101
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "defined",
+          "lineNumber": 108
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "defined",
+          "lineNumber": 108
+        },
+        {
+          "caller": "parseGlbVersion2",
+          "callee": "defined",
+          "lineNumber": 110
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/readAccessorPacked.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "readAccessorPacked",
+          "startLine": 16,
+          "endLine": 52,
+          "params": [
+            "gltf",
+            "accessor"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "readAccessorPacked",
+          "callee": "getAccessorByteStride",
+          "lineNumber": 17
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "ComponentDatatype.getSizeInBytes",
+          "lineNumber": 18
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "numberOfComponentsForType",
+          "lineNumber": 21
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "defined",
+          "lineNumber": 25
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "values.fill",
+          "lineNumber": 26
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "getComponentReader",
+          "lineNumber": 36
+        },
+        {
+          "caller": "readAccessorPacked",
+          "callee": "componentReader",
+          "lineNumber": 39
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Source/Scene/GltfPipeline/removeExtension.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "removeExtension",
+          "startLine": 13,
+          "endLine": 21,
+          "params": [
+            "gltf",
+            "extension"
+          ]
+        },
+        {
+          "name": "removeCesiumRTC",
+          "startLine": 23,
+          "endLine": 31,
+          "params": [
+            "gltf"
+          ]
+        },
+        {
+          "name": "removeExtensionAndTraverse",
+          "startLine": 33,
+          "endLine": 62,
+          "params": [
+            "object",
+            "extension"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "removeExtension",
+          "callee": "removeExtensionsUsed",
+          "lineNumber": 14
+        },
+        {
+          "caller": "removeExtension",
+          "callee": "removeCesiumRTC",
+          "lineNumber": 17
+        },
+        {
+          "caller": "removeExtension",
+          "callee": "removeExtensionAndTraverse",
+          "lineNumber": 20
+        },
+        {
+          "caller": "removeCesiumRTC",
+          "callee": "ForEach.technique",
+          "lineNumber": 24
+        },
+        {
+          "caller": "removeCesiumRTC",
+          "callee": "ForEach.techniqueUniform",
+          "lineNumber": 25
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "Array.isArray",
+          "lineNumber": 34
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "removeExtensionAndTraverse",
+          "lineNumber": 37
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "defined",
+          "lineNumber": 46
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "defined",
+          "lineNumber": 48
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "Object.keys",
+          "lineNumber": 50
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "Object.prototype.hasOwnProperty.call",
+          "lineNumber": 56
+        },
+        {
+          "caller": "removeExtensionAndTraverse",
+          "callee": "removeExtensionAndTraverse",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

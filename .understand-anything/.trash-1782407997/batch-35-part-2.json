@@ -1,0 +1,530 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "file",
+      "name": "PositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/PositionProperty.js",
+      "summary": "PositionProperty 抽象接口/基类，定义位置类 Property 的契约（getValue、referenceFrame、转换等），构造时抛出实例化错误以标记为抽象。",
+      "tags": [
+        "abstract",
+        "interface",
+        "property",
+        "position",
+        "datasources"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过构造函数中 throwInstantiationError 实现抽象基类模式。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "type": "file",
+      "name": "PositionPropertyArray.js",
+      "filePath": "packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "summary": "将由 PositionProperty 组成的数组封装为单一的 PositionProperty，按索引聚合求值，支持统一 referenceFrame。",
+      "tags": [
+        "property",
+        "composite",
+        "position",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "type": "file",
+      "name": "PropertyArray.js",
+      "filePath": "packages/engine/Source/DataSources/PropertyArray.js",
+      "summary": "将多个 Property 实例组合为数组形式的复合 Property，提供统一的 definitionChanged 与 getValue。",
+      "tags": [
+        "property",
+        "composite",
+        "datasources"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "type": "file",
+      "name": "PropertyBag.js",
+      "filePath": "packages/engine/Source/DataSources/PropertyBag.js",
+      "summary": "键值对形式的 Property 容器，用于将任意 graphics 子属性集合（如材质选项）包装为可整体监听的 property 包。",
+      "tags": [
+        "property",
+        "container",
+        "datasources",
+        "entity"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "file",
+      "name": "RectangleGraphics.js",
+      "filePath": "packages/engine/Source/DataSources/RectangleGraphics.js",
+      "summary": "描述矩形图形的可视化属性（coordinates、height、extrudedHeight、material、rotation 等），通过 createPropertyDescriptor 注册响应式字段。",
+      "tags": [
+        "data-model",
+        "entity",
+        "graphics",
+        "property",
+        "rectangle"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "type": "file",
+      "name": "ReferenceProperty.js",
+      "filePath": "packages/engine/Source/DataSources/ReferenceProperty.js",
+      "summary": "引用其他 entity 属性的 Property 实现，通过 targetCollection+targetId+propertyNames 延迟解析并订阅目标 entity 的 definitionChanged。",
+      "tags": [
+        "property",
+        "reference",
+        "datasources",
+        "entity"
+      ],
+      "complexity": "complex",
+      "languageNotes": "内部 resolve() 函数实现延迟解析模式（lazy resolution），并监听目标属性变更转发事件。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/Rotation.js",
+      "type": "file",
+      "name": "Rotation.js",
+      "filePath": "packages/engine/Source/DataSources/Rotation.js",
+      "summary": "Rotation 类型：包装角度值（弧度）并提供 toBytes/equals 等方法，常作为可插值 property 的值类型使用。",
+      "tags": [
+        "value-type",
+        "rotation",
+        "datasources",
+        "math"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Rotation 使用 frozen 浅冻结的 prototype 模式，而非传统的构造器 class。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "type": "file",
+      "name": "SampledPositionProperty.js",
+      "filePath": "packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "summary": "带采样插值的 PositionProperty 实现，继承自 SampledProperty，按时间在采样位置之间做 Lagrange/线性插值并支持 referenceFrame 变换。",
+      "tags": [
+        "property",
+        "interpolation",
+        "position",
+        "sampling",
+        "datasources"
+      ],
+      "complexity": "complex",
+      "languageNotes": "组合 SampledProperty 实现位置插值，并转发底层 definitionChanged。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/PropertyBag.js:propertiesEqual",
+      "type": "function",
+      "name": "propertiesEqual",
+      "filePath": "packages/engine/Source/DataSources/PropertyBag.js",
+      "lineRange": [
+        239,
+        259
+      ],
+      "summary": "比较两个 PropertyBag 的属性集合是否相等，逐项调用 Property.equals 比较。",
+      "tags": [
+        "equality",
+        "comparison",
+        "property"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ReferenceProperty.js:resolve",
+      "type": "function",
+      "name": "resolve",
+      "filePath": "packages/engine/Source/DataSources/ReferenceProperty.js",
+      "lineRange": [
+        7,
+        46
+      ],
+      "summary": "延迟解析引用：根据 targetCollection/targetId 找到目标 entity 并订阅其属性链上各 property 的 definitionChanged。",
+      "tags": [
+        "reference",
+        "resolution",
+        "lazy",
+        "event-binding"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Transforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Rotation.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Rotation.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/Rotation.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "target": "function:packages/engine/Source/DataSources/PropertyBag.js:propertiesEqual",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ReferenceProperty.js:resolve",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "target": "function:packages/engine/Source/DataSources/SampledProperty.js:mergeNewSamples",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

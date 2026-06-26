@@ -1,0 +1,1895 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "type": "file",
+      "name": "GlobeDepth.js",
+      "filePath": "packages/engine/Source/Scene/GlobeDepth.js",
+      "summary": "管理 globe 深度缓冲与拷贝命令，负责深度纹理的创建、resize 及把深度拷贝到可采样纹理。",
+      "tags": [
+        "depth",
+        "framebuffer",
+        "globe",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "type": "file",
+      "name": "GlobeSurfaceShaderSet.js",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "summary": "为 globe 表面瓦片构建/复用 shader program 集合，根据日间纹理数量、clipping、材质等标志选取对应着色器。",
+      "tags": [
+        "shader",
+        "globe",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "type": "file",
+      "name": "GlobeSurfaceTile.js",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "summary": "单个地球表面瓦片：管理地形/影像数据状态机、上采样、几何请求、变换与资源创建。",
+      "tags": [
+        "globe",
+        "terrain",
+        "tile",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "type": "file",
+      "name": "GlobeSurfaceTileProvider.js",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "summary": "四叉树瓦片提供者：驱动 globe 表面瓦片的加载、地形与影像图层融合、credit、视锥剔除与命令入队。",
+      "tags": [
+        "globe",
+        "terrain",
+        "tile-provider",
+        "quadtree",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "type": "file",
+      "name": "GlobeTranslucencyFramebuffer.js",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "summary": "为半透明 globe 渲染创建 framebuffer 与颜色/深度拷贝命令资源。",
+      "tags": [
+        "framebuffer",
+        "translucency",
+        "globe",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "type": "file",
+      "name": "GlobeTranslucencyState.js",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "summary": "维护 globe 半透明状态：基于距离的 alpha、front face 遮挡查询，并为派生命令收集所需 shader/render state 类型。",
+      "tags": [
+        "translucency",
+        "globe",
+        "state",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeDepth.js:GlobeDepth",
+      "type": "function",
+      "name": "GlobeDepth",
+      "filePath": "packages/engine/Source/Scene/GlobeDepth.js",
+      "lineRange": [
+        22,
+        59
+      ],
+      "summary": "构造 globe 深度管理器，持有深度纹理与 framebuffer 引用。",
+      "tags": [
+        "depth",
+        "globe",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeDepth.js:updateCopyCommands",
+      "type": "function",
+      "name": "updateCopyCommands",
+      "filePath": "packages/engine/Source/Scene/GlobeDepth.js",
+      "lineRange": [
+        89,
+        233
+      ],
+      "summary": "根据视口尺寸更新 globe 深度拷贝命令。",
+      "tags": [
+        "depth",
+        "command",
+        "globe"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:GlobeSurfaceShader",
+      "type": "function",
+      "name": "GlobeSurfaceShader",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "lineRange": [
+        8,
+        22
+      ],
+      "summary": "表示一组 globe 表面着色器键（日间纹理数、标志、clipping 状态）与编译后的 program。",
+      "tags": [
+        "shader",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPositionMode",
+      "type": "function",
+      "name": "getPositionMode",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "lineRange": [
+        39,
+        63
+      ],
+      "summary": "根据 scene mode 返回 shader 中的位置计算模式字符串。",
+      "tags": [
+        "shader",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPolygonClippingFunction",
+      "type": "function",
+      "name": "getPolygonClippingFunction",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "lineRange": [
+        65,
+        75
+      ],
+      "summary": "返回多边形裁剪所需的 GLSL 函数代码。",
+      "tags": [
+        "shader",
+        "clipping",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getUnpackClippingFunction",
+      "type": "function",
+      "name": "getUnpackClippingFunction",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "lineRange": [
+        77,
+        88
+      ],
+      "summary": "返回解包裁剪参数的 GLSL 函数代码。",
+      "tags": [
+        "shader",
+        "clipping",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:GlobeSurfaceTile",
+      "type": "function",
+      "name": "GlobeSurfaceTile",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        33,
+        68
+      ],
+      "summary": "构造单个 globe 表面瓦片，初始化地形/影像数据与状态。",
+      "tags": [
+        "globe",
+        "tile",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:toggleGeodeticSurfaceNormals",
+      "type": "function",
+      "name": "toggleGeodeticSurfaceNormals",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        328,
+        377
+      ],
+      "summary": "根据需要切换瓦片的大地测量表面法线计算。",
+      "tags": [
+        "globe",
+        "tile",
+        "normals"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:prepareNewTile",
+      "type": "function",
+      "name": "prepareNewTile",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        456,
+        489
+      ],
+      "summary": "为新瓦片准备地形提供者与影像图层集合。",
+      "tags": [
+        "globe",
+        "tile",
+        "terrain"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:processTerrainStateMachine",
+      "type": "function",
+      "name": "processTerrainStateMachine",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        491,
+        594
+      ],
+      "summary": "推进瓦片地形加载状态机（请求/转换/就绪）。",
+      "tags": [
+        "globe",
+        "tile",
+        "terrain",
+        "state-machine"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:upsample",
+      "type": "function",
+      "name": "upsample",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        596,
+        643
+      ],
+      "summary": "从父瓦片上采样生成当前瓦片地形几何。",
+      "tags": [
+        "globe",
+        "tile",
+        "upsampling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:requestTileGeometry",
+      "type": "function",
+      "name": "requestTileGeometry",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        645,
+        723
+      ],
+      "summary": "向地形提供者请求瓦片几何数据。",
+      "tags": [
+        "globe",
+        "tile",
+        "terrain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:transform",
+      "type": "function",
+      "name": "transform",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        735,
+        766
+      ],
+      "summary": "更新瓦片的世界变换矩阵与边界。",
+      "tags": [
+        "globe",
+        "tile",
+        "transform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:createResources",
+      "type": "function",
+      "name": "createResources",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "lineRange": [
+        823,
+        839
+      ],
+      "summary": "为瓦片创建 GPU 资源（顶点数组、纹理等）。",
+      "tags": [
+        "globe",
+        "tile",
+        "gpu-resources"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:GlobeSurfaceTileProvider",
+      "type": "function",
+      "name": "GlobeSurfaceTileProvider",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        68,
+        197
+      ],
+      "summary": "构造 globe 表面四叉树瓦片提供者，绑定地形/影像/限位矩形与渲染上下文。",
+      "tags": [
+        "globe",
+        "tile-provider",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:sortTileImageryByLayerIndex",
+      "type": "function",
+      "name": "sortTileImageryByLayerIndex",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        338,
+        350
+      ],
+      "summary": "按影像图层索引对瓦片影像条目排序。",
+      "tags": [
+        "globe",
+        "imagery",
+        "sorting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateCredits",
+      "type": "function",
+      "name": "updateCredits",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        360,
+        374
+      ],
+      "summary": "将当前瓦片相关 credit 同步到帧状态。",
+      "tags": [
+        "globe",
+        "credit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:pushCommand",
+      "type": "function",
+      "name": "pushCommand",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        557,
+        569
+      ],
+      "summary": "将命令加入帧状态对应的命令列表。",
+      "tags": [
+        "command",
+        "globe",
+        "render-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:clipRectangleAntimeridian",
+      "type": "function",
+      "name": "clipRectangleAntimeridian",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        672,
+        687
+      ],
+      "summary": "处理跨越反子午线的影像矩形裁剪。",
+      "tags": [
+        "globe",
+        "imagery",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:isUndergroundVisible",
+      "type": "function",
+      "name": "isUndergroundVisible",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        689,
+        722
+      ],
+      "summary": "判断地下视角下瓦片是否可见。",
+      "tags": [
+        "globe",
+        "visibility",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:computeOccludeePoint",
+      "type": "function",
+      "name": "computeOccludeePoint",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        1132,
+        1179
+      ],
+      "summary": "计算瓦片用于遮挡测试的 occludee 点。",
+      "tags": [
+        "globe",
+        "occlusion",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateTileBoundingRegion",
+      "type": "function",
+      "name": "updateTileBoundingRegion",
+      "filePath": "packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "lineRange": [
+        1243,
+        1394
+      ],
+      "summary": "更新瓦片的边界区域（含地形高度与限位矩形）。",
+      "tags": [
+        "globe",
+        "tile",
+        "bounding-volume"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:GlobeTranslucencyFramebuffer",
+      "type": "function",
+      "name": "GlobeTranslucencyFramebuffer",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "lineRange": [
+        14,
+        30
+      ],
+      "summary": "构造 globe 半透明 framebuffer 管理器。",
+      "tags": [
+        "framebuffer",
+        "translucency",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateResources",
+      "type": "function",
+      "name": "updateResources",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "lineRange": [
+        73,
+        87
+      ],
+      "summary": "按尺寸/HDR 创建或更新半透明 framebuffer 资源。",
+      "tags": [
+        "framebuffer",
+        "translucency"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateCommands",
+      "type": "function",
+      "name": "updateCommands",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "lineRange": [
+        89,
+        160
+      ],
+      "summary": "更新半透明 globe 的颜色/深度拷贝命令。",
+      "tags": [
+        "framebuffer",
+        "translucency",
+        "command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:GlobeTranslucencyState",
+      "type": "function",
+      "name": "GlobeTranslucencyState",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        48,
+        75
+      ],
+      "summary": "构造 globe 半透明状态容器。",
+      "tags": [
+        "translucency",
+        "state",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:updateAlphaByDistance",
+      "type": "function",
+      "name": "updateAlphaByDistance",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        170,
+        187
+      ],
+      "summary": "按距离区间更新 globe 的 alpha 值。",
+      "tags": [
+        "translucency",
+        "alpha"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getNumberOfTextureUniforms",
+      "type": "function",
+      "name": "getNumberOfTextureUniforms",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        226,
+        238
+      ],
+      "summary": "返回半透明所需纹理 uniform 数量。",
+      "tags": [
+        "translucency",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:gatherDerivedCommandRequirements",
+      "type": "function",
+      "name": "gatherDerivedCommandRequirements",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        240,
+        293
+      ],
+      "summary": "收集半透明 globe 所需的派生命令类型。",
+      "tags": [
+        "translucency",
+        "derived-command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDerivedCommandTypes",
+      "type": "function",
+      "name": "getDerivedCommandTypes",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        295,
+        366
+      ],
+      "summary": "判定命令在半透明模式下应派生出的类型集合。",
+      "tags": [
+        "translucency",
+        "derived-command"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDepthOnlyShaderProgram",
+      "type": "function",
+      "name": "getDepthOnlyShaderProgram",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        393,
+        406
+      ],
+      "summary": "返回半透明 globe 的仅深度着色器。",
+      "tags": [
+        "translucency",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getTranslucentShaderProgram",
+      "type": "function",
+      "name": "getTranslucentShaderProgram",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        408,
+        447
+      ],
+      "summary": "为命令注入半透明着色逻辑。",
+      "tags": [
+        "translucency",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getPickShaderProgram",
+      "type": "function",
+      "name": "getPickShaderProgram",
+      "filePath": "packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "lineRange": [
+        469,
+        484
+      ],
+      "summary": "返回半透明 globe 的拾取着色器。",
+      "tags": [
+        "translucency",
+        "pick",
+        "shader"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "function:packages/engine/Source/Scene/GlobeDepth.js:GlobeDepth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "function:packages/engine/Source/Scene/GlobeDepth.js:GlobeDepth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "function:packages/engine/Source/Scene/GlobeDepth.js:updateCopyCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "function:packages/engine/Source/Scene/GlobeDepth.js:updateCopyCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:GlobeSurfaceShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:GlobeSurfaceShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPositionMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPositionMode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPolygonClippingFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getPolygonClippingFunction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getUnpackClippingFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js:getUnpackClippingFunction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:GlobeSurfaceTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:GlobeSurfaceTile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:toggleGeodeticSurfaceNormals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:toggleGeodeticSurfaceNormals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:prepareNewTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:prepareNewTile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:processTerrainStateMachine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:processTerrainStateMachine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:upsample",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:upsample",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:requestTileGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:requestTileGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:transform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:transform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:createResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTile.js:createResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:GlobeSurfaceTileProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:GlobeSurfaceTileProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:sortTileImageryByLayerIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:sortTileImageryByLayerIndex",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateCredits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateCredits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:pushCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:pushCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:clipRectangleAntimeridian",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:clipRectangleAntimeridian",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:isUndergroundVisible",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:isUndergroundVisible",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:computeOccludeePoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:computeOccludeePoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateTileBoundingRegion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "function:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js:updateTileBoundingRegion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:GlobeTranslucencyFramebuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:GlobeTranslucencyFramebuffer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateResources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateResources",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js:updateCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:GlobeTranslucencyState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:GlobeTranslucencyState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:updateAlphaByDistance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:updateAlphaByDistance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getNumberOfTextureUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getNumberOfTextureUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:gatherDerivedCommandRequirements",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:gatherDerivedCommandRequirements",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDerivedCommandTypes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDerivedCommandTypes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDepthOnlyShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getDepthOnlyShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getTranslucentShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getTranslucentShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getPickShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "function:packages/engine/Source/Scene/GlobeTranslucencyState.js:getPickShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeDepth.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Core/TerrainQuantization.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Scene/getClippingFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceShaderSet.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/RequestState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Core/TileProviderError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "target": "file:packages/engine/Source/Scene/TerrainState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/BoxOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/GeometryPipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Intersect.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/SphereOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainQuantization.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/VerticalExaggeration.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/Visibility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/DepthFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/GlobeSurfaceTile.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/QuadtreeTileLoadState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/TerrainFillMesh.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/TerrainState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/TileBoundingRegion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeSurfaceTileProvider.js",
+      "target": "file:packages/engine/Source/Scene/TileSelectionResult.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyFramebuffer.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Core/combine.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Renderer/DrawCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Scene/CullFace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GlobeTranslucencyState.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/EmptyTilesArray/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/EmptyTilesArray/layer.json",
+      "summary": "Cesium 地形测试 fixture，定义一个 tilejson 但 tiles 数组为空，用于测试 CesiumTerrainProvider 对空 tiles 列表的处理。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "cesium-terrain"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/Heightmap/11_3027_1342.terrain",
+      "type": "file",
+      "name": "11_3027_1342.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/Heightmap/11_3027_1342.terrain",
+      "summary": "Heightmap-1.0 格式的二进制地形瓦片测试数据，对应层级 11、坐标 (3027,1342) 的高度图栅格。",
+      "tags": ["test-fixture", "terrain", "heightmap", "binary-data"],
+      "complexity": "simple",
+      "languageNotes": "二进制 heightmap-1.0 编码的地形栅格数据，由 Heightmap/layer.json 引用。"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/Heightmap/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/Heightmap/layer.json",
+      "summary": "基础 heightmap-1.0 地形层的 TileJSON 配置，定义单个 tiles 模板并引用本地 11_3027_1342.terrain 瓦片。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "heightmap"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/HeightmapWithAttribution/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/HeightmapWithAttribution/layer.json",
+      "summary": "带 attribution 版权声明的 heightmap-1.0 地形层 TileJSON 配置，用于测试 CesiumTerrainProvider 的版权归属解析。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "attribution"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/HeightmapWithPartialAvailability/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/HeightmapWithPartialAvailability/layer.json",
+      "summary": "包含多层 partial available 矩形区域的 heightmap 地形层配置，用于测试地形瓦片可用性范围（availability）的解析逻辑。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "availability"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/InvalidFormat/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/InvalidFormat/layer.json",
+      "summary": "使用无效 format 字段的 TileJSON 配置，用于测试 CesiumTerrainProvider 对未知地形格式的错误处理路径。",
+      "tags": ["configuration", "test-fixture", "terrain", "error-handling", "tilejson"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/MultipleUrls/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/MultipleUrls/layer.json",
+      "summary": "tiles 数组提供多个候选 URL 的 heightmap 地形层配置，用于测试 CesiumTerrainProvider 的多子域名/多 URL 轮询加载机制。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "multi-url"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/NoFormat/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/NoFormat/layer.json",
+      "summary": "缺少 format 字段的 TileJSON 配置，用于测试 CesiumTerrainProvider 在缺失地形格式信息时的默认行为与错误处理。",
+      "tags": ["configuration", "test-fixture", "terrain", "error-handling", "tilejson"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/NoTiles/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/NoTiles/layer.json",
+      "summary": "完全缺少 tiles 字段的 TileJSON 配置，用于测试 CesiumTerrainProvider 对无瓦片模板配置的容错处理。",
+      "tags": ["configuration", "test-fixture", "terrain", "error-handling", "tilejson"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMesh/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMesh/layer.json",
+      "summary": "基础 quantized-mesh-1.0 地形层的 TileJSON 配置，包含两级 available 可用性矩形，引用本地 tile.terrain 瓦片。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "quantized-mesh"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMesh/tile.terrain",
+      "type": "file",
+      "name": "tile.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMesh/tile.terrain",
+      "summary": "Quantized-mesh-1.0 格式的二进制地形瓦片测试数据，包含顶点、索引与边界数据，是基础 quantized-mesh 解析测试的核心样本。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "binary-data"],
+      "complexity": "simple",
+      "languageNotes": "二进制 quantized-mesh-1.0 编码：头部含中心点经纬度与高度范围，后接 zig-zag 编码的顶点与索引。"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMesh1.1/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMesh1.1/layer.json",
+      "summary": "使用 quantized-mesh 1.1 版本语法的地形层 TileJSON 配置，用于测试 CesiumTerrainProvider 对新版本 tilejson 的兼容性。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "quantized-mesh"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMesh2.0/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMesh2.0/layer.json",
+      "summary": "使用 quantized-mesh 2.0 版本语法的地形层 TileJSON 配置，用于测试 CesiumTerrainProvider 对更高版本 tilejson 规范的处理。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "quantized-mesh"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/layer.json",
+      "summary": "quantized-mesh 地形层配置，配套含 32 位索引的大型 tile 瓦片，用于测试 32 位索引缓冲（超过 65536 顶点）的解析与渲染路径。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "32-bit-indices"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/tile.32bitIndices.terrain",
+      "type": "file",
+      "name": "tile.32bitIndices.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/tile.32bitIndices.terrain",
+      "summary": "包含超过 65536 个顶点、需 32 位索引的 quantized-mesh 二进制地形瓦片，用于压力测试高细节地形网格的解码路径。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "32-bit-indices", "binary-data"],
+      "complexity": "complex",
+      "languageNotes": "大型 quantized-mesh 瓦片，顶点数突破 16 位索引上限，验证 32 位索引缓冲支持。"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/layer.json",
+      "summary": "声明 metadata、bvh、octvertexnormals 扩展及 metadataAvailability 字段的 quantized-mesh 地形层配置，用于测试元数据可用性与扩展解析。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "metadata-extension"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/tile.metadataavailability.terrain",
+      "type": "file",
+      "name": "tile.metadataavailability.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/tile.metadataavailability.terrain",
+      "summary": "携带 metadata 扩展数据的 quantized-mesh 二进制地形瓦片，用于测试 CesiumTerrainProvider 的 metadata 可用性分支解码。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "metadata-extension", "binary-data"],
+      "complexity": "simple",
+      "languageNotes": "quantized-mesh 瓦片附加 metadata 扩展块，由 QuantizedMeshWithMetadataAvailability/layer.json 引用。"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/layer.json",
+      "summary": "声明 octvertexnormals 扩展的 quantized-mesh 地形层配置，配套瓦片含八进制编码顶点法线，用于测试光照法线扩展解析。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "vertex-normals"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/tile.octvertexnormals.terrain",
+      "type": "file",
+      "name": "tile.octvertexnormals.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/tile.octvertexnormals.terrain",
+      "summary": "携带 octvertexnormals 扩展（八进制编码顶点法线）的 quantized-mesh 二进制地形瓦片测试样本。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "vertex-normals", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/layer.json",
+      "summary": "同时声明 octvertexnormals 扩展与一个未知扩展名的 quantized-mesh 地形层配置，用于测试对未识别扩展的容错跳过逻辑。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "extension-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/tile.octvertexnormals.unknownext.terrain",
+      "type": "file",
+      "name": "tile.octvertexnormals.unknownext.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/tile.octvertexnormals.unknownext.terrain",
+      "summary": "携带 octvertexnormals 扩展以及一个未知扩展数据块的 quantized-mesh 地形瓦片，用于验证解码器安全跳过未知扩展。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "extension-handling", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/layer.json",
+      "summary": "同时声明 octvertexnormals 与 watermask 扩展的 quantized-mesh 地形层配置，用于测试多扩展组合瓦片的解析。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "water-mask"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/tile.octvertexnormals.watermask.terrain",
+      "type": "file",
+      "name": "tile.octvertexnormals.watermask.terrain",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/tile.octvertexnormals.watermask.terrain",
+      "summary": "同时携带 octvertexnormals 法线扩展与 watermask 水域遮罩扩展的 quantized-mesh 地形瓦片测试样本。",
+      "tags": ["test-fixture", "terrain", "quantized-mesh", "water-mask", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/ChildTileset/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/ChildTileset/layer.json",
+      "summary": "QuantizedMeshWithParentUrl 场景下的子 tileset 层配置，用于测试 CesiumTerrainProvider 通过 parentUrl 引用父级 tileset 的层级链加载。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "parent-url"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/layer.json",
+      "type": "config",
+      "name": "layer.json",
+      "filePath": "Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/layer.json",
+      "summary": "基础 quantized-mesh 地形层配置，配套 ChildTileset 子层，用于测试 parentUrl 机制下的父子 tileset 链式加载。",
+      "tags": ["configuration", "test-fixture", "terrain", "tilejson", "parent-url"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/Heightmap/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/Heightmap/11_3027_1342.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMesh/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMesh/tile.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWith32BitIndices/tile.32bitIndices.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithMetadataAvailability/tile.metadataavailability.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormals/tile.octvertexnormals.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndUnknownExt/tile.octvertexnormals.unknownext.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/layer.json",
+      "target": "file:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithOctVertexNormalsAndWaterMask/tile.octvertexnormals.watermask.terrain",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/layer.json",
+      "target": "config:Specs/Data/CesiumTerrainTileJson/QuantizedMeshWithParentUrl/ChildTileset/layer.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

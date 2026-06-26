@@ -1,0 +1,619 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "type": "file",
+      "name": "ResourceCacheStatistics.js",
+      "filePath": "packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "summary": "跟踪并汇总 ResourceCache 的内存使用统计（已用/上限、各 loader 占用），用于调优与监控。",
+      "tags": [
+        "resource-cache",
+        "statistics",
+        "memory-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "type": "file",
+      "name": "ResourceLoader.js",
+      "filePath": "packages/engine/Source/Scene/ResourceLoader.js",
+      "summary": "所有 Scene 层资源加载器的抽象基类，定义加载状态机与生命周期（load/destroy），供具体 loader（gltf/b3dm 等）继承。",
+      "tags": [
+        "resource-loader",
+        "base-class",
+        "loader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ResourceLoaderState.js",
+      "type": "file",
+      "name": "ResourceLoaderState.js",
+      "filePath": "packages/engine/Source/Scene/ResourceLoaderState.js",
+      "summary": "定义 ResourceLoader 状态机的枚举常量（UNLOADED/LOADING/LOADED/FAILED 等）。",
+      "tags": [
+        "enum",
+        "resource-loader",
+        "state-machine"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "type": "file",
+      "name": "StructuralMetadata.js",
+      "filePath": "packages/engine/Source/Scene/StructuralMetadata.js",
+      "summary": "EXT_structural_metadata 扩展的顶层容器，聚合 schema、property tables/attributes/textures 三类元数据载体，供 Model 与 Primitive 统一访问。",
+      "tags": [
+        "structural-metadata",
+        "gltf-extension",
+        "container",
+        "data-model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TileMetadata.js",
+      "type": "file",
+      "name": "TileMetadata.js",
+      "filePath": "packages/engine/Source/Scene/TileMetadata.js",
+      "summary": "封装单个 3D Tiles tile 上的结构化元数据视图，桥接 tile 与其 StructuralMetadata / property table。",
+      "tags": [
+        "structural-metadata",
+        "3d-tiles",
+        "tile"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "type": "file",
+      "name": "TilesetMetadata.js",
+      "filePath": "packages/engine/Source/Scene/TilesetMetadata.js",
+      "summary": "封装 3D Tiles tileset 层级的结构化元数据视图，提供 tileset 级别的 schema 与属性访问。",
+      "tags": [
+        "structural-metadata",
+        "3d-tiles",
+        "tileset"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "type": "file",
+      "name": "VertexAttributeSemantic.js",
+      "filePath": "packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "summary": "定义并解析 glTF / EXT_mesh_gpu_instancing 中顶点 attribute 的语义（POSITION/NORMAL/TEXCOORD/_FEATURE_ID 等）的枚举与字符串工具。",
+      "tags": [
+        "gltf",
+        "vertex-attribute",
+        "semantic",
+        "enum"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "type": "file",
+      "name": "VoxelBoxShape.js",
+      "filePath": "packages/engine/Source/Scene/VoxelBoxShape.js",
+      "summary": "VoxelPrimitive 的长方体（box）形状实现：定义体素坐标变换、采样 uniform、分块 OBB 与着色器构造逻辑。",
+      "tags": [
+        "voxel",
+        "shape",
+        "box",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "type": "file",
+      "name": "VoxelContent.js",
+      "filePath": "packages/engine/Source/Scene/VoxelContent.js",
+      "summary": "管理 VoxelPrimitive 的内容加载与向 voxel provider 的数据传递，处理 tile 遍历与可见性更新。",
+      "tags": [
+        "voxel",
+        "content",
+        "primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "type": "file",
+      "name": "VoxelCylinderShape.js",
+      "filePath": "packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "summary": "VoxelPrimitive 的圆柱（cylinder/椭球）形状实现：定义径向体素坐标、分块 OBB 计算与形状相关 uniform。",
+      "tags": [
+        "voxel",
+        "shape",
+        "cylinder",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/VoxelMetadataOrder.js",
+      "type": "file",
+      "name": "VoxelMetadataOrder.js",
+      "filePath": "packages/engine/Source/Scene/VoxelMetadataOrder.js",
+      "summary": "定义 voxel 元数据在 RGBA8 打包缓冲中的字节顺序常量，供 voxel shader 采样使用。",
+      "tags": [
+        "voxel",
+        "metadata",
+        "packing",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/ResourceLoader.js:ResourceLoader",
+      "type": "class",
+      "name": "ResourceLoader",
+      "filePath": "packages/engine/Source/Scene/ResourceLoader.js",
+      "summary": "所有 Scene 资源加载器的抽象基类，定义状态机与 load/destroy 生命周期。",
+      "tags": [
+        "resource-loader",
+        "base-class",
+        "abstract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/StructuralMetadata.js:StructuralMetadata",
+      "type": "function",
+      "name": "StructuralMetadata",
+      "filePath": "packages/engine/Source/Scene/StructuralMetadata.js",
+      "summary": "构造 EXT_structural_metadata 顶层容器，聚合 schema 与三类属性载体。",
+      "tags": [
+        "structural-metadata",
+        "container",
+        "gltf-extension"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelBoxShape.js:VoxelBoxShape",
+      "type": "function",
+      "name": "VoxelBoxShape",
+      "filePath": "packages/engine/Source/Scene/VoxelBoxShape.js",
+      "summary": "VoxelPrimitive 的 box 形状构造器，定义坐标变换、uniform 与 shader callback。",
+      "tags": [
+        "voxel",
+        "shape",
+        "box"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        24,
+        96
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelBoxShape.js:getBoxChunkObb",
+      "type": "function",
+      "name": "getBoxChunkObb",
+      "filePath": "packages/engine/Source/Scene/VoxelBoxShape.js",
+      "summary": "计算 box 形状下一个分块的定向包围盒（OBB）。",
+      "tags": [
+        "voxel",
+        "obb",
+        "box"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        569,
+        599
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelCylinderShape.js:VoxelCylinderShape",
+      "type": "function",
+      "name": "VoxelCylinderShape",
+      "filePath": "packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "summary": "VoxelPrimitive 的 cylinder/ellipsoid 形状构造器，定义径向坐标与 uniform。",
+      "tags": [
+        "voxel",
+        "shape",
+        "cylinder"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        26,
+        88
+      ]
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/VoxelCylinderShape.js:getCylinderChunkObb",
+      "type": "function",
+      "name": "getCylinderChunkObb",
+      "filePath": "packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "summary": "计算圆柱形状分块的 OBB，处理径向裁剪与变换矩阵。",
+      "tags": [
+        "voxel",
+        "obb",
+        "cylinder"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        767,
+        867
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceCacheStatistics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TileMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/TilesetMetadata.js",
+      "target": "file:packages/engine/Source/Scene/MetadataEntity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VertexAttributeSemantic.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Scene/MetadataComponentType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelContent.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlane.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "file:packages/engine/Source/Scene/VoxelBoundsCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ResourceLoader.js",
+      "target": "class:packages/engine/Source/Scene/ResourceLoader.js:ResourceLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/StructuralMetadata.js",
+      "target": "function:packages/engine/Source/Scene/StructuralMetadata.js:StructuralMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "function:packages/engine/Source/Scene/VoxelBoxShape.js:VoxelBoxShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelBoxShape.js",
+      "target": "function:packages/engine/Source/Scene/VoxelBoxShape.js:getBoxChunkObb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "function:packages/engine/Source/Scene/VoxelCylinderShape.js:VoxelCylinderShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/VoxelCylinderShape.js",
+      "target": "function:packages/engine/Source/Scene/VoxelCylinderShape.js:getCylinderChunkObb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

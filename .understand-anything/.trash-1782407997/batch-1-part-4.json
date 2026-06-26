@@ -1,0 +1,1155 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "type": "file",
+      "name": "CustomHeightmapTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "summary": "允许用户传入自定义高度回调来生成地形的 Provider，便于在没有在线服务时使用本地高程数据。",
+      "tags": [
+        "terrain-provider",
+        "callback",
+        "heightmap",
+        "extensibility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "type": "file",
+      "name": "DoublyLinkedList.js",
+      "filePath": "packages/engine/Source/Core/DoublyLinkedList.js",
+      "summary": "通用双向链表与节点实现，提供 O(1) 节点删除，被纹理/LRU 缓存等组件复用。",
+      "tags": [
+        "data-structure",
+        "linked-list",
+        "lru-cache",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeocoderService.js",
+      "type": "file",
+      "name": "GeocoderService.js",
+      "filePath": "packages/engine/Source/Core/GeocoderService.js",
+      "summary": "所有地理编码服务的抽象基类，定义 geocode 接口约定。",
+      "tags": [
+        "geocoder",
+        "base-class",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "type": "file",
+      "name": "GoogleEarthEnterpriseTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "summary": "从 Google Earth Enterprise 服务请求地形瓦片的 Provider，含 quadKey 子掩码计算与地形缓存。",
+      "tags": [
+        "terrain-provider",
+        "google-earth-enterprise",
+        "quadkey",
+        "data-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Heap.js",
+      "type": "file",
+      "name": "Heap.js",
+      "filePath": "packages/engine/Source/Core/Heap.js",
+      "summary": "基于比较器的最小/最大堆实现，提供插入、弹出及批量堆化操作。",
+      "tags": [
+        "data-structure",
+        "heap",
+        "priority-queue",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HeightmapEncoding.js",
+      "type": "file",
+      "name": "HeightmapEncoding.js",
+      "filePath": "packages/engine/Source/Core/HeightmapEncoding.js",
+      "summary": "定义高程图编码方式的枚举（如 quantized、raster），供 HeightmapTerrainData 解码使用。",
+      "tags": [
+        "enum",
+        "heightmap",
+        "type-definition",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "file",
+      "name": "HeightmapTerrainData.js",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "summary": "基于高度图的地形瓦片数据，支持水面遮罩、插值高度与 GPU 上传编码。",
+      "tags": [
+        "terrain-data",
+        "heightmap",
+        "interpolation",
+        "gpu-upload"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "type": "file",
+      "name": "ITwinPlatform.js",
+      "filePath": "packages/engine/Source/Core/ITwinPlatform.js",
+      "summary": "iTwin Platform 访问封装，处理 OAuth token 获取、刷新与请求鉴权。",
+      "tags": [
+        "itwin",
+        "oauth",
+        "authentication",
+        "service"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "type": "file",
+      "name": "Iau2006XysData.js",
+      "filePath": "packages/engine/Source/Core/Iau2006XysData.js",
+      "summary": "IAU2006 地球定向参数（XYS）按需加载器，分块下载并插值地球自转数据。",
+      "tags": [
+        "earth-orientation",
+        "iau2006",
+        "data-loader",
+        "interpolation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js:CustomHeightmapTerrainProvider",
+      "type": "function",
+      "name": "CustomHeightmapTerrainProvider",
+      "filePath": "packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "lineRange": [
+        56,
+        92
+      ],
+      "summary": "自定义高度回调地形 Provider 构造函数，校验回调与尺寸并设置 tiling scheme。",
+      "tags": [
+        "constructor",
+        "terrain-provider",
+        "callback"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedList",
+      "type": "function",
+      "name": "DoublyLinkedList",
+      "filePath": "packages/engine/Source/Core/DoublyLinkedList.js",
+      "lineRange": [
+        6,
+        10
+      ],
+      "summary": "双向链表构造函数，初始化 head/tail 哨兵与长度计数。",
+      "tags": [
+        "constructor",
+        "data-structure",
+        "linked-list"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedListNode",
+      "type": "function",
+      "name": "DoublyLinkedListNode",
+      "filePath": "packages/engine/Source/Core/DoublyLinkedList.js",
+      "lineRange": [
+        23,
+        27
+      ],
+      "summary": "双向链表节点构造函数，持有 item 与前后指针。",
+      "tags": [
+        "constructor",
+        "data-structure",
+        "node"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoublyLinkedList.js:remove",
+      "type": "function",
+      "name": "remove",
+      "filePath": "packages/engine/Source/Core/DoublyLinkedList.js",
+      "lineRange": [
+        50,
+        70
+      ],
+      "summary": "从双向链表中移除指定节点并维护指针连接。",
+      "tags": [
+        "mutation",
+        "internal",
+        "linked-list"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "function",
+      "name": "GeocoderService",
+      "filePath": "packages/engine/Source/Core/GeocoderService.js",
+      "lineRange": [
+        22,
+        24
+      ],
+      "summary": "地理编码服务抽象基类构造函数，作为各 geocoder 实现的接口约定。",
+      "tags": [
+        "constructor",
+        "base-class",
+        "geocoder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:TerrainCache",
+      "type": "function",
+      "name": "TerrainCache",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "lineRange": [
+        28,
+        31
+      ],
+      "summary": "GEE 地形瓦片缓存的内部数据结构。",
+      "tags": [
+        "cache",
+        "data-model",
+        "gee"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:GoogleEarthEnterpriseTerrainProvider",
+      "type": "function",
+      "name": "GoogleEarthEnterpriseTerrainProvider",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "lineRange": [
+        99,
+        128
+      ],
+      "summary": "GEE 地形 Provider 构造函数，绑定元数据与瓦片请求策略。",
+      "tags": [
+        "constructor",
+        "terrain-provider",
+        "gee"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:computeChildMask",
+      "type": "function",
+      "name": "computeChildMask",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "lineRange": [
+        272,
+        287
+      ],
+      "summary": "根据 quadKey 与瓦片信息计算子瓦片可用性位掩码。",
+      "tags": [
+        "quadkey",
+        "bitmask",
+        "computation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:buildTerrainResource",
+      "type": "function",
+      "name": "buildTerrainResource",
+      "filePath": "packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "lineRange": [
+        567,
+        573
+      ],
+      "summary": "构造请求 GEE 地形瓦片字节的 Resource。",
+      "tags": [
+        "resource-builder",
+        "quadkey",
+        "gee"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:HeightmapTerrainData",
+      "type": "function",
+      "name": "HeightmapTerrainData",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        96,
+        139
+      ],
+      "summary": "高度图地形数据构造函数，校验缓冲区与编码方式并初始化水面遮罩。",
+      "tags": [
+        "constructor",
+        "terrain-data",
+        "heightmap"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateHeight",
+      "type": "function",
+      "name": "interpolateHeight",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        675,
+        755
+      ],
+      "summary": "从原始高度数组按指定 stride/字节序插值出指定经纬度处的高度。",
+      "tags": [
+        "interpolation",
+        "heightmap",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateMeshHeight",
+      "type": "function",
+      "name": "interpolateMeshHeight",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        757,
+        821
+      ],
+      "summary": "根据 quantized mesh 编码与三角形分布插值高度。",
+      "tags": [
+        "interpolation",
+        "quantized-mesh",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:triangleInterpolateHeight",
+      "type": "function",
+      "name": "triangleInterpolateHeight",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        823,
+        847
+      ],
+      "summary": "在四点构成的两个三角形上做双线性高度插值。",
+      "tags": [
+        "interpolation",
+        "triangle",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:getHeight",
+      "type": "function",
+      "name": "getHeight",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        849,
+        873
+      ],
+      "summary": "按 elementsPerHeight/stride 从高度数组读取单点高度。",
+      "tags": [
+        "accessor",
+        "heightmap",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/HeightmapTerrainData.js:setHeight",
+      "type": "function",
+      "name": "setHeight",
+      "filePath": "packages/engine/Source/Core/HeightmapTerrainData.js",
+      "lineRange": [
+        875,
+        902
+      ],
+      "summary": "按 elementsPerHeight/stride 向高度数组写入单点高度。",
+      "tags": [
+        "mutator",
+        "heightmap",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Iau2006XysData.js:Iau2006XysData",
+      "type": "function",
+      "name": "Iau2006XysData",
+      "filePath": "packages/engine/Source/Core/Iau2006XysData.js",
+      "lineRange": [
+        28,
+        72
+      ],
+      "summary": "IAU2006 XYS 按需加载器构造函数，初始化分块缓存与下载队列。",
+      "tags": [
+        "constructor",
+        "earth-orientation",
+        "lazy-loader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Iau2006XysData.js:getDaysSinceEpoch",
+      "type": "function",
+      "name": "getDaysSinceEpoch",
+      "filePath": "packages/engine/Source/Core/Iau2006XysData.js",
+      "lineRange": [
+        76,
+        81
+      ],
+      "summary": "将 TT 时间转换为自 XYS 历元起的天数。",
+      "tags": [
+        "time-conversion",
+        "utility",
+        "iau2006"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunkJson",
+      "type": "function",
+      "name": "requestXysChunkJson",
+      "filePath": "packages/engine/Source/Core/Iau2006XysData.js",
+      "lineRange": [
+        251,
+        259
+      ],
+      "summary": "请求单个 XYS 数据分块的 JSON。",
+      "tags": [
+        "request",
+        "chunk-loader",
+        "iau2006"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunk",
+      "type": "function",
+      "name": "requestXysChunk",
+      "filePath": "packages/engine/Source/Core/Iau2006XysData.js",
+      "lineRange": [
+        261,
+        285
+      ],
+      "summary": "按 chunkIndex 触发 XYS 分块下载并在就绪后回调。",
+      "tags": [
+        "chunk-loader",
+        "async",
+        "iau2006"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js:CustomHeightmapTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js:CustomHeightmapTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedListNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedListNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:remove",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:remove",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeocoderService.js",
+      "target": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeocoderService.js",
+      "target": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:TerrainCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:TerrainCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:GoogleEarthEnterpriseTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:GoogleEarthEnterpriseTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:computeChildMask",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:computeChildMask",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:buildTerrainResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js:buildTerrainResource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:HeightmapTerrainData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:HeightmapTerrainData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateMeshHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:interpolateMeshHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:triangleInterpolateHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:triangleInterpolateHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:getHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:getHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:setHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:setHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:Iau2006XysData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:Iau2006XysData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:getDaysSinceEpoch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:getDaysSinceEpoch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunkJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunkJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "function:packages/engine/Source/Core/Iau2006XysData.js:requestXysChunk",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CustomHeightmapTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoublyLinkedList.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeocoderService.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeocoderService.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GoogleEarthEnterpriseMetadata.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RequestState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GoogleEarthEnterpriseTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Heap.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Heap.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/HeightmapEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTessellator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TaskProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainMesh.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/ITwinPlatform.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/buildModuleUrl.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/Iau2006XysSample.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Iau2006XysData.js",
+      "target": "file:packages/engine/Source/Core/TimeStandard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedList",
+      "target": "function:packages/engine/Source/Core/DoublyLinkedList.js:DoublyLinkedListNode",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

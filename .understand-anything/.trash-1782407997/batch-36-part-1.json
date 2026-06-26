@@ -1,0 +1,1043 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Cesium3DTileContent.js",
+      "type": "file",
+      "name": "Cesium3DTileContent.js",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileContent.js",
+      "summary": "定义 3D Tiles 中单个瓦片内容的抽象接口，提供对瓦片内要素（feature）的访问、拾取、更新与销毁能力，由具体的瓦片内容类型派生实现。",
+      "tags": [
+        "3d-tiles",
+        "interface",
+        "tile-content",
+        "scene",
+        "abstract"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 @interface JSDoc 标注抽象接口，构造函数对所有方法抛出 DeveloperError 以阻止直接实例化。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/Cesium3DTileContent.js:Cesium3DTileContent",
+      "type": "class",
+      "name": "Cesium3DTileContent",
+      "filePath": "packages/engine/Source/Scene/Cesium3DTileContent.js",
+      "lineRange": [
+        29,
+        354
+      ],
+      "summary": "3D Tiles 瓦片内容抽象接口类，声明 hasProperty/getFeature/update/pick/destroy 等方法，由各类具体瓦片内容（如 b3dm、i3dm、pnts、glTF）实现。",
+      "tags": [
+        "3d-tiles",
+        "interface",
+        "abstract",
+        "tile-content"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "type": "file",
+      "name": "DebugAppearance.js",
+      "filePath": "packages/engine/Source/Scene/DebugAppearance.js",
+      "summary": "提供用于调试的可视化外观，将几何属性（法线、切线、纹理坐标等）编码为颜色输出，便于排查渲染管线问题。",
+      "tags": [
+        "debug",
+        "appearance",
+        "rendering",
+        "shader",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DebugAppearance.js:DebugAppearance",
+      "type": "function",
+      "name": "DebugAppearance",
+      "filePath": "packages/engine/Source/Scene/DebugAppearance.js",
+      "lineRange": [
+        35,
+        144
+      ],
+      "summary": "构造函数，根据指定的 glsl 属性名与封装类型生成对应的 DebugAppearance 实例，用于将几何属性可视化为颜色。",
+      "tags": [
+        "constructor",
+        "debug",
+        "appearance",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "type": "file",
+      "name": "DirectionalLight.js",
+      "filePath": "packages/engine/Source/Scene/DirectionalLight.js",
+      "summary": "定义方向光（DirectionalLight），模拟来自特定方向、无衰减的平行光源（如太阳光），用于场景与模型的光照计算。",
+      "tags": [
+        "lighting",
+        "directional-light",
+        "scene",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/DirectionalLight.js:DirectionalLight",
+      "type": "function",
+      "name": "DirectionalLight",
+      "filePath": "packages/engine/Source/Scene/DirectionalLight.js",
+      "lineRange": [
+        19,
+        47
+      ],
+      "summary": "构造函数，根据方向、颜色与强度参数创建方向光实例。",
+      "tags": [
+        "constructor",
+        "lighting",
+        "directional-light"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "type": "file",
+      "name": "FrameRateMonitor.js",
+      "filePath": "packages/engine/Source/Scene/FrameRateMonitor.js",
+      "summary": "监控场景帧率，当帧率低于阈值时触发降级事件（如切换到低分辨率影像或地形），用于自适应性能调控。",
+      "tags": [
+        "performance",
+        "monitoring",
+        "scene",
+        "event"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/FrameRateMonitor.js:FrameRateMonitor",
+      "type": "function",
+      "name": "FrameRateMonitor",
+      "filePath": "packages/engine/Source/Scene/FrameRateMonitor.js",
+      "lineRange": [
+        31,
+        143
+      ],
+      "summary": "构造函数，根据静默周期、最小帧率等参数创建帧率监视器实例，并初始化相关事件。",
+      "tags": [
+        "constructor",
+        "performance",
+        "monitoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/FrameRateMonitor.js:update",
+      "type": "function",
+      "name": "update",
+      "filePath": "packages/engine/Source/Scene/FrameRateMonitor.js",
+      "lineRange": [
+        303,
+        366
+      ],
+      "summary": "每帧更新监视器状态，统计帧间隔并判断是否触发帧率过低或恢复事件。",
+      "tags": [
+        "update",
+        "performance",
+        "monitoring",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "type": "file",
+      "name": "GridImageryProvider.js",
+      "filePath": "packages/engine/Source/Scene/GridImageryProvider.js",
+      "summary": "提供程序生成的网格线影像图层，按瓦片绘制经纬度网格与瓦片边界，常用于调试影像与瓦片划分。",
+      "tags": [
+        "imagery",
+        "provider",
+        "debug",
+        "grid",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/GridImageryProvider.js:GridImageryProvider",
+      "type": "function",
+      "name": "GridImageryProvider",
+      "filePath": "packages/engine/Source/Scene/GridImageryProvider.js",
+      "lineRange": [
+        39,
+        72
+      ],
+      "summary": "构造函数，根据瓦片划分方案、线宽、颜色等参数创建可绘制网格的影像 provider。",
+      "tags": [
+        "constructor",
+        "imagery",
+        "provider",
+        "debug"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "type": "file",
+      "name": "ImplicitMetadataView.js",
+      "filePath": "packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "summary": "为 3D Tiles 隐式细分瓦片（implicit tiling）的子树提供结构化元数据视图，将 implicit subtree 的可用性信息暴露为属性。",
+      "tags": [
+        "3d-tiles",
+        "implicit-tiling",
+        "metadata",
+        "data-model"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImplicitMetadataView.js:ImplicitMetadataView",
+      "type": "function",
+      "name": "ImplicitMetadataView",
+      "filePath": "packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "lineRange": [
+        21,
+        42
+      ],
+      "summary": "构造函数，根据 subtree 内容与模板信息初始化隐式瓦片元数据视图。",
+      "tags": [
+        "constructor",
+        "3d-tiles",
+        "metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "type": "file",
+      "name": "ImplicitSubtreeCache.js",
+      "filePath": "packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "summary": "缓存 3D Tiles 隐式细分中的子树（subtree）数据，使用双端优先队列按淘汰策略管理缓存生命周期。",
+      "tags": [
+        "3d-tiles",
+        "implicit-tiling",
+        "cache",
+        "subtree"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImplicitSubtreeCache.js:ImplicitSubtreeCache",
+      "type": "function",
+      "name": "ImplicitSubtreeCache",
+      "filePath": "packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "lineRange": [
+        14,
+        37
+      ],
+      "summary": "构造函数，初始化隐式子树缓存及其内部的双端优先队列。",
+      "tags": [
+        "constructor",
+        "3d-tiles",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/IonWorldImageryStyle.js",
+      "type": "file",
+      "name": "IonWorldImageryStyle.js",
+      "filePath": "packages/engine/Source/Scene/IonWorldImageryStyle.js",
+      "summary": "定义 Cesium Ion 全球影像服务的样式枚举常量（如 AERIAL、ROADMAP 等），作为 IonWorldImageryProvider 的样式选项。",
+      "tags": [
+        "imagery",
+        "ion",
+        "enum",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "type": "file",
+      "name": "JobScheduler.js",
+      "filePath": "packages/engine/Source/Scene/JobScheduler.js",
+      "summary": "作业调度器，按优先级与每类作业的时间预算调度异步任务（如瓦片加载），防止单帧被某类作业耗尽。",
+      "tags": [
+        "scheduler",
+        "performance",
+        "scene",
+        "job"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/JobScheduler.js:JobScheduler",
+      "type": "function",
+      "name": "JobScheduler",
+      "filePath": "packages/engine/Source/Scene/JobScheduler.js",
+      "lineRange": [
+        67,
+        106
+      ],
+      "summary": "构造函数，根据各 JobType 的时间预算配置初始化调度器及其作业队列。",
+      "tags": [
+        "constructor",
+        "scheduler",
+        "job"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Light.js",
+      "type": "file",
+      "name": "Light.js",
+      "filePath": "packages/engine/Source/Scene/Light.js",
+      "summary": "所有光源类型的抽象基类接口，定义场景光照的通用契约，由 DirectionalLight、SunLight 等具体光源派生。",
+      "tags": [
+        "lighting",
+        "interface",
+        "abstract",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "type": "file",
+      "name": "ModelAnimation.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "summary": "表示 glTF 模型中的单个动画，封装动画通道、时间控制与起止/循环/更新事件，由 ModelAnimationCollection 管理。",
+      "tags": [
+        "model",
+        "gltf",
+        "animation",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimation.js:ModelAnimation",
+      "type": "function",
+      "name": "ModelAnimation",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "lineRange": [
+        25,
+        127
+      ],
+      "summary": "构造函数，根据模型、动画描述与选项创建 ModelAnimation 实例并初始化事件回调。",
+      "tags": [
+        "constructor",
+        "model",
+        "animation",
+        "gltf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimation.js:initialize",
+      "type": "function",
+      "name": "initialize",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "lineRange": [
+        345,
+        384
+      ],
+      "summary": "将运行时动画通道绑定到 ModelAnimation，初始化起止时间与倍率，准备执行动画。",
+      "tags": [
+        "initialization",
+        "model",
+        "animation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "type": "file",
+      "name": "ModelAnimationChannel.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "summary": "表示 glTF 动画的单个通道，根据采样器的插值类型（LINEAR/STEP/CUBICSPLINE）构造对应的 Spline 实例并采样目标属性。",
+      "tags": [
+        "model",
+        "gltf",
+        "animation",
+        "interpolation",
+        "spline"
+      ],
+      "complexity": "complex",
+      "languageNotes": "依据插值类型动态选择 LinearSpline、SteppedSpline、HermiteSpline 或 QuaternionSpline，并支持四元数的球面线性插值。"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:ModelAnimationChannel",
+      "type": "function",
+      "name": "ModelAnimationChannel",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "lineRange": [
+        31,
+        53
+      ],
+      "summary": "构造函数，根据通道描述符（target path、sampler、节点）创建动画通道实例。",
+      "tags": [
+        "constructor",
+        "model",
+        "animation",
+        "gltf"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createSplines",
+      "type": "function",
+      "name": "createSplines",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "lineRange": [
+        173,
+        216
+      ],
+      "summary": "根据关键帧时间、点和插值类型批量构造 Spline 对象，支持平移/缩放（Cartesian）与旋转（Quaternion）路径。",
+      "tags": [
+        "factory",
+        "spline",
+        "interpolation",
+        "animation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createSpline",
+      "type": "function",
+      "name": "createSpline",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "lineRange": [
+        146,
+        171
+      ],
+      "summary": "根据单一插值类型与关键帧数据创建对应的 Spline 实例。",
+      "tags": [
+        "factory",
+        "spline",
+        "interpolation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createCubicSpline",
+      "type": "function",
+      "name": "createCubicSpline",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "lineRange": [
+        121,
+        144
+      ],
+      "summary": "构造三次埃尔米特样条（HermiteSpline）用于 CUBICSPLINE 插值类型的关键帧动画。",
+      "tags": [
+        "factory",
+        "spline",
+        "hermite",
+        "interpolation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "type": "file",
+      "name": "ModelAnimationCollection.js",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "summary": "管理 glTF 模型的全部动画集合，提供动画的添加、播放、暂停、移除接口，并在每帧推进所有激活动画的时间。",
+      "tags": [
+        "model",
+        "gltf",
+        "animation",
+        "collection",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/ModelAnimationCollection.js:ModelAnimationCollection",
+      "type": "function",
+      "name": "ModelAnimationCollection",
+      "filePath": "packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "lineRange": [
+        24,
+        67
+      ],
+      "summary": "构造函数，为指定模型初始化空动画集合及其事件（animationAdded/Removed/Updated）。",
+      "tags": [
+        "constructor",
+        "model",
+        "animation",
+        "collection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "type": "file",
+      "name": "ModelAnimationLoop.js",
+      "filePath": "packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "summary": "定义动画循环模式枚举常量（NONE、REPEAT、MIRRORED_REPEAT），控制 ModelAnimation 在结束后的行为。",
+      "tags": [
+        "model",
+        "animation",
+        "enum",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ModelAnimationState.js",
+      "type": "file",
+      "name": "ModelAnimationState.js",
+      "filePath": "packages/engine/Source/Scene/ModelAnimationState.js",
+      "summary": "定义动画运行状态的枚举常量（如 STOPPED、RUNNING），用于跟踪 ModelAnimation 的生命周期阶段。",
+      "tags": [
+        "model",
+        "animation",
+        "enum",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/PanoramaProvider.js",
+      "type": "file",
+      "name": "PanoramaProvider.js",
+      "filePath": "packages/engine/Source/Scene/PanoramaProvider.js",
+      "summary": "全景影像 provider 的抽象接口，定义获取立方体贴图或球面全景的契约，由具体全景服务（如 Google Street View）派生实现。",
+      "tags": [
+        "imagery",
+        "panorama",
+        "interface",
+        "abstract"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContent.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Cesium3DTileContent.js",
+      "target": "class:packages/engine/Source/Scene/Cesium3DTileContent.js:Cesium3DTileContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "target": "file:packages/engine/Source/Scene/Appearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DebugAppearance.js",
+      "target": "function:packages/engine/Source/Scene/DebugAppearance.js:DebugAppearance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "function:packages/engine/Source/Scene/DirectionalLight.js:DirectionalLight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/DirectionalLight.js",
+      "target": "file:packages/engine/Source/Scene/Light.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "file:packages/engine/Source/Core/TimeConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "function:packages/engine/Source/Scene/FrameRateMonitor.js:FrameRateMonitor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/FrameRateMonitor.js",
+      "target": "function:packages/engine/Source/Scene/FrameRateMonitor.js:update",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/GridImageryProvider.js",
+      "target": "function:packages/engine/Source/Scene/GridImageryProvider.js:GridImageryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitMetadataView.js",
+      "target": "function:packages/engine/Source/Scene/ImplicitMetadataView.js:ImplicitMetadataView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "target": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js",
+      "target": "function:packages/engine/Source/Scene/ImplicitSubtreeCache.js:ImplicitSubtreeCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "target": "file:packages/engine/Source/Core/getTimestamp.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "target": "file:packages/engine/Source/Scene/JobType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/JobScheduler.js",
+      "target": "function:packages/engine/Source/Scene/JobScheduler.js:JobScheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Light.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimation.js:ModelAnimation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimation.js:initialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/ConstantSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/HermiteSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/InterpolationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/LinearSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/QuaternionSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Core/SteppedSpline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "file:packages/engine/Source/Scene/ModelComponents.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:ModelAnimationChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createSplines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createSpline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationChannel.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimationChannel.js:createCubicSpline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAnimation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "target": "function:packages/engine/Source/Scene/Model/ModelAnimationCollection.js:ModelAnimationCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/PanoramaProvider.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

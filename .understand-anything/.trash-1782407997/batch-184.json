@@ -1,0 +1,335 @@
+{
+  "nodes": [
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutline/README.md",
+      "summary": "说明 BoxWithPrimitiveOutline 测试模型的来源与用途，该模型用于验证 CESIUM_primitive_outline 扩展的渲染。",
+      "tags": ["documentation", "test-fixture", "gltf", "primitive-outline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/BoxWithPrimitiveOutlineSharedVertices.gltf",
+      "type": "schema",
+      "name": "BoxWithPrimitiveOutlineSharedVertices.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/BoxWithPrimitiveOutlineSharedVertices.gltf",
+      "summary": "带共享顶点的立方体 glTF 2.0 模型，含 CESIUM_primitive_outline 扩展，引用 outlines.bin 二进制缓冲区。",
+      "tags": ["schema-definition", "gltf", "test-fixture", "primitive-outline", "data"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0 JSON 结构，使用 CESIUM_primitive_outline 扩展定义边线轮廓。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "type": "file",
+      "name": "make_primitive_outlines.py",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "summary": "Python 辅助脚本，根据 glTF 网格的三角面索引计算轮廓边索引并写出 outlines.bin，用于生成 primitive outline 测试数据。",
+      "tags": ["utility", "script", "gltf", "data-generator", "primitive-outline"],
+      "complexity": "moderate",
+      "languageNotes": "使用 struct 打包二进制，遍历三角形索引提取唯一的轮廓边。"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "function",
+      "name": "compute_edge_indices",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "lineRange": [30, 53],
+      "summary": "遍历三角面索引集合，识别只属于单个面的边作为轮廓边，返回去重后的边索引列表。",
+      "tags": ["utility", "geometry", "edge-detection", "primitive-outline"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "lineRange": [55, 58],
+      "summary": "脚本入口，读取 glTF 文件调用 compute_edge_indices 后将结果打包写入 outlines.bin。",
+      "tags": ["entry-point", "script", "data-generator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/outlines.bin",
+      "type": "file",
+      "name": "outlines.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/outlines.bin",
+      "summary": "由 make_primitive_outlines.py 生成的二进制缓冲区，存储 BoxWithPrimitiveOutlineSharedVertices 模型的轮廓边索引数据。",
+      "tags": ["data", "binary-buffer", "gltf", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/README.md",
+      "summary": "描述 BoxWithPrimitiveOutlineSharedVertices 测试模型的来源与共享顶点变体的用途，用于验证 primitive outline 扩展。",
+      "tags": ["documentation", "test-fixture", "gltf", "primitive-outline"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.bin",
+      "type": "file",
+      "name": "BoxWithTangents.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.bin",
+      "summary": "BoxWithTangents (Draco 压缩版) 模型的二进制几何缓冲区，被同名 glTF 文件引用。",
+      "tags": ["data", "binary-buffer", "gltf", "draco", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.gltf",
+      "type": "schema",
+      "name": "BoxWithTangents.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.gltf",
+      "summary": "带切线的立方体 glTF 2.0 模型 (Draco 压缩版)，用于测试 Draco 几何压缩与切线属性加载。",
+      "tags": ["schema-definition", "gltf", "draco", "test-fixture", "data"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0 + KHR_draco_mesh_compression 扩展，几何数据由 Draco 压缩。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buffer.bin",
+      "type": "file",
+      "name": "buffer.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buffer.bin",
+      "summary": "BuildingsMetadata 测试模型的二进制缓冲区，存储几何与 feature metadata 属性数据。",
+      "tags": ["data", "binary-buffer", "gltf", "test-fixture", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata_EXT_feature_metadata.gltf",
+      "type": "schema",
+      "name": "buildings-metadata_EXT_feature_metadata.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata_EXT_feature_metadata.gltf",
+      "summary": "建筑模型 glTF 文件，使用旧版 EXT_feature_metadata 扩展为几何附加每要素元数据，用于测试历史元数据扩展。",
+      "tags": ["schema-definition", "gltf", "feature-metadata", "test-fixture", "data"],
+      "complexity": "complex",
+      "languageNotes": "glTF 2.0 + EXT_feature_metadata 扩展，定义每要素属性表与属性引用。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata.gltf",
+      "type": "schema",
+      "name": "buildings-metadata.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata.gltf",
+      "summary": "建筑模型 glTF 文件，使用 EXT_mesh_features 扩展附加每要素元数据，为现代 mesh features 元数据测试提供数据。",
+      "tags": ["schema-definition", "gltf", "mesh-features", "test-fixture", "data"],
+      "complexity": "complex",
+      "languageNotes": "glTF 2.0 + EXT_structural_metadata / EXT_mesh_features 扩展。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/0.bin",
+      "type": "file",
+      "name": "0.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/0.bin",
+      "summary": "CesiumMan (Draco 压缩版) 蒙皮动画角色模型的二进制缓冲区，存储 Draco 压缩几何与动画数据。",
+      "tags": ["data", "binary-buffer", "gltf", "draco", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/CesiumMan.gltf",
+      "type": "schema",
+      "name": "CesiumMan.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/CesiumMan.gltf",
+      "summary": "CesiumMan 行走动画的蒙皮角色模型 glTF 2.0 (Draco 压缩版)，用于测试 Draco 压缩、蒙皮与动画加载。",
+      "tags": ["schema-definition", "gltf", "draco", "skinning", "animation", "test-fixture"],
+      "complexity": "complex",
+      "languageNotes": "glTF 2.0 + KHR_draco_mesh_compression，含蒙皮 (skins)、关节 (joints) 与动画通道。"
+    },
+    {
+      "id": "file:Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/0.bin",
+      "type": "file",
+      "name": "0.bin",
+      "filePath": "Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/0.bin",
+      "summary": "CesiumMilkTruck (Draco 压缩版) 车辆模型的二进制缓冲区，被同名 glTF 文件引用。",
+      "tags": ["data", "binary-buffer", "gltf", "draco", "test-fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/CesiumMilkTruck.gltf",
+      "type": "schema",
+      "name": "CesiumMilkTruck.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/CesiumMilkTruck.gltf",
+      "summary": "CesiumMilkTruck 卡车模型 glTF 2.0 (Draco 压缩版)，用于测试多 mesh、节点层级与 Draco 压缩模型加载。",
+      "tags": ["schema-definition", "gltf", "draco", "test-fixture", "data"],
+      "complexity": "complex",
+      "languageNotes": "glTF 2.0 + KHR_draco_mesh_compression，含多节点层级与材质定义。"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_Angled.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Checker_Angled.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_Angled.gltf",
+      "summary": "ConstantLod 棋盘格模型的倾斜变换变体，用于测试 constant LOD CLOD 扩展在不同变换下的行为。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_NoCLOD.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Checker_NoCLOD.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_NoCLOD.gltf",
+      "summary": "ConstantLod 棋盘格模型变体，禁用 CLOD 模式，用于对照测试 constant LOD 扩展无 CLOD 时的渲染。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_UnitTransforms.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Checker_UnitTransforms.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_UnitTransforms.gltf",
+      "summary": "ConstantLod 棋盘格模型使用单位变换的变体，用于隔离测试 constant LOD 扩展本身。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_Vertical.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Checker_Vertical.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker_Vertical.gltf",
+      "summary": "ConstantLod 棋盘格模型的垂直朝向变体，用于测试 constant LOD 扩展在不同朝向下的行为。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Checker.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Checker.gltf",
+      "summary": "ConstantLod 棋盘格基础模型，使用 constant LOD CLOD 扩展的基准测试夹具。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerEmissive_NoCLOD.gltf",
+      "type": "schema",
+      "name": "ConstantLod_CheckerEmissive_NoCLOD.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerEmissive_NoCLOD.gltf",
+      "summary": "ConstantLod 带发光的棋盘格模型变体，禁用 CLOD，用于测试发光材质与 constant LOD 扩展的组合。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "emissive", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerEmissive.gltf",
+      "type": "schema",
+      "name": "ConstantLod_CheckerEmissive.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerEmissive.gltf",
+      "summary": "ConstantLod 带发光的棋盘格模型，启用 CLOD，用于测试发光材质在 constant LOD 扩展下的渲染。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "emissive", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerTransform.gltf",
+      "type": "schema",
+      "name": "ConstantLod_CheckerTransform.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_CheckerTransform.gltf",
+      "summary": "ConstantLod 棋盘格模型带非平凡节点变换的变体，用于测试 constant LOD 扩展受变换影响时的表现。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_EmissiveOcclusion.gltf",
+      "type": "schema",
+      "name": "ConstantLod_EmissiveOcclusion.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_EmissiveOcclusion.gltf",
+      "summary": "ConstantLod 模型变体，含发光与遮蔽纹理，用于测试 constant LOD 扩展结合发光遮蔽的渲染。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "emissive", "occlusion", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Grass.gltf",
+      "type": "schema",
+      "name": "ConstantLod_Grass.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_Grass.gltf",
+      "summary": "ConstantLod 草地纹理模型变体，用于测试 constant LOD 扩展应用于不同材质纹理的情形。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "test-fixture", "data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "schema:Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_NormalMap_Transform.gltf",
+      "type": "schema",
+      "name": "ConstantLod_NormalMap_Transform.gltf",
+      "filePath": "Specs/Data/Models/glTF-2.0/ConstantLod/gltf/ConstantLod_NormalMap_Transform.gltf",
+      "summary": "ConstantLod 模型含法线贴图与节点变换，用于测试 constant LOD 扩展下法线贴图的渲染。",
+      "tags": ["schema-definition", "gltf", "constant-lod", "normal-map", "test-fixture", "data"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:main",
+      "target": "function:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py:compute_edge_indices",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/make_primitive_outlines.py",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/outlines.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/BoxWithPrimitiveOutlineSharedVertices.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/outlines.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BoxWithTangents/glTF-Draco/BoxWithTangents.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata_EXT_feature_metadata.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buffer.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buildings-metadata.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/BuildingsMetadata/glTF/buffer.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/CesiumMan.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/CesiumMan/glTF-Draco/0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "schema:Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/CesiumMilkTruck.gltf",
+      "target": "file:Specs/Data/Models/glTF-2.0/CesiumMilkTruck/glTF-Draco/0.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/README.md",
+      "target": "schema:Specs/Data/Models/glTF-2.0/BoxWithPrimitiveOutlineSharedVertices/glTF/BoxWithPrimitiveOutlineSharedVertices.gltf",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

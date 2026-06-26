@@ -1,0 +1,1560 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "type": "file",
+      "name": "createWallOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "summary": "Wall outline geometry worker：解包参数并生成墙体轮廓几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "type": "file",
+      "name": "decodeDraco.js",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "summary": "Draco 解码 worker：基于 Draco WASM 解码压缩的 glTF 顶点/索引属性，支持量化属性与多种分量类型。",
+      "tags": [
+        "worker",
+        "geometry",
+        "decoding",
+        "draco"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "type": "file",
+      "name": "decodeI3S.js",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "summary": "I3S（Indexed 3D Scene Layer）解码 worker：解析 I3S 二进制几何体、生成法线/轮廓/glTF buffer、处理 Draco 编码几何体，是 I3S layer 的核心解析器。",
+      "tags": [
+        "worker",
+        "geometry",
+        "decoding",
+        "i3s"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "type": "file",
+      "name": "gaussianSplatSorter.js",
+      "filePath": "packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "summary": "Gaussian splat 排序 worker：按视图距离对高斯泼溅点排序以支持 alpha blending 渲染。",
+      "tags": [
+        "worker",
+        "geometry",
+        "gaussian-splatting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "type": "file",
+      "name": "gaussianSplatTextureGenerator.js",
+      "filePath": "packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "summary": "Gaussian splat 纹理生成 worker：为高斯泼溅图元生成纹理图集。",
+      "tags": [
+        "worker",
+        "geometry",
+        "gaussian-splatting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "type": "file",
+      "name": "incrementallyBuildTerrainPicker.js",
+      "filePath": "packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "summary": "增量地形拾取 worker：从地形三角形增量构建 AABB 层次结构以支持逐三角形拾取。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain",
+        "picking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "type": "file",
+      "name": "transcodeKTX2.js",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "summary": "KTX2 纹理转码 worker：使用 Basis Universal 将压缩的 KTX2 纹理转码为 GPU 支持的像素格式。",
+      "tags": [
+        "worker",
+        "geometry",
+        "decoding",
+        "ktx2"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "type": "file",
+      "name": "upsampleQuantizedTerrainMesh.js",
+      "filePath": "packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "summary": "Quantized mesh 上采样 worker：通过四叉树裁剪与插值从粗粒度地形 tile 生成更精细的子 tile 顶点。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain",
+        "terrain-mesh"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "type": "file",
+      "name": "upsampleVerticesFromCesium3DTilesTerrain.js",
+      "filePath": "packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "summary": "Cesium 3D Tiles terrain 上采样 worker：基于相邻 tile 上采样 3D Tiles 地形顶点。",
+      "tags": [
+        "worker",
+        "geometry",
+        "terrain",
+        "terrain-mesh"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createWallOutlineGeometry.js:createWallOutlineGeometry",
+      "type": "function",
+      "name": "createWallOutlineGeometry",
+      "filePath": "packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "worker 入口：解包参数并生成墙体轮廓几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodeIndexArray",
+      "type": "function",
+      "name": "decodeIndexArray",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        13,
+        36
+      ],
+      "summary": "decodeIndexArray 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodeQuantizedDracoTypedArray",
+      "type": "function",
+      "name": "decodeQuantizedDracoTypedArray",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        38,
+        79
+      ],
+      "summary": "解码经过 Draco 量化压缩的属性数组。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodeDracoTypedArray",
+      "type": "function",
+      "name": "decodeDracoTypedArray",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        81,
+        167
+      ],
+      "summary": "按 Draco 属性数据类型分派到对应的 GetAttributeXxxForAllPoints 调用并填充 typed array。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodeAttribute",
+      "type": "function",
+      "name": "decodeAttribute",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        169,
+        231
+      ],
+      "summary": "从 Draco 几何体读取单个属性，处理量化并返回 typed array。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodePointCloud",
+      "type": "function",
+      "name": "decodePointCloud",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        233,
+        296
+      ],
+      "summary": "解码 Draco 点云几何体并返回属性映射。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodePrimitive",
+      "type": "function",
+      "name": "decodePrimitive",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        298,
+        355
+      ],
+      "summary": "解码 Draco 网格几何体的索引与所有属性。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:initWorker",
+      "type": "function",
+      "name": "initWorker",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        364,
+        374
+      ],
+      "summary": "initWorker 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeDraco.js:decodeDraco",
+      "type": "function",
+      "name": "decodeDraco",
+      "filePath": "packages/engine/Source/Workers/decodeDraco.js",
+      "lineRange": [
+        376,
+        384
+      ],
+      "summary": "worker 入口：根据命令字（init/decodePointCloud/decodePrimitive）分派 Draco 解码任务。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:sampleGeoid",
+      "type": "function",
+      "name": "sampleGeoid",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        29,
+        57
+      ],
+      "summary": "对 geoid 高程数据进行双线性采样以支持正高到椭高转换。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:sampleGeoidFromList",
+      "type": "function",
+      "name": "sampleGeoidFromList",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        59,
+        86
+      ],
+      "summary": "sampleGeoidFromList 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:orthometricToEllipsoidal",
+      "type": "function",
+      "name": "orthometricToEllipsoidal",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        88,
+        118
+      ],
+      "summary": "orthometricToEllipsoidal 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:transformToLocal",
+      "type": "function",
+      "name": "transformToLocal",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        120,
+        184
+      ],
+      "summary": "将 I3S 节点几何体从全局坐标变换到局部 ENU 帧。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:cropUVs",
+      "type": "function",
+      "name": "cropUVs",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        186,
+        202
+      ],
+      "summary": "cropUVs 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateIndexArray",
+      "type": "function",
+      "name": "generateIndexArray",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        204,
+        267
+      ],
+      "summary": "generateIndexArray 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:getFeatureHash",
+      "type": "function",
+      "name": "getFeatureHash",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        269,
+        282
+      ],
+      "summary": "getFeatureHash 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:addVertexToHash",
+      "type": "function",
+      "name": "addVertexToHash",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        284,
+        300
+      ],
+      "summary": "addVertexToHash 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:addEdgeToHash",
+      "type": "function",
+      "name": "addEdgeToHash",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        302,
+        338
+      ],
+      "summary": "addEdgeToHash 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesHash",
+      "type": "function",
+      "name": "generateOutlinesHash",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        340,
+        384
+      ],
+      "summary": "generateOutlinesHash 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:calculateFaceNormal",
+      "type": "function",
+      "name": "calculateFaceNormal",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        389,
+        426
+      ],
+      "summary": "calculateFaceNormal 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:addOutlinesForEdge",
+      "type": "function",
+      "name": "addOutlinesForEdge",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        440,
+        472
+      ],
+      "summary": "addOutlinesForEdge 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:addOutlinesForFeature",
+      "type": "function",
+      "name": "addOutlinesForFeature",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        474,
+        490
+      ],
+      "summary": "addOutlinesForFeature 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesFromHash",
+      "type": "function",
+      "name": "generateOutlinesFromHash",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        492,
+        505
+      ],
+      "summary": "generateOutlinesFromHash 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesIndexArray",
+      "type": "function",
+      "name": "generateOutlinesIndexArray",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        507,
+        536
+      ],
+      "summary": "根据特征边 hash 生成 I3S 几何体的轮廓线索引。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:convertColorsArray",
+      "type": "function",
+      "name": "convertColorsArray",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        538,
+        549
+      ],
+      "summary": "convertColorsArray 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateNormals",
+      "type": "function",
+      "name": "generateNormals",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        551,
+        624
+      ],
+      "summary": "为 I3S 几何体通过相邻面平均生成平滑顶点法线。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:generateGltfBuffer",
+      "type": "function",
+      "name": "generateGltfBuffer",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        626,
+        1058
+      ],
+      "summary": "从 I3S 二进制几何体构建 glTF vertex buffer、索引与属性，是 I3S -> glTF 转换的核心。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decode",
+      "type": "function",
+      "name": "decode",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1060,
+        1072
+      ],
+      "summary": "decode 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decodeDracoEncodedGeometry",
+      "type": "function",
+      "name": "decodeDracoEncodedGeometry",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1074,
+        1200
+      ],
+      "summary": "解码 Draco 压缩的 I3S 几何体属性与索引。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decodeDracoAttribute",
+      "type": "function",
+      "name": "decodeDracoAttribute",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1202,
+        1376
+      ],
+      "summary": "解码单个 Draco 压缩的 I3S 属性。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decodeBinaryGeometry",
+      "type": "function",
+      "name": "decodeBinaryGeometry",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1435,
+        1510
+      ],
+      "summary": "解析 I3S 二进制几何体描述符并生成顶点/法线/UV/颜色数组。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decodeAndCreateGltf",
+      "type": "function",
+      "name": "decodeAndCreateGltf",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1512,
+        1631
+      ],
+      "summary": "worker 入口：协调 I3S 几何体解码（含 Draco）并产出 glTF buffer。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:initWorker",
+      "type": "function",
+      "name": "initWorker",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1633,
+        1643
+      ],
+      "summary": "initWorker 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/decodeI3S.js:decodeI3S",
+      "type": "function",
+      "name": "decodeI3S",
+      "filePath": "packages/engine/Source/Workers/decodeI3S.js",
+      "lineRange": [
+        1645,
+        1653
+      ],
+      "summary": "worker 入口：分派 init/decode 任务。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/gaussianSplatSorter.js:generateGaussianSortWorker",
+      "type": "function",
+      "name": "generateGaussianSortWorker",
+      "filePath": "packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "lineRange": [
+        16,
+        32
+      ],
+      "summary": "worker 入口：按视图距离对高斯泼溅点排序。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js:generateSplatTextureWorker",
+      "type": "function",
+      "name": "generateSplatTextureWorker",
+      "filePath": "packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "lineRange": [
+        17,
+        37
+      ],
+      "summary": "worker 入口：生成高斯泼溅纹理图集。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js:incrementallyBuildTerrainPicker",
+      "type": "function",
+      "name": "incrementallyBuildTerrainPicker",
+      "filePath": "packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "lineRange": [
+        27,
+        83
+      ],
+      "summary": "worker 入口：增量构建地形三角形 AABB 加速结构以支持拾取。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js:createAABBFromTriangle",
+      "type": "function",
+      "name": "createAABBFromTriangle",
+      "filePath": "packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "lineRange": [
+        91,
+        120
+      ],
+      "summary": "由单个三角形构造轴对齐包围盒。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcode",
+      "type": "function",
+      "name": "transcode",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "lineRange": [
+        25,
+        69
+      ],
+      "summary": "transcode 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/transcodeKTX2.js:parseUncompressed",
+      "type": "function",
+      "name": "parseUncompressed",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "lineRange": [
+        72,
+        134
+      ],
+      "summary": "解析未压缩的 KTX2 数据并直接产出 GPU 可用纹理。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcodeCompressed",
+      "type": "function",
+      "name": "transcodeCompressed",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "lineRange": [
+        136,
+        282
+      ],
+      "summary": "使用 Basis Universal 将压缩 KTX2 数据转码为目标 GPU 像素格式。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/transcodeKTX2.js:initWorker",
+      "type": "function",
+      "name": "initWorker",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "lineRange": [
+        284,
+        297
+      ],
+      "summary": "initWorker 函数。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcodeKTX2",
+      "type": "function",
+      "name": "transcodeKTX2",
+      "filePath": "packages/engine/Source/Workers/transcodeKTX2.js",
+      "lineRange": [
+        299,
+        307
+      ],
+      "summary": "worker 入口：分派 init 与转码任务。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:upsampleQuantizedTerrainMesh",
+      "type": "function",
+      "name": "upsampleQuantizedTerrainMesh",
+      "filePath": "packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "lineRange": [
+        36,
+        447
+      ],
+      "summary": "worker 入口：通过四叉树裁剪与顶点插值从粗 tile 生成更精细的 quantized mesh 子 tile。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:lerpOctEncodedNormal",
+      "type": "function",
+      "name": "lerpOctEncodedNormal",
+      "filePath": "packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "lineRange": [
+        556,
+        585
+      ],
+      "summary": "对两个 oct-encoded 法线做线性插值并重新编码。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:addClippedPolygon",
+      "type": "function",
+      "name": "addClippedPolygon",
+      "filePath": "packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "lineRange": [
+        611,
+        680
+      ],
+      "summary": "将裁剪多边形三角化并插入到上采样 mesh 的顶点/索引缓冲。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js:upsampleVerticesFromCesium3DTilesTerrain",
+      "type": "function",
+      "name": "upsampleVerticesFromCesium3DTilesTerrain",
+      "filePath": "packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "lineRange": [
+        11,
+        51
+      ],
+      "summary": "worker 入口：基于 Cesium3DTilesTerrainGeometryProcessor 对相邻 tile 做上采样。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createWallOutlineGeometry.js:createWallOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodeIndexArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodeQuantizedDracoTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodeDracoTypedArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodeAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodePointCloud",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodePrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:initWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "function:packages/engine/Source/Workers/decodeDraco.js:decodeDraco",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:sampleGeoid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:sampleGeoidFromList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:orthometricToEllipsoidal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:transformToLocal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:cropUVs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateIndexArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:getFeatureHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:addVertexToHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:addEdgeToHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:calculateFaceNormal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:addOutlinesForEdge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:addOutlinesForFeature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesFromHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateOutlinesIndexArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:convertColorsArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateNormals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:generateGltfBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decodeDracoEncodedGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decodeDracoAttribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decodeBinaryGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decodeAndCreateGltf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:initWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "function:packages/engine/Source/Workers/decodeI3S.js:decodeI3S",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "target": "function:packages/engine/Source/Workers/gaussianSplatSorter.js:generateGaussianSortWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "target": "function:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js:generateSplatTextureWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "function:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js:incrementallyBuildTerrainPicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "function:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js:createAABBFromTriangle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "function:packages/engine/Source/Workers/transcodeKTX2.js:parseUncompressed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcodeCompressed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "function:packages/engine/Source/Workers/transcodeKTX2.js:initWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "function:packages/engine/Source/Workers/transcodeKTX2.js:transcodeKTX2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:upsampleQuantizedTerrainMesh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:lerpOctEncodedNormal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "function:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js:addClippedPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "target": "function:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js:upsampleVerticesFromCesium3DTilesTerrain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createWallOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/WallOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeDraco.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/srgbToLinear.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/decodeI3S.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatSorter.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/gaussianSplatTextureGenerator.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "file:packages/engine/Source/Core/AxisAlignedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/incrementallyBuildTerrainPicker.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Core/VulkanConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/transcodeKTX2.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Intersections2D.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Core/TerrainEncoding.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleQuantizedTerrainMesh.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "target": "file:packages/engine/Source/Core/Cesium3DTilesTerrainGeometryProcessor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/upsampleVerticesFromCesium3DTilesTerrain.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

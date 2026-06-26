@@ -1,0 +1,222 @@
+{
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/cla.yml",
+      "type": "pipeline",
+      "name": "cla.yml",
+      "filePath": ".github/workflows/cla.yml",
+      "summary": "GitHub Actions 工作流，在新的 pull request 打开时触发，运行 CLA 检查脚本验证贡献者是否签署了个人或企业贡献者许可协议。",
+      "tags": ["ci-cd", "cla", "pull-request", "automation"],
+      "complexity": "simple",
+      "languageNotes": "使用 pull_request_target 触发器在 fork 的 PR 上安全运行；委托给 .github/actions/check-for-CLA 复合 action。"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy.yml",
+      "type": "pipeline",
+      "name": "deploy.yml",
+      "filePath": ".github/workflows/deploy.yml",
+      "summary": "分支持续部署工作流，在 push 到非生产分支时构建 CesiumJS、打包 npm 模块与发布 zip，并将其同步到 ci-builds.cesium.com 的 S3 存储桶。",
+      "tags": ["ci-cd", "deployment", "s3", "build"],
+      "complexity": "moderate",
+      "languageNotes": "通过 concurrency group 按分支取消进行中的旧任务；调用 npm scripts（deploy-set-version、make-zip、build-apps）与 verify-package 复合 action。"
+    },
+    {
+      "id": "pipeline:.github/workflows/dev.yml",
+      "type": "pipeline",
+      "name": "dev.yml",
+      "filePath": ".github/workflows/dev.yml",
+      "summary": "主开发流水线，在 push 到 main 与 pull_request 时并行运行代码 lint、构建、TypeScript 类型检查、覆盖率采集、release 测试与跨 Node 版本（22/24）的冒烟测试。",
+      "tags": ["ci-cd", "lint", "test", "coverage"],
+      "complexity": "complex",
+      "languageNotes": "四个并行 job（lint / coverage / release-tests / node-smoke-test）；coverage 与 release-tests 使用 webgl-stub 在无头浏览器中运行。"
+    },
+    {
+      "id": "pipeline:.github/workflows/prod.yml",
+      "type": "pipeline",
+      "name": "prod.yml",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "生产发布工作流，在 push 到 cesium.com 分支时依次执行 lint、构建发布归档、文档、Cesium Viewer 与 Sandcastle，部署至 cesium.com 的多个 S3 存储桶，并清理旧的 ion token。",
+      "tags": ["ci-cd", "deployment", "release", "s3"],
+      "complexity": "complex",
+      "languageNotes": "六个有依赖关系的 deploy job（needs: [lint] / [deploy-cesium-viewer, deploy-sandcastle]）；从 GitHub Release 下载 zip 解包再同步到 S3。"
+    },
+    {
+      "id": "pipeline:.github/workflows/sandcastle-dev.yml",
+      "type": "pipeline",
+      "name": "sandcastle-dev.yml",
+      "filePath": ".github/workflows/sandcastle-dev.yml",
+      "summary": "Sandcastle 持续部署工作流，在 push 到 main 时构建生产级 Sandcastle 示例站点并同步到 dev-sandcastle.cesium.com 的 S3 存储桶。",
+      "tags": ["ci-cd", "deployment", "sandcastle", "s3"],
+      "complexity": "simple",
+      "languageNotes": "构建顺序固定：website-release → build-ts → build-sandcastle，再 aws s3 sync 到生产 bucket。"
+    },
+    {
+      "id": "pipeline:.github/workflows/update-tokens.yml",
+      "type": "pipeline",
+      "name": "update-tokens.yml",
+      "filePath": ".github/workflows/update-tokens.yml",
+      "summary": "定时任务工作流，每月 25 日 UTC 时间 05:00 运行，更新 ion 与 iTwin 访问令牌并以 github-actions[bot] 身份提交并创建更新 PR。",
+      "tags": ["ci-cd", "automation", "cron", "security"],
+      "complexity": "moderate",
+      "languageNotes": "使用 cron 计划触发；通过 gh CLI 创建带 'priority - next release' 标签的 PR。"
+    },
+    {
+      "id": "step:.github/workflows/cla.yml:check-cla",
+      "type": "step",
+      "name": "check-cla",
+      "filePath": ".github/workflows/cla.yml",
+      "summary": "CLA 检查 job，安装依赖后在 .github/actions/check-for-CLA 中运行 index.js，依据 Google Sheets 中的 CLA 记录对 PR 评论。",
+      "tags": ["job", "cla", "automation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/deploy.yml:deploy",
+      "type": "step",
+      "name": "deploy",
+      "filePath": ".github/workflows/deploy.yml",
+      "summary": "部署 job，执行 npm install、设置 BUILD_VERSION、创建 release zip、npm pack 主包与 workspace 子包、构建 apps、验证包后将产物同步到 cesium-public-builds S3。",
+      "tags": ["job", "build", "deployment", "s3"],
+      "complexity": "complex"
+    },
+    {
+      "id": "step:.github/workflows/dev.yml:lint",
+      "type": "step",
+      "name": "lint",
+      "filePath": ".github/workflows/dev.yml",
+      "summary": "Lint job，运行 eslint、markdownlint、prettier-check、build、tsc 类型检查，以及 ast-grep 的 sg test 与 sg scan。",
+      "tags": ["job", "lint", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/dev.yml:coverage",
+      "type": "step",
+      "name": "coverage",
+      "filePath": ".github/workflows/dev.yml",
+      "summary": "覆盖率 job，在无头 Firefox 中以 webgl-stub 模式运行测试套件采集覆盖率，并将结果同步到 S3。",
+      "tags": ["job", "test", "coverage"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/dev.yml:release-tests",
+      "type": "step",
+      "name": "release-tests",
+      "filePath": ".github/workflows/dev.yml",
+      "summary": "Release 测试 job，构建 release zip 后在无头 Chrome 中以 release + webgl-stub 模式运行测试套件，并执行 cloc 代码统计。",
+      "tags": ["job", "test", "release"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/dev.yml:node-smoke-test",
+      "type": "step",
+      "name": "node-smoke-test",
+      "filePath": ".github/workflows/dev.yml",
+      "summary": "Node 冒烟测试 job，在 Node 22 与 24 矩阵上构建 release 包、npm pack 主包与 workspace 子包，再通过 verify-package 复合 action 验证可发布性。",
+      "tags": ["job", "test", "matrix", "smoke-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:lint",
+      "type": "step",
+      "name": "lint",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "生产构建前置的 lint job，与 dev.yml 中的 lint job 一致，运行 eslint、markdownlint、prettier-check、build、tsc 与 ast-grep。",
+      "tags": ["job", "lint", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:deploy-archive",
+      "type": "step",
+      "name": "deploy-archive",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "归档部署 job（依赖 lint），构建 website-release、类型与 Sandcastle，从最新 GitHub Release 下载 zip 解包后同步到 cesium.com 的 releases 与 Sandcastle 存储桶。",
+      "tags": ["job", "deployment", "release", "s3"],
+      "complexity": "complex"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:deploy-docs",
+      "type": "step",
+      "name": "deploy-docs",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "文档部署 job（依赖 lint），运行 build-docs 生成参考文档并同步到 cesium.com 的 ref-doc 存储桶。",
+      "tags": ["job", "deployment", "documentation", "s3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:deploy-cesium-viewer",
+      "type": "step",
+      "name": "deploy-cesium-viewer",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "Cesium Viewer 部署 job（依赖 lint），构建 website-release 与 Cesium Viewer 应用后同步到 cesium-viewer 存储桶。",
+      "tags": ["job", "deployment", "viewer", "s3"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:deploy-sandcastle",
+      "type": "step",
+      "name": "deploy-sandcastle",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "Sandcastle 生产部署 job（依赖 lint），构建 website-release、类型与 Sandcastle，同步到 sandcastle.cesium.com 存储桶。",
+      "tags": ["job", "deployment", "sandcastle", "s3"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/prod.yml:delete-old-ion-token",
+      "type": "step",
+      "name": "delete-old-ion-token",
+      "filePath": ".github/workflows/prod.yml",
+      "summary": "ion token 清理 job（依赖 deploy-cesium-viewer 与 deploy-sandcastle），运行 update-tokens action 中的 ionTokenDeleter.js 删除过期 token。",
+      "tags": ["job", "security", "token", "cleanup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "step:.github/workflows/sandcastle-dev.yml:deploy",
+      "type": "step",
+      "name": "deploy",
+      "filePath": ".github/workflows/sandcastle-dev.yml",
+      "summary": "Sandcastle dev 部署 job，构建 website-release、类型与生产级 Sandcastle，同步到 dev-sandcastle.cesium.com 存储桶。",
+      "tags": ["job", "deployment", "sandcastle", "s3"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "step:.github/workflows/update-tokens.yml:update-and-create-pr",
+      "type": "step",
+      "name": "update-and-create-pr",
+      "filePath": ".github/workflows/update-tokens.yml",
+      "summary": "令牌更新 job，运行 update-tokens action 的 index.js 更新 ion 与 iTwin 令牌，以 github-actions[bot] 身份提交到新分支并通过 gh CLI 创建更新 PR。",
+      "tags": ["job", "automation", "token", "pull-request"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "pipeline:.github/workflows/cla.yml", "target": "step:.github/workflows/cla.yml:check-cla", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/cla.yml", "target": "file:.github/actions/check-for-CLA/index.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+
+    {"source": "pipeline:.github/workflows/deploy.yml", "target": "step:.github/workflows/deploy.yml:deploy", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/deploy.yml", "target": "file:Source/Cesium.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+    {"source": "pipeline:.github/workflows/deploy.yml", "target": "file:.github/actions/verify-package", "type": "depends_on", "direction": "forward", "weight": 0.6},
+
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "step:.github/workflows/dev.yml:lint", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "step:.github/workflows/dev.yml:coverage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "step:.github/workflows/dev.yml:release-tests", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "step:.github/workflows/dev.yml:node-smoke-test", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "file:Source/Cesium.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+    {"source": "pipeline:.github/workflows/dev.yml", "target": "file: Specs", "type": "triggers", "direction": "forward", "weight": 0.5},
+
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:lint", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:deploy-archive", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:deploy-docs", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:deploy-cesium-viewer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:deploy-sandcastle", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "step:.github/workflows/prod.yml:delete-old-ion-token", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "file:Source/Cesium.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "file:.github/actions/update-tokens/ionTokenDeleter.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+
+    {"source": "pipeline:.github/workflows/sandcastle-dev.yml", "target": "step:.github/workflows/sandcastle-dev.yml:deploy", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/sandcastle-dev.yml", "target": "file:Source/Cesium.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+
+    {"source": "pipeline:.github/workflows/update-tokens.yml", "target": "step:.github/workflows/update-tokens.yml:update-and-create-pr", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "pipeline:.github/workflows/update-tokens.yml", "target": "file:.github/actions/update-tokens/index.js", "type": "triggers", "direction": "forward", "weight": 0.6},
+
+    {"source": "pipeline:.github/workflows/prod.yml", "target": "pipeline:.github/workflows/dev.yml", "type": "related", "direction": "forward", "weight": 0.5}
+  ]
+}

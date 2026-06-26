@@ -1,0 +1,233 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/CloudCollectionVS.glsl",
+      "type": "file",
+      "name": "CloudCollectionVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionVS.glsl",
+      "summary": "体云集合的顶点 shader，计算每片云的实例化变换、朝向与到相机距离，为体云渲染提供几何数据。",
+      "tags": ["shader", "vertex", "cloud", "webgl", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CloudNoiseFS.glsl",
+      "type": "file",
+      "name": "CloudNoiseFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CloudNoiseFS.glsl",
+      "summary": "体云噪声生成片段 shader，通过 FBM 多层柏林噪声合成体密度场，供体云体积渲染采样使用。",
+      "tags": ["shader", "fragment", "cloud", "noise", "webgl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CloudNoiseVS.glsl",
+      "type": "file",
+      "name": "CloudNoiseVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CloudNoiseVS.glsl",
+      "summary": "体云噪声生成的顶点 shader，将全屏四边形坐标透传给片段阶段用于噪声计算。",
+      "tags": ["shader", "vertex", "cloud", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CompareAndPackTranslucentDepth.glsl",
+      "type": "file",
+      "name": "CompareAndPackTranslucentDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/CompareAndPackTranslucentDepth.glsl",
+      "summary": "半透明排序辅助 shader，比较并打包深度信息用于 Order Independent Transparency (OIT) 混合。",
+      "tags": ["shader", "translucency", "oit", "webgl", "depth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CompositeOITFS.glsl",
+      "type": "file",
+      "name": "CompositeOITFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CompositeOITFS.glsl",
+      "summary": "OIT 合成片段 shader，按加权深度缓冲将多个半透明层合并到最终颜色缓冲，实现顺序无关半透明渲染。",
+      "tags": ["shader", "fragment", "oit", "translucency", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ComputeIrradianceFS.glsl",
+      "type": "file",
+      "name": "ComputeIrradianceFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ComputeIrradianceFS.glsl",
+      "summary": "漫反射辐照度预计算片段 shader，通过卷积环境立方体贴图累加半球入射光，生成 IBL 漫反射辐照图。",
+      "tags": ["shader", "fragment", "ibl", "pbr", "image-processing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ComputeRadianceMapFS.glsl",
+      "type": "file",
+      "name": "ComputeRadianceMapFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ComputeRadianceMapFS.glsl",
+      "summary": "辐射度贴图预过滤片段 shader，基于粗糙度对环境立方体贴图做重要性采样卷积，生成 PBR 镜面反射 IBL 辐射图。",
+      "tags": ["shader", "fragment", "ibl", "pbr", "image-processing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ConvolveSpecularMapFS.glsl",
+      "type": "file",
+      "name": "ConvolveSpecularMapFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ConvolveSpecularMapFS.glsl",
+      "summary": "镜面反射贴图卷积片段 shader，通过 GGX 分布重要性采样生成预过滤环境贴图，用于 PBR 镜面 IBL。",
+      "tags": ["shader", "fragment", "ibl", "pbr", "image-processing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/ConvolveSpecularMapVS.glsl",
+      "type": "file",
+      "name": "ConvolveSpecularMapVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/ConvolveSpecularMapVS.glsl",
+      "summary": "镜面反射贴图卷积的顶点 shader，为立方体贴图每个面提供方向向量并透传给片段卷积阶段。",
+      "tags": ["shader", "vertex", "ibl", "pbr", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CubeMapPanoramaVS.glsl",
+      "type": "file",
+      "name": "CubeMapPanoramaVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CubeMapPanoramaVS.glsl",
+      "summary": "立方体贴图全景渲染的顶点 shader，将立方体贴图采样方向映射到球面全景坐标。",
+      "tags": ["shader", "vertex", "cubemap", "panorama", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/DepthPlaneFS.glsl",
+      "type": "file",
+      "name": "DepthPlaneFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/DepthPlaneFS.glsl",
+      "summary": "深度平面片段 shader，输出参考深度值用于深度相关特效（如地形深度对齐）。",
+      "tags": ["shader", "fragment", "depth", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/DepthPlaneVS.glsl",
+      "type": "file",
+      "name": "DepthPlaneVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/DepthPlaneVS.glsl",
+      "summary": "深度平面顶点 shader，将裁剪空间深度透传到片段阶段用于深度平面渲染。",
+      "tags": ["shader", "vertex", "depth", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/EllipsoidFS.glsl",
+      "type": "file",
+      "name": "EllipsoidFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/EllipsoidFS.glsl",
+      "summary": "椭球体渲染的片段 shader，处理椭球表面着色、深度计算与大气效果，用于内置椭球 primitive。",
+      "tags": ["shader", "fragment", "ellipsoid", "primitive", "webgl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/EllipsoidVS.glsl",
+      "type": "file",
+      "name": "EllipsoidVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/EllipsoidVS.glsl",
+      "summary": "椭球体渲染的顶点 shader，计算顶点位置、法线与朝向相机的纹理坐标，供椭球片段 shader 使用。",
+      "tags": ["shader", "vertex", "ellipsoid", "primitive", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/FXAA3_11.glsl",
+      "type": "file",
+      "name": "FXAA3_11.glsl",
+      "filePath": "packages/engine/Source/Shaders/FXAA3_11.glsl",
+      "summary": "NVIDIA FXAA 3.11 快速近似抗锯齿 shader 实现，对最终渲染帧做边缘检测与子像素混合以减轻锯齿。",
+      "tags": ["shader", "post-processing", "fxaa", "antialiasing", "webgl"],
+      "complexity": "complex",
+      "languageNotes": "源自 NVIDIA FXAA 3.11 SDK，包含多个质量预设与边缘检测算法分支。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/GlobeFS.glsl",
+      "type": "file",
+      "name": "GlobeFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/GlobeFS.glsl",
+      "summary": "地球表面渲染的核心片段 shader，融合地形纹理、影像图层、光照、大气与雾效，是地球 primitive 的主着色管线。",
+      "tags": ["shader", "fragment", "globe", "terrain", "imagery"],
+      "complexity": "complex",
+      "languageNotes": "包含大量条件分支（图层模式、雾、大气、海洋）与多纹理采样的复杂着色逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/GlobeVS.glsl",
+      "type": "file",
+      "name": "GlobeVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/GlobeVS.glsl",
+      "summary": "地球表面渲染的核心顶点 shader，计算地形高度位移、纹理图层坐标与变换矩阵，供地球片段 shader 使用。",
+      "tags": ["shader", "vertex", "globe", "terrain", "imagery"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/GroundAtmosphere.glsl",
+      "type": "file",
+      "name": "GroundAtmosphere.glsl",
+      "filePath": "packages/engine/Source/Shaders/GroundAtmosphere.glsl",
+      "summary": "地面大气效果 shader 片段，提供瑞利/米氏散射计算函数供地球 shader 包含复用以实现地表大气辉光。",
+      "tags": ["shader", "atmosphere", "scattering", "globe", "include"],
+      "complexity": "simple",
+      "languageNotes": "通过 GLSL #include 机制被其他 shader 复用的可重用着色片段。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/AspectRampMaterial.glsl",
+      "type": "file",
+      "name": "AspectRampMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/AspectRampMaterial.glsl",
+      "summary": "坡向渐变材质 shader，根据地形朝向方位角采样颜色渐变带以可视化坡向信息。",
+      "tags": ["shader", "material", "terrain", "visualization", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/BumpMapMaterial.glsl",
+      "type": "file",
+      "name": "BumpMapMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/BumpMapMaterial.glsl",
+      "summary": "凹凸贴图材质 shader，通过对法线贴图采样扰动表面法线以模拟表面几何细节。",
+      "tags": ["shader", "material", "bump-map", "normal", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/CheckerboardMaterial.glsl",
+      "type": "file",
+      "name": "CheckerboardMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/CheckerboardMaterial.glsl",
+      "summary": "棋盘格材质 shader，根据 UV 坐标程序化生成黑白交替的棋盘图案用于可视化与调试。",
+      "tags": ["shader", "material", "procedural", "visualization", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/DotMaterial.glsl",
+      "type": "file",
+      "name": "DotMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/DotMaterial.glsl",
+      "summary": "圆点材质 shader，根据 UV 在网格单元中心绘制圆点图案以用于网格化可视化效果。",
+      "tags": ["shader", "material", "procedural", "visualization", "webgl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/ElevationBandMaterial.glsl",
+      "type": "file",
+      "name": "ElevationBandMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/ElevationBandMaterial.glsl",
+      "summary": "高程分带材质 shader，根据地形高度按分带渐变颜色映射可视化高程分布，支持自定义颜色与高度区间。",
+      "tags": ["shader", "material", "terrain", "elevation", "visualization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/ElevationContourMaterial.glsl",
+      "type": "file",
+      "name": "ElevationContourMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/ElevationContourMaterial.glsl",
+      "summary": "高程等高线材质 shader，在指定高程间隔绘制等高线条以可视化地形等高线分布。",
+      "tags": ["shader", "material", "terrain", "contour", "visualization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Materials/ElevationRampMaterial.glsl",
+      "type": "file",
+      "name": "ElevationRampMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Materials/ElevationRampMaterial.glsl",
+      "summary": "高程渐变材质 shader，根据地形高度采样颜色渐变带以连续可视化高程变化。",
+      "tags": ["shader", "material", "terrain", "elevation", "visualization"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

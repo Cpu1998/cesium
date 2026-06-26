@@ -1,0 +1,1503 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "type": "file",
+      "name": "CompositeProperty",
+      "filePath": "packages/engine/Source/DataSources/CompositeProperty.js",
+      "summary": "将多个 TimeInterval 隔离的属性组合为一个时变 property，基于 TimeIntervalCollection 在不同时间段切换底层 property。",
+      "tags": [
+        "property",
+        "time-dynamic",
+        "composite",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "type": "file",
+      "name": "ConstantPositionProperty",
+      "filePath": "packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "summary": "始终返回固定位置和参考坐标系的 PositionProperty 实现，常用于静态 entity。",
+      "tags": [
+        "position-property",
+        "constant",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "file",
+      "name": "ConstantProperty",
+      "filePath": "packages/engine/Source/DataSources/ConstantProperty.js",
+      "summary": "最基础的 property 实现，在任意时刻返回同一个固定值，是整个 property 体系的根类型。",
+      "tags": [
+        "property",
+        "constant",
+        "data-model",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "type": "file",
+      "name": "CorridorGraphics",
+      "filePath": "packages/engine/Source/DataSources/CorridorGraphics.js",
+      "summary": "描述 corridor（沿折线拉伸的带状/管状）图形的属性集合，由 entity 引用供 visualizer 渲染。",
+      "tags": [
+        "graphics",
+        "corridor",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "type": "file",
+      "name": "CustomDataSource",
+      "filePath": "packages/engine/Source/DataSources/CustomDataSource.js",
+      "summary": "允许用户手动添加/管理 entity 的 DataSource 实现，是程序化构建 entity 层级的主要入口。",
+      "tags": [
+        "datasource",
+        "custom",
+        "entity",
+        "entry-point",
+        "cesium"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "type": "file",
+      "name": "CylinderGraphics",
+      "filePath": "packages/engine/Source/DataSources/CylinderGraphics.js",
+      "summary": "描述圆柱/圆锥/棱柱体图形属性的集合，供 entity 持有并由 GeometryVisualizer 渲染。",
+      "tags": [
+        "graphics",
+        "cylinder",
+        "data-model",
+        "entity",
+        "cesium"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "type": "file",
+      "name": "CzmlDataSource",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "summary": "解析 CZML（Cesium 的 JSON 時變数据格式）并构建带时间插值 property 的 entity 集合；是体量最大、最核心的 DataSource 之一。",
+      "tags": [
+        "datasource",
+        "czml",
+        "parser",
+        "time-dynamic",
+        "cesium"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cesium 采用构造函数 + prototype（非 ES class）的模式定义类型；graphics/property 类型多通过 createPropertyDescriptor/createMaterialPropertyDescriptor 创建带 change 事件的属性。"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CompositeProperty.js:CompositeProperty",
+      "type": "function",
+      "name": "CompositeProperty",
+      "filePath": "packages/engine/Source/DataSources/CompositeProperty.js",
+      "lineRange": [
+        55,
+        63
+      ],
+      "summary": "CompositeProperty 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ConstantPositionProperty.js:ConstantPositionProperty",
+      "type": "function",
+      "name": "ConstantPositionProperty",
+      "filePath": "packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "ConstantPositionProperty 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ConstantProperty.js:ConstantProperty",
+      "type": "function",
+      "name": "ConstantProperty",
+      "filePath": "packages/engine/Source/DataSources/ConstantProperty.js",
+      "lineRange": [
+        14,
+        20
+      ],
+      "summary": "ConstantProperty 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CorridorGraphics.js:CorridorGraphics",
+      "type": "function",
+      "name": "CorridorGraphics",
+      "filePath": "packages/engine/Source/DataSources/CorridorGraphics.js",
+      "lineRange": [
+        46,
+        86
+      ],
+      "summary": "CorridorGraphics 构造函数：用 createPropertyDescriptor 初始化各项图形属性。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "corridor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CustomDataSource.js:CustomDataSource",
+      "type": "function",
+      "name": "CustomDataSource",
+      "filePath": "packages/engine/Source/DataSources/CustomDataSource.js",
+      "lineRange": [
+        28,
+        37
+      ],
+      "summary": "CustomDataSource 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CylinderGraphics.js:CylinderGraphics",
+      "type": "function",
+      "name": "CylinderGraphics",
+      "filePath": "packages/engine/Source/DataSources/CylinderGraphics.js",
+      "lineRange": [
+        38,
+        70
+      ],
+      "summary": "CylinderGraphics 构造函数。",
+      "tags": [
+        "graphics",
+        "constructor",
+        "cylinder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:UnitCartesian3",
+      "type": "function",
+      "name": "UnitCartesian3",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        97,
+        97
+      ],
+      "summary": "UnitCartesian3 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPacketData",
+      "type": "function",
+      "name": "processPacketData",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        868,
+        904
+      ],
+      "summary": "将单个 CZML interval 数据包写入指定对象的 property。",
+      "tags": [
+        "czml",
+        "parser",
+        "property"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPositionProperty",
+      "type": "function",
+      "name": "processPositionProperty",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        906,
+        1092
+      ],
+      "summary": "处理 CZML 位置 property（含参考系、插值与 availability）。",
+      "tags": [
+        "czml",
+        "parser",
+        "position-property"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processMaterialProperty",
+      "type": "function",
+      "name": "processMaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        1193,
+        1556
+      ],
+      "summary": "处理 CZML 材质 property，构造对应的 MaterialProperty（image/grid/stripe 等）。",
+      "tags": [
+        "czml",
+        "parser",
+        "material-property"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processBillboard",
+      "type": "function",
+      "name": "processBillboard",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        2015,
+        2205
+      ],
+      "summary": "从 CZML 包解析 billboard 图形并赋给 entity。",
+      "tags": [
+        "czml",
+        "parser",
+        "billboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processLabel",
+      "type": "function",
+      "name": "processLabel",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        3036,
+        3237
+      ],
+      "summary": "从 CZML 包解析 label 图形并赋给 entity。",
+      "tags": [
+        "czml",
+        "parser",
+        "label"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processModel",
+      "type": "function",
+      "name": "processModel",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        3239,
+        3442
+      ],
+      "summary": "从 CZML 包解析 glTF 模型图形与 articulations。",
+      "tags": [
+        "czml",
+        "parser",
+        "model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:PolygonHierarchyProperty",
+      "type": "function",
+      "name": "PolygonHierarchyProperty",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        3763,
+        3766
+      ],
+      "summary": "PolygonHierarchyProperty 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPolygon",
+      "type": "function",
+      "name": "processPolygon",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        3820,
+        4031
+      ],
+      "summary": "从 CZML 包解析 polygon 图形（含层次与材质）。",
+      "tags": [
+        "czml",
+        "parser",
+        "polygon"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processCzmlPacket",
+      "type": "function",
+      "name": "processCzmlPacket",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        4610,
+        4648
+      ],
+      "summary": "处理单个 CZML packet 的公共入口，调度各属性处理器。",
+      "tags": [
+        "czml",
+        "parser",
+        "dispatcher"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        4716,
+        4766
+      ],
+      "summary": "加载 CZML 数据：解析文档包、构造 entity 与 property，并更新时钟。",
+      "tags": [
+        "loader",
+        "czml",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:DocumentPacket",
+      "type": "function",
+      "name": "DocumentPacket",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        4808,
+        4811
+      ],
+      "summary": "DocumentPacket 的实现/构造逻辑。",
+      "tags": [
+        "implementation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/CzmlDataSource.js:CzmlDataSource",
+      "type": "function",
+      "name": "CzmlDataSource",
+      "filePath": "packages/engine/Source/DataSources/CzmlDataSource.js",
+      "lineRange": [
+        4831,
+        4844
+      ],
+      "summary": "CzmlDataSource 构造函数，初始化事件、entity 集合与时钟。",
+      "tags": [
+        "datasource",
+        "constructor",
+        "czml"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "function:packages/engine/Source/DataSources/CompositeProperty.js:CompositeProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "function:packages/engine/Source/DataSources/CompositeProperty.js:CompositeProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ConstantPositionProperty.js:ConstantPositionProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ConstantPositionProperty.js:ConstantPositionProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ConstantProperty.js:ConstantProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "target": "function:packages/engine/Source/DataSources/ConstantProperty.js:ConstantProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/CorridorGraphics.js:CorridorGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/CorridorGraphics.js:CorridorGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CustomDataSource.js:CustomDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CustomDataSource.js:CustomDataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/CylinderGraphics.js:CylinderGraphics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "function:packages/engine/Source/DataSources/CylinderGraphics.js:CylinderGraphics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:UnitCartesian3",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:UnitCartesian3",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPacketData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPositionProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processMaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:PolygonHierarchyProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:PolygonHierarchyProperty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processPolygon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:processCzmlPacket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:DocumentPacket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:DocumentPacket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:CzmlDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "function:packages/engine/Source/DataSources/CzmlDataSource.js:CzmlDataSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "target": "file:packages/engine/Source/DataSources/PositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createMaterialPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "target": "file:packages/engine/Source/DataSources/createPropertyDescriptor.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ArcType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockRange.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ClockStep.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/CornerType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/createGuid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ExtrapolationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/getFilenameFromUri.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/HermitePolynomialApproximation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/LagrangePolynomialApproximation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/LinearApproximation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/PolygonHierarchy.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Quaternion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/ReferenceFrame.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/Spherical.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeInterval.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Core/TimeIntervalCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/BoxGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CallbackProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/Cesium3DTilesetGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CheckerboardMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CompositeMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CompositePositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CompositeProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CorridorGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/CylinderGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/DataSourceClock.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EllipseGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EllipsoidGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCluster.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/EntityCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/GridMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ImageMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/LabelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ModelGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/NodeTransformationProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PathGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PointGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolygonGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineArrowMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineDashMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGlowMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineOutlineMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineVolumeGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PositionPropertyArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PropertyArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/PropertyBag.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/RectangleGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/ReferenceProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/Rotation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/SampledPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/SampledProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/StripeMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/StripeOrientation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/TimeIntervalCollectionPositionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/VelocityOrientationProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/VelocityVectorProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/DataSources/WallGraphics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/SensorVolumePortionToDisplay.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CzmlDataSource.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

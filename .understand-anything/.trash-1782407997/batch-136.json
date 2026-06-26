@@ -1,0 +1,431 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "summary": "Sandcastle 示例：在地图地形上交互式绘制点、线、多边形等图形，通过鼠标事件捕获世界坐标并调用 viewer.entities 添加实体。",
+      "tags": ["sandcastle-demo", "interaction", "entity", "drawing"],
+      "complexity": "moderate",
+      "languageNotes": "依赖全局 Cesium 与 Sandcastle 对象（由 index.html 注入），故无显式 import 语句。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:createPoint",
+      "type": "function",
+      "name": "createPoint",
+      "filePath": "packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "lineRange": [13, 23],
+      "summary": "根据世界坐标创建一个可视化的点实体并加入场景。",
+      "tags": ["entity", "drawing", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:drawShape",
+      "type": "function",
+      "name": "drawShape",
+      "filePath": "packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "lineRange": [25, 46],
+      "summary": "依据当前收集到的坐标点数据，实时绘制正在绘制中的动态图形（点/线/多边形）。",
+      "tags": ["entity", "drawing", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:terminateShape",
+      "type": "function",
+      "name": "terminateShape",
+      "filePath": "packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "lineRange": [86, 94],
+      "summary": "结束当前绘制：弹出临时尾点、固化最终图形并移除动态预览实体。",
+      "tags": ["entity", "drawing", "finalization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/drawing-on-terrain/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/drawing-on-terrain/sandcastle.yaml",
+      "summary": "drawing-on-terrain 示例的 Sandcastle 元数据配置：定义标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle-demo", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/earth-at-night/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/earth-at-night/index.html",
+      "summary": "earth-at-night 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/earth-at-night/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/earth-at-night/main.js",
+      "summary": "Sandcastle 示例：加载 NASA 地球夜景影像图层并通过 UI 控件切换动态光照模式。",
+      "tags": ["sandcastle-demo", "imagery", "lighting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/earth-at-night/main.js:updateLighting",
+      "type": "function",
+      "name": "updateLighting",
+      "filePath": "packages/sandcastle/gallery/earth-at-night/main.js",
+      "lineRange": [24, 32],
+      "summary": "根据下拉框选择的地形提供者更新场景动态光照设置。",
+      "tags": ["lighting", "scene-config", "event-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/earth-at-night/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/earth-at-night/sandcastle.yaml",
+      "summary": "earth-at-night 示例的 Sandcastle 元数据配置：定义标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle-demo", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/edge-visibility-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/edge-visibility-dev/index.html",
+      "summary": "edge-visibility-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/edge-visibility-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/edge-visibility-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：加载 glTF 模型并通过 waitForReady Promise 等待模型就绪后调整边缘可见性渲染参数。",
+      "tags": ["sandcastle-demo", "model", "glTF", "edge-rendering", "development"],
+      "complexity": "moderate",
+      "languageNotes": "使用 model.readyEvent.addEventListener 配合 Promise 等待异步模型加载完成。"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/edge-visibility-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/edge-visibility-dev/sandcastle.yaml",
+      "summary": "edge-visibility-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发示例。",
+      "tags": ["configuration", "sandcastle-demo", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/elevation-band-material/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/elevation-band-material/index.html",
+      "summary": "elevation-band-material 示例的 HTML 入口，体积较大（89 行），内嵌 UI 控件与样式用于调节高程带材质参数。",
+      "tags": ["sandcastle-demo", "html-entry", "ui-controls"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/elevation-band-material/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/elevation-band-material/main.js",
+      "summary": "Sandcastle 示例：基于高程区间生成多层颜色带，通过 Cesium.createElevationBandMaterial 创建材质并应用到地形图元，演示地形高程可视化。",
+      "tags": ["sandcastle-demo", "material", "elevation", "terrain", "rendering"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/elevation-band-material/main.js:updateMaterial",
+      "type": "function",
+      "name": "updateMaterial",
+      "filePath": "packages/sandcastle/gallery/elevation-band-material/main.js",
+      "lineRange": [41, 192],
+      "summary": "根据 UI 输入构建高程区间与对应颜色/渐变带，调用 Cesium.createElevationBandMaterial 生成并刷新地形材质。",
+      "tags": ["material", "elevation", "ui-handler", "rendering"],
+      "complexity": "complex",
+      "languageNotes": "函数体近 150 行，包含大量区间与颜色映射逻辑，是本批中最复杂的函数。"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/elevation-band-material/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/elevation-band-material/sandcastle.yaml",
+      "summary": "elevation-band-material 示例的 Sandcastle 元数据配置：定义标题、描述、标签与缩略图。",
+      "tags": ["configuration", "sandcastle-demo", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipse-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/ellipse-dev/index.html",
+      "summary": "ellipse-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipse-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/ellipse-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：创建多个 EllipseGraphics 椭圆实体，演示椭圆几何的各种属性配置。",
+      "tags": ["sandcastle-demo", "entity", "ellipse", "geometry", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/ellipse-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/ellipse-dev/sandcastle.yaml",
+      "summary": "ellipse-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发示例。",
+      "tags": ["configuration", "sandcastle-demo", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipse-outline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/ellipse-outline-dev/index.html",
+      "summary": "ellipse-outline-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipse-outline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/ellipse-outline-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：演示带轮廓的椭圆实体（ellipse outline）几何渲染。",
+      "tags": ["sandcastle-demo", "entity", "ellipse", "outline", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/ellipse-outline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/ellipse-outline-dev/sandcastle.yaml",
+      "summary": "ellipse-outline-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发示例。",
+      "tags": ["configuration", "sandcastle-demo", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-dev/index.html",
+      "summary": "ellipsoid-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：创建 EllipsoidGraphics 椭球体实体，演示三维椭球几何的渲染配置。",
+      "tags": ["sandcastle-demo", "entity", "ellipsoid", "geometry", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/ellipsoid-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-dev/sandcastle.yaml",
+      "summary": "ellipsoid-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发示例。",
+      "tags": ["configuration", "sandcastle-demo", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-outline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-outline-dev/index.html",
+      "summary": "ellipsoid-outline-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-outline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-outline-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：演示带轮廓的椭球体实体（ellipsoid outline）几何渲染。",
+      "tags": ["sandcastle-demo", "entity", "ellipsoid", "outline", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/ellipsoid-outline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-outline-dev/sandcastle.yaml",
+      "summary": "ellipsoid-outline-dev 示例的 Sandcastle 元数据配置，含 development 标记表明其为内部开发示例。",
+      "tags": ["configuration", "sandcastle-demo", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-surface-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-surface-dev/index.html",
+      "summary": "ellipsoid-surface-dev 示例的 HTML 入口，加载 Sandcastle 引导脚本与 main.js。",
+      "tags": ["sandcastle-demo", "html-entry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/ellipsoid-surface-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/ellipsoid-surface-dev/main.js",
+      "summary": "开发用 Sandcastle 示例：演示椭球体表面（ellipsoid surface）几何图元的渲染配置。",
+      "tags": ["sandcastle-demo", "entity", "ellipsoid", "surface", "development"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "target": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:createPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "target": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:drawShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "target": "function:packages/sandcastle/gallery/drawing-on-terrain/main.js:terminateShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/earth-at-night/main.js",
+      "target": "function:packages/sandcastle/gallery/earth-at-night/main.js:updateLighting",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/elevation-band-material/main.js",
+      "target": "function:packages/sandcastle/gallery/elevation-band-material/main.js:updateMaterial",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/drawing-on-terrain/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/drawing-on-terrain/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/earth-at-night/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/earth-at-night/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/edge-visibility-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/edge-visibility-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/elevation-band-material/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/elevation-band-material/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/ellipse-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/ellipse-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/ellipse-outline-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/ellipse-outline-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/ellipsoid-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/ellipsoid-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/ellipsoid-outline-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/ellipsoid-outline-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/earth-at-night/index.html",
+      "target": "file:packages/sandcastle/gallery/earth-at-night/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/edge-visibility-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/edge-visibility-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/elevation-band-material/index.html",
+      "target": "file:packages/sandcastle/gallery/elevation-band-material/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/ellipse-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/ellipse-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/ellipse-outline-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/ellipse-outline-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/ellipsoid-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/ellipsoid-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/ellipsoid-outline-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/ellipsoid-outline-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/ellipsoid-surface-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/ellipsoid-surface-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

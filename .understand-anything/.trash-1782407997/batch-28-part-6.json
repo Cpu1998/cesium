@@ -1,0 +1,1820 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Model/MetadataPickingPipelineStage.js",
+      "type": "file",
+      "name": "MetadataPickingPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPickingPipelineStage.js",
+      "summary": "元数据拾取管线阶段，向 shader 注入 metadataPickingStage 函数与一组 define（值类型、分量等），实际值在 DerivedCommands 中按拾取目标填充。",
+      "tags": [
+        "pipeline-stage",
+        "metadata",
+        "picking",
+        "shader-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "type": "file",
+      "name": "MetadataPipelineStage.js",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "summary": "结构化元数据管线阶段，将 property attributes/textures/tables 映射到 feature id 集合，声明 struct、统计信息与值变换 uniform，生成元数据访问的 shader 代码。",
+      "tags": [
+        "pipeline-stage",
+        "metadata",
+        "shader-builder",
+        "structural-metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Model/Model.js",
+      "type": "file",
+      "name": "Model.js",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "summary": "基于 glTF 的 3D 模型核心类，统一管理加载（B3dm/I3dm/Pnts/GeoJson/GltfLoader）、场景图、动画、特征表、样式、裁剪、影像叠加与每帧 draw command 的构建与更新。",
+      "tags": [
+        "entry-point",
+        "model",
+        "gltf",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "采用构造函数 + 原型方法的经典 Cesium 模式；3000+ 行的 update() 中按固定顺序调用数十个 update* 子函数。"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyAttributeInfo",
+      "type": "function",
+      "name": "getPropertyAttributeInfo",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        166,
+        194
+      ],
+      "summary": "收集单个 property attribute 的属性信息。",
+      "tags": [
+        "metadata",
+        "property-attribute",
+        "info"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTextureInfo",
+      "type": "function",
+      "name": "getPropertyTextureInfo",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        220,
+        249
+      ],
+      "summary": "收集单个 property texture 的属性信息。",
+      "tags": [
+        "metadata",
+        "property-texture",
+        "info"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTablesInfo",
+      "type": "function",
+      "name": "getPropertyTablesInfo",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        253,
+        287
+      ],
+      "summary": "收集 primitive 上所有 property table 的信息。",
+      "tags": [
+        "metadata",
+        "property-table",
+        "info"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTableInfo",
+      "type": "function",
+      "name": "getPropertyTableInfo",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        289,
+        356
+      ],
+      "summary": "收集单个 property table 的属性信息。",
+      "tags": [
+        "metadata",
+        "property-table",
+        "info"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:mapPropertyTablesToFeatureIdSets",
+      "type": "function",
+      "name": "mapPropertyTablesToFeatureIdSets",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        369,
+        416
+      ],
+      "summary": "把 property table 映射到 primitive 的 feature id 集合，建立元数据与 feature 的关联。",
+      "tags": [
+        "metadata",
+        "property-table",
+        "feature-id"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareMetadataTypeStructs",
+      "type": "function",
+      "name": "declareMetadataTypeStructs",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        424,
+        461
+      ],
+      "summary": "为元数据类型在 shader 中声明对应的 struct。",
+      "tags": [
+        "metadata",
+        "shader-builder",
+        "struct"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareStructsAndFunctions",
+      "type": "function",
+      "name": "declareStructsAndFunctions",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        487,
+        543
+      ],
+      "summary": "声明元数据阶段所需的 struct 与访问函数。",
+      "tags": [
+        "metadata",
+        "shader-builder",
+        "declaration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyAttributePropertyMetadata",
+      "type": "function",
+      "name": "addPropertyAttributePropertyMetadata",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        564,
+        599
+      ],
+      "summary": "为单个 property attribute 属性生成 shader 中的元数据访问代码。",
+      "tags": [
+        "metadata",
+        "property-attribute",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTexturePropertyMetadata",
+      "type": "function",
+      "name": "addPropertyTexturePropertyMetadata",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        622,
+        704
+      ],
+      "summary": "为单个 property texture 属性生成 shader 中的元数据访问代码。",
+      "tags": [
+        "metadata",
+        "property-texture",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataClass",
+      "type": "function",
+      "name": "addPropertyMetadataClass",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        714,
+        749
+      ],
+      "summary": "为属性元数据添加 class 信息（min/max 等）的 shader 代码。",
+      "tags": [
+        "metadata",
+        "class",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataStatistics",
+      "type": "function",
+      "name": "addPropertyMetadataStatistics",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        759,
+        803
+      ],
+      "summary": "为属性元数据添加统计信息的 shader 代码。",
+      "tags": [
+        "metadata",
+        "statistics",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTablePropertyMetadata",
+      "type": "function",
+      "name": "addPropertyTablePropertyMetadata",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        811,
+        910
+      ],
+      "summary": "为单个 property table 属性生成 shader 中的元数据访问代码。",
+      "tags": [
+        "metadata",
+        "property-table",
+        "shader"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getStructAssignments",
+      "type": "function",
+      "name": "getStructAssignments",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        923,
+        935
+      ],
+      "summary": "生成 struct 字段赋值的 shader 代码。",
+      "tags": [
+        "metadata",
+        "struct",
+        "shader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addValueTransformUniforms",
+      "type": "function",
+      "name": "addValueTransformUniforms",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        951,
+        974
+      ],
+      "summary": "为属性元数据的值变换（offset/scale）添加 uniform。",
+      "tags": [
+        "metadata",
+        "uniform",
+        "transform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedByOtherStages",
+      "type": "function",
+      "name": "collectMetadataUsedByOtherStages",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        976,
+        992
+      ],
+      "summary": "收集被其他管线阶段（custom shader、点云样式）引用的 metadata property。",
+      "tags": [
+        "metadata",
+        "analysis",
+        "cross-stage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInCustomShader",
+      "type": "function",
+      "name": "collectMetadataUsedInCustomShader",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        994,
+        1018
+      ],
+      "summary": "收集 CustomShader 中引用的 metadata property（区分 vertex/fragment）。",
+      "tags": [
+        "metadata",
+        "custom-shader",
+        "analysis"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInPointCloudStyling",
+      "type": "function",
+      "name": "collectMetadataUsedInPointCloudStyling",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        1020,
+        1050
+      ],
+      "summary": "收集点云样式引用的 metadata property。",
+      "tags": [
+        "metadata",
+        "point-cloud",
+        "styling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:propertyDestination",
+      "type": "function",
+      "name": "propertyDestination",
+      "filePath": "packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "lineRange": [
+        1060,
+        1071
+      ],
+      "summary": "决定某 property id 在 shader 中的目标位置（vertex/fragment）。",
+      "tags": [
+        "metadata",
+        "property-id",
+        "routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:Model",
+      "type": "function",
+      "name": "Model",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        190,
+        513
+      ],
+      "summary": "Model 构造函数，校验并保存所有用户选项（资源、变换、样式、裁剪、影像、光照等），初始化内部状态。",
+      "tags": [
+        "model",
+        "constructor",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:createModelFeatureTables",
+      "type": "function",
+      "name": "createModelFeatureTables",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        524,
+        540
+      ],
+      "summary": "由 structural metadata 构建 ModelFeatureTable。",
+      "tags": [
+        "model",
+        "feature-table",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:selectFeatureTableId",
+      "type": "function",
+      "name": "selectFeatureTableId",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        542,
+        590
+      ],
+      "summary": "根据 primitive 的 feature id 情况选择主特征表。",
+      "tags": [
+        "model",
+        "feature-table",
+        "selection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:isColorAlphaDirty",
+      "type": "function",
+      "name": "isColorAlphaDirty",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        598,
+        613
+      ],
+      "summary": "检测样式颜色透明度是否发生变化。",
+      "tags": [
+        "model",
+        "style",
+        "change-detection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:processLoader",
+      "type": "function",
+      "name": "processLoader",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2067,
+        2078
+      ],
+      "summary": "推进底层 loader（GltfLoader 等）的加载状态并在完成后构建场景图与特征表。",
+      "tags": [
+        "model",
+        "loader",
+        "lifecycle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateEnvironmentMap",
+      "type": "function",
+      "name": "updateEnvironmentMap",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2086,
+        2101
+      ],
+      "summary": "在需要时请求/更新环境贴图（用于 IBL）。",
+      "tags": [
+        "model",
+        "environment-map",
+        "ibl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTableId",
+      "type": "function",
+      "name": "updateFeatureTableId",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2110,
+        2131
+      ],
+      "summary": "当 selected feature id 改变时切换特征表映射。",
+      "tags": [
+        "model",
+        "feature-table",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTables",
+      "type": "function",
+      "name": "updateFeatureTables",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2140,
+        2157
+      ],
+      "summary": "刷新 ModelFeatureTable 的内容与样式。",
+      "tags": [
+        "model",
+        "feature-table",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updatePointCloudShading",
+      "type": "function",
+      "name": "updatePointCloudShading",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2167,
+        2181
+      ],
+      "summary": "应用点云着色（点大小、衰减、基于眼睛的缩放）参数。",
+      "tags": [
+        "model",
+        "point-cloud",
+        "shading"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateSilhouette",
+      "type": "function",
+      "name": "updateSilhouette",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2183,
+        2192
+      ],
+      "summary": "根据是否需要轮廓渲染调整 pass。",
+      "tags": [
+        "model",
+        "silhouette",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPlanes",
+      "type": "function",
+      "name": "updateClippingPlanes",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2202,
+        2216
+      ],
+      "summary": "同步 ClippingPlaneCollection 状态到渲染资源。",
+      "tags": [
+        "model",
+        "clipping",
+        "plane"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPolygons",
+      "type": "function",
+      "name": "updateClippingPolygons",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2218,
+        2234
+      ],
+      "summary": "同步 ClippingPolygonCollection 状态到渲染资源。",
+      "tags": [
+        "model",
+        "clipping",
+        "polygon"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneMode",
+      "type": "function",
+      "name": "updateSceneMode",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2236,
+        2245
+      ],
+      "summary": "响应场景模式（3D/Columbus/2D）切换。",
+      "tags": [
+        "model",
+        "scene-mode",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateVerticalExaggeration",
+      "type": "function",
+      "name": "updateVerticalExaggeration",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2255,
+        2266
+      ],
+      "summary": "应用垂直夸张比例到模型渲染。",
+      "tags": [
+        "model",
+        "vertical-exaggeration",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateModelMatrix",
+      "type": "function",
+      "name": "updateModelMatrix",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2276,
+        2290
+      ],
+      "summary": "检测 modelMatrix 变化并触发边界球、参考矩阵等相关更新。",
+      "tags": [
+        "model",
+        "model-matrix",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateClamping",
+      "type": "function",
+      "name": "updateClamping",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2295,
+        2356
+      ],
+      "summary": "处理模型贴地/相对高度参考时的位置采样与回调。",
+      "tags": [
+        "model",
+        "clamping",
+        "height-reference"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphereAndScale",
+      "type": "function",
+      "name": "updateBoundingSphereAndScale",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2358,
+        2369
+      ],
+      "summary": "updateBoundingSphereAndScale 函数。",
+      "tags": [
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphere",
+      "type": "function",
+      "name": "updateBoundingSphere",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2371,
+        2388
+      ],
+      "summary": "根据当前模型矩阵重新计算世界空间包围球。",
+      "tags": [
+        "model",
+        "bounding-sphere",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateComputedScale",
+      "type": "function",
+      "name": "updateComputedScale",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2390,
+        2432
+      ],
+      "summary": "依据模型矩阵与帧状态计算 Model 的显示比例与距离缩放。",
+      "tags": [
+        "model",
+        "scale",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updatePickIds",
+      "type": "function",
+      "name": "updatePickIds",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2434,
+        2446
+      ],
+      "summary": "分配/刷新用于拾取的 pick id。",
+      "tags": [
+        "model",
+        "picking",
+        "pick-id"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateReferenceMatrices",
+      "type": "function",
+      "name": "updateReferenceMatrices",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2452,
+        2498
+      ],
+      "summary": "更新用于高度参考（clamp/relative）的相关矩阵与位置。",
+      "tags": [
+        "model",
+        "height-reference",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneGraph",
+      "type": "function",
+      "name": "updateSceneGraph",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2500,
+        2533
+      ],
+      "summary": "遍历并更新场景图节点的变换、动画与可见性。",
+      "tags": [
+        "model",
+        "scene-graph",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:updateShowCreditsOnScreen",
+      "type": "function",
+      "name": "updateShowCreditsOnScreen",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2535,
+        2564
+      ],
+      "summary": "同步 credit 的屏幕显示设置。",
+      "tags": [
+        "model",
+        "credit",
+        "update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:submitDrawCommands",
+      "type": "function",
+      "name": "submitDrawCommands",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2566,
+        2596
+      ],
+      "summary": "把构建好的 DrawCommand 提交给 FrameState 的渲染列表。",
+      "tags": [
+        "model",
+        "draw-command",
+        "submit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:getUpdateHeightCallback",
+      "type": "function",
+      "name": "getUpdateHeightCallback",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2611,
+        2632
+      ],
+      "summary": "返回用于高度参考贴地的高度更新回调。",
+      "tags": [
+        "model",
+        "clamping",
+        "callback"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:passesDistanceDisplayCondition",
+      "type": "function",
+      "name": "passesDistanceDisplayCondition",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        2636,
+        2673
+      ],
+      "summary": "根据距离显示条件判断模型是否应被渲染。",
+      "tags": [
+        "model",
+        "distance-display",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Model/Model.js:makeModelOptions",
+      "type": "function",
+      "name": "makeModelOptions",
+      "filePath": "packages/engine/Source/Scene/Model/Model.js",
+      "lineRange": [
+        3318,
+        3368
+      ],
+      "summary": "把用户传入的 options 规范化为内部 Model 使用的 modelOptions（含 loader 选择）。",
+      "tags": [
+        "model",
+        "options",
+        "factory"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPickingPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/MetadataType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Renderer/Pass.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPlaneCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/ClippingPolygonCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/DynamicEnvironmentMapManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/EdgeDisplayMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/GltfLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/ImageBasedLighting.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/B3dmLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/GeoJsonLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/I3dmLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelAnimationCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelFeatureTable.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelImagery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelSceneGraph.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelStatistics.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/ModelUtility.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/pickModel.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/PntsLoader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/Model/StyleCommandsNeeded.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/PointCloudShading.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/SceneTransforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyAttributeInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyAttributeInfo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTextureInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTextureInfo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTablesInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTablesInfo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTableInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getPropertyTableInfo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:mapPropertyTablesToFeatureIdSets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:mapPropertyTablesToFeatureIdSets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareMetadataTypeStructs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareMetadataTypeStructs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareStructsAndFunctions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:declareStructsAndFunctions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyAttributePropertyMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyAttributePropertyMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTexturePropertyMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTexturePropertyMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataClass",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataClass",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyMetadataStatistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTablePropertyMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addPropertyTablePropertyMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getStructAssignments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:getStructAssignments",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addValueTransformUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:addValueTransformUniforms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedByOtherStages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedByOtherStages",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInCustomShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInCustomShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInPointCloudStyling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:collectMetadataUsedInPointCloudStyling",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:propertyDestination",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/MetadataPipelineStage.js",
+      "target": "function:packages/engine/Source/Scene/Model/MetadataPipelineStage.js:propertyDestination",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:Model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:Model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:createModelFeatureTables",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:createModelFeatureTables",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:selectFeatureTableId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:selectFeatureTableId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:isColorAlphaDirty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:isColorAlphaDirty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:processLoader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:processLoader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateEnvironmentMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateEnvironmentMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTableId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTableId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTables",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateFeatureTables",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updatePointCloudShading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updatePointCloudShading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSilhouette",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSilhouette",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPlanes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPlanes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPolygons",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClippingPolygons",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneMode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateVerticalExaggeration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateVerticalExaggeration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateModelMatrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateModelMatrix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClamping",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateClamping",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphereAndScale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphereAndScale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphere",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateBoundingSphere",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateComputedScale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateComputedScale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updatePickIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updatePickIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateReferenceMatrices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateReferenceMatrices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneGraph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateSceneGraph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateShowCreditsOnScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:updateShowCreditsOnScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:submitDrawCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:submitDrawCommands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:getUpdateHeightCallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:getUpdateHeightCallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:passesDistanceDisplayCondition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:passesDistanceDisplayCondition",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:makeModelOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/Model.js:makeModelOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Model/Model.js",
+      "target": "function:packages/engine/Source/Scene/Model/pickModel.js:pickModel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

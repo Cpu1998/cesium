@@ -1,0 +1,138 @@
+{
+  "nodes": [
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/Components.json",
+      "type": "config",
+      "name": "Components.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/Components.json",
+      "summary": "Fabric 材质系统示例，展示如何直接通过 components 块设置 diffuse、specular、shininess、normal、emission、alpha 等材质分量（以 GLSL 表达式形式给出）。",
+      "tags": ["configuration", "fabric", "material", "documentation", "example"],
+      "complexity": "simple",
+      "languageNotes": "components 各字段的值是 GLSL 字符串表达式（如 vec3(0.0)、normalize(...)），由 Fabric 编译进 shader。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/MaterialHierarchy.json",
+      "type": "config",
+      "name": "MaterialHierarchy.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/MaterialHierarchy.json",
+      "summary": "Fabric 材质层级示例，定义 hot 与 cold 两个子材质，并通过 mix() 在顶层 components 中根据 temperature uniform 在二者之间插值混合 diffuse 分量。",
+      "tags": ["configuration", "fabric", "material", "hierarchy", "documentation"],
+      "complexity": "simple",
+      "languageNotes": "演示 Fabric 的 materials 嵌套机制：子材质可被顶层 components 通过 名称.分量 语法引用。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/MaterialHierarchy2.json",
+      "type": "config",
+      "name": "MaterialHierarchy2.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/MaterialHierarchy2.json",
+      "summary": "MaterialHierarchy 的进阶版本，子材质 hot/cold 各自带 texture uniform 引用外部图片，再由顶层 mix() 根据 temperature 混合，演示材质层级与纹理 uniform 的组合用法。",
+      "tags": ["configuration", "fabric", "material", "hierarchy", "texture"],
+      "complexity": "moderate",
+      "languageNotes": "子材质的 uniform 路径（如 hot.jpg）相对于 Fabric 解析上下文，体现材质的可组合性。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/MatrixUniforms.json",
+      "type": "config",
+      "name": "MatrixUniforms.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/MatrixUniforms.json",
+      "summary": "Fabric uniform 示例，展示如何声明 mat2、mat3、mat4 矩阵 uniform（以扁平数组形式给出元素），并在 components 中按分量索引引用。",
+      "tags": ["configuration", "fabric", "uniform", "matrix", "documentation"],
+      "complexity": "simple",
+      "languageNotes": "矩阵以行主序的一维数组表示（长度分别为 4、9、16），Fabric 自动映射到 GLSL mat 类型。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/Source.json",
+      "type": "config",
+      "name": "Source.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/Source.json",
+      "summary": "Fabric source 示例，通过 source 字段直接提供完整的 GLSL czm_getMaterial 函数实现，是 Fabric 三种材质定义方式（source / components / materials）中最底层的扩展点。",
+      "tags": ["configuration", "fabric", "source", "shader", "glsl"],
+      "complexity": "simple",
+      "languageNotes": "source 字段允许直接编写 czm_getMaterial(czm_materialInput) 的 GLSL 函数体，提供最大灵活性。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/TextureUniforms.json",
+      "type": "config",
+      "name": "TextureUniforms.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/TextureUniforms.json",
+      "summary": "Fabric 纹理 uniform 示例，展示 2D 纹理（文件路径 / base64 data URI）、cubemap（六面贴图）以及如何在 components 中通过 texture()/czm_textureCube() 采样。",
+      "tags": ["configuration", "fabric", "uniform", "texture", "cubemap"],
+      "complexity": "moderate",
+      "languageNotes": "cubemap 以 positiveX/negativeX/... 六个面的对象形式声明；2D 纹理支持内联 base64 data URI。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms.json",
+      "type": "config",
+      "name": "VectorUniforms.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/VectorUniforms.json",
+      "summary": "Fabric 向量 uniform 示例，展示 float、vec2、vec3、vec4 以 x/y/z/w 分量对象形式声明，并在 components 中直接引用向量名作为分量值。",
+      "tags": ["configuration", "fabric", "uniform", "vector", "documentation"],
+      "complexity": "simple",
+      "languageNotes": "使用 x/y/z/w 命名约定；向量作为整体可在 components 中直接赋给分量（如 diffuse: myvec3）。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms2.json",
+      "type": "config",
+      "name": "VectorUniforms2.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/VectorUniforms2.json",
+      "summary": "VectorUniforms 的变体，使用 r/g/b/a（颜色通道）命名约定声明 float、vec2、vec3、vec4 uniform，演示 Fabric 对多种分量命名约定的支持。",
+      "tags": ["configuration", "fabric", "uniform", "vector", "color"],
+      "complexity": "simple",
+      "languageNotes": "Fabric 接受 x/y/z/w、r/g/b/a、s/t/p/q 三套等价的向量分量命名约定。"
+    },
+    {
+      "id": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms3.json",
+      "type": "config",
+      "name": "VectorUniforms3.json",
+      "filePath": "Documentation/Schemas/Fabric/Examples/VectorUniforms3.json",
+      "summary": "VectorUniforms 的变体，使用 s/t/p/q（纹理坐标）命名约定声明 float、vec2、vec3、vec4 uniform，演示 Fabric 对第三种分量命名约定的支持。",
+      "tags": ["configuration", "fabric", "uniform", "vector", "texcoord"],
+      "complexity": "simple",
+      "languageNotes": "s/t/p/q 命名约定常用于纹理坐标语义的 uniform 声明。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/MaterialHierarchy2.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/MaterialHierarchy.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms2.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms3.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms2.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/VectorUniforms3.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/TextureUniforms.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/MaterialHierarchy2.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Documentation/Schemas/Fabric/Examples/Components.json",
+      "target": "config:Documentation/Schemas/Fabric/Examples/Source.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

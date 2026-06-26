@@ -1,0 +1,1419 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "type": "file",
+   "name": "EllipsoidalOccluder.js",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "summary": "基于椭球体和相机位置实现地平线剔除（horizon culling），判定被遮挡对象是否位于可见地平线之后。",
+   "tags": [
+    "occlusion",
+    "horizon-culling",
+    "ellipsoid",
+    "geometry"
+   ],
+   "complexity": "complex",
+   "languageNotes": "采用 Cesium 博客所述的 horizon culling 算法，将点变换到缩放空间后比较模长。"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "type": "file",
+   "name": "FrustumGeometry.js",
+   "filePath": "packages/engine/Source/Core/FrustumGeometry.js",
+   "summary": "描述相机视锥体（frustum）的几何体，提供顶点位置、法线、切线及纹理坐标等属性计算。",
+   "tags": [
+    "geometry",
+    "frustum",
+    "primitive",
+    "webgl"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "type": "file",
+   "name": "FrustumOutlineGeometry.js",
+   "filePath": "packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "summary": "生成相机视锥体的线框轮廓几何体，用于调试与可视化视锥范围。",
+   "tags": [
+    "geometry",
+    "frustum",
+    "outline",
+    "debug"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "file",
+   "name": "GeographicProjection.js",
+   "filePath": "packages/engine/Source/Core/GeographicProjection.js",
+   "summary": "简单的等距圆柱（Plate Carrée / EPSG:4326）地图投影，将经纬度线性映射到 X/Y 平面。",
+   "tags": [
+    "projection",
+    "geographic",
+    "mapping",
+    "coordinates"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "file",
+   "name": "Geometry.js",
+   "filePath": "packages/engine/Source/Core/Geometry.js",
+   "summary": "核心 Geometry 数据结构，封装顶点属性、索引与图元类型，是所有可渲染几何体的基础容器。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "primitive",
+    "core"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "file",
+   "name": "GeometryAttribute.js",
+   "filePath": "packages/engine/Source/Core/GeometryAttribute.js",
+   "summary": "表示单个顶点属性（如 position、normal）的数据结构，绑定 componentDatatype 与 typed array。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "vertex-attribute"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "file",
+   "name": "GeometryAttributes.js",
+   "filePath": "packages/engine/Source/Core/GeometryAttributes.js",
+   "summary": "顶点属性的命名集合容器，按名称（position、normal、st 等）聚合多个 GeometryAttribute。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "container"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+   "type": "file",
+   "name": "GeometryOffsetAttribute.js",
+   "filePath": "packages/engine/Source/Core/GeometryOffsetAttribute.js",
+   "summary": "私有枚举，标记哪些顶点的 applyOffset 属性应为 true（NONE / TOP / ALL）。",
+   "tags": [
+    "enum",
+    "geometry",
+    "private"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "type": "file",
+   "name": "GeometryPipeline.js",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "summary": "几何体处理管线，提供索引化、属性压缩、顶点变换、几何体合并以及沿国际日期变更线（±180°）的三角形/线段拆分等大量操作。",
+   "tags": [
+    "geometry",
+    "pipeline",
+    "utility",
+    "serialization",
+    "webgl"
+   ],
+   "complexity": "complex",
+   "languageNotes": "最大的单文件之一，包含三角化、barycentric 插值、encode 顶点编码与 splitLongitude 等关键算法。"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:EllipsoidalOccluder",
+   "type": "function",
+   "name": "EllipsoidalOccluder",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    31,
+    45
+   ],
+   "summary": "EllipsoidalOccluder 构造函数，根据椭球体与相机位置构建地平线剔除器。",
+   "tags": [
+    "occlusion",
+    "constructor",
+    "horizon-culling"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromPositions",
+   "type": "function",
+   "name": "computeHorizonCullingPointFromPositions",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    362,
+    398
+   ],
+   "summary": "根据一组笛卡尔位置计算相对指定方向的地平线剔除点（缩放空间）。",
+   "tags": [
+    "occlusion",
+    "horizon-culling",
+    "culling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromVertices",
+   "type": "function",
+   "name": "computeHorizonCullingPointFromVertices",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    402,
+    446
+   ],
+   "summary": "从顶点数组中计算地平线剔除点，支持 stride 与中心偏移。",
+   "tags": [
+    "occlusion",
+    "horizon-culling",
+    "vertices"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:isScaledSpacePointVisible",
+   "type": "function",
+   "name": "isScaledSpacePointVisible",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    448,
+    471
+   ],
+   "summary": "判定缩放空间中的点相对相机是否位于地平线之后（不可见）。",
+   "tags": [
+    "occlusion",
+    "visibility",
+    "horizon-culling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeMagnitude",
+   "type": "function",
+   "name": "computeMagnitude",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    476,
+    501
+   ],
+   "summary": "计算位置向量在缩放方向上的模长，用于地平线剔除比较。",
+   "tags": [
+    "occlusion",
+    "math",
+    "horizon-culling"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:magnitudeToPoint",
+   "type": "function",
+   "name": "magnitudeToPoint",
+   "filePath": "packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "lineRange": [
+    503,
+    523
+   ],
+   "summary": "将模长反向还原为地平线上的点。",
+   "tags": [
+    "occlusion",
+    "math",
+    "horizon-culling"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/FrustumGeometry.js:FrustumGeometry",
+   "type": "function",
+   "name": "FrustumGeometry",
+   "filePath": "packages/engine/Source/Core/FrustumGeometry.js",
+   "lineRange": [
+    33,
+    79
+   ],
+   "summary": "FrustumGeometry 构造函数，基于视锥体的近远平面与方向定义几何体。",
+   "tags": [
+    "geometry",
+    "frustum",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/FrustumGeometry.js:getAttributes",
+   "type": "function",
+   "name": "getAttributes",
+   "filePath": "packages/engine/Source/Core/FrustumGeometry.js",
+   "lineRange": [
+    200,
+    239
+   ],
+   "summary": "填充视锥体顶点的法线/切线/bitangent/纹理坐标属性。",
+   "tags": [
+    "geometry",
+    "vertex-attribute",
+    "frustum"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/FrustumOutlineGeometry.js:FrustumOutlineGeometry",
+   "type": "function",
+   "name": "FrustumOutlineGeometry",
+   "filePath": "packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "lineRange": [
+    29,
+    69
+   ],
+   "summary": "FrustumOutlineGeometry 构造函数，基于 FrustumGeometry 生成轮廓几何体。",
+   "tags": [
+    "geometry",
+    "outline",
+    "frustum",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:packages/engine/Source/Core/GeographicProjection.js:GeographicProjection",
+   "type": "class",
+   "name": "GeographicProjection",
+   "filePath": "packages/engine/Source/Core/GeographicProjection.js",
+   "lineRange": [
+    21,
+    103
+   ],
+   "summary": "GeographicProjection 类，提供 project/unproject 将经纬度与平面坐标互转。",
+   "tags": [
+    "projection",
+    "class",
+    "geographic",
+    "mapping"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/Geometry.js:Geometry",
+   "type": "function",
+   "name": "Geometry",
+   "filePath": "packages/engine/Source/Core/Geometry.js",
+   "lineRange": [
+    67,
+    165
+   ],
+   "summary": "Geometry 构造函数，封装 attributes、indices、primitiveType 与 boundingSphere。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "constructor",
+    "core"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryAttribute.js:GeometryAttribute",
+   "type": "function",
+   "name": "GeometryAttribute",
+   "filePath": "packages/engine/Source/Core/GeometryAttribute.js",
+   "lineRange": [
+    40,
+    132
+   ],
+   "summary": "GeometryAttribute 构造函数，描述单个顶点属性的 datatype、分量数与数据缓冲。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "vertex-attribute",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryAttributes.js:GeometryAttributes",
+   "type": "function",
+   "name": "GeometryAttributes",
+   "filePath": "packages/engine/Source/Core/GeometryAttributes.js",
+   "lineRange": [
+    13,
+    87
+   ],
+   "summary": "GeometryAttributes 容器构造函数，按名称存取多个 GeometryAttribute。",
+   "tags": [
+    "data-model",
+    "geometry",
+    "container",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:combineGeometries",
+   "type": "function",
+   "name": "combineGeometries",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    939,
+    1069
+   ],
+   "summary": "合并多个 GeometryInstance 的几何体与属性（用于批渲染）。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "batching"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:indexTriangles",
+   "type": "function",
+   "name": "indexTriangles",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    1630,
+    1657
+   ],
+   "summary": "将三角形列表几何体索引化以减少顶点重复。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "indexing"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:splitTriangle",
+   "type": "function",
+   "name": "splitTriangle",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    1899,
+    2001
+   ],
+   "summary": "使用 barycentric 坐标拆分单个三角形以处理跨日期线的情况。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "triangulation",
+    "barycentric"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:computeTriangleAttributes",
+   "type": "function",
+   "name": "computeTriangleAttributes",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    2168,
+    2313
+   ],
+   "summary": "通过 barycentric 插值计算拆分后新顶点的所有属性。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "interpolation",
+    "attributes"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeTriangles",
+   "type": "function",
+   "name": "splitLongitudeTriangles",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    2411,
+    2623
+   ],
+   "summary": "沿国际日期变更线（±180°）拆分三角形几何体，避免跨日期线渲染伪影。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "dateline",
+    "splitting"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeLines",
+   "type": "function",
+   "name": "splitLongitudeLines",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    2651,
+    2865
+   ],
+   "summary": "沿国际日期变更线拆分线段几何体。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "dateline",
+    "splitting"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudePolyline",
+   "type": "function",
+   "name": "splitLongitudePolyline",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    2933,
+    3232
+   ],
+   "summary": "沿国际日期变更线拆分折线，处理邻接信息以保持连续性。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "polyline",
+    "dateline"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:triangleStripToLines",
+   "type": "function",
+   "name": "triangleStripToLines",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    59,
+    82
+   ],
+   "summary": "将 TRIANGLE_STRIP 图元转换为线段索引列表。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "primitives"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/GeometryPipeline.js:findAttributesInAllGeometries",
+   "type": "function",
+   "name": "findAttributesInAllGeometries",
+   "filePath": "packages/engine/Source/Core/GeometryPipeline.js",
+   "lineRange": [
+    884,
+    935
+   ],
+   "summary": "收集所有待合并几何体共有的属性名集合。",
+   "tags": [
+    "pipeline",
+    "geometry",
+    "attributes"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "file:packages/engine/Source/Core/VertexFormat.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/PerspectiveFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/GeometryType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Quaternion.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "file:packages/engine/Source/Core/Transforms.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/barycentricCoordinates.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Cartesian4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/ComponentDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/EncodedCartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Geometry.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/GeometryType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Intersect.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/PrimitiveType.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "file:packages/engine/Source/Core/Tipsify.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:EllipsoidalOccluder",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:EllipsoidalOccluder",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromPositions",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromPositions",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromVertices",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeHorizonCullingPointFromVertices",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:isScaledSpacePointVisible",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:isScaledSpacePointVisible",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeMagnitude",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:computeMagnitude",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:magnitudeToPoint",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/EllipsoidalOccluder.js",
+   "target": "function:packages/engine/Source/Core/EllipsoidalOccluder.js:magnitudeToPoint",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumGeometry.js:FrustumGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumGeometry.js:FrustumGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumGeometry.js:getAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumGeometry.js:getAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumOutlineGeometry.js:FrustumOutlineGeometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumOutlineGeometry.js:FrustumOutlineGeometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "class:packages/engine/Source/Core/GeographicProjection.js:GeographicProjection",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeographicProjection.js",
+   "target": "class:packages/engine/Source/Core/GeographicProjection.js:GeographicProjection",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "function:packages/engine/Source/Core/Geometry.js:Geometry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Geometry.js",
+   "target": "function:packages/engine/Source/Core/Geometry.js:Geometry",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "target": "function:packages/engine/Source/Core/GeometryAttribute.js:GeometryAttribute",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttribute.js",
+   "target": "function:packages/engine/Source/Core/GeometryAttribute.js:GeometryAttribute",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "target": "function:packages/engine/Source/Core/GeometryAttributes.js:GeometryAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryAttributes.js",
+   "target": "function:packages/engine/Source/Core/GeometryAttributes.js:GeometryAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:combineGeometries",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:combineGeometries",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:indexTriangles",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:indexTriangles",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitTriangle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitTriangle",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:computeTriangleAttributes",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:computeTriangleAttributes",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeTriangles",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeTriangles",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeLines",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudeLines",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudePolyline",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:splitLongitudePolyline",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:triangleStripToLines",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:triangleStripToLines",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:findAttributesInAllGeometries",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/GeometryPipeline.js:findAttributesInAllGeometries",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js",
+   "target": "function:packages/engine/Source/Core/FrustumGeometry.js:FrustumGeometry",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/GeometryPipeline.js",
+   "target": "function:packages/engine/Source/Core/Geometry.js:Geometry",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  }
+ ]
+}

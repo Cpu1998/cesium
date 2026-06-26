@@ -1,0 +1,688 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl",
+      "type": "file",
+      "name": "transformPlane.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl",
+      "summary": "GLSL builtin 函数 czm_transformPlane，将平面（Hessian Normal Form）通过逆变换矩阵变换后重新归一化为 Hessian Normal Form。",
+      "tags": ["shader", "builtin-function", "geometry", "math", "transformation"],
+      "complexity": "simple",
+      "languageNotes": "CesiumJS 内置 GLSL 函数，统一以 czm_ 前缀暴露给所有 shader 自动注入。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl:czm_transformPlane",
+      "type": "function",
+      "name": "czm_transformPlane",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl",
+      "lineRange": [10, 15],
+      "summary": "用逆变换矩阵变换平面并归一化结果，使其保持 Hessian Normal Form。",
+      "tags": ["shader", "builtin-function", "plane", "transformation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl",
+      "type": "file",
+      "name": "translateRelativeToEye.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl",
+      "summary": "实现 GPU RTE（Relative-To-Eye）技术，将用 high/low 双精度位编码的相机相关位置转为相对于眼睛的坐标，消除大坐标下的抖动伪影。",
+      "tags": ["shader", "builtin-function", "gpu-rte", "precision", "transformation"],
+      "complexity": "moderate",
+      "languageNotes": "GPU RTE 技术通过 EncodedCartesian3 的高低双分量消除大世界坐标下的浮点抖动。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl:czm_translateRelativeToEye",
+      "type": "function",
+      "name": "czm_translateRelativeToEye",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl",
+      "lineRange": [34, 45],
+      "summary": "用相机位置的高低双分量减去输入位置的双分量，返回相对眼睛的 vec4 位置；并处理 iOS 上的 NaN 情况。",
+      "tags": ["shader", "gpu-rte", "precision", "transformation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl",
+      "type": "file",
+      "name": "translucentPhong.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl",
+      "summary": "GLSL builtin 函数 czm_translucentPhong，对半透明材质计算基于 Lambert diffuse 与 Phong specular 的简化光照颜色。",
+      "tags": ["shader", "builtin-function", "lighting", "phong", "translucency"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl:czm_translucentPhong",
+      "type": "function",
+      "name": "czm_translucentPhong",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl",
+      "lineRange": [4, 27],
+      "summary": "对半透明材质计算 Lambert diffuse + Phong specular，加上环境光与自发光，返回带 alpha 的颜色。",
+      "tags": ["shader", "lighting", "phong", "translucency"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl",
+      "type": "file",
+      "name": "transpose.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl",
+      "summary": "GLSL builtin 函数 czm_transpose，为 mat2/mat3/mat4 三种矩阵提供转置实现，可由旋转矩阵的转置求其逆矩阵。",
+      "tags": ["shader", "builtin-function", "math", "matrix", "transformation"],
+      "complexity": "moderate",
+      "languageNotes": "通过 GLSL 函数重载为 mat2/mat3/mat4 提供统一名称的转置实现。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl:czm_transpose",
+      "type": "function",
+      "name": "czm_transpose",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl",
+      "lineRange": [23, 45],
+      "summary": "重载转置函数，为 mat2/mat3/mat4 三种矩阵返回其转置矩阵。",
+      "tags": ["shader", "matrix", "math", "transformation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl",
+      "type": "file",
+      "name": "unpackClippingExtents.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl",
+      "summary": "GLSL builtin 函数 czm_unpackClippingExtents，按索引从裁剪范围纹理中采样对应的 vec4 范围数据。",
+      "tags": ["shader", "builtin-function", "clipping", "texture", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl:czm_unpackClippingExtents",
+      "type": "function",
+      "name": "czm_unpackClippingExtents",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl",
+      "lineRange": [11, 14],
+      "summary": "从裁剪范围纹理中按线性索引采样并返回对应的 vec4 范围数据。",
+      "tags": ["shader", "clipping", "texture", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl",
+      "type": "file",
+      "name": "unpackDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl",
+      "summary": "GLSL builtin 函数 czm_unpackDepth，将 RGBA 四通道编码的深度值解码为 [0, 1) 的浮点深度。",
+      "tags": ["shader", "builtin-function", "depth", "serialization", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl:czm_unpackDepth",
+      "type": "function",
+      "name": "czm_unpackDepth",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl",
+      "lineRange": [11, 16],
+      "summary": "用 RGBA 与系数向量的点积，将打包的 vec4 深度解码为 [0,1) 浮点深度。",
+      "tags": ["shader", "depth", "serialization", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl",
+      "type": "file",
+      "name": "unpackFloat.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl",
+      "summary": "GLSL builtin 函数 czm_unpackFloat，将以小端 normalized vec4 形式编码的 IEEE 754 单精度浮点解码为原始浮点数。",
+      "tags": ["shader", "builtin-function", "serialization", "float", "math"],
+      "complexity": "moderate",
+      "languageNotes": "手工实现 IEEE 754 单精度浮点的位级解码以绕开 WebGL1 缺少位运算的限制。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl:czm_unpackFloat",
+      "type": "function",
+      "name": "czm_unpackFloat",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl",
+      "lineRange": [11, 24],
+      "summary": "通过手动解析符号、指数、尾数位，将 normalized vec4 解码为 IEEE 754 单精度浮点。",
+      "tags": ["shader", "serialization", "float", "ieee754"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl",
+      "type": "file",
+      "name": "unpackTexture.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl",
+      "summary": "GLSL builtin 函数 czm_unpackTexture，将 1-4 通道的归一化纹理采样值（WebGL2）重解释为无符号整数位。",
+      "tags": ["shader", "builtin-function", "serialization", "texture", "uint"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl:czm_unpackTexture",
+      "type": "function",
+      "name": "czm_unpackTexture",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl",
+      "lineRange": [8, 35],
+      "summary": "重载 1-4 通道的解包函数，将归一化纹理值通过位移组合为 uint（仅 WebGL2 可用）。",
+      "tags": ["shader", "serialization", "texture", "uint"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl",
+      "type": "file",
+      "name": "unpackUint.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl",
+      "summary": "GLSL builtin 函数 czm_unpackUint，将 1-4 字节打包的归一化值解包为 int（WebGL1 无 uint 类型的兼容实现）。",
+      "tags": ["shader", "builtin-function", "serialization", "uint", "webgl1"],
+      "complexity": "moderate",
+      "languageNotes": "WebGL1 中 highp int 仍受 24 位精度限制，超过 2^24 会损失精度。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl:czm_unpackUint",
+      "type": "function",
+      "name": "czm_unpackUint",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl",
+      "lineRange": [13, 31],
+      "summary": "用点积将 1-4 通道的归一化打包值解为 int（小端顺序）。",
+      "tags": ["shader", "serialization", "uint", "webgl1"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl",
+      "type": "file",
+      "name": "valueTransform.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl",
+      "summary": "GLSL builtin 函数 czm_valueTransform，按 EXT_structural_metadata 规范对标量、向量与矩阵执行 scale*value+offset 的分量级变换。",
+      "tags": ["shader", "builtin-function", "metadata", "math", "ext-structural-metadata"],
+      "complexity": "moderate",
+      "languageNotes": "矩阵使用 matrixCompMult 做分量相乘，与标量/向量保持一致的语义。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl:czm_valueTransform",
+      "type": "function",
+      "name": "czm_valueTransform",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl",
+      "lineRange": [12, 38],
+      "summary": "重载 7 种类型的变换：对 float/vecN 用 scale*value+offset，对 matN 用 matrixCompMult(scale,value)+offset。",
+      "tags": ["shader", "metadata", "math", "ext-structural-metadata"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "type": "file",
+      "name": "vertexLogDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "summary": "GLSL builtin 函数 czm_vertexLogDepth 及 czm_updatePositionDepth，在顶点 shader 中写入对数深度所需的 v_depthFromNearPlusOne 并钳制 z，避免大远/近平面比下的裁剪错误。",
+      "tags": ["shader", "builtin-function", "depth", "log-depth", "vertex"],
+      "complexity": "moderate",
+      "languageNotes": "对数深度缓冲用于缓解大场景下极高的 far/near 比导致的深度精度问题。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl:czm_vertexLogDepth",
+      "type": "function",
+      "name": "czm_vertexLogDepth",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "lineRange": [36, 64],
+      "summary": "两个重载：基于 gl_Position 或传入 clipCoords 写入 v_depthFromNearPlusOne 并调用 czm_updatePositionDepth。",
+      "tags": ["shader", "depth", "log-depth", "vertex"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl:czm_updatePositionDepth",
+      "type": "function",
+      "name": "czm_updatePositionDepth",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "lineRange": [9, 28],
+      "summary": "在对数深度模式下钳制 clip z 到 [-1,1]*w，避免浮点误差导致 primitive 被整体裁剪，并保存 logPositionEC 供阴影使用。",
+      "tags": ["shader", "depth", "log-depth", "clamping"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "type": "file",
+      "name": "windowToEyeCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "summary": "GLSL builtin 函数 czm_windowToEyeCoordinates 与 czm_screenToEyeCoordinates，将窗口坐标（含对数深度）逆变换回眼睛坐标，含 IE/Edge 的 mat4 相等性回退分支。",
+      "tags": ["shader", "builtin-function", "coordinates", "transformation", "depth"],
+      "complexity": "complex",
+      "languageNotes": "针对 IE/Edge 对 mat4 比较 `!=` 行为异常做了特殊回退，并专门优化了对数深度的精度。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl:czm_windowToEyeCoordinates",
+      "type": "function",
+      "name": "czm_windowToEyeCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "lineRange": [61, 110],
+      "summary": "两个重载：将窗口坐标或窗口 xy + 深度/对数深度逆变换为眼睛坐标，对数深度路径精度更高。",
+      "tags": ["shader", "coordinates", "transformation", "depth"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl:czm_screenToEyeCoordinates",
+      "type": "function",
+      "name": "czm_screenToEyeCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "lineRange": [1, 84],
+      "summary": "由屏幕坐标通过逆投影（或 frustum 平面）回推眼睛坐标；并提供对数深度到线性深度的转换路径。",
+      "tags": ["shader", "coordinates", "transformation", "inverse-projection"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl",
+      "type": "file",
+      "name": "writeDepthClamp.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl",
+      "summary": "GLSL builtin 函数 czm_writeDepthClamp，通过写 gl_FragDepth 模拟 GL_DEPTH_CLAMP，将片元深度钳制到 [0,1]。",
+      "tags": ["shader", "builtin-function", "depth", "depth-clamp", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl:czm_writeDepthClamp",
+      "type": "function",
+      "name": "czm_writeDepthClamp",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl",
+      "lineRange": [19, 24],
+      "summary": "在非对数深度下将 v_WindowZ*gl_FragCoord.w 钳制到 [0,1] 写入 gl_FragDepth，模拟深度钳制。",
+      "tags": ["shader", "depth", "depth-clamp", "fragment"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl",
+      "type": "file",
+      "name": "writeLogDepth.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl",
+      "summary": "GLSL builtin 函数 czm_writeLogDepth，在片元 shader 中将对数深度写入 gl_FragDepth，并处理 POLYGON_OFFSET 与远近平面裁剪。",
+      "tags": ["shader", "builtin-function", "depth", "log-depth", "fragment"],
+      "complexity": "moderate",
+      "languageNotes": "在计算对数深度前后分别应用 polygon offset 的 factor 与 units，并按导数调整。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl:czm_writeLogDepth",
+      "type": "function",
+      "name": "czm_writeLogDepth",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl",
+      "lineRange": [25, 79],
+      "summary": "两个重载：根据传入深度或顶点写入的 v_depthFromNearPlusOne，计算 log2(depth)*系数 写入 gl_FragDepth，含 polygon offset 与近平面裁剪。",
+      "tags": ["shader", "depth", "log-depth", "fragment"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl",
+      "type": "file",
+      "name": "writeNonPerspective.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl",
+      "summary": "GLSL builtin 函数 czm_writeNonPerspective，在顶点 shader 中将 varying 值乘以 w 以模拟非透视插值（如屏幕空间纹理坐标）。",
+      "tags": ["shader", "builtin-function", "interpolation", "vertex", "math"],
+      "complexity": "simple",
+      "languageNotes": "GLSL ES 缺少 noperspective 限定符时，用乘/除 w 的技巧手工模拟非透视插值。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl:czm_writeNonPerspective",
+      "type": "function",
+      "name": "czm_writeNonPerspective",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl",
+      "lineRange": [18, 32],
+      "summary": "重载 1-4 通道版本，将 value 乘以 w，配合片元端的 czm_readNonPerspective 完成非透视插值。",
+      "tags": ["shader", "interpolation", "vertex", "math"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl",
+      "type": "file",
+      "name": "XYZToRGB.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl",
+      "summary": "GLSL builtin 函数 czm_XYZToRGB，将 CIE Yxy 色彩空间转换为 RGB，用于 HDR 渲染中的亮度处理。",
+      "tags": ["shader", "builtin-function", "color", "hdr", "color-space"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl:czm_XYZToRGB",
+      "type": "function",
+      "name": "czm_XYZToRGB",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl",
+      "lineRange": [19, 30],
+      "summary": "先将 Yxy 还原为 CIE XYZ，再用 XYZ2RGB 矩阵变换到线性 RGB。",
+      "tags": ["shader", "color", "hdr", "color-space"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/depthRangeStruct.glsl",
+      "type": "file",
+      "name": "depthRangeStruct.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/depthRangeStruct.glsl",
+      "summary": "GLSL builtin 结构体 czm_depthRangeStruct，包含 near 与 far 两个浮点字段，用于描述深度范围。",
+      "tags": ["shader", "builtin-struct", "depth", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/material.glsl",
+      "type": "file",
+      "name": "material.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/material.glsl",
+      "summary": "GLSL builtin 结构体 czm_material，封装 Fabric 材质系统的光照属性（diffuse、specular、shininess、normal、emission、alpha），由所有 czm_getMaterial 函数返回。",
+      "tags": ["shader", "builtin-struct", "material", "fabric", "data-model"],
+      "complexity": "simple",
+      "languageNotes": "属于 CesiumJS 旧版 Fabric 材质系统，区别于新一代 Model 材质管线使用的 czm_modelMaterial。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/materialInput.glsl",
+      "type": "file",
+      "name": "materialInput.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/materialInput.glsl",
+      "summary": "GLSL builtin 结构体 czm_materialInput，作为每个材质 czm_getMaterial 函数的输入，包含纹理坐标、表面法线、切线矩阵以及地形相关的 height/slope/aspect/waterMask 属性。",
+      "tags": ["shader", "builtin-struct", "material", "fabric", "terrain"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/modelMaterial.glsl",
+      "type": "file",
+      "name": "modelMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/modelMaterial.glsl",
+      "summary": "GLSL builtin 结构体 czm_modelMaterial，新一代 Model 渲染管线（PBR）使用的材质结构，含 baseColor、diffuse、specular、roughness、occlusion、emissive 及可选的 specular/clearcoat/anisotropy 扩展字段。",
+      "tags": ["shader", "builtin-struct", "material", "pbr", "model"],
+      "complexity": "moderate",
+      "languageNotes": "通过预处理器宏（USE_SPECULAR/USE_ANISOTROPY/USE_CLEARCOAT）条件启用各 glTF PBR 扩展字段。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/modelVertexOutput.glsl",
+      "type": "file",
+      "name": "modelVertexOutput.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/modelVertexOutput.glsl",
+      "summary": "GLSL builtin 结构体 czm_modelVertexOutput，表示自定义顶点 shader 的输出，含模型坐标位置与点大小，供 CustomShader 与 Model 管线使用。",
+      "tags": ["shader", "builtin-struct", "model", "custom-shader", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/ray.glsl",
+      "type": "file",
+      "name": "ray.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/ray.glsl",
+      "summary": "GLSL builtin 结构体 czm_ray，由 origin 与 direction 两个 vec3 组成，用于表示射线。",
+      "tags": ["shader", "builtin-struct", "ray", "geometry", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/raySegment.glsl",
+      "type": "file",
+      "name": "raySegment.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/raySegment.glsl",
+      "summary": "GLSL builtin 结构体 czm_raySegment 及常量 czm_emptyRaySegment/czm_fullRaySegment，用 start 与 stop 表示射线上的一段区间。",
+      "tags": ["shader", "builtin-struct", "ray", "geometry", "data-model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Structs/shadowParameters.glsl",
+      "type": "file",
+      "name": "shadowParameters.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Structs/shadowParameters.glsl",
+      "summary": "GLSL builtin 结构体 czm_shadowParameters，封装阴影贴图采样所需的纹理坐标、深度偏置、texel 步长、平滑系数与暗度等参数，立方体阴影时纹理坐标为 vec3。",
+      "tags": ["shader", "builtin-struct", "shadow", "data-model"],
+      "complexity": "simple",
+      "languageNotes": "通过 USE_CUBE_MAP_SHADOW 宏切换阴影纹理坐标的维度（vec2/vec3）。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "type": "file",
+      "name": "CloudCollectionFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "summary": "CloudCollection 的片元 shader：从相机射线投射椭球云体，结合 Gardner 1985 纹理函数、Lambert/Phong 光照与三层 Worley 噪声采样，生成具有侵蚀边缘与体积感的云团颜色与透明度。",
+      "tags": ["shader", "fragment", "clouds", "raycasting", "noise", "lighting"],
+      "complexity": "complex",
+      "languageNotes": "基于 Gardner 1985《Visual Simulation of Clouds》的云纹理函数，叠加 Worley 噪声做边缘侵蚀，并在椭球空间内做光线-椭球求交。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "type": "function",
+      "name": "drawCloud",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [161, 230],
+      "summary": "对光线与云椭球求交，计算 Lambert/Phong/Gardner 纹理光照强度，并叠加三层 Worley 噪声调整透明度与边缘侵蚀，输出最终云团颜色与 alpha。",
+      "tags": ["shader", "clouds", "raycasting", "lighting", "noise"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:sampleNoiseTexture",
+      "type": "function",
+      "name": "sampleNoiseTexture",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [51, 65],
+      "summary": "在三轴上做三线性插值采样 3D 噪声纹理，返回体素邻域平滑后的 vec4 噪声值。",
+      "tags": ["shader", "clouds", "noise", "texture", "interpolation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectEllipsoid",
+      "type": "function",
+      "name": "intersectEllipsoid",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [98, 113],
+      "summary": "将射线变换到单位球空间调用 intersectSphere 求交，再把结果变换回椭球空间，处理过小尺度导致的退化和 slice 切片。",
+      "tags": ["shader", "clouds", "raycasting", "geometry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectSphere",
+      "type": "function",
+      "name": "intersectSphere",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [68, 94],
+      "summary": "对中心在原点、半径 0.5 的单位球做射线求交，返回交点与法线，并支持按 slice 做平面切片。",
+      "tags": ["shader", "clouds", "raycasting", "geometry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:T",
+      "type": "function",
+      "name": "T",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [136, 149],
+      "summary": "源自 Gardner 1985 的云纹理函数，对 5 个八度的相位偏移正弦项求和，生成云表面的对比度纹理值。",
+      "tags": ["shader", "clouds", "noise", "gardner", "texture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "lineRange": [232, 263],
+      "summary": "片元入口：根据 v_offset 构造从缩放后空间出发的射线，调用 drawCloud 绘制云，过低的 alpha 直接 discard，并提供 DEBUG_BILLBOARDS/DEBUG_ELLIPSOIDS 调试分支。",
+      "tags": ["shader", "clouds", "fragment", "entry-point"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/transformPlane.glsl:czm_transformPlane",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/translateRelativeToEye.glsl:czm_translateRelativeToEye",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/translucentPhong.glsl:czm_translucentPhong",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/transpose.glsl:czm_transpose",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackClippingExtents.glsl:czm_unpackClippingExtents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackDepth.glsl:czm_unpackDepth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackFloat.glsl:czm_unpackFloat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackTexture.glsl:czm_unpackTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/unpackUint.glsl:czm_unpackUint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/valueTransform.glsl:czm_valueTransform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl:czm_vertexLogDepth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/vertexLogDepth.glsl:czm_updatePositionDepth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl:czm_windowToEyeCoordinates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/windowToEyeCoordinates.glsl:czm_screenToEyeCoordinates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/writeDepthClamp.glsl:czm_writeDepthClamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/writeLogDepth.glsl:czm_writeLogDepth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/writeNonPerspective.glsl:czm_writeNonPerspective",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl",
+      "target": "function:packages/engine/Source/Shaders/Builtin/Functions/XYZToRGB.glsl:czm_XYZToRGB",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:sampleNoiseTexture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectEllipsoid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectSphere",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:T",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Shaders/CloudCollectionFS.glsl",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectEllipsoid",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:sampleNoiseTexture",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:T",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectEllipsoid",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:intersectSphere",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:main",
+      "target": "function:packages/engine/Source/Shaders/CloudCollectionFS.glsl:drawCloud",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

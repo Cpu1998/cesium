@@ -1,0 +1,741 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/createFrameState.js",
+      "type": "file",
+      "name": "createFrameState.js",
+      "filePath": "Specs/createFrameState.js",
+      "summary": "构造典型 FrameState(含 mode、cullingVolume 等)的工厂,供命令调度类测试使用。",
+      "tags": [
+        "test",
+        "factory",
+        "frame-state",
+        "mock"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createGeometryUpdaterGroundGeometrySpecs.js",
+      "type": "file",
+      "name": "createGeometryUpdaterGroundGeometrySpecs.js",
+      "filePath": "Specs/createGeometryUpdaterGroundGeometrySpecs.js",
+      "summary": "针对贴地(ground)几何体 updater 的通用测试套件模板。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry",
+        "entity"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/createGeometryUpdaterSpecs.js",
+      "type": "file",
+      "name": "createGeometryUpdaterSpecs.js",
+      "filePath": "Specs/createGeometryUpdaterSpecs.js",
+      "summary": "几何体 updater 的通用测试套件模板,验证 updater 在 Entity 体系下的行为。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry",
+        "entity"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/createGlobe.js",
+      "type": "file",
+      "name": "createGlobe.js",
+      "filePath": "Specs/createGlobe.js",
+      "summary": "构造 Globe 对象的工厂,供地形/globe 相关测试使用。",
+      "tags": [
+        "test",
+        "factory",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/createScene.js",
+      "type": "file",
+      "name": "createScene.js",
+      "filePath": "Specs/createScene.js",
+      "summary": "构造完整 Scene(含 stub WebGL context)的工厂,是渲染测试的核心入口。",
+      "tags": [
+        "test",
+        "factory",
+        "scene",
+        "webgl",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/createTileKey.js",
+      "type": "file",
+      "name": "createTileKey.js",
+      "filePath": "Specs/createTileKey.js",
+      "summary": "根据 x/y/level 生成瓦片唯一键字符串的辅助函数。",
+      "tags": [
+        "utility",
+        "tile",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/dataUriToBuffer.js",
+      "type": "file",
+      "name": "dataUriToBuffer.js",
+      "filePath": "Specs/dataUriToBuffer.js",
+      "summary": "将 data URI 转换为 ArrayBuffer 的工具函数。",
+      "tags": [
+        "utility",
+        "serialization",
+        "buffer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/generateJsonBuffer.js",
+      "type": "file",
+      "name": "generateJsonBuffer.js",
+      "filePath": "Specs/generateJsonBuffer.js",
+      "summary": "将 JSON 编码并封装为带长度头的二进制 buffer,用于 3D Tiles/属性表测试。",
+      "tags": [
+        "utility",
+        "serialization",
+        "buffer",
+        "3d-tiles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/getWebGLStub.js",
+      "type": "file",
+      "name": "getWebGLStub.js",
+      "filePath": "Specs/getWebGLStub.js",
+      "summary": "提供 WebGL 与其扩展的桩实现,使测试可在无 GPU 环境下运行。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl",
+        "stub"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/loaderProcess.js",
+      "type": "file",
+      "name": "loaderProcess.js",
+      "filePath": "Specs/loaderProcess.js",
+      "summary": "封装 loader 异步处理流程的简单工具,驱动加载器推进直到完成。",
+      "tags": [
+        "test",
+        "utility",
+        "loader",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/pollToPromise.js",
+      "type": "file",
+      "name": "pollToPromise.js",
+      "filePath": "Specs/pollToPromise.js",
+      "summary": "轮询断言函数,周期执行回调直至返回 true 再 resolve,是异步测试核心工具。",
+      "tags": [
+        "test",
+        "utility",
+        "async",
+        "polling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/pollWhilePromise.js",
+      "type": "file",
+      "name": "pollWhilePromise.js",
+      "filePath": "Specs/pollWhilePromise.js",
+      "summary": "轮询函数,持续执行回调直至返回 false 再 resolve,与 pollToPromise 互补。",
+      "tags": [
+        "test",
+        "utility",
+        "async",
+        "polling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/render.js",
+      "type": "file",
+      "name": "render.js",
+      "filePath": "Specs/render.js",
+      "summary": "执行帧状态的视锥剔除与命令绘制,封装渲染断言比较。",
+      "tags": [
+        "test",
+        "utility",
+        "render",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/runLater.js",
+      "type": "file",
+      "name": "runLater.js",
+      "filePath": "Specs/runLater.js",
+      "summary": "返回在指定延迟后 resolve 的 Promise,用于模拟异步时序。",
+      "tags": [
+        "test",
+        "utility",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/waitForLoaderProcess.js",
+      "type": "file",
+      "name": "waitForLoaderProcess.js",
+      "filePath": "Specs/waitForLoaderProcess.js",
+      "summary": "等待 loader 异步处理完成的工具,组合 loaderProcess 与 pollToPromise。",
+      "tags": [
+        "test",
+        "utility",
+        "loader",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CesiumTerrainProviderSpec.js",
+      "type": "file",
+      "name": "CesiumTerrainProviderSpec.js",
+      "filePath": "packages/engine/Specs/Core/CesiumTerrainProviderSpec.js",
+      "summary": "CesiumTerrainProvider 的单元测试套件,验证地形瓦片请求、可用性解析与高程数据加载。",
+      "tags": [
+        "test",
+        "terrain",
+        "terrain-provider"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipsoidTerrainProviderSpec.js",
+      "type": "file",
+      "name": "EllipsoidTerrainProviderSpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipsoidTerrainProviderSpec.js",
+      "summary": "EllipsoidTerrainProvider 的单元测试,验证椭球地形 provider 的基本行为。",
+      "tags": [
+        "test",
+        "terrain",
+        "terrain-provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createFrameState.js:createFrameState",
+      "type": "function",
+      "name": "createFrameState",
+      "filePath": "Specs/createFrameState.js",
+      "lineRange": [
+        11,
+        54
+      ],
+      "summary": "构造典型 FrameState 的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "frame-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createGeometryUpdaterGroundGeometrySpecs.js:createGeometryUpdaterGroundGeometrySpecs",
+      "type": "function",
+      "name": "createGeometryUpdaterGroundGeometrySpecs",
+      "filePath": "Specs/createGeometryUpdaterGroundGeometrySpecs.js",
+      "lineRange": [
+        14,
+        349
+      ],
+      "summary": "为贴地几何体 updater 生成统一测试套件的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/createGeometryUpdaterSpecs.js:createGeometryUpdaterSpecs",
+      "type": "function",
+      "name": "createGeometryUpdaterSpecs",
+      "filePath": "Specs/createGeometryUpdaterSpecs.js",
+      "lineRange": [
+        19,
+        492
+      ],
+      "summary": "为几何体 updater 生成统一测试套件的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "geometry"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/createGlobe.js:createGlobe",
+      "type": "function",
+      "name": "createGlobe",
+      "filePath": "Specs/createGlobe.js",
+      "lineRange": [
+        3,
+        50
+      ],
+      "summary": "构造 Globe 对象的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "globe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/createScene.js:createScene",
+      "type": "function",
+      "name": "createScene",
+      "filePath": "Specs/createScene.js",
+      "lineRange": [
+        6,
+        71
+      ],
+      "summary": "构造完整 Scene(含 stub WebGL context)的工厂。",
+      "tags": [
+        "test",
+        "factory",
+        "scene",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Specs/createTileKey.js:createTileKey",
+      "type": "function",
+      "name": "createTileKey",
+      "filePath": "Specs/createTileKey.js",
+      "lineRange": [
+        3,
+        15
+      ],
+      "summary": "由 x/y/level 生成瓦片唯一键。",
+      "tags": [
+        "utility",
+        "tile"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/generateJsonBuffer.js:generateJsonBuffer",
+      "type": "function",
+      "name": "generateJsonBuffer",
+      "filePath": "Specs/generateJsonBuffer.js",
+      "lineRange": [
+        1,
+        22
+      ],
+      "summary": "将 JSON 编码并封装为带长度头的二进制缓冲区。",
+      "tags": [
+        "utility",
+        "buffer",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getWebGLStub",
+      "type": "function",
+      "name": "getWebGLStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        3,
+        151
+      ],
+      "summary": "创建 WebGL 上下文的桩实现,使测试可在无 GPU 环境运行。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl",
+        "stub"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getParameterStub",
+      "type": "function",
+      "name": "getParameterStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        228,
+        264
+      ],
+      "summary": "提供 getParameter 的桩,返回测试用 WebGL 参数。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getShaderPrecisionStub",
+      "type": "function",
+      "name": "getShaderPrecisionStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        300,
+        332
+      ],
+      "summary": "提供 getShaderPrecisionFormat 的桩。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getContextAttributesStub",
+      "type": "function",
+      "name": "getContextAttributesStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        187,
+        202
+      ],
+      "summary": "提供 getContextAttributes 的桩。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getExtensionStub",
+      "type": "function",
+      "name": "getExtensionStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        208,
+        226
+      ],
+      "summary": "提供 getExtension 的桩,返回测试扩展对象。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/getWebGLStub.js:getProgramParameterStub",
+      "type": "function",
+      "name": "getProgramParameterStub",
+      "filePath": "Specs/getWebGLStub.js",
+      "lineRange": [
+        266,
+        286
+      ],
+      "summary": "提供 getProgramParameter 的桩。",
+      "tags": [
+        "test",
+        "mock",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/loaderProcess.js:loaderProcess",
+      "type": "function",
+      "name": "loaderProcess",
+      "filePath": "Specs/loaderProcess.js",
+      "lineRange": [
+        1,
+        10
+      ],
+      "summary": "封装 loader 推进处理流程的工具。",
+      "tags": [
+        "test",
+        "utility",
+        "loader"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/pollToPromise.js:pollToPromise",
+      "type": "function",
+      "name": "pollToPromise",
+      "filePath": "Specs/pollToPromise.js",
+      "lineRange": [
+        3,
+        35
+      ],
+      "summary": "轮询直到回调返回 true 后 resolve 的 Promise 工厂,异步测试核心。",
+      "tags": [
+        "test",
+        "utility",
+        "async",
+        "polling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/pollWhilePromise.js:pollWhilePromise",
+      "type": "function",
+      "name": "pollWhilePromise",
+      "filePath": "Specs/pollWhilePromise.js",
+      "lineRange": [
+        3,
+        47
+      ],
+      "summary": "轮询直到回调返回 false 后 resolve 的 Promise 工厂。",
+      "tags": [
+        "test",
+        "utility",
+        "async",
+        "polling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/render.js:executeCommands",
+      "type": "function",
+      "name": "executeCommands",
+      "filePath": "Specs/render.js",
+      "lineRange": [
+        3,
+        29
+      ],
+      "summary": "按视锥剔除执行帧命令并统计执行数量。",
+      "tags": [
+        "test",
+        "utility",
+        "render",
+        "culling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/render.js:render",
+      "type": "function",
+      "name": "render",
+      "filePath": "Specs/render.js",
+      "lineRange": [
+        31,
+        55
+      ],
+      "summary": "渲染帧并断言命令执行结果。",
+      "tags": [
+        "test",
+        "utility",
+        "render"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Specs/runLater.js:runLater",
+      "type": "function",
+      "name": "runLater",
+      "filePath": "Specs/runLater.js",
+      "lineRange": [
+        1,
+        13
+      ],
+      "summary": "返回在指定延迟后 resolve 的 Promise。",
+      "tags": [
+        "test",
+        "utility",
+        "async"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Specs/createFrameState.js",
+      "target": "function:Specs/createFrameState.js:createFrameState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createGeometryUpdaterGroundGeometrySpecs.js",
+      "target": "function:Specs/createGeometryUpdaterGroundGeometrySpecs.js:createGeometryUpdaterGroundGeometrySpecs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createGeometryUpdaterSpecs.js",
+      "target": "function:Specs/createGeometryUpdaterSpecs.js:createGeometryUpdaterSpecs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createGlobe.js",
+      "target": "function:Specs/createGlobe.js:createGlobe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createScene.js",
+      "target": "function:Specs/createScene.js:createScene",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createTileKey.js",
+      "target": "function:Specs/createTileKey.js:createTileKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/generateJsonBuffer.js",
+      "target": "function:Specs/generateJsonBuffer.js:generateJsonBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getWebGLStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getParameterStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getShaderPrecisionStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getContextAttributesStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getExtensionStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/getWebGLStub.js",
+      "target": "function:Specs/getWebGLStub.js:getProgramParameterStub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/loaderProcess.js",
+      "target": "function:Specs/loaderProcess.js:loaderProcess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/pollToPromise.js",
+      "target": "function:Specs/pollToPromise.js:pollToPromise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/pollWhilePromise.js",
+      "target": "function:Specs/pollWhilePromise.js:pollWhilePromise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/render.js",
+      "target": "function:Specs/render.js:executeCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/render.js",
+      "target": "function:Specs/render.js:render",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/runLater.js",
+      "target": "function:Specs/runLater.js:runLater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:Specs/createScene.js",
+      "target": "file:Specs/createCanvas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/createScene.js",
+      "target": "file:Specs/getWebGLStub.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/waitForLoaderProcess.js",
+      "target": "file:Specs/loaderProcess.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Specs/waitForLoaderProcess.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Core/CesiumTerrainProviderSpec.js",
+      "target": "file:Specs/pollToPromise.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Specs/Core/EllipsoidTerrainProviderSpec.js",
+      "target": "file:Specs/createContext.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

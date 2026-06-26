@@ -1,0 +1,551 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".externalToolBuilders/automaticBuild.launch",
+      "language": "launch",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "metrics": {}
+    },
+    {
+      "path": ".git-blame-ignore-revs",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 6,
+      "metrics": {}
+    },
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    },
+    {
+      "path": ".github/actions/check-for-CLA/index.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 177,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "getGoogleSheetsApiClient",
+          "startLine": 25,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "getValuesFromGoogleSheet",
+          "startLine": 38,
+          "endLine": 45,
+          "params": [
+            "sheetId",
+            "cellRanges"
+          ]
+        },
+        {
+          "name": "checkIfIndividualCLAFound",
+          "startLine": 47,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "checkIfCorporateCLAFound",
+          "startLine": 68,
+          "endLine": 94,
+          "params": []
+        },
+        {
+          "name": "checkIfUserHasSignedAnyCLA",
+          "startLine": 96,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "getCommentBody",
+          "startLine": 106,
+          "endLine": 124,
+          "params": [
+            "hasSignedCLA",
+            "errorFoundOnCLACheck"
+          ]
+        },
+        {
+          "name": "postCommentOnPullRequest",
+          "startLine": 126,
+          "endLine": 143,
+          "params": [
+            "hasSignedCLA",
+            "errorFoundOnCLACheck"
+          ]
+        },
+        {
+          "name": "addLabelToPullRequest",
+          "startLine": 145,
+          "endLine": 159,
+          "params": []
+        },
+        {
+          "name": "main",
+          "startLine": 161,
+          "endLine": 175,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getGoogleSheetsApiClient",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 27
+        },
+        {
+          "caller": "getGoogleSheetsApiClient",
+          "callee": "auth.getClient",
+          "lineNumber": 33
+        },
+        {
+          "caller": "getGoogleSheetsApiClient",
+          "callee": "google.sheets",
+          "lineNumber": 35
+        },
+        {
+          "caller": "getValuesFromGoogleSheet",
+          "callee": "getGoogleSheetsApiClient",
+          "lineNumber": 39
+        },
+        {
+          "caller": "getValuesFromGoogleSheet",
+          "callee": "googleSheetsApi.spreadsheets.values.get",
+          "lineNumber": 41
+        },
+        {
+          "caller": "checkIfIndividualCLAFound",
+          "callee": "getValuesFromGoogleSheet",
+          "lineNumber": 48
+        },
+        {
+          "caller": "checkIfIndividualCLAFound",
+          "callee": "rows[i][0].toLowerCase",
+          "lineNumber": 59
+        },
+        {
+          "caller": "checkIfIndividualCLAFound",
+          "callee": "PULL_REQUST_INFO.username.toLowerCase",
+          "lineNumber": 60
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "getValuesFromGoogleSheet",
+          "lineNumber": 69
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "rows[i][0].toLowerCase",
+          "lineNumber": 81
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "rowScheduleA.replace",
+          "lineNumber": 82
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "rowScheduleA.split",
+          "lineNumber": 83
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "words[j].includes",
+          "lineNumber": 87
+        },
+        {
+          "caller": "checkIfCorporateCLAFound",
+          "callee": "PULL_REQUST_INFO.username.toLowerCase",
+          "lineNumber": 87
+        },
+        {
+          "caller": "checkIfUserHasSignedAnyCLA",
+          "callee": "checkIfIndividualCLAFound",
+          "lineNumber": 97
+        },
+        {
+          "caller": "checkIfUserHasSignedAnyCLA",
+          "callee": "checkIfCorporateCLAFound",
+          "lineNumber": 102
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "fs.readFileSync",
+          "lineNumber": 107
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "join",
+          "lineNumber": 108
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "dirname",
+          "lineNumber": 109
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "fileURLToPath",
+          "lineNumber": 109
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "Handlebars.compile",
+          "lineNumber": 115
+        },
+        {
+          "caller": "getCommentBody",
+          "callee": "getCommentFromTemplate",
+          "lineNumber": 116
+        },
+        {
+          "caller": "postCommentOnPullRequest",
+          "callee": "octokit.request",
+          "lineNumber": 129
+        },
+        {
+          "caller": "postCommentOnPullRequest",
+          "callee": "getCommentBody",
+          "lineNumber": 135
+        },
+        {
+          "caller": "addLabelToPullRequest",
+          "callee": "octokit.request",
+          "lineNumber": 148
+        },
+        {
+          "caller": "main",
+          "callee": "checkIfUserHasSignedAnyCLA",
+          "lineNumber": 166
+        },
+        {
+          "caller": "main",
+          "callee": "error.toString",
+          "lineNumber": 168
+        },
+        {
+          "caller": "main",
+          "callee": "postCommentOnPullRequest",
+          "lineNumber": 171
+        },
+        {
+          "caller": "main",
+          "callee": "addLabelToPullRequest",
+          "lineNumber": 173
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/actions/check-for-CLA/package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 21,
+      "nonEmptyLines": 21,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "main",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "repository",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "license",
+          "level": 1,
+          "line": 16
+        },
+        {
+          "heading": "author",
+          "level": 1,
+          "line": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": ".github/actions/check-for-CLA/templates/pullRequestComment.hbs",
+      "language": "hbs",
+      "fileCategory": "code",
+      "totalLines": 20,
+      "nonEmptyLines": 17,
+      "metrics": {}
+    },
+    {
+      "path": ".github/actions/verify-package/action.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "runs",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": ".github/actions/verify-package/script.sh",
+      "language": "shell",
+      "fileCategory": "script",
+      "totalLines": 23,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "updates",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 48,
+      "nonEmptyLines": 28,
+      "sections": [
+        {
+          "heading": "Description",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "Issue number and link",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Testing plan",
+          "level": 2,
+          "line": 24
+        },
+        {
+          "heading": "Author checklist",
+          "level": 2,
+          "line": 28
+        },
+        {
+          "heading": "AI acknowledgment",
+          "level": 2,
+          "line": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": ".husky/pre-commit",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".markdownlintignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "metrics": {}
+    },
+    {
+      "path": ".npmignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 37,
+      "metrics": {}
+    },
+    {
+      "path": ".npmrc",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".prettierignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 34,
+      "metrics": {}
+    },
+    {
+      "path": ".project",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 151,
+      "nonEmptyLines": 151,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/.jsdtscope",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/com.eclipsesource.jshint.ui.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.core.resources.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.jsdt.core.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 298,
+      "nonEmptyLines": 298,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.jsdt.ui.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 52,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.jsdt.ui.superType.container",
+      "language": "container",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.jsdt.ui.superType.name",
+      "language": "name",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.json.core.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 5,
+      "metrics": {}
+    },
+    {
+      "path": ".settings/org.eclipse.wst.validation.prefs",
+      "language": "prefs",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "metrics": {}
+    }
+  ]
+}

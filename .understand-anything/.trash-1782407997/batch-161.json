@@ -1,0 +1,358 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/children.geom",
+      "type": "file",
+      "name": "children.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/children.geom",
+      "summary": "Cesium 3D Tiles Geometry 格式的二进制瓦片数据，包含子节点的 box、cylinder、ellipsoid、sphere 等几何图元，用于 AllBatchedChildren 测试夹具。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple",
+      "languageNotes": ".geom 文件是二进制 + JSON 头部混合的 Cesium 自定义几何瓦片格式（BOXES/CYLINDERS/ELLIPSOIDS/SPHERES 字段）。"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/parent.geom",
+      "summary": "AllBatchedChildren 测试数据集中的父级几何瓦片，仅含单个 box 图元，作为瓦片层级结构的根节点。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/tileset.json",
+      "summary": "3D Tiles tileset 清单配置，定义 GeometryTileAllBatchedChildren 数据集的 boundingVolume、transform、geometricError 及父子瓦片引用层级，并指向 parent.geom 与 children.geom。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/children.geom",
+      "type": "file",
+      "name": "children.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/children.geom",
+      "summary": "AllBatchedChildrenWithBatchTable 测试夹具的子级几何瓦片，附带 batch table 属性用于测试批量几何与每要素元数据的组合渲染。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/parent.geom",
+      "summary": "AllBatchedChildrenWithBatchTable 数据集的父级几何瓦片，作为带 batch table 测试层级的根。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/tileset.json",
+      "summary": "AllBatchedChildrenWithBatchTable 测试数据集的 tileset 清单，定义带 batch table 属性的父子瓦片层级，引用 parent.geom 与 children.geom。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/children.geom",
+      "type": "file",
+      "name": "children.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/children.geom",
+      "summary": "AllWithBatchIds 测试夹具的子级几何瓦片，包含 batch ID 属性以测试几何瓦片中按要素分批 picking 的行为。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-id"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/parent.geom",
+      "summary": "AllWithBatchIds 数据集的父级几何瓦片根节点。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/tileset.json",
+      "summary": "AllWithBatchIds 测试数据集的 tileset 清单，定义带 batch ID 的几何瓦片层级，引用 parent.geom 与 children.geom。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ll.geom",
+      "type": "file",
+      "name": "ll.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ll.geom",
+      "summary": "AllWithBatchTable 数据集左下（lower-left）象限的几何瓦片，附带 batch table 属性。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/lr.geom",
+      "type": "file",
+      "name": "lr.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/lr.geom",
+      "summary": "AllWithBatchTable 数据集右下（lower-right）象限的几何瓦片，附带 batch table 属性。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/parent.geom",
+      "summary": "AllWithBatchTable 数据集的父级几何瓦片根节点，组合四个象限子瓦片。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "summary": "AllWithBatchTable 测试数据集的 tileset 清单，定义带 batch table 的父子四象限瓦片层级，引用 parent/ul/ur/ll/lr.geom 共五个瓦片。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ul.geom",
+      "type": "file",
+      "name": "ul.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ul.geom",
+      "summary": "AllWithBatchTable 数据集左上（upper-left）象限的几何瓦片，附带 batch table 属性。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ur.geom",
+      "type": "file",
+      "name": "ur.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ur.geom",
+      "summary": "AllWithBatchTable 数据集右上（upper-right）象限的几何瓦片，附带 batch table 属性。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batch-table"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ll.geom",
+      "type": "file",
+      "name": "ll.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ll.geom",
+      "summary": "GeometryTileBoxes 数据集左下象限的几何瓦片，主要包含 box 图元用于 box-only 渲染测试。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "box-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/lr.geom",
+      "type": "file",
+      "name": "lr.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/lr.geom",
+      "summary": "GeometryTileBoxes 数据集右下象限的几何瓦片，主要包含 box 图元。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "box-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/parent.geom",
+      "summary": "GeometryTileBoxes 数据集的父级几何瓦片根节点，聚合四个 box 象限子瓦片。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "summary": "GeometryTileBoxes 测试数据集的 tileset 清单，定义纯 box 几何的四象限父子瓦片层级，引用 parent/ul/ur/ll/lr.geom 共五个瓦片。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ul.geom",
+      "type": "file",
+      "name": "ul.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ul.geom",
+      "summary": "GeometryTileBoxes 数据集左上象限的几何瓦片，主要包含 box 图元。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "box-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ur.geom",
+      "type": "file",
+      "name": "ur.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ur.geom",
+      "summary": "GeometryTileBoxes 数据集右上象限的几何瓦片，主要包含 box 图元。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "box-primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/children.geom",
+      "type": "file",
+      "name": "children.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/children.geom",
+      "summary": "BoxesBatchedChildren 测试夹具的子级几何瓦片，包含批量合并的多个 box 图元，用于测试 batched box children 渲染。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batched-children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/parent.geom",
+      "type": "file",
+      "name": "parent.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/parent.geom",
+      "summary": "BoxesBatchedChildren 数据集的父级几何瓦片根节点。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "binary-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/tileset.json",
+      "summary": "BoxesBatchedChildren 测试数据集的 tileset 清单，定义批量 box 子瓦片的层级，引用 parent.geom 与 children.geom。",
+      "tags": ["configuration", "cesium-3d-tiles", "test-fixture", "tileset-manifest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildrenWithBatchTable/children.geom",
+      "type": "file",
+      "name": "children.geom",
+      "filePath": "Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildrenWithBatchTable/children.geom",
+      "summary": "BoxesBatchedChildrenWithBatchTable 测试夹具的子级几何瓦片，合并批量 box 图元并附带 batch table 属性，用于测试批量 box 与每要素元数据的组合。",
+      "tags": ["test-fixture", "cesium-3d-tiles", "geometry", "batched-children", "batch-table"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildren/children.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllBatchedChildrenWithBatchTable/children.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchIds/children.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ul.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ur.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/ll.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileAllWithBatchTable/lr.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ul.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ur.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/ll.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxes/lr.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/parent.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Geometry/GeometryTileBoxesBatchedChildren/children.geom",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

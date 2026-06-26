@@ -1,0 +1,20 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 21,
+  "edgesRestored": 57,
+  "crossBatchEdgesAdded": 39,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Fixed section is small and sane: 94 duplicate node IDs removed (kept last) and 491 orphan tested_by edges dropped. No ID-normalization or complexity-remap corrections were reported, meaning the file-analyzer LLM output was already well-formed this run.",
+    "Could-not-fix section had 197 issues: 6 complexity:None already defaulted to 'moderate' by the script; the other 191 were dangling edges. No nodes were missing an 'id' field, and no unknown node types or unknown complexity values were present, so no type/complexity remapping was needed.",
+    "The 191 dangling edges fall into clear categories: ~169 imports, 6 calls, 5 triggers, 3 contains, 3 related, plus single exports/depends_on/configures/documents. Targets cluster on excluded-but-real source files: engine/Specs test helpers (createScene.js x43, createPackableSpecs.js x26, pollToPromise.js x21, createContext.js x8, Cesium3DTilesTester.js x8, createFrameState.js x5, etc.), the root Source/Cesium.js barrel, index.cjs, and 15 widgets/Source/*.js widget components.",
+    "Root cause for widget gaps: there is NO .understandignore in the repo, and the scan covered 81 widgets/Source files, but only 28 made it into the graph. The 15 missing widget .js files are substantial real components (97-1243 lines: Animation, BaseLayerPicker, ClockViewModel, FullscreenButton, Geocoder, HomeButton, InfoBox, NavigationHelpButton, Cesium3DTilesInspector, CesiumInspector, PerformanceWatchdog, InspectorShared, plus createDefault*ViewModels). Viewer.js - the central widget entry point that IS in the graph - had ZERO surviving import edges because every widget it imports was absent. This is an upstream batch-coverage issue worth flagging: the file-analyzer did not emit standalone nodes for sibling widget files alongside Viewer.js.",
+    "Recovered 21 stub file nodes (15 widget .js + 6 sandcastle/src/copilot/*.css styling imports) with summary/tags noting they are auto-recovered stubs present on disk but not emitted by their batch. Restored 21 importMap 'imports' edges into them.",
+    "Restoring the widget nodes further unblocked 36 previously-dropped non-import edges (configures, documents, contains, related) whose endpoints now exist, and exposed 18 more cross-batch importMap gaps between widget stubs and already-present widget helpers (subscribeAndEvaluate.js, createCommand.js, ThirdParty/knockout.js, InspectorShared.js, ToggleButtonViewModel.js, PerformanceWatchdogViewModel.js). Added all 18. After all passes: 0 dangling edges, 0 remaining importMap gaps where both endpoints exist.",
+    "Did NOT recover: the 6 'calls'/'exports'/'contains' edges referencing intra-file function nodes (Intersections2D, TaskProcessor, MetadataSchema, MetadataClass, MetadataEnum, MetadataEnumValue, MetadataEntity, removeExtensionsRequired, sandcastle getLength/getMidpoint, cesiumTags.defineTags). None of these exist as either function: or class: nodes anywhere in the graph, so recreating them would mean fabricating internal nodes with no source data - left as-is per no-fabrication guidance. These are intra-batch function-node emission inconsistencies.",
+    "Did NOT recover: ~150 imports edges into genuinely-absent engine/Specs test helper files (createScene.js, pollToPromise.js, etc.) and the root Source/Cesium.js barrel. These files do not exist on disk in the expected locations (likely renamed/moved in this CesiumGS monorepo refactor or excluded from analysis scope), so creating nodes for them would be fabrication. These dropped edges are expected and benign.",
+    "Total impact on graph: nodes 6809 -> 6830 (+21), edges 13270 -> 13345 (+75: 21 importMap imports into new stubs + 36 unblocked non-import + 18 cross-batch widget-helper imports).",
+    "Recommend upstream follow-up: investigate why widgets/Source/*.js sibling files were not given standalone nodes in their batches despite being in scan-result.json; Viewer.js architectural connectivity depends on them."
+  ]
+}

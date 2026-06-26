@@ -1,0 +1,232 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Model/VerticalExaggerationStageVS.glsl",
+      "type": "file",
+      "name": "VerticalExaggerationStageVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/Model/VerticalExaggerationStageVS.glsl",
+      "summary": "Model 渲染管线的 vertex shader 阶段，基于相机到局部曲率中心的距离对顶点位置施加垂直方向的高程夸张（vertical exaggeration）变换。",
+      "tags": ["shader", "vertex-shader", "model", "vertical-exaggeration", "glsl"],
+      "complexity": "moderate",
+      "languageNotes": "GLSL vertex stage 使用 czm 内置 uniform（czm_modelToEnu、czm_eyeEllipsoidCurvature）实现地形/模型高程的局部曲率夸张。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PointPrimitiveCollectionFS.glsl",
+      "type": "file",
+      "name": "PointPrimitiveCollectionFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PointPrimitiveCollectionFS.glsl",
+      "summary": "PointPrimitiveCollection 的 fragment shader，根据纹理、颜色与透明度计算每个点图元的最终像素颜色。",
+      "tags": ["shader", "fragment-shader", "point-primitive", "glsl", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PointPrimitiveCollectionVS.glsl",
+      "type": "file",
+      "name": "PointPrimitiveCollectionVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PointPrimitiveCollectionVS.glsl",
+      "summary": "PointPrimitiveCollection 的 vertex shader，将点图元的位置变换到裁剪空间并计算点尺寸、纹理坐标与逐顶点颜色。",
+      "tags": ["shader", "vertex-shader", "point-primitive", "glsl", "rendering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolygonSignedDistanceFS.glsl",
+      "type": "file",
+      "name": "PolygonSignedDistanceFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolygonSignedDistanceFS.glsl",
+      "summary": "多边形的 signed distance field fragment shader，计算片元到多边形边界的带符号距离，用于抗锯齿与轮廓绘制。",
+      "tags": ["shader", "fragment-shader", "polygon", "signed-distance-field", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineCommon.glsl",
+      "type": "file",
+      "name": "PolylineCommon.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineCommon.glsl",
+      "summary": "Polyline 渲染的共享 GLSL 工具函数集合，提供将线段裁剪到近裁剪面（clipLineSegmentToNearPlane）等公共辅助逻辑，供多个 polyline shader 复用。",
+      "tags": ["shader", "common-utilities", "polyline", "near-plane-clipping", "glsl"],
+      "complexity": "moderate",
+      "languageNotes": "提供 out 参数风格的辅助函数，被 PolylineVS/PolylineShadowVolumeVS 等 shader 在构建时通过 ShaderSource 拼接复用。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineFS.glsl",
+      "type": "file",
+      "name": "PolylineFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineFS.glsl",
+      "summary": "基础 Polyline 的 fragment shader，输出折线的最终颜色与透明度。",
+      "tags": ["shader", "fragment-shader", "polyline", "glsl", "rendering"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineShadowVolumeFS.glsl",
+      "type": "file",
+      "name": "PolylineShadowVolumeFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineShadowVolumeFS.glsl",
+      "summary": "Polyline shadow volume 技术的 fragment shader，通过阴影体几何生成投影到地表的折线阴影。",
+      "tags": ["shader", "fragment-shader", "polyline", "shadow-volume", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineShadowVolumeMorphFS.glsl",
+      "type": "file",
+      "name": "PolylineShadowVolumeMorphFS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineShadowVolumeMorphFS.glsl",
+      "summary": "Polyline shadow volume 在 2D/3D/Columbus View 之间形态过渡（morph）时的 fragment shader。",
+      "tags": ["shader", "fragment-shader", "polyline", "shadow-volume", "morph"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineShadowVolumeMorphVS.glsl",
+      "type": "file",
+      "name": "PolylineShadowVolumeMorphVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineShadowVolumeMorphVS.glsl",
+      "summary": "Polyline shadow volume 在形态过渡（morph）阶段的 vertex shader，处理阴影体几何在不同投影视图间的顶点变换。",
+      "tags": ["shader", "vertex-shader", "polyline", "shadow-volume", "morph"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineShadowVolumeVS.glsl",
+      "type": "file",
+      "name": "PolylineShadowVolumeVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineShadowVolumeVS.glsl",
+      "summary": "Polyline shadow volume 的主 vertex shader，沿光源方向挤出阴影体几何并完成顶点变换。",
+      "tags": ["shader", "vertex-shader", "polyline", "shadow-volume", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PolylineVS.glsl",
+      "type": "file",
+      "name": "PolylineVS.glsl",
+      "filePath": "packages/engine/Source/Shaders/PolylineVS.glsl",
+      "summary": "基础 Polyline 的 vertex shader，完成折线顶点变换、宽度扩展与逐顶点颜色计算。",
+      "tags": ["shader", "vertex-shader", "polyline", "glsl", "rendering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/AcesTonemappingStage.glsl",
+      "type": "file",
+      "name": "AcesTonemappingStage.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/AcesTonemappingStage.glsl",
+      "summary": "后处理阶段 shader，应用 ACES filmic tone mapping 将 HDR 颜色映射到显示范围。",
+      "tags": ["shader", "post-process", "tone-mapping", "hdr", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/AdditiveBlend.glsl",
+      "type": "file",
+      "name": "AdditiveBlend.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/AdditiveBlend.glsl",
+      "summary": "后处理阶段 shader，对两张输入纹理执行加法混合，用于辉光等效果的合成。",
+      "tags": ["shader", "post-process", "blend", "additive", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/AmbientOcclusionGenerate.glsl",
+      "type": "file",
+      "name": "AmbientOcclusionGenerate.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/AmbientOcclusionGenerate.glsl",
+      "summary": "环境光遮蔽（AO）生成阶段 shader，基于深度纹理在屏幕空间采样计算逐像素的环境遮蔽因子。",
+      "tags": ["shader", "post-process", "ambient-occlusion", "ssa", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/AmbientOcclusionModulate.glsl",
+      "type": "file",
+      "name": "AmbientOcclusionModulate.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/AmbientOcclusionModulate.glsl",
+      "summary": "环境光遮蔽调制阶段 shader，将生成的 AO 因子乘入场景颜色以增强暗部细节。",
+      "tags": ["shader", "post-process", "ambient-occlusion", "modulate", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/BlackAndWhite.glsl",
+      "type": "file",
+      "name": "BlackAndWhite.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/BlackAndWhite.glsl",
+      "summary": "黑白滤镜后处理 shader，通过亮度加权将场景颜色转换为灰度图像。",
+      "tags": ["shader", "post-process", "filter", "grayscale", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/BloomComposite.glsl",
+      "type": "file",
+      "name": "BloomComposite.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/BloomComposite.glsl",
+      "summary": "Bloom 效果合成阶段 shader，将多个模糊层级按权重叠加产生最终辉光。",
+      "tags": ["shader", "post-process", "bloom", "composite", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/Brightness.glsl",
+      "type": "file",
+      "name": "Brightness.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/Brightness.glsl",
+      "summary": "亮度调整后处理 shader，按系数对场景像素亮度进行缩放。",
+      "tags": ["shader", "post-process", "brightness", "color-adjust", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/BrightPass.glsl",
+      "type": "file",
+      "name": "BrightPass.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/BrightPass.glsl",
+      "summary": "Bright pass 后处理 shader，提取场景中超过阈值的明亮区域供 bloom 后续模糊使用。",
+      "tags": ["shader", "post-process", "bloom", "bright-pass", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/CompositeTranslucentClassification.glsl",
+      "type": "file",
+      "name": "CompositeTranslucentClassification.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/CompositeTranslucentClassification.glsl",
+      "summary": "后处理 shader，将半透明分类（translucent classification）结果与场景颜色合成，用于 3D Tiles 中的透明物体分类着色。",
+      "tags": ["shader", "post-process", "translucent", "classification", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/ContrastBias.glsl",
+      "type": "file",
+      "name": "ContrastBias.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/ContrastBias.glsl",
+      "summary": "对比度/偏移后处理 shader，对场景颜色按对比度系数与偏移量进行调整。",
+      "tags": ["shader", "post-process", "contrast", "color-adjust", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/DepthOfField.glsl",
+      "type": "file",
+      "name": "DepthOfField.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/DepthOfField.glsl",
+      "summary": "景深后处理 shader，基于深度纹理对焦外区域进行模糊，模拟真实相机景深效果。",
+      "tags": ["shader", "post-process", "depth-of-field", "blur", "glsl"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/DepthView.glsl",
+      "type": "file",
+      "name": "DepthView.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/DepthView.glsl",
+      "summary": "调试用后处理 shader，将线性化深度直接可视化为灰度图像，便于排查深度缓冲。",
+      "tags": ["shader", "post-process", "debug", "depth-visualization", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/DepthViewPacked.glsl",
+      "type": "file",
+      "name": "DepthViewPacked.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/DepthViewPacked.glsl",
+      "summary": "针对打包（packed）深度格式的深度可视化后处理 shader，解包并显示打包的深度缓冲内容。",
+      "tags": ["shader", "post-process", "debug", "depth-visualization", "glsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/PostProcessStages/EdgeDetection.glsl",
+      "type": "file",
+      "name": "EdgeDetection.glsl",
+      "filePath": "packages/engine/Source/Shaders/PostProcessStages/EdgeDetection.glsl",
+      "summary": "边缘检测后处理 shader，基于 Sobel 等算子在屏幕空间检测并高亮显示场景中的轮廓边缘。",
+      "tags": ["shader", "post-process", "edge-detection", "filter", "glsl"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}

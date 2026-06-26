@@ -1,0 +1,1213 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "file",
+      "name": "PixelDatatype",
+      "filePath": "packages/engine/Source/Renderer/PixelDatatype.js",
+      "summary": "像素数据类型枚举，映射 WebGL 像素数据类型常量，并提供向具体 WebGL 常量转换的 toWebGLConstant 方法。",
+      "tags": [
+        "enumeration",
+        "pixel-format",
+        "webgl"
+      ],
+      "complexity": "simple",
+      "languageNotes": "CesiumJS 以冻结对象字面量 + 方法附加的形式实现枚举的典型模式。"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "file",
+      "name": "RenderbufferFormat",
+      "filePath": "packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "summary": "renderbuffer 支持的内部格式枚举（DEPTH_COMPONENT16、STENCIL_INDEX8、DEPTH_STENCIL 等），映射到 WebGL 常量。",
+      "tags": [
+        "enumeration",
+        "renderbuffer",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "file",
+      "name": "RenderState.js",
+      "filePath": "packages/engine/Source/Renderer/RenderState.js",
+      "summary": "WebGL 渲染状态的完整封装，定义深度测试、模板测试、混合、剔除、视口等所有管线状态，并在状态切换时增量应用差异。",
+      "tags": [
+        "render-state",
+        "webgl",
+        "pipeline",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "采用 frozen 模板 + createFuncs 差异函数表，避免每帧重复设置全部 GL 状态。"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/RenderState.js:RenderState",
+      "type": "class",
+      "name": "RenderState",
+      "filePath": "packages/engine/Source/Renderer/RenderState.js",
+      "lineRange": [
+        91,
+        336
+      ],
+      "summary": "RenderState 构造器：校验所有渲染状态字段，冻结默认状态并预生成状态差异应用函数表。",
+      "tags": [
+        "render-state",
+        "webgl",
+        "constructor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/RenderState.js:createFuncs",
+      "type": "function",
+      "name": "createFuncs",
+      "filePath": "packages/engine/Source/Renderer/RenderState.js",
+      "lineRange": [
+        739,
+        827
+      ],
+      "summary": "对比前后两份 renderState，为每个变化的状态字段生成对应的 enable/disable/apply 调用序列以实现增量状态切换。",
+      "tags": [
+        "render-state",
+        "diff",
+        "optimization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/RenderState.js:applyStencilTest",
+      "type": "function",
+      "name": "applyStencilTest",
+      "filePath": "packages/engine/Source/Renderer/RenderState.js",
+      "lineRange": [
+        652,
+        695
+      ],
+      "summary": "应用模板测试相关 GL 状态（前后分离的 func/op/mask 组合），是 RenderState 中最复杂的状态应用函数。",
+      "tags": [
+        "render-state",
+        "stencil",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "type": "file",
+      "name": "Renderbuffer.js",
+      "filePath": "packages/engine/Source/Renderer/Renderbuffer.js",
+      "summary": "WebGL Renderbuffer 对象的封装，用于 Framebuffer 中附加深度/模板等不可采样渲染目标，提供销毁管理。",
+      "tags": [
+        "renderbuffer",
+        "framebuffer",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/Renderbuffer.js:Renderbuffer",
+      "type": "class",
+      "name": "Renderbuffer",
+      "filePath": "packages/engine/Source/Renderer/Renderbuffer.js",
+      "lineRange": [
+        12,
+        73
+      ],
+      "summary": "Renderbuffer 构造器：根据 options 创建 GL renderbuffer 并分配指定格式的存储。",
+      "tags": [
+        "renderbuffer",
+        "constructor",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "file",
+      "name": "Sampler.js",
+      "filePath": "packages/engine/Source/Renderer/Sampler.js",
+      "summary": "纹理采样器状态封装（wrap、min/mag filter、mipmap），由 Texture 在绑定采样参数时使用。",
+      "tags": [
+        "sampler",
+        "texture",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/Sampler.js:Sampler",
+      "type": "class",
+      "name": "Sampler",
+      "filePath": "packages/engine/Source/Renderer/Sampler.js",
+      "lineRange": [
+        12,
+        58
+      ],
+      "summary": "Sampler 构造器：校验并填充纹理采样参数（wrapS/T、minificationFilter、magnificationFilter 等）。",
+      "tags": [
+        "sampler",
+        "texture",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "type": "file",
+      "name": "ShaderBuilder.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderBuilder.js",
+      "summary": "流式 GLSL 着色器构建器，按 attribute/uniform/varying/struct/function 等区段累积着色器片段并生成最终 GLSL 源码。",
+      "tags": [
+        "shader",
+        "glsl",
+        "builder",
+        "factory"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Builder 模式取代字符串拼接，是 CesiumJS 现代着色器组合的核心抽象。"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/ShaderBuilder.js:ShaderBuilder",
+      "type": "class",
+      "name": "ShaderBuilder",
+      "filePath": "packages/engine/Source/Renderer/ShaderBuilder.js",
+      "lineRange": [
+        56,
+        87
+      ],
+      "summary": "ShaderBuilder 构造器：初始化各着色器区段（attributes、uniforms、 structs、函数等）的累积容器。",
+      "tags": [
+        "shader",
+        "builder",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderBuilder.js:generateStructLines",
+      "type": "function",
+      "name": "generateStructLines",
+      "filePath": "packages/engine/Source/Renderer/ShaderBuilder.js",
+      "lineRange": [
+        524,
+        552
+      ],
+      "summary": "将 builder 中累积的结构体定义生成为 GLSL 文本行。",
+      "tags": [
+        "shader",
+        "glsl",
+        "generator"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderBuilder.js:generateFunctionLines",
+      "type": "function",
+      "name": "generateFunctionLines",
+      "filePath": "packages/engine/Source/Renderer/ShaderBuilder.js",
+      "lineRange": [
+        567,
+        595
+      ],
+      "summary": "将 builder 中累积的函数定义生成为 GLSL 文本行。",
+      "tags": [
+        "shader",
+        "glsl",
+        "generator"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "type": "file",
+      "name": "ShaderCache.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderCache.js",
+      "summary": "按着色器键缓存 ShaderProgram 实例的 LRU 风格缓存，通过引用计数复用已编译的 GLSL 程序以降低编译开销。",
+      "tags": [
+        "shader",
+        "cache",
+        "performance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/ShaderCache.js:ShaderCache",
+      "type": "class",
+      "name": "ShaderCache",
+      "filePath": "packages/engine/Source/Renderer/ShaderCache.js",
+      "lineRange": [
+        9,
+        14
+      ],
+      "summary": "ShaderCache 构造器：初始化着色器缓存表与统计字段。",
+      "tags": [
+        "shader",
+        "cache",
+        "constructor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "file",
+      "name": "ShaderProgram.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderProgram.js",
+      "summary": "WebGL ShaderProgram 的核心封装：编译/链接着色器、发现顶点属性与 uniform、处理精度不匹配并管理 uniform 上传。",
+      "tags": [
+        "shader",
+        "webgl",
+        "program",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/ShaderProgram.js:ShaderProgram",
+      "type": "class",
+      "name": "ShaderProgram",
+      "filePath": "packages/engine/Source/Renderer/ShaderProgram.js",
+      "lineRange": [
+        17,
+        63
+      ],
+      "summary": "ShaderProgram 构造器：保存 options 并触发 initialize 完成着色器编译与链接。",
+      "tags": [
+        "shader",
+        "webgl",
+        "constructor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderProgram.js:createAndLinkProgram",
+      "type": "function",
+      "name": "createAndLinkProgram",
+      "filePath": "packages/engine/Source/Renderer/ShaderProgram.js",
+      "lineRange": [
+        184,
+        281
+      ],
+      "summary": "编译并链接顶点/片元着色器为 GL program，捕获链接错误日志。",
+      "tags": [
+        "shader",
+        "link",
+        "webgl"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderProgram.js:findUniforms",
+      "type": "function",
+      "name": "findUniforms",
+      "filePath": "packages/engine/Source/Renderer/ShaderProgram.js",
+      "lineRange": [
+        299,
+        410
+      ],
+      "summary": "遍历 GL program 的所有 active uniform，按名称收集类型、位置与数组信息。",
+      "tags": [
+        "shader",
+        "uniform",
+        "reflection"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderProgram.js:reinitialize",
+      "type": "function",
+      "name": "reinitialize",
+      "filePath": "packages/engine/Source/Renderer/ShaderProgram.js",
+      "lineRange": [
+        466,
+        539
+      ],
+      "summary": "在着色器源码变化后重新编译链接 program，并迁移 uniform 状态。",
+      "tags": [
+        "shader",
+        "rebuild"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "file",
+      "name": "ShaderSource.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderSource.js",
+      "summary": "GLSL 着色器源码预处理器：解析 include 依赖图、注入 builtin 与 automatic uniform、合并多源并最终输出可编译文本。",
+      "tags": [
+        "shader",
+        "glsl",
+        "preprocessor",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/ShaderSource.js:ShaderSource",
+      "type": "class",
+      "name": "ShaderSource",
+      "filePath": "packages/engine/Source/Renderer/ShaderSource.js",
+      "lineRange": [
+        332,
+        352
+      ],
+      "summary": "ShaderSource 构造器：规范化源码数组、解析依赖并预计算最终着色器文本。",
+      "tags": [
+        "shader",
+        "constructor",
+        "preprocessor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderSource.js:combineShader",
+      "type": "function",
+      "name": "combineShader",
+      "filePath": "packages/engine/Source/Renderer/ShaderSource.js",
+      "lineRange": [
+        155,
+        304
+      ],
+      "summary": "合并 builtin、automatic uniform、用户源码与依赖，产出最终顶点/片元着色器文本。",
+      "tags": [
+        "shader",
+        "glsl",
+        "preprocessor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderSource.js:sortDependencies",
+      "type": "function",
+      "name": "sortDependencies",
+      "filePath": "packages/engine/Source/Renderer/ShaderSource.js",
+      "lineRange": [
+        87,
+        136
+      ],
+      "summary": "对 include 依赖节点拓扑排序，确保被依赖片段先出现。",
+      "tags": [
+        "shader",
+        "glsl",
+        "preprocessor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Renderer/ShaderSource.js:generateDependencies",
+      "type": "function",
+      "name": "generateDependencies",
+      "filePath": "packages/engine/Source/Renderer/ShaderSource.js",
+      "lineRange": [
+        52,
+        85
+      ],
+      "summary": "递归遍历 #include 指令构建依赖节点图。",
+      "tags": [
+        "shader",
+        "glsl",
+        "preprocessor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/ShaderStruct.js",
+      "type": "file",
+      "name": "ShaderStruct.js",
+      "filePath": "packages/engine/Source/Renderer/ShaderStruct.js",
+      "summary": "GLSL struct 定义的轻量构建器，配合 ShaderBuilder 累积结构体字段并生成 struct 声明文本。",
+      "tags": [
+        "shader",
+        "glsl",
+        "struct",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "type": "file",
+      "name": "SharedContext.js",
+      "filePath": "packages/engine/Source/Renderer/SharedContext.js",
+      "summary": "创建一个与他人共享资源的派生 WebGL Context（基于共享 canvas/context），用于离屏或多上下文渲染场景。",
+      "tags": [
+        "context",
+        "webgl",
+        "shared"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/SharedContext.js:SharedContext",
+      "type": "class",
+      "name": "SharedContext",
+      "filePath": "packages/engine/Source/Renderer/SharedContext.js",
+      "lineRange": [
+        34,
+        39
+      ],
+      "summary": "SharedContext 构造器：基于现有 context 的属性克隆出共享 WebGL 上下文包装。",
+      "tags": [
+        "context",
+        "constructor",
+        "webgl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Renderer/Sync.js",
+      "type": "file",
+      "name": "Sync.js",
+      "filePath": "packages/engine/Source/Renderer/Sync.js",
+      "summary": "WebGL fence sync 对象的封装，用于异步查询 GPU 命令是否完成（gltf/KHR_mesh_quantization 等管线同步）。",
+      "tags": [
+        "sync",
+        "webgl",
+        "fence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Renderer/Sync.js:Sync",
+      "type": "class",
+      "name": "Sync",
+      "filePath": "packages/engine/Source/Renderer/Sync.js",
+      "lineRange": [
+        19,
+        38
+      ],
+      "summary": "Sync 构造器：创建 GL fence sync 对象并暴露状态查询/销毁接口。",
+      "tags": [
+        "sync",
+        "constructor",
+        "webgl"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "class:packages/engine/Source/Renderer/RenderState.js:RenderState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "class:packages/engine/Source/Renderer/RenderState.js:RenderState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "function:packages/engine/Source/Renderer/RenderState.js:createFuncs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "class:packages/engine/Source/Renderer/RenderState.js:RenderState",
+      "target": "function:packages/engine/Source/Renderer/RenderState.js:createFuncs",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "function:packages/engine/Source/Renderer/RenderState.js:applyStencilTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "class:packages/engine/Source/Renderer/Renderbuffer.js:Renderbuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "class:packages/engine/Source/Renderer/Renderbuffer.js:Renderbuffer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "class:packages/engine/Source/Renderer/Sampler.js:Sampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "class:packages/engine/Source/Renderer/Sampler.js:Sampler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderBuilder.js:ShaderBuilder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderBuilder.js:ShaderBuilder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderBuilder.js:generateStructLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderBuilder.js:generateFunctionLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderCache.js:ShaderCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderCache.js:ShaderCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderProgram.js:ShaderProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderProgram.js:ShaderProgram",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderProgram.js:createAndLinkProgram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderProgram.js:findUniforms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderProgram.js:reinitialize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderSource.js:ShaderSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "class:packages/engine/Source/Renderer/ShaderSource.js:ShaderSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderSource.js:combineShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderSource.js:sortDependencies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "function:packages/engine/Source/Renderer/ShaderSource.js:generateDependencies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "class:packages/engine/Source/Renderer/SharedContext.js:SharedContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "class:packages/engine/Source/Renderer/SharedContext.js:SharedContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "class:packages/engine/Source/Renderer/Sync.js:Sync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "class:packages/engine/Source/Renderer/Sync.js:Sync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Core/WindingOrder.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Renderer/freezeRenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Core/addAllToArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderDestination.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderStruct.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Renderer/createUniform.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "target": "file:packages/engine/Source/Renderer/createUniformArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Renderer/AutomaticUniforms.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Renderer/demodernizeShader.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "file:packages/engine/Source/Core/clone.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/SharedContext.js",
+      "target": "file:packages/engine/Source/Renderer/Context.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sync.js",
+      "target": "file:packages/engine/Source/Core/WebGLConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Sampler.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "target": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/RenderState.js",
+      "target": "file:packages/engine/Source/Renderer/freezeRenderState.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "target": "file:packages/engine/Source/Renderer/demodernizeShader.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderStruct.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderBuilder.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Renderer/ShaderCache.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

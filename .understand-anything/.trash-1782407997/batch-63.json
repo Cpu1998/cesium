@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/s2-tileset_1.0.json",
+      "type": "config",
+      "name": "s2-tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/s2-tileset_1.0.json",
+      "summary": "3D Tiles 1.0 测试夹具，使用 3DTILES_metadata 扩展为 S2 细分方案定义隐式瓦片的高度语义元数据（TILE_MINIMUM_HEIGHT / TILE_MAXIMUM_HEIGHT）。",
+      "tags": ["configuration", "test-fixture", "3d-tiles", "metadata", "implicit-tiling"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.0 通过 extensionsUsed/extensionsRequired 声明 3DTILES_metadata 扩展，元数据 schema 在 extensions 节点内定义。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/s2-tileset_1.1.json",
+      "type": "config",
+      "name": "s2-tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/s2-tileset_1.1.json",
+      "summary": "3D Tiles 1.1 测试夹具，使用原生 schema 属性为 S2 细分方案定义隐式瓦片的高度语义元数据，取代 1.0 的扩展机制。",
+      "tags": ["configuration", "test-fixture", "3d-tiles", "metadata", "implicit-tiling"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 将元数据 schema 提升为 tileset 的原生顶层属性，无需 extensionsUsed 声明。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/tileset_1.0.json",
+      "summary": "3D Tiles 1.0 测试夹具，使用 3DTILES_metadata 扩展为四叉树（QUADTREE）隐式瓦片定义 TILE_MINIMUM_HEIGHT 与 TILE_MAXIMUM_HEIGHT 语义。",
+      "tags": ["configuration", "test-fixture", "3d-tiles", "metadata", "implicit-tiling"],
+      "complexity": "simple",
+      "languageNotes": "通过 implicitTiling.subdivisionScheme=QUADTREE 验证 1.0 扩展式元数据语义的加载。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ImplicitHeightSemantics/tileset_1.1.json",
+      "summary": "3D Tiles 1.1 测试夹具，使用原生 schema 属性为四叉树（QUADTREE）隐式瓦片定义高度语义元数据，验证 1.1 版本对内置元数据的支持。",
+      "tags": ["configuration", "test-fixture", "3d-tiles", "metadata", "implicit-tiling"],
+      "complexity": "simple",
+      "languageNotes": "原生 schema 中的 properties.semantic 字段声明 TILE_MINIMUM_HEIGHT/TILE_MAXIMUM_HEIGHT 等内置语义。"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,1396 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Scene/Imagery.js",
+      "type": "file",
+      "name": "Imagery.js",
+      "filePath": "packages/engine/Source/Scene/Imagery.js",
+      "summary": "表示单个 imagery 切片的轻量数据对象，记录其在切片金字塔中的坐标、层级与地理范围，由 ImageryLayer 创建并缓存。",
+      "tags": [
+        "data-model",
+        "imagery",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "file",
+      "name": "ImageryLayer.js",
+      "filePath": "packages/engine/Source/Scene/ImageryLayer.js",
+      "summary": "imagery 图层的核心实现：负责切片请求调度、纹理重投影到地理坐标系、缓存管理以及与 imagery provider 的对接，是 Scene 层 imagery 渲染的中枢。",
+      "tags": [
+        "scene",
+        "imagery",
+        "tile-loading",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 ComputeCommand + ShaderProgram 在 GPU 上完成纹理重投影；使用 ImageryState 管理 tile 生命周期。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "type": "file",
+      "name": "ImageryLayerCollection.js",
+      "filePath": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "summary": "管理一组 ImageryLayer 的有序集合，支持图层增删、排序、可见性控制与 imagery 拾取（pickImageryHelper）。",
+      "tags": [
+        "scene",
+        "imagery",
+        "collection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "file",
+      "name": "ImageryState.js",
+      "filePath": "packages/engine/Source/Scene/ImageryState.js",
+      "summary": "定义 imagery 切片加载状态的冻结（frozen）枚举常量。",
+      "tags": [
+        "type-definition",
+        "imagery",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "type": "file",
+      "name": "InvertClassification.js",
+      "filePath": "packages/engine/Source/Scene/InvertClassification.js",
+      "summary": "实现反分类（invert classification）渲染效果：将未被分类 primitive 覆盖的区域高亮，常用于 3D Tiles 中裁剪/反选可视化。",
+      "tags": [
+        "scene",
+        "rendering",
+        "classification",
+        "stencil"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "依赖 stencil buffer + FramebufferManager 的多通道渲染。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/KeyframeNode.js",
+      "type": "file",
+      "name": "KeyframeNode.js",
+      "filePath": "packages/engine/Source/Scene/KeyframeNode.js",
+      "summary": "时间轴动画中的关键帧节点，关联空间节点（spatialNode）与某一时刻的关键帧数据。",
+      "tags": [
+        "data-model",
+        "animation",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/Label.js",
+      "type": "file",
+      "name": "Label.js",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "summary": "场景文本标签对象：管理字体解析、RTL（阿拉伯文/希伯来文）文字反转、字形排版与样式属性，是 2D/3D 文本可视化的基础实体。",
+      "tags": [
+        "scene",
+        "label",
+        "text-rendering",
+        "rtl"
+      ],
+      "complexity": "complex",
+      "languageNotes": "reverseRtl/convertTextToTypes 实现了 BiDi 文本方向的局部反转逻辑。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "type": "file",
+      "name": "LabelCollection.js",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "summary": "Label 的批量渲染集合：通过 glyph billboard 与 SDF 字形图集（TextureAtlas）高效绘制大量标签，负责字形重绑定、重定位与背景框计算。",
+      "tags": [
+        "scene",
+        "label",
+        "collection",
+        "sdf"
+      ],
+      "complexity": "complex",
+      "languageNotes": "rebindAllGlyphs/repositionAllGlyphs 是性能关键路径，支持 SDF 与位图字形两种模式。"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "file",
+      "name": "LabelStyle.js",
+      "filePath": "packages/engine/Source/Scene/LabelStyle.js",
+      "summary": "定义 Label 样式的冻结枚举（FILL / OUTLINE / FILL_AND_OUTLINE）。",
+      "tags": [
+        "type-definition",
+        "label",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Imagery.js:Imagery",
+      "type": "function",
+      "name": "Imagery",
+      "filePath": "packages/engine/Source/Scene/Imagery.js",
+      "lineRange": [
+        11,
+        43
+      ],
+      "summary": "构造一个 imagery 切片对象，记录其在图层中的坐标、层级与地理矩形，并从缓存或 provider 获取纹理。",
+      "tags": [
+        "imagery",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayer.js:ImageryLayer",
+      "type": "function",
+      "name": "ImageryLayer",
+      "filePath": "packages/engine/Source/Scene/ImageryLayer.js",
+      "lineRange": [
+        174,
+        360
+      ],
+      "summary": "ImageryLayer 构造函数：初始化 provider、切片方案、缓存、显示参数与事件。",
+      "tags": [
+        "imagery",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayer.js:reprojectToGeographic",
+      "type": "function",
+      "name": "reprojectToGeographic",
+      "filePath": "packages/engine/Source/Scene/ImageryLayer.js",
+      "lineRange": [
+        1490,
+        1671
+      ],
+      "summary": "将 imagery 切片纹理通过 compute shader 重投影到地理/WebMercator 坐标系，是 tile 渲染前的关键步骤。",
+      "tags": [
+        "imagery",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayer.js:getLevelWithMaximumTexelSpacing",
+      "type": "function",
+      "name": "getLevelWithMaximumTexelSpacing",
+      "filePath": "packages/engine/Source/Scene/ImageryLayer.js",
+      "lineRange": [
+        1682,
+        1706
+      ],
+      "summary": "根据 texel 间距与纬度计算满足最大分辨率要求的切片层级。",
+      "tags": [
+        "imagery",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayer.js:handlePromise",
+      "type": "function",
+      "name": "handlePromise",
+      "filePath": "packages/engine/Source/Scene/ImageryLayer.js",
+      "lineRange": [
+        1717,
+        1729
+      ],
+      "summary": "handlePromise 函数：ImageryLayer.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "imagery",
+        "rendering",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:ImageryLayerCollection",
+      "type": "function",
+      "name": "ImageryLayerCollection",
+      "filePath": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "lineRange": [
+        19,
+        56
+      ],
+      "summary": "构造 imagery 图层集合并初始化变更事件。",
+      "tags": [
+        "imagery",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:getLayerIndex",
+      "type": "function",
+      "name": "getLayerIndex",
+      "filePath": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "lineRange": [
+        241,
+        257
+      ],
+      "summary": "getLayerIndex 函数：ImageryLayerCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "imagery",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:swapLayers",
+      "type": "function",
+      "name": "swapLayers",
+      "filePath": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "lineRange": [
+        259,
+        275
+      ],
+      "summary": "swapLayers 函数：ImageryLayerCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "imagery",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:pickImageryHelper",
+      "type": "function",
+      "name": "pickImageryHelper",
+      "filePath": "packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "lineRange": [
+        347,
+        419
+      ],
+      "summary": "在拾取位置查找命中的 imagery 图层与切片，并触发 feature 查询回调。",
+      "tags": [
+        "imagery",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/InvertClassification.js:InvertClassification",
+      "type": "function",
+      "name": "InvertClassification",
+      "filePath": "packages/engine/Source/Scene/InvertClassification.js",
+      "lineRange": [
+        22,
+        67
+      ],
+      "summary": "构造反分类渲染资源，初始化 framebuffer 与 stencil 相关参数。",
+      "tags": [
+        "rendering",
+        "classification",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Label.js:parseFont",
+      "type": "function",
+      "name": "parseFont",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "lineRange": [
+        52,
+        86
+      ],
+      "summary": "从 CSS 讷取字体属性并构造 label 的字体描述对象。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Label.js:Label",
+      "type": "function",
+      "name": "Label",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "lineRange": [
+        139,
+        252
+      ],
+      "summary": "Label 构造函数：解析字体、初始化字形、样式与可见性属性。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Label.js:convertTextToTypes",
+      "type": "function",
+      "name": "convertTextToTypes",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "lineRange": [
+        1469,
+        1505
+      ],
+      "summary": "convertTextToTypes 函数：Label.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Label.js:reverseBrackets",
+      "type": "function",
+      "name": "reverseBrackets",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "lineRange": [
+        1515,
+        1534
+      ],
+      "summary": "reverseBrackets 函数：Label.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/Label.js:reverseRtl",
+      "type": "function",
+      "name": "reverseRtl",
+      "filePath": "packages/engine/Source/Scene/Label.js",
+      "lineRange": [
+        1547,
+        1651
+      ],
+      "summary": "对包含 RTL 字符的文本执行 BiDi 局部反转，恢复正确的显示顺序。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:Glyph",
+      "type": "function",
+      "name": "Glyph",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        28,
+        50
+      ],
+      "summary": "Glyph 函数：LabelCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:getWhitePixelBillboard",
+      "type": "function",
+      "name": "getWhitePixelBillboard",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        65,
+        92
+      ],
+      "summary": "getWhitePixelBillboard 函数：LabelCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:createGlyphCanvas",
+      "type": "function",
+      "name": "createGlyphCanvas",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        96,
+        118
+      ],
+      "summary": "在 canvas 上绘制单个字符字形，供 SDF/位图字形图集使用。",
+      "tags": [
+        "label",
+        "factory",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:unbindGlyphBillboard",
+      "type": "function",
+      "name": "unbindGlyphBillboard",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        120,
+        132
+      ],
+      "summary": "unbindGlyphBillboard 函数：LabelCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:rebindAllGlyphs",
+      "type": "function",
+      "name": "rebindAllGlyphs",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        137,
+        321
+      ],
+      "summary": "为 label 重新生成字形纹理绑定（含 fill/outline/background），是标签更新主路径。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:updateBackgroundBillboard",
+      "type": "function",
+      "name": "updateBackgroundBillboard",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        323,
+        365
+      ],
+      "summary": "updateBackgroundBillboard 函数：LabelCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:repositionAllGlyphs",
+      "type": "function",
+      "name": "repositionAllGlyphs",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        380,
+        553
+      ],
+      "summary": "依据排版结果重新定位 label 中每个 glyph billboard 的位置。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:destroyLabel",
+      "type": "function",
+      "name": "destroyLabel",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        555,
+        573
+      ],
+      "summary": "destroyLabel 函数：LabelCollection.js 中的渲染/数据处理逻辑。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Scene/LabelCollection.js:LabelCollection",
+      "type": "function",
+      "name": "LabelCollection",
+      "filePath": "packages/engine/Source/Scene/LabelCollection.js",
+      "lineRange": [
+        624,
+        719
+      ],
+      "summary": "LabelCollection 构造函数：初始化 glyph billboard 集合、纹理图集与 SDF 资源。",
+      "tags": [
+        "label",
+        "scene"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Scene/Imagery.js",
+      "target": "function:packages/engine/Source/Scene/Imagery.js:Imagery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayer.js:ImageryLayer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayer.js:reprojectToGeographic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayer.js:getLevelWithMaximumTexelSpacing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayer.js:handlePromise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:ImageryLayerCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:getLayerIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:swapLayers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "function:packages/engine/Source/Scene/ImageryLayerCollection.js:pickImageryHelper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "function:packages/engine/Source/Scene/InvertClassification.js:InvertClassification",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "function:packages/engine/Source/Scene/Label.js:parseFont",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "function:packages/engine/Source/Scene/Label.js:Label",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "function:packages/engine/Source/Scene/Label.js:convertTextToTypes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "function:packages/engine/Source/Scene/Label.js:reverseBrackets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "function:packages/engine/Source/Scene/Label.js:reverseRtl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:Glyph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:getWhitePixelBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:createGlyphCanvas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:unbindGlyphBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:rebindAllGlyphs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:updateBackgroundBillboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:repositionAllGlyphs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:destroyLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "function:packages/engine/Source/Scene/LabelCollection.js:LabelCollection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Imagery.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Imagery.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Imagery.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/FeatureDetection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/RequestState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/TileProviderError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/Buffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/BufferUsage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/ComputeCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/ContextLimits.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/MipmapHint.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/Sampler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderProgram.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMagnificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/TextureMinificationFilter.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/TextureWrap.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Renderer/VertexArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Scene/createWorldImageryAsync.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Scene/Imagery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Scene/ImageryState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Scene/SplitDirection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "target": "file:packages/engine/Source/Scene/TileImagery.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Core/PixelFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/ClearCommand.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/FramebufferManager.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/PixelDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/Renderbuffer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/RenderbufferFormat.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/RenderState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/ShaderSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Renderer/Texture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Scene/BlendingState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Scene/StencilConstants.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Scene/StencilFunction.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/InvertClassification.js",
+      "target": "file:packages/engine/Source/Scene/StencilOperation.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/Billboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/SDFSettings.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/Label.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/BoundingRectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Core/writeTextToCanvas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Renderer/TextureAtlas.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/BillboardCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/BillboardTexture.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/BlendOption.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/Label.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/SDFSettings.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Scene/ImageryLayer.js:ImageryLayer",
+      "target": "function:packages/engine/Source/Scene/Imagery.js:Imagery",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/ImageryLayerCollection.js",
+      "target": "file:packages/engine/Source/Scene/ImageryLayer.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/engine/Source/Scene/LabelCollection.js",
+      "target": "file:packages/engine/Source/Scene/Label.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

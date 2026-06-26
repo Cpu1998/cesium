@@ -1,0 +1,380 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl",
+      "type": "file",
+      "name": "eyeOffset.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_eyeOffset，沿视线方向近似地对眼坐标系下的位置施加 z 轴偏移以避免深度冲突。",
+      "tags": ["shader", "glsl", "builtin-function", "depth-offset", "utility"],
+      "complexity": "simple",
+      "languageNotes": "CesiumJS 通过 ShaderBuild 注入的 czm_* 命名空间统一暴露内置 GLSL 函数。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl:czm_eyeOffset",
+      "type": "function",
+      "name": "czm_eyeOffset",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl",
+      "lineRange": [14, 20],
+      "summary": "对眼坐标系位置近似地施加 eye offset，x/y 分量近似计算，z 分量沿归一化方向偏移以缓解深度冲突。",
+      "tags": ["shader", "depth-offset", "coordinate-transform", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl",
+      "type": "file",
+      "name": "eyeToWindowCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_eyeToWindowCoordinates，将眼坐标系位置经投影与视口变换转换为窗口坐标。",
+      "tags": ["shader", "glsl", "builtin-function", "coordinate-transform", "billboard"],
+      "complexity": "simple",
+      "languageNotes": "依赖 czm_projection 与 czm_viewportTransformation 自动统一变量。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl:czm_eyeToWindowCoordinates",
+      "type": "function",
+      "name": "czm_eyeToWindowCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl",
+      "lineRange": [25, 32],
+      "summary": "依次执行投影、透视除法以及视口变换，将眼坐标位置映射到窗口坐标，常用于 Billboard 的顶点着色器。",
+      "tags": ["shader", "coordinate-transform", "viewport", "projection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl",
+      "type": "file",
+      "name": "fastApproximateAtan.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl",
+      "summary": "提供基于 Drobot 近似的快速 atan / atan2 GLSL 实现，在 GPU 上以低开销计算反正切用于经纬度等场景。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "approximation"],
+      "complexity": "moderate",
+      "languageNotes": "使用 branch-free ternary 避免动态分支，区间归约适配 atan2 全象限。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan",
+      "type": "function",
+      "name": "czm_fastApproximateAtan",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl",
+      "lineRange": [24, 28],
+      "summary": "单参数版本：在 [0,1] 区间内对 atan(x) 使用二阶多项式近似，去除了不必要的 abs()。",
+      "tags": ["shader", "math", "approximation", "atan"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan_atan2",
+      "type": "function",
+      "name": "czm_fastApproximateAtan (atan2 overload)",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl",
+      "lineRange": [42, 55],
+      "summary": "双参数版本：通过绝对值与象限翻转完成区间归约，再调用单参数近似并使用 branch-free ternary 恢复 atan2(x, y) 的全象限结果。",
+      "tags": ["shader", "math", "approximation", "atan2", "range-reduction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl",
+      "type": "file",
+      "name": "fog.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/fog.glsl",
+      "summary": "CesiumJS 内置 GLSL 雾效函数 czm_fog，依据到相机距离按指数衰减将颜色与雾色混合。",
+      "tags": ["shader", "glsl", "builtin-function", "fog", "lighting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl:czm_fog",
+      "type": "function",
+      "name": "czm_fog",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/fog.glsl",
+      "lineRange": [12, 18],
+      "summary": "基础雾效：基于距离与雾密度计算 1-exp(-(scalar)^2) 的衰减系数并将原色与雾色 mix。",
+      "tags": ["shader", "fog", "atmosphere", "color-mix"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/gammaCorrect.glsl",
+      "type": "file",
+      "name": "gammaCorrect.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/gammaCorrect.glsl",
+      "summary": "CesiumJS 内置 GLSL gamma 校正函数，在 HDR 模式下将 RGB 颜色从 gamma 空间转换到线性空间，提供 vec3 与 vec4 重载。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "hdr"],
+      "complexity": "simple",
+      "languageNotes": "通过 #ifdef HDR 条件编译仅在 HDR 渲染管线启用时生效。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/geodeticSurfaceNormal.glsl",
+      "type": "file",
+      "name": "geodeticSurfaceNormal.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/geodeticSurfaceNormal.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_geodeticSurfaceNormal，根据椭球上位置计算大地水准面的法向量。",
+      "tags": ["shader", "glsl", "builtin-function", "ellipsoid", "geodesy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl",
+      "type": "file",
+      "name": "getDefaultMaterial.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_getDefaultMaterial，构造一个带默认 diffuse/specular/normal/alpha 的 czm_material，供各材质的 czm_getMaterial 作为基线。",
+      "tags": ["shader", "glsl", "builtin-function", "material", "default-value"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl:czm_getDefaultMaterial",
+      "type": "function",
+      "name": "czm_getDefaultMaterial",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl",
+      "lineRange": [19, 27],
+      "summary": "基于 materialInput 初始化默认材质结构体，将法线设为 materialInput.normalEC 并把 alpha 设为 1。",
+      "tags": ["shader", "material", "default-value", "lighting"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/getDynamicAtmosphereLightDirection.glsl",
+      "type": "file",
+      "name": "getDynamicAtmosphereLightDirection.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getDynamicAtmosphereLightDirection.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数，依据枚举值在无光照、场景光与太阳光之间选择并归一化大气动态光照方向。",
+      "tags": ["shader", "glsl", "builtin-function", "atmosphere", "lighting"],
+      "complexity": "simple",
+      "languageNotes": "使用 float 比较乘法技巧替代 switch 以避免 GLSL 动态分支。"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/getLambertDiffuse.glsl",
+      "type": "file",
+      "name": "getLambertDiffuse.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getLambertDiffuse.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_getLambertDiffuse，基于光线方向与法线点积计算 Lambert 漫反射强度。",
+      "tags": ["shader", "glsl", "builtin-function", "lighting", "lambert"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/getSpecular.glsl",
+      "type": "file",
+      "name": "getSpecular.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getSpecular.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_getSpecular，根据反射方向、视线方向与 shininess 计算 Phong 高光强度。",
+      "tags": ["shader", "glsl", "builtin-function", "lighting", "specular"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl",
+      "type": "file",
+      "name": "getWaterNoise.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_getWaterNoise，对法线贴图进行多采样并叠加产生旋转、随时间变化的水面噪声。",
+      "tags": ["shader", "glsl", "builtin-function", "water", "noise"],
+      "complexity": "moderate",
+      "languageNotes": "通过旋转采样方向并对四次采样求和实现各向异性水波纹理。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl:czm_getWaterNoise",
+      "type": "function",
+      "name": "czm_getWaterNoise",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl",
+      "lineRange": [4, 37],
+      "summary": "依据角度旋转四组采样方向，按时间偏移在法线贴图上多次采样并归一化为 [-1,1] 区间的噪声向量。",
+      "tags": ["shader", "water", "noise", "texture-sampling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/HSBToRGB.glsl",
+      "type": "file",
+      "name": "HSBToRGB.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/HSBToRGB.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_HSBToRGB，使用最少分支的 lolengine 算法将 HSB 颜色转换为 RGB。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl",
+      "type": "file",
+      "name": "HSLToRGB.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_HSLToRGB 及其辅助函数 hueToRGB，将 HSL 颜色转换为 RGB。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "conversion"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl:czm_HSLToRGB",
+      "type": "function",
+      "name": "czm_HSLToRGB",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl",
+      "lineRange": [21, 26],
+      "summary": "借助 hueToRGB 计算色相基底再按饱和度与明度缩放偏移，得到 RGB 输出。",
+      "tags": ["shader", "color-space", "conversion", "hsl"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl",
+      "type": "file",
+      "name": "hue.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/hue.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_hue，通过将颜色变换到 YIQ 空间旋转色相再转回 RGB，实现色调调整。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "image-processing"],
+      "complexity": "simple",
+      "languageNotes": "使用常量 mat3 在 RGB↔YIQ 之间变换以旋转色相。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl:czm_hue",
+      "type": "function",
+      "name": "czm_hue",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/hue.glsl",
+      "lineRange": [18, 30],
+      "summary": "将 RGB 经 toYIQ 矩阵变换，对 IQ 平面以指定弧度旋转色相，再以 toRGB 矩阵还原为调整色相后的颜色。",
+      "tags": ["shader", "color-space", "image-processing", "yiq"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/inverseGamma.glsl",
+      "type": "file",
+      "name": "inverseGamma.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/inverseGamma.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_inverseGamma，将线性空间颜色以 1/gamma 指数还原到 RGB 空间。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "gamma"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/isEmpty.glsl",
+      "type": "file",
+      "name": "isEmpty.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/isEmpty.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_isEmpty，判断 czm_raySegment 表示的时间区间是否为空（stop < 0）。",
+      "tags": ["shader", "glsl", "builtin-function", "ray", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/isFull.glsl",
+      "type": "file",
+      "name": "isFull.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/isFull.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_isFull，判断 raySegment 区间是否覆盖完整的 [0, +∞) 范围。",
+      "tags": ["shader", "glsl", "builtin-function", "ray", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/latitudeToWebMercatorFraction.glsl",
+      "type": "file",
+      "name": "latitudeToWebMercatorFraction.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/latitudeToWebMercatorFraction.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数，根据 Web Mercator 投影将大地纬度映射为给定矩形内的纵向分数（0 到 1）。",
+      "tags": ["shader", "glsl", "builtin-function", "projection", "web-mercator"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/linearToSrgb.glsl",
+      "type": "file",
+      "name": "linearToSrgb.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/linearToSrgb.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_linearToSrgb，以 1/2.2 指数将线性 RGB 颜色转换到 sRGB 空间，提供 vec3 与 vec4 重载。",
+      "tags": ["shader", "glsl", "builtin-function", "color-space", "srgb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/lineDistance.glsl",
+      "type": "file",
+      "name": "lineDistance.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/lineDistance.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_lineDistance，使用经典叉积公式计算 2D 点到直线的距离。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "geometry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/luminance.glsl",
+      "type": "file",
+      "name": "luminance.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/luminance.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_luminance，按 Rec.709 权重对 RGB 颜色求点积得到亮度值。",
+      "tags": ["shader", "glsl", "builtin-function", "color", "luminance"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/maximumComponent.glsl",
+      "type": "file",
+      "name": "maximumComponent.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/maximumComponent.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_maximumComponent，针对 vec2/vec3/vec4 重载返回向量中最大分量的值。",
+      "tags": ["shader", "glsl", "builtin-function", "math", "vector"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl",
+      "type": "file",
+      "name": "metersPerPixel.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_metersPerPixel，根据视锥、视口与像素比计算给定眼坐标位置处每像素对应的米数，分别处理 2D/正交与透视模式。",
+      "tags": ["shader", "glsl", "builtin-function", "viewport", "resolution"],
+      "complexity": "moderate",
+      "languageNotes": "通过 czm_sceneMode 与 czm_orthographicIn3D 区分正交/透视分支计算每像素尺寸。"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl:czm_metersPerPixel",
+      "type": "function",
+      "name": "czm_metersPerPixel",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl",
+      "lineRange": [15, 42],
+      "summary": "带 pixelRatio 的核心重载：依据 2D/正交模式以视锥宽高除以视口像素，或按距离与 near 平面正切计算透视模式下的像素宽高并取最大值。",
+      "tags": ["shader", "resolution", "viewport", "frustum"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl",
+      "type": "file",
+      "name": "modelToWindowCoordinates.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_modelToWindowCoordinates，依次执行 modelView、projection、透视除法与视口变换，将模型坐标位置映射到窗口坐标。",
+      "tags": ["shader", "glsl", "builtin-function", "coordinate-transform", "billboard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl:czm_modelToWindowCoordinates",
+      "type": "function",
+      "name": "czm_modelToWindowCoordinates",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl",
+      "lineRange": [32, 38],
+      "summary": "组合 czm_modelView、czm_projection 与 czm_viewportTransformation 完成模型到窗口的完整坐标变换，供 Billboard 等使用。",
+      "tags": ["shader", "coordinate-transform", "viewport", "billboard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Shaders/Builtin/Functions/multiplyWithColorBalance.glsl",
+      "type": "file",
+      "name": "multiplyWithColorBalance.glsl",
+      "filePath": "packages/engine/Source/Shaders/Builtin/Functions/multiplyWithColorBalance.glsl",
+      "summary": "CesiumJS 内置 GLSL 函数 czm_multiplyWithColorBalance，在颜色相乘后按双方亮度与目标亮度的比值进行亮度平衡。",
+      "tags": ["shader", "glsl", "builtin-function", "color", "blending"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl:czm_eyeOffset", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeOffset.glsl:czm_eyeOffset", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl:czm_eyeToWindowCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/eyeToWindowCoordinates.glsl:czm_eyeToWindowCoordinates", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan_atan2", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fastApproximateAtan.glsl:czm_fastApproximateAtan_atan2", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl:czm_fog", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/fog.glsl:czm_fog", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl:czm_getDefaultMaterial", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/getDefaultMaterial.glsl:czm_getDefaultMaterial", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl:czm_getWaterNoise", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/getWaterNoise.glsl:czm_getWaterNoise", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl:czm_HSLToRGB", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/HSLToRGB.glsl:czm_HSLToRGB", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl:czm_hue", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/hue.glsl:czm_hue", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl:czm_metersPerPixel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/metersPerPixel.glsl:czm_metersPerPixel", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl:czm_modelToWindowCoordinates", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl", "target": "function:packages/engine/Source/Shaders/Builtin/Functions/modelToWindowCoordinates.glsl:czm_modelToWindowCoordinates", "type": "exports", "direction": "forward", "weight": 0.8}
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/0/1/1/1.glb",
+      "type": "file",
+      "name": "1.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/0/1/1/1.glb",
+      "summary": "Terrain 测试数据集中的 glTF 二进制瓦片（.glb），用于 3D Tiles implicit tiling 子树层级 0/1/1/1 的加载与渲染测试。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple",
+      "languageNotes": "glb 为二进制 glTF 容器格式，无法用 tree-sitter 提取结构。"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/0/0/0.glb",
+      "type": "file",
+      "name": "0.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/0/0/0.glb",
+      "summary": "Terrain implicit tiling 子树 1/0/0/0 节点对应的 glTF 二进制瓦片，作为 Cesium3DTiles 地形加载规格测试样本。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/0/0/0.subtree",
+      "type": "file",
+      "name": "0.subtree",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/0/0/0.subtree",
+      "summary": "3D Tiles 1.0 implicit tiling 的 subtree 文件，描述地形瓦片子树的可用性位图，供隐式瓦片遍历测试使用。",
+      "tags": ["test-data", "3d-tiles", "implicit-tiling", "subtree", "fixture"],
+      "complexity": "simple",
+      "languageNotes": "subtree 是二进制格式，包含 tile availability 与 content availability 的位流。"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/1/0/0.glb",
+      "type": "file",
+      "name": "0.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/1/0/0.glb",
+      "summary": "Terrain implicit tiling 子树 1/1/0/0 节点的 glTF 二进制瓦片，作为地形 spec 测试数据样本。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/1/0/1.glb",
+      "type": "file",
+      "name": "1.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/1/0/1.glb",
+      "summary": "Terrain implicit tiling 子树 1/1/0/1 节点的 glTF 二进制瓦片，用于隐式瓦片内容加载测试。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/1/1/0.glb",
+      "type": "file",
+      "name": "0.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/1/1/0.glb",
+      "summary": "Terrain implicit tiling 子树 1/1/1/0 节点的 glTF 二进制瓦片，用于地形数据加载与渲染规格测试。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/1/1/1.glb",
+      "type": "file",
+      "name": "1.glb",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/1/1/1/1.glb",
+      "summary": "Terrain implicit tiling 子树 1/1/1/1 节点的 glTF 二进制瓦片，作为 3D Tiles 地形规格测试的最深层级样本。",
+      "tags": ["test-data", "gltf", "3d-tiles", "terrain", "fixture"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Terrain/Test/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Terrain/Test/tileset.json",
+      "summary": "Terrain 测试 tileset 的入口清单，声明 asset 元信息、geometricError、隐式 tiling 根节点及 metadata schema，由 Cesium3DTiles 规格用于地形加载测试。",
+      "tags": ["configuration", "3d-tiles", "tileset", "implicit-tiling", "test-fixture"],
+      "complexity": "moderate",
+      "languageNotes": "JSON 单行紧凑格式；包含 implicit tiling 的 subtree uri 模板与 metadata schema 定义。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/Tileset/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/Tileset/tileset.json",
+      "summary": "基础 Tileset 测试样本的 3D Tiles 清单，定义 asset、properties、geometricError 与含 bounding volume 及内容 uri 的 root 节点，是规格测试最常用的标准 tileset。",
+      "tags": ["configuration", "3d-tiles", "tileset", "test-fixture", "bounding-volume"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetEmptyRoot/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetEmptyRoot/tileset.json",
+      "summary": "用于测试空根节点的 3D Tiles 清单，root 节点不直接渲染内容，而是通过子节点细化，验证 Cesium3DTiles 对空父节点的处理。",
+      "tags": ["configuration", "3d-tiles", "tileset", "refinement", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset.json",
+      "summary": "TilesetOfTilesets 测试样本的外部 tileset 清单，其根节点引用嵌套的 tileset2.json，用于验证外部 tileset 引用与递归加载。",
+      "tags": ["configuration", "3d-tiles", "tileset", "external-reference", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset2.json",
+      "type": "config",
+      "name": "tileset2.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset2.json",
+      "summary": "TilesetOfTilesets 中的嵌套 tileset 清单，被外层 tileset.json 通过 children 引用，并继续引用 tileset3/tileset3.json，验证多层外部 tileset 链式加载。",
+      "tags": ["configuration", "3d-tiles", "tileset", "external-reference", "nested"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset3/tileset3.json",
+      "type": "config",
+      "name": "tileset3.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset3/tileset3.json",
+      "summary": "TilesetOfTilesets 链中第三层的外部 tileset 清单，被 tileset2.json 引用，用于验证 Cesium3DTiles 对深层嵌套外部 tileset 的解析。",
+      "tags": ["configuration", "3d-tiles", "tileset", "external-reference", "nested"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetPoints/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetPoints/tileset.json",
+      "summary": "基于点云（points）内容类型的 3D Tiles 清单，用于验证 Cesium3DTiles 对点云瓦片的加载与渲染。",
+      "tags": ["configuration", "3d-tiles", "tileset", "point-cloud", "test-fixture"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetRefinementMix/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetRefinementMix/tileset.json",
+      "summary": "混合细化的 3D Tiles 清单，树中同时包含 ADD 与 REPLACE 细化策略的节点，用于测试 Cesium3DTiles 对混合细化场景的处理。",
+      "tags": ["configuration", "3d-tiles", "tileset", "refinement", "test-fixture"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement1/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement1/tileset.json",
+      "summary": "替换细化（REPLACE）系列测试之一，根节点用 REPLACE 策略被子瓦片替代，用于验证 Cesium3DTiles 的替换细化行为。",
+      "tags": ["configuration", "3d-tiles", "tileset", "refinement", "replacement"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement2/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement2/tileset.json",
+      "summary": "替换细化系列测试之二，结构与 Replacement1 类似但使用不同的层级与 bounding volume 组合，用于覆盖更多细化边界情况。",
+      "tags": ["configuration", "3d-tiles", "tileset", "refinement", "replacement"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset.json",
+      "summary": "替换细化系列测试之三，引用同目录下的 tileset2.json 作为外部子 tileset，用于测试替换细化与外部引用的组合。",
+      "tags": ["configuration", "3d-tiles", "tileset", "refinement", "replacement"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset2.json",
+      "type": "config",
+      "name": "tileset2.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset2.json",
+      "summary": "TilesetReplacement3 引用的外部子 tileset 清单，定义被 REPLACE 策略加载的子节点内容。",
+      "tags": ["configuration", "3d-tiles", "tileset", "external-reference", "nested"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacementWithViewerRequestVolume/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacementWithViewerRequestVolume/tileset.json",
+      "summary": "带 viewer request volume 的替换细化 tileset 清单，验证 Cesium3DTiles 根据观察者请求体积触发瓦片加载的行为。",
+      "tags": ["configuration", "3d-tiles", "tileset", "viewer-request-volume", "refinement"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/subtree.json",
+      "type": "config",
+      "name": "subtree.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/subtree.json",
+      "summary": "用于缓存过期测试的 subtree 清单文件，配合 TilesetSubtreeExpiration/tileset.json 验证 subtree 资源的过期与重新加载逻辑。",
+      "tags": ["configuration", "3d-tiles", "subtree", "cache-expiration", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/tileset.json",
+      "summary": "用于测试 subtree 缓存过期的 tileset 清单，引用 subtree.json 并配合过期时间设置，验证 Cesium3DTiles 的资源失效与刷新。",
+      "tags": ["configuration", "3d-tiles", "tileset", "cache-expiration", "test-fixture"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset.json",
+      "summary": "统一尺寸瓦片（uniform）测试 tileset 清单，引用同目录的 tileset2.json 作为外部资源，用于验证统一层级下的瓦片加载。",
+      "tags": ["configuration", "3d-tiles", "tileset", "uniform", "external-reference"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset2.json",
+      "type": "config",
+      "name": "tileset2.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset2.json",
+      "summary": "TilesetUniform 引用的外部子 tileset 清单，规模较大（311 行），定义多个子节点用于统一瓦片测试。",
+      "tags": ["configuration", "3d-tiles", "tileset", "uniform", "nested"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Specs/Data/Cesium3DTiles/Tilesets/TilesetWithExternalResources/embed.i3dm",
+      "type": "file",
+      "name": "embed.i3dm",
+      "filePath": "Specs/Data/Cesium3DTiles/Tilesets/TilesetWithExternalResources/embed.i3dm",
+      "summary": "3D Tiles 实例化三维模型（i3dm）二进制瓦片，内嵌一个 glTF 实例模型，用于测试 Cesium3DTiles 对实例化瓦片及外部资源加载的处理。",
+      "tags": ["test-data", "3d-tiles", "i3dm", "instanced-model", "fixture"],
+      "complexity": "simple",
+      "languageNotes": "i3dm 为二进制格式，包含实例变换矩阵及可选的 glTF payload（嵌入式或外部 uri）。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Terrain/Test/tileset.json",
+      "target": "file:Specs/Data/Cesium3DTiles/Terrain/Test/1/0/0/0.subtree",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset2.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset2.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetOfTilesets/tileset3/tileset3.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetReplacement3/tileset2.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetSubtreeExpiration/subtree.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Tilesets/TilesetUniform/tileset2.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

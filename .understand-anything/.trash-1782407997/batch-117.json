@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SDataProviderSpec.js",
+      "type": "file",
+      "name": "I3SDataProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SDataProviderSpec.js",
+      "summary": "I3S Indexed 3D Scene Layer 数据提供者（DataProvider）的单元测试，覆盖加载、字段加载、节点加载及错误处理等场景。",
+      "tags": ["test", "i3s", "data-provider", "scene", "3d-tiles"],
+      "complexity": "complex",
+      "languageNotes": "Jasmine describe/it 结构，通过 mock 网络请求验证 I3SDataProvider 的异步加载流程。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SDecoderSpec.js",
+      "type": "file",
+      "name": "I3SDecoderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SDecoderSpec.js",
+      "summary": "I3S 几何与属性解码器（基于 Draco/compression）的单元测试，验证对 I3S 节点二进制数据的解码逻辑。",
+      "tags": ["test", "i3s", "decoder", "draco", "geometry"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SFieldSpec.js",
+      "type": "file",
+      "name": "I3SFieldSpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SFieldSpec.js",
+      "summary": "I3S Field（图层属性字段）的单元测试，验证字段统计信息、域名映射及属性读取行为。",
+      "tags": ["test", "i3s", "field", "attributes", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SLayerSpec.js",
+      "type": "file",
+      "name": "I3SLayerSpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SLayerSpec.js",
+      "summary": "I3S 图层（Layer）对象的单元测试，覆盖图层字段、统计信息及节点遍历的解析。",
+      "tags": ["test", "i3s", "layer", "scene", "ogc"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SNodeSpec.js",
+      "type": "file",
+      "name": "I3SNodeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SNodeSpec.js",
+      "summary": "I3S 节点（Node）的单元测试，验证节点几何/属性加载、纹理与可见性判定及与父图层DataProvider 的交互。",
+      "tags": ["test", "i3s", "node", "geometry", "scene"],
+      "complexity": "complex",
+      "languageNotes": "本批次中规模最大的 I3S 测试（2272 行），覆盖大量边缘案例。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/I3SSymbologySpec.js",
+      "type": "file",
+      "name": "I3SSymbologySpec.js",
+      "filePath": "packages/engine/Specs/Scene/I3SSymbologySpec.js",
+      "summary": "I3S 符号化（Symbology）渲染规则的单元测试，验证从图层符号表达式到材质/颜色映射的解析。",
+      "tags": ["test", "i3s", "symbology", "rendering", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImageBasedLightingSpec.js",
+      "type": "file",
+      "name": "ImageBasedLightingSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImageBasedLightingSpec.js",
+      "summary": "ImageBasedLighting 组件的单元测试，验证基于图像的光照（IBL）环境贴图与镜面反射参数的默认值及赋值行为。",
+      "tags": ["test", "image-based-lighting", "rendering", "scene", "pbr"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitAvailabilityBitstreamSpec.js",
+      "type": "file",
+      "name": "ImplicitAvailabilityBitstreamSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitAvailabilityBitstreamSpec.js",
+      "summary": "隐式瓦片可用性位流（AvailabilityBitstream）的单元测试，验证位流按子树坐标判定瓦片是否存在的解码逻辑。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "bitstream", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitSubdivisionSchemeSpec.js",
+      "type": "file",
+      "name": "ImplicitSubdivisionSchemeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitSubdivisionSchemeSpec.js",
+      "summary": "隐式瓦片细分方案（Quadtree/Octree SubdivisionScheme）枚举与解析的单元测试。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "subdivision", "enum"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitSubtreeCacheSpec.js",
+      "type": "file",
+      "name": "ImplicitSubtreeCacheSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitSubtreeCacheSpec.js",
+      "summary": "隐式瓦片子树缓存（ImplicitSubtreeCache）的单元测试，验证子树资源的异步加载、缓存命中与释放。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "cache", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitSubtreeMetadataSpec.js",
+      "type": "file",
+      "name": "ImplicitSubtreeMetadataSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitSubtreeMetadataSpec.js",
+      "summary": "隐式瓦片子树元数据（ImplicitSubtreeMetadata）的单元测试，验证子树级 metadata 与属性表的解析。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "metadata", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitTileCoordinatesSpec.js",
+      "type": "file",
+      "name": "ImplicitTileCoordinatesSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitTileCoordinatesSpec.js",
+      "summary": "隐式瓦片坐标（ImplicitTileCoordinates）的单元测试，验证 level/x/y/z 坐标与子树内线性索引的相互转换及边界校验。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "coordinates", "scene"],
+      "complexity": "complex",
+      "languageNotes": "覆盖四叉树/八叉树两种细分方案下的大量坐标变换用例。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ImplicitTilesetSpec.js",
+      "type": "file",
+      "name": "ImplicitTilesetSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ImplicitTilesetSpec.js",
+      "summary": "隐式瓦片集（ImplicitTileset）的单元测试，验证隐式瓦片集对子树遍历、可用性查询与内容 URI 模板的处理。",
+      "tags": ["test", "3d-tiles", "implicit-tiling", "tileset", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/InstanceAttributeSemanticSpec.js",
+      "type": "file",
+      "name": "InstanceAttributeSemanticSpec.js",
+      "filePath": "packages/engine/Specs/Scene/InstanceAttributeSemanticSpec.js",
+      "summary": "实例属性语义（InstanceAttributeSemantic）的单元测试，验证 glTF/_INSTANCED 等实例属性的语义字符串解析。",
+      "tags": ["test", "gltf", "instancing", "semantic", "scene"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/IonImageryProviderSpec.js",
+      "type": "file",
+      "name": "IonImageryProviderSpec.js",
+      "filePath": "packages/engine/Specs/Scene/IonImageryProviderSpec.js",
+      "summary": "Cesium ion 影像服务提供者（IonImageryProvider）的单元测试，验证从 ion 资产 ID 加载影像图层的流程。",
+      "tags": ["test", "cesium-ion", "imagery", "provider", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/ITwinDataSpec.js",
+      "type": "file",
+      "name": "ITwinDataSpec.js",
+      "filePath": "packages/engine/Specs/Scene/ITwinDataSpec.js",
+      "summary": "Bentley iTwin 数据加载（ITwinData）的单元测试，验证从 iTwin 导出接口获取 3D Tiles 数据并构造 tileset 的过程。",
+      "tags": ["test", "itwin", "3d-tiles", "data-loader", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/JobSchedulerSpec.js",
+      "type": "file",
+      "name": "JobSchedulerSpec.js",
+      "filePath": "packages/engine/Specs/Scene/JobSchedulerSpec.js",
+      "summary": "任务调度器（JobScheduler）的单元测试，验证优先级排序、并发控制与任务执行策略。",
+      "tags": ["test", "scheduler", "concurrency", "priority", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/JsonMetadataTableSpec.js",
+      "type": "file",
+      "name": "JsonMetadataTableSpec.js",
+      "filePath": "packages/engine/Specs/Scene/JsonMetadataTableSpec.js",
+      "summary": "JSON 元数据表（JsonMetadataTable）的单元测试，验证从 JSON 数组构造属性表及按属性名读取值的行为。",
+      "tags": ["test", "metadata", "3d-tiles", "json", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/KeyframeNodeSpec.js",
+      "type": "file",
+      "name": "KeyframeNodeSpec.js",
+      "filePath": "packages/engine/Specs/Scene/KeyframeNodeSpec.js",
+      "summary": "关键帧节点（KeyframeNode）的单元测试，验证时间轴动画关键帧的时间与变换插值。",
+      "tags": ["test", "animation", "keyframe", "timeline", "scene"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/LabelSpec.js",
+      "type": "file",
+      "name": "LabelSpec.js",
+      "filePath": "packages/engine/Specs/Scene/LabelSpec.js",
+      "summary": "Label（文字标注）图元的单元测试，验证文本、字体、样式及随距离的缩放/褪色等显示属性。",
+      "tags": ["test", "label", "primitive", "rendering", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/LightSpec.js",
+      "type": "file",
+      "name": "LightSpec.js",
+      "filePath": "packages/engine/Specs/Scene/LightSpec.js",
+      "summary": "Light 基类的占位/最小单元测试文件（当前仅含框架骨架）。",
+      "tags": ["test", "light", "rendering", "scene", "placeholder"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataClassPropertySpec.js",
+      "type": "file",
+      "name": "MetadataClassPropertySpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataClassPropertySpec.js",
+      "summary": "3D Tiles / EXT_structural_metadata 类属性（MetadataClassProperty）的单元测试，验证类型、枚举、数组、可空、默认值等大量属性语义解析。",
+      "tags": ["test", "metadata", "3d-tiles", "schema", "scene"],
+      "complexity": "complex",
+      "languageNotes": "本批次最大测试文件（3342 行），系统性覆盖 EXT_structural_metadata 属性语义的各种组合。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataClassSpec.js",
+      "type": "file",
+      "name": "MetadataClassSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataClassSpec.js",
+      "summary": "元数据类（MetadataClass）的单元测试，验证类定义中属性集合的聚合与按名访问。",
+      "tags": ["test", "metadata", "3d-tiles", "schema", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataEntitySpec.js",
+      "type": "file",
+      "name": "MetadataEntitySpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataEntitySpec.js",
+      "summary": "元数据实体（MetadataEntity）的单元测试，验证按属性 ID/语义读取标量、数组、枚举及自定义类属性值。",
+      "tags": ["test", "metadata", "3d-tiles", "entity", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Scene/MetadataEnumSpec.js",
+      "type": "file",
+      "name": "MetadataEnumSpec.js",
+      "filePath": "packages/engine/Specs/Scene/MetadataEnumSpec.js",
+      "summary": "元数据枚举（MetadataEnum）的单元测试，验证枚举值到名称的映射及未知值处理。",
+      "tags": ["test", "metadata", "3d-tiles", "enum", "scene"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Specs/Scene/ITwinDataSpec.js:createMockExport",
+      "type": "function",
+      "name": "createMockExport",
+      "filePath": "packages/engine/Specs/Scene/ITwinDataSpec.js",
+      "lineRange": [10, 33],
+      "summary": "测试辅助函数，构造一个模拟的 iTwin 导出对象（含 id、状态与网格数据），供 ITwinData 加载流程的 mock 使用。",
+      "tags": ["test-helper", "mock", "itwin", "factory", "fixture"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Specs/Scene/ITwinDataSpec.js", "target": "function:packages/engine/Specs/Scene/ITwinDataSpec.js:createMockExport", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Scene/I3SDataProvider.js", "target": "file:packages/engine/Specs/Scene/I3SDataProviderSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/I3SField.js", "target": "file:packages/engine/Specs/Scene/I3SFieldSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/I3SLayer.js", "target": "file:packages/engine/Specs/Scene/I3SLayerSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/I3SNode.js", "target": "file:packages/engine/Specs/Scene/I3SNodeSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/I3SSymbology.js", "target": "file:packages/engine/Specs/Scene/I3SSymbologySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImageBasedLighting.js", "target": "file:packages/engine/Specs/Scene/ImageBasedLightingSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitAvailabilityBitstream.js", "target": "file:packages/engine/Specs/Scene/ImplicitAvailabilityBitstreamSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitSubdivisionScheme.js", "target": "file:packages/engine/Specs/Scene/ImplicitSubdivisionSchemeSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitSubtreeCache.js", "target": "file:packages/engine/Specs/Scene/ImplicitSubtreeCacheSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitSubtreeMetadata.js", "target": "file:packages/engine/Specs/Scene/ImplicitSubtreeMetadataSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitTileCoordinates.js", "target": "file:packages/engine/Specs/Scene/ImplicitTileCoordinatesSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ImplicitTileset.js", "target": "file:packages/engine/Specs/Scene/ImplicitTilesetSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/InstanceAttributeSemantic.js", "target": "file:packages/engine/Specs/Scene/InstanceAttributeSemanticSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/IonImageryProvider.js", "target": "file:packages/engine/Specs/Scene/IonImageryProviderSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/ITwinData.js", "target": "file:packages/engine/Specs/Scene/ITwinDataSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/JobScheduler.js", "target": "file:packages/engine/Specs/Scene/JobSchedulerSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/JsonMetadataTable.js", "target": "file:packages/engine/Specs/Scene/JsonMetadataTableSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/KeyframeNode.js", "target": "file:packages/engine/Specs/Scene/KeyframeNodeSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/Label.js", "target": "file:packages/engine/Specs/Scene/LabelSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/Light.js", "target": "file:packages/engine/Specs/Scene/LightSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/MetadataClassProperty.js", "target": "file:packages/engine/Specs/Scene/MetadataClassPropertySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/MetadataClass.js", "target": "file:packages/engine/Specs/Scene/MetadataClassSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/MetadataEntity.js", "target": "file:packages/engine/Specs/Scene/MetadataEntitySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5},
+    {"source": "file:packages/engine/Source/Scene/MetadataEnum.js", "target": "file:packages/engine/Specs/Scene/MetadataEnumSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5}
+  ]
+}

@@ -1,0 +1,402 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/gallery/clustering/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/clustering/main.js",
+      "summary": "Sandcastle 示例：加载 KML 设施数据并启用 entity 聚类（clustering），演示自定义聚合样式（按数量分级显示彩色 pin）以及通过 knockout 绑定调节 pixelRange/minimumClusterSize 参数。",
+      "tags": ["sandcastle-example", "clustering", "entity", "knockout", "kml"],
+      "complexity": "moderate",
+      "languageNotes": "示例脚本通过全局 Cesium 对象调用 API，使用 Cesium.knockout 实现 UI 双向绑定。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clustering/main.js:customStyle",
+      "type": "function",
+      "name": "customStyle",
+      "filePath": "packages/sandcastle/gallery/clustering/main.js",
+      "lineRange": [41, 75],
+      "summary": "注册 clusterEvent 监听器，根据聚合 entity 数量为每个聚合点设置对应分级的彩色 billboard 图标，并触发重新聚类以应用新样式。",
+      "tags": ["clustering", "styling", "event-handler", "billboard"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/clustering/main.js:subscribeParameter",
+      "type": "function",
+      "name": "subscribeParameter",
+      "filePath": "packages/sandcastle/gallery/clustering/main.js",
+      "lineRange": [89, 95],
+      "summary": "订阅 viewModel 上指定参数的 knockout observable 变化，将新值同步到 dataSource.clustering 对应属性。",
+      "tags": ["knockout", "binding", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/clustering/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/clustering/sandcastle.yaml",
+      "summary": "clustering 示例的 Sandcastle 元数据配置，定义标题、描述、标签与缩略图，用于 Sandcastle 画廊展示与索引。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/constant-lod-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/constant-lod-dev/index.html",
+      "summary": "constant-lod-dev 示例的 HTML 入口页面，提供 cesiumContainer 容器与加载 main.js 的脚本标签。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "summary": "Sandcastle 开发示例：通过 createModel 在指定位置加载 3D 模型（glTF），并配置相机固定 LOD（细节层次）参数用于开发调试。",
+      "tags": ["sandcastle-example", "3d-model", "gltf", "camera", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/constant-lod-dev/main.js:createModel",
+      "type": "function",
+      "name": "createModel",
+      "filePath": "packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "lineRange": [10, 38],
+      "summary": "根据给定的 URL 与高度清除现有 entity，计算经纬度/高度坐标并使用 headingPitchRoll 四元数将 glTF 模型以指定姿态添加到场景中。",
+      "tags": ["entity", "gltf", "model-loading", "transforms"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/constant-lod-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/constant-lod-dev/sandcastle.yaml",
+      "summary": "constant-lod-dev 示例的 Sandcastle 元数据配置，标记为 development 类别，定义标题、描述与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/coplanar-polygon-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-dev/index.html",
+      "summary": "coplanar-polygon-dev 示例的 HTML 入口页面，提供 cesiumContainer 容器并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/coplanar-polygon-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-dev/main.js",
+      "summary": "Sandcastle 开发示例：演示创建共面多边形（coplanar polygon）geometry 的用法，用于调试多边形 primitive 在同一平面上的渲染表现。",
+      "tags": ["sandcastle-example", "polygon", "geometry", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/coplanar-polygon-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-dev/sandcastle.yaml",
+      "summary": "coplanar-polygon-dev 示例的 Sandcastle 元数据配置，标记为 development 类别。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/coplanar-polygon-outline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-outline-dev/index.html",
+      "summary": "coplanar-polygon-outline-dev 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/coplanar-polygon-outline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-outline-dev/main.js",
+      "summary": "Sandcastle 开发示例：演示共面多边形外轮廓（outline）geometry 的创建与渲染，用于调试 outline primitive 的显示效果。",
+      "tags": ["sandcastle-example", "polygon", "outline", "geometry", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/coplanar-polygon-outline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/coplanar-polygon-outline-dev/sandcastle.yaml",
+      "summary": "coplanar-polygon-outline-dev 示例的 Sandcastle 元数据配置，标记为 development 类别。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/corridor-dev/index.html",
+      "summary": "corridor-dev 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/corridor-dev/main.js",
+      "summary": "Sandcastle 开发示例：演示 corridor（沿路径的带状通道）primitive 的创建与参数调节，用于调试 corridor 几何体的渲染。",
+      "tags": ["sandcastle-example", "corridor", "geometry", "development"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/corridor-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/corridor-dev/sandcastle.yaml",
+      "summary": "corridor-dev 示例的 Sandcastle 元数据配置，标记为 development 类别。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor-outline-dev/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/corridor-outline-dev/index.html",
+      "summary": "corridor-outline-dev 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor-outline-dev/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/corridor-outline-dev/main.js",
+      "summary": "Sandcastle 开发示例：演示 corridor 外轮廓（outline）primitive 的创建，用于调试带状通道边缘线的渲染效果。",
+      "tags": ["sandcastle-example", "corridor", "outline", "geometry", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/corridor-outline-dev/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/corridor-outline-dev/sandcastle.yaml",
+      "summary": "corridor-outline-dev 示例的 Sandcastle 元数据配置，标记为 development 类别。",
+      "tags": ["configuration", "sandcastle", "metadata", "development"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/corridor/index.html",
+      "summary": "corridor 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/corridor/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/corridor/main.js",
+      "summary": "Sandcastle 正式示例：演示如何创建 corridor（沿路径的带状通道）entity，展示其在地图上的渲染与参数配置。",
+      "tags": ["sandcastle-example", "corridor", "geometry", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/corridor/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/corridor/sandcastle.yaml",
+      "summary": "corridor 示例的 Sandcastle 元数据配置，定义标题、描述与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/custom-datasource/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/custom-datasource/index.html",
+      "summary": "custom-datasource 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/custom-datasource/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/custom-datasource/main.js",
+      "summary": "Sandcastle 进阶示例：完整实现自定义 CustomDataSource（WebGLGlobeDataSource），继承 Cesium.CustomDataSource 并重载 update 方法以动态加载与解析 JSON 数据并生成 entity，演示如何扩展 Cesium 的数据源体系。",
+      "tags": ["sandcastle-example", "datasource", "custom", "entity", "data-loading"],
+      "complexity": "complex",
+      "languageNotes": "通过 prototype 方式扩展 CustomDataSource，重写 update(ts) 钩子在每帧处理异步加载队列。"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/custom-datasource/main.js:WebGLGlobeDataSource",
+      "type": "function",
+      "name": "WebGLGlobeDataSource",
+      "filePath": "packages/sandcastle/gallery/custom-datasource/main.js",
+      "lineRange": [18, 31],
+      "summary": "自定义数据源构造函数，调用 Cesium.CustomDataSource 父类初始化，并设置专属的 _resource、_entityCollection 等属性，作为扩展 CustomDataSource 的入口。",
+      "tags": ["datasource", "constructor", "custom", "inheritance"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:packages/sandcastle/gallery/custom-datasource/sandcastle.yaml",
+      "type": "config",
+      "name": "sandcastle.yaml",
+      "filePath": "packages/sandcastle/gallery/custom-datasource/sandcastle.yaml",
+      "summary": "custom-datasource 示例的 Sandcastle 元数据配置，定义标题、描述与缩略图。",
+      "tags": ["configuration", "sandcastle", "metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/custom-geocoder/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "packages/sandcastle/gallery/custom-geocoder/index.html",
+      "summary": "custom-geocoder 示例的 HTML 入口页面，提供 cesiumContainer 并加载 main.js。",
+      "tags": ["markup", "sandcastle-example", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/gallery/custom-geocoder/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": "packages/sandcastle/gallery/custom-geocoder/main.js",
+      "summary": "Sandcastle 示例：实现 OpenStreetMapNominatimGeocoder 自定义地理编码器，通过 geocoder 结果接口将用户输入的地点名转发给 Nominatim 服务并返回 Cesium 相机飞行所需的经纬度结果。",
+      "tags": ["sandcastle-example", "geocoder", "custom", "nominatim", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/gallery/custom-geocoder/main.js:OpenStreetMapNominatimGeocoder",
+      "type": "function",
+      "name": "OpenStreetMapNominatimGeocoder",
+      "filePath": "packages/sandcastle/gallery/custom-geocoder/main.js",
+      "lineRange": [8, 8],
+      "summary": "自定义地理编码服务对象/构造器，作为 Viewer.geocoderServices 的实现，将查询请求委托给 OpenStreetMap Nominatim API。",
+      "tags": ["geocoder", "service", "custom"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/gallery/clustering/main.js",
+      "target": "function:packages/sandcastle/gallery/clustering/main.js:customStyle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clustering/main.js",
+      "target": "function:packages/sandcastle/gallery/clustering/main.js:subscribeParameter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/clustering/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/clustering/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/constant-lod-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "target": "function:packages/sandcastle/gallery/constant-lod-dev/main.js:createModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/coplanar-polygon-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/coplanar-polygon-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/coplanar-polygon-outline-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/coplanar-polygon-outline-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/corridor-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/corridor-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/corridor-outline-dev/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/corridor-outline-dev/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/corridor/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/corridor/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/custom-datasource/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/custom-datasource/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/custom-datasource/main.js",
+      "target": "function:packages/sandcastle/gallery/custom-datasource/main.js:WebGLGlobeDataSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "config:packages/sandcastle/gallery/custom-geocoder/sandcastle.yaml",
+      "target": "file:packages/sandcastle/gallery/custom-geocoder/main.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/custom-geocoder/main.js",
+      "target": "function:packages/sandcastle/gallery/custom-geocoder/main.js:OpenStreetMapNominatimGeocoder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/corridor-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/corridor-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/constant-lod-dev/index.html",
+      "target": "file:packages/sandcastle/gallery/constant-lod-dev/main.js",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/sandcastle/gallery/clustering/main.js",
+      "target": "function:packages/sandcastle/gallery/clustering/main.js:customStyle",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

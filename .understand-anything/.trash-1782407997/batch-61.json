@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0.json",
+      "summary": "3D Tiles 1.0 隐式分块（implicit tiling）测试夹具，通过 3DTILES_implicit_tiling 与 3DTILES_multiple_contents 扩展定义四叉树 subdivsion、两层 subtree，并包含 ground/sky 两组 b3dm contents（使用 1.0 扩展中的 contents 数组形式）。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "test-fixture", "cesium"],
+      "complexity": "simple",
+      "languageNotes": "测试夹具覆盖了 1.0 扩展写法：multiple contents 的属性名为复数 contents（区别于 1.0_content 变体中的单数 content）。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0_content.json",
+      "type": "config",
+      "name": "tileset_1.0_content.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0_content.json",
+      "summary": "3D Tiles 1.0 隐式分块测试夹具的另一个变体，与 tileset_1.0.json 结构基本相同，但 multiple contents 扩展中使用单数 content 数组键名，用于验证 Cesium 解析器对历史 content 键的兼容性。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "test-fixture", "cesium"],
+      "complexity": "simple",
+      "languageNotes": "该变体用于回归测试 1.0 扩展中 content（单数）键名的历史兼容路径。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.1.json",
+      "summary": "3D Tiles 1.1 隐式分块测试夹具，使用 1.1 核心规范的 implicitTiling 与 root.contents 字段（无需扩展）定义四叉树 subdivsion 及 ground/sky 两组 b3dm contents，对应 1.1 版 subtree 资源。",
+      "tags": ["configuration", "3d-tiles", "implicit-tiling", "test-fixture", "cesium"],
+      "complexity": "simple",
+      "languageNotes": "1.1 规范将 implicit tiling 与 multiple contents 内联进核心 schema，不再依赖扩展，subtree 指向 subtrees/1.1/ 目录。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0_content.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.1.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Implicit/ImplicitMultipleContents/tileset_1.0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

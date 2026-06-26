@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a1.bin",
+      "type": "file",
+      "name": "a1.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a1.bin",
+      "summary": "二进制体素(voxel)瓦片内容文件，存储圆柱形状 3D Tiles 中 VEC4 FLOAT32 属性的体素数据。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "binary", "tile-content"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles 1.1 implicit tile content，由同名 tileset.json 中的 voxel schema 定义其结构。"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "summary": "圆柱体素(cylinder voxel)3D Tiles 1.1 tileset 清单，定义 voxel schema(VEC4 属性)、统计信息、geometricError 及根瓦片内容引用。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "tileset-manifest", "configuration"],
+      "complexity": "moderate",
+      "languageNotes": "3D Tiles 1.1 tileset.json 结构，含 asset/schema/statistics/geometricError/root/extensionsUsed 等顶层节。"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/subtrees/0/0/0/0.json",
+      "type": "config",
+      "name": "0.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/subtrees/0/0/0/0.json",
+      "summary": "椭球体素(ellipsoid voxel)3D Tiles 的 implicit subtree 可用性文件，声明 tile/content 可用性常量及子 subtree 可用性。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "subtree-availability", "configuration"],
+      "complexity": "simple",
+      "languageNotes": "3D Tiles implicit tiling 的 subtree JSON：tileAvailability/contentAvailability/childSubtreeAvailability 使用 constant 模式。"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/0.gltf",
+      "type": "file",
+      "name": "0.gltf",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/0.gltf",
+      "summary": "椭球体素瓦片的 glTF 2.0 内容文件，定义瓦片的场景、节点与体素属性引用(指向 a.bin)。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "gltf", "tile-content"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0 JSON，作为 3D Tiles 瓦片的 content 出现，引用同名 .bin 缓冲区。"
+    },
+    {
+      "id": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/a.bin",
+      "type": "file",
+      "name": "a.bin",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/a.bin",
+      "summary": "椭球体素瓦片的二进制缓冲区，被同目录 0.gltf 引用，存储 VEC4 FLOAT32 体素属性数据。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "binary", "buffer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tileset.json",
+      "type": "config",
+      "name": "tileset.json",
+      "filePath": "Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tileset.json",
+      "summary": "椭球体素(ellipsoid voxel)3D Tiles 1.1 tileset 清单，使用 implicit tiling，定义 voxel schema、统计信息与根瓦片引用，配套 subtrees 目录。",
+      "tags": ["sample-data", "3d-tiles", "voxel", "tileset-manifest", "configuration"],
+      "complexity": "moderate",
+      "languageNotes": "3D Tiles 1.1 implicit tiling tileset，root 含 subtreeLevels 与 content URI 模板。"
+    },
+    {
+      "id": "file:Apps/SampleData/ClampToGround.czml",
+      "type": "file",
+      "name": "ClampToGround.czml",
+      "filePath": "Apps/SampleData/ClampToGround.czml",
+      "summary": "Cesium CZML 示例文档，演示车辆与折线沿地形贴地(clamp to ground)动画的时钟与位置插值数据。",
+      "tags": ["sample-data", "czml", "animation", "clamp-to-ground", "entity"],
+      "complexity": "moderate",
+      "languageNotes": "CZML 是 Cesium 自定义的 JSON 时间动态场景格式，含 document clock 与带 position 插值的 entity。"
+    },
+    {
+      "id": "file:Apps/SampleData/gpx/complexTrk.gpx",
+      "type": "file",
+      "name": "complexTrk.gpx",
+      "filePath": "Apps/SampleData/gpx/complexTrk.gpx",
+      "summary": "GPX 1.1 示例文件，包含结构较复杂的轨迹(trk)数据，用于测试 Cesium 的 GPX 加载与轨迹渲染。",
+      "tags": ["sample-data", "gpx", "gps-track", "test-data", "geo-data"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/gpx/lamina.gpx",
+      "type": "file",
+      "name": "lamina.gpx",
+      "filePath": "Apps/SampleData/gpx/lamina.gpx",
+      "summary": "大型 GPX 1.1 轨迹示例文件(约 6 万行)，包含海量轨迹点，用于压力测试 GPX 解析与高性能轨迹渲染。",
+      "tags": ["sample-data", "gpx", "gps-track", "large-dataset", "test-data"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Apps/SampleData/gpx/route.gpx",
+      "type": "file",
+      "name": "route.gpx",
+      "filePath": "Apps/SampleData/gpx/route.gpx",
+      "summary": "GPX 1.1 示例文件，演示 rte(路线)元素，包含若干带经纬度与海拔的路点，用于测试路线解析。",
+      "tags": ["sample-data", "gpx", "route", "test-data", "geo-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/gpx/simple.gpx",
+      "type": "file",
+      "name": "simple.gpx",
+      "filePath": "Apps/SampleData/gpx/simple.gpx",
+      "summary": "最小化 GPX 1.1 示例文件，仅含单个 wpt(航点)，作为 GPX 加载的最基础测试用例。",
+      "tags": ["sample-data", "gpx", "waypoint", "minimal", "test-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/gpx/wpt.gpx",
+      "type": "file",
+      "name": "wpt.gpx",
+      "filePath": "Apps/SampleData/gpx/wpt.gpx",
+      "summary": "GPX 1.1 示例文件，包含多个 wpt(航点)元素，用于测试航点解析与点要素渲染。",
+      "tags": ["sample-data", "gpx", "waypoint", "test-data", "geo-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/kml/bikeRide.kml",
+      "type": "file",
+      "name": "bikeRide.kml",
+      "filePath": "Apps/SampleData/kml/bikeRide.kml",
+      "summary": "大型 KML 示例文件(约 1 万行)，记录一次骑行轨迹的 LineString 几何与样式，用于测试 KML 解析与渲染性能。",
+      "tags": ["sample-data", "kml", "linestring", "large-dataset", "test-data"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Apps/SampleData/kml/eiffel-tower-flyto.kml",
+      "type": "file",
+      "name": "eiffel-tower-flyto.kml",
+      "filePath": "Apps/SampleData/kml/eiffel-tower-flyto.kml",
+      "summary": "KML 示例文件，演示 gx:Tour 与 gx:FlyTo 元素，定义飞向埃菲尔铁塔的相机巡游动画。",
+      "tags": ["sample-data", "kml", "tour", "camera-animation", "test-data"],
+      "complexity": "simple",
+      "languageNotes": "使用 Google KML 扩展命名空间 gx 的 Tour/FlyTo/Wait 实现相机巡游。"
+    },
+    {
+      "id": "file:Apps/SampleData/kml/facilities/facilities.kml",
+      "type": "file",
+      "name": "facilities.kml",
+      "filePath": "Apps/SampleData/kml/facilities/facilities.kml",
+      "summary": "KML NetworkLink 示例文件，引用外部设施(facilities)数据子文件，用于测试 KML 网络链接与多文件加载。",
+      "tags": ["sample-data", "kml", "network-link", "test-data", "geo-data"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/kml/gdpPerCapita2008.kmz",
+      "type": "file",
+      "name": "gdpPerCapita2008.kmz",
+      "filePath": "Apps/SampleData/kml/gdpPerCapita2008.kmz",
+      "summary": "KMZ 压缩包示例文件，内含按各国 2008 年人均 GDP 进行符号化展示的 KML 要素，用于测试 KMZ 解包与多要素渲染。",
+      "tags": ["sample-data", "kmz", "kml", "thematic-data", "test-data"],
+      "complexity": "complex",
+      "languageNotes": "KMZ 为 ZIP 打包的 KML(+资源)，Cesium 解压后加载内部 KML 文档。"
+    },
+    {
+      "id": "file:Apps/SampleData/Mars.czml",
+      "type": "file",
+      "name": "Mars.czml",
+      "filePath": "Apps/SampleData/Mars.czml",
+      "summary": "大型 CZML 示例文档(约 1.3 万行)，描绘火星表面要素、影像与时间动态数据，用于演示非地球椭球体场景。",
+      "tags": ["sample-data", "czml", "mars", "entity", "large-dataset"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:Apps/SampleData/MarsPointsOfInterest.geojson",
+      "type": "file",
+      "name": "MarsPointsOfInterest.geojson",
+      "filePath": "Apps/SampleData/MarsPointsOfInterest.geojson",
+      "summary": "GeoJSON FeatureCollection 示例，包含火星多处兴趣点(如 Acidalia Planitia)的位置、朝向与维基百科来源描述，用于演示 GeoJSON 加载与弹出框。",
+      "tags": ["sample-data", "geojson", "point-of-interest", "mars", "feature-collection"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Apps/SampleData/models/BoxInstanced/BoxInstanced.gltf",
+      "type": "file",
+      "name": "BoxInstanced.gltf",
+      "filePath": "Apps/SampleData/models/BoxInstanced/BoxInstanced.gltf",
+      "summary": "glTF 2.0 示例模型，演示 EXT_mesh_gpu_instancing 扩展，引用 geometry/instances/metadata 三个 .bin 缓冲区进行实例化渲染。",
+      "tags": ["sample-data", "gltf", "gpu-instancing", "model", "test-data"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0 + EXT_mesh_gpu_instancing 扩展，通过 instance 属性缓冲区实现 GPU 实例化。"
+    },
+    {
+      "id": "file:Apps/SampleData/models/BoxInstanced/geometry.bin",
+      "type": "file",
+      "name": "geometry.bin",
+      "filePath": "Apps/SampleData/models/BoxInstanced/geometry.bin",
+      "summary": "BoxInstanced.gltf 引用的二进制几何缓冲区，存储立方体的顶点/法线等几何数据。",
+      "tags": ["sample-data", "gltf", "binary", "geometry-buffer", "model"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/models/BoxInstanced/instances.bin",
+      "type": "file",
+      "name": "instances.bin",
+      "filePath": "Apps/SampleData/models/BoxInstanced/instances.bin",
+      "summary": "BoxInstanced.gltf 引用的二进制实例属性缓冲区，存储各实例的平移/旋转/缩放变换，供 GPU instancing 使用。",
+      "tags": ["sample-data", "gltf", "binary", "instance-buffer", "gpu-instancing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/models/BoxInstanced/metadata.bin",
+      "type": "file",
+      "name": "metadata.bin",
+      "filePath": "Apps/SampleData/models/BoxInstanced/metadata.bin",
+      "summary": "BoxInstanced.gltf 引用的二进制实例元数据缓冲区，存储每个实例附加的结构化元数据属性。",
+      "tags": ["sample-data", "gltf", "binary", "metadata-buffer", "gpu-instancing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Apps/SampleData/models/BoxUnlit/BoxUnlit.gltf",
+      "type": "file",
+      "name": "BoxUnlit.gltf",
+      "filePath": "Apps/SampleData/models/BoxUnlit/BoxUnlit.gltf",
+      "summary": "glTF 2.0 示例模型，演示 KHR_materials_unlit 扩展的无光照材质立方体，用于测试 unlit 渲染管线。",
+      "tags": ["sample-data", "gltf", "unlit-material", "model", "test-data"],
+      "complexity": "moderate",
+      "languageNotes": "glTF 2.0 使用 COLLADA2GLTF 生成，extensionsRequired 声明 KHR_materials_unlit。"
+    },
+    {
+      "id": "file:Apps/SampleData/models/CesiumAir/Cesium_Air.glb",
+      "type": "file",
+      "name": "Cesium_Air.glb",
+      "filePath": "Apps/SampleData/models/CesiumAir/Cesium_Air.glb",
+      "summary": "GLB(glTF 二进制)示例飞机模型，内嵌几何与纹理，作为 Cesium 经典演示模型用于 model 加载与动画测试。",
+      "tags": ["sample-data", "glb", "aircraft-model", "model", "test-data"],
+      "complexity": "complex",
+      "languageNotes": "GLB 为 glTF 2.0 的单文件二进制容器(JSON + bin + 嵌入图像)。"
+    },
+    {
+      "id": "file:Apps/SampleData/models/CesiumBalloon/CesiumBalloon.glb",
+      "type": "file",
+      "name": "CesiumBalloon.glb",
+      "filePath": "Apps/SampleData/models/CesiumBalloon/CesiumBalloon.glb",
+      "summary": "GLB(glTF 二进制)示例热气球模型，内嵌几何与纹理，用于演示 model 加载与场景放置。",
+      "tags": ["sample-data", "glb", "balloon-model", "model", "test-data"],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelCylinder3DTiles/tiles/1/1/1/a1.bin",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tileset.json",
+      "target": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/subtrees/0/0/0/0.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tileset.json",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/0.gltf",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/0.gltf",
+      "target": "file:Apps/SampleData/Cesium3DTiles/Voxel/VoxelEllipsoid3DTiles/tiles/0/0/0/a.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/models/BoxInstanced/BoxInstanced.gltf",
+      "target": "file:Apps/SampleData/models/BoxInstanced/geometry.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/models/BoxInstanced/BoxInstanced.gltf",
+      "target": "file:Apps/SampleData/models/BoxInstanced/instances.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Apps/SampleData/models/BoxInstanced/BoxInstanced.gltf",
+      "target": "file:Apps/SampleData/models/BoxInstanced/metadata.bin",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

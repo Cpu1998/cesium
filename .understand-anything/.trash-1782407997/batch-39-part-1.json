@@ -1,0 +1,585 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Workers/createGeometry.js",
+      "type": "file",
+      "name": "createGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createGeometry.js",
+      "summary": "通用 geometry 创建 worker 入口：根据模块名动态加载对应的 createGeometry 函数并在 Web Worker 中执行，将结果打包回主线程。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-dispatcher"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPlaneGeometry.js",
+      "type": "file",
+      "name": "createPlaneGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPlaneGeometry.js",
+      "summary": "Plane geometry worker stub：解包参数并调用 PlaneGeometry.createGeometry 生成平面几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "type": "file",
+      "name": "createPlaneOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "summary": "Plane outline geometry worker stub：解包参数并生成平面轮廓几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPolygonGeometry.js",
+      "type": "file",
+      "name": "createPolygonGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPolygonGeometry.js",
+      "summary": "Polygon geometry worker：解包多边形参数并调用 PolygonGeometry.createGeometry 生成几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "type": "file",
+      "name": "createPolygonOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "summary": "Polygon outline geometry worker：解包参数并生成多边形轮廓几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPolylineGeometry.js",
+      "type": "file",
+      "name": "createPolylineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPolylineGeometry.js",
+      "summary": "Polyline geometry worker：解包参数并生成折线几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "type": "file",
+      "name": "createPolylineVolumeGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "summary": "Polyline volume geometry worker：解包折线体参数并生成带体积的折线几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "type": "file",
+      "name": "createPolylineVolumeOutlineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "summary": "Polyline volume outline geometry worker：解包参数并生成折线体轮廓几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "type": "file",
+      "name": "createSimplePolylineGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "summary": "Simple polyline geometry worker：解包参数并生成简单折线几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Workers/createSphereGeometry.js",
+      "type": "file",
+      "name": "createSphereGeometry.js",
+      "filePath": "packages/engine/Source/Workers/createSphereGeometry.js",
+      "summary": "Sphere geometry worker stub：解包参数并调用 SphereGeometry.createGeometry 生成球体几何体。",
+      "tags": [
+        "worker",
+        "geometry",
+        "geometry-worker-stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createGeometry.js:getModule",
+      "type": "function",
+      "name": "getModule",
+      "filePath": "packages/engine/Source/Workers/createGeometry.js",
+      "lineRange": [
+        9,
+        44
+      ],
+      "summary": "按模块名动态加载（require/import）对应的 geometry 工厂模块，支持 CommonJS 与 ESM 双模式。",
+      "tags": [
+        "worker",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createGeometry.js:createGeometry",
+      "type": "function",
+      "name": "createGeometry",
+      "filePath": "packages/engine/Source/Workers/createGeometry.js",
+      "lineRange": [
+        46,
+        77
+      ],
+      "summary": "worker 入口：解包几何参数、并发调用各 createXxxGeometry 工厂、用 PrimitivePipeline 打包结果回主线程。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPlaneGeometry.js:createPlaneGeometry",
+      "type": "function",
+      "name": "createPlaneGeometry",
+      "filePath": "packages/engine/Source/Workers/createPlaneGeometry.js",
+      "lineRange": [
+        4,
+        9
+      ],
+      "summary": "worker 入口：解包参数并生成平面几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPlaneOutlineGeometry.js:createPlaneOutlineGeometry",
+      "type": "function",
+      "name": "createPlaneOutlineGeometry",
+      "filePath": "packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "lineRange": [
+        4,
+        9
+      ],
+      "summary": "worker 入口：解包参数并生成平面轮廓几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPolygonGeometry.js:createPolygonGeometry",
+      "type": "function",
+      "name": "createPolygonGeometry",
+      "filePath": "packages/engine/Source/Workers/createPolygonGeometry.js",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "worker 入口：解包参数并生成多边形几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPolygonOutlineGeometry.js:createPolygonOutlineGeometry",
+      "type": "function",
+      "name": "createPolygonOutlineGeometry",
+      "filePath": "packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "worker 入口：解包参数并生成多边形轮廓几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPolylineGeometry.js:createPolylineGeometry",
+      "type": "function",
+      "name": "createPolylineGeometry",
+      "filePath": "packages/engine/Source/Workers/createPolylineGeometry.js",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "worker 入口：解包参数并生成折线几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPolylineVolumeGeometry.js:createPolylineVolumeGeometry",
+      "type": "function",
+      "name": "createPolylineVolumeGeometry",
+      "filePath": "packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "lineRange": [
+        5,
+        16
+      ],
+      "summary": "worker 入口：解包参数并生成折线体几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js:createPolylineVolumeOutlineGeometry",
+      "type": "function",
+      "name": "createPolylineVolumeOutlineGeometry",
+      "filePath": "packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "lineRange": [
+        5,
+        21
+      ],
+      "summary": "worker 入口：解包参数并生成折线体轮廓几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createSimplePolylineGeometry.js:createSimplePolylineGeometry",
+      "type": "function",
+      "name": "createSimplePolylineGeometry",
+      "filePath": "packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "lineRange": [
+        5,
+        16
+      ],
+      "summary": "worker 入口：解包参数并生成简单折线几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Workers/createSphereGeometry.js:createSphereGeometry",
+      "type": "function",
+      "name": "createSphereGeometry",
+      "filePath": "packages/engine/Source/Workers/createSphereGeometry.js",
+      "lineRange": [
+        4,
+        9
+      ],
+      "summary": "worker 入口：解包参数并生成球体几何体。",
+      "tags": [
+        "worker-entry",
+        "geometry"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createGeometry.js:getModule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createGeometry.js:createGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPlaneGeometry.js:createPlaneGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPlaneOutlineGeometry.js:createPlaneOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPolygonGeometry.js:createPolygonGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPolygonOutlineGeometry.js:createPolygonOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPolylineGeometry.js:createPolylineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPolylineVolumeGeometry.js:createPolylineVolumeGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js:createPolylineVolumeOutlineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createSimplePolylineGeometry.js:createSimplePolylineGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSphereGeometry.js",
+      "target": "function:packages/engine/Source/Workers/createSphereGeometry.js:createSphereGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "file:packages/engine/Source/Scene/PrimitivePipeline.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createGeometry.js",
+      "target": "file:packages/engine/Source/Workers/createTaskProcessorWorker.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneGeometry.js",
+      "target": "file:packages/engine/Source/Core/PlaneGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPlaneOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonGeometry.js",
+      "target": "file:packages/engine/Source/Core/PolygonGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolygonOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PolygonOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PolylineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeGeometry.js",
+      "target": "file:packages/engine/Source/Core/PolylineVolumeGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createPolylineVolumeOutlineGeometry.js",
+      "target": "file:packages/engine/Source/Core/PolylineVolumeOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSimplePolylineGeometry.js",
+      "target": "file:packages/engine/Source/Core/SimplePolylineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSphereGeometry.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Workers/createSphereGeometry.js",
+      "target": "file:packages/engine/Source/Core/SphereGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

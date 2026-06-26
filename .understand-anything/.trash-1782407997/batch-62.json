@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/schema.json",
+      "type": "config",
+      "name": "schema.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/schema.json",
+      "summary": "3D Tiles 外部元数据 schema 定义，声明 id 为 ExternalSchemaId 以及 tileset 类的四个属性（author、date、centerCartographic、tileCount），用于测试外部 schema 加载。",
+      "tags": ["configuration", "3d-tiles", "metadata", "schema-definition", "test-fixture"],
+      "complexity": "simple",
+      "languageNotes": "遵循 3D Tiles 1.1 metadata schema 规范，使用 STRING/VEC3/SCALAR 等类型声明属性。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.0.json",
+      "type": "config",
+      "name": "tileset_1.0.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.0.json",
+      "summary": "3D Tiles 1.0 测试 fixture，通过 3DTILES_metadata 扩展引用 schema.json 并填充 tileset 元数据属性，包含根节点 parent.b3dm 及四个子 tile（ll/lr/ur/ul.b3dm）。",
+      "tags": ["configuration", "3d-tiles", "metadata", "test-fixture", "tileset"],
+      "complexity": "moderate",
+      "languageNotes": "使用 1.0 版本的 extensionsUsed/extensionsRequired 机制承载 3DTILES_metadata 扩展。"
+    },
+    {
+      "id": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.1.json",
+      "type": "config",
+      "name": "tileset_1.1.json",
+      "filePath": "Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.1.json",
+      "summary": "3D Tiles 1.1 测试 fixture，通过顶层 schemaUri 和 metadata 字段直接引用 schema.json 并填充元数据，包含与 1.0 版本相同的根节点及四个子 tile 层级结构。",
+      "tags": ["configuration", "3d-tiles", "metadata", "test-fixture", "tileset"],
+      "complexity": "moderate",
+      "languageNotes": "使用 1.1 规范原生 schemaUri/metadata 字段，不再依赖扩展机制。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/schema.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.1.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/schema.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.0.json",
+      "target": "config:Specs/Data/Cesium3DTiles/Metadata/ExternalSchema/tileset_1.1.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,1294 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 26,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "Specs/createPackableArraySpecs.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 101,
+      "nonEmptyLines": 85,
+      "functions": [
+        {
+          "name": "createPackableArraySpecs",
+          "startLine": 1,
+          "endLine": 100,
+          "params": [
+            "packable",
+            "unpackedArray",
+            "packedArray",
+            "stride",
+            "namePrefix"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 10
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 11
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(actualPackedArray.length).toEqual",
+          "lineNumber": 12
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 12
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(actualPackedArray).toEqual",
+          "lineNumber": 13
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 13
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 16
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 17
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 18
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 19
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 19
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 22
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 23
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 24
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 24
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 27
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 29
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 30
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 30
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 33
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 35
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 36
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 36
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "new Array(packedArray.length + 1).fill",
+          "lineNumber": 38
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 39
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 40
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 40
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 43
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      packable.packArray(undefined);\n    }).toThrowDeveloperError",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 45
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 49
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      const tooSmall = new Float64Array(0);\n      packable.packArray(unpackedArray, tooSmall);\n    }).toThrowDeveloperError",
+          "lineNumber": 50
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 50
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 52
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      const tooBig = new Float64Array(10);\n      packable.packArray(unpackedArray, tooBig);\n    }).toThrowDeveloperError",
+          "lineNumber": 55
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 55
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.packArray",
+          "lineNumber": 57
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 61
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 62
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(array).toEqual",
+          "lineNumber": 63
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 63
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 66
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      packable.unpackArray(undefined);\n    }).toThrowDeveloperError",
+          "lineNumber": 67
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 67
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 68
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 72
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 74
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toBe",
+          "lineNumber": 75
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 75
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 76
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 76
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 84
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toBe",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 85
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 89
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      packable.unpackArray([1.0]);\n    }).toThrowDeveloperError",
+          "lineNumber": 90
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 90
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 91
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "it",
+          "lineNumber": 95
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect(function () {\n      packable.unpackArray(new Array(stride + 1).fill(1.0));\n    }).toThrowDeveloperError",
+          "lineNumber": 96
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "expect",
+          "lineNumber": 96
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "packable.unpackArray",
+          "lineNumber": 97
+        },
+        {
+          "caller": "createPackableArraySpecs",
+          "callee": "new Array(stride + 1).fill",
+          "lineNumber": 97
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "Specs/createPackableSpecs.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 99,
+      "nonEmptyLines": 86,
+      "functions": [
+        {
+          "name": "createPackableSpecs",
+          "startLine": 3,
+          "endLine": 98,
+          "params": [
+            "packable",
+            "instance",
+            "packedInstance",
+            "namePrefix"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 6
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.pack",
+          "lineNumber": 8
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(returnArray).toBe",
+          "lineNumber": 9
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 9
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "defined",
+          "lineNumber": 10
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(packedArray.length).toEqual",
+          "lineNumber": 13
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 13
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(packedArray).toEqualEpsilon",
+          "lineNumber": 14
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 14
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 17
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.pack",
+          "lineNumber": 19
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpack",
+          "lineNumber": 20
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(instance).toEqual",
+          "lineNumber": 21
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 21
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 24
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpack",
+          "lineNumber": 25
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(result).toEqual",
+          "lineNumber": 26
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 26
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 29
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packedArray.concat",
+          "lineNumber": 31
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.pack",
+          "lineNumber": 32
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(packedArray).toEqualEpsilon",
+          "lineNumber": 33
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 33
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 36
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "[0].concat",
+          "lineNumber": 37
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpack",
+          "lineNumber": 38
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(instance).toEqual",
+          "lineNumber": 39
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 39
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 42
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n      packable.pack(undefined, array);\n    }).toThrowDeveloperError",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 44
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.pack",
+          "lineNumber": 45
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 49
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n      packable.pack(instance, undefined);\n    }).toThrowDeveloperError",
+          "lineNumber": 50
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 50
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.pack",
+          "lineNumber": 51
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 55
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n      packable.unpack(undefined);\n    }).toThrowDeveloperError",
+          "lineNumber": 56
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 56
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpack",
+          "lineNumber": 57
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 62
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.convertPackedArrayForInterpolation",
+          "lineNumber": 64
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpackInterpolationResult",
+          "lineNumber": 70
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpack",
+          "lineNumber": 76
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(value).toEqual",
+          "lineNumber": 77
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 77
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 80
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n        packable.convertPackedArrayForInterpolation(undefined);\n      }).toThrowDeveloperError",
+          "lineNumber": 81
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 81
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.convertPackedArrayForInterpolation",
+          "lineNumber": 82
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 86
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n        packable.unpackInterpolationResult(undefined, []);\n      }).toThrowDeveloperError",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpackInterpolationResult",
+          "lineNumber": 88
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "it",
+          "lineNumber": 92
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect(function () {\n        packable.unpackInterpolationResult([], undefined);\n      }).toThrowDeveloperError",
+          "lineNumber": 93
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "expect",
+          "lineNumber": 93
+        },
+        {
+          "caller": "createPackableSpecs",
+          "callee": "packable.unpackInterpolationResult",
+          "lineNumber": 94
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/BoundingRectangleSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 299,
+      "nonEmptyLines": 268,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/BoundingSphereSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1160,
+      "nonEmptyLines": 1008,
+      "callGraph": [
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 28
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 29
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 32
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 33
+        },
+        {
+          "caller": "getPositions",
+          "callee": "Cartesian3.add",
+          "lineNumber": 34
+        },
+        {
+          "caller": "getPositionsAsFlatArray",
+          "callee": "getPositions",
+          "lineNumber": 39
+        },
+        {
+          "caller": "getPositionsAsFlatArray",
+          "callee": "result.push",
+          "lineNumber": 42
+        },
+        {
+          "caller": "getPositionsAsFlatArray",
+          "callee": "result.push",
+          "lineNumber": 43
+        },
+        {
+          "caller": "getPositionsAsFlatArray",
+          "callee": "result.push",
+          "lineNumber": 44
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "getPositions",
+          "lineNumber": 50
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "result.push",
+          "lineNumber": 53
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "result.push",
+          "lineNumber": 54
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "result.push",
+          "lineNumber": 55
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "result.push",
+          "lineNumber": 56
+        },
+        {
+          "caller": "getPositionsAsFlatArrayWithStride5",
+          "callee": "result.push",
+          "lineNumber": 57
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "getPositions",
+          "lineNumber": 63
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "EncodedCartesian3.fromCartesian",
+          "lineNumber": 67
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "high.push",
+          "lineNumber": 68
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "high.push",
+          "lineNumber": 69
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "high.push",
+          "lineNumber": 70
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "low.push",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "low.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "getPositionsAsEncodedFlatArray",
+          "callee": "low.push",
+          "lineNumber": 73
+        },
+        {
+          "caller": "callWithStrideOf2",
+          "callee": "BoundingSphere.fromVertices",
+          "lineNumber": 297
+        },
+        {
+          "caller": "callWithStrideOf2",
+          "callee": "getPositionsAsFlatArray",
+          "lineNumber": 297
+        },
+        {
+          "caller": "expectBoundingSphereToContainPoint",
+          "callee": "projection.project",
+          "lineNumber": 1018
+        },
+        {
+          "caller": "expectBoundingSphereToContainPoint",
+          "callee": "Cartesian3.magnitude",
+          "lineNumber": 1019
+        },
+        {
+          "caller": "expectBoundingSphereToContainPoint",
+          "callee": "Cartesian3.subtract",
+          "lineNumber": 1020
+        },
+        {
+          "caller": "expectBoundingSphereToContainPoint",
+          "callee": "expect(distanceFromCenter).toBeLessThanOrEqual",
+          "lineNumber": 1033
+        },
+        {
+          "caller": "expectBoundingSphereToContainPoint",
+          "callee": "expect",
+          "lineNumber": 1033
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/BoxGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 150,
+      "nonEmptyLines": 128,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/BoxOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 99,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/Cartesian2Spec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1105,
+      "nonEmptyLines": 955,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/Cartesian3Spec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1735,
+      "nonEmptyLines": 1508,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/Cartesian4Spec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1321,
+      "nonEmptyLines": 1141,
+      "callGraph": [
+        {
+          "caller": "testFloat",
+          "callee": "Cartesian4.packFloat",
+          "lineNumber": 1266
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect(0 <= packedFloat.x && packedFloat.x <= 255).toBe",
+          "lineNumber": 1267
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect",
+          "lineNumber": 1267
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect(0 <= packedFloat.y && packedFloat.y <= 255).toBe",
+          "lineNumber": 1268
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect",
+          "lineNumber": 1268
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect(0 <= packedFloat.z && packedFloat.z <= 255).toBe",
+          "lineNumber": 1269
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect",
+          "lineNumber": 1269
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect(0 <= packedFloat.w && packedFloat.w <= 255).toBe",
+          "lineNumber": 1270
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect",
+          "lineNumber": 1270
+        },
+        {
+          "caller": "testFloat",
+          "callee": "Cartesian4.unpackFloat",
+          "lineNumber": 1272
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect(unpackedFloat).toEqual",
+          "lineNumber": 1273
+        },
+        {
+          "caller": "testFloat",
+          "callee": "expect",
+          "lineNumber": 1273
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "expect(float).toBeNaN",
+          "lineNumber": 1277
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "expect",
+          "lineNumber": 1277
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "Cartesian4.packFloat",
+          "lineNumber": 1278
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "Cartesian4.unpackFloat",
+          "lineNumber": 1279
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "expect(unpackedFloat).toBeNaN",
+          "lineNumber": 1280
+        },
+        {
+          "caller": "testFloatNaN",
+          "callee": "expect",
+          "lineNumber": 1280
+        },
+        {
+          "caller": "testFloatOutOfRange",
+          "callee": "Cartesian4.packFloat",
+          "lineNumber": 1284
+        },
+        {
+          "caller": "testFloatOutOfRange",
+          "callee": "Cartesian4.unpackFloat",
+          "lineNumber": 1285
+        },
+        {
+          "caller": "testFloatOutOfRange",
+          "callee": "expect(unpackedFloat).toEqual",
+          "lineNumber": 1286
+        },
+        {
+          "caller": "testFloatOutOfRange",
+          "callee": "expect",
+          "lineNumber": 1286
+        },
+        {
+          "caller": "testFloatOutOfRange",
+          "callee": "CesiumMath.sign",
+          "lineNumber": 1286
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CircleGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 244,
+      "nonEmptyLines": 220,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CircleOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 145,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/ColorSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 947,
+      "nonEmptyLines": 819,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CoplanarPolygonGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 218,
+      "nonEmptyLines": 193,
+      "callGraph": [
+        {
+          "caller": "addPositions",
+          "callee": "array.push",
+          "lineNumber": 151
+        },
+        {
+          "caller": "addPositions2D",
+          "callee": "array.push",
+          "lineNumber": 157
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CoplanarPolygonOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 101,
+      "callGraph": [
+        {
+          "caller": "addPositions",
+          "callee": "array.push",
+          "lineNumber": 100
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CorridorGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 460,
+      "nonEmptyLines": 411,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CorridorOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 262,
+      "nonEmptyLines": 232,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CylinderGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 192,
+      "nonEmptyLines": 172,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/CylinderOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 152,
+      "nonEmptyLines": 136,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/DistanceDisplayConditionSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 109,
+      "nonEmptyLines": 95,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/EllipseGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 495,
+      "nonEmptyLines": 444,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/EllipseOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 275,
+      "nonEmptyLines": 249,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/EllipsoidGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 360,
+      "nonEmptyLines": 320,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/EllipsoidOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 237,
+      "nonEmptyLines": 214,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/EllipsoidSpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 825,
+      "nonEmptyLines": 743,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/FrustumGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 84,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "packages/engine/Specs/Core/FrustumOutlineGeometrySpec.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 76,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

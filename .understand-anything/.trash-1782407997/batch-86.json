@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/widgets/Source/lighter.css",
+      "type": "file",
+      "name": "lighter.css",
+      "filePath": "packages/widgets/Source/lighter.css",
+      "summary": "浅色主题入口样式表，引入 lighterShared.css 以覆盖 widgets 的默认深色外观。",
+      "tags": ["css", "theme", "lighter", "stylesheet"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/lighterShared.css",
+      "type": "file",
+      "name": "lighterShared.css",
+      "filePath": "packages/widgets/Source/lighterShared.css",
+      "summary": "浅色主题共享样式，为 Cesium widget 控件（按钮、工具栏等）定义较亮的背景与文字配色覆盖规则。",
+      "tags": ["css", "theme", "lighter", "shared", "stylesheet"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/widgets/Source/shared.css",
+      "type": "file",
+      "name": "shared.css",
+      "filePath": "packages/widgets/Source/shared.css",
+      "summary": "widget 之间共享的基础样式，定义 .cesium-button 的交互状态（hover/active/disabled/focus）以及 SVG 路径、工具栏按钮、性能显示等通用控件的视觉规范。",
+      "tags": ["css", "shared", "button", "controls", "stylesheet"],
+      "complexity": "moderate",
+      "languageNotes": "大量使用伪类状态选择器（:hover、:active、:focus、:disabled）构建按钮交互视觉。"
+    },
+    {
+      "id": "file:packages/widgets/Source/widgets.css",
+      "type": "file",
+      "name": "widgets.css",
+      "filePath": "packages/widgets/Source/widgets.css",
+      "summary": "widget 主样式入口，导入 shared.css 并补充额外的 widget 装配样式，作为 widgets 包对外发布的聚合样式表。",
+      "tags": ["css", "entry-point", "barrel", "stylesheet"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/widgets/Source/lighter.css",
+      "target": "file:packages/widgets/Source/lighterShared.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/widgets/Source/widgets.css",
+      "target": "file:packages/widgets/Source/shared.css",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:packages/widgets/Source/widgets.css",
+      "target": "file:packages/widgets/Source/lighter.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

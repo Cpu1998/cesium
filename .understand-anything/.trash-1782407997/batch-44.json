@@ -1,0 +1,322 @@
+{
+  "nodes": [
+    {
+      "id": "file:Specs/createPackableArraySpecs.js",
+      "type": "file",
+      "name": "createPackableArraySpecs.js",
+      "filePath": "Specs/createPackableArraySpecs.js",
+      "summary": "测试辅助工厂：为实现了 Packable 数组接口（packArray/unpackArray）的类型批量生成 pack、roundtrip、typed-array 及异常抛出等 Jasmine 用例。",
+      "tags": ["test", "utility", "factory", "packable", "test-helper"],
+      "complexity": "moderate",
+      "languageNotes": "通过接收 packable 对象与样本数组动态生成 it 用例，是 Cesium 规范套件中复用度极高的参数化测试生成器。"
+    },
+    {
+      "id": "function:Specs/createPackableArraySpecs.js:createPackableArraySpecs",
+      "type": "function",
+      "name": "createPackableArraySpecs",
+      "filePath": "Specs/createPackableArraySpecs.js",
+      "lineRange": [1, 100],
+      "summary": "接收 packable 类型、未打包数组、打包数组与 stride，注册 packArray/unpackArray 的往返、类型化数组、容量调整及 DeveloperError 抛出等用例。",
+      "tags": ["test-helper", "factory", "packable", "jasmine"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Specs/createPackableSpecs.js",
+      "type": "file",
+      "name": "createPackableSpecs.js",
+      "filePath": "Specs/createPackableSpecs.js",
+      "summary": "测试辅助工厂：为实现了 Packable 接口（pack/unpack，可选插值转换）的类型批量生成打包、往返、起始索引及 DeveloperError 抛出等 Jasmine 用例。",
+      "tags": ["test", "utility", "factory", "packable", "test-helper"],
+      "complexity": "moderate",
+      "languageNotes": "在运行时检测 convertPackedArrayForInterpolation 是否存在，按需追加插值相关用例，体现 Cesium Packable 协议的可选扩展点。"
+    },
+    {
+      "id": "function:Specs/createPackableSpecs.js:createPackableSpecs",
+      "type": "function",
+      "name": "createPackableSpecs",
+      "filePath": "Specs/createPackableSpecs.js",
+      "lineRange": [3, 98],
+      "summary": "接收 packable 类型、实例与打包实例，注册 pack/unpack 的往返、起始索引、DeveloperError 抛出及（若存在）插值转换用例。",
+      "tags": ["test-helper", "factory", "packable", "jasmine"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/BoundingRectangleSpec.js",
+      "type": "file",
+      "name": "BoundingRectangleSpec.js",
+      "filePath": "packages/engine/Specs/Core/BoundingRectangleSpec.js",
+      "summary": "BoundingRectangle（2D 包围矩形）的 Jasmine 测试套件，覆盖构造、属性、复制、相等判断及 pack/unpack 行为。",
+      "tags": ["test", "math", "bounding-volume", "core", "packable"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/BoundingSphereSpec.js",
+      "type": "file",
+      "name": "BoundingSphereSpec.js",
+      "filePath": "packages/engine/Specs/Core/BoundingSphereSpec.js",
+      "summary": "BoundingSphere（球形包围盒）的 Jasmine 测试套件，覆盖构造、变换、与平面/盒子/视锥的相交判断、距离计算及 pack/unpack。",
+      "tags": ["test", "math", "bounding-volume", "core", "packable"],
+      "complexity": "complex",
+      "languageNotes": "用例涉及 OrientedBoundingBox、Plane、Intersect 等多个 Core 类型的协作，体现 BoundingSphere 在视锥剔除与碰撞检测中的中心地位。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/BoxGeometrySpec.js",
+      "type": "file",
+      "name": "BoxGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/BoxGeometrySpec.js",
+      "summary": "BoxGeometry（长方体几何）的 Jasmine 测试套件，验证顶点属性、UV、边长及几何体序列化与 pack/unpack 行为。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/BoxOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "BoxOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/BoxOutlineGeometrySpec.js",
+      "summary": "BoxOutlineGeometry（长方体线框几何）的 Jasmine 测试套件，验证轮廓顶点、属性配置及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/Cartesian2Spec.js",
+      "type": "file",
+      "name": "Cartesian2Spec.js",
+      "filePath": "packages/engine/Specs/Core/Cartesian2Spec.js",
+      "summary": "Cartesian2（二维向量）的 Jasmine 测试套件，覆盖构造、四则运算、点积、取最大最小、角度及 pack/unpack/packArray 行为。",
+      "tags": ["test", "math", "cartesian", "core", "packable"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/Cartesian3Spec.js",
+      "type": "file",
+      "name": "Cartesian3Spec.js",
+      "filePath": "packages/engine/Specs/Core/Cartesian3Spec.js",
+      "summary": "Cartesian3（三维向量，Cesium 最核心的数学类型）的 Jasmine 测试套件，覆盖完整的向量代数、与四元数/矩阵的互转、地理坐标转换及 pack/unpack/packArray。",
+      "tags": ["test", "math", "cartesian", "core", "packable"],
+      "complexity": "complex",
+      "languageNotes": "用例数量为全批次之最，afterEach 中重置 Ellipsoid.default 体现 Cartesian3 与 WGS84 椭球体紧密耦合。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/Cartesian4Spec.js",
+      "type": "file",
+      "name": "Cartesian4Spec.js",
+      "filePath": "packages/engine/Specs/Core/Cartesian4Spec.js",
+      "summary": "Cartesian4（四维向量，常用于齐次坐标与颜色）的 Jasmine 测试套件，覆盖四则运算、分量运算、与 Matrix4 的互转及 pack/unpack/packArray。",
+      "tags": ["test", "math", "cartesian", "core", "packable"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CircleGeometrySpec.js",
+      "type": "file",
+      "name": "CircleGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CircleGeometrySpec.js",
+      "summary": "CircleGeometry（圆形三角网格几何）的 Jasmine 测试套件，验证半径、扇区细分、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CircleOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "CircleOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CircleOutlineGeometrySpec.js",
+      "summary": "CircleOutlineGeometry（圆形线框几何）的 Jasmine 测试套件，验证轮廓分段数、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/ColorSpec.js",
+      "type": "file",
+      "name": "ColorSpec.js",
+      "filePath": "packages/engine/Specs/Core/ColorSpec.js",
+      "summary": "Color（RGBA 颜色）的 Jasmine 测试套件，覆盖构造、色彩空间转换（HSL/bytes）、调色板常量、混合 lerp 及 pack/unpack。",
+      "tags": ["test", "color", "core", "packable", "graphics"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CoplanarPolygonGeometrySpec.js",
+      "type": "file",
+      "name": "CoplanarPolygonGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CoplanarPolygonGeometrySpec.js",
+      "summary": "CoplanarPolygonGeometry（共面多边形三角网格几何）的 Jasmine 测试套件，验证顶点位置、法线、UV 及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CoplanarPolygonOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "CoplanarPolygonOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CoplanarPolygonOutlineGeometrySpec.js",
+      "summary": "CoplanarPolygonOutlineGeometry（共面多边形线框几何）的 Jasmine 测试套件，验证轮廓顶点及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CorridorGeometrySpec.js",
+      "type": "file",
+      "name": "CorridorGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CorridorGeometrySpec.js",
+      "summary": "CorridorGeometry（走廊/带状三角网格几何）的 Jasmine 测试套件，覆盖宽度、转角、贴地、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CorridorOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "CorridorOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CorridorOutlineGeometrySpec.js",
+      "summary": "CorridorOutlineGeometry（走廊线框几何）的 Jasmine 测试套件，验证轮廓分段与顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CylinderGeometrySpec.js",
+      "type": "file",
+      "name": "CylinderGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CylinderGeometrySpec.js",
+      "summary": "CylinderGeometry（圆柱三角网格几何）的 Jasmine 测试套件，验证顶/底半径、分段、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/CylinderOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "CylinderOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/CylinderOutlineGeometrySpec.js",
+      "summary": "CylinderOutlineGeometry（圆柱线框几何）的 Jasmine 测试套件，验证轮廓顶点数量、属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/DistanceDisplayConditionSpec.js",
+      "type": "file",
+      "name": "DistanceDisplayConditionSpec.js",
+      "filePath": "packages/engine/Specs/Core/DistanceDisplayConditionSpec.js",
+      "summary": "DistanceDisplayCondition（基于相机距离的显示条件）的 Jasmine 测试套件，覆盖构造、相等、范围校验及 pack/unpack。",
+      "tags": ["test", "core", "packable", "camera", "utility"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipseGeometrySpec.js",
+      "type": "file",
+      "name": "EllipseGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipseGeometrySpec.js",
+      "summary": "EllipseGeometry（椭圆/圆三角网格几何）的 Jasmine 测试套件，覆盖长/短半轴、分段、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipseOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "EllipseOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipseOutlineGeometrySpec.js",
+      "summary": "EllipseOutlineGeometry（椭圆线框几何）的 Jasmine 测试套件，验证轮廓分段与顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipsoidGeometrySpec.js",
+      "type": "file",
+      "name": "EllipsoidGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipsoidGeometrySpec.js",
+      "summary": "EllipsoidGeometry（椭球体三角网格几何）的 Jasmine 测试套件，验证三轴半径、堆叠/分段、顶点属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipsoidOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "EllipsoidOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipsoidOutlineGeometrySpec.js",
+      "summary": "EllipsoidOutlineGeometry（椭球体线框几何）的 Jasmine 测试套件，验证轮廓顶点数、属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "primitive"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/EllipsoidSpec.js",
+      "type": "file",
+      "name": "EllipsoidSpec.js",
+      "filePath": "packages/engine/Specs/Core/EllipsoidSpec.js",
+      "summary": "Ellipsoid（WGS84 椭球体，Cesium 地球几何基准）的 Jasmine 测试套件，覆盖测地线转换、大地坐标换算、曲面切线、缩放及 pack/unpack。",
+      "tags": ["test", "math", "core", "packable", "geodesy"],
+      "complexity": "complex",
+      "languageNotes": "测试中通过 Ellipsoid.default 全局单例贯穿多个用例，体现其在 Cartographic 与 Cartesian 互转中的核心地位。"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/FrustumGeometrySpec.js",
+      "type": "file",
+      "name": "FrustumGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/FrustumGeometrySpec.js",
+      "summary": "FrustumGeometry（视锥体三角网格几何）的 Jasmine 测试套件，验证视锥体切片几何生成及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "camera"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Specs/Core/FrustumOutlineGeometrySpec.js",
+      "type": "file",
+      "name": "FrustumOutlineGeometrySpec.js",
+      "filePath": "packages/engine/Specs/Core/FrustumOutlineGeometrySpec.js",
+      "summary": "FrustumOutlineGeometry（视锥体线框几何）的 Jasmine 测试套件，验证轮廓顶点、属性及 pack/unpack。",
+      "tags": ["test", "geometry", "core", "packable", "camera"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    { "source": "file:Specs/createPackableArraySpecs.js", "target": "function:Specs/createPackableArraySpecs.js:createPackableArraySpecs", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:Specs/createPackableArraySpecs.js", "target": "function:Specs/createPackableArraySpecs.js:createPackableArraySpecs", "type": "exports", "direction": "forward", "weight": 0.8 },
+    { "source": "file:Specs/createPackableSpecs.js", "target": "function:Specs/createPackableSpecs.js:createPackableSpecs", "type": "contains", "direction": "forward", "weight": 1.0 },
+    { "source": "file:Specs/createPackableSpecs.js", "target": "function:Specs/createPackableSpecs.js:createPackableSpecs", "type": "exports", "direction": "forward", "weight": 0.8 },
+
+    { "source": "file:packages/engine/Specs/Core/BoundingRectangleSpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/BoundingSphereSpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/BoxGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/BoxOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian2Spec.js", "target": "file:Specs/createPackableArraySpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian2Spec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian3Spec.js", "target": "file:Specs/createPackableArraySpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian3Spec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian4Spec.js", "target": "file:Specs/createPackableArraySpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/Cartesian4Spec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CircleGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CircleOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/ColorSpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CoplanarPolygonGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CoplanarPolygonOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CorridorGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CorridorOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CylinderGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/CylinderOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/DistanceDisplayConditionSpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/EllipseGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/EllipseOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/EllipsoidGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/EllipsoidOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/EllipsoidSpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/FrustumGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+    { "source": "file:packages/engine/Specs/Core/FrustumOutlineGeometrySpec.js", "target": "file:Specs/createPackableSpecs.js", "type": "imports", "direction": "forward", "weight": 0.7 },
+
+    { "source": "file:packages/engine/Source/Core/BoundingRectangle.js", "target": "file:packages/engine/Specs/Core/BoundingRectangleSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/BoundingSphere.js", "target": "file:packages/engine/Specs/Core/BoundingSphereSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/BoxGeometry.js", "target": "file:packages/engine/Specs/Core/BoxGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/BoxOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/BoxOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/Cartesian2.js", "target": "file:packages/engine/Specs/Core/Cartesian2Spec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/Cartesian3.js", "target": "file:packages/engine/Specs/Core/Cartesian3Spec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/Cartesian4.js", "target": "file:packages/engine/Specs/Core/Cartesian4Spec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CircleGeometry.js", "target": "file:packages/engine/Specs/Core/CircleGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CircleOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/CircleOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/Color.js", "target": "file:packages/engine/Specs/Core/ColorSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CoplanarPolygonGeometry.js", "target": "file:packages/engine/Specs/Core/CoplanarPolygonGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CoplanarPolygonOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/CoplanarPolygonOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CorridorGeometry.js", "target": "file:packages/engine/Specs/Core/CorridorGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CorridorOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/CorridorOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CylinderGeometry.js", "target": "file:packages/engine/Specs/Core/CylinderGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/CylinderOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/CylinderOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/DistanceDisplayCondition.js", "target": "file:packages/engine/Specs/Core/DistanceDisplayConditionSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/EllipseGeometry.js", "target": "file:packages/engine/Specs/Core/EllipseGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/EllipseOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/EllipsoidGeometry.js", "target": "file:packages/engine/Specs/Core/EllipsoidGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/EllipsoidOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/Ellipsoid.js", "target": "file:packages/engine/Specs/Core/EllipsoidSpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/FrustumGeometry.js", "target": "file:packages/engine/Specs/Core/FrustumGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 },
+    { "source": "file:packages/engine/Source/Core/FrustumOutlineGeometry.js", "target": "file:packages/engine/Specs/Core/FrustumOutlineGeometrySpec.js", "type": "tested_by", "direction": "forward", "weight": 0.5 }
+  ]
+}

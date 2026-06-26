@@ -1,0 +1,225 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/assert.js",
+      "type": "file",
+      "name": "assert.js",
+      "filePath": "packages/engine/Source/Core/assert.js",
+      "summary": "提供轻量级运行时断言工具函数 assert，当条件不成立时抛出 DeveloperError，被整个 Buffer* primitive 体系广泛使用。",
+      "tags": ["utility", "assertion", "error-handling"],
+      "complexity": "simple",
+      "languageNotes": "通过抛出 DeveloperError 实现条件断言，避免直接依赖 throw 语句的样板代码。"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/assert.js:assert",
+      "type": "function",
+      "name": "assert",
+      "filePath": "packages/engine/Source/Core/assert.js",
+      "lineRange": [21, 25],
+      "summary": "断言给定条件为真，否则以指定消息抛出 DeveloperError。",
+      "tags": ["assertion", "validation", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPoint.js",
+      "type": "file",
+      "name": "BufferPoint.js",
+      "filePath": "packages/engine/Source/Scene/BufferPoint.js",
+      "summary": "定义 BufferPoint 类，表示集合内单个点 primitive 的视图，提供位置读写、克隆与序列化能力。",
+      "tags": ["data-model", "primitive", "point", "buffer"],
+      "complexity": "moderate",
+      "languageNotes": "通过 DataView 在共享底层缓冲区上以字节偏移读写属性，避免每个 primitive 分配独立内存。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPoint.js:BufferPoint",
+      "type": "class",
+      "name": "BufferPoint",
+      "filePath": "packages/engine/Source/Scene/BufferPoint.js",
+      "lineRange": [30, 147],
+      "summary": "继承自 BufferPrimitive 的点 primitive 视图，通过位置 getter/setter 与集合的底层缓冲区交互。",
+      "tags": ["primitive", "point", "buffer", "data-model"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPointCollection.js",
+      "type": "file",
+      "name": "BufferPointCollection.js",
+      "filePath": "packages/engine/Source/Scene/BufferPointCollection.js",
+      "summary": "BufferPointCollection 集中管理大量点 primitive，继承 BufferPrimitiveCollection 提供添加、更新与渲染调度。",
+      "tags": ["primitive", "collection", "point", "buffer"],
+      "complexity": "moderate",
+      "languageNotes": "通过 _getCollectionClass/_getPrimitiveClass 模板方法实现子类化，由父类调度统一的缓冲区分配与渲染流程。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPointCollection.js:BufferPointCollection",
+      "type": "class",
+      "name": "BufferPointCollection",
+      "filePath": "packages/engine/Source/Scene/BufferPointCollection.js",
+      "lineRange": [58, 149],
+      "summary": "BufferPrimitiveCollection 的点类型子类，负责 add/update 时委托父类并触发 renderBufferPointCollection 渲染。",
+      "tags": ["collection", "point", "primitive", "rendering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPointMaterial.js",
+      "type": "file",
+      "name": "BufferPointMaterial.js",
+      "filePath": "packages/engine/Source/Scene/BufferPointMaterial.js",
+      "summary": "BufferPointMaterial 描述点 primitive 的视觉样式（大小、轮廓等），继承 BufferPrimitiveMaterial 提供 pack/unpack/toJSON。",
+      "tags": ["material", "point", "primitive", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPointMaterial.js:BufferPointMaterial",
+      "type": "class",
+      "name": "BufferPointMaterial",
+      "filePath": "packages/engine/Source/Scene/BufferPointMaterial.js",
+      "lineRange": [27, 93],
+      "summary": "在 BufferPrimitiveMaterial 基础上扩展点专属字段（pointSize 等），并实现紧凑的二进制 pack/unpack。",
+      "tags": ["material", "point", "serialization", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPolygon.js",
+      "type": "file",
+      "name": "BufferPolygon.js",
+      "filePath": "packages/engine/Source/Scene/BufferPolygon.js",
+      "summary": "BufferPolygon 表示多边形 primitive，封装外环、孔洞、三角形索引的复杂读写逻辑，是向量瓦片渲染的核心数据模型之一。",
+      "tags": ["data-model", "primitive", "polygon", "buffer"],
+      "complexity": "complex",
+      "languageNotes": "通过偏移量与计数数组管理外环、孔洞、三角形三类子数据，避免为每个多边形分配独立数组。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPolygon.js:BufferPolygon",
+      "type": "class",
+      "name": "BufferPolygon",
+      "filePath": "packages/engine/Source/Scene/BufferPolygon.js",
+      "lineRange": [37, 515],
+      "summary": "继承 BufferPrimitive 的多边形视图，暴露位置、孔洞、三角形索引的 getter/setter 以及可变大小调整。",
+      "tags": ["primitive", "polygon", "data-model", "buffer"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPolygonCollection.js",
+      "type": "file",
+      "name": "BufferPolygonCollection.js",
+      "filePath": "packages/engine/Source/Scene/BufferPolygonCollection.js",
+      "summary": "BufferPolygonCollection 管理一组多边形 primitive，额外维护孔洞索引和三角形索引缓冲区，支持克隆与缓冲区替换。",
+      "tags": ["primitive", "collection", "polygon", "buffer"],
+      "complexity": "complex",
+      "languageNotes": "在父类共享缓冲区基础上为多边形额外分配 IndexDatatype 类型的孔洞与三角形索引缓冲。"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPolygonCollection.js:BufferPolygonCollection",
+      "type": "class",
+      "name": "BufferPolygonCollection",
+      "filePath": "packages/engine/Source/Scene/BufferPolygonCollection.js",
+      "lineRange": [77, 379],
+      "summary": "BufferPrimitiveCollection 的多边形子类，负责孔洞/三角形缓冲区分配、克隆与缓冲区替换。",
+      "tags": ["collection", "polygon", "primitive", "index-buffer"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPolygonMaterial.js",
+      "type": "file",
+      "name": "BufferPolygonMaterial.js",
+      "filePath": "packages/engine/Source/Scene/BufferPolygonMaterial.js",
+      "summary": "BufferPolygonMaterial 仅定义多边形材质构造函数，其余序列化能力由父类 BufferPrimitiveMaterial 提供。",
+      "tags": ["material", "polygon", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPolyline.js",
+      "type": "file",
+      "name": "BufferPolyline.js",
+      "filePath": "packages/engine/Source/Scene/BufferPolyline.js",
+      "summary": "BufferPolyline 表示折线 primitive，提供顶点位置数组读写、克隆与序列化能力。",
+      "tags": ["data-model", "primitive", "polyline", "buffer"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPolyline.js:BufferPolyline",
+      "type": "class",
+      "name": "BufferPolyline",
+      "filePath": "packages/engine/Source/Scene/BufferPolyline.js",
+      "lineRange": [29, 184],
+      "summary": "继承 BufferPrimitive 的折线视图，封装顶点偏移、顶点数与位置的 getter/setter。",
+      "tags": ["primitive", "polyline", "data-model", "buffer"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Scene/BufferPolylineCollection.js",
+      "type": "file",
+      "name": "BufferPolylineCollection.js",
+      "filePath": "packages/engine/Source/Scene/BufferPolylineCollection.js",
+      "summary": "BufferPolylineCollection 管理一组折线 primitive，继承 BufferPrimitiveCollection 实现 add/update 与渲染委托。",
+      "tags": ["primitive", "collection", "polyline", "buffer"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/Scene/BufferPolylineCollection.js:BufferPolylineCollection",
+      "type": "class",
+      "name": "BufferPolylineCollection",
+      "filePath": "packages/engine/Source/Scene/BufferPolylineCollection.js",
+      "lineRange": [59, 138],
+      "summary": "BufferPrimitiveCollection 的折线子类，add 时写入宽度与位置并在 update 时委托 renderBufferPolylineCollection。",
+      "tags": ["collection", "polyline", "primitive", "rendering"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"source": "file:packages/engine/Source/Core/assert.js", "target": "function:packages/engine/Source/Core/assert.js:assert", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:packages/engine/Source/Core/assert.js", "target": "file:packages/engine/Source/Core/DeveloperError.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPoint.js", "target": "file:packages/engine/Source/Core/assert.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPoint.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPoint.js", "target": "file:packages/engine/Source/Scene/BufferPrimitive.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPoint.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPoint.js", "target": "class:packages/engine/Source/Scene/BufferPoint.js:BufferPoint", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Core/Cartesian3.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Scene/BufferPoint.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Scene/BufferPointMaterial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "file:packages/engine/Source/Scene/renderBufferPointCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointCollection.js", "target": "class:packages/engine/Source/Scene/BufferPointCollection.js:BufferPointCollection", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPointMaterial.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointMaterial.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveMaterial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPointMaterial.js", "target": "class:packages/engine/Source/Scene/BufferPointMaterial.js:BufferPointMaterial", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "file:packages/engine/Source/Core/assert.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "file:packages/engine/Source/Core/Check.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "file:packages/engine/Source/Scene/BufferPrimitive.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygon.js", "target": "class:packages/engine/Source/Scene/BufferPolygon.js:BufferPolygon", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Core/assert.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Core/IndexDatatype.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Scene/BufferPolygon.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Scene/BufferPolygonMaterial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "file:packages/engine/Source/Scene/renderBufferPolygonCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonCollection.js", "target": "class:packages/engine/Source/Scene/BufferPolygonCollection.js:BufferPolygonCollection", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonMaterial.js", "target": "file:packages/engine/Source/Core/Frozen.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolygonMaterial.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveMaterial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPolyline.js", "target": "file:packages/engine/Source/Core/assert.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolyline.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolyline.js", "target": "file:packages/engine/Source/Scene/BufferPrimitive.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolyline.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolyline.js", "target": "class:packages/engine/Source/Scene/BufferPolyline.js:BufferPolyline", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "file:packages/engine/Source/Core/defined.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "file:packages/engine/Source/Scene/BufferPolyline.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "file:packages/engine/Source/Scene/BufferPolylineMaterial.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "file:packages/engine/Source/Scene/BufferPrimitiveCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "file:packages/engine/Source/Scene/renderBufferPolylineCollection.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:packages/engine/Source/Scene/BufferPolylineCollection.js", "target": "class:packages/engine/Source/Scene/BufferPolylineCollection.js:BufferPolylineCollection", "type": "contains", "direction": "forward", "weight": 1.0}
+  ]
+}

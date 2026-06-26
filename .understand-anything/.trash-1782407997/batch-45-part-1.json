@@ -1,0 +1,1166 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/sandcastle/src/App.tsx",
+      "type": "file",
+      "name": "App.tsx",
+      "filePath": "packages/sandcastle/src/App.tsx",
+      "summary": "Sandcastle 主应用根组件，负责协调编辑器、预览 iframe、控制台、Gallery、设置弹窗、分享弹窗与 Copilot 聊天面板，管理运行/重置/加载等核心交互状态。",
+      "tags": [
+        "entry-point",
+        "react-component",
+        "state-management",
+        "ui-shell",
+        "app"
+      ],
+      "complexity": "complex",
+      "languageNotes": "大量使用 useCallback/useMemo 缓存回调与派生状态，通过 useReducer dispatch 驱动代码运行状态机。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/App.tsx:AppBarButton",
+      "type": "function",
+      "name": "AppBarButton",
+      "filePath": "packages/sandcastle/src/App.tsx",
+      "lineRange": [
+        80,
+        119
+      ],
+      "summary": "顶部工具栏按钮组件，封装点击、辅助点击与 active 高亮状态。",
+      "tags": [
+        "react-component",
+        "ui",
+        "toolbar",
+        "button"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/App.tsx:App",
+      "type": "function",
+      "name": "App",
+      "filePath": "packages/sandcastle/src/App.tsx",
+      "lineRange": [
+        121,
+        716
+      ],
+      "summary": "主应用组件，聚合运行循环、控制台消息收集、URL 加载、Gallery 检索、设置与分享等子系统并渲染整体布局。",
+      "tags": [
+        "entry-point",
+        "react-component",
+        "orchestrator",
+        "state-management"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Bucket.tsx",
+      "type": "file",
+      "name": "Bucket.tsx",
+      "filePath": "packages/sandcastle/src/Bucket.tsx",
+      "summary": "通过 iframe 沙箱执行 Sandcastle 代码的容器组件，监听 iframe 消息以转发运行结果、控制台日志与高亮行号。",
+      "tags": [
+        "react-component",
+        "iframe",
+        "sandbox",
+        "message-passing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Bucket.tsx:Bucket",
+      "type": "function",
+      "name": "Bucket",
+      "filePath": "packages/sandcastle/src/Bucket.tsx",
+      "lineRange": [
+        16,
+        138
+      ],
+      "summary": "iframe 沙箱容器组件，建立 IframeBridge 通信通道并在收到消息时派发到 resetConsole/appendConsole/onRunComplete 等回调。",
+      "tags": [
+        "react-component",
+        "iframe-bridge",
+        "sandbox",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Bucket.tsx:BucketPlaceholder",
+      "type": "function",
+      "name": "BucketPlaceholder",
+      "filePath": "packages/sandcastle/src/Bucket.tsx",
+      "lineRange": [
+        140,
+        146
+      ],
+      "summary": "Bucket 未就绪时显示的占位组件。",
+      "tags": [
+        "react-component",
+        "placeholder",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "type": "file",
+      "name": "ConsoleMirror.tsx",
+      "filePath": "packages/sandcastle/src/ConsoleMirror.tsx",
+      "summary": "渲染 Sandcastle 运行时控制台输出镜像的组件，按日志类型过滤并保持滚动条自动跟随底部。",
+      "tags": [
+        "react-component",
+        "console",
+        "ui",
+        "logging"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/ConsoleMirror.tsx:ConsoleMirror",
+      "type": "function",
+      "name": "ConsoleMirror",
+      "filePath": "packages/sandcastle/src/ConsoleMirror.tsx",
+      "lineRange": [
+        32,
+        118
+      ],
+      "summary": "渲染日志列表的可展开控制台视图，过滤特殊日志并支持清空与自定义日志动作渲染。",
+      "tags": [
+        "react-component",
+        "console",
+        "logging",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "type": "file",
+      "name": "EmbeddingSearch.ts",
+      "filePath": "packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "summary": "基于 transformers.js 的向量嵌入搜索服务，对 Gallery 条目做语义检索，通过余弦相似度排序返回最相关结果。",
+      "tags": [
+        "service",
+        "search",
+        "ml",
+        "embedding",
+        "gallery"
+      ],
+      "complexity": "complex",
+      "languageNotes": "在浏览器侧加载 HuggingFace transformers.js 的 AutoTokenizer/AutoModel，按需惰性初始化并缓存嵌入向量。"
+    },
+    {
+      "id": "class:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:EmbeddingSearch",
+      "type": "class",
+      "name": "EmbeddingSearch",
+      "filePath": "packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "lineRange": [
+        28,
+        140
+      ],
+      "summary": "封装嵌入模型加载、tokenizer 编码与余弦相似度查询的单例类，支持通过标签过滤器限定搜索范围。",
+      "tags": [
+        "class",
+        "search",
+        "ml",
+        "embedding",
+        "singleton"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:initializeEmbeddingSearch",
+      "type": "function",
+      "name": "initializeEmbeddingSearch",
+      "filePath": "packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "lineRange": [
+        144,
+        148
+      ],
+      "summary": "传入 Gallery 列表并触发嵌入模型预加载与索引构建。",
+      "tags": [
+        "factory",
+        "initialization",
+        "embedding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:vectorSearch",
+      "type": "function",
+      "name": "vectorSearch",
+      "filePath": "packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "lineRange": [
+        150,
+        156
+      ],
+      "summary": "对外暴露的语义搜索入口，对查询文本执行嵌入比对并返回 Top-N 结果。",
+      "tags": [
+        "search",
+        "api",
+        "embedding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:onEmbeddingModelLoaded",
+      "type": "function",
+      "name": "onEmbeddingModelLoaded",
+      "filePath": "packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "lineRange": [
+        158,
+        160
+      ],
+      "summary": "注册嵌入模型加载完成后的回调监听器。",
+      "tags": [
+        "event-handler",
+        "callback",
+        "embedding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "type": "file",
+      "name": "Gallery.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/Gallery.tsx",
+      "summary": "Gallery 容器组件，组合搜索栏与示例列表，提供运行/打开示例代码的入口。",
+      "tags": [
+        "react-component",
+        "gallery",
+        "container",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/Gallery.tsx:Gallery",
+      "type": "function",
+      "name": "Gallery",
+      "filePath": "packages/sandcastle/src/Gallery/Gallery.tsx",
+      "lineRange": [
+        20,
+        37
+      ],
+      "summary": "Gallery 顶层布局组件，根据 hidden 状态控制可见性并渲染搜索与列表区域。",
+      "tags": [
+        "react-component",
+        "gallery",
+        "layout"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "type": "file",
+      "name": "GalleryItemCard.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "summary": "Gallery 单个示例条目的卡片组件，展示示例缩略图、标签并提供点击运行/打开的交互。",
+      "tags": [
+        "react-component",
+        "card",
+        "gallery",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCard",
+      "type": "function",
+      "name": "GalleryItemCard",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "lineRange": [
+        56,
+        120
+      ],
+      "summary": "渲染示例条目卡片，显示标签集合并在点击时触发 run/open 回调。",
+      "tags": [
+        "react-component",
+        "card",
+        "gallery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCardLabel",
+      "type": "function",
+      "name": "GalleryItemCardLabel",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "lineRange": [
+        18,
+        54
+      ],
+      "summary": "卡片上的可点击标签，点击时将其作为搜索过滤条件写入 store。",
+      "tags": [
+        "react-component",
+        "label",
+        "filter"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "type": "file",
+      "name": "GalleryItemList.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "summary": "Gallery 示例列表组件，合并 Pagefind 全文搜索与向量语义搜索结果并按搜索过滤条件渲染卡片列表。",
+      "tags": [
+        "react-component",
+        "list",
+        "search",
+        "gallery"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemList.tsx:GalleryItemList",
+      "type": "function",
+      "name": "GalleryItemList",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "lineRange": [
+        25,
+        138
+      ],
+      "summary": "对搜索结果去重、合并并渲染卡片列表，支持运行/打开示例与复合键盘导航。",
+      "tags": [
+        "react-component",
+        "list",
+        "search",
+        "gallery"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemSearch.tsx",
+      "type": "file",
+      "name": "GalleryItemSearch.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemSearch.tsx",
+      "summary": "Gallery 搜索栏容器，组合搜索输入框与过滤器组件。",
+      "tags": [
+        "react-component",
+        "search",
+        "gallery",
+        "container"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "type": "file",
+      "name": "GalleryItemSearchFilter.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "summary": "Gallery 搜索过滤器组件，按类型（type）与多值复选渲染可选筛选项，使用 deferred 值避免阻塞输入。",
+      "tags": [
+        "react-component",
+        "filter",
+        "search",
+        "gallery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx:GalleryItemSearchFilter",
+      "type": "function",
+      "name": "GalleryItemSearchFilter",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "lineRange": [
+        9,
+        126
+      ],
+      "summary": "渲染类型化多选过滤面板，使用 useDeferredValue 提升输入响应并将选择写入 store 的 searchFilter。",
+      "tags": [
+        "react-component",
+        "filter",
+        "multi-select"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "type": "file",
+      "name": "GalleryItemSearchInput.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "summary": "Gallery 搜索文本输入框组件，带清除按钮与 deferred 同步到 store 的 searchTerm。",
+      "tags": [
+        "react-component",
+        "input",
+        "search",
+        "gallery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx:GalleryItemSearchInput",
+      "type": "function",
+      "name": "GalleryItemSearchInput",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "lineRange": [
+        14,
+        61
+      ],
+      "summary": "受控搜索输入框，输入变化经 deferred 防抖后写入 store searchTerm，并提供清除/聚焦交互。",
+      "tags": [
+        "react-component",
+        "input",
+        "search",
+        "deferred"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "file",
+      "name": "GalleryItemStore.ts",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "summary": "Gallery 的核心状态 Hook 与 Context store，整合 Pagefind 全文检索、向量嵌入搜索、URL 加载与过滤逻辑，向子组件分发检索状态。",
+      "tags": [
+        "store",
+        "state-management",
+        "search",
+        "context",
+        "gallery"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 React useTransition/useDeferredValue 将重型检索标记为低优先级，配合 AbortController 中断过期请求。"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "type": "function",
+      "name": "useGalleryItemStore",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "lineRange": [
+        45,
+        347
+      ],
+      "summary": "Gallery 顶层 store hook，管理条目列表、Pagefind/向量搜索、URL 加载、搜索词与过滤条件，并暴露统一检索结果。",
+      "tags": [
+        "hook",
+        "store",
+        "state-management",
+        "search"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemContext",
+      "type": "function",
+      "name": "useGalleryItemContext",
+      "filePath": "packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "lineRange": [
+        352,
+        354
+      ],
+      "summary": "读取 Gallery store Context 的便捷 hook，未提供 provider 时抛错。",
+      "tags": [
+        "hook",
+        "context",
+        "accessor"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "type": "file",
+      "name": "applyHighlight.tsx",
+      "filePath": "packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "summary": "为搜索结果生成高亮片段的工具模块，根据 Pagefind 锚点与位置数组对示例文本与代码应用高亮标记。",
+      "tags": [
+        "utility",
+        "highlight",
+        "search",
+        "gallery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlight",
+      "type": "function",
+      "name": "applyHighlight",
+      "filePath": "packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "lineRange": [
+        5,
+        29
+      ],
+      "summary": "根据锚点与位置索引对文本进行分词并在匹配位置包裹高亮 React 节点。",
+      "tags": [
+        "utility",
+        "highlight",
+        "text-processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlightToItem",
+      "type": "function",
+      "name": "applyHighlightToItem",
+      "filePath": "packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "lineRange": [
+        31,
+        64
+      ],
+      "summary": "对单个 Gallery 条目的名称与代码段应用搜索结果高亮，过滤有效锚点后调用 applyHighlight。",
+      "tags": [
+        "utility",
+        "highlight",
+        "gallery"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:formatVectorSearch",
+      "type": "function",
+      "name": "formatVectorSearch",
+      "filePath": "packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "lineRange": [
+        66,
+        73
+      ],
+      "summary": "将向量搜索命中的条目格式化为带高亮信息的展示对象。",
+      "tags": [
+        "utility",
+        "formatting",
+        "vector-search"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/App.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/Bucket.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/copilot/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/loadFromUrl.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/Helpers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/icons.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/MetadataPopover.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/SandcastleEditor.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/SandcastlePopover.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/SettingsContext.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/SettingsModal.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/SharePopover.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/util/getBaseUrl.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/util/useCodeState.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/util/usePageTitle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "file:packages/sandcastle/src/ViewerConsoleStack.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "file:packages/sandcastle/src/Bucket.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "file:packages/sandcastle/src/Helpers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "file:packages/sandcastle/src/util/IframeBridge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "target": "file:packages/sandcastle/src/ConsoleMirror.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "target": "file:packages/sandcastle/src/icons.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/Gallery.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemSearch.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "target": "file:packages/sandcastle/src/icons.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearch.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearch.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "target": "file:packages/sandcastle/src/icons.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "target": "file:packages/sandcastle/src/icons.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "file:packages/sandcastle/src/Gallery/loadFromUrl.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "file:packages/sandcastle/src/SettingsContext.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "file:packages/sandcastle/src/util/getBaseUrl.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "function:packages/sandcastle/src/App.tsx:AppBarButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/App.tsx",
+      "target": "function:packages/sandcastle/src/App.tsx:App",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "function:packages/sandcastle/src/Bucket.tsx:Bucket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "function:packages/sandcastle/src/Bucket.tsx:BucketPlaceholder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "function:packages/sandcastle/src/Bucket.tsx:Bucket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Bucket.tsx",
+      "target": "function:packages/sandcastle/src/Bucket.tsx:BucketPlaceholder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "target": "function:packages/sandcastle/src/ConsoleMirror.tsx:ConsoleMirror",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/ConsoleMirror.tsx",
+      "target": "function:packages/sandcastle/src/ConsoleMirror.tsx:ConsoleMirror",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "class:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:EmbeddingSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:initializeEmbeddingSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:vectorSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:onEmbeddingModelLoaded",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:initializeEmbeddingSearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:vectorSearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/EmbeddingSearch.ts",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:onEmbeddingModelLoaded",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/Gallery.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/Gallery.tsx:Gallery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCardLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemCard.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemCard.tsx:GalleryItemCardLabel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemList.tsx:GalleryItemList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemList.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemList.tsx:GalleryItemList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx:GalleryItemSearchFilter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemSearchFilter.tsx:GalleryItemSearchFilter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx:GalleryItemSearchInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemSearchInput.tsx:GalleryItemSearchInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/GalleryItemStore.ts",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlightToItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:formatVectorSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlightToItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/sandcastle/src/Gallery/applyHighlight.tsx",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:formatVectorSearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/GalleryItemList.tsx:GalleryItemList",
+      "target": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemContext",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:vectorSearch",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "target": "function:packages/sandcastle/src/Gallery/EmbeddingSearch.ts:initializeEmbeddingSearch",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "target": "function:packages/sandcastle/src/Gallery/loadFromUrl.ts:loadFromUrl",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/GalleryItemStore.ts:useGalleryItemStore",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlightToItem",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlightToItem",
+      "target": "function:packages/sandcastle/src/Gallery/applyHighlight.tsx:applyHighlight",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/App.tsx:App",
+      "target": "function:packages/sandcastle/src/Gallery/loadFromUrl.ts:loadFromUrl",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/App.tsx:App",
+      "target": "function:packages/sandcastle/src/Helpers.ts:makeCompressedBase64String",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/sandcastle/src/Bucket.tsx:Bucket",
+      "target": "function:packages/sandcastle/src/Helpers.ts:embedInSandcastleTemplate",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

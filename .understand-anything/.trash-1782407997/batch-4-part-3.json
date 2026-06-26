@@ -1,0 +1,723 @@
+{
+ "nodes": [
+  {
+   "id": "file:packages/engine/Source/Core/Intersect.js",
+   "type": "file",
+   "name": "Intersect.js",
+   "filePath": "packages/engine/Source/Core/Intersect.js",
+   "summary": "相交判定枚举，表示对象相对视锥体的位置（OUTSIDE / INTERSECTING / INSIDE）。",
+   "tags": [
+    "enum",
+    "intersection",
+    "frustum"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "type": "file",
+   "name": "IntersectionTests.js",
+   "filePath": "packages/engine/Source/Core/IntersectionTests.js",
+   "summary": "射线、平面、三角形、椭球、AABB 等几何体之间的相交测试函数集合（命名空间）。",
+   "tags": [
+    "intersection",
+    "ray",
+    "collision",
+    "utility"
+   ],
+   "complexity": "complex",
+   "languageNotes": "包含 raySphere、rayPlane、solveQuadratic 等解析几何求解，依赖多项式求解器。"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Intersections2D.js",
+   "type": "file",
+   "name": "Intersections2D.js",
+   "filePath": "packages/engine/Source/Core/Intersections2D.js",
+   "summary": "二维三角形操作工具集，用于按轴对齐阈值拆分 2D 三角形并返回结果多边形索引。",
+   "tags": [
+    "intersection",
+    "2d",
+    "triangulation",
+    "utility"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Interval.js",
+   "type": "file",
+   "name": "Interval.js",
+   "filePath": "packages/engine/Source/Core/Interval.js",
+   "summary": "闭区间 [start, stop] 的轻量数据结构。",
+   "tags": [
+    "data-model",
+    "interval",
+    "math"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/KeyboardEventModifier.js",
+   "type": "file",
+   "name": "KeyboardEventModifier.js",
+   "filePath": "packages/engine/Source/Core/KeyboardEventModifier.js",
+   "summary": "键盘修饰键枚举（SHIFT / CTRL / ALT），用于屏幕交互事件处理。",
+   "tags": [
+    "enum",
+    "input",
+    "event",
+    "keyboard"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Math.js",
+   "type": "file",
+   "name": "Math.js",
+   "filePath": "packages/engine/Source/Core/Math.js",
+   "summary": "CesiumMath 核心数学库，提供常量、角度/弧度转换、插值、随机数（Mersenne Twister）及 EPSILON 容差比较等大量函数。",
+   "tags": [
+    "math",
+    "utility",
+    "core",
+    "constants"
+   ],
+   "complexity": "complex",
+   "languageNotes": "导出为 CesiumMath 命名空间对象，是整个引擎的基础数学工具库。"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/Occluder.js",
+   "type": "file",
+   "name": "Occluder.js",
+   "filePath": "packages/engine/Source/Core/Occluder.js",
+   "summary": "基于包围球的遮挡判定，根据相机位置判断被遮挡对象是否位于遮挡体之后。",
+   "tags": [
+    "occlusion",
+    "bounding-sphere",
+    "visibility",
+    "geometry"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "type": "file",
+   "name": "OrientedBoundingBox.js",
+   "filePath": "packages/engine/Source/Core/OrientedBoundingBox.js",
+   "summary": "有向包围盒（OBB）实现，提供从矩形/平面/区域构造 OBB 以及与视锥、平面、包围球的相交测试。",
+   "tags": [
+    "bounding-volume",
+    "obb",
+    "geometry",
+    "intersection"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "type": "file",
+   "name": "OrthographicFrustum.js",
+   "filePath": "packages/engine/Source/Core/OrthographicFrustum.js",
+   "summary": "正交投影视锥体，封装宽度并基于 OrthographicOffCenterFrustum 计算投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "camera",
+    "projection",
+    "orthographic"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IntersectionTests.js:solveQuadratic",
+   "type": "function",
+   "name": "solveQuadratic",
+   "filePath": "packages/engine/Source/Core/IntersectionTests.js",
+   "lineRange": [
+    278,
+    306
+   ],
+   "summary": "带数值消减的一元二次方程求解，返回交点区间。",
+   "tags": [
+    "intersection",
+    "math",
+    "polynomial"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IntersectionTests.js:raySphere",
+   "type": "function",
+   "name": "raySphere",
+   "filePath": "packages/engine/Source/Core/IntersectionTests.js",
+   "lineRange": [
+    313,
+    338
+   ],
+   "summary": "计算射线与球体（椭球）的交点区间。",
+   "tags": [
+    "intersection",
+    "ray",
+    "sphere"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/IntersectionTests.js:addWithCancellationCheck",
+   "type": "function",
+   "name": "addWithCancellationCheck",
+   "filePath": "packages/engine/Source/Core/IntersectionTests.js",
+   "lineRange": [
+    578,
+    588
+   ],
+   "summary": "带容差消减的浮点加法，避免大数吃小数导致的精度丢失。",
+   "tags": [
+    "math",
+    "epsilon",
+    "cancellation"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/Occluder.js:Occluder",
+   "type": "function",
+   "name": "Occluder",
+   "filePath": "packages/engine/Source/Core/Occluder.js",
+   "lineRange": [
+    28,
+    48
+   ],
+   "summary": "Occluder 构造函数，基于包围球与相机位置建立遮挡体。",
+   "tags": [
+    "occlusion",
+    "constructor",
+    "bounding-sphere"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrientedBoundingBox.js:OrientedBoundingBox",
+   "type": "function",
+   "name": "OrientedBoundingBox",
+   "filePath": "packages/engine/Source/Core/OrientedBoundingBox.js",
+   "lineRange": [
+    40,
+    55
+   ],
+   "summary": "OrientedBoundingBox 构造函数，由中心与半轴矩阵定义。",
+   "tags": [
+    "bounding-volume",
+    "obb",
+    "constructor"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrientedBoundingBox.js:fromPlaneExtents",
+   "type": "function",
+   "name": "fromPlaneExtents",
+   "filePath": "packages/engine/Source/Core/OrientedBoundingBox.js",
+   "lineRange": [
+    244,
+    297
+   ],
+   "summary": "由平面原点、轴向与各轴范围构造有向包围盒。",
+   "tags": [
+    "bounding-volume",
+    "obb",
+    "factory"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrthographicFrustum.js:OrthographicFrustum",
+   "type": "function",
+   "name": "OrthographicFrustum",
+   "filePath": "packages/engine/Source/Core/OrthographicFrustum.js",
+   "lineRange": [
+    30,
+    66
+   ],
+   "summary": "OrthographicFrustum 构造函数，定义正交投影宽度等参数。",
+   "tags": [
+    "frustum",
+    "orthographic",
+    "constructor"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:packages/engine/Source/Core/OrthographicFrustum.js:update",
+   "type": "function",
+   "name": "update",
+   "filePath": "packages/engine/Source/Core/OrthographicFrustum.js",
+   "lineRange": [
+    126,
+    172
+   ],
+   "summary": "根据宽度/纵横比刷新正交视锥的投影矩阵与剔除体。",
+   "tags": [
+    "frustum",
+    "orthographic",
+    "projection"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Interval.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/QuadraticRealPolynomial.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/QuarticRealPolynomial.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "file:packages/engine/Source/Core/Ray.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Intersections2D.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Intersections2D.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Intersections2D.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Intersections2D.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Intersections2D.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Math.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Math.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Math.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "file:packages/engine/Source/Core/Visibility.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Cartesian2.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Cartesian3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Cartographic.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/EllipsoidTangentPlane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Intersect.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Interval.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Matrix3.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Matrix4.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Plane.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "file:packages/engine/Source/Core/Rectangle.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/Check.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/defined.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/DeveloperError.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/Frozen.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/Math.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "file:packages/engine/Source/Core/OrthographicOffCenterFrustum.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:solveQuadratic",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:solveQuadratic",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:raySphere",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:raySphere",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:addWithCancellationCheck",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/IntersectionTests.js",
+   "target": "function:packages/engine/Source/Core/IntersectionTests.js:addWithCancellationCheck",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "function:packages/engine/Source/Core/Occluder.js:Occluder",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/Occluder.js",
+   "target": "function:packages/engine/Source/Core/Occluder.js:Occluder",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Core/OrientedBoundingBox.js:OrientedBoundingBox",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Core/OrientedBoundingBox.js:OrientedBoundingBox",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Core/OrientedBoundingBox.js:fromPlaneExtents",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+   "target": "function:packages/engine/Source/Core/OrientedBoundingBox.js:fromPlaneExtents",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicFrustum.js:OrthographicFrustum",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicFrustum.js:OrthographicFrustum",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicFrustum.js:update",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicFrustum.js:update",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:packages/engine/Source/Core/OrthographicFrustum.js",
+   "target": "function:packages/engine/Source/Core/OrthographicOffCenterFrustum.js:OrthographicOffCenterFrustum",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  }
+ ]
+}

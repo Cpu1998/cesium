@@ -1,0 +1,1195 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "type": "file",
+      "name": "CesiumTerrainProvider.js",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "summary": "Cesium ion 地形服务 Provider，解析 layer.json 元数据并构造 quantized mesh / heightmap 地形瓦片。",
+      "tags": [
+        "terrain-provider",
+        "cesium-ion",
+        "quantized-mesh",
+        "data-loader"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "type": "file",
+      "name": "CompressedTextureBuffer.js",
+      "filePath": "packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "summary": "封装压缩纹理像素缓冲区的数据结构，记录 internal format、像素数据类型与宽高。",
+      "tags": [
+        "texture",
+        "data-model",
+        "gpu-buffer",
+        "compression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Credit.js",
+      "type": "file",
+      "name": "Credit.js",
+      "filePath": "packages/engine/Source/Core/Credit.js",
+      "summary": "表示数据归属致谢（credit）的类，管理 HTML 展示文本、屏幕显示开关与 ion 归属逻辑。",
+      "tags": [
+        "data-model",
+        "attribution",
+        "cesium-ion",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "type": "file",
+      "name": "DoubleEndedPriorityQueue.js",
+      "filePath": "packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "summary": "双端优先队列实现，支持在 O(log n) 时间内从两端取最大/最小元素，用于地形瓦片调度。",
+      "tags": [
+        "data-structure",
+        "priority-queue",
+        "scheduling",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "file",
+      "name": "GeographicTilingScheme.js",
+      "filePath": "packages/engine/Source/Core/GeographicTilingScheme.js",
+      "summary": "基于地理投影（经纬度）的瓦片分割方案，提供瓦片坐标与地理矩形的相互转换。",
+      "tags": [
+        "tiling-scheme",
+        "geographic-projection",
+        "class",
+        "tile-coordinates"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/Ion.js",
+      "type": "file",
+      "name": "Ion.js",
+      "filePath": "packages/engine/Source/Core/Ion.js",
+      "summary": "Cesium ion 平台访问凭证与默认 endpoint 配置单例。",
+      "tags": [
+        "cesium-ion",
+        "config",
+        "singleton",
+        "credentials"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/IonGeocodeProviderType.js",
+      "type": "file",
+      "name": "IonGeocodeProviderType.js",
+      "filePath": "packages/engine/Source/Core/IonGeocodeProviderType.js",
+      "summary": "定义 ion 地理编码 provider 类型的枚举（如 default、cartesian）。",
+      "tags": [
+        "enum",
+        "cesium-ion",
+        "type-definition",
+        "constants"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "type": "file",
+      "name": "IonGeocoderService.js",
+      "filePath": "packages/engine/Source/Core/IonGeocoderService.js",
+      "summary": "基于 Cesium ion 服务的地理编码实现，将查询转发到 ion geocoder endpoint。",
+      "tags": [
+        "geocoder",
+        "cesium-ion",
+        "api-handler",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:LayerInformation",
+      "type": "function",
+      "name": "LayerInformation",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        26,
+        39
+      ],
+      "summary": "描述单个 ion 地形层级（layer）元信息的数据结构。",
+      "tags": [
+        "data-model",
+        "ion",
+        "layer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:TerrainProviderBuilder",
+      "type": "function",
+      "name": "TerrainProviderBuilder",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        61,
+        86
+      ],
+      "summary": "根据 options 构建 ion 地形 Provider 并发起到 layer.json 请求的辅助构造器。",
+      "tags": [
+        "factory",
+        "terrain-provider",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataSuccess",
+      "type": "function",
+      "name": "parseMetadataSuccess",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        117,
+        361
+      ],
+      "summary": "解析 layer.json 成功回调，构建各层级的可用性数据结构。",
+      "tags": [
+        "metadata-parser",
+        "callback",
+        "ion"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataFailure",
+      "type": "function",
+      "name": "parseMetadataFailure",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        363,
+        382
+      ],
+      "summary": "layer.json 解析失败回调，记录错误并完成 Promise。",
+      "tags": [
+        "callback",
+        "error-handler",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:metadataSuccess",
+      "type": "function",
+      "name": "metadataSuccess",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        384,
+        415
+      ],
+      "summary": "从元数据响应中提取层级列表与扩展信息的中间处理函数。",
+      "tags": [
+        "metadata-parser",
+        "ion",
+        "intermediate"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestLayerJson",
+      "type": "function",
+      "name": "requestLayerJson",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        417,
+        441
+      ],
+      "summary": "向 ion 服务请求 layer.json 地形元数据。",
+      "tags": [
+        "request",
+        "metadata",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:CesiumTerrainProvider",
+      "type": "function",
+      "name": "CesiumTerrainProvider",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        477,
+        525
+      ],
+      "summary": "Cesium ion 地形 Provider 构造函数，初始化层级信息与瓦片请求管线。",
+      "tags": [
+        "terrain-provider",
+        "constructor",
+        "ion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getRequestHeader",
+      "type": "function",
+      "name": "getRequestHeader",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        562,
+        573
+      ],
+      "summary": "根据已启用的扩展列表构造 ion 地形请求头。",
+      "tags": [
+        "http-header",
+        "utility",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createHeightmapTerrainData",
+      "type": "function",
+      "name": "createHeightmapTerrainData",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        575,
+        594
+      ],
+      "summary": "从瓦片字节缓冲构造 HeightmapTerrainData 实例。",
+      "tags": [
+        "factory",
+        "heightmap",
+        "terrain-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createQuantizedMeshTerrainData",
+      "type": "function",
+      "name": "createQuantizedMeshTerrainData",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        596,
+        835
+      ],
+      "summary": "解析 quantized mesh 字节流并构造带水面遮罩与法线的地形数据。",
+      "tags": [
+        "factory",
+        "quantized-mesh",
+        "terrain-data"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestTileGeometry",
+      "type": "function",
+      "name": "requestTileGeometry",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        912,
+        1000
+      ],
+      "summary": "向 ion 服务请求单个地形瓦片字节流并解析为对应 TerrainData。",
+      "tags": [
+        "request",
+        "tile-loader",
+        "ion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getAvailabilityTile",
+      "type": "function",
+      "name": "getAvailabilityTile",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        1321,
+        1340
+      ],
+      "summary": "查询指定层级瓦片在 ion 地形中的可用性层级。",
+      "tags": [
+        "availability",
+        "query",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:checkLayer",
+      "type": "function",
+      "name": "checkLayer",
+      "filePath": "packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "lineRange": [
+        1342,
+        1404
+      ],
+      "summary": "校验并提升指定层级的瓦片请求，处理层级边界与扩展数据。",
+      "tags": [
+        "availability",
+        "tile-loader",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/CompressedTextureBuffer.js:CompressedTextureBuffer",
+      "type": "function",
+      "name": "CompressedTextureBuffer",
+      "filePath": "packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "lineRange": [
+        14,
+        26
+      ],
+      "summary": "压缩纹理缓冲区构造函数，校验并存储 internal format、像素数据类型与尺寸。",
+      "tags": [
+        "constructor",
+        "texture",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:DoubleEndedPriorityQueue",
+      "type": "function",
+      "name": "DoubleEndedPriorityQueue",
+      "filePath": "packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "lineRange": [
+        17,
+        36
+      ],
+      "summary": "双端优先队列构造函数，支持最大/最小比较器与数组式索引访问。",
+      "tags": [
+        "constructor",
+        "data-structure",
+        "priority-queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushUp",
+      "type": "function",
+      "name": "pushUp",
+      "filePath": "packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "lineRange": [
+        328,
+        354
+      ],
+      "summary": "将指定索引元素向上堆化以维持双端优先队列有序性。",
+      "tags": [
+        "heapify",
+        "internal",
+        "priority-queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushDown",
+      "type": "function",
+      "name": "pushDown",
+      "filePath": "packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "lineRange": [
+        356,
+        396
+      ],
+      "summary": "将指定索引元素向下堆化以维持双端优先队列有序性。",
+      "tags": [
+        "heapify",
+        "internal",
+        "priority-queue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonGeocoderService.js:IonGeocoderService",
+      "type": "function",
+      "name": "IonGeocoderService",
+      "filePath": "packages/engine/Source/Core/IonGeocoderService.js",
+      "lineRange": [
+        57,
+        95
+      ],
+      "summary": "Cesium ion 地理编码服务构造函数，配置 endpoint 与默认 access token。",
+      "tags": [
+        "constructor",
+        "geocoder",
+        "cesium-ion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonGeocoderService.js:validateIonGeocodeProviderType",
+      "type": "function",
+      "name": "validateIonGeocodeProviderType",
+      "filePath": "packages/engine/Source/Core/IonGeocoderService.js",
+      "lineRange": [
+        16,
+        26
+      ],
+      "summary": "校验 geocodeProviderType 参数是否为合法 ion provider 类型。",
+      "tags": [
+        "validation",
+        "utility",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonGeocoderService.js:providerToQueryParameter",
+      "type": "function",
+      "name": "providerToQueryParameter",
+      "filePath": "packages/engine/Source/Core/IonGeocoderService.js",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "将 ion provider 枚举映射为 HTTP 查询参数。",
+      "tags": [
+        "mapping",
+        "utility",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/engine/Source/Core/IonGeocoderService.js:queryParameterToProvider",
+      "type": "function",
+      "name": "queryParameterToProvider",
+      "filePath": "packages/engine/Source/Core/IonGeocoderService.js",
+      "lineRange": [
+        38,
+        42
+      ],
+      "summary": "将 HTTP 查询参数反向映射为 ion provider 枚举。",
+      "tags": [
+        "mapping",
+        "utility",
+        "ion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/Credit.js:Credit",
+      "type": "class",
+      "name": "Credit",
+      "filePath": "packages/engine/Source/Core/Credit.js",
+      "lineRange": [
+        21,
+        167
+      ],
+      "summary": "数据归属致谢类，封装 HTML 文本、屏幕显示控制与 ion 归属判定。",
+      "tags": [
+        "attribution",
+        "data-model",
+        "class"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/Core/GeographicTilingScheme.js:GeographicTilingScheme",
+      "type": "class",
+      "name": "GeographicTilingScheme",
+      "filePath": "packages/engine/Source/Core/GeographicTilingScheme.js",
+      "lineRange": [
+        23,
+        224
+      ],
+      "summary": "基于地理投影的瓦片分割方案类，提供瓦片坐标与地理矩形的相互转换。",
+      "tags": [
+        "tiling-scheme",
+        "geographic-projection",
+        "class"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:LayerInformation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:LayerInformation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:TerrainProviderBuilder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:TerrainProviderBuilder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataSuccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:parseMetadataFailure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:metadataSuccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:metadataSuccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestLayerJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestLayerJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:CesiumTerrainProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:CesiumTerrainProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getRequestHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getRequestHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createHeightmapTerrainData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createHeightmapTerrainData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createQuantizedMeshTerrainData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createQuantizedMeshTerrainData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestTileGeometry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:requestTileGeometry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getAvailabilityTile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:getAvailabilityTile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:checkLayer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:checkLayer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "target": "function:packages/engine/Source/Core/CompressedTextureBuffer.js:CompressedTextureBuffer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "target": "function:packages/engine/Source/Core/CompressedTextureBuffer.js:CompressedTextureBuffer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:DoubleEndedPriorityQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:DoubleEndedPriorityQueue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushUp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushUp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushDown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "function:packages/engine/Source/Core/DoubleEndedPriorityQueue.js:pushDown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:IonGeocoderService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:IonGeocoderService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:validateIonGeocodeProviderType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:validateIonGeocodeProviderType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:providerToQueryParameter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:providerToQueryParameter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:queryParameterToProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "function:packages/engine/Source/Core/IonGeocoderService.js:queryParameterToProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Credit.js",
+      "target": "class:packages/engine/Source/Core/Credit.js:Credit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Credit.js",
+      "target": "class:packages/engine/Source/Core/Credit.js:Credit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "class:packages/engine/Source/Core/GeographicTilingScheme.js:GeographicTilingScheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "class:packages/engine/Source/Core/GeographicTilingScheme.js:GeographicTilingScheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/AttributeCompression.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/getJsonFromTypedArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/HeightmapTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/IndexDatatype.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/IonResource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/OrientedBoundingBox.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/QuantizedMeshTerrainData.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Request.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RequestType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/RuntimeError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TerrainProvider.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TileAvailability.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/TileProviderError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CesiumTerrainProvider.js",
+      "target": "file:packages/engine/Source/Core/WebMercatorTilingScheme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/CompressedTextureBuffer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Credit.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Credit.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/DoubleEndedPriorityQueue.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/GeographicProjection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/GeographicTilingScheme.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ion.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ion.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/Ion.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Credit.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Frozen.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Ion.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/IonGeocodeProviderType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/PeliasGeocoderService.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/Core/IonGeocoderService.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:packages/engine/Source/Core/IonGeocoderService.js:IonGeocoderService",
+      "target": "function:packages/engine/Source/Core/GeocoderService.js:GeocoderService",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:packages/engine/Source/Core/CesiumTerrainProvider.js:createHeightmapTerrainData",
+      "target": "function:packages/engine/Source/Core/HeightmapTerrainData.js:HeightmapTerrainData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

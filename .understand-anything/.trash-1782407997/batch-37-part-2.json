@@ -1,0 +1,2417 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "type": "file",
+      "name": "CorridorGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "summary": "Corridor（走廊/带状）实体的几何体更新器：将沿路径的带状几何体转换为 GeometryInstance，支持贴地渲染、材质与轮廓。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "corridor",
+        "ground-primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/CorridorGeometryUpdater.js:CorridorGeometryUpdater",
+      "type": "class",
+      "name": "CorridorGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "lineRange": [
+        51,
+        61
+      ],
+      "summary": "构造器：扩展 GroundGeometryUpdater，针对 corridor 几何体实现实例构建与贴地属性处理。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "corridor"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "type": "file",
+      "name": "CylinderGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "summary": "Cylinder（圆柱/圆锥）实体的几何体更新器：将实体属性转换为圆柱几何体实例，支持填充、轮廓与高度参考。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "cylinder",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/CylinderGeometryUpdater.js:CylinderGeometryUpdater",
+      "type": "class",
+      "name": "CylinderGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "lineRange": [
+        50,
+        65
+      ],
+      "summary": "构造器：扩展 GeometryUpdater，针对圆柱几何体实现 createGeometryInstance 与材质处理。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "cylinder"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "type": "file",
+      "name": "DataSourceDisplay.js",
+      "filePath": "packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "summary": "DataSource 系统的中心调度器：维护 PrimitiveCollection，注册并驱动所有 Visualizer（Billboard、Label、Geometry、Model、3DTileset 等）每帧更新。",
+      "tags": [
+        "visualizer",
+        "datasource",
+        "scheduler",
+        "rendering",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Visualizer 的默认工厂注册在 defaultVisualizers 数组中，可被外部覆盖扩展。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/DataSourceDisplay.js:DataSourceDisplay",
+      "type": "class",
+      "name": "DataSourceDisplay",
+      "filePath": "packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "lineRange": [
+        34,
+        118
+      ],
+      "summary": "构造器：初始化 primitive 容器、ground primitive 容器及各 visualizer 实例，提供 render/update/primitives 等核心接口。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "scheduler",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "type": "file",
+      "name": "DynamicGeometryBatch.js",
+      "filePath": "packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "summary": "管理一组动态（随时间变化）几何体更新的批处理容器，负责添加、移除并每帧重新构建动态几何体 primitive。",
+      "tags": [
+        "geometry-batch",
+        "dynamic",
+        "primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/DynamicGeometryBatch.js:DynamicGeometryBatch",
+      "type": "class",
+      "name": "DynamicGeometryBatch",
+      "filePath": "packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "lineRange": [
+        8,
+        12
+      ],
+      "summary": "构造器：绑定 primitives 与 orderedGroundPrimitives 容器，提供 add/remove/update 接口用于管理动态几何体更新器。",
+      "tags": [
+        "geometry-batch",
+        "constructor",
+        "dynamic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "file",
+      "name": "DynamicGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "summary": "动态几何体更新器的抽象基类：根据时间在 PrimitiveCollection 中重建几何体实例，处理材质、颜色与贴地 primitive 的切换。",
+      "tags": [
+        "geometry-updater",
+        "dynamic",
+        "primitive",
+        "base-class"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 prototype 委托模式：通过 GeometryUpdater 子类的 createDynamicInstance 创建实际实例。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/DynamicGeometryUpdater.js:DynamicGeometryUpdater",
+      "type": "class",
+      "name": "DynamicGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "lineRange": [
+        29,
+        48
+      ],
+      "summary": "构造器：持有 geometryUpdater、primitives、groundPrimitives 引用，实现 update、getBoundingSphere、destroy 等动态接口。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "dynamic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "type": "file",
+      "name": "EllipseGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "summary": "Ellipse（椭圆/圆）实体的几何体更新器：将实体椭圆属性转换为椭圆几何体实例，支持贴地渲染、挤出高度与轮廓。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "ellipse",
+        "ground-primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/EllipseGeometryUpdater.js:EllipseGeometryUpdater",
+      "type": "class",
+      "name": "EllipseGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "lineRange": [
+        54,
+        64
+      ],
+      "summary": "构造器：扩展 GroundGeometryUpdater，针对椭圆几何体实现实例构建、贴地高度估算与材质处理。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "ellipse"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "type": "file",
+      "name": "EllipsoidGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "summary": "Ellipsoid（椭球体）实体的几何体更新器：将实体椭球属性转换为椭球几何体实例，支持填充、轮廓、材质与高度参考。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "ellipsoid",
+        "primitive"
+      ],
+      "complexity": "complex",
+      "languageNotes": "本文件较大 (710 行)，包含完整的 fill/outline/material 实例创建逻辑。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js:EllipsoidGeometryUpdater",
+      "type": "class",
+      "name": "EllipsoidGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "lineRange": [
+        61,
+        81
+      ],
+      "summary": "构造器：扩展 GeometryUpdater，针对椭球几何体实现 createGeometryInstance 与多材质分支处理。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "ellipsoid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "file",
+      "name": "GeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/GeometryUpdater.js",
+      "summary": "所有几何体更新器的抽象基类：管理 entity、材质属性、距离显示条件、阴影模式等通用状态，定义 createFill/createOutline/createDynamicInstance 等子类需覆盖的接口。",
+      "tags": [
+        "geometry-updater",
+        "base-class",
+        "entity",
+        "primitive"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 destroy/isDestroyed、isHidden、createDynamicUpdater 等接口被 GeometryVisualizer 调度。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "class",
+      "name": "GeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/GeometryUpdater.js",
+      "lineRange": [
+        40,
+        74
+      ],
+      "summary": "构造器：从 options 初始化 entity、scene、材质属性与变更事件，是 Box/Cylinder/Ellipsoid 等 Updater 的公共父类。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "base-class"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "type": "file",
+      "name": "GeometryUpdaterSet.js",
+      "filePath": "packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "summary": "按几何体类型 (box/wall/polygon 等) 维护一组 GeometryUpdater 的集合，监听 entity 属性变化动态创建/销毁对应更新器。",
+      "tags": [
+        "geometry-updater",
+        "collection",
+        "entity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/GeometryUpdaterSet.js:GeometryUpdaterSet",
+      "type": "class",
+      "name": "GeometryUpdaterSet",
+      "filePath": "packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "lineRange": [
+        36,
+        57
+      ],
+      "summary": "构造器：根据 entity 的 geometry 属性选择并实例化对应的 Updater 子类，注册到 updaters 列表供批处理使用。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "collection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "type": "file",
+      "name": "GeometryVisualizer.js",
+      "filePath": "packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "summary": "实体几何体的核心可视化器：管理静态/动态/贴地几何体的批处理流水线（颜色批、材质批、轮廓批、地面批），将 GeometryUpdaterSet 输出同步到 primitive 容器。",
+      "tags": [
+        "visualizer",
+        "entity",
+        "geometry",
+        "batch",
+        "core"
+      ],
+      "complexity": "complex",
+      "languageNotes": "内部维护多个 StaticGeometryXxxBatch 与 DynamicGeometryBatch，是 Cesium 几何渲染的主要调度入口。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/GeometryVisualizer.js:GeometryVisualizer",
+      "type": "class",
+      "name": "GeometryVisualizer",
+      "filePath": "packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "lineRange": [
+        33,
+        206
+      ],
+      "summary": "构造器：实例化各批处理容器与 updaterSet，注册 entityCollection 变更回调，是 StaticGeometry/StaticGroundGeometry/DynamicGeometry 批处理的总入口。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "geometry",
+        "batch"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "type": "file",
+      "name": "GroundGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "summary": "贴地几何体更新器基类：扩展 GeometryUpdater，为贴地几何体（Ellipse/Corridor/Polygon）处理地形偏移属性与 HeightReference 限制。",
+      "tags": [
+        "geometry-updater",
+        "ground-primitive",
+        "base-class"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/GroundGeometryUpdater.js:GroundGeometryUpdater",
+      "type": "class",
+      "name": "GroundGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "lineRange": [
+        28,
+        33
+      ],
+      "summary": "构造器：在 GeometryUpdater 基础上增加 TerrainOffsetProperty 处理，使贴地几何体能根据地形高度自动偏移。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "ground-primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "type": "file",
+      "name": "LabelVisualizer.js",
+      "filePath": "packages/engine/Source/DataSources/LabelVisualizer.js",
+      "summary": "实体到 Label 的可视化器：监听 EntityCollection 变化，将实体的 label 属性同步到 LabelCollection，支持文本、字体、样式、集群等。",
+      "tags": [
+        "visualizer",
+        "entity",
+        "label",
+        "rendering"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/LabelVisualizer.js:LabelVisualizer",
+      "type": "class",
+      "name": "LabelVisualizer",
+      "filePath": "packages/engine/Source/DataSources/LabelVisualizer.js",
+      "lineRange": [
+        59,
+        79
+      ],
+      "summary": "构造器：绑定 entityCluster 与 entityCollection，注册变更回调以同步标签集合。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "label"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "type": "file",
+      "name": "MaterialProperty.js",
+      "filePath": "packages/engine/Source/DataSources/MaterialProperty.js",
+      "summary": "Material 属性的抽象基类：定义材质 Property 的通用接口（getType、getValue、equals），被具体材质属性（Image、Grid、Stripe 等）继承。",
+      "tags": [
+        "property",
+        "material",
+        "base-class",
+        "entity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/MaterialProperty.js:MaterialProperty",
+      "type": "function",
+      "name": "MaterialProperty",
+      "filePath": "packages/engine/Source/DataSources/MaterialProperty.js",
+      "lineRange": [
+        23,
+        25
+      ],
+      "summary": "抽象构造器（抛出实例化错误）：作为所有材质 Property 的基类接口约定。",
+      "tags": [
+        "constructor",
+        "base-class",
+        "material"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "type": "file",
+      "name": "ModelVisualizer.js",
+      "filePath": "packages/engine/Source/DataSources/ModelVisualizer.js",
+      "summary": "实体到 glTF Model 的可视化器：加载并实例化 Scene/Model，根据实体属性同步节点变换、动画、颜色混合、阴影与高度参考。",
+      "tags": [
+        "visualizer",
+        "entity",
+        "model",
+        "gltf",
+        "rendering"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含 createModelPrimitive、removeModel、节点变换清理等私有辅助函数。"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/ModelVisualizer.js:ModelVisualizer",
+      "type": "class",
+      "name": "ModelVisualizer",
+      "filePath": "packages/engine/Source/DataSources/ModelVisualizer.js",
+      "lineRange": [
+        56,
+        74
+      ],
+      "summary": "构造器：绑定 scene、entityCollection，维护 modelHash 并监听实体变更以创建/更新/销毁 Model primitive。",
+      "tags": [
+        "visualizer",
+        "constructor",
+        "model"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/ModelVisualizer.js:createModelPrimitive",
+      "type": "function",
+      "name": "createModelPrimitive",
+      "filePath": "packages/engine/Source/DataSources/ModelVisualizer.js",
+      "lineRange": [
+        76,
+        122
+      ],
+      "summary": "辅助函数：根据 resource、动画、节点变换、颜色混合等参数构造并配置一个 Model primitive 实例。",
+      "tags": [
+        "factory",
+        "model",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "type": "file",
+      "name": "PlaneGeometryUpdater.js",
+      "filePath": "packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "summary": "Plane（平面）实体的几何体更新器：将实体平面属性转换为平面几何体实例，处理朝向、尺寸缩放与材质。",
+      "tags": [
+        "geometry-updater",
+        "entity",
+        "plane",
+        "primitive"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:packages/engine/Source/DataSources/PlaneGeometryUpdater.js:PlaneGeometryUpdater",
+      "type": "class",
+      "name": "PlaneGeometryUpdater",
+      "filePath": "packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "lineRange": [
+        42,
+        52
+      ],
+      "summary": "构造器：扩展 GeometryUpdater，针对平面几何体实现 createGeometryInstance 与朝向矩阵计算。",
+      "tags": [
+        "geometry-updater",
+        "constructor",
+        "plane"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:packages/engine/Source/DataSources/PlaneGeometryUpdater.js:createPrimitiveMatrix",
+      "type": "function",
+      "name": "createPrimitiveMatrix",
+      "filePath": "packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "lineRange": [
+        330,
+        379
+      ],
+      "summary": "辅助函数：根据平面参数（plane、dimensions、transform）计算几何体实例所需的组合模型变换矩阵。",
+      "tags": [
+        "helper",
+        "matrix",
+        "transform"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/CorridorGeometryUpdater.js:CorridorGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/CorridorGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/CorridorOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/CorridorGeometryUpdater.js:CorridorGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GroundGeometryUpdater.js:GroundGeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/CylinderGeometryUpdater.js:CylinderGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/CylinderGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/CylinderOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/CylinderGeometryUpdater.js:CylinderGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "class:packages/engine/Source/DataSources/DataSourceDisplay.js:DataSourceDisplay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/BillboardVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/CustomDataSource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/PathVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/PointVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineVisualizer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Scene/GroundPolylinePrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Scene/OrderedGroundPrimitiveCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DataSourceDisplay.js",
+      "target": "file:packages/engine/Source/Scene/PrimitiveCollection.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "target": "class:packages/engine/Source/DataSources/DynamicGeometryBatch.js:DynamicGeometryBatch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/DynamicGeometryUpdater.js:DynamicGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/EllipseGeometryUpdater.js:EllipseGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ApproximateTerrainHeights.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/EllipseGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/EllipseOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Rectangle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/EllipseGeometryUpdater.js:EllipseGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GroundGeometryUpdater.js:GroundGeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js:EllipsoidGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/EllipsoidOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/OffsetGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/heightReferenceOnEntityPropertyChanged.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/Primitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/SceneMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js:EllipsoidGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Entity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdaterSet.js:GeometryUpdaterSet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/Core/Event.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/Core/EventHelper.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/BoxGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/CorridorGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/CylinderGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/EllipseGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/EllipsoidGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/PolygonGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/PolylineVolumeGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/RectangleGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "target": "file:packages/engine/Source/DataSources/WallGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "class:packages/engine/Source/DataSources/GeometryVisualizer.js:GeometryVisualizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/Entity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdaterSet.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/StaticGeometryColorBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/StaticGeometryPerMaterialBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/StaticGroundGeometryColorBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/StaticGroundGeometryPerMaterialBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/StaticOutlineGeometryBatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/ClassificationType.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GeometryVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/GroundGeometryUpdater.js:GroundGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryOffsetAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/oneTimeWarning.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/CallbackProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ConstantProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/TerrainOffsetProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/GroundPrimitive.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/GroundGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/GroundGeometryUpdater.js:GroundGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "class:packages/engine/Source/DataSources/LabelVisualizer.js:LabelVisualizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayCondition.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/NearFarScalar.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/HorizontalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/LabelStyle.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/LabelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/VerticalOrigin.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "function:packages/engine/Source/DataSources/MaterialProperty.js:MaterialProperty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "file:packages/engine/Source/Core/JulianDate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/MaterialProperty.js",
+      "target": "file:packages/engine/Source/Scene/Material.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "class:packages/engine/Source/DataSources/ModelVisualizer.js:ModelVisualizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "function:packages/engine/Source/DataSources/ModelVisualizer.js:createModelPrimitive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/AssociativeArray.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/BoundingSphere.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian2.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Cartographic.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/destroyObject.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Ellipsoid.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Core/Resource.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/BoundingSphereState.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/ColorBlendMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/HeightReference.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/Model/Model.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/ModelAnimationLoop.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/ModelVisualizer.js",
+      "target": "file:packages/engine/Source/Scene/ShadowMode.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "class:packages/engine/Source/DataSources/PlaneGeometryUpdater.js:PlaneGeometryUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "function:packages/engine/Source/DataSources/PlaneGeometryUpdater.js:createPrimitiveMatrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Cartesian3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Check.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Color.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ColorGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/defined.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DeveloperError.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/DistanceDisplayConditionGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/GeometryInstance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Iso8601.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Math.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Matrix3.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/Matrix4.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/PlaneGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/PlaneOutlineGeometry.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Core/ShowGeometryInstanceAttribute.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/ColorMaterialProperty.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/DynamicGeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/GeometryUpdater.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/DataSources/Property.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/MaterialAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/engine/Source/DataSources/PlaneGeometryUpdater.js",
+      "target": "file:packages/engine/Source/Scene/PerInstanceColorAppearance.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:packages/engine/Source/DataSources/PlaneGeometryUpdater.js:PlaneGeometryUpdater",
+      "target": "class:packages/engine/Source/DataSources/GeometryUpdater.js:GeometryUpdater",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    }
+  ]
+}
