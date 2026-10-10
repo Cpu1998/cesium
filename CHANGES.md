@@ -1,5 +1,14 @@
 # Change Log
 
+## Unreleased
+
+### @cesium/engine
+
+#### Fixes :wrench:
+
+- Fixed `Scene#pick` returning no feature for draped vector data, such as lines from `MVTDataProvider` and clamped `GeoJsonPrimitive` geometry. Draped collections skipped the update that initializes their pick IDs.
+- Fixed globe rendering stopping with `Program failed to link` when draped vector data was shown with enough imagery layers to exceed `MAX_TEXTURE_IMAGE_UNITS`. The imagery texture budget now reserves the units consumed by draped vector sampling, so excess imagery layers are truncated instead.
+
 ## 1.146 - 2026-10-01
 
 ### Major Announcements :loudspeaker:

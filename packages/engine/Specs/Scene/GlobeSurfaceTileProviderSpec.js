@@ -10,11 +10,14 @@ import {
   defined,
 } from "@cesium/core";
 import {
+  BufferPolyline,
+  BufferPolylineCollection,
   CesiumTerrainProvider,
   Credit,
   CreditDisplay,
   EllipsoidTerrainProvider,
   ContextLimits,
+  HeightReference,
   RenderState,
   BlendingState,
   ClippingPlane,
@@ -914,6 +917,65 @@ describe(
       }
 
       expect(tileCount).toBeGreaterThanOrEqual(1);
+    });
+
+    it("reserves draped vector samplers in the imagery texture budget", async function () {
+      // A draped line over the region the camera views. The scene marks it
+      // for the globe's vector provider during rendering.
+      const polylines = new BufferPolylineCollection({
+        allowPicking: true,
+        heightReference: HeightReference.CLAMP_TO_TERRAIN,
+      });
+      const positions = new Float64Array(6);
+      Cartesian3.pack(Cartesian3.fromDegrees(0.0015, 0.0015), positions, 0);
+      Cartesian3.pack(Cartesian3.fromDegrees(0.0025, 0.0025), positions, 3);
+      polylines.add({ positions }, new BufferPolyline());
+      scene.primitives.add(polylines);
+
+      const provider = await SingleTileImageryProvider.fromUrl(
+        "Data/Images/Red16x16.png",
+      );
+      for (let i = 0; i < ContextLimits.maximumTextureImageUnits; ++i) {
+        scene.imageryLayers.addImageryProvider(provider);
+      }
+
+      switchViewMode(
+        SceneMode.SCENE3D,
+        new GeographicProjection(Ellipsoid.WGS84),
+      );
+
+      await updateUntilDone(scene.globe);
+
+      // Wait until a rendered tile has the draped line baked.
+      await pollToPromise(function () {
+        scene.renderForSpecs();
+        let hasVectorTile = false;
+        scene.globe._surface.forEachRenderedTile(function (tile) {
+          hasVectorTile =
+            hasVectorTile ||
+            (defined(tile.data.vectorData) && tile.data.vectorData.show);
+        });
+        return hasVectorTile;
+      });
+
+      // Draped polylines reserve the vector color and pick color textures,
+      // plus four polyline lookup textures; imagery beyond the remaining
+      // budget is truncated instead of failing to link the surface shader.
+      const expectedBudget = ContextLimits.maximumTextureImageUnits - 2 - 4;
+
+      let checkedVectorTileCount = 0;
+      scene.globe._surface.forEachRenderedTile(function (tile) {
+        const vectorData = tile.data.vectorData;
+        if (defined(vectorData) && vectorData.show) {
+          ++checkedVectorTileCount;
+          expect(vectorData.hasPolylines).toBe(true);
+          expect(
+            tile.data.surfaceShader.numberOfDayTextures,
+          ).toBeLessThanOrEqual(expectedBudget);
+        }
+      });
+
+      expect(checkedVectorTileCount).toBeGreaterThan(0);
     });
 
     it("adds terrain and imagery credits to the CreditDisplay", async function () {

@@ -359,6 +359,10 @@ class VectorGltf3DTileContent {
       ) {
         collection.update(frameState);
       } else if (isSelected) {
+        // A draped collection is rendered by the vector provider, not by
+        // itself, but its update still initializes the PickIds that the
+        // provider packs into the surface's pick pass.
+        collection.update(frameState);
         vectorProvider.markForFrame(
           collection,
           frameState.frameNumber,

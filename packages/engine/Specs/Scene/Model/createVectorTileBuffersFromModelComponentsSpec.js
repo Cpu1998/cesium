@@ -8,6 +8,7 @@ import {
   BufferPoint,
   BufferPolygon,
   BufferPolyline,
+  HeightReference,
   ModelComponents,
   VertexAttributeSemantic,
   createVectorTileBuffersFromModelComponents,
@@ -440,5 +441,55 @@ describe("Scene/Model/createVectorTileBuffersFromModelComponents", function () {
 
     expect(collections).toEqual([]);
     expect(collectionLocalMatrices).toEqual([]);
+  });
+
+  it("creates drapeable collections with the tileset's height reference", function () {
+    const linePrimitive = createPrimitive({
+      primitiveType: PrimitiveType.LINE_STRIP,
+      positions: new Float32Array([0.0, 0.0, 0.0, 1.0, 1.0, 1.0]),
+      indices: new Uint16Array([0, 1]),
+      vector: {
+        vector: true,
+        count: 1,
+      },
+      featureIds: new Uint16Array([1]),
+    });
+
+    const polygonPrimitive = createPrimitive({
+      primitiveType: PrimitiveType.TRIANGLES,
+      positions: new Float32Array([
+        0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+      ]),
+      indices: new Uint16Array([0, 1, 2]),
+      vector: {
+        vector: true,
+        count: 1,
+        polygonAttributeOffsets: new Uint32Array([0]),
+        polygonIndicesOffsets: new Uint32Array([0]),
+      },
+      featureIds: new Uint16Array([2]),
+    });
+
+    const node = new ModelComponents.Node();
+    node.primitives.push(linePrimitive, polygonPrimitive);
+
+    // A draped collection must not also draw itself, so it needs the tileset's
+    // clamped height reference at creation time.
+    const clampedTileContent = {
+      tileset: { heightReference: HeightReference.CLAMP_TO_TERRAIN },
+    };
+
+    const { collections } = createVectorTileBuffersFromModelComponents(
+      clampedTileContent,
+      createComponents(node),
+    );
+
+    expect(collections.length).toBe(2);
+    expect(collections[0].heightReference).toBe(
+      HeightReference.CLAMP_TO_TERRAIN,
+    );
+    expect(collections[1].heightReference).toBe(
+      HeightReference.CLAMP_TO_TERRAIN,
+    );
   });
 });

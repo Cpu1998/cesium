@@ -2637,6 +2637,22 @@ function addDrawCommandsForTile(tileProvider, tile, frameState) {
     // primitive indices, and the grid cell index header.
     maxTextures -= 3;
   }
+  const vectorData = surfaceTile.vectorData;
+  if (vectorData?.show) {
+    // Draped vector rendering samples the primitive color texture in the
+    // render pass and the pick color texture in the pick pass, plus four
+    // lookup textures per draped line collection (segments, widths, per-
+    // segment primitive indices, and the grid cell index header) and three
+    // per draped polygon collection (edges, per-edge primitive indices, and
+    // the grid cell index header). See VectorCommon.glsl.
+    maxTextures -= 2;
+    if (vectorData.hasPolylines) {
+      maxTextures -= 4;
+    }
+    if (vectorData.hasPolygons) {
+      maxTextures -= 3;
+    }
+  }
 
   maxTextures -= globeTranslucencyState.numberOfTextureUniforms;
 
@@ -3204,7 +3220,6 @@ function addDrawCommandsForTile(tileProvider, tile, frameState) {
     }
 
     // update vector collections clamped to terrain
-    const vectorData = surfaceTile.vectorData;
     if (defined(vectorData)) {
       uniformMapProperties.vectorSegmentTexture =
         vectorData.polylineSegmentTexture;

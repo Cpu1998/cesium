@@ -13,6 +13,7 @@ import BufferPolygon from "../BufferPolygon.js";
 import BufferPolygonCollection from "../BufferPolygonCollection.js";
 import BufferPolyline from "../BufferPolyline.js";
 import BufferPolylineCollection from "../BufferPolylineCollection.js";
+import HeightReference from "../HeightReference.js";
 import VertexAttributeSemantic from "../VertexAttributeSemantic.js";
 import ModelReader from "./ModelReader.js";
 import ModelUtility from "./ModelUtility.js";
@@ -64,6 +65,20 @@ function createVectorTileBuffersFromModelComponents(content, components) {
   }
 
   return result;
+}
+
+/**
+ * Height reference the tileset clamps its vector content with. Drapeable
+ * collections (polylines and polygons) are created with it so a draped
+ * collection does not also draw itself; point collections do not support
+ * draping and always keep {@link HeightReference.NONE}.
+ *
+ * @param {VectorGltf3DTileContent} content
+ * @returns {HeightReference}
+ * @ignore
+ */
+function getDrapeHeightReference(content) {
+  return content.tileset.heightReference ?? HeightReference.NONE;
 }
 
 /**
@@ -565,6 +580,10 @@ function appendNodeToBuffers(content, node, parentTransform, result) {
     new Matrix4(),
   );
 
+  // Drapeable collections are created with the tileset's height reference so
+  // they do not also draw themselves while draped onto a surface.
+  const drapeHeightReference = getDrapeHeightReference(content);
+
   const primitives = node.primitives;
   for (let i = 0; i < primitives.length; i++) {
     const primitive = primitives[i];
@@ -594,6 +613,7 @@ function appendNodeToBuffers(content, node, parentTransform, result) {
         primitiveCountMax: stats.polylinePrimitiveCount,
         vertexCountMax: stats.polylineVertexCount,
         allowPicking: true,
+        heightReference: drapeHeightReference,
         positionNormalized,
         positionDatatype,
       });
@@ -607,6 +627,7 @@ function appendNodeToBuffers(content, node, parentTransform, result) {
         holeCountMax: stats.polygonHoleCount,
         triangleCountMax: stats.polygonTriangleCount,
         allowPicking: true,
+        heightReference: drapeHeightReference,
         positionNormalized,
         positionDatatype,
       });

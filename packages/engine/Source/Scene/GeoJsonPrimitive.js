@@ -410,19 +410,20 @@ class GeoJsonPrimitive {
       points.update(frameState);
     }
 
+    // A draped collection is rendered by the vector provider, not by itself,
+    // but its update still initializes the PickIds that the provider packs
+    // into the surface's pick pass.
     if (defined(polylines)) {
+      polylines.update(frameState);
       if (defined(vectorProvider)) {
         vectorProvider.markForFrame(polylines, frameNumber, heightReference);
-      } else {
-        polylines.update(frameState);
       }
     }
 
     if (defined(polygons)) {
+      polygons.update(frameState);
       if (defined(vectorProvider)) {
         vectorProvider.markForFrame(polygons, frameNumber, heightReference);
-      } else {
-        polygons.update(frameState);
       }
     }
   }

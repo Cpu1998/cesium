@@ -4,9 +4,19 @@ import {
   BufferPolygon,
   BufferPolyline,
   GeoJsonPrimitive,
+  HeightReference,
+  SceneMode,
 } from "../../index.js";
 
 describe("Scene/GeoJsonPrimitive", function () {
+  const lineGeoJson = {
+    type: "LineString",
+    coordinates: [
+      [0.0, 0.0],
+      [1.0, 1.0],
+    ],
+  };
+
   it("builds buffer primitive collections from mixed feature geometries", function () {
     const geoJson = {
       type: "FeatureCollection",
@@ -165,5 +175,42 @@ describe("Scene/GeoJsonPrimitive", function () {
     await expectAsync(
       GeoJsonPrimitive.fromUrl(),
     ).toBeRejectedWithDeveloperError();
+  });
+
+  it("update initializes pick ids of a draped collection", function () {
+    const markForFrame = jasmine.createSpy("markForFrame");
+    const scene = { vectorProvider: { markForFrame } };
+
+    const loader = GeoJsonPrimitive.fromGeoJson(lineGeoJson, {
+      heightReference: HeightReference.CLAMP_TO_TERRAIN,
+      scene: scene,
+    });
+
+    let pickIdKey = 0;
+    const frameState = {
+      mode: SceneMode.SCENE3D,
+      passes: { render: true },
+      frameNumber: 3,
+      context: {
+        createPickId(pickObject) {
+          return { key: ++pickIdKey, pickObject };
+        },
+      },
+    };
+
+    loader.update(frameState);
+
+    expect(markForFrame).toHaveBeenCalledWith(
+      loader.polylines,
+      3,
+      HeightReference.CLAMP_TO_TERRAIN,
+    );
+
+    // A draped collection is rendered by the vector provider, not by itself.
+    expect(loader.polylines._renderContext).toBeNull();
+
+    // The vector provider packs the collection's pick ids into the surface's
+    // pick pass; they must not stay at PickId.NULL_PICK_ID (0).
+    expect(loader.polylines.get(0, new BufferPolyline())._pickId).not.toBe(0);
   });
 });

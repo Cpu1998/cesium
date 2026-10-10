@@ -11,6 +11,7 @@ import {
   BufferPolygonCollection,
   BufferPolygonMaterial,
   Cesium3DTileStyle,
+  HeightReference,
   SceneMode,
   VectorGltf3DTileContent,
 } from "../../index.js";
@@ -299,6 +300,59 @@ describe("Scene/VectorGltf3DTileContent", () => {
     tileset._vectorBlendOption = BlendOption.TRANSLUCENT;
     content.update(tileset, frameState);
     expect(points.blendOption).toBe(BlendOption.TRANSLUCENT);
+  });
+
+  it("update initializes pick ids of a draped, selected collection", () => {
+    const markForFrame = jasmine.createSpy("markForFrame");
+    const tileset = {
+      _vectorBlendOption: BlendOption.OPAQUE,
+      _heightReference: HeightReference.CLAMP_TO_TERRAIN,
+      _scene: { vectorProvider: { markForFrame } },
+    };
+    const tile = {
+      computedTransform: Matrix4.clone(Matrix4.IDENTITY),
+      _selectedFrame: 7,
+    };
+    content = new VectorGltf3DTileContent(tileset, tile, {});
+    content._ready = true;
+
+    const lines = new BufferPolylineCollection({
+      allowPicking: true,
+      heightReference: HeightReference.CLAMP_TO_TERRAIN,
+    });
+    lines.add(
+      { positions: new Int8Array([0, 0, 0, 1, 1, 1]) },
+      scratchPolyline,
+    );
+    content._collections = [lines];
+    content._collectionLocalMatrices = [Matrix4.clone(Matrix4.IDENTITY)];
+
+    let pickIdKey = 0;
+    const frameState = {
+      mode: SceneMode.SCENE3D,
+      passes: { render: true },
+      frameNumber: 7,
+      context: {
+        createPickId(pickObject) {
+          return { key: ++pickIdKey, pickObject };
+        },
+      },
+    };
+
+    content.update(tileset, frameState);
+
+    expect(markForFrame).toHaveBeenCalledWith(
+      lines,
+      7,
+      HeightReference.CLAMP_TO_TERRAIN,
+    );
+
+    // A draped collection is rendered by the vector provider, not by itself.
+    expect(lines._renderContext).toBeNull();
+
+    // The vector provider packs the collection's pick ids into the surface's
+    // pick pass; they must not stay at PickId.NULL_PICK_ID (0).
+    expect(lines.get(0, new BufferPolyline())._pickId).not.toBe(0);
   });
 });
 
