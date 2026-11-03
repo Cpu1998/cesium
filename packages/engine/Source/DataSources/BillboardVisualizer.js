@@ -1,3 +1,10 @@
+// ═══ 【导读】BillboardVisualizer.js —— entity.billboard → BillboardCollection 的同步代表 ═══
+// 【导读】与 GeometryVisualizer（合批 Primitive）不同，billboard/label/point 这类「图元级」
+// 【导读】图形直接映射到底层集合（Billboard/Label/PointPrimitives）的对应成员：
+// 【导读】监听 collectionChanged 增删 Billboard，每帧 update 把 Graphics 的全部 Property
+// 【导读】逐一 getValue(time) 后赋给 Billboard。LabelVisualizer/PointVisualizer 同构（换集合与字段而已）。
+// 【导读】billboard.id = entity：屏幕拾取 scene.pick(...).id 即得 Entity 的机制源头。
+// 【导读】详见 study/03-Entity数据体系.md §5/§7。
 import AssociativeArray from "../Core/AssociativeArray.js";
 import BoundingRectangle from "../Core/BoundingRectangle.js";
 import Cartesian2 from "../Core/Cartesian2.js";
@@ -61,6 +68,8 @@ function BillboardVisualizer(entityCluster, entityCollection) {
   }
   //>>includeEnd('debug');
 
+  // 【导读】监听集合变化，构造时回放存量实体（与 GeometryVisualizer 同样的「先记账后处理」姿态，
+  // 【导读】但 billboard 更轻：增删直接同步到 BillboardCollection，不等帧）。
   entityCollection.collectionChanged.addEventListener(
     BillboardVisualizer.prototype._onCollectionChanged,
     this,
@@ -79,6 +88,10 @@ function BillboardVisualizer(entityCluster, entityCollection) {
  * @param {JulianDate} time The time to update to.
  * @returns {boolean} This function always returns true.
  */
+  // 【导读】每帧同步主体：逐 Entity ①先算 show（isShowing×isAvailable×show 属性）；②取 position/image；
+  // 【导读】③懒创建 Billboard（billboard.id = entity ← 拾取机制）；④把 Graphics 的每个 Property
+  // 【导读】getValue(time) 后赋给 Billboard 同名字段（常量 Property 也有快速路径，见 Property.isConstant）。
+  // 【导读】注意 image 故意最后赋：等其它字段就绪后再入纹理图集，避免图集重排。
 BillboardVisualizer.prototype.update = function (time) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(time)) {
@@ -119,6 +132,7 @@ BillboardVisualizer.prototype.update = function (time) {
       continue;
     }
 
+    // 【导读】位置非常量（会动）→ 标记聚合脏位， EntityCluster 下帧重新聚类。
     if (!Property.isConstant(entity._position)) {
       cluster._clusterDirty = true;
     }
@@ -253,6 +267,8 @@ BillboardVisualizer.prototype.update = function (time) {
  *                       BoundingSphereState.FAILED if the entity has no visualization in the current scene.
  * @private
  */
+  // 【导读】包围球：billboard 高度参考为 NONE 时球心=当前位置，半径 0；贴地时等 _clampedPosition
+  // 【导读】（地形采样结果）就绪——PENDING 状态由 DataSourceDisplay.getBoundingSphere 上抛给 zoomTo/跟踪链路。
 BillboardVisualizer.prototype.getBoundingSphere = function (entity, result) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(entity)) {
@@ -305,6 +321,8 @@ BillboardVisualizer.prototype.destroy = function () {
   return destroyObject(this);
 };
 
+  // 【导读】集合变化回调：有 billboard+position 的实体入 _items，失去属性或被删则归还 Billboard。
+  // 【导读】注意它直接操作集合（图元便宜），不像 GeometryVisualizer 需要延迟到帧内重建几何。
 BillboardVisualizer.prototype._onCollectionChanged = function (
   entityCollection,
   added,
