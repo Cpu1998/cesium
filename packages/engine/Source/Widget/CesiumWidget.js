@@ -1,3 +1,13 @@
+// ═══ 【导读】CesiumWidget.js —— 引擎层三维组件（engine 包）═══
+// 【导读】CesiumWidget 是"能独立使用的最小三维地球"：创建 canvas/WebGL 上下文/Scene，
+// 【导读】自带默认底图（ion 世界影像）、星空/大气/太阳/月亮、时钟与渲染循环，但不含任何 UI 部件。
+// 【导读】Viewer（widgets 包）就是在它之上组装工具栏/时间轴等 UI。
+// 【导读】主链路：function CesiumWidget() 构造 → new Scene()（真正建 WebGL）→ Globe/SkyBox/底图 →
+// 【导读】→ DataSourceDisplay（Entity 可视化）→ startRenderLoop（requestAnimationFrame 帧循环）。
+// 【导读】每帧骨架（CesiumWidget.prototype.render）：scene.initializeFrame → clock.tick → scene.render。
+// 【导读】requestRenderMode 按需渲染的开关在 Scene 构造参数里（Scene.js 内部判断是否真的画帧）。
+// 【导读】帧循环内部、Scene.render 的多 Pass 细节由第 5 棒深挖；Entity 体系由第 3 棒深挖。
+// 【导读】深入解读见 study/01-Viewer创建与场景初始化.md；架构总览见 study/00-总览-架构与目录地图.md。
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import Cartographic from "../Core/Cartographic.js";
@@ -35,6 +45,7 @@ import TimeDynamicPointCloud from "../Scene/TimeDynamicPointCloud.js";
 import VoxelPrimitive from "../Scene/VoxelPrimitive.js";
 import BufferPrimitiveCollection from "../Scene/BufferPrimitiveCollection.js";
 
+// 【导读】把数据源自带的时钟（起止/倍速/当前时刻）拷贝进全局共享 clock。
 function trackDataSourceClock(clock, dataSource) {
   if (defined(dataSource)) {
     const dataSourceClock = dataSource.clock;
@@ -44,11 +55,15 @@ function trackDataSourceClock(clock, dataSource) {
   }
 }
 
+// 【导读】渲染循环启动器：requestAnimationFrame 自循环；每帧 = resize + render。
+// 【导读】targetFrameRate 未设时跟随浏览器刷新率；设了则按间隔丢帧节流。
+// 【导读】渲染抛错时停循环（useDefaultRenderLoop=false）并弹错误面板。循环内部细节第 5 棒深挖。
 function startRenderLoop(widget) {
   widget._renderLoopRunning = true;
 
   let lastFrameTime = 0;
   function render(frameTime) {
+    // 【导读】widget 已销毁则直接遇出（requestAnimationFrame 回调还在队列里也会安全终止）。
     if (widget.isDestroyed()) {
       return;
     }
@@ -88,6 +103,7 @@ function startRenderLoop(widget) {
   requestAnimationFrame(render);
 }
 
+// 【导读】像素比策略：useBrowserRecommendedResolution=true 时忽略 devicePixelRatio（省电省 GPU），再乘 resolutionScale。
 function configurePixelRatio(widget) {
   let pixelRatio = widget._useBrowserRecommendedResolution
     ? 1.0
@@ -100,6 +116,7 @@ function configurePixelRatio(widget) {
   return pixelRatio;
 }
 
+// 【导读】按容器 CSS 尺寸×像素比设置 canvas 缓冲区大小；宽高为 0 时置 _canRender=false 阻止渲染。
 function configureCanvasSize(widget) {
   const canvas = widget._canvas;
   let width = canvas.clientWidth;
@@ -119,6 +136,7 @@ function configureCanvasSize(widget) {
   widget._lastDevicePixelRatio = window.devicePixelRatio;
 }
 
+// 【导读】同步相机视锥宽高比：透视相机改 frustum.aspectRatio，正交相机（2D）改 top/bottom。
 function configureCameraFrustum(widget) {
   const canvas = widget._canvas;
   const width = canvas.width;
@@ -204,6 +222,9 @@ function configureCameraFrustum(widget) {
  *     mapProjection: new Cesium.WebMercatorProjection()
  * });
  */
+// 【导读】CesiumWidget 构造全流程（逐段注释）：DOM/canvas → 字段初始化 → 时钟 → canvas 尺寸 →
+// 【导读】new Scene（WebGL 上下文在这里诞生）→ Globe/星空/大气/默认底图/地形 → 输入处理 →
+// 【导读】启动渲染循环 → DataSourceDisplay/事件接线。构造失败（如 WebGL 不可用）弹面板并重抛异常。
 function CesiumWidget(container, options) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(container)) {
@@ -216,10 +237,12 @@ function CesiumWidget(container, options) {
   options = options ?? Frozen.EMPTY_OBJECT;
 
   //Configure the widget DOM elements
+  // 【导读】DOM 两层：cesium-widget(根 div) + 内部 canvas；版权条默认也挂在根 div 下（可由 creditContainer 重定向）。
   const element = document.createElement("div");
   element.className = "cesium-widget";
   container.appendChild(element);
 
+  // 【导读】创建渲染主画布：禁右键菜单/禁选中；支持 image-rendering:pixelated 优化低分辨率放大。
   const canvas = document.createElement("canvas");
   const supportsImageRenderingPixelated =
     FeatureDetection.supportsImageRenderingPixelated();
@@ -276,6 +299,7 @@ function CesiumWidget(container, options) {
   const useBrowserRecommendedResolution =
     options.useBrowserRecommendedResolution ?? true;
 
+  // 【导读】实例字段初始化：缩放/跟踪/zoom 状态机（_zoomTarget/_zoomPromise 延迟到 postRender 完成）。
   this._element = element;
   this._container = container;
   this._canvas = canvas;
@@ -302,15 +326,19 @@ function CesiumWidget(container, options) {
   this._trackedEntityChanged = new Event();
   this._allowDataSourcesToSuspendAnimation = true;
 
+  // 【导读】时钟：Viewer 会把它的 clock 传进来共享；shouldAnimate 决定时间是否自动流逝（动画总开关）。
   this._clock = defined(options.clock) ? options.clock : new Clock();
 
   if (defined(options.shouldAnimate)) {
     this._clock.shouldAnimate = options.shouldAnimate;
   }
 
+  // 【导读】先按容器尺寸初始化 canvas 缓冲区（注意：必须在创建 Scene 前完成，否则首帧尺寸不对）。
   configureCanvasSize(this);
 
   try {
+    // 【导读】创建 Scene：Cesium 渲染世界的根对象，WebGL 上下文在 Scene 构造里创建；
+    // 【导读】requestRenderMode/msaaSamples/shadows 等渲染参数都透传给 Scene。
     const ellipsoid = options.ellipsoid ?? Ellipsoid.default;
 
     const scene = new Scene({
@@ -331,12 +359,15 @@ function CesiumWidget(container, options) {
     });
     this._scene = scene;
 
+    // 【导读】限制相机不能绕 Z 轴任意滚转（保持"北上"习惯）；随后同步像素比与视锥宽高比。
     scene.camera.constrainedAxis = Cartesian3.UNIT_Z;
 
     configurePixelRatio(this);
     configureCameraFrustum(this);
 
     let globe = options.globe;
+    // 【导读】地球本体：默认 new Globe(ellipsoid)；传 false 则无地球（此时也不加底图/大气）；
+    // 【导读】terrainShadows 控制地形接收/投射阴影。地形加载调度在 Globe/地形体系（第 2 棒涉及）。
     if (!defined(globe)) {
       globe = new Globe(ellipsoid);
     }
@@ -346,6 +377,7 @@ function CesiumWidget(container, options) {
     }
 
     let skyBox = options.skyBox;
+    // 【导读】天空盒：仅在默认 WGS84 椭球下自动建星空+太阳+月亮；传 false 全关（纯净模式）。
     if (!defined(skyBox) && Ellipsoid.WGS84.equals(ellipsoid)) {
       skyBox = SkyBox.createEarthSkyBox();
     }
@@ -359,6 +391,7 @@ function CesiumWidget(container, options) {
     }
 
     // Blue sky, and the glow around the Earth's limb.
+    // 【导读】大气层辉光：同样仅 WGS84 下默认开启；globe 关闭时 show=false（没地球就没大气）。
     let skyAtmosphere = options.skyAtmosphere;
     if (!defined(skyAtmosphere) && Ellipsoid.WGS84.equals(ellipsoid)) {
       skyAtmosphere = new SkyAtmosphere(ellipsoid);
@@ -369,6 +402,8 @@ function CesiumWidget(container, options) {
     }
 
     // Set the base imagery layer
+    // 【导读】默认底图：未传 baseLayer 时用 ImageryLayer.fromWorldImagery()（ion 在线世界影像）；
+    // 【导读】底图作为一个普通 ImageryLayer 加进 scene.imageryLayers 最底层（影像管线第 2 棒深挖）。
     let baseLayer = options.baseLayer;
     if (options.globe !== false && baseLayer !== false) {
       if (!defined(baseLayer)) {
@@ -378,6 +413,7 @@ function CesiumWidget(container, options) {
     }
 
     // Set the terrain provider if one is provided.
+    // 【导读】同步式地形：直接赋 scene.terrainProvider；异步 Terrain 对象则走 scene.setTerrain（与 Viewer 同名分支互斥）。
     if (defined(options.terrainProvider) && options.globe !== false) {
       scene.terrainProvider = options.terrainProvider;
     }
@@ -394,6 +430,7 @@ function CesiumWidget(container, options) {
       scene.setTerrain(options.terrain);
     }
 
+    // 【导读】屏幕输入处理器：鼠标/触摸事件规范化（后续相机控制与拾取都基于它）。
     this._screenSpaceEventHandler = new ScreenSpaceEventHandler(canvas);
 
     if (defined(options.sceneMode)) {
@@ -405,12 +442,15 @@ function CesiumWidget(container, options) {
       }
     }
 
+    // 【导读】启动渲染循环：先置 undefined 再赋值，确保一定经过 setter→startRenderLoop（默认 true）。
+    // 【导读】这是构造函数里"第一帧开始动起来"的时刻点。
     this._useDefaultRenderLoop = undefined;
     this.useDefaultRenderLoop = options.useDefaultRenderLoop ?? true;
 
     this._targetFrameRate = undefined;
     this.targetFrameRate = options.targetFrameRate;
 
+    // 【导读】渲染错误兜底：Scene.render 抛错时停循环并弹错误面板（showRenderLoopErrors 可关）。
     const that = this;
     this._onRenderError = function (scene, error) {
       that._useDefaultRenderLoop = false;
@@ -423,6 +463,7 @@ function CesiumWidget(container, options) {
     };
     scene.renderError.addEventListener(this._onRenderError);
 
+    // 【导读】外部可注入共享的 DataSourceCollection（此时销毁 widget 不负责销毁它）。
     let dataSourceCollection = options.dataSources;
     let destroyDataSourceCollection = false;
     if (!defined(dataSourceCollection)) {
@@ -430,6 +471,7 @@ function CesiumWidget(container, options) {
       destroyDataSourceCollection = true;
     }
 
+    // 【导读】DataSourceDisplay：把 Entity（声明式数据）变成可视化 Primitive（可渲染对象）的中枢（第 3 棒深挖）。
     const dataSourceDisplay = new DataSourceDisplay({
       scene: scene,
       dataSourceCollection: dataSourceCollection,
@@ -447,6 +489,7 @@ function CesiumWidget(container, options) {
     this._canAnimateUpdateCallback = this._updateCanAnimate;
 
     eventHelper.add(this._clock.onTick, CesiumWidget.prototype._onTick, this);
+    // 【导读】场景形变（3D↔2D↔哥伦布）开始时取消跟踪实体，避免相机约束冲突。
     eventHelper.add(
       scene.morphStart,
       CesiumWidget.prototype._clearTrackedObject,
@@ -465,6 +508,7 @@ function CesiumWidget(container, options) {
       this,
     );
 
+    // 【导读】每帧渲染完成后回调 _postRender：在这里等包围球就绪并完成 zoomTo/跟踪实体的收尾（延迟到帧尾避免半成品画面）。
     eventHelper.add(scene.postRender, CesiumWidget.prototype._postRender, this);
 
     // We need to subscribe to the data sources and collections so that we can clear the
@@ -488,6 +532,7 @@ function CesiumWidget(container, options) {
       this,
     );
   } catch (error) {
+    // 【导读】构造失败（常见：浏览器/显卡不支持 WebGL）时弹错误面板并把异常重抛给调用方。
     if (showRenderLoopErrors) {
       const title = "Error constructing CesiumWidget.";
       const message =
@@ -498,6 +543,8 @@ function CesiumWidget(container, options) {
   }
 }
 
+// 【导读】属性层：container/canvas/scene/camera/clock 等真实对象全部来自 Scene/DataSourceDisplay；
+// 【导读】仅分辨率/帧率/跟踪/缩放等少量状态由 widget 自己持有。
 Object.defineProperties(CesiumWidget.prototype, {
   /**
    * Gets the parent container.
@@ -737,6 +784,7 @@ Object.defineProperties(CesiumWidget.prototype, {
       return this._useDefaultRenderLoop;
     },
     set: function (value) {
+      // 【导读】帧循环总开关 setter：从 false→true 且循环未跑时立即 startRenderLoop（构造时赋默认值也走这里）。
       if (this._useDefaultRenderLoop !== value) {
         this._useDefaultRenderLoop = value;
         if (value && !this._renderLoopRunning) {
@@ -828,6 +876,8 @@ Object.defineProperties(CesiumWidget.prototype, {
       return this._trackedEntity;
     },
     set: function (value) {
+      // 【导读】跟踪实体 setter：取消在途 zoom；新目标有位置则置延迟标志（等包围球就绪后在 postRender 真正开始跟踪），
+      // 【导读】取消跟踪时解锁平移/倾斜限制并复位相机变换矩阵。
       if (this._trackedEntity !== value) {
         this._trackedEntity = value;
 
@@ -908,6 +958,7 @@ Object.defineProperties(CesiumWidget.prototype, {
  * @param {string} [message] A helpful, user-facing message to display prior to the detailed error information.  This string is interpreted as HTML.
  * @param {string} [error] The error to be displayed on the error panel.  This string is formatted using {@link formatError} and then displayed as text.
  */
+// 【导读】渲染/构造错误的 HTML 面板（标题+详情+OK），支持展开完整堆栈。
 CesiumWidget.prototype.showErrorPanel = function (title, message, error) {
   const element = this._element;
   const overlay = document.createElement("div");
@@ -1018,6 +1069,7 @@ CesiumWidget.prototype.isDestroyed = function () {
  * Destroys the widget.  Should be called if permanently
  * removing the widget from layout.
  */
+// 【导读】销毁：逐个解除数据源监听→销毁 DataSourceDisplay/Scene（释放 WebGL 资源）→移除 DOM→EventHelper 解绑。
 CesiumWidget.prototype.destroy = function () {
   // Unsubscribe from data sources
   const dataSources = this.dataSources;
@@ -1050,6 +1102,7 @@ CesiumWidget.prototype.destroy = function () {
  * This function is called automatically as needed unless
  * <code>useDefaultRenderLoop</code> is set to false.
  */
+// 【导读】尺寸自适应：容器 CSS 尺寸/设备像素比任一变化时重设 canvas 缓冲区与相机视锥，并 requestRender 一帧。
 CesiumWidget.prototype.resize = function () {
   const canvas = this._canvas;
   if (
@@ -1072,6 +1125,10 @@ CesiumWidget.prototype.resize = function () {
  * Renders the scene.  This function is called automatically
  * unless <code>useDefaultRenderLoop</code> is set to false;
  */
+// 【导读】一帧的骨架（第 5 棒深挖 Scene.render 内部）：
+// 【导读】① scene.initializeFrame：帧前清理（着色器/纹理缓存、tween、高度回调等）；
+// 【导读】② clock.tick：推进仿真时间并广播 onTick（驱动 DataSourceDisplay.update/跟踪相机）；
+// 【导读】③ scene.render(time)：更新相机→执行各渲染 Pass→提交 WebGL 命令（requestRenderMode 在此内部判断是否真画）。
 CesiumWidget.prototype.render = function () {
   if (this._canRender) {
     this._scene.initializeFrame();
@@ -1131,6 +1188,8 @@ const boundingSphereScratch = new BoundingSphere();
  * @private
  */
 CesiumWidget.prototype._onTick = function (clock) {
+  // 【导读】时钟 tick：先让 DataSourceDisplay 把 Entity 变化同步成 Primitive（isUpdated=false 时可暂停动画），
+  // 【导读】再更新跟踪实体的 EntityView 相机（包围球就绪才动）。
   const time = clock.currentTime;
 
   const isUpdated = this._dataSourceDisplay.update(time);
@@ -1276,6 +1335,7 @@ CesiumWidget.prototype.removeController = function (controller) {
  * @param {HeadingPitchRange} [offset] The offset from the center of the entity in the local east-north-up reference frame.
  * @returns {Promise<boolean>} A Promise that resolves to true if the zoom was successful or false if the target is not currently visualized in the scene or the zoom was cancelled.
  */
+// 【导读】异步定位（无飞行动画），转发 zoomToOrFly。
 CesiumWidget.prototype.zoomTo = function (target, offset) {
   const options = {
     offset: offset,
@@ -1305,10 +1365,13 @@ CesiumWidget.prototype.zoomTo = function (target, offset) {
  * @param {HeadingPitchRange} [options.offset] The offset from the target in the local east-north-up reference frame centered at the target.
  * @returns {Promise<boolean>} A Promise that resolves to true if the flight was successful or false if the target is not currently visualized in the scene or the flight was cancelled. //TODO: Cleanup entity mentions
  */
+// 【导读】带飞行动画定位，转发 zoomToOrFly。
 CesiumWidget.prototype.flyTo = function (target, options) {
   return zoomToOrFly(this, target, options, true);
 };
 
+// 【导读】zoomTo/flyTo 公共实现：返回 Promise，目标可以是 Entity/数据源/Tileset/影像层/Promise；
+// 【导读】解析出目标后存入 _zoomTarget，真正移动相机延迟到 _postRender（等可视化就绪、包围球算完）。
 function zoomToOrFly(that, zoomTarget, options, isFlight) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(zoomTarget)) {
@@ -1432,12 +1495,14 @@ function cancelZoom(widget) {
  * @private
  */
 CesiumWidget.prototype._postRender = function () {
+  // 【导读】帧尾收尾：更新 zoom 目标（包围球就绪后调 camera.flyToBoundingSphere/viewBoundingSphere）与延迟跟踪。
   updateZoomTarget(this);
   updateTrackedEntity(this);
 };
 
 const zoomTargetBoundingSphereScratch = new BoundingSphere();
 
+// 【导读】帧尾执行 zoom：按目标类型取包围球（Entity 组/Tileset/点云/影像矩形），再一次性摆机位或起飞。
 function updateZoomTarget(widget) {
   const target = widget._zoomTarget;
   if (!defined(target) || widget.scene.mode === SceneMode.MORPHING) {
@@ -1585,6 +1650,7 @@ function updateZoomTarget(widget) {
 
 const trackedEntityBoundingSphereScratch = new BoundingSphere();
 
+// 【导读】帧尾启动"跟踪实体"：拿到当前位置与包围球后建 EntityView 锁定相机（并禁平移/倾斜防穿模）。
 function updateTrackedEntity(widget) {
   if (!widget._needTrackedEntityUpdate) {
     return;

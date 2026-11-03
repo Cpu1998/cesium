@@ -1,3 +1,11 @@
+// ═══ 【导读】Viewer.js —— 应用层总入口（widgets 包）═══
+// 【导读】Viewer = CesiumWidget(引擎层三维组件) + 一整套 UI 部件（工具栏/时间轴/动画/信息框）的组装器，
+// 【导读】是 new Cesium.Viewer(...) 背后的实现。它自己不渲染任何像素，只做三件事：
+// 【导读】① 搭 DOM 骨架 ② 创建 CesiumWidget（真正创建 Scene/WebGL 上下文）③ 创建各 UI 部件并接事件。
+// 【导读】主链路：function Viewer() 构造函数 → new CesiumWidget() → Scene 创建 → 各部件 → 事件接线。
+// 【导读】渲染循环、Scene 内部均在 packages/engine/Source/Widget/CesiumWidget.js 与 Scene/Scene.js。
+// 【导读】阅读建议：先看本文件 constructor，再看 CesiumWidget.js 的 constructor 与 startRenderLoop。
+// 【导读】深入解读见 study/01-Viewer创建与场景初始化.md；架构总览见 study/00-总览-架构与目录地图.md。
 import {
   BoundingSphere,
   BoundingSphereState,
@@ -42,12 +50,14 @@ import VRButton from "../VRButton/VRButton.js";
 
 const boundingSphereScratch = new BoundingSphere();
 
+// 【导读】时间轴拖动回调：把拖到的时刻写入 clock 并暂停自动推进（shouldAnimate=false）。
 function onTimelineScrubfunction(e) {
   const clock = e.clock;
   clock.currentTime = e.timeJulian;
   clock.shouldAnimate = false;
 }
 
+// 【导读】把 3D Tiles 要素的所有属性拼成 HTML 表格，作为临时 Entity 的 description（信息框内容）。
 function getCesium3DTileFeatureDescription(feature) {
   const propertyIds = feature.getPropertyIds();
 
@@ -66,6 +76,7 @@ function getCesium3DTileFeatureDescription(feature) {
   return html;
 }
 
+// 【导读】按优先级（name>含name>title>id>element>…id）从要素属性里猜"显示名称"，找不到则 Unnamed Feature。
 function getCesium3DTileFeatureName(feature) {
   // We need to iterate all property IDs to find potential
   // candidates, but since we prefer some property IDs
@@ -103,6 +114,8 @@ function getCesium3DTileFeatureName(feature) {
   return "Unnamed Feature";
 }
 
+// 【导读】点击拾取统一入口：先 scene.pick 尝试 Entity / 3D Tiles 要素（后者包成临时 Entity），
+// 【导读】拾取不到再降级走 pickImageryLayerFeature（异步拾取底图要素，如 WMS GetFeatureInfo）。
 function pickEntity(viewer, e) {
   const picked = viewer.scene.pick(e.position);
   if (defined(picked)) {
@@ -129,6 +142,7 @@ function pickEntity(viewer, e) {
 
 const scratchStopTime = new JulianDate();
 
+// 【导读】数据源时钟变化时同步时间轴：zoomTo 到数据源的起止时间（起止相等时补一个极小间隔防非法配置）。
 function linkTimelineToDataSourceClock(timeline, dataSource) {
   if (defined(dataSource)) {
     const dataSourceClock = dataSource.clock;
@@ -152,6 +166,7 @@ function linkTimelineToDataSourceClock(timeline, dataSource) {
 
 const cartesian3Scratch = new Cartesian3();
 
+// 【导读】globe 关闭时 scene.imageryLayers 不存在，找第一个 Cesium3DTileset 兜底（3D Tiles 上叠加的影像）。
 function findFirstTileset(primitives) {
   const length = primitives.length;
   for (let i = 0; i < length; ++i) {
@@ -163,6 +178,8 @@ function findFirstTileset(primitives) {
   return undefined;
 }
 
+// 【导读】异步拾取影像图层要素（构造射线→imageryLayers.pickImageryLayerFeatures→等 Promise），
+// 【导读】等待期间先显示 "Loading..." 占位 Entity，结果到达后替换 selectedEntity。
 function pickImageryLayerFeature(viewer, windowPosition) {
   const scene = viewer.scene;
   const pickRay = scene.camera.getPickRay(windowPosition);
@@ -237,6 +254,7 @@ function pickImageryLayerFeature(viewer, windowPosition) {
   return loadingMessage;
 }
 
+// 【导读】拾取无结果时的占位 Entity（"None"）。
 function createNoFeaturesEntity() {
   return new Entity({
     id: "None",
@@ -244,6 +262,7 @@ function createNoFeaturesEntity() {
   });
 }
 
+// 【导读】VR 模式开关：把所有 UI 部件设为 hidden/visible 并重排 VR 按钮与整体布局。
 function enableVRUI(viewer, enabled) {
   const geocoder = viewer._geocoder;
   const homeButton = viewer._homeButton;
@@ -424,6 +443,8 @@ function enableVRUI(viewer, enabled) {
  *   window.alert(error);
  * });
  */
+// 【导读】Viewer 构造函数全流程（逐段注释）：参数校验→DOM 骨架→Clock→CesiumWidget→各 UI 部件→事件接线。
+// 【导读】时序图与逐阶段详解见 study/01-Viewer创建与场景初始化.md。
 function Viewer(container, options) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(container)) {
@@ -444,6 +465,8 @@ function Viewer(container, options) {
   }
   //>>includeEnd('debug');
 
+  // 【导读】是否创建底图选择器：未显式关 globe 且未关 baseLayerPicker 时才建；
+  // 【导读】只要用户自己传了 baseLayer/imageryProvider/selectedImageryProviderViewModel，下面就不再走选择器默认底图。
   const createBaseLayerPicker =
     (!defined(options.globe) || options.globe !== false) &&
     (!defined(options.baseLayerPicker) || options.baseLayerPicker !== false);
@@ -474,6 +497,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
 
   const that = this;
 
+  // 【导读】DOM 骨架三层：cesium-viewer(根) > cesium-viewer-cesiumWidgetContainer(三维区) + cesium-viewer-bottom(版权条)，
+  // 【导读】后续各 UI 部件（工具栏/时间轴/动画控件…）也依次 append 到 viewerContainer 下，形成完整页面结构。
   const viewerContainer = document.createElement("div");
   viewerContainer.className = "cesium-viewer";
   container.appendChild(viewerContainer);
@@ -491,6 +516,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
 
   const scene3DOnly = options.scene3DOnly ?? false;
 
+  // 【导读】时钟：默认自建 Clock+ClockViewModel；外部传 clockViewModel 则复用（销毁时也不负责 destroy）。
+  // 【导读】shouldAnimate 不在这里设，而是透传给 CesiumWidget，由它写回共享的 clock。
   let clock;
   let clockViewModel;
   let destroyClockViewModel = false;
@@ -504,6 +531,10 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Cesium widget
+  // 【导读】创建 CesiumWidget（引擎层组件）：真正创建 canvas/WebGL 上下文/Scene 的地方，
+  // 【导读】Viewer 的大多数 options 只是原样透传（skyBox/globe/terrain/requestRenderMode/contextOptions…），
+  // 【导读】唯一改写的是 baseLayer：若 Viewer 侧要用 BaseLayerPicker 或用户自带底图，这里先传 false
+  // 【导读】阻止 CesiumWidget 默认加载 ion 世界影像，避免重复加载（后面由 BaseLayerPicker 或下方 add 补上）。
   const cesiumWidget = new CesiumWidget(cesiumWidgetContainer, {
     baseLayer:
       (createBaseLayerPicker &&
@@ -544,13 +575,17 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     msaaSamples: options.msaaSamples,
   });
 
+  // 【导读】scene 是一切三维操作的根：相机/globe/影像图层/primitives 都挂在它上面。
   const scene = cesiumWidget.scene;
 
+  // 【导读】EventHelper：集中登记事件订阅，destroy 时一次性 removeAll，防内存泄漏。
   const eventHelper = new EventHelper();
 
+  // 【导读】时钟每 tick 一次就更新选中指示器/信息框（跟踪实体的包围球位置）。
   eventHelper.add(clock.onTick, Viewer.prototype._onTick, this);
 
   // Selection Indicator
+  // 【导读】选中指示器：绿框动画部件，跟随选中实体的屏幕位置（默认创建，可 selectionIndicator:false 关闭）。
   let selectionIndicator;
   if (
     !defined(options.selectionIndicator) ||
@@ -567,6 +602,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Info Box
+  // 【导读】信息框：选中实体后弹出的属性面板（标题/description HTML/相机按钮）。
   let infoBox;
   if (!defined(options.infoBox) || options.infoBox !== false) {
     const infoBoxContainer = document.createElement("div");
@@ -588,11 +624,13 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Main Toolbar
+  // 【导读】右上角主工具栏容器：地理编码/主页/场景模式/底图选择等按钮都挂在这里。
   const toolbar = document.createElement("div");
   toolbar.className = "cesium-viewer-toolbar";
   viewerContainer.appendChild(toolbar);
 
   // Geocoder
+  // 【导读】地理编码搜索框：默认用 Ion 服务，也可传字符串枚举或自定义 GeocoderService 数组；搜索前先清除跟踪实体。
   let geocoder;
   if (!defined(options.geocoder) || options.geocoder !== false) {
     const geocoderContainer = document.createElement("div");
@@ -628,6 +666,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // HomeButton
+  // 【导读】主页按钮：飞回默认视角；若与地理编码同存，还会清空搜索框；点击前先取消跟踪。
   let homeButton;
   if (!defined(options.homeButton) || options.homeButton !== false) {
     homeButton = new HomeButton(toolbar, scene);
@@ -660,6 +699,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   //>>includeEnd('debug');
 
   let sceneModePicker;
+  // 【导读】场景模式切换（3D/2D/哥伦布视图）：scene3DOnly 时静默不建（显式传 true 则报错）；
+  // 【导读】2D/哥伦布模式靠 scene.morphTo2D/morphToColumbusView 形变过渡。
   if (
     !scene3DOnly &&
     (!defined(options.sceneModePicker) || options.sceneModePicker !== false)
@@ -673,6 +714,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // BaseLayerPicker
+  // 【导读】底图/地形选择器：内置一套 ProviderViewModel（默认 ion 影像+地形），选中即热切换 scene 里的图层；
+  // 【导读】imageryProviderViewModels/terrainProviderViewModels 可换成自己的候选列表。
   let baseLayerPicker;
   let baseLayerPickerDropDown;
   if (createBaseLayerPicker) {
@@ -701,6 +744,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // These need to be set after the BaseLayerPicker is created in order to take effect
+  // 【导读】用户显式传 baseLayer 时的覆盖逻辑：先让 BaseLayerPicker 取消选中（避免它再切回默认图），
+  // 【导读】再 removeAll 清空默认图层，最后把用户的 ImageryLayer 加到最底层（影像体系第 2 棒深挖）。
   if (defined(options.baseLayer) && options.baseLayer !== false) {
     if (createBaseLayerPicker) {
       baseLayerPicker.viewModel.selectedImagery = undefined;
@@ -709,6 +754,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     scene.imageryLayers.add(options.baseLayer);
   }
 
+  // 【导读】terrainProvider：同步式地形提供者，直接赋给 scene.terrainProvider。
   if (defined(options.terrainProvider)) {
     if (createBaseLayerPicker) {
       baseLayerPicker.viewModel.selectedTerrain = undefined;
@@ -716,6 +762,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     scene.terrainProvider = options.terrainProvider;
   }
 
+  // 【导读】terrain：新式异步地形入口（如 Terrain.fromWorldTerrain()），与 terrainProvider 二选一；
+  // 【导读】走 scene.setTerrain 异步就绪；且若同时用 BaseLayerPicker，需要开 depthTestAgainstTerrain 防地形穿插。
   if (defined(options.terrain)) {
     //>>includeStart('debug', pragmas.debug);
     if (defined(options.terrainProvider)) {
@@ -734,6 +782,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Navigation Help Button
+  // 【导读】操作帮助按钮：首次访问（localStorage 标记）自动弹出操作引导。
   let navigationHelpButton;
   if (
     !defined(options.navigationHelpButton) ||
@@ -764,6 +813,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Animation
+  // 【导读】左下角动画时钟控件（播放/暂停/倍速），视图层由 AnimationViewModel 驱动，数据来自共享 clockViewModel。
   let animation;
   if (!defined(options.animation) || options.animation !== false) {
     const animationContainer = document.createElement("div");
@@ -776,6 +826,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Timeline
+  // 【导读】底部时间轴：zoomTo 到 clock 的起止时间；拖动触发 settime→onTimelineScrubfunction 写回 clock。
   let timeline;
   if (!defined(options.timeline) || options.timeline !== false) {
     const timelineContainer = document.createElement("div");
@@ -787,6 +838,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // Fullscreen
+  // 【导读】全屏按钮：进入/退出时联动时间轴右侧留白（subscribeAndEvaluate = 订阅+立即执行一次）。
   let fullscreenButton;
   let fullscreenSubscription;
   let fullscreenContainer;
@@ -820,6 +872,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
 
   // VR
+  // 【导读】VR 按钮（默认关）：进入 VR 模式后 enableVRUI 隐藏全部常规 UI。
   let vrButton;
   let vrSubscription;
   let vrModeSubscription;
@@ -853,6 +906,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     );
   }
 
+  // 【导读】约定：前面所有局部变量在这里一次性挂到 this 上（避免构造中途 this 被事件回调访问到未完成状态）。
   //Assign all properties to this instance.  No "this" assignments should
   //take place above this line.
   this._baseLayerPickerDropDown = baseLayerPickerDropDown;
@@ -886,9 +940,11 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   this._selectedEntity = undefined;
   this._selectedEntityChanged = new Event();
 
+  // 【导读】数据源体系入口：DataSourceCollection 管“有哪些数据源”，DataSourceDisplay 管“怎么把 Entity 画出来”（第 3 棒深挖）。
   const dataSourceCollection = this._cesiumWidget.dataSources;
   const dataSourceDisplay = this._cesiumWidget.dataSourceDisplay;
 
+  // 【导读】注册数据源增删事件：新增时给其 EntityCollection 挂 collectionChanged 监听（实体被删时清 selectedEntity）。
   //Listen to data source events in order to track clock changes.
   eventHelper.add(
     dataSourceCollection.dataSourceAdded,
@@ -901,6 +957,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     this,
   );
 
+  // 【导读】每帧渲染后（scene.postUpdate）自动 resize：容器尺寸变化时联动动画控件/时间轴/版权条的重排。
   // Prior to each render, check if anything needs to be resized.
   eventHelper.add(scene.postUpdate, Viewer.prototype.resize, this);
 
@@ -913,6 +970,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   }
   this._dataSourceAdded(undefined, dataSourceDisplay.defaultDataSource);
 
+  // 【导读】对已存在的数据源（含默认 defaultDataSource）补挂监听，并为后续新增的数据源也接好事件。
   // Hook up events so that we can subscribe to future sources.
   eventHelper.add(
     dataSourceCollection.dataSourceAdded,
@@ -946,6 +1004,7 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
     that.selectedEntity = pickEntity(that, e);
   }
 
+  // 【导读】鼠标交互默认行为：左键单击=选中实体（弹信息框），双击=跟踪/缩放到实体。
   cesiumWidget.screenSpaceEventHandler.setInputAction(
     pickAndSelectObject,
     ScreenSpaceEventType.LEFT_CLICK,
@@ -957,9 +1016,11 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
 
   // This allows to update the Viewer's _clockViewModel instead of the CesiumWidget's _clock
   // when CesiumWidget is created from the Viewer.
+  // 【导读】把 CesiumWidget 内部的 canAnimate 通知改接到 Viewer 的 clockViewModel（两者共用同一 clock）。
   cesiumWidget._canAnimateUpdateCallback = this._updateCanAnimate(this);
 }
 
+// 【导读】属性全是转发：大多直接透传给内部 CesiumWidget/Scene（scene/camera/imageryLayers/clock…），Viewer 本身无状态。
 Object.defineProperties(Viewer.prototype, {
   /**
    * Gets the parent container.
@@ -1488,6 +1549,7 @@ Object.defineProperties(Viewer.prototype, {
       return this._selectedEntity;
     },
     set: function (value) {
+      // 【导读】选中实体 setter：驱动绿框出现/消失动画并广播 selectedEntityChanged；真正的信息框内容在 _onTick 里刷新。
       if (this._selectedEntity !== value) {
         this._selectedEntity = value;
         const selectionIndicatorViewModel = defined(this._selectionIndicator)
@@ -1555,6 +1617,7 @@ Object.defineProperties(Viewer.prototype, {
  *
  * @see viewerDragDropMixin
  */
+// 【导读】mixin 扩展点：直接把 viewer 实例交给外部函数注入能力（如 viewerDragDropMixin）。
 Viewer.prototype.extend = function (mixin, options) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(mixin)) {
@@ -1570,6 +1633,8 @@ Viewer.prototype.extend = function (mixin, options) {
  * This function is called automatically as needed unless
  * <code>useDefaultRenderLoop</code> is set to false.
  */
+// 【导读】自适应布局：先让 CesiumWidget.resize 处理 canvas，再按容器宽高重算动画控件三档尺寸、
+// 【导读】时间轴左右留白和版权条位置（构造时挂在 scene.postUpdate 上，每帧检查但仅在尺寸变化时重排）。
 Viewer.prototype.resize = function () {
   const cesiumWidget = this._cesiumWidget;
   const container = this._container;
@@ -1679,6 +1744,7 @@ Viewer.prototype.resize = function () {
  * This forces the widget to re-think its layout, including
  * widget sizes and credit placement.
  */
+// 【导读】强制重排：把 _lastWidth 归零诱使 resize 认为尺寸变了。
 Viewer.prototype.forceResize = function () {
   this._lastWidth = 0;
   this.resize();
@@ -1688,6 +1754,7 @@ Viewer.prototype.forceResize = function () {
  * Renders the scene.  This function is called automatically
  * unless <code>useDefaultRenderLoop</code> is set to false;
  */
+// 【导读】渲染入口：纯粹转发给 CesiumWidget.render（帧循环细节见 CesiumWidget.js，第 5 棒深挖）。
 Viewer.prototype.render = function () {
   this._cesiumWidget.render();
 };
@@ -1703,6 +1770,7 @@ Viewer.prototype.isDestroyed = function () {
  * Destroys the widget.  Should be called if permanently
  * removing the widget from layout.
  */
+// 【导读】销毁：先解除鼠标事件→移除 DOM→EventHelper 统一解绑→逐个销毁 UI 部件→销毁共享 clockViewModel→销毁 CesiumWidget。
 Viewer.prototype.destroy = function () {
   if (
     defined(this.screenSpaceEventHandler) &&
@@ -1836,6 +1904,7 @@ Viewer.prototype._updateCanAnimate = function (that) {
  * @private
  */
 Viewer.prototype._onTick = function (clock) {
+  // 【导读】时钟每 tick：算出选中实体的包围球→驱动绿框位置/信息框内容/跟踪相机可用性。
   const time = clock.currentTime;
 
   let position;
@@ -2010,6 +2079,7 @@ Viewer.prototype._onDataSourceRemoved = function (
  * const tiltOrbitController = new Cesium.ScreenSpaceTiltOrbitCameraController();
  * viewer.addController(tiltOrbitController);
  */
+// 【导读】注册自定义相机/输入控制器（实现 Controller 接口），转发给 scene.controllerHost。
 Viewer.prototype.addController = function (controller) {
   return this._cesiumWidget.addController(controller);
 };
@@ -2043,6 +2113,7 @@ Viewer.prototype.removeController = function (controller) {
  * @param {HeadingPitchRange} [offset] The offset from the center of the entity in the local east-north-up reference frame.
  * @returns {Promise<boolean>} A Promise that resolves to true if the zoom was successful or false if the target is not currently visualized in the scene or the zoom was cancelled.
  */
+// 【导读】异步定位到目标（无飞行动画）：等数据就绪后一次性摆好相机，直接转发 CesiumWidget.zoomTo。
 Viewer.prototype.zoomTo = function (target, offset) {
   return this._cesiumWidget.zoomTo(target, offset);
 };
@@ -2069,6 +2140,7 @@ Viewer.prototype.zoomTo = function (target, offset) {
  * @param {HeadingPitchRange} [options.offset] The offset from the target in the local east-north-up reference frame centered at the target.
  * @returns {Promise<boolean>} A Promise that resolves to true if the flight was successful or false if the target is not currently visualized in the scene or the flight was cancelled. //TODO: Cleanup entity mentions
  */
+// 【导读】带飞行动画定位到目标：duration/maximumHeight 可控，直接转发 CesiumWidget.flyTo。
 Viewer.prototype.flyTo = function (target, options) {
   return this._cesiumWidget.flyTo(target, options);
 };
