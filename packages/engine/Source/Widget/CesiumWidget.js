@@ -70,18 +70,21 @@ function startRenderLoop(widget) {
 
     if (widget._useDefaultRenderLoop) {
       try {
+        // 【导读】帧率控制（第 5 棒补注）：targetFrameRate 未设 → 每个浏览器 rAF 回调都渲染，帧率跟随屏幕刷新率；
         const targetFrameRate = widget._targetFrameRate;
         if (!defined(targetFrameRate)) {
           widget.resize();
           widget.render();
           requestAnimationFrame(render);
         } else {
+          // 【导读】设了 targetFrameRate → 按目标间隔丢帧节流：距上帧不足 interval 就只排下一帧、不渲染；
           const interval = 1000.0 / targetFrameRate;
           const delta = frameTime - lastFrameTime;
 
           if (delta > interval) {
             widget.resize();
             widget.render();
+            // 【导读】lastFrameTime 回退 (delta % interval) 补偿累计漂移，使长期平均帧率收敛到目标值。
             lastFrameTime = frameTime - (delta % interval);
           }
           requestAnimationFrame(render);
@@ -1135,6 +1138,9 @@ CesiumWidget.prototype.resize = function () {
 // 【导读】② clock.tick：推进仿真时间并广播 onTick（驱动 DataSourceDisplay.update/跟踪相机）；
 // 【导读】③ scene.render(time)：更新相机→执行各渲染 Pass→提交 WebGL 命令（requestRenderMode 在此内部判断是否真画）。
 CesiumWidget.prototype.render = function () {
+  // 【导读】第 5 棒补注：requestRenderMode 开启时 rAF 与 clock.tick 仍每帧照常执行——
+  // 【导读】省掉的只是 Scene.render 内部的「真正画帧」（shouldRender 判假时只跑 update 阶段与请求派发），
+  // 【导读】所以时间轴动画（shouldAnimate/onTick/DataSourceDisplay 同步）与瓦片请求在按需模式下仍在后台推进。
   if (this._canRender) {
     this._scene.initializeFrame();
     const currentTime = this._clock.tick();
