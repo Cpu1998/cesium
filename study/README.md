@@ -20,7 +20,7 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 | 00 | [00-总览-架构与目录地图.md](00-总览-架构与目录地图.md) | 三大包职责、engine 分层、一个坐标从数据到像素的端到端链路、对象树 | 目录地图 |
 | 01 | [01-Viewer创建与场景初始化.md](01-Viewer创建与场景初始化.md) | `new Viewer()` 到第一帧渲染的完整时序逐段拆解 | `Viewer.js` / `CesiumWidget.js` |
 | 02 | [02-底图与影像体系.md](02-底图与影像体系.md) | ImageryProvider/ImageryLayer/瓦片调度与 GPU 纹理 | `Scene/Globe*`、`Scene/Imagery*` |
-| 03 | 03-Entity数据体系.md（第 3 棒） | Entity/Property/DataSourceCollection/DataSourceDisplay | `DataSources/*` |
+| 03 | [03-Entity数据体系.md](03-Entity数据体系.md) | Entity/Property/DataSourceCollection/DataSourceDisplay | `DataSources/*` |
 | 04 | 04-3DTiles加载与调度.md（第 4 棒） | Tileset 添加、LOD 调度、瓦片渲染 | `Scene/Cesium3DTileset*` |
 | 05 | 05-帧渲染循环.md（第 5 棒） | requestAnimationFrame 主循环、Scene.render 多 Pass、requestRenderMode | `Scene/Scene.js` |
 
