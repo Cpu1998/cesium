@@ -1,3 +1,11 @@
+// ═══ 【导读】PolygonGeometryUpdater.js —— GeometryUpdater 抽象的代表实现（polygon 专版）═══
+// 【导读】GeometryUpdater 体系是「Entity.polygon 等 Graphics 属性 → 几何描述」的转换器：
+// 【导读】它盯着 Entity 的 definitionChanged，动态判断「静态/动态、是否贴地、是否闭合」，
+// 【导读】向 GeometryVisualizer 的批次桶暴露 fillEnabled/outlineEnabled/isDynamic/isClosed 等路由信号，
+// 【导读】并产出 createFillGeometryInstance/createOutlineGeometryInstance（GeometryInstance+id=entity）。
+// 【导读】基类链：GeometryUpdater → DynamicGeometryUpdater（动态版包装）；贴地类再继承 GroundGeometryUpdater。
+// 【导读】同族 10 个 Updater 由 GeometryUpdaterSet.js 统一为每个 Entity 各建一个。
+// 【导读】详见 study/03-Entity数据体系.md §5；动态/静态判定见下面 _isDynamic。
 import ApproximateTerrainHeights from "../Core/ApproximateTerrainHeights.js";
 import ArcType from "../Core/ArcType.js";
 import Cartesian2 from "../Core/Cartesian2.js";
@@ -65,6 +73,8 @@ function PolygonGeometryOptions(entity) {
  * @param {Entity} entity The entity containing the geometry to be visualized.
  * @param {Scene} scene The scene where visualization is taking place.
  */
+  // 【导读】构造：交给基类 GroundGeometryUpdater 注册关心的属性名（availability/polygon），
+  // 【导读】再立即回放一次 _onEntityPropertyChanged 完成首次状态计算（静态选项在此评估）。
 function PolygonGeometryUpdater(entity, scene) {
   GroundGeometryUpdater.call(this, {
     entity: entity,
@@ -92,6 +102,9 @@ if (defined(Object.create)) {
  *
  * @exception {DeveloperError} This instance does not represent a filled geometry.
  */
+  // 【导读】创建填充几何实例：attributes（show/color/distanceDisplayCondition/offset）在合批后
+  // 【导读】仍可逐实例控制；几何体选型：perPositionHeight 无拉伸→共面多边形几何，否则标准 PolygonGeometry。
+  // 【导读】关键在末尾 id: entity——拾取（scene.pick）正是拿到这个 id 才能从像素回到 Entity。
 PolygonGeometryUpdater.prototype.createFillGeometryInstance = function (time) {
   //>>includeStart('debug', pragmas.debug);
   Check.defined("time", time);
@@ -295,6 +308,8 @@ PolygonGeometryUpdater.prototype._isOnTerrain = function (entity, polygon) {
   return onTerrain && !perPositionHeightEnabled;
 };
 
+  // 【导读】静态/动态分水岭：hierarchy/height/extrudedHeight/……任一属性不是常量 → 动态几何
+  // 【导读】（每帧重建，进 DynamicGeometryBatch）；或「贴地+非纯色材质」也按动态处理。
 PolygonGeometryUpdater.prototype._isDynamic = function (entity, polygon) {
   return (
     !polygon.hierarchy.isConstant || //
@@ -315,6 +330,8 @@ PolygonGeometryUpdater.prototype._isDynamic = function (entity, polygon) {
   );
 };
 
+  // 【导读】静态选项固化：静态几何只在创建时求值一次（用 Iso8601.MINIMUM_VALUE 取常量值），
+  // 【导读】含 height/heightReference/extrudedHeight 的贴地规则修正与互斥警告（height×perPositionHeight）。
 PolygonGeometryUpdater.prototype._setStaticOptions = function (
   entity,
   polygon,
