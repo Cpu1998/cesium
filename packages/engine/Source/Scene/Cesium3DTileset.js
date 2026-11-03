@@ -1,3 +1,14 @@
+// ═══ 【导读】Cesium3DTileset.js —— 3D Tiles 数据集：加载、每帧遍历与调度中枢 ═══
+// 【导读】3D Tiles = 「tileset.json（一棵瓦片树：变换/包围盒/几何误差/refine）+ 每片瓦片的内容
+// 【导读】（b3dm/i3dm/pnts/glb 等二进制）」。本类负责：①加载入口 fromUrl（拉 JSON→建 Cesium3DTile 树）；
+// 【导读】②每帧 update（由 PrimitiveCollection 转发，时机由 Scene 多 Pass 驱动——第 5 棒深挖）＝让遍历器
+// 【导读】（Cesium3DTilesetBaseTraversal/SkipTraversal，按屏幕误差 SSE 选瓦片）填 _selectedTiles/_requestedTiles；
+// 【导读】③请求与缓存：requestTiles 按优先级发请求→PROCESSING 队列→Cesium3DTilesetCache 按 cacheBytes 淘汰。
+// 【导读】常用调参：maximumScreenSpaceError（清晰度/内存平衡，默认 16）、cacheBytes（默认 512MB）、
+// 【导读】skipLevelOfDetail（跳级加载省内存）、dynamicScreenSpaceError/foveatedScreenSpaceError（加载优化）。
+// 【导读】内容本身由 Cesium3DTile.requestContent 按 magic 分派到各 *3DTileContent（见 Cesium3DTile.js）。
+// 【导读】1.145 注：旧版的 readyPromise/_contentReadyToProcessPromise 已重构成 await 工厂 + _processingQueue。
+// 【导读】深入解读见 study/04-3DTiles加载与LOD.md 全文（§2 链路/§3 SSE/§5 缓存/§7 调参）。
 import ApproximateTerrainHeights from "../Core/ApproximateTerrainHeights.js";
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Cartesian2 from "../Core/Cartesian2.js";
@@ -208,6 +219,8 @@ import ImageryLayerCollection from "./ImageryLayerCollection.js";
 function Cesium3DTileset(options) {
   options = options ?? Frozen.EMPTY_OBJECT;
 
+  // 【导读】构造函数只做「配置+空状态」，不碰网络：真正拉 tileset.json 在静态工厂 fromUrl（await 入口），
+  // 【导读】所以业务代码写「await Cesium3DTileset.fromUrl(url, options)」再 scene.primitives.add(tileset)
   this._url = undefined;
   this._basePath = undefined;
   this._root = undefined;
@@ -220,6 +233,8 @@ function Cesium3DTileset(options) {
   this._extensions = undefined;
   this._modelUpAxis = undefined;
   this._modelForwardAxis = undefined;
+  // 【导读】三大每帧数据结构：_cache（LRU 缓存，按 cacheBytes 淘汰）、_processingQueue（下载完待建 GPU 资源的瓦片）、
+  // 【导读】_selectedTiles/_emptyTiles/_requestedTiles（遍历器每帧回填的「渲什么/请求什么」清单）
   this._cache = new Cesium3DTilesetCache();
   this._processingQueue = [];
   this._selectedTiles = [];
@@ -246,8 +261,13 @@ function Cesium3DTileset(options) {
   this._backfaceCommands = new ManagedArray();
 
   this._maximumScreenSpaceError = options.maximumScreenSpaceError ?? 16;
+  // 【导读】内存自适应 SSE：当满足 maxSSE 需要的内存超过 cacheBytes+overflow 时自动上调此值（变模糊）省内存，
+  // 【导读】内存回落后再逐步降回 maximumScreenSpaceError（见 processTiles/increaseScreenSpaceError）
   this._memoryAdjustedScreenSpaceError = this._maximumScreenSpaceError;
 
+  // 【导读】cacheBytes（默认 512MB）＝瓦片内容缓存目标水位；maximumCacheOverflowBytes（默认 512MB）＝额外容忍余量。
+// 【导读】总内存 textures+geometry+batchTable 字节（totalMemoryUsageInBytes）超过 cacheBytes 后，
+// 【导读】postPassesUpdate→_cache.unloadTiles 会从未选中瓦片里 LRU 淘汰，详见 study/04 §5
   this._cacheBytes = options.cacheBytes ?? 512 * 1024 * 1024;
   //>>includeStart('debug', pragmas.debug);
   Check.typeOf.number.greaterThanOrEquals("cacheBytes", this._cacheBytes, 0);
@@ -267,6 +287,7 @@ function Cesium3DTileset(options) {
   this._styleEngine = new Cesium3DTileStyleEngine();
   this._styleApplied = false;
 
+  // 【导读】modelMatrix：对整棵瓦片树的额外 4×4 变换（如把倾斜摄影挪到某经纬度）；瓦片自身 transform 链会乘在后面
   this._modelMatrix = defined(options.modelMatrix)
     ? Matrix4.clone(options.modelMatrix)
     : Matrix4.clone(Matrix4.IDENTITY);
@@ -275,6 +296,8 @@ function Cesium3DTileset(options) {
 
   this._statistics = new Cesium3DTilesetStatistics();
   this._statisticsLast = new Cesium3DTilesetStatistics();
+  // 【导读】统计器三份：本帧值 _statistics（updateTiles 里累计命令数/字节数）、上一帧值（loadProgress 事件对比）、
+  // 【导读】以及每个渲染 Pass 一份（拾取/渲染分离计数）；tileset.statistics / totalMemoryUsageInBytes 即取自这里
   this._statisticsPerPass = new Array(Cesium3DTilePass.NUMBER_OF_PASSES);
 
   for (let i = 0; i < Cesium3DTilePass.NUMBER_OF_PASSES; ++i) {
@@ -283,6 +306,8 @@ function Cesium3DTileset(options) {
 
   this._requestedTilesInFlight = [];
 
+  // 【导读】瓦片请求优先级的归一化基准：遍历时不断刷新四维（深度/距离/注视中心偏离/反向 SSE）的帧内最小最大值，
+  // 【导读】updatePriority 把各维归一到 0~1 再拼成十进制多位数（见 Cesium3DTile.js 的 updatePriority）
   this._maximumPriority = {
     foveatedFactor: -Number.MAX_VALUE,
     depth: -Number.MAX_VALUE,
@@ -337,6 +362,8 @@ function Cesium3DTileset(options) {
    */
   this.preferLeaves = options.preferLeaves ?? false;
 
+  // 【导读】加载完成的两个层级标志：_tilesLoaded 每帧都变（本视图请求+处理均为 0 即 true，见 raiseLoadProgressEvent）；
+// 【导读】_initialTilesLoaded 只在首个视图加载完时变 true（initialTilesLoaded 事件只发一次）
   this._tilesLoaded = false;
   this._initialTilesLoaded = false;
 
@@ -693,6 +720,8 @@ function Cesium3DTileset(options) {
    */
   this.tileUnload = new Event();
 
+  // 【导读】tileFailed：单瓦片加载失败不炸整个 tileset——有监听者则交业务处理，否则仅 console 打印；
+// 【导读】多内容瓦片每个失败内容各触发一次
   /**
    * The event fired to indicate that a tile's content failed to load.
    * <p>
@@ -756,6 +785,9 @@ function Cesium3DTileset(options) {
    */
   this.tileVisible = new Event();
 
+  // 【导读】skipLevelOfDetail：跳级加载优化（默认 false）。开启后允许不按「父全子才换」的严格 REPLACE 规则，
+// 【导读】直接加载更深层级省内存/首屏；配套 baseScreenSpaceError/skipLevels/skipScreenSpaceErrorFactor/loadSiblings。
+// 【导读】代价是可能出现父瓦片残留（_hasMixedContent，需 stencil 双变量可见性测试，见 updateTiles）
   /**
    * Optimization option. Determines if level of detail skipping should be applied during the traversal.
    * <p>
@@ -772,6 +804,8 @@ function Cesium3DTileset(options) {
 
   this._disableSkipLevelOfDetail = false;
 
+  // 【导读】_runtimeContentCodec：运行时内容解码器（如 MVTDataProvider 注入）：设了它，Cesium3DTile 就绕过
+// 【导读】标准 magic 分派，直接把下载字节交给 codec.createContent 生成瓦片内容（矢量瓦片的关键接口）
   /**
    * Optional runtime content codec injected by data providers
    * (e.g. {@link MVTDataProvider}). When set, {@link Cesium3DTile} bypasses
@@ -1572,6 +1606,9 @@ Object.defineProperties(Cesium3DTileset.prototype, {
     },
   },
 
+  // 【导读】maximumScreenSpaceError 是 3D Tiles 清晰度总开关（默认 16）：瓦片 SSE ≤ 它就不再细分；
+// 【导读】调大→更模糊更省流/内存，调小→更清晰更耗。内存自适应值 memoryAdjustedScreenSpaceError ≥ 它
+
   /**
    * The amount of GPU memory (in bytes) used to cache tiles. This memory usage is estimated from
    * geometry, textures, and batch table textures of loaded tiles. For point clouds, this value also
@@ -1699,6 +1736,8 @@ Object.defineProperties(Cesium3DTileset.prototype, {
     },
   },
 
+  // 【导读】root：瓦片树根 Cesium3DTile（fromUrl 里 loadTileset 建好）；遍历器每帧从它开始深度优先
+
   /**
    * The tileset's bounding sphere.
    *
@@ -1777,6 +1816,7 @@ Object.defineProperties(Cesium3DTileset.prototype, {
   totalMemoryUsageInBytes: {
     get: function () {
       const statistics = this._statistics;
+      // 【导读】内存估算口径：纹理+几何+批表纹理字节（点云含逐点元数据）——cacheBytes 淘汰就比对这个值
       return (
         statistics.texturesByteLength +
         statistics.geometryByteLength +
@@ -1824,6 +1864,9 @@ Object.defineProperties(Cesium3DTileset.prototype, {
       return this._statistics;
     },
   },
+
+  // 【导读】statistics 每帧在 updateTiles 里累计（命令数/三角形/几何与纹理字节等）；做性能面板/内存监控就轮询它，
+  // 【导读】配合 totalMemoryUsageInBytes（textures+geometry+batchTable 字节和）对照 cacheBytes 看淘汰压力
 
   /**
    * Determines whether terrain, 3D Tiles, or both will be classified by this tileset.
@@ -2246,6 +2289,10 @@ Cesium3DTileset.fromUrl = async function (url, options) {
   Check.defined("url", url);
   //>>includeEnd('debug');
 
+  // 【导读】标准创建入口（1.145 用 await 工厂取代旧 new+readyPromise）：拉 tileset.json → 解析元数据 →
+  // 【导读】new Cesium3DTileset（存配置）→ loadTileset 建瓦片树 → 返回就绪的 tileset。
+// 【导读】常用姿势：const tileset = await Cesium3DTileset.fromUrl(url, {maximumScreenSpaceError: 8});
+// 【导读】           scene.primitives.add(tileset)
   options = options ?? Frozen.EMPTY_OBJECT;
 
   const resource = Resource.createIfNeeded(url);
@@ -2257,6 +2304,7 @@ Cesium3DTileset.fromUrl = async function (url, options) {
   }
 
   const tilesetJson = await Cesium3DTileset.loadJson(resource);
+  // 【导读】若声明了 3DTILES_metadata（或 1.1 内联 metadata）则先异步加载 schema，供后续瓦片属性/分组元数据用
   const metadataExtension = await processMetadataExtension(
     resource,
     tilesetJson,
@@ -2295,6 +2343,8 @@ Cesium3DTileset.fromUrl = async function (url, options) {
 
   // Save the original, untransformed bounding volume position so we can apply
   // the tile transform and model matrix at run time
+  // 【导读】裁剪平面参考系：取根包围球中心；若在地面上方则猜一个 ENU 东北天朝向作为默认，
+// 【导读】clippingPlanes 的坐标都相对这个原点矩阵（clippingPlanesOriginMatrix）
   const boundingVolume = tileset._root.createBoundingVolume(
     tilesetJson.root.boundingVolume,
     Matrix4.IDENTITY,
@@ -2353,6 +2403,7 @@ Cesium3DTileset.prototype.loadTileset = function (
   tilesetJson,
   parentTile,
 ) {
+  // 【导读】建树入口（fromUrl 用它建根树；Tileset3DTileContent 加载外部 tileset.json 时也回调它把两棵树缝合）
   const asset = tilesetJson.asset;
   if (!defined(asset)) {
     throw new RuntimeError("Tileset must have an asset property.");
@@ -2395,6 +2446,8 @@ Cesium3DTileset.prototype.loadTileset = function (
   const stack = [];
   stack.push(rootTile);
 
+  // 【导读】显式栈的迭代建树：逐瓦片 new Cesium3DTile、维护 _depth、累计 numberOfTilesTotal，
+// 【导读】并顺手检查「子包围盒全在父内」优化标记（cullWithChildrenBounds，默认开）
   while (stack.length > 0) {
     const tile = stack.pop();
     ++statistics.numberOfTilesTotal;
@@ -2433,6 +2486,8 @@ Cesium3DTileset.prototype.loadTileset = function (
  * @private
  */
 function makeTile(tileset, baseResource, tileHeader, parentTile) {
+  // 【导读】普通瓦片直接 new；含隐式平铺（3DTILES_implicit_tiling / 1.1 implicitTiling）则造一个「占位瓦片」：
+// 【导读】内容换成 subtree 模板 URI，等 Implicit3DTileContent 下载子树 JSON 后再展开成真瓦片
   const hasImplicitTiling =
     defined(tileHeader.implicitTiling) ||
     hasExtension(tileHeader, "3DTILES_implicit_tiling");
@@ -2548,6 +2603,8 @@ function updateDynamicScreenSpaceError(tileset, frameState) {
   let minimumHeight;
   let maximumHeight;
 
+  // 【导读】动态 SSE（街景优化）：每帧算相机相对 tileset 的高度与俯仰，只在「贴近地面看地平线」时
+// 【导读】提高密度（把远处瓦片的 SSE 减小，即降低清晰度），减少远景加载量。详情 study/04 §7
   const camera = frameState.camera;
   const root = tileset._root;
   const tileBoundingVolume = root.contentBoundingVolume;
@@ -2650,6 +2707,8 @@ function requestContent(tileset, tile) {
     return;
   }
 
+  // 【导读】tileset 级发请求入口（遍历器回填 _requestedTiles 后由 requestTiles 调）：真正下载在 tile.requestContent()。
+// 【导读】成功下载→推入 _processingQueue 等下帧 processTiles 建 GPU 资源；失败→tileFailed 事件，不炸 tileset
   const { statistics } = tileset;
   const contentExpired = tile.contentExpired;
 
@@ -2697,6 +2756,8 @@ Cesium3DTileset.prototype.postPassesUpdate = function (frameState) {
     return;
   }
 
+  // 【导读】所有 Pass 结束后的收尾（由 PrimitiveCollection.postPassesUpdate 转发）：取消出视野的请求、
+// 【导读】发加载进度事件、按 cacheBytes 淘汰缓存瓦片、重置样式脏标记
   cancelOutOfViewRequests(this, frameState);
   raiseLoadProgressEvent(this, frameState);
   this._cache.unloadTiles(this, unloadTile);
@@ -2748,6 +2809,8 @@ Cesium3DTileset.prototype.prePassesUpdate = function (frameState) {
     return;
   }
 
+  // 【导读】任何 Pass 开始前的准备（由 PrimitiveCollection.prePassesUpdate 转发）：处理 PROCESSING 瓦片、
+// 【导读】更新裁剪平面/多边形、算动态 SSE、重置 LRU 哨兵。这几件事必须先于本帧选瓦片
   processTiles(this, frameState);
 
   // Update clipping planes
@@ -2828,6 +2891,8 @@ function cancelOutOfViewRequests(tileset, frameState) {
  * @param {Cesium3DTileset} tileset
  */
 function requestTiles(tileset) {
+  // 【导读】先把 _requestedTiles 按优先级排序再逐个发请求：让 RequestScheduler 优先带宽给最重要的瓦片，
+// 【导读】低优先级请求更可能被取消而不是浪费带宽
   const requestedTiles = tileset._requestedTiles;
   requestedTiles.sort(sortTilesByPriority);
   for (let i = 0; i < requestedTiles.length; ++i) {
@@ -2950,6 +3015,9 @@ function processUpdateHeight(tileset, tile, frameState) {
  * @param {Cesium3DTile} tile
  */
 function processTiles(tileset, frameState) {
+  // 【导读】内容就绪链的第二步（1.145 用 _processingQueue 数组取代旧版 _contentReadyToProcessPromise）：
+// 【导读】每帧把下载完的瓦片从 PROCESSING 推到 READY（tile.process 建 WebGL 资源、入 LRU 缓存、发 tileLoad 事件）。
+// 【导读】同时做内存背压：超 cacheBytes 就调大 SSE（变模糊），回落了再降回来
   filterProcessingQueue(tileset);
   const tiles = tileset._processingQueue;
 
@@ -3171,6 +3239,9 @@ function updateTileDebugLabels(tileset, frameState) {
  * @param {object} passOptions
  */
 function updateTiles(tileset, frameState, passOptions) {
+  // 【导读】本帧「渲什么」落地：先应用样式→逐个 selectedTiles 调 tile.update 生成 DrawCommand 压入
+// 【导读】frameState.commandList（到这里为止，后续多 Pass 执行交给第 5 棒的 Scene.render）。
+// 【导读】isRender Pass 还会先发 tileVisible 事件（业务可在瓦片上屏前改样式/属性）
   tileset._styleEngine.applyStyle(tileset);
   tileset._styleApplied = true;
 
@@ -3223,6 +3294,8 @@ function updateTiles(tileset, frameState, passOptions) {
 
   let addedCommandsLength = commandList.length - lengthBeforeUpdate;
 
+  // 【导读】skipLevelOfDetail 的混叠修正：子瓦片与父瓦片同帧绘制时用 stencil 记录每像素已绘深度，
+// 【导读】先画背面再按 selectionDepth 隔离，避免子级穿到祖先上面——完整机制见上方英文注释
   tileset._backfaceCommands.trim();
 
   if (bivariateVisibilityTest) {
@@ -3362,6 +3435,8 @@ function destroyTile(tileset, tile) {
  * </p>
  */
 Cesium3DTileset.prototype.trimLoadedTiles = function () {
+  // 【导读】手动瘦身：标记后下一帧 postPassesUpdate 里会把所有未选中瓦片全部卸载（不管内存是否超标）。
+// 【导读】需要严格控内存时（如切换页面）手动调它
   this._cache.trim();
 };
 
@@ -3474,6 +3549,9 @@ function update(tileset, frameState, passStatistics, passOptions) {
     return false;
   }
 
+  // 【导读】单个 Pass 的四步主流程（被 updateForPass 调）：①selectTiles 遍历器选瓦片（SSE/refine/剔除）→
+// 【导读】②requestTiles 发请求→③updateTiles 生成 DrawCommand→④回写 passStatistics。
+// 【导读】此处即 Phase 4 与第 5 棒的分界：命令生成完毕，怎么被 Scene 执行留给第 5 棒
   if (!defined(tileset._root)) {
     return false;
   }
@@ -3495,6 +3573,8 @@ function update(tileset, frameState, passStatistics, passOptions) {
     .getTraversal(passOptions)
     .selectTiles(tileset, frameState);
 
+  // 【导读】selectTiles 是每帧遍历主体：深度优先过瓦片树，回填 _selectedTiles/_emptyTiles/_requestedTiles，
+// 【导读】具体 SSE 判定/REPLACE 语义在 Cesium3DTilesetBaseTraversal.js（本棒只到入口，细节见 study/04 §3/§4）
   if (passOptions.requestTiles) {
     requestTiles(tileset);
   }
@@ -3558,6 +3638,8 @@ function createCredits(tileset) {
  * @returns {Cesium3DTilesetTraversal}
  */
 Cesium3DTileset.prototype.getTraversal = function (passOptions) {
+  // 【导读】遍历器三选一：MOST_DETAILED_* Pass（拾取/预加载最细级）用 MostDetailedTraversal；
+// 【导读】skipLevelOfDetail 开启用 SkipTraversal；否则用 BaseTraversal（严格 REPLACE 遍历）
   const { pass } = passOptions;
   if (
     pass === Cesium3DTilePass.MOST_DETAILED_PRELOAD ||
@@ -3575,6 +3657,8 @@ Cesium3DTileset.prototype.getTraversal = function (passOptions) {
  * @param {FrameState} frameState
  */
 Cesium3DTileset.prototype.update = function (frameState) {
+  // 【导读】每帧入口（scene.primitives 遍历调用，帧循环调度时机第 5 棒深挖）：转发到 updateForPass，
+// 【导读】按 frameState.tilesetPassState 决定本 Pass 是 RENDER / 拾取 / PRELOAD 还是飞行预加载
   this.updateForPass(frameState, frameState.tilesetPassState);
 };
 
@@ -3594,6 +3678,8 @@ Cesium3DTileset.prototype.updateForPass = function (
 
   this.imageryLayers._update();
 
+  // 【导读】按 Pass 跳过不需要的场景：PRELOAD（隐藏时预加载）与 PRELOAD_FLIGHT（飞行终点预取）
+// 【导读】都有条件开关；REQUEST_RENDER_MODE_DEFER_CHECK 在静止无延迟时跳过
   const pass = tilesetPassState.pass;
   if (
     (pass === Cesium3DTilePass.PRELOAD &&
@@ -3633,6 +3719,8 @@ Cesium3DTileset.prototype.updateForPass = function (
     environmentMapManager.update(frameState);
   }
 
+  // 【导读】核心调用：内部 update()（选瓦片+发请求+生成命令）；ignoreCommands 的 Pass（如预加载）只选不发命令。
+// 【导读】前后换装 commandList/camera/cullingVolume：让非渲染 Pass 可以用独立相机/裁剪体跑遍历而不污染主帧
   const passStatistics = this._statisticsPerPass[pass];
 
   if (this.show || ignoreCommands) {
@@ -3902,6 +3990,8 @@ const scratchPickIntersection = new Cartesian3();
  * @private
  */
 Cesium3DTileset.prototype.pick = function (ray, frameState, result) {
+  // 【导读】CPU 射线拾取入口（鼠标取坐标/贴地用）：只对已选中瓦片按包围球由近到远调 content.pick，
+// 【导读】返回第一个交点；GPU 拾取则走 DrawCommand+拾取 Pass（第 5 棒范围）
   if (!frameState.context.webgl2 && !this._enablePick) {
     return;
   }
