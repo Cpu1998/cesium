@@ -339,6 +339,8 @@ function clearTileLoadQueue(primitive) {
  * @private
  */
 QuadtreePrimitive.prototype.beginFrame = function (frameState) {
+  // 【导读】第 5 棒补注：帧调度三步之一。调用链 Scene.render(scene)→globe.beginFrame→这里（仅 render pass）：
+  // 【导读】瓦片失效重建→tileProvider.initialize（影像重投影命令）→清空三队列→LRU 标记帧起点。
   const passes = frameState.passes;
   if (!passes.render) {
     return;
@@ -367,6 +369,9 @@ QuadtreePrimitive.prototype.beginFrame = function (frameState) {
  * @private
  */
 QuadtreePrimitive.prototype.render = function (frameState) {
+  // 【导读】帧调度三步之二。调用链 executeCommandsInViewport→updateAndRenderPrimitives→globe.render→这里：
+  // 【导读】selectTilesForRendering（SSE 遍历选瓦片，邻接/可见性判定都在此发生）→createRenderCommandsForSelectedTiles
+  // 【导读】→tileProvider.addDrawCommandsForTile 把 DrawCommand 塞进 frameState.commandList 等待剔除分类。
   const passes = frameState.passes;
   const tileProvider = this._tileProvider;
 
@@ -444,6 +449,8 @@ function updateTileLoadProgress(primitive, frameState) {
  * @private
  */
 QuadtreePrimitive.prototype.endFrame = function (frameState) {
+  // 【导读】帧调度三步之三。调用链 Scene.render(scene) 末尾→globe.endFrame→这里：
+  // 【导读】processTileLoadQueue（时间片加载，经 RequestScheduler 发网络请求）+ updateHeights + 进度事件。
   const passes = frameState.passes;
   if (!passes.render || frameState.mode === SceneMode.MORPHING) {
     // Only process the load queue for a single pass.
