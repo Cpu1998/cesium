@@ -1,3 +1,12 @@
+// ═══ 【导读】ImageryLayer.js —— 「一个影像层 = 地球的一层皮肤」═══
+// 【导读】核心心智模型：ImageryLayer 拿着 ImageryProvider（数据源）+ 渲染参数（alpha/调色/过滤/show/split），
+// 【导读】把影像金字塔「贴」到地形瓦片上。它不直接画三角形，而是把纹理+参数交给 GlobeSurfaceTileProvider 的 draw command。
+// 【导读】关键内部对象：Imagery（单个影像瓦片 + 状态机 UNLOADED→RECEIVED→TEXTURE_LOADED→READY）；
+// 【导读】TileImagery（地形瓦片与影像瓦片的粘贴关系：贴图矩形+UV 平移缩放）；_imageryCache（按 x/y/level 复用）。
+// 【导读】主链路：_createTileImagerySkeletons（瓦片化入口：地形瓦片→算影像层级→建 TileImagery）→
+// 【导读】Imagery.processStateMachine→_requestImagery（发请求/重试）→_createTexture（上 GPU）→_reprojectTexture（墨卡托重投影）。
+// 【导读】图层参数含义与多层叠加语义见 study/02-底图与影像体系.md §4；完整生命周期见 §3。
+// 【导读】集合层叠顺序由 ImageryLayerCollection 管理；模板 URL 数据源见 UrlTemplateImageryProvider.js。
 import Cartesian2 from "../Core/Cartesian2.js";
 import Cartesian4 from "../Core/Cartesian4.js";
 import Check from "../Core/Check.js";
@@ -172,6 +181,7 @@ import TileImagery from "./TileImagery.js";
  * tileset.imageryLayers.add(imageryLayer);
  */
 function ImageryLayer(imageryProvider, options) {
+  // 【导读】注意 provider 可为 undefined（fromProviderAsync 先建层后填 provider，期间用占位骨架），ready getter 即判断它。
   this._imageryProvider = imageryProvider;
 
   this._readyEvent = new Event();
@@ -189,6 +199,9 @@ function ImageryLayer(imageryProvider, options) {
    */
   this.alpha = options.alpha ?? imageryProvider._defaultAlpha ?? 1.0;
 
+  // 【导读】以下 alpha/亮度/对比度/色相/饱和度/gamma 都是「每层」参数：非基底层 alpha<1 时逐层混合；
+  // 【导读】day/nightAlpha 仅在 Globe.enableLighting 开启时按昼夜两侧分别取值。它们在
+  // 【导读】GlobeSurfaceTileProvider.addDrawCommandsForTile 里装进 dayTexture* 系列 uniform，由 GlobeFS 采样混合。
   /**
    * The alpha blending value of this layer on the night side of the globe, with 0.0 representing fully transparent and
    * 1.0 representing fully opaque. This only takes effect when {@link Globe#enableLighting} is <code>true</code>.
@@ -320,6 +333,8 @@ function ImageryLayer(imageryProvider, options) {
 
   this._imageryCache = {};
 
+  // 【导读】provider 未就绪时的占位 TileImagery（Imagery.createPlaceholder）：先挂在瓦片上占位，
+  // 【导读】provider ready 后由 GlobeSurfaceTile.processImagery 替换成真骨架。
   this._skeletonPlaceholder = new TileImagery(Imagery.createPlaceholder(this));
 
   // The value of the show property on the last update.
@@ -533,6 +548,8 @@ ImageryLayer.DEFAULT_APPLY_COLOR_TO_ALPHA_THRESHOLD = 0.004;
  * @see ImageryLayer.fromWorldImagery
  */
 ImageryLayer.fromProviderAsync = function (imageryProviderPromise, options) {
+  // 【导读】异步工厂（新式 API）：先 new ImageryLayer(undefined) 立即可返回（可先 add 进集合），
+  // 【导读】Promise resolve 后才填 _imageryProvider 并抛 readyEvent；失败抛 errorEvent。
   //>>includeStart('debug', pragmas.debug);
   Check.typeOf.object("imageryProviderPromise", imageryProviderPromise);
   //>>includeEnd('debug');
@@ -610,6 +627,7 @@ ImageryLayer.fromWorldImagery = function (options) {
  * @returns {boolean} true if this is the base layer; otherwise, false.
  */
 ImageryLayer.prototype.isBaseLayer = function () {
+  // 【导读】基底层 = 集合中最底部的可见层（ImageryLayerCollection._update 维护）：可把非全球影像的边缘像素拉伸铺满全球。
   return this._isBaseLayer;
 };
 
@@ -684,12 +702,15 @@ ImageryLayer.prototype.getImageryRectangle = function () {
  * @returns {boolean} true if this layer overlaps any portion of the terrain tile; otherwise, false.
  */
 ImageryLayer.prototype._createTileImagerySkeletons = function (
+  // 【导读】★瓦片化入口：地形瓦片（Geographic 四叉树）≠ 影像瓦片（provider 的 tilingScheme 金字塔），
+  // 【导读】本函数计算「这块地形该贴哪些影像瓦片」：求交集→按地形几何误差选影像层级→逐块建 TileImagery（含 UV 裁剪矩形）。
   tile,
   terrainProvider,
   insertionPoint,
 ) {
   const surfaceTile = tile.data;
 
+  // 【导读】minimumTerrainLevel/maximumTerrainLevel：限制本层只在特定地形 LOD 区间显示（如仅山顶高程层）。
   if (
     !defined(terrainProvider) ||
     (defined(this._minimumTerrainLevel) &&
@@ -710,6 +731,7 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
 
   const imageryProvider = this._imageryProvider;
   if (!this.ready) {
+    // 【导读】provider 未就绪：先插占位骨架（_skeletonPlaceholder），等 ready 后在 processImagery 里重跑本函数。
     // The imagery provider is not ready, so we can't create skeletons, yet.
     // Instead, add a placeholder so that we'll know to create
     // the skeletons once the provider is ready.
@@ -719,6 +741,8 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
   }
 
   // Use Web Mercator for our texture coordinate computations if this imagery layer uses
+  // 【导读】Web 墨卡托影像且地形瓦片在 ±85.05°（墨卡托有效纬度）内 → 用墨卡托 T 坐标贴图（useWebMercatorT），
+  // 【导读】否则贴图前需重投影到地理坐标（见 _reprojectTexture）。极地附近必走地理坐标路径。
   // that projection and the terrain tile falls entirely inside the valid bounds of the
   // projection.
   const useWebMercatorT =
@@ -743,6 +767,7 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
 
   if (!defined(rectangle)) {
     // There is no overlap between this terrain tile and this imagery
+    // 【导读】影像不覆盖本瓦片时：基底层仍会建骨架（拉伸边缘 texel 铺满全球），非基底层直接跳过（不占纹理）。
     // provider.  Unless this is the base layer, no skeletons need to be created.
     // We stretch texels at the edge of the base layer over the entire globe.
     if (!this.isBaseLayer()) {
@@ -796,6 +821,8 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
   // But first we need configurable imagery SSE and we need the rendering to be able to handle more
   // images attached to a terrain tile than there are available texture units.  So that's for the future.
   const errorRatio = 1.0;
+  // 【导读】★层级匹配：用地形的几何误差推算「影像金字塔该取哪一层」（getLevelWithMaximumTexelSpacing），
+  // 【导读】再夹到 provider 的 [minimumLevel, maximumLevel]；所以同层地形可能贴多个影像瓦片（或反之，跨层复用父瓦片）。
   const targetGeometricError =
     errorRatio * terrainProvider.getLevelMaximumGeometricError(tile.level);
   let imageryLevel = getLevelWithMaximumTexelSpacing(
@@ -958,6 +985,8 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
     i <= southeastTileCoordinates.x;
     i++
   ) {
+    // 【导读】双重循环扫过覆盖本地形瓦片的所有影像瓦片，逐块计算 UV（minU/maxU/minV/maxV 相对地形瓦片的百分比），
+    // 【导读】getImageryFromCache 按 x/y/level 取/建 Imagery（多个地形瓦片可共享同一影像瓦片），最后包成 TileImagery 存入瓦片。
     minU = maxU;
 
     imageryRectangle = imageryTileXYToRectangle(
@@ -1059,6 +1088,8 @@ ImageryLayer.prototype._createTileImagerySkeletons = function (
  *          are the scale.
  */
 ImageryLayer.prototype._calculateTextureTranslationAndScale = function (
+  // 【导读】把 TileImagery 的「影像矩形」换算成着色器里平移+缩放（Cartesian4：xy=平移、zw=缩放），
+  // 【导读】供 GlobeFS 把地形瓦片 UV 映射到影像纹理的子区域（跨层父图替代/裁剪时尤其关键）。
   tile,
   tileImagery,
 ) {
@@ -1101,6 +1132,9 @@ ImageryLayer.prototype._calculateTextureTranslationAndScale = function (
  * @param {Imagery} imagery The imagery to request.
  */
 ImageryLayer.prototype._requestImagery = function (imagery) {
+  // 【导读】★发请求（由 Imagery.processStateMachine 在 UNLOADED 态调用）：包一层 Request（throttleByServer
+  // 【导读】限同域名并发、type=IMAGERY 进请求调度器）调 provider.requestImage；成功→RECEIVED，失败→TileProviderError
+  // 【导读】事件（监听者可 retry=true 触发 doRequest 重试，实现瓦片 404/超时重试与错误上报），被取消→回 UNLOADED 下帧再试。
   const imageryProvider = this._imageryProvider;
 
   const that = this;
@@ -1227,6 +1261,8 @@ ImageryLayer.prototype._createTextureWebGL = function (context, imagery) {
  * @param {Imagery} imagery The imagery for which to create a texture.
  */
 ImageryLayer.prototype._createTexture = function (context, imagery) {
+  // 【导读】RECEIVED→TEXTURE_LOADED：先过 tileDiscardPolicy（丢弃策略判空瓦片→INVALID，用父图替代），
+  // 【导读】再 _createTextureWebGL 上传 GPU；墨卡托影像存 textureWebMercator，地理投影存 texture（后续可重投影互转）。
   const imageryProvider = this._imageryProvider;
   const image = imagery.image;
 
@@ -1361,6 +1397,9 @@ ImageryLayer.prototype._finalizeReprojectTexture = function (context, texture) {
  * @param {boolean} [needGeographicProjection=true] True to reproject to geographic, or false if Web Mercator is fine.
  */
 ImageryLayer.prototype._reprojectTexture = function (
+  // 【导读】TEXTURE_LOADED→READY：Web 墨卡托纹理无法直接按地理坐标贴图时，排一个 ComputeCommand
+  // 【导读】（reprojectToGeographic：GPU 上 2x64 网格重采样）生成地理坐标版 texture；帧循环里由
+  // 【导读】queueReprojectionCommands 统一执行。完成后 _finalizeReprojectTexture 决定是否生成 mipmap/各向异性采样。
   frameState,
   imagery,
   needGeographicProjection,
@@ -1422,6 +1461,7 @@ ImageryLayer.prototype._reprojectTexture = function (
  * @param {FrameState} frameState The frameState.
  */
 ImageryLayer.prototype.queueReprojectionCommands = function (frameState) {
+  // 【导读】把本帧排队的重投影 ComputeCommand 推进 commandList（GlobeSurfaceTileProvider.initialize 每帧调用）。
   const computeCommands = this._reprojectComputeCommands;
   const length = computeCommands.length;
   for (let i = 0; i < length; ++i) {
@@ -1445,6 +1485,8 @@ ImageryLayer.prototype.cancelReprojections = function () {
 };
 
 ImageryLayer.prototype.getImageryFromCache = function (
+  // 【导读】影像瓦片缓存：key=[x,y,level]，同层多地形瓦片共享一个 Imagery（引用计数 addReference/releaseReference，
+  // 【导读】归零时才真释放纹理）。构建时还自动链上 parent（父级瓦片，用于加载期父图替代）。
   x,
   y,
   level,
@@ -1488,6 +1530,8 @@ const float32ArrayScratch = FeatureDetection.supportsTypedArrays()
   : undefined;
 
 function reprojectToGeographic(command, context, texture, rectangle) {
+  // 【导读】GPU 重投影实现：CPU 预算 64 纬度采样点的墨卡托 T 坐标（避免 GPU sin 精度问题），
+  // 【导读】再用 ReprojectWebMercator 着色器把墨卡托纹理重采样到地理坐标输出纹理。上方英文长注释是三代方案的演进史，值得读。
   // This function has gone through a number of iterations, because GPUs are awesome.
   //
   // Originally, we had a very simple vertex shader and computed the Web Mercator texture coordinates
@@ -1680,6 +1724,7 @@ function reprojectToGeographic(command, context, texture, rectangle) {
  * @private
  */
 function getLevelWithMaximumTexelSpacing(
+  // 【导读】按「目标地面分辨率」反推影像层级：L0 纹理间距=椭球周长×纬度因子/瓦片数，每升一层减半，log2 换算取整。
   layer,
   texelSpacing,
   latitudeClosestToEquator,
@@ -1715,6 +1760,8 @@ function handleError(errorEvent, error) {
 }
 
 async function handlePromise(instance, promise) {
+  // 【导读】fromProviderAsync 的落地器：await 后填 _imageryProvider 并抛 readyEvent（触发集合 layerShownOrHidden、
+  // 【导读】替换占位骨架）；失败走 errorEvent（无监听则 console.error）。
   let provider;
   try {
     provider = await Promise.resolve(promise);

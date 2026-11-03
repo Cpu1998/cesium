@@ -1,3 +1,11 @@
+// ═══ 【导读】ImageryLayerCollection.js —— 影像层的「有序集合」═══
+// 【导读】一个集合就是一叠 ImageryLayer（底图+叠加层）：数组下标即渲染顺序，0 = 最底层（先画、被压在下面），
+// 【导读】length-1 = 最上层（最后画、视觉在最前）。scene.imageryLayers / Cesium3DTileset.imageryLayers 都是它。
+// 【导读】职责三件事：① 增删/调序（add/remove/raise…，改完 _update 重算索引与基底层标记）并抛 layerAdded 等 4 个事件；
+// 【导读】② 事件被 GlobeSurfaceTileProvider._onLayerAdded 等订阅，负责给已加载地形瓦片补/删影像骨架；
+// 【导读】③ 拾取反查（pickImageryLayers/pickImageryLayerFeatures：屏幕点 → 地形瓦片 → imagery 数组 → provider）。
+// 【导读】概念区分：Provider=数据从哪来，Layer=这一层怎么渲染（alpha/调色/过滤），Collection=多层怎么叠。
+// 【导读】深入解读见 study/02-底图与影像体系.md §1 与 §5；单层渲染细节见 ImageryLayer.js。
 import defined from "../Core/defined.js";
 import Cartesian2 from "../Core/Cartesian2.js";
 import Cartographic from "../Core/Cartographic.js";
@@ -21,6 +29,7 @@ import ImageryState from "./ImageryState.js";
  * @demo {@link https://sandcastle.cesium.com/index.html?id=imagery-layers-manipulation|Cesium Sandcastle Imagery Manipulation Demo}
  */
 function ImageryLayerCollection() {
+  // 【导读】唯一状态：层的有序数组。所有顺序操作（add/remove/raise/lower）都是对它 splice/push。
   this._layers = [];
 
   /**
@@ -90,6 +99,9 @@ Object.defineProperties(ImageryLayerCollection.prototype, {
  * scene.imageryLayers.add(imageryLayer);
  */
 ImageryLayerCollection.prototype.add = function (layer, index) {
+  // 【导读】不传 index = 追加到数组尾 = 叠在所有层之上（底图必须 add 在最先或用 lowerToBottom 压底）；
+  // 【导读】增删后调用 _update 重算各层 _layerIndex 与 _isBaseLayer；layerAdded 事件触发
+  // 【导读】GlobeSurfaceTileProvider._onLayerAdded：为所有已加载地形瓦片补建这一层的 TileImagery 骨架。
   const hasIndex = defined(index);
 
   //>>includeStart('debug', pragmas.debug);
@@ -139,6 +151,7 @@ ImageryLayerCollection.prototype.add = function (layer, index) {
  * }
  */
 ImageryLayerCollection.prototype.addImageryProvider = function (
+  // 【导读】便捷方法：new ImageryLayer(provider) 再 add，等价于两层 API 的合并写法。
   imageryProvider,
   index,
 ) {
@@ -162,6 +175,7 @@ ImageryLayerCollection.prototype.addImageryProvider = function (
  *                    false if the layer was not in the collection.
  */
 ImageryLayerCollection.prototype.remove = function (layer, destroy) {
+  // 【导读】splice 移除 + _update 重算索引；destroy 默认 true 会释放该层全部纹理/GPU 资源（不可再 add 回来）。
   destroy = destroy ?? true;
 
   const index = this._layers.indexOf(layer);
@@ -188,6 +202,7 @@ ImageryLayerCollection.prototype.remove = function (layer, destroy) {
  * @param {boolean} [destroy=true] whether to destroy the layers in addition to removing them.
  */
 ImageryLayerCollection.prototype.removeAll = function (destroy) {
+  // 【导读】Viewer.js 里「用户传 baseLayer 时替换默认底图」用的就是 removeAll()+add()。逐层抛 layerRemoved 事件。
   destroy = destroy ?? true;
 
   const layers = this._layers;
@@ -233,6 +248,7 @@ ImageryLayerCollection.prototype.indexOf = function (layer) {
  * @returns {ImageryLayer} The imagery layer at the given index.
  */
 ImageryLayerCollection.prototype.get = function (index) {
+  // 【导读】按序号取层：get(0) 是最底层（通常底图），get(length-1) 是最上层。拾取反查也靠它遍历。
   //>>includeStart('debug', pragmas.debug);
   if (!defined(index)) {
     throw new DeveloperError("index is required.", "index");
@@ -261,6 +277,7 @@ function getLayerIndex(layers, layer) {
 }
 
 function swapLayers(collection, i, j) {
+  // 【导读】raise/lower 的公共实现：交换数组两个元素后 _update + 抛 layerMoved（触发瓦片内 TileImagery 重排序）。
   const arr = collection._layers;
   i = CesiumMath.clamp(i, 0, arr.length - 1);
   j = CesiumMath.clamp(j, 0, arr.length - 1);
@@ -349,6 +366,8 @@ ImageryLayerCollection.prototype.lowerToBottom = function (layer) {
 const applicableRectangleScratch = new Rectangle();
 
 function pickImageryHelper(scene, pickedLocation, pickFeatures, callback) {
+  // 【导读】拾取公共逻辑：先在「本帧渲染的地形瓦片」里找到包含拾取点的瓦片（tilesToRender），
+  // 【导读】再倒序遍历该瓦片 data.imagery（从最上层往下），校验影像矩形+有效区（textureCoordinateRectangle）后回调。
   // Find the terrain tile containing the picked location.
   const tilesToRender = scene.globe._surface._tilesToRender;
   let pickedTile;
@@ -434,6 +453,7 @@ function pickImageryHelper(scene, pickedLocation, pickFeatures, callback) {
  *
  */
 ImageryLayerCollection.prototype.pickImageryLayers = function (ray, scene) {
+  // 【导读】同步版拾取：返回拾取点命中的所有 ImageryLayer 数组（不含要素内容），只是查层不查要素。
   // Find the picked location on the globe.
   const pickedPosition = scene.globe.pick(ray, scene);
   if (!defined(pickedPosition)) {
@@ -631,6 +651,8 @@ function pickModelFeatures(model, pickedLocation, callback) {
  * }
  */
 ImageryLayerCollection.prototype.pickImageryLayerFeatures = function (
+  // 【导读】异步拾取「点到的要素」：复用 pickImageryHelper 定位影像瓦片后调 provider.pickFeatures（如 WMS GetFeatureInfo），
+  // 【导读】返回 Promise<ImageryLayerFeatureInfo[]>；provider 不支持 pickFeatures 则整体返回 undefined。
   ray,
   scene,
 ) {
@@ -734,6 +756,7 @@ ImageryLayerCollection.prototype.pickImageryLayerFeatures = function (
  * @param {FrameState} frameState The frameState.
  */
 ImageryLayerCollection.prototype.queueReprojectionCommands = function (
+  // 【导读】把各层排队中的 Web墨卡托→地理坐标 重投影 ComputeCommand 推入 commandList，由帧循环执行（详见 ImageryLayer._reprojectTexture）。
   frameState,
 ) {
   const layers = this._layers;
@@ -791,6 +814,9 @@ ImageryLayerCollection.prototype.destroy = function () {
 };
 
 ImageryLayerCollection.prototype._update = function () {
+  // 【导读】集合变化后的收尾：① 重写每层 _layerIndex（瓦片内 TileImagery 排序依据）；
+  // 【导读】② 标记 _isBaseLayer = 最底部的「可见」层——基底层特殊：即使影像没覆盖全球也把边缘像素拉伸铺满全球（见 _createTileImagerySkeletons）；
+  // 【导读】③ 检测 show 切换并补发 layerShownOrHidden 事件。
   let isBaseLayer = true;
   const layers = this._layers;
   let layersShownOrHidden;
