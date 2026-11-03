@@ -1,3 +1,15 @@
+// ═══ 【导读】Entity.js —— Entity 数据体系的原子：声明式数据容器 ═══
+// 【导读】Entity 是 Cesium 数据层的核心抽象：一个「我想要什么」的声明对象——
+// 【导读】position/orientation 描述「在哪/朝向」，billboard/label/point/polygon 等 *Graphics
+// 【导读】属性描述「渲染成什么」。它本身不含任何 WebGL 资源；真正把它变成画面的是
+// 【导读】DataSourceDisplay 每帧驱动的各 Visualizer（见 DataSourceDisplay.js，本文件不碰渲染）。
+// 【导读】关键机制一：Property 包装。本文件顶部 createPropertyTypeDescriptor 等工厂函数给每个
+// 【导读】属性生成 getter/setter：赋裸值（如 Cartesian3）自动包成 ConstantProperty，赋 Property 原样保留，
+// 【导读】因此「entity.position = new CallbackProperty(...)」与「= fromDegrees(...)」都能工作。
+// 【导读】关键机制二：definitionChanged 事件。任何属性/子属性变化都会广播，Visualizer 借此差量更新。
+// 【导读】主链路：function Entity 构造（merge 初始 options）→ 属性 setter 包装 → definitionChanged →
+// 【导读】→ EntityCollection.collectionChanged → Visualizer（第 3 棒主战场）。
+// 【导读】深入解读见 study/03-Entity数据体系.md §1/§2。
 import Cartesian3 from "../Core/Cartesian3.js";
 import Cartographic from "../Core/Cartographic.js";
 import Check from "../Core/Check.js";
@@ -44,10 +56,14 @@ const cartoScratch = new Cartographic();
 
 const ExtraPropertyNames = [];
 
+// 【导读】Property 包装机制（一）：把裸值包装成 ConstantPositionProperty 的回调。
+// 【导读】这就是为什么 entity.position = Cesium.Cartesian3.fromDegrees(...) 能直接生效。
 function createConstantPositionProperty(value) {
   return new ConstantPositionProperty(value);
 }
 
+// 【导读】Property 包装机制（二）：position 专用 descriptor——setter 里遇到非 Property 值时
+// 【导读】调上面的回调自动包一层；descriptor 的完整实现在 createPropertyDescriptor.js（已注）。
 function createPositionPropertyDescriptor(name) {
   return createPropertyDescriptor(
     name,
@@ -56,6 +72,8 @@ function createPositionPropertyDescriptor(name) {
   );
 }
 
+// 【导读】Property 包装机制（三）：*Graphics 属性专用——赋裸对象（如 {image:'x.png'}）时
+// 【导读】自动 new 对应 Graphics 类；赋 Graphics 实例原样保留。所有 visual 属性共用这一个工厂。
 function createPropertyTypeDescriptor(name, Type) {
   return createPropertyDescriptor(name, undefined, function (value) {
     if (value instanceof Type) {
@@ -111,6 +129,9 @@ function createPropertyTypeDescriptor(name, Type) {
  *
  * @see {@link https://cesium.com/learn/cesiumjs-learn/cesiumjs-creating-entities/|Creating Entities}
  */
+// 【导读】Entity 构造：几乎全部字段交给下面的 merge() 统一赋值（merge 同时服务于
+// 【导读】「构造时 options」与「运行时 entity.merge(other)」两条路径）。id 缺省自动生成 GUID。
+// 【导读】注意构造过程零渲染开销——Entity 可以先大量创建、择机加入集合。
 function Entity(options) {
   options = options ?? Frozen.EMPTY_OBJECT;
 
@@ -127,6 +148,8 @@ function Entity(options) {
   this._trackingReferenceFrame =
     options.trackingReferenceFrame ?? TrackingReferenceFrame.AUTODETECT;
   this._parent = undefined;
+  // 【导读】_propertyNames 是「本 Entity 拥有哪些属性」的白名单：序列化/拷贝/遍历都按它来，
+  // 【导读】后续 addProperty 注册的自定义属性也会追加进来（见 Entity.prototype.addProperty）。
   this._propertyNames = [
     "billboard",
     "box",
@@ -153,6 +176,8 @@ function Entity(options) {
     ...ExtraPropertyNames,
   ];
 
+  // 【导读】每个属性两个字段：_xxx 存值，_xxxSubscription 存「子 Property 的 definitionChanged
+  // 【导读】订阅句柄」（属性整体替换时退订旧的、订阅新的，见 createPropertyDescriptor.js 的 setter）。
   this._billboard = undefined;
   this._billboardSubscription = undefined;
   this._box = undefined;
@@ -205,10 +230,13 @@ function Entity(options) {
    */
   this.entityCollection = undefined;
 
+  // 【导读】merge(options) 在构造尾部统一赋初值；parent setter 里会顺带把自己挂进父 Entity 的 _children。
   this.parent = options.parent;
   this.merge(options);
 }
 
+// 【导读】show/parent 变化时向子 Entity 递归传播 isShowing 状态，
+// 【导读】并逐层触发 definitionChanged("isShowing")——Visualizer 靠它及时显示/隐藏子孙实体。
 function updateShow(entity, children, isShowing) {
   const length = children.length;
   for (let i = 0; i < length; i++) {
@@ -244,6 +272,7 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {string}
    */
+  // 【导读】id 只读：Entity 的身份标识，EntityCollection/拾取/GeometryUpdaterSet 都以它做 key。
   id: {
     get: function () {
       return this._id;
@@ -274,6 +303,8 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {boolean}
    */
+  // 【导读】show setter：值变化时先算 isShowing（综合本实体+集合+父链），变化才递归 updateShow
+  // 【导读】并 raiseEvent("show")。注意 setter 只改数据，不碰渲染——显示生效靠 Visualizer 每帧读 isShowing。
   show: {
     get: function () {
       return this._show;
@@ -314,6 +345,8 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {boolean}
    */
+  // 【导读】isShowing（只读合成）：本实体 show && 所属集合 show && 父链 isShowing 三者合取。
+  // 【导读】它才是 Visualizer 真正消费的「是否可见」；show 只是本实体自己的一票。
   isShowing: {
     get: function () {
       return (
@@ -328,6 +361,8 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {Entity|undefined}
    */
+  // 【导读】parent setter：维护双向链（父的 _children / 子的 _parent），换父时同步传播 isShowing。
+  // 【导读】父子关系只影响可见性与「zoomTo 取子树包围球」，不影响坐标。
   parent: {
     get: function () {
       return this._parent;
@@ -374,6 +409,10 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {BillboardGraphics|undefined}
    */
+  // 【导读】billboard/box/polygon/… 等 visual 属性全部由 createPropertyTypeDescriptor 生成：
+  // 【导读】读返回 Graphics 实例（或 undefined）；写接受「Graphics 实例或裸 options 对象」（自动 new）。
+  // 【导读】同类：label→LabelGraphics、point→PointGraphics、polyline→PolylineGraphics……
+  // 【导读】（Graphics 内部字段又各自用 createPropertyDescriptor 包装成 Property，两层包装见文档 §2）。
   billboard: createPropertyTypeDescriptor("billboard", BillboardGraphics),
   /**
    * Gets or sets the box.
@@ -398,6 +437,7 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {Property|undefined}
    */
+  // 【导读】description：InfoBox 展示的 HTML 描述，也是普通 Property（可随时变、可随时间变）。
   description: createPropertyDescriptor("description"),
   /**
    * Gets or sets the ellipse.
@@ -486,6 +526,8 @@ Object.defineProperties(Entity.prototype, {
    * @memberof Entity.prototype
    * @type {PositionProperty|undefined}
    */
+  // 【导读】position：专用 descriptor——非 Property 裸值自动包成 ConstantPositionProperty（区别于普通 ConstantProperty，
+  // 【导读】PositionProperty 额外支持参考条在 referenceFrame 语义）。详见 createPropertyDescriptor.js 注释。
   position: createPositionPropertyDescriptor("position"),
   /**
    * Gets or sets the rectangle.
@@ -515,6 +557,8 @@ Object.defineProperties(Entity.prototype, {
  * @param {string} propertyName name of the property that controls/accesses this entity type
  * @param {{ constructor: function }} Type The Graphics class to associate with this entity type
  */
+  // 【导读】运行时扩展：第三方包可注册新的 Entity 属性（如 cesium-vr 的自定义 visual），
+  // 【导读】追加进全局 ExtraPropertyNames，对所有后续 new Entity 生效。
 Entity.registerEntityType = function (propertyName, Type) {
   Object.defineProperties(Entity.prototype, {
     [propertyName]: createPropertyTypeDescriptor(propertyName, Type),
@@ -538,6 +582,7 @@ Entity.prototype.isAvailable = function (time) {
   //>>includeEnd('debug');
 
   const availability = this._availability;
+  // 【导读】无 availability 视为任意时刻都有数据；有则按时间区间判断（CZML 常用它表达「目标何时可见」）。
   return !defined(availability) || availability.contains(time);
 };
 
@@ -551,6 +596,8 @@ Entity.prototype.isAvailable = function (time) {
  * @exception {DeveloperError} "propertyName" is a reserved property name.
  * @exception {DeveloperError} "propertyName" is already a registered property.
  */
+  // 【导读】addProperty/removeProperty：动态注册自定义属性（ CZML 加载未知字段时会自动走到这里），
+  // 【导读】注册后同样受 definitionChanged 观察、被 merge 合并。外部插件体系的基石。
 Entity.prototype.addProperty = function (propertyName) {
   const propertyNames = this._propertyNames;
 
@@ -607,6 +654,10 @@ Entity.prototype.removeProperty = function (propertyName) {
  *
  * @param {Entity} source The object to be merged into this object.
  */
+  // 【导读】merge：把 source 上「本实体尚未赋值」的属性补齐；已赋值的字段递归 merge（Graphics 级），
+  // 【导读】同名不覆盖。构造函数用它处理 options（EntityCollection.add 传裸对象也等价于这条路径），
+  // 【导读】DataSource 加载/Entity 合并语义相同。1.145 无独立 Entity.fromObject，「对象→Entity」
+  // 【导读】统一由 EntityCollection.add 内部 new Entity(entity) 完成（见 EntityCollection.js 的 add）。
 Entity.prototype.merge = function (source) {
   //>>includeStart('debug', pragmas.debug);
   if (!defined(source)) {
@@ -677,6 +728,9 @@ const orientationScratch = new Quaternion();
  *
  * @returns {Matrix4} The modified result parameter or a new Matrix4 instance if one was not provided. Result is undefined if position is undefined.
  */
+  // 【导读】computeModelMatrix：position+orientation 在指定时刻求值，合成 ECEF 模型矩阵；
+  // 【导读】无 orientation 时默认用「东-北-天」局部系（Transforms.eastNorthUpToFixedFrame）。
+  // 【导读】billboard/model 等 Visualizer 与 EntityView（跟踪相机）都以它为定位基准。
 Entity.prototype.computeModelMatrix = function (time, result) {
   //>>includeStart('debug', pragmas.debug);
   Check.typeOf.object("time", time);
@@ -710,6 +764,8 @@ Entity.prototype.computeModelMatrix = function (time, result) {
 /**
  * @private
  */
+  // 【导读】heightReference（贴地/相对地形）专用变体：先按参考高度修正在 position 上，
+  // 【导读】再合成模型矩阵。box/cylinder 等通过地形偏移渲染时走这里。
 Entity.prototype.computeModelMatrixForHeightReference = function (
   time,
   heightReferenceProperty,
