@@ -1,3 +1,9 @@
+// ═══ 【导读】Tileset3DTileContent.js —— 外部/嵌套 tileset 内容：把另一棵瓦片树缝进来 ═══
+// 【导读】当瓦片 content 指向另一个 tileset.json（external tileset，分块大场景常用）时由分派表
+// 【导读】Cesium3DTileContentFactory.externalTileset 创建。它本身不渲染：fromJson 里回调宿主
+// 【导读】tileset 的 loadTileset 把子树挂为本瓦片的 children，遍历器走到这里会下钻到子树根继续选瓦片。
+// 【导读】本瓦片自身 ready 恒为 true、无特征无命令（长度全 0），是个「转发节点」。
+// 【导读】详见 study/04-3DTiles加载与LOD.md §6。
 import destroyObject from "../Core/destroyObject.js";
 
 /**
@@ -106,6 +112,8 @@ class Tileset3DTileContent {
    * @returns {Tileset3DTileContent}
    */
   static fromJson(tileset, tile, resource, json) {
+    // 【导读】关键一针：拿宿主 tileset 的 loadTileset 把子 tileset.json 解析成 Cesium3DTile 子树，
+// 【导读】挂在本 tile 的 children 上——嵌套 tileset 对遍历器完全透明（就是普通子树）
     const content = new Tileset3DTileContent(tileset, tile, resource);
     content._tileset.loadTileset(content._resource, json, content._tile);
     content._ready = true;

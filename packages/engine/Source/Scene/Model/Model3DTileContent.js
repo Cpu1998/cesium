@@ -1,3 +1,9 @@
+// ═══ 【导读】Model3DTileContent.js —— b3dm/i3dm/pnts/glb/geoJson 内容的统一宿主 ═══
+// 【导读】1.145 已无独立 Gltf3DTileContent/PointCloud3DTileContent：三维模型与点云瓦片内容都由本类
+// 【导读】承载，静态工厂 fromB3dm/fromPnts/fromI3dm/fromGltf/fromGeoJson 解析各自二进制头
+// 【导读】（b3dm/i3dm 先剥 batchTable 再取内嵌 glTF；pnts 走点云路径）后统一委托给引擎 Model
+// 【导读】（Model/Model.js）渲染。每帧 Cesium3DTile.update→本类 update→model.update 生成 DrawCommand。
+// 【导读】详见 study/04-3DTiles加载与LOD.md §6。
 import Color from "../../Core/Color.js";
 import combine from "../../Core/combine.js";
 import defined from "../../Core/defined.js";
@@ -316,6 +322,8 @@ class Model3DTileContent {
 
     model.update(frameState);
 
+    // 【导读】model.ready 后补动画（i3dm/glTF 可带动画，默认循环播放）并置本内容 ready；
+// 【导读】瓦片状态机据此从 PROCESSING→READY（见 Cesium3DTile.process）
     if (!this._ready && model.ready) {
       // Animation can only be added once the model is ready
       model.activeAnimations.addAll({
@@ -484,6 +492,8 @@ class Model3DTileContent {
 }
 
 function makeModelOptions(tileset, tile, content, additionalOptions) {
+  // 【导读】把 tileset 级配置（裁剪/自定义着色器/内存统计/点云着色模式等）与瓦片级 transform 合成
+// 【导读】传给 Model 的选项：瓦片自身已做过剔除（cull:false），透明/不透明走 CESIUM_3D_TILE 专用 Pass
   const mainOptions = {
     cull: false, // The model is already culled by 3D Tiles
     releaseGltfJson: true, // Models are unique and will not benefit from caching so save memory

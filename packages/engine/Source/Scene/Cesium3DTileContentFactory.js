@@ -1,3 +1,9 @@
+// ═══ 【导读】Cesium3DTileContentFactory.js —— 内容类型分派表（magic → 内容类） ═══
+// 【导读】由 Cesium3DTile.js 的 makeContent 调用：预处理器按二进制头 magic / JSON 类型查本表：
+// 【导读】b3dm/pnts/i3dm/glb/gltf/geoJson→Model3DTileContent（都统一进引擎 Model，见 Model/Model.js）；
+// 【导读】cmpt→Composite3DTileContent（内含多内容递归）；externalTileset→Tileset3DTileContent（嵌套瓦片集）；
+// 【导读】geom/vctr→Geometry/Vector 内容；subt/subtreeJson→Implicit3DTileContent（隐式平铺子树）；
+// 【导读】glb/gltf 前置高斯泼溅/矢量网格扩展检查。各内容职责详见 study/04-3DTiles加载与LOD.md §6。
 import Composite3DTileContent from "./Composite3DTileContent.js";
 import Geometry3DTileContent from "./Geometry3DTileContent.js";
 import Implicit3DTileContent from "./Implicit3DTileContent.js";
