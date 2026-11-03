@@ -1,3 +1,9 @@
+// ═══ 【导读】TileImagery.js —— 「地形瓦片 ↔ 影像瓦片」的粘贴关系（私有类）═══
+// 【导读】一个地形瓦片（GlobeSurfaceTile.imagery 数组）里每项 TileImagery 记录：
+// 【导读】loadingImagery（正在加载的目标影像瓦片）、readyImagery（当前实际可画的替代图，常是父级瓦片）、
+// 【导读】textureCoordinateRectangle（贴图区域百分比，XYZW=西南东北）、textureTranslationAndScale（着色器用平移缩放）。
+// 【导读】processStateMachine 是「先推 loading，画不到就沿 parent 链找 ready 祖先」的父图替代核心逻辑。
+// 【导读】多个地形瓦片可共享同一 Imagery（靠它引用计数），但各自持有独立 TileImagery（贴图矩形不同）。见 study/02 §3。
 import defined from "../Core/defined.js";
 import ImageryState from "./ImageryState.js";
 
@@ -44,6 +50,9 @@ TileImagery.prototype.freeResources = function () {
  * @returns {boolean} True if this instance is done loading; otherwise, false.
  */
 TileImagery.prototype.processStateMachine = function (
+  // 【导读】父图替代核心：① 先推 loadingImagery 状态机一步；READY 则转正为 readyImagery 并算 UV；
+  // 【导读】② 未就绪时沿 parent 链找最近可画祖先（含地理纹理要求），把它设为 readyImagery 先糊上屏；
+  // 【导读】③ FAILED/INVALID 时继续推进「最接近未加载祖先」的加载（有些祖先瓦片不直接挂在任何地形瓦片上，只能在这几推）。
   tile,
   frameState,
   skipLoading,

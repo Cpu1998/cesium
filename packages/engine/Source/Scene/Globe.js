@@ -1,3 +1,11 @@
+// ═══ 【导读】Globe.js —— 「椭球 + 地形 + 影像」的组合 Primitive（简注）═══
+// 【导读】Globe 本身几乎不做加载/渲染细节，而是组装三件套：ImageryLayerCollection（皮肤）+
+// 【导读】QuadtreePrimitive（调度骨架）+ GlobeSurfaceTileProvider（把两者缝起来的回调宿主），
+// 【导读】另带地表大气/水体/光照/地下色等开关（beginFrame 时逐项透传给 tileProvider 的字段）。
+// 【导读】帧入口四步：update（透传）→ beginFrame（参数同步+surface.beginFrame）→ render（surface.render）→ endFrame。
+// 【导读】scene.globe.imageryLayers 即 scene.imageryLayers（Scene.js 直接转发 globe.imageryLayers）。
+// 【导读】影像/地形细节见 ImageryLayer.js / GlobeSurfaceTileProvider.js；帧循环全景第 5 棒深挖。
+// 【导读】概念模型见 study/02-底图与影像体系.md §1；与 Viewer options.baseLayer 对照见 §7。
 import BoundingSphere from "../Core/BoundingSphere.js";
 import buildModuleUrl from "../Core/buildModuleUrl.js";
 import Cartesian3 from "../Core/Cartesian3.js";
@@ -41,6 +49,8 @@ import VectorProvider from "../Core/VectorProvider.js";
  * globe.
  */
 function Globe(ellipsoid) {
+  // 【导读】组装现场：默认椭球地形 + 空影像集合 + VectorProvider（矢量裁剪）→ GlobeSurfaceTileProvider → QuadtreePrimitive。
+  // 【导读】所以 scene.globe._surface 是 QuadtreePrimitive，它的 tileProvider 才是真正干活的人。
   ellipsoid = ellipsoid ?? Ellipsoid.default;
   const terrainProvider = new EllipsoidTerrainProvider({
     ellipsoid: ellipsoid,
@@ -977,6 +987,7 @@ Globe.prototype.getHeight = function (cartographic) {
  * @private
  */
 Globe.prototype.update = function (frameState) {
+  // 【导读】帧入口一句话：show 时把 frameState 透传给四叉树（其内部链路见 QuadtreePrimitive/GlobeSurfaceTileProvider 注释）。
   if (!this.show) {
     return;
   }
@@ -990,6 +1001,7 @@ Globe.prototype.update = function (frameState) {
  * @private
  */
 Globe.prototype.beginFrame = function (frameState) {
+  // 【导读】每帧把 Globe 上的几十个可视化开关（大气/光照/水体/地下色/夸张系数…）同步给 tileProvider，再 surface.beginFrame。
   const surface = this._surface;
   const tileProvider = surface.tileProvider;
   const terrainProvider = this.terrainProvider;

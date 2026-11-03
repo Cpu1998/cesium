@@ -1,3 +1,12 @@
+// ═══ 【导读】GlobeSurfaceTileProvider.js —— 把「影像+地形」缝进四叉树的枢纽 ═══
+// 【导读】它实现 QuadtreeTileProvider 接口，被 QuadtreePrimitive 当作回调宿主（Globe 构造时组装：
+// 【导读】QuadtreePrimitive({tileProvider: new GlobeSurfaceTileProvider({terrainProvider, imageryLayers, surfaceShaderSet…})})）。
+// 【导读】双职责：① 集合事件→瓦片反应：构造时订 layerAdded/Removed/Moved/ShownOrHidden（_onLayerAdded 给已加载瓦片补骨架/
+// 【导读】清缓存重加载；层序变化→重排瓦片内 TileImagery）；② 每帧钩子：update（集合_update）→initialize（重投影命令/矢量数据/版权）→
+// 【导读】beginUpdate/endUpdate（draw command 池与渲染状态）→loadTile（转 GlobeSurfaceTile.processStateMachine，先地形后影像）→
+// 【导读】showTileThisFrame（按就绪纹理数分桶，纹理数决定着色器分支数量）→addDrawCommandsForTile（把每层纹理+alpha/调色
+// 【导读】装进 dayTexture* uniform，由 GlobeFS 多层采样混合——这是「多层叠加」真正的执行点）。
+// 【导读】帧级调度细节（帧循环/请求队列）见 QuadtreePrimitive.js 简注与 study/02-底图与影像体系.md §3/§4；着色器合成第 5 棒深挖。
 import BoundingSphere from "../Core/BoundingSphere.js";
 import BoxOutlineGeometry from "../Core/BoxOutlineGeometry.js";
 import Cartesian2 from "../Core/Cartesian2.js";
@@ -82,6 +91,8 @@ class GlobeSurfaceTileProvider {
    * @param {VectorProvider} options.vectorProvider
    */
   constructor(options) {
+    // 【导读】四个必传件：terrainProvider（骨骼来源）/imageryLayers（皮肤集合，本类会订它的事件）/
+    // 【导读】surfaceShaderSet（GlobeVS/GlobeFS 着色器组合器）/vectorProvider（矢量裁剪多边形管线）。
     //>>includeStart('debug', pragmas.debug);
     if (!defined(options)) {
       throw new DeveloperError("options is required.");
@@ -389,6 +400,7 @@ class GlobeSurfaceTileProvider {
    * @param {FrameState} frameState
    */
   update(frameState) {
+    // 【导读】QuadtreePrimitive 每帧最先调它：把集合层序/基底层/show 状态重算掉（_update），保证后续加载用最新层序。
     // update collection: imagery indices, base layers, raise layer show/hide event
     this._imageryLayers._update();
   }
@@ -398,6 +410,8 @@ class GlobeSurfaceTileProvider {
    * @param {FrameState} frameState The frame state.
    */
   initialize(frameState) {
+    // 【导读】每帧初始化：① 推影像重投影 ComputeCommand；② 层序变过→把所有已加载瓦片的 TileImagery 按 _layerIndex 重排；
+    // 【导读】③ 矢量裁剪数据更新 + 清理待销毁 VAO + 汇总地形/影像版权（creditDisplay）。
     // update each layer for texture reprojection.
     this._imageryLayers.queueReprojectionCommands(frameState);
 
@@ -464,6 +478,8 @@ class GlobeSurfaceTileProvider {
    * @param {FrameState} frameState The frame state.
    */
   beginUpdate(frameState) {
+    // 【导读】帧开始：清空「按纹理数分桶的待渲染瓦片表」（桶即着色器里 dayTexture 数组长度，纹理数不同=不同 shader 变体）；
+    // 【导读】更新裁剪平面/多边形；重置 draw command 池游标。
     const tilesToRenderByTextureCount = this._tilesToRenderByTextureCount;
     for (let i = 0, len = tilesToRenderByTextureCount.length; i < len; ++i) {
       const tiles = tilesToRenderByTextureCount[i];
@@ -676,6 +692,9 @@ class GlobeSurfaceTileProvider {
    * @param {QuadtreeTile} tile The tile to load.
    */
   loadTile(frameState, tile) {
+    // 【导读】★加载单瓦片（QuadtreePrimitive 载入队列调）：包一层「先地形后影像」策略——
+    // 【导读】包围盒还是借来的（boundingVolumeSourceTile≠tile）时 terrainOnly=true 只拉地形；拿到精确包围盒后若瓦片仍可见，
+    // 【导读】立刻再推一次带影像的状态机（不等下一帧），避免白等。
     // We don't want to load imagery until we're certain that the terrain tiles are actually visible.
     // So if our bounding volume isn't accurate because it came from another tile, load terrain only
     // initially. If we load some terrain and suddenly have a more accurate bounding volume and the
@@ -1084,6 +1103,8 @@ class GlobeSurfaceTileProvider {
    * @param {FrameState} frameState The state information of the current rendering frame.
    */
   showTileThisFrame(tile, frameState) {
+    // 【导读】四叉树判定本帧要画这块瓦片：数一数有几层影像就绪（alpha≠0），按「就绪纹理数」分桶——
+    // 【导读】同桶共享同一个 shader 变体（dayTexture 数组长度固定），endUpdate 时逐桶批量建 draw command。
     let readyTextureCount = 0;
     const surfaceTile = /** @type {GlobeSurfaceTile} */ (tile.data);
     const tileImageryCollection = surfaceTile.imagery;
@@ -1228,6 +1249,9 @@ class GlobeSurfaceTileProvider {
   }
 
   _onLayerAdded(layer, index) {
+    // 【导读】★集合事件→瓦片反应（新层落地）：清该层影像缓存，遍历所有已加载瓦片：删掉旧层位的 TileImagery，
+    // 【导读】原地重建 _createTileImagerySkeletons 骨架，并把瓦片 renderable 置 false（若正在渲染则保住），
+    // 【导读】等新影像就绪再恢复——所以中途加层不会白屏闪烁，只会局部变模糊再变清晰。
     if (this.isDestroyed()) {
       return;
     }
@@ -2752,6 +2776,8 @@ function addDrawCommandsForTile(tileProvider, tile, frameState) {
     tileProvider.vectorProvider.antialias;
 
   const tileImageryCollection = surfaceTile.imagery;
+  // 【导读】一个地形瓦片可能要画多遍（do-while）：纹理总数超过 GPU 纹理单元上限 maxTextures 时分批——
+  // 【导读】第一遍不透明打底（firstPassRenderState+initialColor 白色），后续遍 alpha 混合叠加，直到贴完所有层。
   let imageryIndex = 0;
   const imageryLen = tileImageryCollection.length;
 
@@ -2997,6 +3023,9 @@ function addDrawCommandsForTile(tileProvider, tile, frameState) {
     let applyColorToAlpha = false;
 
     while (numberOfDayTextures < maxTextures && imageryIndex < imageryLen) {
+      // 【导读】★多层叠加的真正执行点：按层序把每块就绪纹理装进 dayTextures[i] 系列数组——纹理本体、UV 平移缩放、
+      // 【导读】alpha/nightAlpha/dayAlpha、brightness/contrast/hue/saturation/gamma、splitDirection、cutout、colorToAlpha…
+      // 【导读】任意项非默认值就打开对应 apply* 开关（宏开关控制 GlobeFS 分支，默认全关=最快路径）。
       const tileImagery = tileImageryCollection[imageryIndex];
       const imagery = tileImagery.readyImagery;
       ++imageryIndex;

@@ -1,3 +1,10 @@
+// ═══ 【导读】GlobeSurfaceTile.js —— 地形瓦片的「数据+状态机」（贴影像的宿主）═══
+// 【导读】QuadtreeTile.data 就是本类实例：imagery[]（TileImagery 数组，皮肤）+ terrainData/mesh/vertexArray（骨骼）+ waterMask 等。
+// 【导读】两级状态机：① 地形侧 processTerrainStateMachine：UNLOADED→requestTileGeometry（请求高程）→RECEIVED→
+// 【导读】transform（CPU 建 mesh）→TRANSFORMED→createResources（上 GPU 建 VAO）→READY；失败则 upsample（从父瓦片上采样补块）。
+// 【导读】② 影像侧 processImagery：逐个 TileImagery.processStateMachine（请求纹理→父图替代→转正），全就绪才算 DONE。
+// 【导读】调度顺序「先地形后影像」：terrainOnly=true 时只推地形（可见性不确定/仅需上采样源），详见 study/02-底图与影像体系.md §3。
+// 【导读】四叉树调度入口在 QuadtreePrimitive，纹理→draw command 的绑定在 GlobeSurfaceTileProvider.addDrawCommandsForTile。
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import Cartesian4 from "../Core/Cartesian4.js";
@@ -52,6 +59,7 @@ class GlobeSurfaceTile {
   request;
 
   constructor() {
+    // 【导读】imagery 数组顺序 = 集合层序（底层在前），渲染时同序采样叠加；它是「皮肤贴在哪」的真正落点。
     /**
      * The {@link TileImagery} attached to this tile.
      * @type {TileImagery[]}
@@ -211,6 +219,7 @@ class GlobeSurfaceTile {
    * @param {ImageryLayerCollection} imageryLayerCollection
    */
   static initialize(
+    // 【导读】首次进入时建 tile.data 并调 prepareNewTile：判可用性 + 给每个可见层建影像骨架（_createTileImagerySkeletons）。
     tile,
     terrainProvider,
     vectorProvider,
@@ -242,6 +251,9 @@ class GlobeSurfaceTile {
    * @param {*} terrainOnly
    */
   static processStateMachine(
+    // 【导读】★瓦片加载总驱动（GlobeSurfaceTileProvider.loadTile 每帧调）：先 initialize→地形状态机；
+    // 【导读】terrainOnly=true 提前返回（可见性不确定时先只拉地形）；之后 processImagery 推影像；
+    // 【导读】地形+影像双就绪→DONE 并回调 _loadedCallbacks（ImageryLayer 靠它等待某层就绪）。
     tile,
     frameState,
     terrainProvider,
@@ -333,6 +345,8 @@ class GlobeSurfaceTile {
    * @param {boolean} skipLoading
    */
   processImagery(tile, terrainProvider, frameState, skipLoading) {
+    // 【导读】逐个推瓦片上的 TileImagery 状态机；任何一块有 readyImagery（父图也行）瓦片即可渲染（renderable），
+    // 【导读】但全部就绪才算加载完（isDoneLoading）——这就是「先糊父图、精细图慢慢到」的体验来源。
     const surfaceTile = /** @type {GlobeSurfaceTile} */ (tile.data);
     let isUpsampledOnly = tile.upsampledFromParent;
     let isAnyTileLoaded = false;
@@ -650,6 +664,8 @@ function toggleGeodeticSurfaceNormals(
  * @ignore
  */
 function prepareNewTile(
+  // 【导读】新瓦片初始化：问 provider 本块地形是否有数据（父瓦片 terrainData 也能答）；
+  // 【导读】不可用→直接 FAILED（走 upsample 从父块插值）；然后给每个可见层调 _createTileImagerySkeletons 建影像骨架。
   tile,
   terrainProvider,
   vectorProvider,
@@ -705,6 +721,8 @@ function prepareNewTile(
  * @ignore
  */
 function processTerrainStateMachine(
+  // 【导读】地形侧状态机（每帧推一步）：FAILED→upsample（父块上采样，父未就绪则递归先推父）；UNLOADED→requestTileGeometry；
+  // 【导读】RECEIVED→transform（CPU 建 TerrainMesh）；TRANSFORMED→createResources（建 VAO 上 GPU）；有水掩码时顺带建 waterMaskTexture。
   tile,
   frameState,
   terrainProvider,

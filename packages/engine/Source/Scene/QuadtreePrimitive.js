@@ -1,3 +1,11 @@
+// ═══ 【导读】QuadtreePrimitive.js —— 地球表面瓦片的四叉树调度器（简注）═══
+// 【导读】职责：管理 levelZeroTiles 根瓦片，每帧从根开始「可见性→屏幕空间误差(SSE)→细分/渲染」遍历
+// 【导读】（selectTilesForRendering→visitIfVisible→visitTile），并把待加载瓦片分三个优先级队列：
+// 【导读】High=阻碍细分、Medium=本帧要画/相机所在、Low=预加载的兄弟瓦片；时间片轮转 processTileLoadQueue 逐帧消化，
+// 【导读】最终调 tileProvider（即 GlobeSurfaceTileProvider）的 loadTile/showTileThisFrame 等接口。
+// 【导读】缓存淘汰靠 TileReplacementQueue（tileCacheSize 控制），纯上采样瓦片不会触发细分。
+// 【导读】本文件是「地形+影像共用」的调度骨架；Scene 帧循环、render pass 编排属第 5 棒深挖，此处不展开。
+// 【导读】配合阅读 study/02-底图与影像体系.md §3（生命周期）与 §7（与 Viewer API 对照）。
 import Cartesian3 from "../Core/Cartesian3.js";
 import Cartographic from "../Core/Cartographic.js";
 import defined from "../Core/defined.js";
@@ -80,6 +88,8 @@ function QuadtreePrimitive(options) {
   this._tilesRenderedThisFrame = new Set(); // collect all tiles selected to render (useful when multiple render calls are made in a single frame (as in 2D mode))
   this._tilesToRender = [];
   this._tileLoadQueueHigh = []; // high priority tiles are preventing refinement
+  // 【导读】三优先级加载队列（High/Medium/Low）+ LRU 淘汰队列（_tileReplacementQueue，tileCacheSize 控制保留瓦片数）。
+  // 【导读】maximumScreenSpaceError（默认 2px）是细分门槛：SSE 越小画质越精细、瓦片越多。
   this._tileLoadQueueMedium = []; // medium priority tiles are being rendered
   this._tileLoadQueueLow = []; // low priority tiles were refined past or are non-visible parts of quads.
   this._tileReplacementQueue = new TileReplacementQueue();
@@ -304,6 +314,7 @@ QuadtreePrimitive.prototype.updateHeight = function (cartographic, callback) {
  * @private
  */
 QuadtreePrimitive.prototype.update = function (frameState) {
+  // 【导读】每帧前置钩子：只透传给 tileProvider.update（GlobeSurfaceTileProvider 用它做集合 _update）。
   if (defined(this._tileProvider.update)) {
     this._tileProvider.update(frameState);
   }
@@ -502,6 +513,8 @@ const cameraOriginScratch = new Cartesian3();
 let rootTraversalDetails = [];
 
 function selectTilesForRendering(primitive, frameState) {
+  // 【导读】每帧选瓦片：首次帧时由 tilingScheme 建 levelZeroTiles（Geographic 2 块/WebMercator 1 块），
+  // 【导读】根瓦片按相机距离近→远排序后深度优先 visitIfVisible（远→近排序保证优先级/遮挡判断稳定）。
   const debug = primitive._debug;
   if (debug.suspendLodUpdate) {
     return;
@@ -1179,6 +1192,8 @@ function containsNeededPosition(primitive, tile) {
 }
 
 function visitIfVisible(
+  // 【导读】被剔除但含相机位置的瓦片：仍以 Medium 优先级加载到「有地形」为止（updateHeights 要用高程）；
+  // 【导读】preloadSiblings 开启时被剔除的兄弟瓦片进 Low 队列预取。
   primitive,
   tile,
   tileProvider,
@@ -1246,6 +1261,8 @@ function visitIfVisible(
 }
 
 function screenSpaceError(primitive, frameState, tile) {
+  // 【导读】★LOD 核心公式：SSE = 几何误差×屏高 / (距离×frustum.sseDenominator)，再扣雾衰减、除像素比；
+  // 【导读】SSE < maximumScreenSpaceError 就不必细分（当前层已够精细）。2D/正交相机走 screenSpaceError2D。
   if (
     frameState.mode === SceneMode.SCENE2D ||
     frameState.camera.frustum instanceof OrthographicFrustum ||
@@ -1309,6 +1326,8 @@ function addTileToRenderList(primitive, tile) {
 }
 
 function processTileLoadQueue(primitive, frameState) {
+  // 【导读】时间片加载：每帧只花 _loadQueueTimeSlice 毫秒，按 High→Medium→Low 顺序调 tileProvider.loadTile，
+  // 【导读】顺带 trimTiles 按缓存上限淘汰闲置瓦片——所以「瓦片加载不卡帧」是靠限时分片而非异步本身。
   const tileLoadQueueHigh = primitive._tileLoadQueueHigh;
   const tileLoadQueueMedium = primitive._tileLoadQueueMedium;
   const tileLoadQueueLow = primitive._tileLoadQueueLow;

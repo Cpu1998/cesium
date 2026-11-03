@@ -1,3 +1,9 @@
+// ═══ 【导读】Imagery.js —— 「一个影像瓦片」的状态机（私有类）═══
+// 【导读】字段：x/y/level（金字塔坐标）、parent（父级瓦片，加载期父图替代的关键）、
+// 【导读】state（ImageryState：UNLOADED→TRANSITIONING→RECEIVED→TEXTURE_LOADED→READY；失败 FAILED/INVALID）、
+// 【导读】texture（地理投影版）/textureWebMercator（墨卡托原版）双纹理、referenceCount（共享引用计数）。
+// 【导读】processStateMachine 每帧被 TileImagery 驱动一步：请求→建纹理→重投影，均为「转 TRANSITIONING+调
+// 【导读】ImageryLayer 对应方法」的异步推进。完整生命周期图见 study/02-底图与影像体系.md §3。
 import defined from "../Core/defined.js";
 import destroyObject from "../Core/destroyObject.js";
 import ImageryState from "./ImageryState.js";
@@ -9,6 +15,7 @@ import ImageryState from "./ImageryState.js";
  * @private
  */
 function Imagery(imageryLayer, x, y, level, rectangle) {
+  // 【导读】构造即链父：level>0 时自动 getImageryFromCache 取父瓦片并计数，父图替代、失败回退都沿这条 parent 链上溯。
   this.imageryLayer = imageryLayer;
   this.x = x;
   this.y = y;
@@ -53,6 +60,7 @@ Imagery.prototype.addReference = function () {
 };
 
 Imagery.prototype.releaseReference = function () {
+  // 【导读】引用计数归零才真释放：从层缓存移除、递减 parent 计数、销毁 image/纹理（墨卡托与地理双份）。
   --this.referenceCount;
 
   if (this.referenceCount === 0) {
@@ -86,6 +94,8 @@ Imagery.prototype.releaseReference = function () {
 };
 
 Imagery.prototype.processStateMachine = function (
+  // 【导读】每帧推进一步状态：UNLOADED→发请求(_requestImagery)；RECEIVED→建纹理(_createTexture)；
+  // 【导读】TEXTURE_LOADED→重投影(_reprojectTexture)。已 READY 但缺地理版纹理时（如瓦片被极地瓦片共享）会再补一次重投影。
   frameState,
   needGeographicProjection,
   skipLoading,

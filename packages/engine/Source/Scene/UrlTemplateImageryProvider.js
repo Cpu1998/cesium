@@ -1,3 +1,12 @@
+// ═══ 【导读】UrlTemplateImageryProvider.js —— 「万能 XYZ 瓦片底图」数据源 ═══
+// 【导读】用 URL 模板（如 https://tile.example.com/{z}/{x}/{y}.png）拉取标准 XYZ 切片瓦片，
+// 【导读】接任意自建瓦片服务（天地图/Mapbox 栅格/OSM 镜像等）首选它；也是理解影像数据入口最简单的样本。
+// 【导读】主链路：构造（存模板/子域名/tilingScheme，默认 WebMercatorTilingScheme 256px）→
+// 【导读】requestImage(x,y,level) → buildImageResource 展开 {z}/{x}/{y}/{s}/{reverseX}… 标签 → ImageryProvider.loadImage（fetch+限并发）。
+// 【导读】拾取链路：pickFeatures 用独立模板 pickFeaturesUrl + {i}/{j} 像素坐标标签，按 getFeatureInfoFormats 逐格式降级重试。
+// 【导读】坐标体系：WebMercator 金字塔 L0=1×1、Geographic L0=2×1；y 从北向南编号（部分服务的反向编号见 reverseYTag）。
+// 【导读】Provider 只答「数据从哪来」；怎么贴到地球由 ImageryLayer/GlobeSurfaceTileProvider 负责。
+// 【导读】模板标签速查与 XYZ/quadkey 对比见 study/02-底图与影像体系.md §2；Provider 家族速查见 §6。
 import Cartesian2 from "../Core/Cartesian2.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import Cartographic from "../Core/Cartographic.js";
@@ -16,6 +25,9 @@ import ImageryProvider from "./ImageryProvider.js";
 
 const templateRegex = /{[^}]+}/g;
 
+// 【导读】标签注册表：模板里每个 {tag} 对应一个取值函数，展开时仅替换已识别的标签（未识别的保留原样，便于路径里嵌自定义段）。
+// 【导读】常用：x/y/z（行列层）、reverseX/Y/Z（服务端编号反向）、s（子域名轮询分摊并发）、
+// 【导读】west/south/east/northDegrees（瓦片地理范围）、Projected 版（投影坐标）、width/height（分辨率）。
 const tags = {
   x: xTag,
   y: yTag,
@@ -187,6 +199,8 @@ const pickFeaturesTags = combine(tags, {
  * @see WebMapTileServiceImageryProvider
  */
 function UrlTemplateImageryProvider(options) {
+  // 【导读】要点：① 默认 tilingScheme=WebMercatorTilingScheme（256×256，L0=1×1）；接 Geographic（L0=2×1）服务须显式传；
+  // 【导读】② subdomains 配合 {s} 标签做域名轮询（默认 a/b/c）；③ pickFeaturesUrl + getFeatureInfoFormats 支持要素拾取。
   options = options ?? Frozen.EMPTY_OBJECT;
 
   this._errorEvent = new Event();
@@ -520,6 +534,8 @@ UrlTemplateImageryProvider.prototype.getTileCredits = function (x, y, level) {
  *          undefined if there are too many active requests to the server, and the request should be retried later.
  */
 UrlTemplateImageryProvider.prototype.requestImage = function (
+  // 【导读】请求入口（ImageryLayer._requestImagery 调用）：buildImageResource 展开 URL 后交给
+  // 【导读】ImageryProvider.loadImage（.ktx2 压缩纹理走 loadKTX2，普通图 fetchImage；同域并发超限返回 undefined 待重试）。
   x,
   y,
   level,
@@ -562,6 +578,8 @@ UrlTemplateImageryProvider.prototype.pickFeatures = function (
 
   let formatIndex = 0;
 
+  // 【导读】格式降级链：依次尝试 json→xml→text…，前一个格式 fetch/解析失败就 catch 后试下一个（doRequest 递归），
+  // 【导读】全失败返回空数组。适合 GetFeatureInfo 端点返回格式不确定的情况。
   const that = this;
 
   function handleResponse(format, data) {
@@ -611,6 +629,8 @@ let projectedScratchComputed = false;
 const projectedScratch = new Rectangle();
 
 function buildImageResource(imageryProvider, x, y, level, request) {
+  // 【导读】★模板展开：正则抳出所有 {tag}，逐个调 tags[key](provider,x,y,level) 求值填入 templateValues，
+  // 【导读】再 getDerivedResource 生成带 Request 句柄的子 Resource（沿用原 resource 的 query/header/重试策略）。
   degreesScratchComputed = false;
   projectedScratchComputed = false;
 
@@ -681,6 +701,7 @@ function buildPickFeaturesResource(
 }
 
 function padWithZerosIfNecessary(imageryProvider, key, value) {
+  // 【导读】urlSchemeZeroPadding（如 {x:"00"} 的服务）按配置把 x/y/z 左补零到固定位数。
   if (
     imageryProvider &&
     imageryProvider.urlSchemeZeroPadding &&
@@ -707,6 +728,7 @@ function xTag(imageryProvider, x, y, level) {
 }
 
 function reverseXTag(imageryProvider, x, y, level) {
+  // 【导读】反向编号换算：X' = 本层瓦片列数 - x - 1；reverseY/reverseZ 同理，适配服务端行/列/层方向相反的源（部分国产瓦片服务常见）。
   const reverseX =
     imageryProvider.tilingScheme.getNumberOfXTilesAtLevel(level) - x - 1;
   return padWithZerosIfNecessary(imageryProvider, "{reverseX}", reverseX);
@@ -736,11 +758,13 @@ function zTag(imageryProvider, x, y, level) {
 }
 
 function sTag(imageryProvider, x, y, level) {
+  // 【导读】子域名轮询：按 (x+y+level) 取模选一个子域名，把并发分摊到多个主机（绕开浏览器同域连接数限制）。
   const index = (x + y + level) % imageryProvider._subdomains.length;
   return imageryProvider._subdomains[index];
 }
 
 function computeDegrees(imageryProvider, x, y, level) {
+  // 【导读】惰性求值（degreesScratchComputed 标志）：一次展开中多个 Degree 标签只算一次 tileXYToRectangle，缓存在模块级 scratch。
   if (degreesScratchComputed) {
     return;
   }
