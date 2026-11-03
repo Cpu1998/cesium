@@ -404,6 +404,9 @@ function CesiumWidget(container, options) {
     // Set the base imagery layer
     // 【导读】默认底图：未传 baseLayer 时用 ImageryLayer.fromWorldImagery()（ion 在线世界影像）；
     // 【导读】底图作为一个普通 ImageryLayer 加进 scene.imageryLayers 最底层（影像管线第 2 棒深挖）。
+    // 【导读】链路去向（第 2 棒已注）：ImageryLayerCollection.add→_update 标记基底层→
+    // 【导读】GlobeSurfaceTileProvider._onLayerAdded 为全部地形瓦片建 TileImagery 骨架→_requestImagery 拉瓦片→上屏。
+    // 【导读】详见 study/02-底图与影像体系.md §1/§3。
     let baseLayer = options.baseLayer;
     if (options.globe !== false && baseLayer !== false) {
       if (!defined(baseLayer)) {

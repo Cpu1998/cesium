@@ -746,6 +746,8 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
   // These need to be set after the BaseLayerPicker is created in order to take effect
   // 【导读】用户显式传 baseLayer 时的覆盖逻辑：先让 BaseLayerPicker 取消选中（避免它再切回默认图），
   // 【导读】再 removeAll 清空默认图层，最后把用户的 ImageryLayer 加到最底层（影像体系第 2 棒深挖）。
+  // 【导读】链路去向（第 2 棒已注）：add 后 layerAdded 事件→GlobeSurfaceTileProvider._onLayerAdded
+  // 【导读】给每个已加载地形瓦片补建 TileImagery 骨架；本层 alpha/调色参数随 draw command 装进 uniform。详见 study/02 §1/§5。
   if (defined(options.baseLayer) && options.baseLayer !== false) {
     if (createBaseLayerPicker) {
       baseLayerPicker.viewModel.selectedImagery = undefined;
