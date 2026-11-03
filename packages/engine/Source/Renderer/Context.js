@@ -1,3 +1,9 @@
+// ═══ 【导读】Context.js —— WebGL 上下文的薄封装（Renderer 层，简注）═══
+// 【导读】职责：创建/持有 WebGL2 上下文，把裸 gl API 包成 Cesium 风格 API：createTexture/createVertexArray/
+// 【导读】createFramebuffer/createShaderProgram（带 ShaderCache 缓存）等；draw 是所有 DrawCommand 的终点站——
+// 【导读】绑定 framebuffer/renderState/着色器/纹理后调 gl.drawArrays/drawElements；endFrame 统一解绑还原状态。
+// 【导读】本文件只需建立「Context=引擎与 GPU 的唯一通道，DrawCommand=一次 draw 的参数包」这个概念，
+// 【导读】帧循环怎么调度命令见 Scene.js 注释与 study/05-帧更新与渲染循环.md §6。
 import Buffer from "./Buffer.js";
 import Check from "../Core/Check.js";
 import Color from "../Core/Color.js";
@@ -57,6 +63,8 @@ function Context(canvas, options) {
   webglOptions.powerPreference =
     webglOptions.powerPreference ?? "high-performance"; // WebGL default is "default"
 
+  // 【导读】WebGL 上下文参数默认值：alpha=false（自己合成背景）、stencil=true（分类通道靠 stencil）/
+  // 【导读】powerPreference=high-performance；随后一口气读完全部能力上限存进 ContextLimits。
   const glContext = defined(getWebGLStub)
     ? getWebGLStub(canvas, webglOptions)
     : getWebGLContext(canvas, webglOptions, requestWebgl1);
@@ -79,6 +87,7 @@ function Context(canvas, options) {
   this._throwOnWebGLError = false;
 
   this._shaderCache = new ShaderCache(this);
+  // 【导读】两个帧级缓存：着色器程序缓存（key=GLSL 源码 hash）与纹理缓存；Scene.initializeFrame 每 120 帧 GC 一次。
   this._textureCache = new TextureCache();
 
   const gl = glContext;
@@ -1408,6 +1417,8 @@ Context.prototype.draw = function (
   shaderProgram,
   uniformMap,
 ) {
+  // 【导读】★命令终点站：命令自己的 framebuffer/renderState 优先于 Pass 级的；beginDraw 绑状态/程序，
+  // 【导读】continueDraw 里按有无 indexBuffer 走 gl.drawElements / gl.drawArrays（含 instanced 变体）。
   //>>includeStart('debug', pragmas.debug);
   Check.defined("drawCommand", drawCommand);
   Check.defined("drawCommand.shaderProgram", drawCommand._shaderProgram);
@@ -1429,6 +1440,7 @@ Context.prototype.beginFrame = function () {
 };
 
 Context.prototype.endFrame = function () {
+  // 【导读】帧尾还原：解绑着色器/帧缓冲/全部纹理单元，把 GL 状态机擦干净还给浏览器。
   const gl = this._gl;
   gl.useProgram(null);
 

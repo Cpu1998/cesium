@@ -1,5 +1,11 @@
 // @ts-check
 
+// ═══ 【导读】DrawCommand.js —— 「一次 draw 调用的参数包」（Renderer 层，简注）═══
+// 【导读】职责：把顶点数组+着色器+uniform+renderState+目标 Pass 打包成一个可执行对象；
+// 【导读】Scene 侧只做「生产命令（Primitive.update）→分类（View）→提交（executeCommand→Context.draw）」三步。
+// 【导读】关键字段：boundingVolume 供剔除；pass 决定进哪个通道桶（OPAQUE/TRANSLUCENT/CESIUM_3D_TILE…）；
+// 【导读】cull/occlude 控制是否参与剔除与地球遮挡；derivedCommands 存对数深度/HDR/pick/阴影等变体。
+// 【导读】详见 study/05-帧更新与渲染循环.md §6；RenderState 细节属后续阅读方向。
 import Frozen from "../Core/Frozen.js";
 import defined from "../Core/defined.js";
 import PrimitiveType from "../Core/PrimitiveType.js";
@@ -19,6 +25,7 @@ import PrimitiveType from "../Core/PrimitiveType.js";
  * @enum {number}
  * @ignore
  */
+// 【导读】位标志集中存 cull/occlude/阴影等布尔开关（位运算比 8 个独立字段省内存，命令是海量对象）。
 const Flags = {
   CULL: 1,
   OCCLUDE: 2,
@@ -667,6 +674,7 @@ class DrawCommand {
    * @param {PassState} [passState] The state for the current render pass.
    */
   execute(context, passState) {
+    // 【导读】执行=交给 Context.draw：Scene 的 executeCommand 在这里之前已按帧开关换好变体命令。
     context.draw(this, passState);
   }
 }
