@@ -15,7 +15,7 @@ import RuntimeError from "./RuntimeError.js";
 // 【导读】未轮到的请求进 20 容量的小顶堆按优先级抢占（新请求可把堆里最低优先级请求挤掉并取消）。
 // 【导读】关键设计：RequestScheduler.update 在 Scene.postPassesUpdate（每帧末尾）被调用，
 // 【导读】每帧重算动态优先级（瓦片按屏幕误差/距离打分）并只填满空闲槽位——网络 IO 异步、派发携到每帧一小步，
-// 【导读】这就是「大量瓦片请求不卡帧」的原因：请求调度与渲染共用主线程但从不阻塞一帧。详见 study/05-帧更新与渲染循环.md §5。
+// 【导读】这就是「大量瓦片请求不卡帧」的原因：请求调度与渲染共用主线程但从不阻塞一帧。详见 study/05-帧更新与渲染循环.md §6。
 function sortRequests(a, b) {
   return a.priority - b.priority;
 }

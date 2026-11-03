@@ -3,7 +3,7 @@
 // 【导读】createFramebuffer/createShaderProgram（带 ShaderCache 缓存）等；draw 是所有 DrawCommand 的终点站——
 // 【导读】绑定 framebuffer/renderState/着色器/纹理后调 gl.drawArrays/drawElements；endFrame 统一解绑还原状态。
 // 【导读】本文件只需建立「Context=引擎与 GPU 的唯一通道，DrawCommand=一次 draw 的参数包」这个概念，
-// 【导读】帧循环怎么调度命令见 Scene.js 注释与 study/05-帧更新与渲染循环.md §6。
+// 【导读】帧循环怎么调度命令见 Scene.js 注释与 study/05-帧更新与渲染循环.md §5。
 import Buffer from "./Buffer.js";
 import Check from "../Core/Check.js";
 import Color from "../Core/Color.js";

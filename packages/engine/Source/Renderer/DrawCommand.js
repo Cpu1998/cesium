@@ -5,7 +5,7 @@
 // 【导读】Scene 侧只做「生产命令（Primitive.update）→分类（View）→提交（executeCommand→Context.draw）」三步。
 // 【导读】关键字段：boundingVolume 供剔除；pass 决定进哪个通道桶（OPAQUE/TRANSLUCENT/CESIUM_3D_TILE…）；
 // 【导读】cull/occlude 控制是否参与剔除与地球遮挡；derivedCommands 存对数深度/HDR/pick/阴影等变体。
-// 【导读】详见 study/05-帧更新与渲染循环.md §6；RenderState 细节属后续阅读方向。
+// 【导读】详见 study/05-帧更新与渲染循环.md §5；RenderState 细节属后续阅读方向。
 import Frozen from "../Core/Frozen.js";
 import defined from "../Core/defined.js";
 import PrimitiveType from "../Core/PrimitiveType.js";

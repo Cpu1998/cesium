@@ -4547,7 +4547,7 @@ function prePassesUpdate(scene) {
 
 function postPassesUpdate(scene) {
   // 【导读】Pass 后更新：primitives.postPassesUpdate（Cesium3DTileset 缓存淘汰在这层）＋★RequestScheduler.update
-  // 【导读】——每帧末尾在这里派发/限流全部网络请求（详见 study/05 §5），渲染与请求调度就此闭环。
+  // 【导读】——每帧末尾在这里派发/限流全部网络请求（详见 study/05 §6），渲染与请求调度就此闭环。
   scene.primitives.postPassesUpdate(scene._frameState);
   RequestScheduler.update();
 }
