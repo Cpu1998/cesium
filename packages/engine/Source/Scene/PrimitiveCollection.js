@@ -1,3 +1,13 @@
+// ═══ 【导读】PrimitiveCollection.js —— scene.primitives 背后的有序图元容器 ═══
+// 【导读】scene.primitives 就是本类实例：一个可嵌套的图元（primitive）数组容器，自身也实现了
+// 【导读】primitive 接口（update/destroy），因此集合可以套集合形成层级。Cesium3DTileset、Globe、
+// 【导读】BillboardCollection 等都以图元身份挂在里面，被 Scene 按序调用 update。
+// 【导读】三个语义要点：①有序渲染——数组顺序即绘制顺序（同 pass 内后加的画在上面，
+// 【导读】可用 raise/lower 调整）；②show 级联——collection.show=false 时 update 直接返回，
+// 【导读】整棵子树不渲染；③销毁级联——destroyPrimitives=true（默认）时 remove/removeAll/destroy
+// 【导读】会把其中的图元一并销毁（Cesium3DTileset 从 scene.primitives 移除即释放 WebGL 资源）。
+// 【导读】countReferences 选项支持同一图元挂多个集合按引用计数共享。
+// 【导读】详见 study/04-3DTiles加载与LOD.md §6。
 import createGuid from "../Core/createGuid.js";
 import Frozen from "../Core/Frozen.js";
 import defined from "../Core/defined.js";
@@ -33,6 +43,7 @@ import Event from "../Core/Event.js";
 function PrimitiveCollection(options) {
   options = options ?? Frozen.EMPTY_OBJECT;
 
+  // 【导读】核心状态就一个数组 _primitives + 增删两个事件；_zIndex 供 OrderedGroundPrimitiveCollection 排序贴地图元用
   this._primitives = [];
   this._guid = createGuid();
   this._primitiveAdded = new Event();
@@ -138,6 +149,8 @@ Object.defineProperties(PrimitiveCollection.prototype, {
 PrimitiveCollection.prototype.add = function (primitive, index) {
   const hasIndex = defined(index);
 
+  // 【导读】add 不做任何拷贝，只登记反向指针（_external._composites[collection._guid]）——
+  // 【导读】contains 就靠它 O(1) 判断归属；scene.primitives.add(tileset) 后 tileset 生命周期由本集合接管
   //>>includeStart('debug', pragmas.debug);
   if (!defined(primitive)) {
     throw new DeveloperError("primitive is required.");
@@ -173,6 +186,7 @@ PrimitiveCollection.prototype.add = function (primitive, index) {
     }
   }
 
+  // 【导读】不传 index 时 push 到末尾（最上层）；primitiveAdded 事件通知 Scene 等订阅方
   this._primitiveAdded.raiseEvent(primitive);
 
   return primitive;
@@ -195,6 +209,8 @@ PrimitiveCollection.prototype.add = function (primitive, index) {
  */
 PrimitiveCollection.prototype.remove = function (primitive) {
   // PERFORMANCE_IDEA:  We can obviously make this a lot faster.
+  // 【导读】remove 的销毁语义：destroyPrimitives=true 且引用计数归零（或未启用计数）时直接销毁该图元——
+  // 【导读】所以 scene.primitives.remove(tileset) 返回 true 后就不要再碰这个 tileset 了
   if (this.contains(primitive)) {
     const index = this._primitives.indexOf(primitive);
     if (index !== -1) {
@@ -305,6 +321,7 @@ function getPrimitiveIndex(compositePrimitive, primitive) {
  * @see PrimitiveCollection#lower
  * @see PrimitiveCollection#lowerToBottom
  */
+// 【导读】raise/raiseToTop/lower/lowerToBottom 四兄弟：只改数组顺序＝改渲染叠放次序，与销毁无关
 PrimitiveCollection.prototype.raise = function (primitive) {
   if (defined(primitive)) {
     const index = getPrimitiveIndex(this, primitive);
@@ -434,6 +451,9 @@ PrimitiveCollection.prototype.update = function (frameState) {
     return;
   }
 
+  // 【导读】每帧渲染入口：Scene.render 遍历 primitives 时就是调这里的 update（帧循环第 5 棒深挖）。
+// 【导读】按下标升序逐个调 update：后 add 的图元后生成 DrawCommand＝后画＝视觉在上层。
+// 【导读】循环里实时取 length 是刻意的：允许图元在 update 中途增删兄弟（如四叉树/数据源懒创建）
   const primitives = this._primitives;
   // Using primitives.length in the loop is a temporary workaround
   // to allow quadtree updates to add and remove primitives in
@@ -446,6 +466,8 @@ PrimitiveCollection.prototype.update = function (frameState) {
 /**
  * @private
  */
+// 【导读】prePassesUpdate/updateForPass/postPassesUpdate 是多 Pass 钩子，转发给实现它们的图元——
+// 【导读】Cesium3DTileset 就靠 prePassesUpdate 处理 PROCESSING 瓦片、postPassesUpdate 做缓存淘汰（见 Cesium3DTileset.js）
 PrimitiveCollection.prototype.prePassesUpdate = function (frameState) {
   const primitives = this._primitives;
   // Using primitives.length in the loop is a temporary workaround
@@ -526,6 +548,7 @@ PrimitiveCollection.prototype.isDestroyed = function () {
  * @see PrimitiveCollection#isDestroyed
  */
 PrimitiveCollection.prototype.destroy = function () {
+  // 【导读】destroy = removeAll()：级联销毁集合内每个图元（受 destroyPrimitives/引用计数约束）再销毁自己
   this.removeAll();
   return destroyObject(this);
 };
