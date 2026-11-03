@@ -475,6 +475,8 @@ function CesiumWidget(container, options) {
     }
 
     // 【导读】DataSourceDisplay：把 Entity（声明式数据）变成可视化 Primitive（可渲染对象）的中枢（第 3 棒深挖）。
+    // 【导读】Entity 同步细节（第 3 棒已注）：DataSourceDisplay 为每个数据源建 8 类 Visualizer，
+    // 【导读】update(time) 逐源逐 visualizer 差量同步 Entity→Primitive。详见 study/03-Entity数据体系.md §4/§5。
     const dataSourceDisplay = new DataSourceDisplay({
       scene: scene,
       dataSourceCollection: dataSourceCollection,
@@ -1195,6 +1197,8 @@ CesiumWidget.prototype._onTick = function (clock) {
   // 【导读】再更新跟踪实体的 EntityView 相机（包围球就绪才动）。
   const time = clock.currentTime;
 
+  // 【导读】每帧同步细节（第 3 棒已注）：DataSourceDisplay.update→各 Visualizer.update→合批/图元级差量更新，
+  // 【导读】详见 study/03-Entity数据体系.md §5；时钟→插值→跟踪相机链路见该文档 §6。
   const isUpdated = this._dataSourceDisplay.update(time);
   if (this._allowDataSourcesToSuspendAnimation) {
     this._canAnimateUpdateCallback(isUpdated);
