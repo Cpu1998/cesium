@@ -1,3 +1,10 @@
+// ═══ 【导读】GeometryVisualizer.js —— Entity 几何体（polygon/box/…）→ Primitive 的差量同步器 ═══
+// 【导读】三层结构：①GeometryUpdater（每个 Entity 每种几何一个，把 Graphics 属性转成几何选项）；
+// 【导读】②批量 Batch（静态几何按「阴影模式×开闭体×材质类型×贴地」分桶，合批成一个 Primitive；
+// 【导读】动态几何单独 DynamicGeometryBatch 每帧重建）；③Primitive（真正渲染）。
+// 【导读】事件驱动收集差量：EntityCollection.collectionChanged → _added/_removed/_changed 三个队列，
+// 【导读】在每帧 update() 里集中消费（合并同帧变化），再让各 batch.process 差量重建。
+// 【导读】详见 study/03-Entity数据体系.md §5；静态/动态分桶见 _insertUpdaterIntoBatch。
 import AssociativeArray from "../Core/AssociativeArray.js";
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Check from "../Core/Check.js";
@@ -48,10 +55,14 @@ function GeometryVisualizer(
   this._primitives = primitives;
   this._groundPrimitives = groundPrimitives;
   this._entityCollection = undefined;
+  // 【导读】差量三队列：collectionChanged 事件只「记账」，真正处理延迟到每帧 update（避免高频抖动）。
   this._addedObjects = new AssociativeArray();
   this._removedObjects = new AssociativeArray();
   this._changedObjects = new AssociativeArray();
 
+  // 【导读】静态几何分桶表：阴影模式(NUMBER_OF_SHADOW_MODES)×是否地形偏移 再乘「outline/closedColor/
+  // 【导读】closedMaterial/openColor/openMaterial」五种渲染形态；桶的存在是为了把多个 Entity
+  // 【导读】合成单个 Primitive 的 GeometryInstance 批（性能核心：同批可共用一次 draw call 的外观状态）。
   const numberOfShadowModes = ShadowMode.NUMBER_OF_SHADOW_MODES;
   this._outlineBatches = new Array(numberOfShadowModes * 2);
   this._closedColorBatches = new Array(numberOfShadowModes * 2);
@@ -148,6 +159,8 @@ function GeometryVisualizer(
       );
   }
 
+  // 【导读】贴地批次：按 ClassificationType（贴地形/贴 3D Tiles/两者）分桶；
+  // 【导读】材质批仅在支持材质贴地时创建（Entity.supportsMaterialsforEntitiesOnTerrain）。
   const numberOfClassificationTypes =
     ClassificationType.NUMBER_OF_CLASSIFICATION_TYPES;
   const groundColorBatches = new Array(numberOfClassificationTypes);
@@ -178,6 +191,7 @@ function GeometryVisualizer(
   this._groundColorBatches = groundColorBatches;
   this._groundMaterialBatches = groundMaterialBatches;
 
+  // 【导读】动态几何（属性随时间变化的 Entity）不进合批，单独每帧重建 Primitive。
   this._dynamicBatch = new DynamicGeometryBatch(primitives, groundPrimitives);
 
   this._batches = this._outlineBatches.concat(
@@ -193,6 +207,7 @@ function GeometryVisualizer(
   this._subscriptions = new AssociativeArray();
   this._updaterSets = new AssociativeArray();
 
+  // 【导读】监听集合变化并立即回放存量实体（构造时把已有 Entity 全部当作 added 记账）。
   this._entityCollection = entityCollection;
   entityCollection.collectionChanged.addEventListener(
     GeometryVisualizer.prototype._onCollectionChanged,
@@ -231,6 +246,9 @@ GeometryVisualizer.unregisterUpdater = function (updater) {
  * @returns {boolean} True if the visualizer successfully updated to the provided time,
  * false if the visualizer is waiting for asynchronous primitives to be created.
  */
+  // 【导读】每帧同步主体，四步：①处理 changed 队列（重插桶）；注意同帧「同 id 删旧加新」的拆分处理；
+  // 【导读】②removed：销毁 updaterSet、退订；③added：new GeometryUpdaterSet（每种几何一个 updater）
+  // 【导读】并立即插入对应批次桶；④逐批 update 差量重建（返回 false 表示异步 Primitive 还没就绪）。
 GeometryVisualizer.prototype.update = function (time) {
   //>>includeStart('debug', pragmas.debug);
   Check.defined("time", time);
@@ -259,6 +277,12 @@ GeometryVisualizer.prototype.update = function (time) {
     //correct entity, we need to both remove the old one and
     //add the new one, which is done by pushing the entity
     //onto the removed/added lists.
+    //If in a single update, an entity gets removed and a new instance
+    //re-added with the same id, the updater no longer tracks the
+    //correct entity, we need to both remove the old one and
+    //add the new one, which is done by pushing the entity
+    //onto the removed/added lists.
+    // 【导读】同帧内同 id 实体「删旧+加新」：updaterSet 还挂着旧实体，必须拆成一次 remove+一次 add。
     if (updaterSet.entity === entity) {
       updaterSet.forEach(function (updater) {
         that._removeUpdater(updater);
@@ -274,6 +298,7 @@ GeometryVisualizer.prototype.update = function (time) {
     entity = removed[i];
     id = entity.id;
     updaterSet = this._updaterSets.get(id);
+    // 【导读】removed 处理：从所有桶拔除（_removeUpdater 不记录在哪个桶，索性挨个试）→销毁 updaterSet→退订。
     updaterSet.forEach(this._removeUpdater.bind(this));
     updaterSet.destroy();
     this._updaterSets.remove(id);
@@ -284,6 +309,8 @@ GeometryVisualizer.prototype.update = function (time) {
   for (i = added.length - 1; i > -1; i--) {
     entity = added[i];
     id = entity.id;
+    // 【导读】added 处理：为实体建 GeometryUpdaterSet（内含 box/Corridor/…全部 10 种 updater，
+    // 【导读】见 GeometryUpdaterSet.js），并把启用的 updater 分发进对应批次桶，再订 geometryChanged。
     updaterSet = new GeometryUpdaterSet(entity, this._scene);
     this._updaterSets.set(id, updaterSet);
     updaterSet.forEach(function (updater) {
@@ -435,6 +462,12 @@ GeometryVisualizer.prototype._insertUpdaterIntoBatch = function (
     return;
   }
 
+  // 【导读】静态/动态分桶路由：updater.isDynamic（几何属性非常量，见各 Updater 的 _isDynamic）
+  // 【导读】→动态批；否则按「贴地(onTerrain) / 闭合体(isClosed) / 开放体」×「纯色 ColorMaterial 还是
+  // 【导读】任意材质」×「阴影模式」×「有无地形偏移 terrainOffsetProperty」定位到具体静态桶。
+  // 【导读】静态桶合批渲染省 draw call，动态桶每帧重建保证正确性——以空间换时间的取舍。
+  // 【导读】桶类型速查：_outlineBatches=纯线框；_groundColor/MaterialBatches=贴地；
+  // 【导读】_closed*=闭合实体（可遮挡内部）；_open*=面片（不闭合）。
   let shadows;
   if (updater.outlineEnabled || updater.fillEnabled) {
     shadows = updater.shadowsProperty.getValue(time);
@@ -500,6 +533,7 @@ GeometryVisualizer.prototype._insertUpdaterIntoBatch = function (
 /**
  * @private
  */
+  // 【导读】updater 的 geometryChanged 触发（如 hierarchy 变了）：记入 changed 队列，下帧 update 重插桶。
 GeometryVisualizer._onGeometryChanged = function (updater) {
   const removedObjects = this._removedObjects;
   const changedObjects = this._changedObjects;
@@ -515,6 +549,8 @@ GeometryVisualizer._onGeometryChanged = function (updater) {
 /**
  * @private
  */
+  // 【导读】collectionChanged 监听：纯记账（不重建几何）——增删改先入三个队列，
+  // 【导读】注意「同帧内删除又加回」折算成 changed 的合并逻辑，等每帧 update 统一消费。
 GeometryVisualizer.prototype._onCollectionChanged = function (
   entityCollection,
   added,
