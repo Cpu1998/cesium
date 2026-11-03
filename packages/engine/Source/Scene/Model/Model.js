@@ -1,3 +1,10 @@
+// ═══ 【导读】Model.js —— glTF 系模型的统一渲染入口（本棒只注角色，内部结构留第 5 棒/深挖） ═══
+// 【导读】b3dm/i3dm/pnts/glb/geoJson 等瓦片内容最终都汇到本类（见 Model3DTileContent.js），
+// 【导读】非瓦片的 scene.primitives.add(Cesium.Model.fromGltfAsync(...)) 也走这里。
+// 【导读】职责一句话：loader（GltfLoader/B3dmLoader/PntsLoader/I3dmLoader/GeoJsonLoader）把源数据
+// 【导读】解析成 ModelSceneGraph/ModelRuntimeNode（节点/网格/材质/纹理），update 每帧把场景图遍历成
+// 【导读】DrawCommand 提交给渲染管线（CPU/GPU 剔除、自定义着色器、动画与 IBR 环境贴图都在 update 链上）。
+// 【导读】详见 study/04-3DTiles加载与LOD.md §6 与 ModelUtility/ModelSceneGraph 系列文件。
 import BoundingSphere from "../../Core/BoundingSphere.js";
 import Cartesian3 from "../../Core/Cartesian3.js";
 import Cartographic from "../../Core/Cartographic.js";
@@ -195,6 +202,7 @@ import ModelImagery from "./ModelImagery.js";
  * @demo {@link https://sandcastle.cesium.com/index.html?id=3d-models|Cesium Sandcastle Models Demo}
  */
 function Model(options) {
+  // 【导读】构造函数只挂 loader+resource 与空运行时，真正解析在 fromGltfAsync/fromB3dm 等异步工厂里
   options = options ?? Frozen.EMPTY_OBJECT;
   //>>includeStart('debug', pragmas.debug);
   Check.typeOf.object("options.loader", options.loader);
@@ -1994,6 +2002,8 @@ const scratchClippingPlanesMatrix = new Matrix4();
  * @exception {RuntimeError} Failed to load external reference.
  */
 Model.prototype.update = function (frameState) {
+  // 【导读】每帧一句话：继续处理 loader（直到 ready）→应用自定义着色器/环境贴图/IBL→
+// 【导读】ModelSceneGraph 遍历生成 DrawCommand。瓦片场景由 Model3DTileContent.update 调到这里
   let finishedProcessing = false;
   try {
     // Keep processing the model every frame until the main resources

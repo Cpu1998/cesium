@@ -1,3 +1,10 @@
+// ═══ 【导读】Cesium3DTileStyle.js —— 3D Tiles 声明式样式（show/color/pointSize 表达式） ═══
+// 【导读】样式就是一段小 DSL（3D Tiles Styling 规范）：每个属性值可以是常量、表达式字符串
+// 【导读】（如 "color()"、"regExp(${name}, '商店')"）或 {conditions:[[条件, 值],...]} 条件表。
+// 【导读】setup() 把样式 JSON 逐属性转成 Expression/ConditionsExpression（可按瓦片特征属性求值），
+// 【导读】赋给 tileset.style 后由 Cesium3DTileStyleEngine 每帧对选中瓦片应用（重求值/重编着色器）。
+// 【导读】工程实践：DXApp 的 translatePbfStyle 就是把 Mapbox style 的图层过滤+配色翻译成
+// 【导读】Cesium3DTileStyle 条件表达式，驱动 MVT 矢量瓦片着色（见 study/04-3DTiles加载与LOD.md §7）。
 import addAllToArray from "../Core/addAllToArray.js";
 import clone from "../Core/clone.js";
 import Frozen from "../Core/Frozen.js";
@@ -43,6 +50,8 @@ import Expression from "./Expression.js";
  * @see {@link https://github.com/CesiumGS/3d-tiles/tree/main/specification/Styling|3D Tiles Styling language}
  */
 function Cesium3DTileStyle(style) {
+  // 【导读】属性清单即样式 DSL 的全部可样式化面：show/color/pointSize/点描边/标注(labelColor/font/…)、
+// 【导读】meta（自定义表达式变量）。setter 都会置 _ready=false，等初次求值再算 true
   this._style = {};
   this._ready = false;
 
@@ -140,6 +149,8 @@ function setup(that, styleJson) {
 }
 
 function getExpression(tileStyle, value) {
+  // 【导读】DSL 三形态归一：布尔/数字→字符串常量表达式；字符串→解析成 Expression（可引用 ${feature 属性}
+// 【导读】与 defines 变量）；{conditions:…}→ConditionsExpression（逐条命中即返回，类 Mapbox 匹配语义）
   const defines = (tileStyle._style ?? Frozen.EMPTY_OBJECT).defines;
 
   if (!defined(value)) {
