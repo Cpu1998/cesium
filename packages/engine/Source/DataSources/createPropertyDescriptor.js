@@ -1,6 +1,6 @@
 // ═══ 【导读】createPropertyDescriptor.js —— Property 属性描述符工厂（Entity/Graphics 的赋值魔法）═══
 // 【导读】Entity 与各 *Graphics 的每个属性都用这里生成的 getter/setter：统一实现
-// 「赋任意值→自动包装」「赋 Property→原样保留」「子属性变化→冒泡 definitionChanged」。
+// 【导读】「赋任意值→自动包装」「赋 Property→原样保留」「子属性变化→冒泡 definitionChanged」。
 // 【导读】详见 study/03-Entity数据体系.md §2。
 import defined from "../Core/defined.js";
 import ConstantProperty from "./ConstantProperty.js";

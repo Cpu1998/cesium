@@ -277,11 +277,6 @@ GeometryVisualizer.prototype.update = function (time) {
     //correct entity, we need to both remove the old one and
     //add the new one, which is done by pushing the entity
     //onto the removed/added lists.
-    //If in a single update, an entity gets removed and a new instance
-    //re-added with the same id, the updater no longer tracks the
-    //correct entity, we need to both remove the old one and
-    //add the new one, which is done by pushing the entity
-    //onto the removed/added lists.
     // 【导读】同帧内同 id 实体「删旧+加新」：updaterSet 还挂着旧实体，必须拆成一次 remove+一次 add。
     if (updaterSet.entity === entity) {
       updaterSet.forEach(function (updater) {
