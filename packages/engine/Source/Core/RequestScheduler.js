@@ -9,6 +9,13 @@ import isDataUri from "./isDataUri.js";
 import RequestState from "./RequestState.js";
 import RuntimeError from "./RuntimeError.js";
 
+// ═══ 【导读】RequestScheduler.js —— 全引擎网络请求的优先级调度器 ═══
+// 【导读】职责：影像/地形/3D Tiles/glTF 瓦片与一般资源的 fetch/XHR 都经 RequestScheduler.request 进入，
+// 【导读】按「总并发 ≤ maximumRequests(50)、单服务器 ≤ maximumRequestsPerServer(18)」限流；
+// 【导读】未轮到的请求进 20 容量的小顶堆按优先级抢占（新请求可把堆里最低优先级请求挤掉并取消）。
+// 【导读】关键设计：RequestScheduler.update 在 Scene.postPassesUpdate（每帧末尾）被调用，
+// 【导读】每帧重算动态优先级（瓦片按屏幕误差/距离打分）并只填满空闲槽位——网络 IO 异步、派发携到每帧一小步，
+// 【导读】这就是「大量瓦片请求不卡帧」的原因：请求调度与渲染共用主线程但从不阻塞一帧。详见 study/05-帧更新与渲染循环.md §5。
 function sortRequests(a, b) {
   return a.priority - b.priority;
 }
@@ -23,6 +30,7 @@ const statistics = {
   lastNumberOfActiveRequests: 0,
 };
 
+// 【导读】优先级堆：容量 20 的小顶堆（priority 越小越先发），堆满时 insert 会退回堆顶最低优先级请求。
 let priorityHeapLength = 20;
 const requestHeap = new Heap({
   comparator: sortRequests,
@@ -150,6 +158,7 @@ Object.defineProperties(RequestScheduler, {
   },
 });
 
+// 【导读】动态优先级：priorityFunction 每帧重算（如瓦片按屏幕误差/距离打分），「重要度」随相机移动实时变化。
 function updatePriority(request) {
   if (defined(request.priorityFunction)) {
     request.priority = request.priorityFunction();
@@ -233,6 +242,8 @@ function getRequestFailedFunction(request) {
   };
 }
 
+// 【导读】真正发起网络请求：状态置 ACTIVE、占用全局/单服务器并发槽位，requestFunction 内执行 fetch/XHR；
+// 【导读】返回 deferred.promise 给调用方 await；收到/失败回调里归还槽位并广播 requestCompletedEvent。
 function startRequest(request) {
   const promise = issueRequest(request);
   request.state = RequestState.ACTIVE;
@@ -247,6 +258,7 @@ function startRequest(request) {
   return promise;
 }
 
+// 【导读】取消：主动 reject deferred（挂 noop 兜底防未捕获异常），仅 ACTIVE 状态才归还并发槽位。
 function cancelRequest(request) {
   const active = request.state === RequestState.ACTIVE;
   request.state = RequestState.CANCELLED;
@@ -273,6 +285,10 @@ function cancelRequest(request) {
   }
 }
 
+// 【导读】★每帧预算入口（Scene 的 postPassesUpdate 末尾调用，即 postPassesUpdate 里的 RequestScheduler.update()）：
+// 【导读】①清理已完成的 activeRequests；②对堆内请求重算优先级并 resort；③把空闲槽位填满——
+// 【导读】从堆顶弹出最高优先级请求 startRequest（真正发起 fetch），服务器饱和或已取消的则丢弃；
+// 【导读】派发是「每帧填一批」，新请求下一帧再排队，与渲染交替推进互不阻塞。
 /**
  * Sort requests by priority and start requests.
  * @private
@@ -384,6 +400,8 @@ RequestScheduler.getServerKey = function (url) {
  *
  * @private
  */
+// 【导读】请求统一入口：data:/blob: URI 免调度直接发；单服务器饱和直接返回 undefined（调用方下帧再试）；
+// 【导读】未设 throttle 的请求立即发；普通请求进优先级堆排队——可能挤掉堆内更低优先级请求，也可能自己被挤出返回 undefined。
 RequestScheduler.request = function (request) {
   //>>includeStart('debug', pragmas.debug);
   Check.typeOf.object("request", request);
