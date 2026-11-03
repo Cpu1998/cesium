@@ -1,3 +1,11 @@
+// ═══ 【导读】DataSourceDisplay.js —— Entity 体系的「每帧同步引擎」═══
+// 【导读】职责：监听 DataSourceCollection 的增删移事件，为每个数据源创建一套 Visualizer；
+// 【导读】每帧被 CesiumWidget._onTick 调用 update(time)，逐数据源逐 visualizer 分发更新，
+// 【导读】把「Entity 声明」同步成「Primitive/BillboardCollection」的可渲染状态。
+// 【导读】架构分层：DataSourceCollection（管有哪些源）→ DataSource（管一批 Entity）→
+// 【导读】→ Visualizer（管一类图形：billboard/label/point/geometry/...）→ Primitive（真正渲染）。
+// 【导读】另有一个不入列的 defaultDataSource（viewer.entities 背后就是它）。
+// 【导读】详见 study/03-Entity数据体系.md §4/§5。
 import ApproximateTerrainHeights from "../Core/ApproximateTerrainHeights.js";
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Check from "../Core/Check.js";
@@ -41,12 +49,14 @@ function DataSourceDisplay(options) {
   );
   //>>includeEnd('debug');
 
+  // 【导读】贴地 Entity 需要的近似地形高度表提前初始化（异步加载；update 里会检查其完成状态）。
   GroundPrimitive.initializeTerrainHeights();
   GroundPolylinePrimitive.initializeTerrainHeights();
 
   const scene = options.scene;
   const dataSourceCollection = options.dataSourceCollection;
 
+  // 【导读】订阅集合三大事件 + scene.postRender（帧尾加版权）：数据源的增删移全部反应式处理。
   this._eventHelper = new EventHelper();
   this._eventHelper.add(
     dataSourceCollection.dataSourceAdded,
@@ -71,6 +81,8 @@ function DataSourceDisplay(options) {
     options.visualizersCallback ?? DataSourceDisplay.defaultVisualizersCallback;
 
   let primitivesAdded = false;
+  // 【导读】本 display 持有两棵集合树：普通 Primitive（相对地形）与 GroundPrimitive（贴地），
+  // 【导读】每个数据源在树里各有自己的子 PrimitiveCollection（见 _onDataSourceAdded）。
   const primitives = new PrimitiveCollection();
   const groundPrimitives = new PrimitiveCollection();
 
@@ -83,14 +95,19 @@ function DataSourceDisplay(options) {
   this._primitives = primitives;
   this._groundPrimitives = groundPrimitives;
 
+  // 【导读】为「构造时已在集合里」的数据源补建 visualizers（事件只覆盖构造之后的增删）。
   for (let i = 0, len = dataSourceCollection.length; i < len; i++) {
     this._onDataSourceAdded(dataSourceCollection, dataSourceCollection.get(i));
   }
 
+  // 【导读】defaultDataSource：viewer.entities 的真身。挂在 display 而不是集合里，
+  // 【导读】所以 viewer.dataSources 里看不到它、removeAll 也不会误伤；销毁时单独处理。
   const defaultDataSource = new CustomDataSource();
   this._onDataSourceAdded(undefined, defaultDataSource);
   this._defaultDataSource = defaultDataSource;
 
+  // 【导读】懒挂树：构造时两棵集合树还没加进 scene（避免空树白渲染），
+  // 【导读】等到「defaultDataSource 首个实体」或「首个数据源」入列才真正 addPrimitives。
   let removeDefaultDataSourceListener;
   let removeDataSourceCollectionListener;
   if (!primitivesAdded) {
@@ -147,6 +164,8 @@ DataSourceDisplay.unregisterVisualizer = function (visualizer) {
  *
  * @type {DataSourceDisplay.VisualizersCallback}
  */
+// 【导读】默认 visualizer 清单：每种「图形类型」一个（billboard/geometry/label/model/tileset/point/path/polyline）。
+// 【导读】同源的 Entity 都会流经这 8 个 visualizer——各自只认自己关心的 *Graphics 属性。
 DataSourceDisplay.defaultVisualizersCallback = function (
   scene,
   entityCluster,
@@ -285,6 +304,10 @@ DataSourceDisplay.prototype.destroy = function () {
  * @param {JulianDate} time The simulation time.
  * @returns {boolean} True if all data sources are ready to be displayed, false otherwise.
  */
+  // 【导读】update：每帧一次的同步心跳（被 CesiumWidget._onTick 在 clock.tick 后调用）。
+  // 【导读】三层循环：①先调数据源自身 update（如 Czml 按时间取数据）；②逐 visualizer.update(time)
+  // 【导读】（差量同步 Entity→Primitive，见各 Visualizer）；③defaultDataSource 同样待遇。
+  // 【导读】返回值=「全部就绪」：一旦 true 则永久 true（_ready 只升不降），首次就绪时 requestRender 补一帧。
 DataSourceDisplay.prototype.update = function (time) {
   //>>includeStart('debug', pragmas.debug);
   Check.defined("time", time);
@@ -336,6 +359,7 @@ DataSourceDisplay.prototype.update = function (time) {
 };
 
 DataSourceDisplay.prototype._postRender = function () {
+  // 【导读】帧尾把各数据源的版权（credit）累加到下一帧展示——Entity 世界的版权不占 update 热路径。
   // Adds credits for all datasources
   const frameState = this._scene.frameState;
   const dataSources = this._dataSourceCollection;
@@ -375,6 +399,9 @@ const getBoundingSphereBoundingSphereScratch = new BoundingSphere();
  *                       BoundingSphereState.FAILED if the entity has no visualization in the current scene.
  * @private
  */
+  // 【导读】getBoundingSphere：viewer.zoomTo/flyTo 与 trackedEntity 相机的包围球来源。
+  // 【导读】先找到 Entity 所在数据源，再汇总该源各 visualizer 的包围球成一个（PENDING 则等待，
+  // 【导读】与 CesiumWidget._postRender 的延迟 zoom 链路衔接，见 CesiumWidget.js 的 zoomToOrFly）。
 DataSourceDisplay.prototype.getBoundingSphere = function (
   entity,
   allowPartial,
@@ -444,6 +471,8 @@ DataSourceDisplay.prototype.getBoundingSphere = function (
   return BoundingSphereState.DONE;
 };
 
+  // 【导读】新数据源入列：①在两棵集合树里各建子集合（渲染顺序与 dataSources 列表顺序一致）；
+  // 【导读】②初始化点聚合 EntityCluster；③用 visualizersCallback 建全套 visualizer 挂到 _visualizers。
 DataSourceDisplay.prototype._onDataSourceAdded = function (
   dataSourceCollection,
   dataSource,
@@ -473,6 +502,7 @@ DataSourceDisplay.prototype._onDataSourceAdded = function (
   );
 };
 
+  // 【导读】移除：销毁全部 visualizer、从两棵树摘除子集合（PrimitiveCollection.remove 会级联销毁 Primitive）。
 DataSourceDisplay.prototype._onDataSourceRemoved = function (
   dataSourceCollection,
   dataSource,
@@ -498,6 +528,8 @@ DataSourceDisplay.prototype._onDataSourceRemoved = function (
   dataSource._visualizers = undefined;
 };
 
+  // 【导读】调序：数据源在集合里上/下移时，对应的子 PrimitiveCollection 也同步 raise/lower，
+// 【导读】保证后加的源画在上面；索引 0 的特判是不让 defaultDataSource 被压到底。
 DataSourceDisplay.prototype._onDataSourceMoved = function (
   dataSource,
   newIndex,
