@@ -85,9 +85,19 @@ import getMetadataClassProperty from "./getMetadataClassProperty.js";
 import PickedMetadataInfo from "./PickedMetadataInfo.js";
 import getMetadataProperty from "./getMetadataProperty.js";
 
+// ═══ 【导读】Scene.js —— 帧调度与渲染主编排（全书主战场，第 5 棒）═══
+// 【导读】Scene 是「能画一切」的容器：持有 primitives（含 Globe/3D Tiles/各 Primitive）与环境（天空/大气/太阳/月亮），
+// 【导读】自己不产生几何，只负责每帧「编排」：更新（prePassesUpdate/各 Pass 的 primitives.update）→收集 DrawCommand
+// 【导读】→剔除分类（View.createPotentiallyVisibleSet）→按 Pass 顺序提交 WebGL（executeCommands）。
+// 【导读】每帧总入口 Scene.prototype.render：preUpdate 事件→shouldRender 判定（requestRenderMode 脱脏）→
+// 【导读】prePassesUpdate→Passes 更新（preload 等）→postUpdate→preRender→render(scene)（真正画帧）→postPassesUpdate
+// 【导读】（末尾调 RequestScheduler.update 派发网络请求）→afterRender 回调→postRender 事件。
+// 【导读】多视锥（frustumCommandsList）：地球近远比太大，一帧拆多个深度视锥逐个画，避免 z-fighting/精度塌陷。
+// 【导读】详见 study/05-帧更新与渲染循环.md（帧旅程时序图/§剔除分类/§requestRenderMode）。
 /** @ignore */
 const requestRenderAfterFrame = function (scene) {
   return function () {
+    // 【导读】工具函数：把「下帧还要再画」挂到 afterRender 队列（如瓦片未加载完时 Globe 自己补 requestRender）。
     scene.frameState.afterRender.push(function () {
       scene.requestRender();
     });
@@ -680,6 +690,7 @@ function Scene(options) {
    * @type {boolean}
    * @default false
    */
+  // 【导读】按需渲染总开关：true 时只有「脏了」（显式 requestRender/相机动了/时间跳变）才真正画帧，省电省 GPU。
   this.requestRenderMode = options.requestRenderMode ?? false;
   this._renderRequested = true;
 
@@ -697,6 +708,7 @@ function Scene(options) {
    * @type {number}
    * @default 0.0
    */
+  // 【导读】时间脱脏阈值（秒）：requestRenderMode 下仿真时间累计变化超过它就自动补一帧（时间轴动画不用频繁手动 requestRender）。
   this.maximumRenderTimeChange = options.maximumRenderTimeChange ?? 0.0;
   this._lastRenderTime = undefined;
   this._frameRateMonitor = undefined;
@@ -2026,6 +2038,8 @@ Scene.prototype.clearPasses = function (passes) {
   passes.offscreen = false;
 };
 
+// 【导读】帧号推进：只在「本帧真的要画」时递增 frameNumber 并更新 frameState.time——
+// 【导读】各 Primitive 拿 frameNumber 做每帧一次性标记（如 QuadtreePrimitive 的 _tilesRenderedThisFrame）。
 function updateFrameNumber(scene, frameNumber, time) {
   const frameState = scene._frameState;
   frameState.frameNumber = frameNumber;
@@ -2036,6 +2050,8 @@ function updateFrameNumber(scene, frameNumber, time) {
  * @private
  */
 Scene.prototype.updateFrameState = function () {
+  // 【导读】每帧重建帧状态快照（primitives.update 的唯一入参）：清空 commandList、由相机算 cullingVolume
+  // 【导读】（规锥体 6 面）、拿到地球 Occluder（背面剔除用）、同步光照/模式/夸张系数等只读上下文。
   const camera = this.camera;
 
   const frameState = this._frameState;
@@ -2128,6 +2144,7 @@ Scene.prototype.updateFrameState = function () {
  * @private
  */
 Scene.prototype.isVisible = function (cullingVolume, command, occluder) {
+  // 【导读】剔除一句话版：包围球在规锥外→不画（视锥剔除）；occlude 开启时再被地球椭球遮挡判一次（背面瓦片不画）。
   if (!defined(command)) {
     return false;
   }
@@ -2272,6 +2289,8 @@ function debugShowBoundingVolume(command, scene, passState, debugFramebuffer) {
  * @private
  */
 function executeCommand(command, scene, passState, debugFramebuffer) {
+  // 【导读】提交单个 DrawCommand 前的「变体切换」：按帧开关换 derivedCommands——对数深度(logDepth)/HDR/pick 拾取/
+  // 【导读】阴影（receiveCommand）——最后统一落到 command.execute(context, passState)→Context.draw→gl.drawArrays。
   const frameState = scene._frameState;
   const context = scene._context;
 
@@ -2824,6 +2843,7 @@ function executeCommands(scene, passState) {
   const height2D = camera.position.z;
 
   function performPass(frustumCommands, passId) {
+    // 【导读】一个 Pass = 当前视锥命令桶里同一类命令的顺序提交（桶由 createPotentiallyVisibleSet 分好）。
     uniformState.updatePass(passId);
     const commands = frustumCommands.commands[passId];
     const commandCount = frustumCommands.indices[passId];
@@ -2844,6 +2864,9 @@ function executeCommands(scene, passState) {
 
   // Execute commands in each frustum in back to front order
   for (let i = 0; i < numFrustums; ++i) {
+    // 【导读】多视锥从远→近（back to front）逐个画：每个视锥先清深度，再按 Pass 固定顺序提交：
+    // 【导读】Globe(地形)→TERRAIN_CLASSIFICATION(地形上贴矢量)→CESIUM_3D_TILE(模型)及其分类→
+    // 【导读】VOXELS→OPAQUE(不透明 Primitive)→EDGES→SPLATS→TRANSLUCENT(半透明，远→近排序)→3D Tiles 半透明分类。
     const index = numFrustums - i - 1;
     const frustumCommands = frustumCommandsList[index];
 
@@ -3078,6 +3101,7 @@ function executeCommands(scene, passState) {
 
     performVoxelsPass(scene, passState, frustumCommands);
 
+    // 【导读】不透明主通道：深度测试早退（early-z）让被挡像素省着色开销，所以排在半透明之前。
     performPass(frustumCommands, Pass.OPAQUE);
 
     // Draw direct edges (EDGES_ONLY mode) after opaque surfaces
@@ -3091,6 +3115,7 @@ function executeCommands(scene, passState) {
       uniformState.updateFrustum(frustum);
     }
 
+    // 【导读】半透明通道：按包围球距相机远→近排序后提交（不透明序不敏感，透明必须从后往前混合）。
     performTranslucentPass(scene, passState, frustumCommands);
 
     performTranslucent3DTilesClassification(scene, passState, frustumCommands);
@@ -3367,6 +3392,8 @@ Scene.prototype.updateAndExecuteCommands = function (
   passState,
   backgroundColor,
 ) {
+  // 【导读】画帧阶段总入口：先清帧缓冲，再按模式分派——WebVR 双目/3D 与 2D 旋转模式单视口(executeCommandsInViewport)/
+  // 【导读】2D 无限平移模式双视口(execute2DViewportCommands)；主链路都汇到 updateAndRenderPrimitives→executeCommands。
   updateAndClearFramebuffers(this, passState, backgroundColor);
 
   if (this._environmentState.useWebVR) {
@@ -3638,6 +3665,9 @@ function execute2DViewportCommands(scene, passState) {
  * @private
  */
 function executeCommandsInViewport(firstViewport, scene, passState) {
+  // 【导读】★画帧四步曲：①updateAndRenderPrimitives——让所有 Primitive.update 收集 DrawCommand 进 frameState.commandList；
+  // 【导读】②view.createPotentiallyVisibleSet——剔除+按视锥/Pass 分桶排序；③计算/阴影命令先行；
+  // 【导读】④executeCommands——逐视锥逐 Pass 提交 WebGL。前四棒注过的所有 update 入口都在①里被调。
   const view = scene._view;
   const { renderTranslucentDepthForPick } = scene._environmentState;
 
@@ -3923,6 +3953,10 @@ function updateShadowMaps(scene) {
 }
 
 function updateAndRenderPrimitives(scene) {
+  // 【导读】★命令收集步：groundPrimitives/primitives 两棵集合树的 update 被调——
+  // 【导读】Cesium3DTileset.update（第 4 棒：选瓦片+出 DrawCommand）、各 Primitive/Model、
+  // 【导读】BillboardVisualizer 等差量同步后的图元都在这里把命令推进 frameState.commandList；Globe.render
+  // 【导读】（内部 QuadtreePrimitive.render→selectTilesForRendering→createRenderCommandsForSelectedTiles）也在末尾被调。
   const frameState = scene._frameState;
 
   // Reset per-frame edge visibility request flag before primitives update
@@ -4181,6 +4215,8 @@ Scene.prototype.resolveFramebuffers = function (passState) {
 };
 
 function callAfterRenderFunctions(scene) {
+  // 【导读】帧末统一执行 afterRender 队列（瓦片就绪/进度事件等）：故意不在 try/catch 内，
+  // 【导读】避免回调里新增 Primitive 被当成渲染错误吞掉。
   // Functions are queued up during primitive update and executed here in case
   // the function modifies scene state that should remain constant over the frame.
   const functions = scene._frameState.afterRender;
@@ -4421,6 +4457,8 @@ function isCameraUnderground(scene) {
  * @private
  */
 Scene.prototype.initializeFrame = function () {
+  // 【导读】每帧最前置（CesiumWidget.render 第一步）：着色器/纹理缓存每 120 帧做一次 GC、tween 推进、
+  // 【导读】地表高度回调刷新、地下判定、相机控制器 update（惯性/碰撞）——都发生在时钟 tick 与 render 之前。
   // Destroy released shaders and textures once every 120 frames to avoid thrashing the cache
   if (this._shaderFrameCount++ === 120) {
     this._shaderFrameCount = 0;
@@ -4464,6 +4502,8 @@ Scene.prototype.initializeFrame = function () {
 };
 
 function updateDebugShowFramesPerSecond(scene, renderedThisFrame) {
+  // 【导读】调试入口：scene.debugShowFramesPerSecond=true 时在 canvas 旁挂一个实时帧率 DOM 面板
+  // 【导读】（按需渲染下显示 throttled 提醒）。配合 performance.now 打点实验见 study/05 §8。
   if (scene.debugShowFramesPerSecond) {
     if (!defined(scene._performanceDisplay)) {
       const performanceContainer = document.createElement("div");
@@ -4490,6 +4530,8 @@ function updateDebugShowFramesPerSecond(scene, renderedThisFrame) {
 }
 
 function prePassesUpdate(scene) {
+  // 【导读】Pass 前更新：重置 JobScheduler 预算→primitives.prePassesUpdate（Cesium3DTileset 的 prePasses 遍历入口）
+  // 【导读】→globe.update（QuadtreePrimitive.update：影像集合 _update）→拾取缓存与版权更新。
   scene._jobScheduler.resetBudgets();
 
   const frameState = scene._frameState;
@@ -4504,6 +4546,8 @@ function prePassesUpdate(scene) {
 }
 
 function postPassesUpdate(scene) {
+  // 【导读】Pass 后更新：primitives.postPassesUpdate（Cesium3DTileset 缓存淘汰在这层）＋★RequestScheduler.update
+  // 【导读】——每帧末尾在这里派发/限流全部网络请求（详见 study/05 §5），渲染与请求调度就此闭环。
   scene.primitives.postPassesUpdate(scene._frameState);
   RequestScheduler.update();
 }
@@ -4517,6 +4561,9 @@ const scratchBackgroundColor = new Color();
  * @private
  */
 function render(scene) {
+  // 【导读】★真正画帧（仅 shouldRender 时被调）：填帧状态→雾/UniformState→shadowMap→viewport/passState
+  // 【导读】→context.beginFrame→globe.beginFrame（瓦片帧初始化）→updateEnvironment（天空/大气/太阳）→
+  // 【导读】updateAndExecuteCommands（四步曲）→resolveFramebuffers（后处理合成）→overlay 命令→globe.endFrame（加载队列）。
   const frameState = scene._frameState;
 
   const context = scene.context;
@@ -4540,6 +4587,7 @@ function render(scene) {
   frameState.backgroundColor = backgroundColor;
 
   frameState.atmosphere = scene.atmosphere;
+  // 【导读】雾密度按相机高度衰减重算；UniformState 把帧状态/相机/视锥全量写进着色器 uniform 缓存。
   scene.fog.update(frameState);
 
   uniformState.update(frameState);
@@ -4586,6 +4634,7 @@ function render(scene) {
   passState.framebuffer = undefined;
   executeOverlayCommands(scene, passState);
 
+  // 【导读】Globe 瓦片没加载完时持续 requestRender：按需渲染模式下也保证地表逐渐变清晰（每来一批瓦片补一帧）。
   if (defined(scene.globe)) {
     scene.globe.endFrame(frameState);
 
@@ -4619,6 +4668,10 @@ function updateMostDetailedRayPicks(scene) {
  * @param {JulianDate} [time] The simulation time at which to render.
  */
 Scene.prototype.render = function (time) {
+  // 【导读】★每帧总入口（由 CesiumWidget.render 调）：下面按顺序就是一帧的完整生命周期——
+  // 【导读】preUpdate 事件（外部改相机/数据的时机）→帧状态重置→shouldRender 脱脏判定→prePassesUpdate→
+  // 【导读】Passes 更新（最精细拾取/预加载）→postUpdate 事件→preRender 事件→render（画帧）→postPassesUpdate
+  // 【导读】（含 RequestScheduler.update）→afterRender 回调→postRender 事件。详见 study/05 §2 时序图。
   /**
    *
    * Pre passes update. Execute any pass invariant code that should run before the passes here.
@@ -4635,12 +4688,15 @@ Scene.prototype.render = function (time) {
 
   this._controllerHost.update(this, time);
 
+  // 【导读】相机脱脏：preUpdate 里改了相机（鼠标拖动/飞行动画）在这里被发现，被视为必须重画一帧。
   const cameraChanged = this._view.checkForCameraUpdates(this);
   if (cameraChanged) {
     this._globeHeightDirty = true;
   }
 
   // Determine if should render a new frame in request render mode
+  // 【导读】★shouldRender 判定（requestRenderMode 核心）：非按需模式恒 true；按需模式下只有——
+  // 【导读】显式 requestRender 置脏/相机变了/对数深度或 HDR 脏了/正在 MORPHING/仿真时间跳变超阈值——才真正画帧。
   let shouldRender =
     !this.requestRenderMode ||
     this._renderRequested ||
@@ -4660,6 +4716,7 @@ Scene.prototype.render = function (time) {
   }
 
   if (shouldRender) {
+    // 【导读】确认画帧：记录本帧时间、清全部脱脏标记、递增 frameNumber（瓦片/Primitive 的帧标记都靠它）。
     this._lastRenderTime = JulianDate.clone(time, this._lastRenderTime);
     this._renderRequested = false;
     this._logDepthBufferDirty = false;
@@ -4680,6 +4737,8 @@ Scene.prototype.render = function (time) {
    * Passes update. Add any passes here
    */
   if (this.primitives.show) {
+    // 【导读】Passes 更新：无论画不画帧都跑——最精细拾取、两档预加载（视口内/飞行路径上），
+    // 【导读】以及 requestRenderMode 下的 deferCheck 唤醒检查（被忽略的瓦片请求就绪时拉醒渲染）。
     tryAndCatchError(this, updateMostDetailedRayPicks);
     tryAndCatchError(this, updatePreloadPass);
     tryAndCatchError(this, updatePreloadFlightPass);
@@ -4691,6 +4750,7 @@ Scene.prototype.render = function (time) {
   this._postUpdate.raiseEvent(this, time);
 
   if (shouldRender) {
+    // 【导读】真正画帧前的最后一刻事件 + 版权帧开始；render(scene) 抛错会被 tryAndCatchError 捕获并展示。
     this._preRender.raiseEvent(this, time);
     frameState.creditDisplay.beginFrame();
     tryAndCatchError(this, render);
@@ -4721,6 +4781,7 @@ Scene.prototype.render = function (time) {
  * @private
  */
 Scene.prototype.forceRender = function (time) {
+  // 【导读】强制画一帧：先置脏再走 render，不管 requestRenderMode——拾取、截图前常用。
   this._renderRequested = true;
   this.render(time);
 };
@@ -4732,6 +4793,8 @@ Scene.prototype.forceRender = function (time) {
  * @see Scene#requestRenderMode
  */
 Scene.prototype.requestRender = function () {
+  // 【导读】按需渲染的「手动脱脏」：只是置 _renderRequested 标记，下一帧 Scene.render 判 shouldRender 时才生效。
+  // 【导读】改了场景（加 Entity/改样式/切图层）后需要手动调它；节流上限受 CesiumWidget.targetFrameRate 控制。
   this._renderRequested = true;
 };
 
@@ -5065,6 +5128,7 @@ Scene.prototype.drillPick = function (windowPosition, limit, width, height) {
 };
 
 function updatePreloadPass(scene) {
+  // 【导读】预加载 Pass：用当前相机规锥再跑一遍 primitives.updateForPass（3D Tiles 只加载不画）。
   const frameState = scene._frameState;
   preloadTilesetPassState.camera = frameState.camera;
   preloadTilesetPassState.cullingVolume = frameState.cullingVolume;
@@ -5074,6 +5138,7 @@ function updatePreloadPass(scene) {
 }
 
 function updatePreloadFlightPass(scene) {
+  // 【导读】飞行预加载 Pass：用「飞行目的地相机」提前加载沿途瓦片，flyTo 结束时画面已经就绪。
   const frameState = scene._frameState;
   const camera = frameState.camera;
   if (!camera.canPreloadFlight()) {
@@ -5089,6 +5154,7 @@ function updatePreloadFlightPass(scene) {
 }
 
 function updateRequestRenderModeDeferCheckPass(scene) {
+  // 【导读】按需渲染的唤醒检查：不画帧的帧也跑一遍，看看被延后的瓦片请求是否就绪——就绪就 requestRender 拉醒渲染。
   // Check if any ignored requests are ready to go (to wake rendering up again)
   scene.primitives.updateForPass(
     scene._frameState,
