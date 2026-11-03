@@ -1,3 +1,13 @@
+// ═══ 【导读】Cesium3DTile.js —— 单片瓦片：生命周期状态机、SSE、内容请求与上屏 ═══
+// 【导读】Cesium3DTile 是 tileset.json 树上的一个节点：头部解析（transform→包围盒、geometricError、refine、
+// 【导读】content uri）→ 运行时状态（_contentState 状态机 UNLOADED→LOADING→PROCESSING→READY，
+// 【导读】EXPIRED 重下/FAILED 容错，见 Cesium3DTileContentState.js）→ 请求与解码（requestContent 按
+// 【导读】二进制 magic 分派内容类型，b3dm/pnts/i3dm/glb→Model3DTileContent、cmpt→Composite、
+// 【导读】外部 tileset.json→Tileset3DTileContent，分派表见 Cesium3DTileContentFactory.js）→
+// 【导读】每帧 update（可见性/裁剪平面/样式→content.update 生成 DrawCommand）。
+// 【导读】SSE（屏幕误差）＝几何误差在当前相机下的像素化尺寸，是「要不要细到子级」的判定依据，
+// 【导读】详见 getScreenSpaceError；遍历语义（ADD/REPLACE）见 Cesium3DTilesetBaseTraversal.js。
+// 【导读】深入解读见 study/04-3DTiles加载与LOD.md §3/§4/§5。
 import BoundingSphere from "../Core/BoundingSphere.js";
 import Cartesian3 from "../Core/Cartesian3.js";
 import Color from "../Core/Color.js";
@@ -62,6 +72,8 @@ function Cesium3DTile(tileset, baseResource, header, parent) {
   this._tileset = tileset;
   this._header = header;
 
+  // 【导读】头部解析：transform 乘父链得世界包围盒；geometricError 是「这层瓦片与真实几何的最差偏差（米）」。
+// 【导读】1.0 用 content/1.1 用 contents，多内容（3DTILES_multiple_contents）会走 requestMultipleContents
   const hasContentsArray = defined(header.contents);
   const hasMultipleContents =
     (hasContentsArray && header.contents.length > 1) ||
@@ -923,6 +935,10 @@ Cesium3DTile.prototype.getScreenSpaceError = function (
   useParentGeometricError,
   progressiveResolutionHeightFraction,
 ) {
+  // 【导读】LOD 核心：SSE = 几何误差(米)按当前相机换算成「像素误差」。遍历器拿它与 tileset 的
+// 【导读】memoryAdjustedScreenSpaceError（≥maximumScreenSpaceError）比较：SSE ≤ 阈值→这层够细不再下沉。
+// 【导读】透视相机公式：error = 几何误差 × 屏幕高 / (距离 × sseDenominator)，即误差投影像素数；
+// 【导读】正交/2D 用视口像素尺寸换算。dynamicScreenSpaceError 开启时远距离有雾式密度打折（error 减小）
   const tileset = this._tileset;
   const heightFraction = progressiveResolutionHeightFraction ?? 1.0;
   const parentGeometricError = defined(this.parent)
@@ -1029,6 +1045,8 @@ function getPriorityReverseScreenSpaceError(tileset, tile) {
  * @param {FrameState} frameState
  */
 Cesium3DTile.prototype.updateVisibility = function (frameState) {
+  // 【导读】可见性＝视锥测试＋（有请求体时）请求体相交测试＋距最近子树的 SSE 提前剔除；
+// 【导读】用帧号去重避免同帧重复算（遍历器与子包围盒优化都会调它）
   const { parent, tileset } = this;
   if (this._updatedVisibilityFrame === tileset._updatedVisibilityFrame) {
     // The tile has already been updated for this frame
@@ -1135,6 +1153,7 @@ function createPriorityFunction(tile) {
  */
 Cesium3DTile.prototype.requestContent = function () {
   // empty contents don't require any HTTP requests
+  // 【导读】内容请求入口：空瓦片（无 content）直接跳过；多内容/单内容两条路，最终都走 makeContent 分派
   if (this.hasEmptyContent) {
     return;
   }
@@ -1380,6 +1399,9 @@ Cesium3DTile._isEmptyTile = isEmptyTile;
  * @private
  */
 async function makeContent(tile, arrayBuffer) {
+  // 【导读】内容分派中心：①若 tileset 注入了 _runtimeContentCodec（MVTDataProvider 就这么干）直接交给
+// 【导读】codec.createContent；②否则按二进制头 magic 分派（Cesium3DTileContentFactory）：b3dm/pnts/i3dm/
+// 【导读】glb→Model3DTileContent、cmpt→Composite3DTileContent、外部 tileset.json→Tileset3DTileContent
   const tileset = tile._tileset;
   const codec = tileset?._runtimeContentCodec;
   if (defined(codec) && typeof codec.createContent === "function") {
@@ -1468,6 +1490,7 @@ async function makeContent(tile, arrayBuffer) {
  * @private
  */
 Cesium3DTile.prototype.cancelRequests = function () {
+  // 【导读】取消在途请求：postPassesUpdate 的 cancelOutOfViewRequests 会调它取消已出视野的瓦片，省带宽
   if (this.hasMultipleContents) {
     this._content.cancelRequests();
   } else {
@@ -1485,6 +1508,7 @@ Cesium3DTile.prototype.unloadContent = function () {
     return;
   }
 
+  // 【导读】缓存淘汰（unloadTile/trimLoadedTiles）时调用：销毁内容释放 GPU 资源，状态回 UNLOADED 可重新加载
   this._content = this._content && this._content.destroy();
   this._contentState = Cesium3DTileContentState.UNLOADED;
 
@@ -2307,6 +2331,9 @@ function updateClippingPolygons(tile, tileset) {
  * @param {object} passOptions
  */
 Cesium3DTile.prototype.update = function (tileset, frameState, passOptions) {
+  // 【导读】上屏步：被选中瓦片每帧由 Cesium3DTileset.updateTiles 调：更新裁剪平面/多边形→调试设置→
+// 【导读】updateContent（样式/自定义着色器→content.update 生成 DrawCommand 压入 commandList，
+// 【导读】1.145 的 Model 走 ModelSceneGraph）；末尾按返回数量记录命令区间（供 pickPass/统计）
   const { commandList } = frameState;
   const commandStart = commandList.length;
 
@@ -2340,6 +2367,8 @@ const scratchCommandList = [];
  * @private
  */
 Cesium3DTile.prototype.process = function (tileset, frameState) {
+  // 【导读】状态机 PROCESSING→READY：下载完成后在 tileset.prePassesUpdate→processTiles 里被调，
+// 【导读】触发 content 的 GPU 资源创建（异步）并记 expire 日期；_ready 后入缓存、发 tileLoad 事件
   if (!this.contentExpired && !this.contentReady && this._content.ready) {
     updateExpireDate(this);
 
@@ -2409,6 +2438,8 @@ function priorityNormalizeAndClamp(value, minimum, maximum) {
  * @private
  */
 Cesium3DTile.prototype.updatePriority = function () {
+  // 【导读】把四维优先级（深度/距离/注视中心偏离/反向 SSE）各归一到 0~1 后拼成一个十进制「多位数」：
+// 【导读】高位优先级压倒低位——深度最先（越深越优先，先出精细层），这就是 requestTiles 排序的键
   const tileset = this.tileset;
   const preferLeaves = tileset.preferLeaves;
   const minimumPriority = tileset._minimumPriority;
