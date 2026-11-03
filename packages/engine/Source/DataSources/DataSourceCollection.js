@@ -1,3 +1,7 @@
+// ═══ 【导读】DataSourceCollection.js —— 数据源集合：管「有哪些 DataSource」═══
+// 【导读】只有数组 + 三个事件（Added/Removed/Moved）。真正的订阅者是 DataSourceDisplay：
+// 【导读】add→为该数据源建 visualizers，remove→销毁，move→同步渲染顺序（见 DataSourceDisplay.js）。
+// 【导读】Viewer.dataSources 就是它；详见 study/03-Entity数据体系.md §3。
 import defined from "../Core/defined.js";
 import destroyObject from "../Core/destroyObject.js";
 import DeveloperError from "../Core/DeveloperError.js";
@@ -86,6 +90,8 @@ DataSourceCollection.prototype.add = function (dataSource) {
 
   const that = this;
   const dataSources = this._dataSources;
+  // 【导读】add 接受 Promise（如 GeoJsonDataSource.load 的返回值）：resolve 后才真正入列并广播
+  // 【导读】dataSourceAdded；那句「dataSources === that._dataSources」是防 removeAll 后又回头加入。
   return Promise.resolve(dataSource).then(function (value) {
     //Only add the data source if removeAll has not been called
     //Since it was added.
@@ -108,6 +114,8 @@ DataSourceCollection.prototype.add = function (dataSource) {
 DataSourceCollection.prototype.remove = function (dataSource, destroy) {
   destroy = destroy ?? false;
 
+  // 【导读】remove：先广播 dataSourceRemoved（DataSourceDisplay 借此销毁该源的 visualizers），
+  // 【导读】destroy=true 时连数据源对象一起销毁。viewer.dataSources.remove(ds, true) 是常用清理姿势。
   const index = this._dataSources.indexOf(dataSource);
   if (index !== -1) {
     this._dataSources.splice(index, 1);
@@ -131,6 +139,8 @@ DataSourceCollection.prototype.remove = function (dataSource, destroy) {
 DataSourceCollection.prototype.removeAll = function (destroy) {
   destroy = destroy ?? false;
 
+  // 【导读】removeAll 的技巧：直接换新数组再逐个广播，使上一条 add 里悬挂的 Promise 回调
+  // 【导读】（闭包引用旧数组）自动失效，避免已 removeAll 的源又被异步加回来。
   const dataSources = this._dataSources;
   for (let i = 0, len = dataSources.length; i < len; ++i) {
     const dataSource = dataSources[i];

@@ -1,3 +1,9 @@
+// ═══ 【导读】CustomDataSource.js —— 最简单的 DataSource 实现：手写 Entity 的容器 ═══
+// 【导读】DataSource 接口 =「一组 Entity（entities）+ 自己的时钟（clock）+ 4 个事件」。
+// 【导读】CzmlDataSource/GeoJsonDataSource 等都是「加载时批量造 Entity 的 DataSource」，
+// 【导读】而 CustomDataSource 是空壳：数据全靠运行时手写 entities.add(...)。
+// 【导读】Viewer 内部的 viewer.entities 就是一个不进 dataSources 列表的 CustomDataSource
+// 【导读】（见 DataSourceDisplay.js 构造里的 defaultDataSource）。详见 study/03-Entity数据体系.md §3。
 import defined from "../Core/defined.js";
 import DeveloperError from "../Core/DeveloperError.js";
 import Event from "../Core/Event.js";
@@ -25,6 +31,7 @@ import EntityCollection from "./EntityCollection.js";
  *
  * viewer.dataSources.add(dataSource);
  */
+  // 【导读】持有自己的 EntityCollection（Entity 集合与增删改事件都在那里）与 EntityCluster（点聚合）。
 function CustomDataSource(name) {
   this._name = name;
   this._clock = undefined;
@@ -166,6 +173,8 @@ Object.defineProperties(CustomDataSource.prototype, {
  * @param {JulianDate} time The simulation time.
  * @returns {boolean} True if this data source is ready to be displayed at the provided time, false otherwise.
  */
+  // 【导读】update 由 DataSourceDisplay.update 每帧调用（见 DataSourceDisplay.js 的 update）；
+  // 【导读】返回值=false 表示「还没准备好」，会暂停时钟动画。CustomDataSource 无异步数据，永远 true。
 CustomDataSource.prototype.update = function (time) {
   return true;
 };
