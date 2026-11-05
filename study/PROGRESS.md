@@ -248,6 +248,14 @@
 
 ---
 
-## 2026-11-06 04:5x · 加餐A 15-Model与glTF加载 / 16-性能调试与优化（进行中）
+## 2026-11-06 04:5x–05:3x · 加餐A 15-Model与glTF加载 / 16-性能调试与优化（子代理半程中断，主会话接管收尾）
 
-- 占坑：本棒新写两篇加餐文档——`study/15-Model与glTF加载.md`（Model 运行时组件管线、GltfLoader 体系、ModelSceneGraph、动画与 skin、特性与 style、贴地参考）与 `study/16-性能调试与优化.md`（requestRenderMode、FPS 观测与 debug 家族、Renderer 统计、地形影像调优、拾取限流、Model 开销点、问题→工具→锚点→调参速查表），README 增设「加餐篇」分组；完成后本节补全记录
+- **做了什么**：新写 `study/15-Model与glTF加载.md`（253 行/84 链接）与 `study/16-性能调试与优化.md`（256 行/64 链接，含四列速查表、卡顿源清单、动手实验、上线前检查单）；README 增设「加餐篇」分组（十七篇 · 五组+加餐导航）、成果统计与可深挖方向同步；PROGRESS 本节补全
+- **过程**：子代理完成 15 定稿（882d1a9a30）后写 16 至 229 行中断（模型调用超时，announce 重投证实），05:07 后 15 分钟零进展、subagents 列表零存活 → 主会话接管：补 §15 上线前检查单达 256 行、README/PROGRESS/校验/push 全链收尾
+- **15 主战场与锦点**：Scene/Model.js（入口工厂族/3D Tiles 复用）、GltfLoader 状态机（await + 每帧 process 三级 stages）、GltfJsonLoader + ResourceCache（JSON 摄取与缓存）、parse() → ModelComponents 组件树、ModelSceneGraph（组件树→运行时节点→DrawCommand）、activeAnimations 动画骨架、featureIdLabel→BatchTexture→style 特性样式、heightReference 贴地四态；与 04（3D Tiles 内嵌 gltf）/09（旧 Primitive 路径）/13（DrawCommand）关系防迷路表
+- **16 主战场与锦点**：requestRenderMode（标脏/maximumRenderTimeChange）、帧率观测三件套（debugShowFramesPerSecond/FrameRateMonitor/PerformanceWatchdog）、debug 家族 + CesiumInspector、内存三本账（model.statistics/tileset.totalMemoryUsageInBytes/ResourceCacheStatistics）、缓存 LOD 上限（tileCacheSize/cacheBytes/skipLevelOfDetail）、相机惯性、拾取限流、像素比与 MSAA、点云 attenuation/EDL、问题→工具→锚点→调参四列速查表、常见卡顿源十条、上线前 11 条检查单
+- **数字**：check-links 全绿（19 个 md，代码链接 2054、相对链接 189、错误 0 警告 0）
+- **下一棒建议（加餐B：17-天空光照大气 / 18-点云与粒子）**：
+  - 17 主战场：Scene/SkyAtmosphere.js、Globe.js 大气光散射（轮廓光/地面大气）、Scene/Sun/Moon/SunLight（光照方向与 Illuminate 统一）、 lightingModel（Scene.lightingMode？以 grep 为准：UNIFORM/HDR/LAMPLIGHT）、HDR 与 bloom（PostProcess 阶段，13 交叉）、EnvironmentMapping/IBL（若有，grep 确认）；与 02（大气对影像色调影响）、06（大气对 far plane/雾）交叉
+  - 18 主战场：Scene/PointCloud.js（1.145 拆分后的 PointCloudShading/attenuation/EDL/backFaceCulling）、PointCloudEyeDomeLighting.js、Cesium3DTiles 点云瓦片（04 交叉：pnts 语义 extension）、Scene/ParticleSystem.js（发射器/粒子池/update 循环）、Billboard 驱动的粒子渲染链（与 03 交叉）
+  - 纪律同前：开工 git log 查重 + PROGRESS 占坑先行；行号唯一来源本地 grep；收尾全绿再 push；若加餐C（19-裁剪开挖 / 20-实战速查）时间不足可留给下个夜间班次

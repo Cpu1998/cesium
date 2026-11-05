@@ -6,13 +6,13 @@
 ## 这是什么工程
 
 Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不改动任何一行原有代码** 的前提下，
-为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十五篇中文文档，
+为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十七篇中文文档，
 覆盖十四大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环、相机与视角控制、地形系统、拾取、几何图元与材质、时间与动态属性、坐标变换、事件与交互、渲染命令与着色器、向量数据源**。
 首轮五棒已完结（2026-11-04）；2026-11-05/06 接力扩展篇 06–14 已全部落盘，全书收官，统计见下方「工程说明」。
 
 适合读者：有前端基础（懂 DOM/事件/Promise）、第一次读 Cesium 源码的工程师。
 
-## 文档索引（十五篇 · 五组导航）
+## 文档索引（十七篇 · 五组 + 加餐导航）
 
 > 组内按编号即阅读序；「顺序」列是全书通篇编号，跨组交叉引用都用它。
 
@@ -56,6 +56,13 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 | 08 | [08-拾取系统.md](08-拾取系统.md) | 颜色编码拾取：pick pass 重画场景→读像素反查对象、pickPosition 深度复原、drillPick 逐层钻取、射线拾取家族 | [`Picking.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Picking.js)、[`PickFramebuffer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PickFramebuffer.js)、[`PickDepth.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PickDepth.js) |
 | 12 | [12-事件与交互.md](12-事件与交互.md) | ScreenSpaceEventHandler 事件抽象（DOWN/UP/MOVE/DOUBLE_CLICK + 修饰键）、触摸翻译（长按=右键/双指=捏合）、Viewer 默认点选与双击跟踪、selectedEntity/trackedEntity 事件流、事件→相机操作翻译层、一次 LEFT_CLICK 全链时序 | [`ScreenSpaceEventHandler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/ScreenSpaceEventHandler.js)、[`ScreenSpaceCameraController.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ScreenSpaceCameraController.js)、[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js) |
 
+### 🍱 加餐篇（专题深潜，按需选读）
+
+| 顺序 | 文档 | 一句话摘要 | 对应源码主战场 |
+|---|---|---|---|
+| 15 | [15-Model与glTF加载.md](15-Model与glTF加载.md) | Model 两层架构（Components 组件树 × SceneGraph 运行时）、GltfLoader 异步状态机与三级 stages、ResourceCache 缓存、动画骨架链、特性样式 BatchTexture、heightReference 贴地四态 | [`Model.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model.js)、[`Model/ModelSceneGraph.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/ModelSceneGraph.js)、[`GltfLoader.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/GltfLoader.js) |
+| 16 | [16-性能调试与优化.md](16-性能调试与优化.md) | 测量→锚点→调参完整工具链：requestRenderMode 按需渲染、帧率观测三件套、debug 家族与 Inspector、内存三本账、缓存/LOD 上限、拾取限流、问题→工具→锚点→调参四列速查表 + 上线前检查单 | [`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`FrameRateMonitor.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/FrameRateMonitor.js)、[`ResourceCacheStatistics.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ResourceCacheStatistics.js) |
+
 ## 推荐阅读路线
 
 **快速线（约 30 分钟）**：先读 [00-总览](00-总览-架构与目录地图.md) 建立地图（10 分钟）→
@@ -71,6 +78,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 12（事件与交互）建议与 06 §8、08 §7 配对读，补齐「输入→拾取→选中/跟踪」闭环；
 13（渲染命令与着色器）是 05 §5 的下潜续篇，读完再回看 09 §4 的合批装配会有完整命令层视角；
 14（向量数据源）是 03 的数据入口姊妹篇（谁在造 Entity：GeoJSON/KML/CZML 的适配器全景），读完可随时回头翻；
+15（Model 与 glTF）建议在 04/09/13 之后读（新一代 Model 架构与旧 Primitive 路径对照着看才不吃力）；
+16（性能调试）通读全书后当手册用——排查卡顿时按 §1 决策树选工具，上线前过 §15 检查单；
 做业务开发可先走「入门总览 → 03 → 14 → 06/12」捷径，再按需补渲染组。
 
 ## 如何在本分支对照源码读注释
@@ -105,8 +114,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 
 - **基点**：官方 tag `1.145`（commit `845a06b` 的直接后续）；发布分支 `study/1.145-annotated`。
 - **成果统计**：31 个 `.js` 源码文件、829 行纯中文导读注释（零代码改动，已用上节命令终验）；
-  十五篇中文文档 + 本 README（00–05 为首轮五棒成果，06–14 为 2026-11-05/06 接力新增，代码引用全部行级链接化：
-  全书代码链接 1695 个、文档间相对链接 128 个，`node study/tools/check-links.mjs` 全绿）；30+ 中文 commit。
+  十七篇中文文档 + 本 README（00–05 为首轮五棒成果，06–14 为 2026-11-05/06 接力新增，15–16 为加餐篇，代码引用全部行级链接化：
+  全书代码链接 2054 个、文档间相对链接 189 个，`node study/tools/check-links.mjs` 全绿）；30+ 中文 commit。
 - **五棒接力主题**：
   1. Phase 1 总览 + Viewer/CesiumWidget 创建（[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js)、[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js)，文档 00/01）
   2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、[`QuadtreePrimitive`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js#L50) 等 9 文件，文档 02）
@@ -115,8 +124,7 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
   5. Phase 5 帧更新与渲染循环 + 收尾（[`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js)、[`Context.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/Context.js)/[`DrawCommand.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/DrawCommand.js#L76)，
      文档 05 与本 README 定稿）
 - **交接记录**：各棒的详细文件/方法清单与交接提示归档在 [PROGRESS.md](PROGRESS.md)（历史记录，已入库）。
-- **后续可深挖方向（加餐候选）**：Model/glTF 渲染管线（[`Scene/Model/`](https://github.com/Cpu1998/cesium/tree/study/1.145-annotated/packages/engine/Source/Scene/Model) 新一代架构、gltf 加载与 ModelSceneGraph）、
-  性能调试与内存剖析（[`Cesium3DTilesInspector.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Cesium3DTilesInspector/Cesium3DTilesInspector.js)、[`CesiumInspector.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/CesiumInspector/CesiumInspector.js) 与 Debug 度量）、
+- **后续可深挖方向（加餐候选）**：~~Model/glTF 渲染管线~~、~~性能调试与内存剖析~~（均已落盘为 [15](15-Model与glTF加载.md)/[16](16-性能调试与优化.md)）；
   天空/光照/大气（SkyAtmosphere、Sun/Moon、光照与 IBL）、点云/粒子（[`PointCloud`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PointCloud.js)、[`ParticleSystem`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ParticleSystem.js)）、
   裁剪与开挖（ClippingPolygonCollection/ClippingPlane）、实战速查（常见业务配方索引篇）；
   Renderer 剩余细节（OIT/深度拷贝链/GaussianSplat）与事件/命令层已见 [12](12-事件与交互.md)/[13](13-渲染命令与着色器.md)；ComputeCommand 影像重投影见 [05 §10](05-帧更新与渲染循环.md)；向量数据源已落盘为 [14](14-向量数据源.md)。
