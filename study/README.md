@@ -6,13 +6,13 @@
 ## 这是什么工程
 
 Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不改动任何一行原有代码** 的前提下，
-为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十二篇中文文档，
-覆盖十一大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环、相机与视角控制、地形系统、拾取、几何图元与材质、时间与动态属性、坐标变换**。
-首轮五棒已完结（2026-11-04）；2026-11-05 起接力扩展新篇（06–11 已落盘，后续篇目进行中），统计见下方「工程说明」。
+为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十四篇中文文档，
+覆盖十三大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环、相机与视角控制、地形系统、拾取、几何图元与材质、时间与动态属性、坐标变换、事件与交互、渲染命令与着色器**。
+首轮五棒已完结（2026-11-04）；2026-11-05/06 接力扩展新篇（06–13 已落盘，后续篇目进行中），统计见下方「工程说明」。
 
 适合读者：有前端基础（懂 DOM/事件/Promise）、第一次读 Cesium 源码的工程师。
 
-## 文档索引（十二篇导航）
+## 文档索引（十四篇导航）
 
 | 顺序 | 文档 | 一句话摘要 | 对应源码主战场 |
 |---|---|---|---|
@@ -28,19 +28,23 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 | 09 | [09-几何图元与材质.md](09-几何图元与材质.md) | Geometry/GeometryInstance 数据模型、几何工厂顶点计算、Primitive 合批与 VAO 上传、Fabric 材质→shader 生成、贴地分类 GroundPrimitive | [`Primitive.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Primitive.js)、[`Material.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Material.js)、[`GeometryVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) |
 | 10 | [10-时间与动态属性.md](10-时间与动态属性.md) | JulianDate 双字段 TAI 表示、Clock 双闸门×ClockStep×ClockRange、onTick 事件流与 Timeline、Property 全家福、SampledProperty 从采样到插值、CZML 时间轴解析 | [`JulianDate.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/JulianDate.js)、[`Clock.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/Clock.js)、[`SampledProperty.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/SampledProperty.js)、[`CzmlDataSource.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CzmlDataSource.js) |
 | 11 | [11-坐标变换.md](11-坐标变换.md) | 坐标系全景表、Matrix3/4 列主序与四元数、椭球正反解与测地线、ENU/NED 生成器、worldToWindowCoordinates 完整链与「七级变换瀑布」、ModelMatrix 落点 | [`Transforms.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/Transforms.js)、[`Ellipsoid.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/Ellipsoid.js)、[`Matrix4.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/Matrix4.js)、[`SceneTransforms.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/SceneTransforms.js) |
+| 12 | [12-事件与交互.md](12-事件与交互.md) | ScreenSpaceEventHandler 事件抽象（DOWN/UP/MOVE/DOUBLE_CLICK + 修饰键）、触摸翻译（长按=右键/双指=捏合）、Viewer 默认点选与双击跟踪、selectedEntity/trackedEntity 事件流、事件→相机操作翻译层、一次 LEFT_CLICK 全链时序 | [`ScreenSpaceEventHandler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/ScreenSpaceEventHandler.js)、[`ScreenSpaceCameraController.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ScreenSpaceCameraController.js)、[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js) |
+| 13 | [13-渲染命令与着色器.md](13-渲染命令与着色器.md) | DrawCommand 字段与变体容器、Pass 通道枚举与多视锥分箱编队、derivedCommands 变体家族（pick/logDepth/HDR/阴影）、ShaderSource 内置注入与 ShaderCache、Context.draw 终点三步、ComputeCommand 计算旁支 | [`DrawCommand.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/DrawCommand.js)、[`ShaderSource.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/ShaderSource.js)、[`Context.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/Context.js)、[`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js) |
 
 ## 推荐阅读路线
 
 **快速线（约 30 分钟）**：先读 [00-总览](00-总览-架构与目录地图.md) 建立地图（10 分钟）→
 直接跳 [05-帧更新与渲染循环.md §1–§2](05-帧更新与渲染循环.md) 看懂「一帧发生了什么」（15 分钟）→
-按兴趣挑 02/04/06/07/08/09/10/11 任一篇的「动手实验」小节玩一把（5 分钟）。
+按兴趣挑 02/04/06–13 任一篇的「动手实验」小节玩一把（5 分钟）。
 
 **精读线（按序）**：`00 → 01 → 02 → 03 → 04 → 05`，每篇都以前一篇为前提；06/07（相机、地形）可与 02–05 并行穿插阅读；每读完一篇，
 用 GitHub 网页打开该篇「对应源码主战场」列里的文件，顺着 `【导读】` 注释把源码走一遍。
 05 的 §9 有一张「五棒 update 入口 ↔ 帧时间线位置」对照表，读完五篇后回看一次可把全书串起来；
 08/09（拾取、几何材质）可与 03–05 并行穿插阅读；
 10（时间与动态属性）建议紧跟在 03 之后读（同是 DataSources 主战场，互补视角）；
-11（坐标变换）建议与 06 §7 配对读，读完再看 08/09 会更顺。
+11（坐标变换）建议与 06 §7 配对读，读完再看 08/09 会更顺；
+12（事件与交互）建议与 06 §8、08 §7 配对读，补齐「输入→拾取→选中/跟踪」闭环；
+13（渲染命令与着色器）是 05 §5 的下潜续篇，读完再回看 09 §4 的合批装配会有完整命令层视角。
 
 ## 如何在本分支对照源码读注释
 
@@ -74,7 +78,7 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 
 - **基点**：官方 tag `1.145`（commit `845a06b` 的直接后续）；发布分支 `study/1.145-annotated`。
 - **成果统计**：31 个 `.js` 源码文件、829 行纯中文导读注释（零代码改动，已用上节命令终验）；
-  十二篇中文文档 + 本 README（00–05 为首轮五棒成果，06–11 为 2026-11-05/06 接力新增，代码引用全部行级链接化）；30+ 中文 commit。
+  十四篇中文文档 + 本 README（00–05 为首轮五棒成果，06–13 为 2026-11-05/06 接力新增，代码引用全部行级链接化）；30+ 中文 commit。
 - **五棒接力主题**：
   1. Phase 1 总览 + Viewer/CesiumWidget 创建（[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js)、[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js)，文档 00/01）
   2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、[`QuadtreePrimitive`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js#L50) 等 9 文件，文档 02）
@@ -83,8 +87,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
   5. Phase 5 帧更新与渲染循环 + 收尾（[`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js)、[`Context.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/Context.js)/[`DrawCommand.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/DrawCommand.js#L76)，
      文档 05 与本 README 定稿）
 - **交接记录**：各棒的详细文件/方法清单与交接提示归档在 [PROGRESS.md](PROGRESS.md)（历史记录，已入库）。
-- **后续可深挖方向**：Model/glTF 渲染管线（[`Scene/Model/`](https://github.com/Cpu1998/cesium/tree/study/1.145-annotated/packages/engine/Source/Scene/Model)）、Renderer 细节（[`RenderState`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/RenderState.js)/OIT/深度拷贝链）、
-  事件与交互（ScreenSpaceEventHandler）、渲染命令与着色器（DrawCommand 生命周期/ShaderBuild）、ComputeCommand 影像重投影（见 [05 §10](05-帧更新与渲染循环.md)）。
+- **后续可深挖方向**：Model/glTF 渲染管线（[`Scene/Model/`](https://github.com/Cpu1998/cesium/tree/study/1.145-annotated/packages/engine/Source/Scene/Model)）、向量数据源（GeoJsonDataSource/KmlDataSource/CustomDataSource 与 cluster 聚合）、
+  Renderer 剩余细节（OIT/深度拷贝链/GaussianSplat），事件与命令层已见 [12](12-事件与交互.md)/[13](13-渲染命令与着色器.md) 两篇；ComputeCommand 影像重投影见 [05 §10](05-帧更新与渲染循环.md)。
 
 ## 上游与同步
 
