@@ -17,11 +17,11 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 | 顺序 | 文档 | 一句话摘要 | 对应源码主战场 |
 |---|---|---|---|
 | 00 | [00-总览-架构与目录地图.md](00-总览-架构与目录地图.md) | 三大包职责、engine 分层、一个坐标从数据到像素的端到端链路 | 目录地图 |
-| 01 | [01-Viewer创建与场景初始化.md](01-Viewer创建与场景初始化.md) | `new Viewer()` 到第一帧渲染的完整时序逐段拆解 | `Viewer.js` / `CesiumWidget.js` |
+| 01 | [01-Viewer创建与场景初始化.md](01-Viewer创建与场景初始化.md) | `new Viewer()` 到第一帧渲染的完整时序逐段拆解 | [`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js) / [`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) |
 | 02 | [02-底图与影像体系.md](02-底图与影像体系.md) | ImageryProvider/ImageryLayer/瓦片金字塔调度与 GPU 纹理的一生 | `Scene/Globe*`、`Scene/Imagery*` |
 | 03 | [03-Entity数据体系.md](03-Entity数据体系.md) | Entity/Property 时间插值如何每帧同步成 GPU 图元 | `DataSources/*` |
 | 04 | [04-3DTiles加载与LOD.md](04-3DTiles加载与LOD.md) | Tileset 加载、SSE/LOD 遍历、内容分派与缓存淘汰 | `Scene/Cesium3DTileset*`、`Scene/Cesium3DTile*` |
-| 05 | [05-帧更新与渲染循环.md](05-帧更新与渲染循环.md) | 一帧的完整旅程：rAF→update→剔除分类→DrawCommand→WebGL，requestRenderMode 与请求调度 | `Scene/Scene.js`、`Core/RequestScheduler.js` |
+| 05 | [05-帧更新与渲染循环.md](05-帧更新与渲染循环.md) | 一帧的完整旅程：rAF→update→剔除分类→DrawCommand→WebGL，requestRenderMode 与请求调度 | [`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js) |
 
 ## 推荐阅读路线
 
@@ -67,14 +67,14 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 - **成果统计**：31 个 `.js` 源码文件、829 行纯中文导读注释（零代码改动，已用上节命令终验）；
   六篇中文文档 + 本 README，中文合计约 1.4 万字；28 个中文 commit。
 - **五棒接力主题**：
-  1. Phase 1 总览 + Viewer/CesiumWidget 创建（`Viewer.js`、`CesiumWidget.js`，文档 00/01）
-  2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、`QuadtreePrimitive` 等 9 文件，文档 02）
-  3. Phase 3 Entity 数据体系（`Entity`、`DataSourceDisplay`、各 Visualizer 等 8 文件，文档 03）
-  4. Phase 4 3D Tiles（`Cesium3DTileset`、`Cesium3DTile`、内容分派等 9 文件，文档 04）
-  5. Phase 5 帧更新与渲染循环 + 收尾（`Scene.js`、`RequestScheduler.js`、`Context/DrawCommand`，
+  1. Phase 1 总览 + Viewer/CesiumWidget 创建（[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js)、[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js)，文档 00/01）
+  2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、[`QuadtreePrimitive`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js#L50) 等 9 文件，文档 02）
+  3. Phase 3 Entity 数据体系（[`Entity`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L135)、[`DataSourceDisplay`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L42)、各 Visualizer 等 8 文件，文档 03）
+  4. Phase 4 3D Tiles（[`Cesium3DTileset`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L219)、[`Cesium3DTile`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L71)、内容分派等 9 文件，文档 04）
+  5. Phase 5 帧更新与渲染循环 + 收尾（[`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js)、[`Context.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/Context.js)/[`DrawCommand.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/DrawCommand.js#L76)，
      文档 05 与本 README 定稿）
 - **交接记录**：各棒的详细文件/方法清单与交接提示归档在 [PROGRESS.md](PROGRESS.md)（历史记录，已入库）。
-- **后续可深挖方向**：Model/glTF 渲染管线（`Scene/Model/`）、Renderer 细节（RenderState/OIT/深度拷贝链）、
+- **后续可深挖方向**：Model/glTF 渲染管线（[`Scene/Model/`](https://github.com/Cpu1998/cesium/tree/study/1.145-annotated/packages/engine/Source/Scene/Model)）、Renderer 细节（[`RenderState`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/RenderState.js)/OIT/深度拷贝链）、
   拾取系统全链、ComputeCommand 影像重投影（见 [05 §10](05-帧更新与渲染循环.md)）。
 
 ## 上游与同步
