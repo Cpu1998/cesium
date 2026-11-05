@@ -158,3 +158,15 @@
   - 08 拾取主战场：Scene.js 的 pick pass 编排（updateAndExecuteCommands 挑 pick pass、executeCommands 里 pickRenderTarget/PickDepth）、Scene.prototype.pick/morphto…（定义行 grep "Scene.prototype.pick = "）、PickId（Renderer/PickId.js + Context.createPickId）、PickFramebuffer、GlobeSurfaceTileProvider 的 pickTerrain（GlobeSurfaceTile.pickTriangle / getTileImageryCoordinates）、 drillPick/mode 颜色编码（pickPosition 深度复原：PickDepth.js）；文档可复用 05 §5 的多视锥剔除叙述与 07 的 addDrawCommandsForTile 锚点
   - 09 几何图元与材质主战场：GeometryVisualizer（DataSources）→ GeometryInstance/Geometry 属性流（Core/Geometry.js）、GeometryAttribute/Indices、Appearance+Material（Scene/Appearance.js、Material.js 的 fabric JSON 与 shader 缓存）、PerInstanceColorAppearance、GroundPolyline/ClassificationType 贴地判定；可交叉引用 03 §Visualizer 表与 07 §7（depthTestAgainstTerrain）
   - 通用纪律：行号唯一来源本地 grep 定义行；每篇写完立即 commit（本棒 06 曾以 1 个已知坏链先提交以降低中断损失，风险自负但 07 补齐后全绿）；push 遇 commit_refs_rules 直接重试
+
+---
+
+## 2026-11-06 00:4x · L3 拾取+几何材质（L3 棒半程中断，主会话收尾）
+
+- **做了什么**：新写 08-拾取系统（290 行/100 链接）、09-几何图元与材质（305 行/95 链接）；README 升级十篇导航（索引+阅读路线+成果统计+可深挖方向）
+- **内容要点**：08——颜色编码拾取（pick pass 重画→readPixel→PickId 反查）、Picking.js（1.145 从 Scene 拆出的新类）、PickDepth 深度复原、drillPick、射线家族；09——Geometry 三层数据模型、四代表几何工厂、Primitive.js 合批总装（loadSynchronous/createVertexArray）、Fabric 材质→shader、贴地分类 ClassificationPrimitive
+- **过程**：L3 棒完成 08 并提交后在撰写 09 尾段中断；09 全文实际已落盘（305 行/95 链接全绿），主会话核实后补 README + 提交推送
+- **下一棒建议（L4：10-时间与动态属性 / 11-坐标变换）**：
+  - 10 主战场：Core/JulianDate.js、Clock.js、ClockStep/ClockRange、TimeInterval/TimeIntervalCollection、DataSources/Property 体系（SampledProperty 插值/TimeIntervalCollectionProperty/CallbackProperty）、CzmlDataSource 时间轴
+  - 11 主战场：Core/Cartesian3/Cartesian4/Matrix3/Matrix4/Quaternion、Transforms.js（eastNorthUpToFixedFrame 等）、EllipsoidGeodesic、SceneTransforms（交叉引用 06 §7）、各坐标系（WGS84/ECEF/ENU/窗口）互转全景表
+  - 纪律同前：少叙述、每篇即 commit、收尾全绿再汇报
