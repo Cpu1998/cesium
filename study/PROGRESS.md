@@ -135,3 +135,26 @@
   - 主战场：packages/engine/Source/Scene/Camera.js（flyTo/setView/lookAt）、SceneTransforms.js、 GlobeSurfaceTileProvider 与 packages/engine/Source/Core/地形相关（TerrainProvider/GlobeSurfaceTile/QuadtreePrimitive 已有【导读】注释可引用）
   - 新篇按 LINKING.md「新文档风格」：三件套开头、250-450 行、全部引用带链接、追加 README 索引表并更新成果统计
   - ⚠️ 教训：控制在输出预算内——少过程叙述、批量编辑、**先完成 commit+push+PROGRESS 再汇报**
+
+---
+
+## 2026-11-06 00:1x · L2 新写两篇：06-相机系统与视角控制 / 07-地形系统
+
+- **做了什么**：新写 `study/06-相机系统与视角控制.md`（266 行）与 `study/07-地形系统.md`（276 行），全文代码引用行级链接；README 索引表收录 06/07 并更新「文档索引八篇导航」「成果统计」（篇数 6→8、说明 06/07 为接力新增）；README 快速线/精读线提法微调
+- **commit**：9c7bffc946（06）、2217acf3b3（07+README）；首个 push 曾遇 GitHub 端 `fatal error in commit_refs_rules`，重试即成功（规则引擎偶发故障，非仓库问题）
+- **06 主战场与锚点**：
+  - Scene/Camera.js：function Camera L82（position L101/direction L134/up L143/right L152/frustum L166 均为公开可写字段）、updateViewMatrix L316、updateMembers L657、getHeading/getPitch/getRoll L818/L831/L835、heading/pitch/roll getter L994/L1025/L1056（ENU 临时换参考系反解的派生量）、update L1120、_setTransform L1179、setView L1488（→setView3D L1268/2D L1338/CV L1303）、lookAt L2331、lookAtTransform L2419、offsetFromHeadingPitchRange L2360、flyTo L3425、cancelFlight L3335、flyToBoundingSphere L3660、computeViewRectangle L3883、flyHome L1544、switchToPerspective/Orthographic L3985/L4009
+  - Scene/CameraFlightPath.js：createTween L406、createUpdate3D/2D/CV L219/L334/L150、每帧回调即 camera.setView（L321）——「飞行=连续 setView」
+  - Core/PerspectiveFrustum.js L35/L240/L277（sseDenominator）、Core/OrthographicFrustum.js L30/L184、Scene/FrustumCommands.js L13、Scene/View.js L42（多视口 View 抽象，scene.camera 是 _view 转发）、Scene.js L733/L755/L1052/L1510/L1525/L2833（多视锥）、Scene/SceneTransforms.js L46/L58/L99/L282/L301/L358（wgs84ToWindowCoordinates 已在 1.145 移除→worldToWindowCoordinates）、Scene/ScreenSpaceCameraController.js L35/L3010（initializeFrame 里先 controller.update 再 camera.update：Scene.js L4495/L4500）
+- **07 主战场与锚点**：
+  - Core/TerrainProvider.js：L21 抽象接口（requestTileGeometry L541 / getLevelMaximumGeometricError L551 / getTileDataAvailable L563 / availability L89 / getEstimatedLevelZeroGeometricErrorForAHeightmap L513）；Provider 家族：CesiumTerrainProvider L477（fromIonAssetId L1184/fromUrl L1224/getLevelMaximumGeometricError L1148=误差减半律/skirt L798）、EllipsoidTerrainProvider L26、Cesium3DTilesTerrainProvider L68（1.145 新增）、ArcGIS L351、CustomHeightmap L56
+  - 入口链：Scene.js setTerrain L5531（内部 L5487）→ globe.terrainProvider setter L528 → GlobeSurfaceTileProvider._terrainProvider L149/L330 → invalidateAllTiles（QuadtreePrimitive.js L211）= 全树重建
+  - 帧调度三拍：Globe.js L1003/L1098/L1113 ↔ QuadtreePrimitive.js update L316/beginFrame L341/render L371/endFrame L451 ↔ GlobeSurfaceTileProvider update L402/initialize L412/beginUpdate L480/endUpdate L516/loadTile L694/showTileThisFrame L1105/addDrawCommandsForTile L2528；三优先级队列 L91、时间片 L97/L1335、LRU tileCacheSize L130
+  - SSE 公式：QuadtreePrimitive.js screenSpaceError L1270（sseDenominator L1286、雾放行）、maximumScreenSpaceError 默认 2px L120、2D 版 L1300；与 3D Tiles 同构（Cesium3DTile.js L975）
+  - 瓦片状态机：QuadtreeTile L75（data L180/renderable L162）+ 两级状态（QuadtreeTileLoadState / TerrainState L7）；GlobeSurfaceTile.processStateMachine L253 → initialize L221 → processTerrainStateMachine L723（requestTileGeometry L908/upsample L849/transform L1014/createResources L1058）→ processImagery L347（TileImagery L52）
+  - 格式：QuantizedMeshTerrainData L94/L264（Worker createVerticesFromQuantizedTerrainMesh L26、zigzag 量化、horizon occlusion、裙边）、HeightmapTerrainData L96/L315/L492、waterMask（CesiumTerrainProvider L63 + GlobeSurfaceTile L1122）、availability L520/L1258
+- **数字**：check-links 全绿（10 个 md，代码链接 782、相对链接 39、错误 0 警告 0）；06 含代码链接 67 个、07 含 96 个（校验器差值：674-674 前后对比……准确值：06 提交后 674、07 加入后 777→README 更新 782）
+- **下一棒建议（08-拾取 / 09-几何图元与材质）**：
+  - 08 拾取主战场：Scene.js 的 pick pass 编排（updateAndExecuteCommands 挑 pick pass、executeCommands 里 pickRenderTarget/PickDepth）、Scene.prototype.pick/morphto…（定义行 grep "Scene.prototype.pick = "）、PickId（Renderer/PickId.js + Context.createPickId）、PickFramebuffer、GlobeSurfaceTileProvider 的 pickTerrain（GlobeSurfaceTile.pickTriangle / getTileImageryCoordinates）、 drillPick/mode 颜色编码（pickPosition 深度复原：PickDepth.js）；文档可复用 05 §5 的多视锥剔除叙述与 07 的 addDrawCommandsForTile 锚点
+  - 09 几何图元与材质主战场：GeometryVisualizer（DataSources）→ GeometryInstance/Geometry 属性流（Core/Geometry.js）、GeometryAttribute/Indices、Appearance+Material（Scene/Appearance.js、Material.js 的 fabric JSON 与 shader 缓存）、PerInstanceColorAppearance、GroundPolyline/ClassificationType 贴地判定；可交叉引用 03 §Visualizer 表与 07 §7（depthTestAgainstTerrain）
+  - 通用纪律：行号唯一来源本地 grep 定义行；每篇写完立即 commit（本棒 06 曾以 1 个已知坏链先提交以降低中断损失，风险自负但 07 补齐后全绿）；push 遇 commit_refs_rules 直接重试
