@@ -228,3 +228,10 @@
   - load 通用管线抽象：Promise<DataSource> 返回、loader 线程模型（TaskProcessor？GeoJson 走 worker？——本地 grep 核实）、name/id/credit 归一
   - README 重排建议：十四篇后索引表已长，可按「入门 00-01 / 数据 02-04+14 / 渲染 05+09+13 / 交互 06-08+12 / 动态 03+10-11」分组或加主题列
   - 纪律同前：零过程叙述、每篇即 commit、收尾全绿再汇报；行号唯一来源本地 grep 定义行；⚠️ 开工前先 git log 查重 + PROGRESS 占坑（本棒双实例教训）
+
+---
+
+## 2026-11-06 04:38 · L6 向量数据源 + README 重排（进行中）
+
+- 计划：新写 `study/14-向量数据源.md`（GeoJson/Kml/Custom/DataSourceCollection/EntityCluster + load 管线抽象）；README 索引做分组导航重排（15 篇）
+- 状态：占坑提交，动笔中
