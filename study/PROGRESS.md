@@ -259,3 +259,7 @@
   - 17 主战场：Scene/SkyAtmosphere.js、Globe.js 大气光散射（轮廓光/地面大气）、Scene/Sun/Moon/SunLight（光照方向与 Illuminate 统一）、 lightingModel（Scene.lightingMode？以 grep 为准：UNIFORM/HDR/LAMPLIGHT）、HDR 与 bloom（PostProcess 阶段，13 交叉）、EnvironmentMapping/IBL（若有，grep 确认）；与 02（大气对影像色调影响）、06（大气对 far plane/雾）交叉
   - 18 主战场：Scene/PointCloud.js（1.145 拆分后的 PointCloudShading/attenuation/EDL/backFaceCulling）、PointCloudEyeDomeLighting.js、Cesium3DTiles 点云瓦片（04 交叉：pnts 语义 extension）、Scene/ParticleSystem.js（发射器/粒子池/update 循环）、Billboard 驱动的粒子渲染链（与 03 交叉）
   - 纪律同前：开工 git log 查重 + PROGRESS 占坑先行；行号唯一来源本地 grep；收尾全绿再 push；若加餐C（19-裁剪开挖 / 20-实战速查）时间不足可留给下个夜间班次
+
+---
+
+## 2026-11-06 05:2x · 加餐B 17-天空光照与大气 / 18-点云与粒子（进行中）
