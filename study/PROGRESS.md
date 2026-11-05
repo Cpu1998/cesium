@@ -245,3 +245,9 @@
 - **⚠️ 与任务单差异（以源码为准）**：①1.145 KmlDataSource 无 featureByEntity 反查 API，KML 元数据在装载期写入 entity.kml PropertyBag；②EntityCluster 触发链是 scene.camera.changed（DataSourceDisplay._onDataSourceAdded 调 _initialize 挂上），帧循环只起间接作用；③GeoJSON 解析不走 worker/TaskProcessor（DataSources 目录零 TaskProcessor 引用，唯一 worker 是 KMZ 的 zip.js 自带 worker+wasm），文档已按实测写
 - **数字**：check-links 全绿（17 个 md，代码链接 1702、相对链接 130、错误 0 警告 0）；14 全文 273 行、代码链接约 173 个
 - **加餐篇建议（若有余力）**：Model/glTF 渲染管线（Scene/Model/ 新架构 + ModelSceneGraph + gltf 缓存）、性能调试（CesiumInspector/Cesium3DTilesInspector + requestRenderMode 度量）、天空光照大气（SkyAtmosphere/Sun/SkyBox）、点云与粒子（PointCloud/ParticleSystem）、裁剪与开挖（ClippingPolygon/ClippingPlane）、实战速查篇（业务配方索引）；纪律同前：grep 定行、占坑先行、每篇即 commit、全绿再 push
+
+---
+
+## 2026-11-06 04:5x · 加餐A 15-Model与glTF加载 / 16-性能调试与优化（进行中）
+
+- 占坑：本棒新写两篇加餐文档——`study/15-Model与glTF加载.md`（Model 运行时组件管线、GltfLoader 体系、ModelSceneGraph、动画与 skin、特性与 style、贴地参考）与 `study/16-性能调试与优化.md`（requestRenderMode、FPS 观测与 debug 家族、Renderer 统计、地形影像调优、拾取限流、Model 开销点、问题→工具→锚点→调参速查表），README 增设「加餐篇」分组；完成后本节补全记录
