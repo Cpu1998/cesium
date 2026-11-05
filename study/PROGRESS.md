@@ -198,3 +198,33 @@
   - 12 主战场：Core/ScreenSpaceEventHandler.js（事件抽象：DOWN/UP/MOVE/DOUBLE_CLICK + 修饰键）、Core/ScreenSpaceEventType.js、widgets Viewer 默认 handler 与 screenSpaceEventHandler 销毁、Scene/ScreenSpaceCameraController.js（已注，06 §8 提过：把事件翻译成相机操作）、Entity 拾取联动（08 §7 id=entity）、viewer.selectedEntity/trackedEntity 事件（01/03 交叉）；可配「一个 click 从 DOM 事件到 drillPick 到相机 flyTo」全链图
   - 13 主战场：Renderer/DrawCommand.js 生命周期（build/execute/derivedCommands pass）、Renderer/ShaderSource.js + ShaderBuild（内置 uniform/函数注入）、Renderer/Context.js executeCommand/createVertexArray、Scene/Scene.js updateAndExecuteCommands 的 pass 编排（已注，05 §5）、ComputeCommand（05 §10）、RenderState/深度模板缓存；可配「一条 DrawCommand 从 Primitive 到 gl.drawElements」管线图，交叉引用 05/09
   - 纪律同前：零过程叙述、每篇即 commit、收尾全绿再汇报；行号唯一来源本地 grep 定义行
+
+---
+
+## 2026-11-06 04:4x · L5 事件与交互 + 渲染命令与着色器（重试棒）
+
+- **做了什么**：新写 `study/12-事件与交互.md`（264 行）与 `study/13-渲染命令与着色器.md`（254 行），全文代码引用行级链接；README 升级十四篇导航（索引 +2 行、阅读路线补 12/13 位置建议、成果统计篇数 12→14、可深挖方向更新：事件/命令层已落盘，新增向量数据源方向）
+- **commit**：11dc00980e（12 初稿）、add478e147（12 定稿）、5cc57529f7（13 初稿）、c16a5b8442（13 定稿）、4ea615b4b1（README）
+- ⚠️ **异常记录**：本棒出现双实例并发写入——上一棒（00:47 首派后失联）在中途苏醒并同时产出 12/13（add478e147/c16a5b8442 覆写了本棒初稿 11dc00980e/5cc57529f7 的文件内容）。两版主题覆盖与结构均合规、行数均达标，最终以 HEAD 定稿版为准，未做回退。后续棒注意：开工前 `git log` 查重、PROGRESS 先占坑再动笔
+- **12 主战场与锚点**：
+  - Core/ScreenSpaceEventHandler.js：构造 L987（clickPixelTolerance 5px L1012、touchHoldDelay 1500ms L1145、mouseEmulationIgnore 800ms L1137）；注册三件套 setInputAction L1031/getInputAction L1061/removeInputAction L1082（键=getInputEventKey L25，type+modifier 独立槽位）；派发族 handleMouseDown L209/cancelMouseEvent L259（UP 后位移≤5px 合成 CLICK）/handleMouseUp L306/handleDblClick L396/handleWheel L420/fireTouchEvents L542（单指=左键、长按 1.5s=RIGHT_CLICK L646、双指=PINCH，handleTouchMove L703 喂 distance/angleAndHeight）；destroy L1125
+  - Core/ScreenSpaceEventType.js：15 事件 L15-L127；KeyboardEventModifier.js SHIFT/CTRL/ALT L16/24/32
+  - widgets/Viewer.js：pickEntity L119（picked.id ?? primitive.id；3DTileFeature 造临时 Entity；pickImageryLayerFeature L183）、默认槽位 L1010/L1014（pickAndSelectObject L1006/pickAndTrackObject L988）、selectedEntity setter L1553 + selectedEntityChanged L1578、_onTick L1908（绿框/InfoBox 刷新）、destroy L1776（removeInputAction L1781/L1784）
+  - Widget/CesiumWidget.js：new ScreenSpaceEventHandler L440、trackedEntity setter L882（cancelZoom→_needTrackedEntityUpdate→禁平移倾斜）/trackedEntityChanged L935/updateTrackedEntity L1666、_onTick L1201；DataSources/EntityView.js update L396（defaultOffset3D L385）
+  - Scene/ScreenSpaceCameraController.js：构造 L35、inertiaSpin L96、minimumZoomDistance L132、手势→操作映射 translate/zoom/rotate/tilt/look L157-L222、update2D/updateCV/update3D L1090/L1785/L2873、update L3010；CameraEventAggregator.js L374（isMoving L452/getMovement L470）；CameraEventType.js L15-L47
+  - 交叉：06 §8（翻译层）、08 §7（id=entity 接缝）、03（definitionChanged）、11 §6（绿框世界→窗口）、05 §4（requestRenderMode）
+- **13 主战场与锚点**：
+  - Renderer/DrawCommand.js：class L76（va L92/sp L101/uniformMap L104/renderState L107/framebuffer L110/pass L113/owner L116/pickId L119）；flags 位域 L133-L143（cull getter L195）；derivedCommands L140 + dirty L144；shallowClone L635；execute L676（一行转发 context.draw）
+  - Renderer/Pass.js：15 通道 L17-L31（ENVIRONMENT→COMPUTE→GLOBE→分类→3DTILE→OPAQUE L26→TRANSLUCENT L27→VOXELS/GAUSSIAN→OVERLAY L31）
+  - 编队：Scene.js updateAndRenderPrimitives L3955 收集 → View.js createPotentiallyVisibleSet L285/updateFrustums L168（多视锥拟合）/insertIntoBin L236（executeInClosestFrustum break L264；无包围体积按最坏 near/far 入全部视锥 L381）→ FrustumCommands L13；Scene.js updateAndExecuteCommands L3391/executeCommandsInViewport L3667/executeCommands L2796/performPass L2845/executeIdCommand L2398/executeTranslucentCommandsBackToFront L2458/executeOverlayCommands L3265
+  - 变体：Scene.js updateDerivedCommands L1814（prototype 版 L1906，dirty 闸门 L1930-L1950；logDepth 递归派生 pick L1972；OIT L1883-L1890）；DerivedCommand.js createDepthOnly L95/createLogDepth L231（正则探测 L136）/createPick L315/createSnap L409/createHdr L762；ShadowMap.js createReceiveDerivedCommand L1791/createCastDerivedCommand L1894；执行切换 executeCommand L2291
+  - 着色器：ShaderSource.js ctor L332/combineShader L155（#line 0 归置）/getBuiltinsAndAutomaticUniforms L138（czm_ 依赖图注入：getDependencyNode L23/sortDependencies L87）/replaceMain L363/createPickFragmentShaderSource L450（main→czm_pick_main 包装只输出 pickColor）；ShaderCache.js L9/getShaderProgram L75（getCacheKey L377 含 defines+全文）；ShaderProgram.js ctor L17/replaceCache L75（引用计数释放）/_bind L541/_setUniforms L546（manual←uniformMap 惰性求值 + automatic←UniformState；setSamplerUniforms L444）；ShaderBuilder.js L56（Model 新拼装器，buildShaderProgram L470）
+  - GL 终点：Context.js L48（_shaderCache L89/UniformState L344）/draw L1414/beginDraw L1303（FBO+applyRenderState L1213 差量）/continueDraw L1330（us.model←modelMatrix→_setUniforms→va._bind L884→gl.drawElements/Arrays[Instanced]）/beginFrame L1438/endFrame L1442/readPixels L1550；RenderState.js ctor L91/fromCache L461（内容为键全局去重）；VertexArray.js L291/_bind L884/VertexArrayFacade L14
+  - 计算旁支：ComputeCommand.js L10/execute L116 → ComputeEngine.js L63（全屏四边形 getViewportQuadVertexArray Context.js L1599 画进 outputTexture）；执行点 Scene.js executeComputeCommands L3243（View.js L340 单列）
+  - 交叉：05 §5/§10、08 §2/§3（pick 变体与颜色编码）、09 §4（Primitive 侧 createShaderProgram L1724/createVertexArray L1622/new DrawCommand L1878/RenderState.fromCache L1690）
+- **数字**：check-links 全绿（16 个 md，代码链接 1522、相对链接 103、错误 0 警告 0）；12 含代码链接约 60 个、13 含约 63 个
+- **下一棒建议（L6：14-向量数据源 + README 分组导航重排）**：
+  - 主战场：DataSources/GeoJsonDataSource.js（load L 主入口、crs 坐标系分支、process* 系列造 Entity）、KmlDataSource.js（load/networkLink、KMZ 解包）、CustomDataSource.js、DataSourceCollection.js（add/remove/raiseLower 次序）、DataSourceDisplay 联动（03 交叉）、CustomDataSourceerCollection/cluster 聚合（EntityCluster.js：enabled、pixelRange、minimumClusterSize、_initialize 与监听 scene.preUpdate/postRender）
+  - load 通用管线抽象：Promise<DataSource> 返回、loader 线程模型（TaskProcessor？GeoJson 走 worker？——本地 grep 核实）、name/id/credit 归一
+  - README 重排建议：十四篇后索引表已长，可按「入门 00-01 / 数据 02-04+14 / 渲染 05+09+13 / 交互 06-08+12 / 动态 03+10-11」分组或加主题列
+  - 纪律同前：零过程叙述、每篇即 commit、收尾全绿再汇报；行号唯一来源本地 grep 定义行；⚠️ 开工前先 git log 查重 + PROGRESS 占坑（本棒双实例教训）
