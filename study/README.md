@@ -6,13 +6,13 @@
 ## 这是什么工程
 
 Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不改动任何一行原有代码** 的前提下，
-为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套六篇中文文档，
-覆盖五大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环**。
+为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套八篇中文文档，
+覆盖七大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环、相机与视角控制、地形系统**。
 工程已完结（2026-11-04），统计见下方「工程说明」。
 
 适合读者：有前端基础（懂 DOM/事件/Promise）、第一次读 Cesium 源码的工程师。
 
-## 文档索引（六篇导航）
+## 文档索引（八篇导航）
 
 | 顺序 | 文档 | 一句话摘要 | 对应源码主战场 |
 |---|---|---|---|
@@ -22,14 +22,16 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 | 03 | [03-Entity数据体系.md](03-Entity数据体系.md) | Entity/Property 时间插值如何每帧同步成 GPU 图元 | `DataSources/*` |
 | 04 | [04-3DTiles加载与LOD.md](04-3DTiles加载与LOD.md) | Tileset 加载、SSE/LOD 遍历、内容分派与缓存淘汰 | `Scene/Cesium3DTileset*`、`Scene/Cesium3DTile*` |
 | 05 | [05-帧更新与渲染循环.md](05-帧更新与渲染循环.md) | 一帧的完整旅程：rAF→update→剔除分类→DrawCommand→WebGL，requestRenderMode 与请求调度 | [`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js) |
+| 06 | [06-相机系统与视角控制.md](06-相机系统与视角控制.md) | 相机数据模型（position/dir/up/right + 参考系）、HPR 派生量、setView/lookAt/flyTo 调用链、视锥体系与多视锥、世界↔屏幕坐标 | [`Camera.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Camera.js)、[`SceneTransforms.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/SceneTransforms.js) |
+| 07 | [07-地形系统.md](07-地形系统.md) | TerrainProvider 接口、四叉树三拍帧调度、SSE/几何误差 LOD 公式、瓦片两级状态机与 quantized-mesh 格式、地形×影像分层 | [`GlobeSurfaceTileProvider.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/GlobeSurfaceTileProvider.js)、[`QuadtreePrimitive.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js)、[`TerrainProvider.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/TerrainProvider.js) |
 
 ## 推荐阅读路线
 
 **快速线（约 30 分钟）**：先读 [00-总览](00-总览-架构与目录地图.md) 建立地图（10 分钟）→
 直接跳 [05-帧更新与渲染循环.md §1–§2](05-帧更新与渲染循环.md) 看懂「一帧发生了什么」（15 分钟）→
-按兴趣挑 02/03/04 任一篇的「动手实验」小节玩一把（5 分钟）。
+按兴趣挑 02/04/06/07 任一篇的「动手实验」小节玩一把（5 分钟）。
 
-**精读线（按序）**：`00 → 01 → 02 → 03 → 04 → 05`，每篇都以前一篇为前提；每读完一篇，
+**精读线（按序）**：`00 → 01 → 02 → 03 → 04 → 05`，每篇都以前一篇为前提；06/07（相机、地形）可与 02–05 并行穿插阅读；每读完一篇，
 用 GitHub 网页打开该篇「对应源码主战场」列里的文件，顺着 `【导读】` 注释把源码走一遍。
 05 的 §9 有一张「五棒 update 入口 ↔ 帧时间线位置」对照表，读完五篇后回看一次可把全书串起来。
 
@@ -65,7 +67,7 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 
 - **基点**：官方 tag `1.145`（commit `845a06b` 的直接后续）；发布分支 `study/1.145-annotated`。
 - **成果统计**：31 个 `.js` 源码文件、829 行纯中文导读注释（零代码改动，已用上节命令终验）；
-  六篇中文文档 + 本 README，中文合计约 1.4 万字；28 个中文 commit。
+  八篇中文文档 + 本 README（00–05 为首轮五棒成果，06/07 为 2026-11-05/06 接力新增，代码引用全部行级链接化），中文合计约 2 万字；28+ 中文 commit。
 - **五棒接力主题**：
   1. Phase 1 总览 + Viewer/CesiumWidget 创建（[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js)、[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js)，文档 00/01）
   2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、[`QuadtreePrimitive`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js#L50) 等 9 文件，文档 02）
