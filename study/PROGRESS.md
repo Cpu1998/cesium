@@ -122,3 +122,16 @@
 
 - 基点 tag 1.145（845a06b）→ 终点 HEAD：31 个 .js / 829 行纯【导读】注释 / 6 篇文档+README ≈1.4 万中文字 / 28+ commit
 - 各棒细节见上方各 Phase 小节；验证命令与阅读路线见 study/README.md
+
+---
+
+## 2026-11-05 23:5x · L1 链接化（L1+L1b 两棒接力，主会话收尾提交）
+
+- **做了什么**：README + 00~05 六篇全部源码引用改为 GitHub 行级跳转；修复 03 篇指向 `04-3DTiles加载与调度.md` 的坏链（实际文件 04-3DTiles加载与LOD.md）
+- **改动文件**：README/00/01/02/03/04/05 + tools/linked-files.txt（冻结清单重生成）
+- **数字**：代码链接 565 个（00:8 / 01:50 / 02:78 / 03:74 / 04:52 / 05:53 / README:8）；check-links 错误 0 警告 0；主会话抽查 03:Entity.js#L135、05:Scene.js#L4833 均精确命中定义行
+- **过程**：L1 棒跑 15 分钟在 02 中途中断（假完成信号），L1b 续棒补完 03/04/05 与 02 尾部但在提交前再次中断，主会话核实后直接完成 commit+push
+- **下一棒建议（L2：新写 06-相机系统与视角控制 / 07-地形）**：
+  - 主战场：packages/engine/Source/Scene/Camera.js（flyTo/setView/lookAt）、SceneTransforms.js、 GlobeSurfaceTileProvider 与 packages/engine/Source/Core/地形相关（TerrainProvider/GlobeSurfaceTile/QuadtreePrimitive 已有【导读】注释可引用）
+  - 新篇按 LINKING.md「新文档风格」：三件套开头、250-450 行、全部引用带链接、追加 README 索引表并更新成果统计
+  - ⚠️ 教训：控制在输出预算内——少过程叙述、批量编辑、**先完成 commit+push+PROGRESS 再汇报**
