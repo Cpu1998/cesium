@@ -262,4 +262,29 @@
 
 ---
 
-## 2026-11-06 05:2x · 加餐B 17-天空光照与大气 / 18-点云与粒子（进行中）
+## 2026-11-06 23:0x–23:3x · 加餐B 17-天空光照与大气 / 18-点云与粒子（子代理执行，无中断）
+
+- **做了什么**：新写 `study/17-天空光照与大气.md`（251 行/约 140 链接）与 `study/18-点云与粒子.md`（259 行/约 137 链接）；README 加餐表 +2 行、阅读路线补 17/18 位置、成果统计十九篇（代码链接 2056、相对链接 527，17/18 起启用相对路径新格式）、可深挖方向划掉天空/点云两项；PROGRESS 本节补全
+- **commit**：301b684632（17）、3ceef8918d（18）、7df146176d（README）；每篇写完即提交，收尾 check-links 全绿后 push
+- **⚠️ 新规范（23:06 用户拍板，本棒首次执行）**：文档代码引用改用仓库内相对路径（从 study/ 出发 `../packages/...js#L123`），不再写 github.com 长链；旧文档长链由主会话脚本统一转换（待办：LINKING.md 与校验器同步更新）。校验器现状：相对链接只验目标存在（锤点剥离），新格式天然通过
+- **17 主战场与锚点**：
+  - 环境家族与默认装配：Scene.js L307/L315/L323/L330/L340/L565/L574/L780；CesiumWidget.js L382-L404（WGS84 限定建星空盒/月/大气、skyBox:false 纯净模式、globe 关→大气不显示）；帧内时序 renderEnvironment L3188（skyBox→大气→sun+bloom→moon）↔ updateEnvironment L3747 ↔ executeComputeCommands L3243（sun glow）
+  - SkyBox/CubeMapPanorama：SkyBox.js L36/L89/L101（已退化为薄壳转发）；CubeMapPanorama.js L76/L102/L160/L179（transform/credit/错误事件，全景化）；SkyBox._cubeMap→frameState.environmentMap（Scene.js L2061，IBL 原料）
+  - 空间大气：SkyAtmosphere.js L42/L60/L70/L73/L168/L172/L224/L233/L302-L337（flags 重建 program）；perFragmentAtmosphere 判定 L271；DynamicAtmosphereLightingType.js L8/L42 三态+fromGlobeFlags；Scene.js L3775-L3781（fromGlobeFlags 优先于 scene.atmosphere.dynamicLighting、isReadyForAtmosphere 闸门）；Atmosphere.js L39-L125（瑞利/米氏 6 参数+HSL 三偏移）；shader 文件为 .glsl（踩坑：.js 会校验失败）
+  - 地面大气/晨昏线：Globe.js L176/L195/L205/L213/L221-L263/L272-L302（四个 fade 距离）/L344-L360；beginFrame L1003→tileProvider 同步 L1043-L1069（07 交叉）；GroundAtmosphere.glsl 组装 L676/L690
+  - 太阳/月亮：Sun.js L42/L56/L95/L115/L134-L143/L167-L168/L177（ComputeCommand 现算 glow 纹理）/L230/L236；SunPostProcess.js L19/L23-L96/L111/L262（六级链）；Scene.js L3210-L3216（bloom 时机）/L4006-L4015（链启停）；Moon.js L32/L101/L115/L119；Simon1994PlanetaryPositions.js L638/L670
+  - 光照总线：Scene.js L780/L2082（frameState.light）；Light.js L12/L14-L26；SunLight.js L14；UniformState.js setSunAndMoonDirections L1375/L1380/L1388/L1391、仲裁 L1505-L1523（SunLight 忽略自 direction 绑天文太阳、否则用 light.direction）；AutomaticUniforms.js czm_sunDirectionEC L1264/WC L1286
+  - 雾：Fog.js L16/L25/L49/L56/L82/L89/L99/L122；CesiumMath.fog L1122；QuadtreePrimitive.js L1290-L1292/L1319-L1322（雾放行 SSE，07 伏笔兑现）；enabled+renderable=false 白嫖剔除组合；Scene.js L575/L4591
+  - HDR/后处理：Scene.js L760/L761/L1664-L1676/L1686/L636/L4201；PostProcessStageCollection.js L35/L62（预装 fxaa/ao/bloom/tonemapping）；PostProcessStage.js L96/L876/L952；PostProcessStageLibrary.js createBloomStage L388/其余 L120-L496；两个 bloom 辨析（sunBloom≠postProcess.bloom）
+  - IBL：Scene.js L767/L773；DynamicEnvironmentMapManager.js L69/L264/L295/L303/L854（星空盒→ComputeCommand 卷积 radiance+球谐）；ImageBasedLightingPipelineStage.js L21/L31-L37/L87；LightingModel.js L20/L33（UNLIT/PBR，与光照总线辨析）
+  - 特色：环境家族一帧时序 ASCII、光照灌装链路图、5 个动手实验（拨快时钟看晨昏线/fog renderable=false 等）、7 条常见坑表
+- **18 主战场与锚点**：
+  - 双路线总览表（3D Tiles pnts vs TimeDynamic）；1.145 架构事实：**已无 PointCloud3DTileContent**，pnts 由 Model3DTileContent 承担（文件头导读 L2 原话）；preprocess3DTileContent.js L27 魔数嗅探；Cesium3DTileContentType.js L48；PntsParser.js L33/L256/L329/L394/L484/L526（两代架构共用解析器，BATCH_ID→_FEATURE_ID_0）
+  - 衰减：PointCloudShading.js L21 九参数表；挂载三入口：Cesium3DTileset.js L610/L1713、Model/Model.js L385/L833；PointCloudStylingPipelineStage.js L57/L108/L119-L132/L153/L285/L358（HAS_POINT_CLOUD_ATTENUATION/BACK_FACE_CULLING 定义、样式→GLSL 函数）；「EDL 依赖 attenuation」的原理说明
+  - EDL：Cesium3DTileset.js L611/L3352-L3361 门控；PointCloudEyeDomeLighting.js L22/L23-L50/L92/L157/L171/L181-L183/L192-L210（劫持 POINTS 命令→shallowClone 派生命令→离屏 FBO 重画→全屏混合，derivedCommands.pointCloudProcessor 缓存与 dirty 纪律，13 交叉）
+  - 时序：TimeDynamicPointCloud.js L41/L93/L99/L150/L165/L171/L264/L283/L294/L324/L360/L399/L411/L468/L498/L510/L552/L612（平均加载时间预取/跳帧/getNearestReadyInterval 防黑屏/maximumMemoryUsage 256MB LRU）；旧 PointCloud.js 仅存此路：L57/L200-L201/L287/L301/L353/L613/L702/L768/L1166/L1273（update 内 2D/CV 投影换算 L1290-L1340、透明 pass 判定 L1386-L1390）
+  - 粒子：ParticleSystem.js L58（成对 min/max 参数表：L80-L142，emissionRate L114、双矩阵 L97-L98/L102、updateCallback L73、bursts L95）；update L704 六步 ASCII（懒建 BillboardCollection L709、dt 鈐0 L721、Particle.update L732、calculateNumberToEmit L666、发射后组合矩阵变换回世界系 L777-L800、billboardCollection.update L807）；Particle.js L27/L35-L89/update L126（normalizedAge 插值）；updateBillboard L586/removeBillboard L580/freeParticlePool L563；ParticleBurst.js L14/L22/L28/L34；发射器：ParticleEmitter L19、Cone L46/Circle L50/Sphere L50/Box L60 emit
+  - 性能账：「点云一次上传 GPU 反复画 vs 粒子 CPU 每帧重算 Billboard 转卖」本质分野；万级粒子主线程预警（16 交叉）
+  - 特色：pnts 归宿链路图、EDL 劫持四步图、update 六步图、4 个动手实验（ion 资产/样式表达式/最小粒子系统/时序倍速）、8 条常见坑表
+- **数字**：check-links 全绿（21 个 md，代码链接 2056、相对链接 527、错误 0 警告 0）；17 含链接约 140 个、18 含约 137 个（新格式计入相对链接）
+- **下一棒建议（若继续加餐）**：裁剪与开挖（ClippingPlane/ClippingPolygonCollection，Scene/Globe/Model/3DTiles 四处挂点）、实战速查索引篇；旧文档 github.com 长链→相对路径的批量转换脚本由主会话执行（含 LINKING.md/check-links.mjs 同步改造：校验器需新增相对路径行号校验分支）；纪律同前：开工 git log 查重、行号唯一来源本地 grep、每篇即 commit、收尾全绿再 push
