@@ -9,24 +9,24 @@
 
 | 文件 | 一句话角色 |
 |---|---|
-| [`packages/engine/Source/Scene/Cesium3DTileset.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js) | 数据集总管：加载、每帧遍历入口、请求与缓存（本篇主角） |
-| [`packages/engine/Source/Scene/Cesium3DTile.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js) | 单片瓦片：状态机、SSE 计算、内容请求 |
-| [`packages/engine/Source/Scene/Cesium3DTileContentState.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileContentState.js) | 内容生命周期枚举 |
-| [`packages/engine/Source/Scene/Cesium3DTilesetTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetTraversal.js) | 遍历器公共助手（可见性/优先级/加载判定） |
-| [`packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js) | 基础遍历器（严格 REPLACE 语义） |
-| [`packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js) | skipLevelOfDetail 专用遍历器 |
-| [`packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js) | 拾取/预加载最细级遍历器 |
-| [`packages/engine/Source/Scene/Cesium3DTileContentFactory.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileContentFactory.js) | 内容类型分派表（magic → 内容类） |
-| [`packages/engine/Source/Scene/Tileset3DTileContent.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Tileset3DTileContent.js) | 嵌套/外部 tileset 内容（缝合两棵树） |
-| [`packages/engine/Source/Scene/Model/Model3DTileContent.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model3DTileContent.js) | b3dm/i3dm/pnts/glb 内容宿主 |
-| [`packages/engine/Source/Scene/Model/Model.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model.js) | glTF 系模型统一渲染入口 |
-| [`packages/engine/Source/Scene/Composite3DTileContent.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Composite3DTileContent.js) | cmpt 复合内容（内含多内容） |
-| [`packages/engine/Source/Scene/Cesium3DTileStyle.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileStyle.js) | 声明式样式（表达式 DSL） |
-| [`packages/engine/Source/Scene/Cesium3DTilesetCache.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetCache.js) | 已加载瓦片的 LRU 缓存 |
-| [`packages/engine/Source/Scene/PrimitiveCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PrimitiveCollection.js) | scene.primitives 有序容器（§8） |
+| [`packages/engine/Source/Scene/Cesium3DTileset.js`](../packages/engine/Source/Scene/Cesium3DTileset.js) | 数据集总管：加载、每帧遍历入口、请求与缓存（本篇主角） |
+| [`packages/engine/Source/Scene/Cesium3DTile.js`](../packages/engine/Source/Scene/Cesium3DTile.js) | 单片瓦片：状态机、SSE 计算、内容请求 |
+| [`packages/engine/Source/Scene/Cesium3DTileContentState.js`](../packages/engine/Source/Scene/Cesium3DTileContentState.js) | 内容生命周期枚举 |
+| [`packages/engine/Source/Scene/Cesium3DTilesetTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetTraversal.js) | 遍历器公共助手（可见性/优先级/加载判定） |
+| [`packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js) | 基础遍历器（严格 REPLACE 语义） |
+| [`packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js) | skipLevelOfDetail 专用遍历器 |
+| [`packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetMostDetailedTraversal.js) | 拾取/预加载最细级遍历器 |
+| [`packages/engine/Source/Scene/Cesium3DTileContentFactory.js`](../packages/engine/Source/Scene/Cesium3DTileContentFactory.js) | 内容类型分派表（magic → 内容类） |
+| [`packages/engine/Source/Scene/Tileset3DTileContent.js`](../packages/engine/Source/Scene/Tileset3DTileContent.js) | 嵌套/外部 tileset 内容（缝合两棵树） |
+| [`packages/engine/Source/Scene/Model/Model3DTileContent.js`](../packages/engine/Source/Scene/Model/Model3DTileContent.js) | b3dm/i3dm/pnts/glb 内容宿主 |
+| [`packages/engine/Source/Scene/Model/Model.js`](../packages/engine/Source/Scene/Model/Model.js) | glTF 系模型统一渲染入口 |
+| [`packages/engine/Source/Scene/Composite3DTileContent.js`](../packages/engine/Source/Scene/Composite3DTileContent.js) | cmpt 复合内容（内含多内容） |
+| [`packages/engine/Source/Scene/Cesium3DTileStyle.js`](../packages/engine/Source/Scene/Cesium3DTileStyle.js) | 声明式样式（表达式 DSL） |
+| [`packages/engine/Source/Scene/Cesium3DTilesetCache.js`](../packages/engine/Source/Scene/Cesium3DTilesetCache.js) | 已加载瓦片的 LRU 缓存 |
+| [`packages/engine/Source/Scene/PrimitiveCollection.js`](../packages/engine/Source/Scene/PrimitiveCollection.js) | scene.primitives 有序容器（§8） |
 
 > 注：1.145 里已**没有** `Gltf3DTileContent.js` / `PointCloud3DTileContent.js`——glTF 与点云内容统一由
-> [`Model/Model3DTileContent.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model3DTileContent.js) 承载（`fromB3dm/fromPnts/fromI3dm/fromGltf/fromGeoJson`）。网上老教程的类名对不上时先想到这一点。
+> [`Model/Model3DTileContent.js`](../packages/engine/Source/Scene/Model/Model3DTileContent.js) 承载（`fromB3dm/fromPnts/fromI3dm/fromGltf/fromGeoJson`）。网上老教程的类名对不上时先想到这一点。
 
 ---
 
@@ -83,8 +83,8 @@ scene.primitives.add(tileset)              # 挂进有序容器，从此每帧�
 要点：
 
 - **1.145 没有 `readyPromise`**：`fromUrl` 本身是 async 工厂，resolve 时树已建好、`tileset.root` 可用。但「瓦片内容」仍是之后按视野逐步加载的——树就绪 ≠ 内容就绪。
-- 每片瓦片的构造（[`Cesium3DTile.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js) [构造函数](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L71)）做三件事：解析 header（transform 乘父链算世界包围盒、geometricError、refine、content uri）；初始化状态机 `_contentState = UNLOADED`；准备优先级/LRU 挂钩（`cacheNode`）。
-- **隐式平铺**（`3DTILES_implicit_tiling`）：tileset.json 里不显式写满千万级瓦片，只写模板（`content.uri: "content/{level}/{x}/{y}.b3dm"`）+ subdivision 规则；加载时 [`makeTile`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2488) 造占位瓦片，[`Implicit3DTileContent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Implicit3DTileContent.js) 下载 `.subtree` 后再展开。
+- 每片瓦片的构造（[`Cesium3DTile.js`](../packages/engine/Source/Scene/Cesium3DTile.js) [构造函数](../packages/engine/Source/Scene/Cesium3DTile.js#L71)）做三件事：解析 header（transform 乘父链算世界包围盒、geometricError、refine、content uri）；初始化状态机 `_contentState = UNLOADED`；准备优先级/LRU 挂钩（`cacheNode`）。
+- **隐式平铺**（`3DTILES_implicit_tiling`）：tileset.json 里不显式写满千万级瓦片，只写模板（`content.uri: "content/{level}/{x}/{y}.b3dm"`）+ subdivision 规则；加载时 [`makeTile`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2488) 造占位瓦片，[`Implicit3DTileContent`](../packages/engine/Source/Scene/Implicit3DTileContent.js) 下载 `.subtree` 后再展开。
 
 ### 内容生命周期状态机（Cesium3DTileContentState）
 
@@ -94,7 +94,7 @@ UNLOADED → LOADING → PROCESSING → READY
 READY → EXPIRED → (重新 LOADING)      # content.expire 时效到期，防「快照陈旧」
 ```
 
-对应 Cesium3DTile.js 的 [`requestContent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L1154)（→LOADING，下载字节）与 [`process`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L2369)（PROCESSING→READY，Cesium3DTileset.js 的 [`processTiles`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3017) 每帧驱动）。旧版的 `_contentReadyToProcessPromise` 链在 1.145 已重构成 tileset 的 `_processingQueue` 数组。
+对应 Cesium3DTile.js 的 [`requestContent`](../packages/engine/Source/Scene/Cesium3DTile.js#L1154)（→LOADING，下载字节）与 [`process`](../packages/engine/Source/Scene/Cesium3DTile.js#L2369)（PROCESSING→READY，Cesium3DTileset.js 的 [`processTiles`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3017) 每帧驱动）。旧版的 `_contentReadyToProcessPromise` 链在 1.145 已重构成 tileset 的 `_processingQueue` 数组。
 
 ---
 
@@ -104,13 +104,13 @@ READY → EXPIRED → (重新 LOADING)      # content.expire 时效到期，防�
 
 `scene.primitives`（PrimitiveCollection）在帧循环的三个钩子上转发给每个图元（调度全景第 5 棒讲，这里只需知道顺序）：
 
-1. `prePassesUpdate` → [`Cesium3DTileset.prePassesUpdate`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2807)：`processTiles`（把上帧下载完的瓦片推到 READY、建 GPU 资源）、更新裁剪、算动态 SSE、重置 LRU 哨兵；
-2. [`update`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3659)/[`updateForPass`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3670) → 每个 Pass（主渲染/拾取/预加载）各跑一遍 `selectTiles → requestTiles → updateTiles`；
-3. `postPassesUpdate` → [`Cesium3DTileset.postPassesUpdate`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2754)：取消出视野请求（[`cancelOutOfViewRequests`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2860)）、发加载进度事件、按 cacheBytes 淘汰缓存。
+1. `prePassesUpdate` → [`Cesium3DTileset.prePassesUpdate`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2807)：`processTiles`（把上帧下载完的瓦片推到 READY、建 GPU 资源）、更新裁剪、算动态 SSE、重置 LRU 哨兵；
+2. [`update`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3659)/[`updateForPass`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3670) → 每个 Pass（主渲染/拾取/预加载）各跑一遍 `selectTiles → requestTiles → updateTiles`；
+3. `postPassesUpdate` → [`Cesium3DTileset.postPassesUpdate`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2754)：取消出视野请求（[`cancelOutOfViewRequests`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2860)）、发加载进度事件、按 cacheBytes 淘汰缓存。
 
 ### 3.2 SSE：屏幕空间误差判定（LOD 的心脏）
 
-[`Cesium3DTile.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js) 的 [`getScreenSpaceError`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L933)：
+[`Cesium3DTile.js`](../packages/engine/Source/Scene/Cesium3DTile.js) 的 [`getScreenSpaceError`](../packages/engine/Source/Scene/Cesium3DTile.js#L933)：
 
 ```
 透视相机：SSE = (geometricError × 屏幕高) / (distance × sseDenominator)
@@ -118,32 +118,32 @@ READY → EXPIRED → (重新 LOADING)      # content.expire 时效到期，防�
 （dynamicScreenSpaceError 开启时再减去雾式密度折扣）
 ```
 
-直觉：**几何误差投到屏幕上是几个像素**。遍历判定（[`Cesium3DTilesetBaseTraversal.selectTiles`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L35)）：
+直觉：**几何误差投到屏幕上是几个像素**。遍历判定（[`Cesium3DTilesetBaseTraversal.selectTiles`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L35)）：
 
 - 根瓦片 `SSE ≤ tileset.memoryAdjustedScreenSpaceError`（≥ `maximumScreenSpaceError`，默认 16）→ 根就够了，选它，结束；
 - 否则下钻子节点，子节点几何误差更小 → SSE 更小 → 某层终于 ≤ 16 → 停在那层。
 
 ### 3.3 refine 语义（BaseTraversal，严格模式）
 
-[`Cesium3DTilesetBaseTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js) 的 [`executeTraversal`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L189)（深度优先，栈实现）：
+[`Cesium3DTilesetBaseTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js) 的 [`executeTraversal`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L189)（深度优先，栈实现）：
 
-- **ADD**：父与子同时渲染（祖先沿途全部选中）——[`selectDesiredTile`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L81) 立即选中；
-- **REPLACE**：子**全部就绪**才允许替换父（[`updateAndPushChildren`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L94) 返回 `refines`）；没就绪前父继续顶班，同时预加载子——这就是「为什么走近时模型会先糊一下再变清晰」：SSE 已要求更细层，但更细层还在下载；
-- 空瓦片（无 content 的纯分组节点）走 [`executeEmptyTraversal`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L141) 检查其后代内容是否就绪。
+- **ADD**：父与子同时渲染（祖先沿途全部选中）——[`selectDesiredTile`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L81) 立即选中；
+- **REPLACE**：子**全部就绪**才允许替换父（[`updateAndPushChildren`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L94) 返回 `refines`）；没就绪前父继续顶班，同时预加载子——这就是「为什么走近时模型会先糊一下再变清晰」：SSE 已要求更细层，但更细层还在下载；
+- 空瓦片（无 content 的纯分组节点）走 [`executeEmptyTraversal`](../packages/engine/Source/Scene/Cesium3DTilesetBaseTraversal.js#L141) 检查其后代内容是否就绪。
 
-配套优化（[`Cesium3DTilesetTraversal.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetTraversal.js)）：视锥剔除（[Cesium3DTile.updateVisibility](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L1047)）、子包围盒并集剔除（[`anyChildrenVisible`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L275)）、ADD 父误差提前满足剔除（[`meetsScreenSpaceErrorEarly`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L251)）、请求节流（[`isOnScreenLongEnough`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L162)：镜头移动太快时先不发请求）、注视中心优先（`foveatedFactor` 进优先级）。
+配套优化（[`Cesium3DTilesetTraversal.js`](../packages/engine/Source/Scene/Cesium3DTilesetTraversal.js)）：视锥剔除（[Cesium3DTile.updateVisibility](../packages/engine/Source/Scene/Cesium3DTile.js#L1047)）、子包围盒并集剔除（[`anyChildrenVisible`](../packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L275)）、ADD 父误差提前满足剔除（[`meetsScreenSpaceErrorEarly`](../packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L251)）、请求节流（[`isOnScreenLongEnough`](../packages/engine/Source/Scene/Cesium3DTilesetTraversal.js#L162)：镜头移动太快时先不发请求）、注视中心优先（`foveatedFactor` 进优先级）。
 
-**skipLevelOfDetail = true** 时换用 [`Cesium3DTilesetSkipTraversal`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js)：不再要求逐级 REPLACE，直接跳到目标层，首屏更快更省内存；代价是可能父/子同帧绘制，需要 stencil 双变量可见性测试修正（Cesium3DTileset.js 的 [`updateTiles`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3241) 里的 [`bivariateVisibilityTest`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3252) 分支）。
+**skipLevelOfDetail = true** 时换用 [`Cesium3DTilesetSkipTraversal`](../packages/engine/Source/Scene/Cesium3DTilesetSkipTraversal.js)：不再要求逐级 REPLACE，直接跳到目标层，首屏更快更省内存；代价是可能父/子同帧绘制，需要 stencil 双变量可见性测试修正（Cesium3DTileset.js 的 [`updateTiles`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3241) 里的 [`bivariateVisibilityTest`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3252) 分支）。
 
 ### 3.4 请求优先级
 
-遍历回填 `tileset._requestedTiles` 后，[`requestTiles`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2893) 先排序再发请求（走 [RequestScheduler](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js)）。排序键是 Cesium3DTile.js 的 [`updatePriority`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L2440)：把「深度 > 距离 > 注视中心偏离 > 反向 SSE」四维各自归一到 0~1 后**拼成一个十进制多位数**——高位优先级压倒低位（深度最优先：先出最细层，避免在最粗层浪费带宽）。
+遍历回填 `tileset._requestedTiles` 后，[`requestTiles`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2893) 先排序再发请求（走 [RequestScheduler](../packages/engine/Source/Core/RequestScheduler.js)）。排序键是 Cesium3DTile.js 的 [`updatePriority`](../packages/engine/Source/Scene/Cesium3DTile.js#L2440)：把「深度 > 距离 > 注视中心偏离 > 反向 SSE」四维各自归一到 0~1 后**拼成一个十进制多位数**——高位优先级压倒低位（深度最优先：先出最细层，避免在最粗层浪费带宽）。
 
 ---
 
 ## 4. 内容请求与类型分派
 
-Cesium3DTile.js 的 [`requestContent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L1154) → 下载字节 → [`makeContent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L1401)：
+Cesium3DTile.js 的 [`requestContent`](../packages/engine/Source/Scene/Cesium3DTile.js#L1154) → 下载字节 → [`makeContent`](../packages/engine/Source/Scene/Cesium3DTile.js#L1401)：
 
 ```
 tileset._runtimeContentCodec 存在？                # MVTDataProvider 注入的运行时解码器
@@ -158,22 +158,22 @@ tileset._runtimeContentCodec 存在？                # MVTDataProvider 注入�
 
 ## 5. 内容类型分派表（1.145 实况）
 
-[`Cesium3DTileContentFactory.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileContentFactory.js)（一张函数表，key = magic/类型）：
+[`Cesium3DTileContentFactory.js`](../packages/engine/Source/Scene/Cesium3DTileContentFactory.js)（一张函数表，key = magic/类型）：
 
 | key | 内容类 | 职责 |
 |---|---|---|
-| `b3dm`/`pnts`/`i3dm` | [Model/Model3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model3DTileContent.js) | 剥各自二进制头与批表 → 统一委托 [Model/Model.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model.js) 渲染（b3dm/i3dm 内嵌 glTF；pnts 点云；1.145 已无独立 Gltf/PointCloud 内容类） |
-| `glb`/`gltf`/`geoJson` | Model/Model3DTileContent（或高斯泼溅/矢量网格扩展分流 [GaussianSplat3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/GaussianSplat3DTileContent.js)/[VectorGltf3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/VectorGltf3DTileContent.js)） | 1.1 核心直接用 glTF/GeoJSON 作内容 |
-| `cmpt` | [Composite3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Composite3DTileContent.js) | 复合容器：递归解析内嵌的多个 innerContent |
-| `externalTileset` | [Tileset3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Tileset3DTileContent.js) | content 指向另一个 tileset.json（§6） |
-| `geom`/`vctr` | [Geometry3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Geometry3DTileContent.js)/[Vector3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Vector3DTileContent.js) | Cesium 矢量/几何数据瓦片（分类渲染到地形/模型上） |
-| `subt`/`subtreeJson` | [Implicit3DTileContent](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Implicit3DTileContent.js) | 隐式平铺的子树文件，展开成真瓦片 |
+| `b3dm`/`pnts`/`i3dm` | [Model/Model3DTileContent](../packages/engine/Source/Scene/Model/Model3DTileContent.js) | 剥各自二进制头与批表 → 统一委托 [Model/Model.js](../packages/engine/Source/Scene/Model/Model.js) 渲染（b3dm/i3dm 内嵌 glTF；pnts 点云；1.145 已无独立 Gltf/PointCloud 内容类） |
+| `glb`/`gltf`/`geoJson` | Model/Model3DTileContent（或高斯泼溅/矢量网格扩展分流 [GaussianSplat3DTileContent](../packages/engine/Source/Scene/GaussianSplat3DTileContent.js)/[VectorGltf3DTileContent](../packages/engine/Source/Scene/VectorGltf3DTileContent.js)） | 1.1 核心直接用 glTF/GeoJSON 作内容 |
+| `cmpt` | [Composite3DTileContent](../packages/engine/Source/Scene/Composite3DTileContent.js) | 复合容器：递归解析内嵌的多个 innerContent |
+| `externalTileset` | [Tileset3DTileContent](../packages/engine/Source/Scene/Tileset3DTileContent.js) | content 指向另一个 tileset.json（§6） |
+| `geom`/`vctr` | [Geometry3DTileContent](../packages/engine/Source/Scene/Geometry3DTileContent.js)/[Vector3DTileContent](../packages/engine/Source/Scene/Vector3DTileContent.js) | Cesium 矢量/几何数据瓦片（分类渲染到地形/模型上） |
+| `subt`/`subtreeJson` | [Implicit3DTileContent](../packages/engine/Source/Scene/Implicit3DTileContent.js) | 隐式平铺的子树文件，展开成真瓦片 |
 
 ## 6. 嵌套 tileset 与 Model（内容侧两条重要支线）
 
-**外部/嵌套 tileset**（[Tileset3DTileContent.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Tileset3DTileContent.js) 的 [`fromJson`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Tileset3DTileContent.js#L114)）：瓦片 content 指向另一个 tileset.json 时，它回调宿主 [`tileset.loadTileset`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2401) 把子树挂为本瓦片的 children——对遍历器完全透明（就是普通子树）。自身不渲染、无特征，是「转发节点」。分块维护超大城市模型就靠它。
+**外部/嵌套 tileset**（[Tileset3DTileContent.js](../packages/engine/Source/Scene/Tileset3DTileContent.js) 的 [`fromJson`](../packages/engine/Source/Scene/Tileset3DTileContent.js#L114)）：瓦片 content 指向另一个 tileset.json 时，它回调宿主 [`tileset.loadTileset`](../packages/engine/Source/Scene/Cesium3DTileset.js#L2401) 把子树挂为本瓦片的 children——对遍历器完全透明（就是普通子树）。自身不渲染、无特征，是「转发节点」。分块维护超大城市模型就靠它。
 
-**Model 统一入口**（[Model/Model.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model.js)）：所有 glTF 系内容（b3dm/i3dm/pnts/glb/geoJson）最终都汇到这里。职责一句话：loader（[GltfLoader](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/GltfLoader.js)/[B3dmLoader](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/B3dmLoader.js)/[PntsLoader](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/PntsLoader.js)/[I3dmLoader](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/I3dmLoader.js)/[GeoJsonLoader](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/GeoJsonLoader.js)）把源数据解析成 [ModelSceneGraph](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/ModelSceneGraph.js)，[`Model.update`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model.js#L2004) 每帧遍历场景图生成 DrawCommand。本棒到此为止，内部机制（场景图/材质/纹理/KHR 扩展）留作后续深挖。
+**Model 统一入口**（[Model/Model.js](../packages/engine/Source/Scene/Model/Model.js)）：所有 glTF 系内容（b3dm/i3dm/pnts/glb/geoJson）最终都汇到这里。职责一句话：loader（[GltfLoader](../packages/engine/Source/Scene/GltfLoader.js)/[B3dmLoader](../packages/engine/Source/Scene/Model/B3dmLoader.js)/[PntsLoader](../packages/engine/Source/Scene/Model/PntsLoader.js)/[I3dmLoader](../packages/engine/Source/Scene/Model/I3dmLoader.js)/[GeoJsonLoader](../packages/engine/Source/Scene/Model/GeoJsonLoader.js)）把源数据解析成 [ModelSceneGraph](../packages/engine/Source/Scene/Model/ModelSceneGraph.js)，[`Model.update`](../packages/engine/Source/Scene/Model/Model.js#L2004) 每帧遍历场景图生成 DrawCommand。本棒到此为止，内部机制（场景图/材质/纹理/KHR 扩展）留作后续深挖。
 
 ---
 
@@ -181,35 +181,35 @@ tileset._runtimeContentCodec 存在？                # MVTDataProvider 注入�
 
 ### 7.1 LRU 缓存（Cesium3DTilesetCache.js）
 
-- 双向链表 + **哨兵**：每帧开头哨兵移到尾部（[`reset`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetCache.js#L17)），本帧被选中的瓦片 [`touch`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetCache.js#L24) 到哨兵右侧（受保护）；左侧就是「这帧没用、可被淘汰」的 LRU 序列；
-- postPassesUpdate 里 [`unloadTiles`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTilesetCache.js#L67)：只要 `totalMemoryUsageInBytes > cacheBytes`（默认 512MB），就从链表头（最久未用）开始 [`unloadTile`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3411) → [`Cesium3DTile.unloadContent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTile.js#L1506)（销毁内容、状态回 UNLOADED）；`maximumCacheOverflowBytes`（默认再 512MB）是内存自适应 SSE 的容忍上限；
-- [`tileset.trimLoadedTiles()`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3437)：手动要求「下帧把所有未选中瓦片全部卸载」，切页面想立刻释放内存时用。
+- 双向链表 + **哨兵**：每帧开头哨兵移到尾部（[`reset`](../packages/engine/Source/Scene/Cesium3DTilesetCache.js#L17)），本帧被选中的瓦片 [`touch`](../packages/engine/Source/Scene/Cesium3DTilesetCache.js#L24) 到哨兵右侧（受保护）；左侧就是「这帧没用、可被淘汰」的 LRU 序列；
+- postPassesUpdate 里 [`unloadTiles`](../packages/engine/Source/Scene/Cesium3DTilesetCache.js#L67)：只要 `totalMemoryUsageInBytes > cacheBytes`（默认 512MB），就从链表头（最久未用）开始 [`unloadTile`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3411) → [`Cesium3DTile.unloadContent`](../packages/engine/Source/Scene/Cesium3DTile.js#L1506)（销毁内容、状态回 UNLOADED）；`maximumCacheOverflowBytes`（默认再 512MB）是内存自适应 SSE 的容忍上限；
+- [`tileset.trimLoadedTiles()`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3437)：手动要求「下帧把所有未选中瓦片全部卸载」，切页面想立刻释放内存时用。
 
 ### 7.2 内存自适应 SSE
 
-满足 `maximumScreenSpaceError=16` 需要的瓦片太多、内存超预算时，引擎自动调大 `memoryAdjustedScreenSpaceError`（画面变模糊）以减少瓦片数；内存回落后再逐步降回 16（Cesium3DTileset.js 的 [`increaseScreenSpaceError`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3055)、[`decreaseScreenSpaceError`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L3073)，由 `processTiles` 驱动）。所以**卡顿/爆内存时优先调大 cacheBytes 或 maximumScreenSpaceError，别急着换数据**。
+满足 `maximumScreenSpaceError=16` 需要的瓦片太多、内存超预算时，引擎自动调大 `memoryAdjustedScreenSpaceError`（画面变模糊）以减少瓦片数；内存回落后再逐步降回 16（Cesium3DTileset.js 的 [`increaseScreenSpaceError`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3055)、[`decreaseScreenSpaceError`](../packages/engine/Source/Scene/Cesium3DTileset.js#L3073)，由 `processTiles` 驱动）。所以**卡顿/爆内存时优先调大 cacheBytes 或 maximumScreenSpaceError，别急着换数据**。
 
 ### 7.3 Cesium3DTileStyle 与 MVTDataProvider
 
-[`Cesium3DTileStyle.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileStyle.js)（样式 DSL）：每个属性（show/color/pointSize/labelColor/…）取值三形态——常量、表达式字符串（`"regExp(${name},'商店') ? color('red') : color('white')"`）、`{conditions: [["${height} > 100", "color('red')"], ...]}` 条件表。[setup()](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileStyle.js#L101) 把它们编译成 [`Expression`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Expression.js#L37))/[`ConditionsExpression`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ConditionsExpression.js#L32)（可按瓦片批表特征求值），赋给 `tileset.style` 后由 StyleEngine 每帧对选中瓦片应用。
+[`Cesium3DTileStyle.js`](../packages/engine/Source/Scene/Cesium3DTileStyle.js)（样式 DSL）：每个属性（show/color/pointSize/labelColor/…）取值三形态——常量、表达式字符串（`"regExp(${name},'商店') ? color('red') : color('white')"`）、`{conditions: [["${height} > 100", "color('red')"], ...]}` 条件表。[setup()](../packages/engine/Source/Scene/Cesium3DTileStyle.js#L101) 把它们编译成 [`Expression`](../packages/engine/Source/Scene/Expression.js#L37))/[`ConditionsExpression`](../packages/engine/Source/Scene/ConditionsExpression.js#L32)（可按瓦片批表特征求值），赋给 `tileset.style` 后由 StyleEngine 每帧对选中瓦片应用。
 
-**与矢量瓦片（MVT）的关系**：[`MVTDataProvider`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/MVTDataProvider.js) 加载 Mapbox Vector Tile 时给 tileset 注入 `_runtimeContentCodec`（§4 的旁路），并把 Mapbox style 图层的过滤条件+配色**翻译成 [`Cesium3DTileStyle`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileStyle.js#L52) 的条件表达式**（DXApp 的 `translatePbfStyle` 就是这个工程实践），让 3D Tiles 的样式引擎直接驱动矢量瓦片着色——一套 DSL，两处复用。
+**与矢量瓦片（MVT）的关系**：[`MVTDataProvider`](../packages/engine/Source/Scene/MVTDataProvider.js) 加载 Mapbox Vector Tile 时给 tileset 注入 `_runtimeContentCodec`（§4 的旁路），并把 Mapbox style 图层的过滤条件+配色**翻译成 [`Cesium3DTileStyle`](../packages/engine/Source/Scene/Cesium3DTileStyle.js#L52) 的条件表达式**（DXApp 的 `translatePbfStyle` 就是这个工程实践），让 3D Tiles 的样式引擎直接驱动矢量瓦片着色——一套 DSL，两处复用。
 
 ---
 
 ## 8. `viewer.scene.primitives.add(tileset)` 的语义（PrimitiveCollection）
 
-`scene.primitives` 是 [PrimitiveCollection.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PrimitiveCollection.js) 实例（`CompositePrimitive` 的旧名），语义三点：
+`scene.primitives` 是 [PrimitiveCollection.js](../packages/engine/Source/Scene/PrimitiveCollection.js) 实例（`CompositePrimitive` 的旧名），语义三点：
 
-1. **有序渲染**：数组顺序即绘制顺序，后 [add](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PrimitiveCollection.js#L149) 的后画（视觉在上层）；`raise/raiseToTop/lower/lowerToBottom` 调整叠放；
-2. **show 级联**：`collection.show=false`（或某层嵌套集合 false）→ [update](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PrimitiveCollection.js#L449) 直接 return，整棵子树不渲染；
+1. **有序渲染**：数组顺序即绘制顺序，后 [add](../packages/engine/Source/Scene/PrimitiveCollection.js#L149) 的后画（视觉在上层）；`raise/raiseToTop/lower/lowerToBottom` 调整叠放；
+2. **show 级联**：`collection.show=false`（或某层嵌套集合 false）→ [update](../packages/engine/Source/Scene/PrimitiveCollection.js#L449) 直接 return，整棵子树不渲染；
 3. **销毁级联**：`destroyPrimitives=true`（默认）时 `remove/removeAll/destroy` 连带销毁其中图元——`scene.primitives.remove(tileset)` 返回 true 后不要再碰这个 tileset（WebGL 资源已释放）。
 
 它同时是**帧循环的中转站**：Scene 在 prePassesUpdate/update(每 Pass)/postPassesUpdate 三个时机遍历容器调用各图元对应钩子——Cesium3DTileset 的 §3.1 三步就挂在这三个钩子上。完整调度链（CesiumWidget.startRenderLoop → Scene.render → updateAndExecuteCommands → executeCommands）是第 5 棒主菜。
 
 ---
 
-## 9. 常用 options 速查（[fromUrl](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Cesium3DTileset.js#L2287) 第二参）
+## 9. 常用 options 速查（[fromUrl](../packages/engine/Source/Scene/Cesium3DTileset.js#L2287) 第二参）
 
 | 选项 | 默认 | 说明 |
 |---|---|---|
@@ -246,4 +246,4 @@ tileset._runtimeContentCodec 存在？                # MVTDataProvider 注入�
 
 Phase 4 讲完「数据侧」：fromUrl 建树 → 每帧 prePasses/update/postPasses 三拍 → 遍历器按 SSE+refine 选瓦片 → 优先级请求 → magic 分派内容 → LRU 缓存淘汰 → DrawCommand 已生成。
 
-**第 5 棒（帧渲染循环）** 从这里接：这些 update 是谁在什么时机调的？——[CesiumWidget.startRenderLoop](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L61) → [Scene.render](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js#L4670) → [`updateAndExecuteCommands`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js#L3391) → [`executeCommands`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js#L2796)，DrawCommand 怎么按 Pass 分类排序、经过 [`RenderState`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/RenderState.js) 进 WebGL。建议从 [packages/engine/Source/Widget/CesiumWidget.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) 的 [`startRenderLoop`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L61) 与 [packages/engine/Source/Scene/Scene.js](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js) 的 [`render`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js#L4670) 读起。
+**第 5 棒（帧渲染循环）** 从这里接：这些 update 是谁在什么时机调的？——[CesiumWidget.startRenderLoop](../packages/engine/Source/Widget/CesiumWidget.js#L61) → [Scene.render](../packages/engine/Source/Scene/Scene.js#L4670) → [`updateAndExecuteCommands`](../packages/engine/Source/Scene/Scene.js#L3391) → [`executeCommands`](../packages/engine/Source/Scene/Scene.js#L2796)，DrawCommand 怎么按 Pass 分类排序、经过 [`RenderState`](../packages/engine/Source/Renderer/RenderState.js) 进 WebGL。建议从 [packages/engine/Source/Widget/CesiumWidget.js](../packages/engine/Source/Widget/CesiumWidget.js) 的 [`startRenderLoop`](../packages/engine/Source/Widget/CesiumWidget.js#L61) 与 [packages/engine/Source/Scene/Scene.js](../packages/engine/Source/Scene/Scene.js) 的 [`render`](../packages/engine/Source/Scene/Scene.js#L4670) 读起。

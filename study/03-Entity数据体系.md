@@ -9,15 +9,15 @@
 
 | 文件 | 一句话角色 |
 |---|---|
-| [`packages/engine/Source/DataSources/Entity.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js) | 「我想要什么」的声明对象 |
-| [`packages/engine/Source/DataSources/createPropertyDescriptor.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/createPropertyDescriptor.js) | 属性赋值魔法（裸值自动包 Property） |
-| [`packages/engine/Source/DataSources/EntityCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityCollection.js) | Entity 集合 + collectionChanged 事件 |
-| [`packages/engine/Source/DataSources/CustomDataSource.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CustomDataSource.js) | 最简 DataSource（viewer.entities 的真身） |
-| [`packages/engine/Source/DataSources/DataSourceCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceCollection.js) | 数据源集合（viewer.dataSources） |
-| [`packages/engine/Source/DataSources/DataSourceDisplay.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js) | 每帧同步引擎（本篇主角） |
-| [`packages/engine/Source/DataSources/GeometryVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) | 几何类 Entity → Primitive 的差量同步 |
-| [`packages/engine/Source/DataSources/PolygonGeometryUpdater.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js) | GeometryUpdater 抽象的代表 |
-| [`packages/engine/Source/DataSources/BillboardVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js) | 图元类 Entity → BillboardCollection 同步 |
+| [`packages/engine/Source/DataSources/Entity.js`](../packages/engine/Source/DataSources/Entity.js) | 「我想要什么」的声明对象 |
+| [`packages/engine/Source/DataSources/createPropertyDescriptor.js`](../packages/engine/Source/DataSources/createPropertyDescriptor.js) | 属性赋值魔法（裸值自动包 Property） |
+| [`packages/engine/Source/DataSources/EntityCollection.js`](../packages/engine/Source/DataSources/EntityCollection.js) | Entity 集合 + collectionChanged 事件 |
+| [`packages/engine/Source/DataSources/CustomDataSource.js`](../packages/engine/Source/DataSources/CustomDataSource.js) | 最简 DataSource（viewer.entities 的真身） |
+| [`packages/engine/Source/DataSources/DataSourceCollection.js`](../packages/engine/Source/DataSources/DataSourceCollection.js) | 数据源集合（viewer.dataSources） |
+| [`packages/engine/Source/DataSources/DataSourceDisplay.js`](../packages/engine/Source/DataSources/DataSourceDisplay.js) | 每帧同步引擎（本篇主角） |
+| [`packages/engine/Source/DataSources/GeometryVisualizer.js`](../packages/engine/Source/DataSources/GeometryVisualizer.js) | 几何类 Entity → Primitive 的差量同步 |
+| [`packages/engine/Source/DataSources/PolygonGeometryUpdater.js`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js) | GeometryUpdater 抽象的代表 |
+| [`packages/engine/Source/DataSources/BillboardVisualizer.js`](../packages/engine/Source/DataSources/BillboardVisualizer.js) | 图元类 Entity → BillboardCollection 同步 |
 
 ---
 
@@ -33,11 +33,11 @@ entity.billboard             entity.polygon.hierarchy         每个字段都可
 entity.polygon               entity.point.color
 ```
 
-- **Entity**（[`Entity.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js) 的 [`function Entity`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L135)）：纯粹的数据容器。注意它**没有任何
+- **Entity**（[`Entity.js`](../packages/engine/Source/DataSources/Entity.js) 的 [`function Entity`](../packages/engine/Source/DataSources/Entity.js#L135)）：纯粹的数据容器。注意它**没有任何
   WebGL 资源**——你可以创建一百万个 Entity 而不渲染任何东西，渲染是别的对象的事。
 - ***Graphics***：`Entity.prototype` 上的 `billboard`/`label`/`point`/`polyline`/`polygon`/`box`/
-  `model` 等 20+ 个属性（见 [`Entity.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js) 的 [`Object.defineProperties(Entity.prototype, ...)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L259)），
-  每个对应一种「画成什么」。它们全部由 [`createPropertyTypeDescriptor`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L77) 工厂生成
+  `model` 等 20+ 个属性（见 [`Entity.js`](../packages/engine/Source/DataSources/Entity.js) 的 [`Object.defineProperties(Entity.prototype, ...)`](../packages/engine/Source/DataSources/Entity.js#L259)），
+  每个对应一种「画成什么」。它们全部由 [`createPropertyTypeDescriptor`](../packages/engine/Source/DataSources/Entity.js#L77) 工厂生成
   （Entity.js 顶部）：赋**裸对象**（如 `{ image: 'x.png' }`）会自动 `new BillboardGraphics(...)`。
 - **Property**：Graphics 的每个字段（`billboard.image`、`polygon.height`…）以及 Entity 的
   `position`/`orientation` 都是 Property——一个「`getValue(time)` 才出值」的惰性时间函数。
@@ -54,13 +54,13 @@ entity.polygon               entity.point.color
 
 | Property | 值怎么来 | 典型用途 | 换值代价 |
 |---|---|---|---|
-| [`ConstantProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/ConstantProperty.js#L14) / [`ConstantPositionProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/ConstantPositionProperty.js#L19) | 固定值 | 静态点/面（默认包装） | 赋值即生效 |
-| [`CallbackProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CallbackProperty.js#L15) / [`CallbackPositionProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CallbackPositionProperty.js#L20) | 每帧调你的回调 | 动态扩散圆、实时轨迹 | 每帧一次 JS 回调，无分配 |
-| [`SampledPositionProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/SampledPositionProperty.js#L21) | 按时刻采样点插值（Lagrange） | 卫星/飞机轨迹回放 | 插值计算，适合成批时间点 |
-| [`ReferenceProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/ReferenceProperty.js#L90) | 引用另一个 Entity 的属性 | 「label 跟着 point 走」 | 解引用一层 |
+| [`ConstantProperty`](../packages/engine/Source/DataSources/ConstantProperty.js#L14) / [`ConstantPositionProperty`](../packages/engine/Source/DataSources/ConstantPositionProperty.js#L19) | 固定值 | 静态点/面（默认包装） | 赋值即生效 |
+| [`CallbackProperty`](../packages/engine/Source/DataSources/CallbackProperty.js#L15) / [`CallbackPositionProperty`](../packages/engine/Source/DataSources/CallbackPositionProperty.js#L20) | 每帧调你的回调 | 动态扩散圆、实时轨迹 | 每帧一次 JS 回调，无分配 |
+| [`SampledPositionProperty`](../packages/engine/Source/DataSources/SampledPositionProperty.js#L21) | 按时刻采样点插值（Lagrange） | 卫星/飞机轨迹回放 | 插值计算，适合成批时间点 |
+| [`ReferenceProperty`](../packages/engine/Source/DataSources/ReferenceProperty.js#L90) | 引用另一个 Entity 的属性 | 「label 跟着 point 走」 | 解引用一层 |
 
-另有 [`TimeIntervalCollectionProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js#L43)（分段常量，CZML 的区间值）、
-[`CompositeProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CompositeProperty.js#L55)（按时间段组合不同 Property）等，都在 `DataSources/` 下同目录。
+另有 [`TimeIntervalCollectionProperty`](../packages/engine/Source/DataSources/TimeIntervalCollectionProperty.js#L43)（分段常量，CZML 的区间值）、
+[`CompositeProperty`](../packages/engine/Source/DataSources/CompositeProperty.js#L55)（按时间段组合不同 Property）等，都在 `DataSources/` 下同目录。
 
 ### 2.2 赋值魔法：createPropertyDescriptor
 
@@ -73,13 +73,13 @@ entity.position = new Cesium.CallbackPositionProperty(cb, false); // Property �
 entity.position = Cesium.Cartesian3.fromDegrees(116, 39); // 裸值 → 自动 new ConstantPositionProperty
 ```
 
-答案在 [`createPropertyDescriptor.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/createPropertyDescriptor.js) 的 [`createProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/createPropertyDescriptor.js#L9)（每个属性共用同一个
+答案在 [`createPropertyDescriptor.js`](../packages/engine/Source/DataSources/createPropertyDescriptor.js) 的 [`createProperty`](../packages/engine/Source/DataSources/createPropertyDescriptor.js#L9)（每个属性共用同一个
 getter/setter 模板）——setter 四步：
 
 1. 退订旧 Property 的 `definitionChanged` 订阅（`_xxxSubscription` 存句柄）；
 2. 若新值不是 Property（没有 `getValue` 方法），用回调包装：Entity 层默认包
    `ConstantProperty`，`position` 专用包 `ConstantPositionProperty`（`Entity.js` 顶部的
-   [`createConstantPositionProperty`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L61)），Graphics 层各自传包装函数；
+   [`createConstantPositionProperty`](../packages/engine/Source/DataSources/Entity.js#L61)），Graphics 层各自传包装函数；
 3. 值变了就写入私有字段，并广播 `entity.definitionChanged.raiseEvent(entity, name, 新值, 旧值)`；
 4. 订阅新 Property 自己的 `definitionChanged`——**子属性变化冒泡**：以 `(newValue, newValue)`
    再广播一次，监听者无需区分「属性被整体替换」还是「属性内部值变了」。
@@ -89,8 +89,8 @@ getter/setter 模板）——setter 四步：
 
 ### 2.3 show / isShowing / parent：可见性的三票合取
 
-[`Entity.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js) 的 [`Entity.prototype.isShowing`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L349) getter = `自己.show && 所属集合.show && 父.isShowing`。
-改 `show`/`parent`/集合 `show` 时，Entity.js 的 [`updateShow`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L240) 递归向子孙传播并广播
+[`Entity.js`](../packages/engine/Source/DataSources/Entity.js) 的 [`Entity.prototype.isShowing`](../packages/engine/Source/DataSources/Entity.js#L349) getter = `自己.show && 所属集合.show && 父.isShowing`。
+改 `show`/`parent`/集合 `show` 时，Entity.js 的 [`updateShow`](../packages/engine/Source/DataSources/Entity.js#L240) 递归向子孙传播并广播
 `definitionChanged("isShowing")`。Visualizer 每帧读的是 **isShowing**（真值）而非 show（只是自己一票）。
 
 ## 3. `viewer.entities.add()` 之后发生了什么
@@ -103,38 +103,38 @@ viewer.dataSources     → DataSourceCollection（管「有哪些 DataSource」�
 DataSourceDisplay      → 每帧把所有 DataSource 的 Entity 同步成画面（不暴露给用户）
 ```
 
-`viewer.entities.add({...})`（[`Widget/Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js) 或 [`engine/Widget/CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) 构造里
+`viewer.entities.add({...})`（[`Widget/Viewer.js`](../packages/widgets/Source/Viewer/Viewer.js) 或 [`engine/Widget/CesiumWidget.js`](../packages/engine/Source/Widget/CesiumWidget.js) 构造里
 `defaultDataSource` 的 entities）的完整链路：
 
-1. **裸对象转 Entity**：[`EntityCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityCollection.js) 的 [`EntityCollection.prototype.add`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityCollection.js#L269) 里
+1. **裸对象转 Entity**：[`EntityCollection.js`](../packages/engine/Source/DataSources/EntityCollection.js) 的 [`EntityCollection.prototype.add`](../packages/engine/Source/DataSources/EntityCollection.js#L269) 里
    `if (!(entity instanceof Entity)) entity = new Entity(entity)`——所以传 options 对象即可
    （1.145 没有独立的 `Entity.fromObject`，这条路径就是等价物；`new Entity(options)` 内部
-   走 [`Entity.prototype.merge`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L661) 完成赋值，见 Entity.js 注释）。
+   走 [`Entity.prototype.merge`](../packages/engine/Source/DataSources/Entity.js#L661) 完成赋值，见 Entity.js 注释）。
 2. **登记 + 订阅**：以 `entity.id`（缺省 GUID）为 key 存入集合，订阅它的 `definitionChanged`。
-3. **广播 collectionChanged**：EntityCollection.js 的 [`fireChangedEvent`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityCollection.js#L15)——注意它支持
+3. **广播 collectionChanged**：EntityCollection.js 的 [`fireChangedEvent`](../packages/engine/Source/DataSources/EntityCollection.js#L15)——注意它支持
    `suspendEvents()/resumeEvents()` 合并批量增删改为一次事件（CZML 加载千条数据只广播一次）。
 4. **每个 Visualizer 收到事件**（8 个全部监听同一个 `collectionChanged`）：
-   - [`BillboardVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js) 的 [`_onCollectionChanged`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js#L326)：实体有 `billboard`+`position` → 入 `_items`；
-   - [`GeometryVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) 的 [`_onCollectionChanged`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js#L549)：仅记账进 `_addedObjects` 队列，帧内处理；
+   - [`BillboardVisualizer.js`](../packages/engine/Source/DataSources/BillboardVisualizer.js) 的 [`_onCollectionChanged`](../packages/engine/Source/DataSources/BillboardVisualizer.js#L326)：实体有 `billboard`+`position` → 入 `_items`；
+   - [`GeometryVisualizer.js`](../packages/engine/Source/DataSources/GeometryVisualizer.js) 的 [`_onCollectionChanged`](../packages/engine/Source/DataSources/GeometryVisualizer.js#L549)：仅记账进 `_addedObjects` 队列，帧内处理；
    - 其余同理。
-5. **下一帧**：[`CesiumWidget._onTick`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L1201) → [`DataSourceDisplay.update(time)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L311) → 各 Visualizer
+5. **下一帧**：[`CesiumWidget._onTick`](../packages/engine/Source/Widget/CesiumWidget.js#L1201) → [`DataSourceDisplay.update(time)`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L311) → 各 Visualizer
    `update(time)` → Billboard/Primitive 真正创建 → 画面出现。
 
-而 `viewer.dataSources.add(dataSource)`（[`DataSourceCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceCollection.js) 的
-[`DataSourceCollection.prototype.add`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceCollection.js#L84)）多一层：它接受 Promise（如 [`GeoJsonDataSource.load(url)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeoJsonDataSource.js#L614)
+而 `viewer.dataSources.add(dataSource)`（[`DataSourceCollection.js`](../packages/engine/Source/DataSources/DataSourceCollection.js) 的
+[`DataSourceCollection.prototype.add`](../packages/engine/Source/DataSources/DataSourceCollection.js#L84)）多一层：它接受 Promise（如 [`GeoJsonDataSource.load(url)`](../packages/engine/Source/DataSources/GeoJsonDataSource.js#L614)
 的返回值），resolve 后才入列并广播 `dataSourceAdded`——
-DataSourceDisplay.js 的 [`_onDataSourceAdded`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L476) 收到后：为该源建子 PrimitiveCollection（普通+贴地
-两棵树）、初始化 `EntityCluster`（点聚合）、用 [`defaultVisualizersCallback`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L81) 建全套 8 个 Visualizer。
+DataSourceDisplay.js 的 [`_onDataSourceAdded`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L476) 收到后：为该源建子 PrimitiveCollection（普通+贴地
+两棵树）、初始化 `EntityCluster`（点聚合）、用 [`defaultVisualizersCallback`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L81) 建全套 8 个 Visualizer。
 
-**defaultDataSource**：DataSourceDisplay.js 构造尾部 [`new CustomDataSource()`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L105)——`viewer.entities`
+**defaultDataSource**：DataSourceDisplay.js 构造尾部 [`new CustomDataSource()`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L105)——`viewer.entities`
 的背后就是它。它**不在** `viewer.dataSources` 列表里（所以 `dataSources.removeAll()` 不会清掉
-`viewer.entities`），销毁时单独处理。[`CustomDataSource.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CustomDataSource.js) 是最简 DataSource：一组 entities +
-可选 clock + 4 个事件，[update](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CustomDataSource.js#L178) 恒返回 true（无异步数据要等）。
+`viewer.entities`），销毁时单独处理。[`CustomDataSource.js`](../packages/engine/Source/DataSources/CustomDataSource.js) 是最简 DataSource：一组 entities +
+可选 clock + 4 个事件，[update](../packages/engine/Source/DataSources/CustomDataSource.js#L178) 恒返回 true（无异步数据要等）。
 
 ## 4. 每帧同步引擎：DataSourceDisplay.update
 
-[`DataSourceDisplay.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js) 的 [`DataSourceDisplay.prototype.update(time)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L311) 每帧被
-[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) 的 [`CesiumWidget.prototype._onTick`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L1201) 在 `clock.tick()` 之后调用一次：
+[`DataSourceDisplay.js`](../packages/engine/Source/DataSources/DataSourceDisplay.js) 的 [`DataSourceDisplay.prototype.update(time)`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L311) 每帧被
+[`CesiumWidget.js`](../packages/engine/Source/Widget/CesiumWidget.js) 的 [`CesiumWidget.prototype._onTick`](../packages/engine/Source/Widget/CesiumWidget.js#L1201) 在 `clock.tick()` 之后调用一次：
 
 ```js
 for 每个 dataSource:                    // ① 数据源自身 update（如 CzmlDataSource 按时间取数据）
@@ -149,23 +149,23 @@ for defaultDataSource 的 visualizer:    // ③ viewer.entities 同样待遇
 （`_canAnimate`）——所以异步几何没准备好时，时间轴会礼貌地等一下。注意 `_ready` 只升不降：
 一旦就绪就永久就绪，防止单个实体短暂 un-ready 卡住全局动画（源码内注释明说）。
 
-**8 个默认 Visualizer**（[`DataSourceDisplay.defaultVisualizersCallback`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L81)）分两派：
+**8 个默认 Visualizer**（[`DataSourceDisplay.defaultVisualizersCallback`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L81)）分两派：
 
 | 派系 | Visualizer | 同步目标 |
 |---|---|---|
-| 图元级（点/图/字） | [BillboardVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js) / [LabelVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/LabelVisualizer.js) / [PointVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PointVisualizer.js) | [`BillboardCollection`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/BillboardCollection.js) 等图元集合成员 |
-| 几何级（面/体/线） | [GeometryVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) / [PolylineVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolylineVisualizer.js) | 合批的 `Primitive` / `GroundPrimitive` |
-| 资源级 | [ModelVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/ModelVisualizer.js) / [Cesium3DTilesetVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js) / [PathVisualizer](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PathVisualizer.js) | glTF / Tileset / 轨迹线 |
+| 图元级（点/图/字） | [BillboardVisualizer](../packages/engine/Source/DataSources/BillboardVisualizer.js) / [LabelVisualizer](../packages/engine/Source/DataSources/LabelVisualizer.js) / [PointVisualizer](../packages/engine/Source/DataSources/PointVisualizer.js) | [`BillboardCollection`](../packages/engine/Source/Scene/BillboardCollection.js) 等图元集合成员 |
+| 几何级（面/体/线） | [GeometryVisualizer](../packages/engine/Source/DataSources/GeometryVisualizer.js) / [PolylineVisualizer](../packages/engine/Source/DataSources/PolylineVisualizer.js) | 合批的 `Primitive` / `GroundPrimitive` |
+| 资源级 | [ModelVisualizer](../packages/engine/Source/DataSources/ModelVisualizer.js) / [Cesium3DTilesetVisualizer](../packages/engine/Source/DataSources/Cesium3DTilesetVisualizer.js) / [PathVisualizer](../packages/engine/Source/DataSources/PathVisualizer.js) | glTF / Tileset / 轨迹线 |
 
 渲染顺序与 `dataSources` 列表顺序一致：DataSourceCollection 的 raise/lower 会触发
-`dataSourceMoved`，[`DataSourceDisplay._onDataSourceMoved`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L533) 同步调整对应子 PrimitiveCollection
+`dataSourceMoved`，[`DataSourceDisplay._onDataSourceMoved`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L533) 同步调整对应子 PrimitiveCollection
 在树中的位置（后加的画在上面）。
 
 ## 5. Visualizer 内部：差量同步的两种姿势
 
 ### 5.1 图元级：BillboardVisualizer（简单直接）
 
-[`BillboardVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js) 的 [`BillboardVisualizer.prototype.update(time)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js#L95)，对 `_items` 里每个实体：
+[`BillboardVisualizer.js`](../packages/engine/Source/DataSources/BillboardVisualizer.js) 的 [`BillboardVisualizer.prototype.update(time)`](../packages/engine/Source/DataSources/BillboardVisualizer.js#L95)，对 `_items` 里每个实体：
 
 1. 算 `show = entity.isShowing && entity.isAvailable(time) && billboard.show`；
 2. `Property.getValueOrUndefined(entity._position, time)` 取位置（顺便判 image）；
@@ -179,34 +179,34 @@ for defaultDataSource 的 visualizer:    // ③ viewer.entities 同样待遇
 ### 5.2 几何级：GeometryVisualizer（Updater + 分桶合批）
 
 面/体类几何不能逐实例渲染（draw call 爆炸），所以要**合批**——代价是复杂度暴涨。
-[`GeometryVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) 三层结构：
+[`GeometryVisualizer.js`](../packages/engine/Source/DataSources/GeometryVisualizer.js) 三层结构：
 
-**① GeometryUpdater**：每个 Entity 每种几何一个（10 种 updater 由 [`GeometryUpdaterSet.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryUpdaterSet.js)
-统一创建，[`geometryUpdaters`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryUpdaterSet.js#L16) 数组可见 box/cylinder/corridor/ellipse/ellipsoid/plane/polygon/
+**① GeometryUpdater**：每个 Entity 每种几何一个（10 种 updater 由 [`GeometryUpdaterSet.js`](../packages/engine/Source/DataSources/GeometryUpdaterSet.js)
+统一创建，[`geometryUpdaters`](../packages/engine/Source/DataSources/GeometryUpdaterSet.js#L16) 数组可见 box/cylinder/corridor/ellipse/ellipsoid/plane/polygon/
 polylineVolume/rectangle/wall 全家桶）。职责：把 `entity.polygon` 等 Graphics 属性翻译成几何
-选项。以 [`PolygonGeometryUpdater.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js) 为代表：
+选项。以 [`PolygonGeometryUpdater.js`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js) 为代表：
 
-- [`_isDynamic`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L313)：hierarchy/height/extrudedHeight… 任一属性非常量 → 动态几何；
-- [`_isOnTerrain`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L296) / [`_getIsClosed`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L454)：是否贴地 / 是否闭合体（路由信号）；
-- [`createFillGeometryInstance`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L108) / [`createOutlineGeometryInstance`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L184)：产出 `GeometryInstance`，
+- [`_isDynamic`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L313)：hierarchy/height/extrudedHeight… 任一属性非常量 → 动态几何；
+- [`_isOnTerrain`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L296) / [`_getIsClosed`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L454)：是否贴地 / 是否闭合体（路由信号）；
+- [`createFillGeometryInstance`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L108) / [`createOutlineGeometryInstance`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L184)：产出 `GeometryInstance`，
   注意 **`id: entity`**（拾取）与逐实例 attributes（show/color/distanceDisplayCondition）；
-- [`_setStaticOptions`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L335)：静态几何只在创建时求值一次（`Iso8601.MINIMUM_VALUE` 时刻取常量）。
+- [`_setStaticOptions`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L335)：静态几何只在创建时求值一次（`Iso8601.MINIMUM_VALUE` 时刻取常量）。
 
 **② Batch（桶）**：构造函数里建的静态桶矩阵——
 `阴影模式 × 有无地形偏移 × {outline / closedColor / closedMaterial / openColor / openMaterial}`，
 外加贴地的 `groundColor/groundMaterialBatches`（按 ClassificationType 分）。同桶的 Entity 合成
-**一个** Primitive 的多个 GeometryInstance（性能核心）。[`_insertUpdaterIntoBatch`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js#L451) 按 updater
+**一个** Primitive 的多个 GeometryInstance（性能核心）。[`_insertUpdaterIntoBatch`](../packages/engine/Source/DataSources/GeometryVisualizer.js#L451) 按 updater
 的路由信号（isDynamic/onTerrain/isClosed/材质类型/shadows/terrainOffset）定位目标桶。
 
-**③ 差量三队列**：[`_onCollectionChanged`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js#L549) 只记账（`_added/_removed/_changedObjects`），
-每帧 [`GeometryVisualizer.prototype.update(time)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js#L252) 集中消费：
+**③ 差量三队列**：[`_onCollectionChanged`](../packages/engine/Source/DataSources/GeometryVisualizer.js#L549) 只记账（`_added/_removed/_changedObjects`），
+每帧 [`GeometryVisualizer.prototype.update(time)`](../packages/engine/Source/DataSources/GeometryVisualizer.js#L252) 集中消费：
 
 - changed → 从所有桶拔出重插（同帧「同 id 删旧加新」会拆成 remove+add，源码英文注释）；
 - removed → 销毁 updaterSet、退订事件；
 - added → `new GeometryUpdaterSet` 并立即分发进桶；
 - 最后逐桶 `update(time)` 差量重建 Primitive（返回 false = 异步几何未就绪，上抛给 §4 的就绪语义）。
 
-**动态几何**（CallbackProperty 驱动 hierarchy 之类）不进合批，走 [`DynamicGeometryBatch`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DynamicGeometryBatch.js#L8)
+**动态几何**（CallbackProperty 驱动 hierarchy 之类）不进合批，走 [`DynamicGeometryBatch`](../packages/engine/Source/DataSources/DynamicGeometryBatch.js#L8)
 每帧重建——正确性优先。这就是官方文档说「动态几何比静态贵」的源码根据。
 
 ## 6. 时间轴驱动：从 clock.tick 到相机跟随
@@ -227,21 +227,21 @@ requestAnimationFrame（第 5 棒深挖）
 `Property.getValue(time)` 的瞬间——没有「预烘焙动画」概念，位置永远是问时刻算出来的。
 
 **trackedEntity 相机跟随**（`Viewer` 的 `viewer.trackedEntity = entity`）：
-setter（[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) 的 [`trackedEntity`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L882)）只记目标；真正跟随在每帧 `_onTick` 之后由
-[`EntityView.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityView.js) 的 [`EntityView.prototype.update`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/EntityView.js#L396) 完成：取 `entity.position.getValue(time)` 与
+setter（[`CesiumWidget.js`](../packages/engine/Source/Widget/CesiumWidget.js) 的 [`trackedEntity`](../packages/engine/Source/Widget/CesiumWidget.js#L882)）只记目标；真正跟随在每帧 `_onTick` 之后由
+[`EntityView.js`](../packages/engine/Source/DataSources/EntityView.js) 的 [`EntityView.prototype.update`](../packages/engine/Source/DataSources/EntityView.js#L396) 完成：取 `entity.position.getValue(time)` 与
 orientation（缺省用速度方向/东北天），把相机摆到实体后上方并锁定（禁平移/倾斜防穿模）。
-[`DataSourceDisplay.getBoundingSphere`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L405)（汇总各 Visualizer 的包围球）则服务于
-`viewer.zoomTo/flyTo`——PENDING（几何/贴地采样未就绪）时 [`_postRender`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L1510) 里会自动重试（见
+[`DataSourceDisplay.getBoundingSphere`](../packages/engine/Source/DataSources/DataSourceDisplay.js#L405)（汇总各 Visualizer 的包围球）则服务于
+`viewer.zoomTo/flyTo`——PENDING（几何/贴地采样未就绪）时 [`_postRender`](../packages/engine/Source/Widget/CesiumWidget.js#L1510) 里会自动重试（见
 01 篇 `updateZoomTarget` 的注释）。
 
 ## 7. 拾取：为什么 `scene.pick(...).id` 就是 Entity
 
 两处源头，机制相同——**创建可拾取对象时把 Entity 塞进它的 `id` 字段**：
 
-- BillboardVisualizer.js 的 [update](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js#L95)：`billboard.id = entity`；
-- PolygonGeometryUpdater.js 的 [createFillGeometryInstance](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L108)：`new GeometryInstance({ id: entity, ... })`。
+- BillboardVisualizer.js 的 [update](../packages/engine/Source/DataSources/BillboardVisualizer.js#L95)：`billboard.id = entity`；
+- PolygonGeometryUpdater.js 的 [createFillGeometryInstance](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L108)：`new GeometryInstance({ id: entity, ... })`。
 
-[`scene.pick(windowPosition)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js#L4833)（或 `drillPick`）命中图元/实例后，把 `id` 原样返回。于是业务代码
+[`scene.pick(windowPosition)`](../packages/engine/Source/Scene/Scene.js#L4833)（或 `drillPick`）命中图元/实例后，把 `id` 原样返回。于是业务代码
 的惯用法：
 
 ```js
@@ -251,11 +251,11 @@ if (Cesium.defined(picked) && picked.id instanceof Cesium.Entity) {
 }
 ```
 
-（Viewer.js 构造里的屏幕鼠标事件接线 → [`pickEntity`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js#L119)，01 篇已注。）
+（Viewer.js 构造里的屏幕鼠标事件接线 → [`pickEntity`](../packages/widgets/Source/Viewer/Viewer.js#L119)，01 篇已注。）
 
 ## 8. CZML 一笔带过 + 动手实验
 
-**CZML** = 「批量 Entity 的 JSON 协议」：[`CzmlDataSource.load(czml)`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CzmlDataSource.js#L4868) 把每段 JSON 翻译成
+**CZML** = 「批量 Entity 的 JSON 协议」：[`CzmlDataSource.load(czml)`](../packages/engine/Source/DataSources/CzmlDataSource.js#L4868) 把每段 JSON 翻译成
 Entity + Property（时间轴采样点变 `SampledPositionProperty`，区间值变
 `TimeIntervalCollectionProperty`，availability 直通 `entity.availability`）。数据源自身实现
 `update(time)` 按时间窗动态增删 Entity——这就是 §4 ① 那一步的意义。读懂数据层后再回头看
@@ -307,14 +307,14 @@ viewer.trackedEntity = plane;   // §6：相机跟随（打开时间轴动画看
 
 | 文件 | 注释重点 |
 |---|---|
-| [`DataSources/Entity.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js) | 文件头三层模型；Property 包装三工厂；[构造](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L135)/[merge](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L661)；show/isShowing/parent；[computeModelMatrix](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/Entity.js#L734) |
-| [`DataSources/createPropertyDescriptor.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/createPropertyDescriptor.js) | setter 四步：退订→包装→广播→冒泡订阅 |
-| [`DataSources/CustomDataSource.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/CustomDataSource.js) | 最简 DataSource；update 语义 |
-| [`DataSources/DataSourceCollection.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceCollection.js) | add 的 Promise 处理；remove/removeAll 防悬挂技巧 |
-| [`DataSources/DataSourceDisplay.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js) | 构造（两棵集合树/懒挂树/defaultDataSource）；默认 8 visualizer；[update 三层循环](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L311)；[getBoundingSphere](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/DataSourceDisplay.js#L405)；增删移处理 |
-| [`DataSources/GeometryVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js) | 差量三队列；分桶矩阵；update 四步；[_insertUpdaterIntoBatch](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/GeometryVisualizer.js#L451) 路由 |
-| [`DataSources/PolygonGeometryUpdater.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js) | Updater 职责边界；[_isDynamic](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L313) 分水岭；GeometryInstance 的 id=entity |
-| [`DataSources/BillboardVisualizer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js) | 图元级同步全流程；billboard.id=entity；image 最后赋（[update](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/DataSources/BillboardVisualizer.js#L95)） |
-| [`engine/Widget/CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js) | 构造里 DataSourceDisplay 创建点、[_onTick](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js#L1201) 两处补「见 study/03」链路注释 |
+| [`DataSources/Entity.js`](../packages/engine/Source/DataSources/Entity.js) | 文件头三层模型；Property 包装三工厂；[构造](../packages/engine/Source/DataSources/Entity.js#L135)/[merge](../packages/engine/Source/DataSources/Entity.js#L661)；show/isShowing/parent；[computeModelMatrix](../packages/engine/Source/DataSources/Entity.js#L734) |
+| [`DataSources/createPropertyDescriptor.js`](../packages/engine/Source/DataSources/createPropertyDescriptor.js) | setter 四步：退订→包装→广播→冒泡订阅 |
+| [`DataSources/CustomDataSource.js`](../packages/engine/Source/DataSources/CustomDataSource.js) | 最简 DataSource；update 语义 |
+| [`DataSources/DataSourceCollection.js`](../packages/engine/Source/DataSources/DataSourceCollection.js) | add 的 Promise 处理；remove/removeAll 防悬挂技巧 |
+| [`DataSources/DataSourceDisplay.js`](../packages/engine/Source/DataSources/DataSourceDisplay.js) | 构造（两棵集合树/懒挂树/defaultDataSource）；默认 8 visualizer；[update 三层循环](../packages/engine/Source/DataSources/DataSourceDisplay.js#L311)；[getBoundingSphere](../packages/engine/Source/DataSources/DataSourceDisplay.js#L405)；增删移处理 |
+| [`DataSources/GeometryVisualizer.js`](../packages/engine/Source/DataSources/GeometryVisualizer.js) | 差量三队列；分桶矩阵；update 四步；[_insertUpdaterIntoBatch](../packages/engine/Source/DataSources/GeometryVisualizer.js#L451) 路由 |
+| [`DataSources/PolygonGeometryUpdater.js`](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js) | Updater 职责边界；[_isDynamic](../packages/engine/Source/DataSources/PolygonGeometryUpdater.js#L313) 分水岭；GeometryInstance 的 id=entity |
+| [`DataSources/BillboardVisualizer.js`](../packages/engine/Source/DataSources/BillboardVisualizer.js) | 图元级同步全流程；billboard.id=entity；image 最后赋（[update](../packages/engine/Source/DataSources/BillboardVisualizer.js#L95)） |
+| [`engine/Widget/CesiumWidget.js`](../packages/engine/Source/Widget/CesiumWidget.js) | 构造里 DataSourceDisplay 创建点、[_onTick](../packages/engine/Source/Widget/CesiumWidget.js#L1201) 两处补「见 study/03」链路注释 |
 
 下一篇：[04-3DTiles加载与LOD](04-3DTiles加载与LOD.md)（第 4 棒）。

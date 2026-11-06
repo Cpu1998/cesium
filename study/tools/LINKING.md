@@ -14,19 +14,20 @@
 
 ## 链接规范
 
-### 模板（绝对 URL，指向本 fork 的 study/1.145-annotated 分支）
+### 模板（仓库内相对路径，指向本地源码；2026-11-06 23:06 用户拍板：不再用 GitHub 长链）
 
-- 行级：`https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/<仓库相对路径>#L123`
+- 行级：`../<仓库相对路径>#L123`（从 study/ 出发）
 - 区间：`…#L123-L180`
-- 文件级（无精确定位时）：`…/blob/study/1.145-annotated/<路径>`（不带锚点）
+- 文件级（无精确定位时）：`../<路径>`（不带锚点）
+- 效果：VS Code 本地点开直接跳到源码对应行；GitHub 网页上也依然可点
 
 ### 写法示例
 
 把「文件路径 + 函数名」都做成链接——路径用文件级、符号用行级：
 
 ```md
-- [`Camera.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Camera.js)
-  的 [`Camera.prototype.flyTo`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Camera.js#L1680)
+- [`Camera.js`](../packages/engine/Source/Scene/Camera.js)
+  的 [`Camera.prototype.flyTo`](../packages/engine/Source/Scene/Camera.js#L1680)
 ```
 
 表格单元格、列表项同样处理；文档间互引用相对链接（如 `[05-帧更新与渲染循环.md](05-帧更新与渲染循环.md)`）。
@@ -41,7 +42,8 @@ grep -n "Camera.prototype.flyTo " packages/engine/Source/Scene/Camera.js | head 
 
 - 取**定义行**（`function foo` / `X.prototype.bar =` / `class X` / 导出行），不是调用行。
 - 引用整段逻辑给区间锚点 `#L起-L止`；确实找不到精确定位就退文件级链接，宁缺毋滥。
-- 路径必须与仓库内真实文件一致（先 `ls` 确认，不要猜目录）。
+- 路径必须与仓库内真实文件一致（先 `ls`/`find` 确认，不要猜目录；1.145 有子目录重排，如 Scene/Model/）。
+- shader 文件后缀是 `.glsl`（import 的 `.js` 名是构建期约定），链接直接指 `.glsl` 真实文件。
 
 ## 校验（收尾必跑，全绿才 commit）
 
