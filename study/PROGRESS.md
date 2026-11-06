@@ -288,3 +288,6 @@
   - 特色：pnts 归宿链路图、EDL 劫持四步图、update 六步图、4 个动手实验（ion 资产/样式表达式/最小粒子系统/时序倍速）、8 条常见坑表
 - **数字**：check-links 全绿（21 个 md，代码链接 2056、相对链接 527、错误 0 警告 0）；17 含链接约 140 个、18 含约 137 个（新格式计入相对链接）
 - **下一棒建议（若继续加餐）**：裁剪与开挖（ClippingPlane/ClippingPolygonCollection，Scene/Globe/Model/3DTiles 四处挂点）、实战速查索引篇；旧文档 github.com 长链→相对路径的批量转换脚本由主会话执行（含 LINKING.md/check-links.mjs 同步改造：校验器需新增相对路径行号校验分支）；纪律同前：开工 git log 查重、行号唯一来源本地 grep、每篇即 commit、收尾全绿再 push
+
+## 2026-11-06 23:2x · 加餐C 19-裁剪与开挖 / 20-实战速查（进行中）
+
