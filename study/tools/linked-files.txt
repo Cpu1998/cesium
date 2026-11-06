@@ -39,6 +39,7 @@ packages/engine/Source/Core/Matrix4.js
 packages/engine/Source/Core/OrthographicFrustum.js
 packages/engine/Source/Core/PerspectiveFrustum.js
 packages/engine/Source/Core/PerspectiveOffCenterFrustum.js
+packages/engine/Source/Core/Plane.js
 packages/engine/Source/Core/PolygonGeometry.js
 packages/engine/Source/Core/PolygonGeometryLibrary.js
 packages/engine/Source/Core/PolygonPipeline.js
@@ -60,6 +61,7 @@ packages/engine/Source/Core/TimeIntervalCollection.js
 packages/engine/Source/Core/TimeStandard.js
 packages/engine/Source/Core/Transforms.js
 packages/engine/Source/Core/VRTheWorldTerrainProvider.js
+packages/engine/Source/Core/VectorPipeline.js
 packages/engine/Source/Core/VertexFormat.js
 packages/engine/Source/Core/WebMercatorTilingScheme.js
 packages/engine/Source/Core/binarySearch.js
@@ -89,6 +91,7 @@ packages/engine/Source/DataSources/GpxDataSource.js
 packages/engine/Source/DataSources/KmlDataSource.js
 packages/engine/Source/DataSources/KmlTour.js
 packages/engine/Source/DataSources/LabelVisualizer.js
+packages/engine/Source/DataSources/ModelGraphics.js
 packages/engine/Source/DataSources/ModelVisualizer.js
 packages/engine/Source/DataSources/PathVisualizer.js
 packages/engine/Source/DataSources/PointVisualizer.js
@@ -130,6 +133,7 @@ packages/engine/Source/Scene/BatchTexture.js
 packages/engine/Source/Scene/BillboardCollection.js
 packages/engine/Source/Scene/BingMapsImageryProvider.js
 packages/engine/Source/Scene/BoxEmitter.js
+packages/engine/Source/Scene/BufferPolygonCollection.js
 packages/engine/Source/Scene/Camera.js
 packages/engine/Source/Scene/CameraEventAggregator.js
 packages/engine/Source/Scene/CameraEventType.js
@@ -150,6 +154,10 @@ packages/engine/Source/Scene/Cesium3DTilesetTraversal.js
 packages/engine/Source/Scene/CircleEmitter.js
 packages/engine/Source/Scene/ClassificationPrimitive.js
 packages/engine/Source/Scene/ClassificationType.js
+packages/engine/Source/Scene/ClippingPlane.js
+packages/engine/Source/Scene/ClippingPlaneCollection.js
+packages/engine/Source/Scene/ClippingPolygon.js
+packages/engine/Source/Scene/ClippingPolygonCollection.js
 packages/engine/Source/Scene/Composite3DTileContent.js
 packages/engine/Source/Scene/ConditionsExpression.js
 packages/engine/Source/Scene/ConeEmitter.js
@@ -165,6 +173,7 @@ packages/engine/Source/Scene/GaussianSplat3DTileContent.js
 packages/engine/Source/Scene/Geometry3DTileContent.js
 packages/engine/Source/Scene/Globe.js
 packages/engine/Source/Scene/GlobeDepth.js
+packages/engine/Source/Scene/GlobeSurfaceShaderSet.js
 packages/engine/Source/Scene/GlobeSurfaceTile.js
 packages/engine/Source/Scene/GlobeSurfaceTileProvider.js
 packages/engine/Source/Scene/GltfBufferViewLoader.js
@@ -205,6 +214,8 @@ packages/engine/Source/Scene/Model/Model3DTileContent.js
 packages/engine/Source/Scene/Model/ModelAnimation.js
 packages/engine/Source/Scene/Model/ModelAnimationChannel.js
 packages/engine/Source/Scene/Model/ModelAnimationCollection.js
+packages/engine/Source/Scene/Model/ModelClippingPlanesPipelineStage.js
+packages/engine/Source/Scene/Model/ModelClippingPolygonsPipelineStage.js
 packages/engine/Source/Scene/Model/ModelDrawCommand.js
 packages/engine/Source/Scene/Model/ModelDrawCommands.js
 packages/engine/Source/Scene/Model/ModelFeature.js
@@ -255,6 +266,7 @@ packages/engine/Source/Scene/Scene.js
 packages/engine/Source/Scene/SceneFramebuffer.js
 packages/engine/Source/Scene/SceneTransforms.js
 packages/engine/Source/Scene/ScreenSpaceCameraController.js
+packages/engine/Source/Scene/ShadowMapShader.js
 packages/engine/Source/Scene/SingleTileImageryProvider.js
 packages/engine/Source/Scene/SkyAtmosphere.js
 packages/engine/Source/Scene/SkyBox.js
@@ -275,15 +287,21 @@ packages/engine/Source/Scene/Vector3DTileContent.js
 packages/engine/Source/Scene/VectorGltf3DTileContent.js
 packages/engine/Source/Scene/View.js
 packages/engine/Source/Scene/WebMapServiceImageryProvider.js
+packages/engine/Source/Scene/getClipAndStyleCode.js
+packages/engine/Source/Scene/getClippingFunction.js
 packages/engine/Source/Scene/preprocess3DTileContent.js
 packages/engine/Source/Shaders/AtmosphereCommon.glsl
 packages/engine/Source/Shaders/Builtin/Functions/phong.glsl
 packages/engine/Source/Shaders/GlobeFS.glsl
 packages/engine/Source/Shaders/GroundAtmosphere.glsl
+packages/engine/Source/Shaders/Model/ModelClippingPlanesStageFS.glsl
+packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageFS.glsl
+packages/engine/Source/Shaders/Model/ModelClippingPolygonsStageVS.glsl
 packages/engine/Source/Shaders/SkyAtmosphereCommon.glsl
 packages/engine/Source/Shaders/SkyAtmosphereFS.glsl
 packages/engine/Source/Shaders/SunFS.glsl
 packages/engine/Source/Shaders/SunTextureFS.glsl
+packages/engine/Source/Shaders/VectorCommon.glsl
 packages/engine/Source/Widget/CesiumWidget.js
 packages/engine/Source/Workers/createVerticesFromQuantizedTerrainMesh.js
 packages/widgets/Source/CesiumInspector/CesiumInspector.js
