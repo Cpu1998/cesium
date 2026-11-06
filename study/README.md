@@ -94,7 +94,7 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 ## 如何对照源码读注释（本地优先）
 
 1. **本地最佳姿势**：检出本分支（`git checkout study/1.145-annotated`）后用 VS Code 打开仓库根目录，
-   从 [study/README.md](study/README.md) 进入导读；`study/*.md` 里全部代码引用都是仓库内相对路径（如 `../packages/engine/Source/...#L123`），
+   从 [study/README.md](README.md) 进入导读；`study/*.md` 里全部代码引用都是仓库内相对路径（如 `../packages/engine/Source/...#L123`），
    在 VS Code 中点击直接跳到源码对应行；GitHub 网页浏览同样可用（相对链接会解析为同分支文件）。
 2. 打开任一被注文件（清单见「工程说明」），中文注释以 `// 【导读】` 开头，紧跟被解释的代码；
    文件头 8–15 行的 `// ═══ 【导读】…` 块是本文件总览，先读它再往下走。
