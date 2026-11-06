@@ -6,13 +6,13 @@
 ## 这是什么工程
 
 Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不改动任何一行原有代码** 的前提下，
-为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十七篇中文文档，
+为 1.145 源码的 31 个关键文件插入 829 行成体系的中文导读注释，并配套十九篇中文文档，
 覆盖十四大主题：**Viewer 创建、底图影像、Entity 数据、3D Tiles、帧渲染循环、相机与视角控制、地形系统、拾取、几何图元与材质、时间与动态属性、坐标变换、事件与交互、渲染命令与着色器、向量数据源**。
 首轮五棒已完结（2026-11-04）；2026-11-05/06 接力扩展篇 06–14 已全部落盘，全书收官，统计见下方「工程说明」。
 
 适合读者：有前端基础（懂 DOM/事件/Promise）、第一次读 Cesium 源码的工程师。
 
-## 文档索引（十七篇 · 五组 + 加餐导航）
+## 文档索引（十九篇 · 五组 + 加餐导航）
 
 > 组内按编号即阅读序；「顺序」列是全书通篇编号，跨组交叉引用都用它。
 
@@ -62,6 +62,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 |---|---|---|---|
 | 15 | [15-Model与glTF加载.md](15-Model与glTF加载.md) | Model 两层架构（Components 组件树 × SceneGraph 运行时）、GltfLoader 异步状态机与三级 stages、ResourceCache 缓存、动画骨架链、特性样式 BatchTexture、heightReference 贴地四态 | [`Model/Model.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/Model.js)、[`Model/ModelSceneGraph.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Model/ModelSceneGraph.js)、[`GltfLoader.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/GltfLoader.js) |
 | 16 | [16-性能调试与优化.md](16-性能调试与优化.md) | 测量→锚点→调参完整工具链：requestRenderMode 按需渲染、帧率观测三件套、debug 家族与 Inspector、内存三本账、缓存/LOD 上限、拾取限流、问题→工具→锚点→调参四列速查表 + 上线前检查单 | [`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`FrameRateMonitor.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/FrameRateMonitor.js)、[`ResourceCacheStatistics.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ResourceCacheStatistics.js) |
+| 17 | [17-天空光照与大气.md](17-天空光照与大气.md) | 环境家族全景：SkyBox/CubeMapPanorama、SkyAtmosphere 瑞利-米氏散射与 Atmosphere 参数块、Globe 地面大气与晨昏线、Sun 的 ComputeCommand glow 纹理与 SunPostProcess bloom、Moon ICRF、Scene.light→czm_sunDirectionEC 光照总线、雾的双重身份（着色+剔除放行）、HDR/后处理、星空盒自动生成 IBL | [`SkyAtmosphere.js`](../packages/engine/Source/Scene/SkyAtmosphere.js)、[`Sun.js`](../packages/engine/Source/Scene/Sun.js)、[`UniformState.js`](../packages/engine/Source/Renderer/UniformState.js) |
+| 18 | [18-点云与粒子.md](18-点云与粒子.md) | 点云双路线：pnts 并入新 Model 架构（Model3DTileContent+PntsParser）、PointCloudShading 衰减全参数、EDL 派生命令劫持 PLAY 机制、TimeDynamicPointCloud 帧调度与 LRU；ParticleSystem CPU 粒子池/双矩阵/update 六步、发射器家族与 Billboard 底座性能账 | [`PointCloudShading.js`](../packages/engine/Source/Scene/PointCloudShading.js)、[`PointCloudEyeDomeLighting.js`](../packages/engine/Source/Scene/PointCloudEyeDomeLighting.js)、[`ParticleSystem.js`](../packages/engine/Source/Scene/ParticleSystem.js) |
 
 ## 推荐阅读路线
 
@@ -80,6 +82,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 14（向量数据源）是 03 的数据入口姊妹篇（谁在造 Entity：GeoJSON/KML/CZML 的适配器全景），读完可随时回头翻；
 15（Model 与 glTF）建议在 04/09/13 之后读（新一代 Model 架构与旧 Primitive 路径对照着看才不吃力）；
 16（性能调试）通读全书后当手册用——排查卡顿时按 §1 决策树选工具，上线前过 §15 检查单；
+17（天空光照与大气）建议与 05/13 配对读（环境 pass 与后处理的专题化），想看「拨快时钟看晨昏线」就先补 10；
+18（点云与粒子）建议在 04/15 之后读（点云着色宿主是新 Model 架构），ParticleSystem 部分只需 03 的 Billboard 概念；
 做业务开发可先走「入门总览 → 03 → 14 → 06/12」捷径，再按需补渲染组。
 
 ## 如何在本分支对照源码读注释
@@ -114,8 +118,9 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
 
 - **基点**：官方 tag `1.145`（commit `845a06b` 的直接后续）；发布分支 `study/1.145-annotated`。
 - **成果统计**：31 个 `.js` 源码文件、829 行纯中文导读注释（零代码改动，已用上节命令终验）；
-  十七篇中文文档 + 本 README（00–05 为首轮五棒成果，06–14 为 2026-11-05/06 接力新增，15–16 为加餐篇，代码引用全部行级链接化：
-  全书代码链接 2054 个、文档间相对链接 189 个，`node study/tools/check-links.mjs` 全绿）；30+ 中文 commit。
+  十九篇中文文档 + 本 README（00–05 为首轮五棒成果，06–14 为 2026-11-05/06 接力新增，15–18 为加餐篇；代码引用全部行级链接化，
+  17/18 起启用仓库内相对路径链接新格式，旧长链待脚本统一转换）：
+  全书代码链接 2058 个、文档间相对链接 517 个（含新格式代码引用），`node study/tools/check-links.mjs` 全绿；30+ 中文 commit。
 - **五棒接力主题**：
   1. Phase 1 总览 + Viewer/CesiumWidget 创建（[`Viewer.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/widgets/Source/Viewer/Viewer.js)、[`CesiumWidget.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Widget/CesiumWidget.js)，文档 00/01）
   2. Phase 2 底图与影像体系（`ImageryLayer*`、`Globe*`、[`QuadtreePrimitive`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/QuadtreePrimitive.js#L50) 等 9 文件，文档 02）
@@ -124,8 +129,8 @@ Cesium 是最流行的开源三维地球引擎（WebGL）。本工程在 **不�
   5. Phase 5 帧更新与渲染循环 + 收尾（[`Scene.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/Scene.js)、[`RequestScheduler.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Core/RequestScheduler.js)、[`Context.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/Context.js)/[`DrawCommand.js`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Renderer/DrawCommand.js#L76)，
      文档 05 与本 README 定稿）
 - **交接记录**：各棒的详细文件/方法清单与交接提示归档在 [PROGRESS.md](PROGRESS.md)（历史记录，已入库）。
-- **后续可深挖方向（加餐候选）**：~~Model/glTF 渲染管线~~、~~性能调试与内存剖析~~（均已落盘为 [15](15-Model与glTF加载.md)/[16](16-性能调试与优化.md)）；
-  天空/光照/大气（SkyAtmosphere、Sun/Moon、光照与 IBL）、点云/粒子（[`PointCloud`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/PointCloud.js)、[`ParticleSystem`](https://github.com/Cpu1998/cesium/blob/study/1.145-annotated/packages/engine/Source/Scene/ParticleSystem.js)）、
+- **后续可深挖方向（加餐候选）**：~~Model/glTF 渲染管线~~、~~性能调试与内存剖析~~、~~天空/光照/大气~~、~~点云/粒子~~（均已落盘为
+  [15](15-Model与glTF加载.md)/[16](16-性能调试与优化.md)/[17](17-天空光照与大气.md)/[18](18-点云与粒子.md)）；
   裁剪与开挖（ClippingPolygonCollection/ClippingPlane）、实战速查（常见业务配方索引篇）；
   Renderer 剩余细节（OIT/深度拷贝链/GaussianSplat）与事件/命令层已见 [12](12-事件与交互.md)/[13](13-渲染命令与着色器.md)；ComputeCommand 影像重投影见 [05 §10](05-帧更新与渲染循环.md)；向量数据源已落盘为 [14](14-向量数据源.md)。
 
